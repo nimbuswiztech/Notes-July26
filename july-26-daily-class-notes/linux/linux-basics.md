@@ -1,6 +1,6 @@
 # linux basics
 
-![](<../.gitbook/assets/0 326MtB8ciLLPUUy.jpg>)
+![](<../../.gitbook/assets/0 326MtB8ciLLPUUy.jpg>)
 
 To begin with we will see what is an _**operating system,**_
 
@@ -40,7 +40,7 @@ _**ubuntu**_ is one of the most popular distros in the Linux industry with 31.8%
 
 The Linux operating system’s architecture contains some of the components: **the Kernel, System Library, Hardware layer, System,** and **Shell utility**.
 
-![](../.gitbook/assets/0lSKB1_SHFqIZgOQc.png)
+![](../../.gitbook/assets/0lSKB1_SHFqIZgOQc.png)
 
 Linux Architecture
 
