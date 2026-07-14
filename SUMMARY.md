@@ -7,3 +7,4 @@
 * [Linux](july-26-daily-class-notes/linux/README.md)
   * [linux basics](july-26-daily-class-notes/linux/linux-basics.md)
   * [different shells in linux](july-26-daily-class-notes/linux/different-shells-in-linux.md)
+  * [day1](july-26-daily-class-notes/linux/day1.md)
