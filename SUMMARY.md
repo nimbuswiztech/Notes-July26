@@ -9,3 +9,5 @@
   * [different shells in linux](july-26-daily-class-notes/linux/different-shells-in-linux.md)
   * [day1](july-26-daily-class-notes/linux/day1.md)
   * [day 2](july-26-daily-class-notes/linux/day-2.md)
+  * [Day 3](july-26-daily-class-notes/linux/day-3.md)
+  * [Day 4](july-26-daily-class-notes/linux/day-4.md)
