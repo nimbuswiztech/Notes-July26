@@ -11,3 +11,4 @@
   * [day 2](july-26-daily-class-notes/linux/day-2.md)
   * [Day 3](july-26-daily-class-notes/linux/day-3.md)
   * [Day 4](july-26-daily-class-notes/linux/day-4.md)
+  * [Day 5](july-26-daily-class-notes/linux/day-5.md)
