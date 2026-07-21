@@ -17,3 +17,6 @@
   * [linux interview questions 1](july-26-daily-class-notes/linux/linux-interview-questions-1.md)
   * [linux interview questions](july-26-daily-class-notes/linux/linux-interview-questions.md)
   * [linux unix tutorial](july-26-daily-class-notes/linux/linux-unix-tutorial.md)
+* [Shell Scripting](july-26-daily-class-notes/shell-scripting/README.md)
+  * [Shell Script Day 1](july-26-daily-class-notes/shell-scripting/shell-script-day-1.md)
+  * [Shell Script Day 2](july-26-daily-class-notes/shell-scripting/shell-script-day-2.md)
