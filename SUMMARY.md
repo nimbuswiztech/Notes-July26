@@ -26,3 +26,4 @@
   * [git](july-26-daily-class-notes/git/git.md)
   * [introduction to git](july-26-daily-class-notes/git/introduction-to-git.md)
   * [git work flow](july-26-daily-class-notes/git/git-work-flow.md)
+  * [Git Day 1](july-26-daily-class-notes/git/git-day-1.md)
