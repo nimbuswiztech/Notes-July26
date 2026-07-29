@@ -29,6 +29,7 @@
   * [Git Day 1](july-26-daily-class-notes/git/git-day-1.md)
   * [Git Day 2](july-26-daily-class-notes/git/git-day-2.md)
   * [Git Day 3](july-26-daily-class-notes/git/git-day-3.md)
+  * [Git Day 4](july-26-daily-class-notes/git/git-day-4.md)
   * [git and github](july-26-daily-class-notes/git/git-and-github.md)
   * [git reset](july-26-daily-class-notes/git/git-reset.md)
   * [git reset with practical example](july-26-daily-class-notes/git/git-reset-with-practical-example.md)
