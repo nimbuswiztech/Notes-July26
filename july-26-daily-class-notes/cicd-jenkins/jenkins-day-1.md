@@ -49,24 +49,18 @@ Port 8080 MUST be open in your EC2 Security Group.
 If it is blocked, you will not be able to access the Jenkins web UI.
 {% endhint %}
 
-{% stepper %}
-{% step %}
 ### Connect to your EC2
 
 ```bash
 ssh -i your-key.pem ubuntu@<EC2_PUBLIC_IP>
 ```
-{% endstep %}
 
-{% step %}
 ### Update the system first
 
 ```bash
 sudo apt update
 sudo apt upgrade -y
 ```
-{% endstep %}
-{% endstepper %}
 
 ## ☕ Part 2 – Install Java (OpenJDK 17)
 
@@ -84,12 +78,71 @@ If you see `command not found`, Java is not installed. Continue below.
 {% endstep %}
 
 {% step %}
-### Install OpenJDK 17
+### JRE vs JDK — Understand the Difference
+
+|                        | JRE (Java Runtime Environment) | JDK (Java Development Kit)     |
+| ---------------------- | ------------------------------ | ------------------------------ |
+| **What it is**         | Runs Java programs             | Develops + runs Java programs  |
+| **Includes**           | JVM + runtime libraries        | JRE + compiler + dev tools     |
+| **For Jenkins server** | ✅ Enough to run Jenkins        | ✅ Needed if building Java code |
+| **Package name**       | `openjdk-17-jre`               | `openjdk-17-jdk`               |
+
+{% hint style="info" %}
+**Rule of thumb:**
+
+* Install **JRE** if Jenkins is only running pipelines (shell scripts, Python, etc.)
+* Install **JDK** if Jenkins is building Java/Maven/Gradle projects
+{% endhint %}
+{% endstep %}
+
+{% step %}
+### Install JRE (Java Runtime Environment)
+
+JRE is the **minimum requirement** to run Jenkins:
 
 ```bash
 sudo apt update
+sudo apt install openjdk-17-jre -y
+```
+
+Verify JRE:
+
+```bash
+java -version
+```
+
+**Expected output:**
+
+```
+openjdk version "17.0.x" ...
+OpenJDK Runtime Environment (build 17.0.x...)
+```
+{% endstep %}
+
+{% step %}
+### Install JDK (Java Development Kit)
+
+JDK is required to **build Java projects** with Jenkins (Maven, Gradle, etc.). Installing JDK also includes JRE — so you get everything in one package:
+
+```bash
 sudo apt install openjdk-17-jdk -y
 ```
+
+Verify JDK:
+
+```bash
+javac -version
+```
+
+**Expected output:**
+
+```
+javac 17.0.x
+```
+
+{% hint style="info" %}
+In this course we install **both** — JRE to run Jenkins and JDK to build Java projects.
+{% endhint %}
 {% endstep %}
 
 {% step %}
@@ -295,7 +348,9 @@ You are now on the **Freestyle Job configuration page**.
 {% endstep %}
 
 {% step %}
-### Configure the General section
+### Configure the Job
+
+#### 📌 Section 1: General
 
 | Field                             | What it does                                                        |
 | --------------------------------- | ------------------------------------------------------------------- |
@@ -310,10 +365,8 @@ You are now on the **Freestyle Job configuration page**.
 
 * ✅ Add a description: `My first Jenkins job - system information`
 * ✅ Enable **Discard old builds** → Max # of builds to keep: `5`
-{% endstep %}
 
-{% step %}
-### Configure Source Code Management
+#### 🔗 Section 2: Source Code Management
 
 Tells Jenkins where to get the source code.
 
@@ -329,10 +382,8 @@ When you add Git:
 * **Repository URL:** `https://github.com/your-username/your-repo.git`
 * **Branch:** `*/main`
 * **Credentials:** Add if the repo is private
-{% endstep %}
 
-{% step %}
-### Configure Triggers
+#### ⏰ Section 3: Triggers
 
 Defines WHEN the job runs automatically.
 
@@ -358,10 +409,8 @@ H 8 * * 1-5   → every weekday at 8 AM
 ✅ Enable **Build periodically** → Schedule: `H/5 * * * *`
 
 This makes the job run automatically every 5 minutes.
-{% endstep %}
 
-{% step %}
-### Configure Environment
+#### 🌱 Section 4: Environment
 
 Configures the environment before the build runs.
 
@@ -375,10 +424,8 @@ Configures the environment before the build runs.
 **What to configure now:**
 
 ✅ Enable **Add timestamps to Console Output** — always useful for debugging
-{% endstep %}
 
-{% step %}
-### Add Build Steps
+#### 🔨 Section 5: Build Steps
 
 **This is what Jenkins actually runs.**
 
@@ -412,10 +459,8 @@ whoami
 | `$WORKSPACE`    | Absolute path to the job's workspace on disk |
 | `$BUILD_URL`    | Full URL to this specific build              |
 | `$GIT_BRANCH`   | Git branch being built (when using SCM)      |
-{% endstep %}
 
-{% step %}
-### Configure Post-build Actions
+#### 📦 Section 6: Post-build Actions
 
 Defines what happens AFTER the build completes.
 
