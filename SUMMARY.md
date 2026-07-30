@@ -49,3 +49,5 @@
   * [Class Images](july-26-daily-class-notes/cicd-jenkins/class-images.md)
   * [cicd flow images](july-26-daily-class-notes/cicd-jenkins/cicd-flow-images.md)
   * [cicd flow](july-26-daily-class-notes/cicd-jenkins/cicd-flow.md)
+  * [Install Jenkins on Ubuntu](july-26-daily-class-notes/cicd-jenkins/install-jenkins-on-ubuntu.md)
+  * [Jenkins Day 1](july-26-daily-class-notes/cicd-jenkins/jenkins-day-1.md)
