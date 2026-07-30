@@ -44,3 +44,8 @@
   * [git squash](july-26-daily-class-notes/git/git-squash.md)
   * [git stash](july-26-daily-class-notes/git/git-stash.md)
   * [git cheat sheet](july-26-daily-class-notes/git/git-cheat-sheet.md)
+* [CICD / Jenkins](july-26-daily-class-notes/cicd-jenkins/README.md)
+  * [CICD Class 1](july-26-daily-class-notes/cicd-jenkins/cicd-class-1.md)
+  * [Class Images](july-26-daily-class-notes/cicd-jenkins/class-images.md)
+  * [cicd flow images](july-26-daily-class-notes/cicd-jenkins/cicd-flow-images.md)
+  * [cicd flow](july-26-daily-class-notes/cicd-jenkins/cicd-flow.md)
