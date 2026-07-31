@@ -51,3 +51,4 @@
   * [cicd flow](july-26-daily-class-notes/cicd-jenkins/cicd-flow.md)
   * [Install Jenkins on Ubuntu](july-26-daily-class-notes/cicd-jenkins/install-jenkins-on-ubuntu.md)
   * [Jenkins Day 1](july-26-daily-class-notes/cicd-jenkins/jenkins-day-1.md)
+  * [Jenkins Day 2](july-26-daily-class-notes/cicd-jenkins/jenkins-day-2.md)
