@@ -57,6 +57,7 @@
   * [master slave configuration](july-26-daily-class-notes/cicd-jenkins/master-slave-configuration.md)
   * [pluggin installation](july-26-daily-class-notes/cicd-jenkins/pluggin-installation.md)
   * [jenkins parameters](july-26-daily-class-notes/cicd-jenkins/jenkins-parameters.md)
+  * [Built in variables](july-26-daily-class-notes/cicd-jenkins/built-in-variables.md)
   * [jenkins pipelines samples](july-26-daily-class-notes/cicd-jenkins/jenkins-pipelines-samples.md)
   * [pipelines](july-26-daily-class-notes/cicd-jenkins/pipelines.md)
   * [pipline options](july-26-daily-class-notes/cicd-jenkins/pipline-options.md)
