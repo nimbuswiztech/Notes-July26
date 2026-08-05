@@ -69,6 +69,14 @@ sudo systemctl restart jenkins
 
 Access your Jenkins server in the browser at `http://<your-server-ip>:9090`.
 {% endstep %}
+
+{% step %}
+### Another method
+
+Edit the below file and change the port&#x20;
+
+`sudo nano /lib/systemd/system/jenkins.service`
+{% endstep %}
 {% endstepper %}
 
 ### Legacy Method (Older Systems Only)
