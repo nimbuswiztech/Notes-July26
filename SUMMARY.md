@@ -54,6 +54,7 @@
   * [Jenkins Day 1](july-26-daily-class-notes/cicd-jenkins/jenkins-day-1.md)
   * [Jenkins Day 2](july-26-daily-class-notes/cicd-jenkins/jenkins-day-2.md)
   * [Jenkins Day 3](july-26-daily-class-notes/cicd-jenkins/jenkins-day-3.md)
+  * [Jenkins Day 4   Shared Libs](july-26-daily-class-notes/cicd-jenkins/jenkins-day-4-shared-libs.md)
   * [master slave configuration](july-26-daily-class-notes/cicd-jenkins/master-slave-configuration.md)
   * [pluggin installation](july-26-daily-class-notes/cicd-jenkins/pluggin-installation.md)
   * [jenkins parameters](july-26-daily-class-notes/cicd-jenkins/jenkins-parameters.md)
