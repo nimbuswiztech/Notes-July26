@@ -72,3 +72,5 @@
   * [maven tutorial](july-26-daily-class-notes/cicd-jenkins/maven-tutorial.md)
   * [jenkins q and a with implementation steps](july-26-daily-class-notes/cicd-jenkins/jenkins-q-and-a-with-implementation-steps.md)
   * [jenkins q and a](july-26-daily-class-notes/cicd-jenkins/jenkins-q-and-a.md)
+  * [RBAC](july-26-daily-class-notes/cicd-jenkins/rbac.md)
+* [ldap\_notes](july-26-daily-class-notes/ldap_notes.md)
