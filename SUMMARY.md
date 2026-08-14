@@ -73,4 +73,6 @@
   * [jenkins q and a with implementation steps](july-26-daily-class-notes/cicd-jenkins/jenkins-q-and-a-with-implementation-steps.md)
   * [jenkins q and a](july-26-daily-class-notes/cicd-jenkins/jenkins-q-and-a.md)
   * [RBAC](july-26-daily-class-notes/cicd-jenkins/rbac.md)
+  * [Tomcat\_Directory\_Structure](july-26-daily-class-notes/cicd-jenkins/tomcat_directory_structure.md)
+  * [Tomcat\_Video\_Notes](july-26-daily-class-notes/cicd-jenkins/tomcat_video_notes.md)
 * [ldap\_notes](july-26-daily-class-notes/ldap_notes.md)
