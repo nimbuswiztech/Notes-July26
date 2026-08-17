@@ -75,4 +75,8 @@
   * [jenkins q and a with implementation steps](july-26-daily-class-notes/cicd-jenkins/jenkins-q-and-a-with-implementation-steps.md)
   * [jenkins q and a](july-26-daily-class-notes/cicd-jenkins/jenkins-q-and-a.md)
   * [RBAC](july-26-daily-class-notes/cicd-jenkins/rbac.md)
+* [AWS](july-26-daily-class-notes/aws/README.md)
+  * [Cloud\_Computing](july-26-daily-class-notes/aws/cloud_computing.md)
+  * [AWS\_Overview](july-26-daily-class-notes/aws/aws_overview.md)
+  * [Regions\_and\_Availability\_Zones](july-26-daily-class-notes/aws/regions_and_availability_zones.md)
 * [ldap\_notes](july-26-daily-class-notes/ldap_notes.md)
