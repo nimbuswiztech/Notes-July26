@@ -105,6 +105,5 @@
     * [AWS Load balancer](july-26-daily-class-notes/aws/load-balancer/aws-load-balancer.md)
     * [AWS Load Balancers Explained](july-26-daily-class-notes/aws/load-balancer/aws-load-balancers-explained.md)
     * [Load Balancing Algorithms](july-26-daily-class-notes/aws/load-balancer/load-balancing-algorithms.md)
-    * [Load Balancing\_ System Design Fundamentals \_ by Abhirup Acharya \_ Medium](july-26-daily-class-notes/aws/load-balancer/load-balancing_-system-design-fundamentals-_-by-abhirup-acharya-_-medium.md)
 * [LDAP](july-26-daily-class-notes/ldap.md)
 * [apache HTTPD guide](july-26-daily-class-notes/apache-httpd-guide.md)
