@@ -113,3 +113,4 @@
 * [Apache HTTPD guide](july-26-daily-class-notes/apache-httpd-guide.md)
 * [IAM](july-26-daily-class-notes/iam/README.md)
   * [EC2 to s3 logging guide](july-26-daily-class-notes/iam/ec2-to-s3-logging-guide.md)
+  * [IAM](july-26-daily-class-notes/iam/iam.md)
