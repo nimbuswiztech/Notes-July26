@@ -1,8 +1,6 @@
-# iac
+# IAC
 
 Master the foundational concepts, architectural pillars, market tool comparison, and practical implementation of modern Infrastructure as Code. Follow the step-by-step Terraform lab to provision, mutate, drift-detect, and tear down AWS infrastructure.
-
-[👨‍🏫 Instructor Guide ↗](/broken/pages/18ba8ec8b0ffe9c14a0a6fc5f0f087c85ba4dadd)
 
 {% hint style="warning" %}
 **Student Reminder:** Always run `terraform destroy` at the conclusion of the lab to prevent unexpected AWS cloud charges.
