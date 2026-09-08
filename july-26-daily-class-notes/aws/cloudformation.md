@@ -282,3 +282,8 @@ Typo in a `!Ref` or `!GetAtt` target.
 **Fix:** Verify spelling and letter capitalization of logical IDs. Logical IDs are case-sensitive in CloudFormation.
 
 </details>
+
+### Resources for Practice
+
+{% file src="../../.gitbook/assets/Cloudformation code.zip" %}
+
