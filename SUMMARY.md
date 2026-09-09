@@ -120,6 +120,8 @@
   * [IAC](july-26-daily-class-notes/aws/iac.md)
   * [cloudformation](july-26-daily-class-notes/aws/cloudformation.md)
   * [Secrets Manager](july-26-daily-class-notes/aws/secrets-manager.md)
+  * [rds pgsql](july-26-daily-class-notes/aws/rds-pgsql.md)
+  * [lambda](july-26-daily-class-notes/aws/lambda.md)
 * [LDAP](july-26-daily-class-notes/ldap.md)
 * [Apache HTTPD guide](july-26-daily-class-notes/apache-httpd-guide.md)
 * [stress test](july-26-daily-class-notes/stress-test.md)
