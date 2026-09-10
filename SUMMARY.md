@@ -125,3 +125,6 @@
 * [LDAP](july-26-daily-class-notes/ldap.md)
 * [Apache HTTPD guide](july-26-daily-class-notes/apache-httpd-guide.md)
 * [stress test](july-26-daily-class-notes/stress-test.md)
+* [Docker](july-26-daily-class-notes/docker/README.md)
+  * [docker](july-26-daily-class-notes/docker/docker.md)
+  * [docker\_evolution\_visual](july-26-daily-class-notes/docker/docker_evolution_visual.md)
