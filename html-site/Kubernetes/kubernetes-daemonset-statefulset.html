@@ -1,10 +1,311 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Kubernetes DaemonSet & StatefulSet — Nimbuswiztech Training Guide</title>
+<html lang="en" data-theme="dark"><head>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Kubernetes DaemonSet & StatefulSet — Nimbuswiztech Training Guide</title>
 <style>
-:root{--ink:#172b45;--muted:#52647b;--navy:#132c4c;--blue:#2463a6;--pale:#f3f7fc;--line:#d9e3ef;--green:#13795b;--amber:#8a5a00;--red:#a43232;--shadow:0 8px 28px rgba(26,54,93,.08)}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:#f7f9fc;color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:#175ea8;text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:#0d4079}code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}code{font-size:.92em;background:#edf2f8;padding:.12em .32em;border-radius:4px;overflow-wrap:anywhere}pre{position:relative;background:#101d2c;color:#eaf2fc;padding:18px 16px 18px;overflow:auto;border-radius:12px;line-height:1.5;font-size:13px;border:1px solid #27384a;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);margin:10px 0 20px}pre code{background:transparent;color:inherit;padding:0;white-space:pre}.code-label{margin:14px 0 -10px;padding:8px 13px;background:#e8eef7;border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;color:#364e6d;font-size:12px;font-weight:800;letter-spacing:.03em}.copy-btn{position:absolute;top:8px;right:8px;border:1px solid #63768b;background:#203246;color:white;border-radius:7px;padding:5px 9px;font-size:11px;cursor:pointer;z-index:2}.copy-btn:hover{background:#35516d}.layout{display:grid;grid-template-columns:275px minmax(0,1fr);max-width:1600px;margin:auto}.sidebar{position:sticky;top:0;height:100vh;overflow:auto;background:#102743;color:#d8e6f8;padding:24px 18px;border-right:1px solid #284260}.brand{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#a9c8f1}.brand span{display:inline-block;background:#2d72bd;color:white;border-radius:7px;padding:4px 7px;margin-right:7px}.sidebar h2{font-size:19px;color:#fff;margin:18px 0 8px}.sidebar .toc{display:grid;gap:4px}.sidebar a{color:#c9d9ed;text-decoration:none;font-size:13px;padding:7px 9px;border-radius:7px;line-height:1.35}.sidebar a:hover,.sidebar a.active{background:#21486f;color:#fff}.sidebar .small-note{font-size:12px;color:#9db3ce;border-top:1px solid #2c4360;margin-top:18px;padding-top:16px}.main{min-width:0;padding:0 32px 70px}.hero{margin:26px auto 22px;max-width:1180px;background:linear-gradient(130deg,#102d50,#1e4e82 68%,#2671ad);border-radius:24px;color:#fff;padding:42px 38px;position:relative;overflow:hidden;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;width:440px;height:440px;border:1px solid rgba(255,255,255,.16);border-radius:50%;right:-115px;top:-180px;box-shadow:0 0 0 35px rgba(255,255,255,.035),0 0 0 80px rgba(255,255,255,.025)}.hero .kicker{font-weight:800;text-transform:uppercase;letter-spacing:.13em;font-size:12px;color:#b8d9ff}.hero h1{font-size:clamp(31px,4.3vw,54px);line-height:1.08;margin:13px 0 14px;max-width:790px;letter-spacing:-.035em}.hero p{font-size:17px;max-width:810px;color:#e1ecf8}.hero .meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.pill{display:inline-flex;border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:6px 11px;background:rgba(255,255,255,.08);font-size:12px;font-weight:650}.hero figure{margin:23px 0 0;position:relative;z-index:1}.hero svg{display:block;max-width:800px;width:100%;height:auto}.content{max-width:1180px;margin:auto}.section{background:white;border:1px solid #e1e8f0;border-radius:18px;padding:28px 30px;margin:20px 0;box-shadow:0 4px 20px rgba(24,47,77,.035);scroll-margin-top:18px}.section h2{margin:0 0 15px;font-size:28px;letter-spacing:-.025em;line-height:1.22;color:#173556}.section h3{font-size:20px;color:#203f63;margin:26px 0 9px}.section h4{font-size:16px;color:#254d77;margin:18px 0 7px}.section p{margin:9px 0 13px}.lead{font-size:18px;color:#334a64}.section-intro{font-size:14px;color:var(--muted);margin-top:-7px!important}.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#3975b5;font-weight:850}.grid{display:grid;gap:14px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.tile{border:1px solid var(--line);border-radius:13px;padding:17px;background:#fbfdff}.tile h3{margin:5px 0 5px;font-size:18px}.tile p{margin:0;color:#52647b;font-size:14px}.callout{border-left:4px solid #3b78bf;background:#eef5fd;padding:14px 16px;border-radius:0 10px 10px 0;margin:16px 0;color:#27415f}.callout.warning{border-left-color:#d79722;background:#fff6e5;color:#624400}.callout.danger{border-left-color:#c44b4b;background:#fff0f0;color:#762d2d}.callout.success{border-left-color:#2a9975;background:#eaf8f2;color:#155a46}.viz{margin:17px 0 24px;border:1px solid #dce6f1;border-radius:15px;background:#fff;padding:10px 10px 4px;overflow:hidden}.diagram{display:block;width:100%;height:auto;min-width:300px}.viz figcaption{font-size:13px;color:#52647b;padding:6px 10px 11px;line-height:1.5}.viz figcaption strong{color:#203f63}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;margin:12px 0 18px}table{border-collapse:collapse;width:100%;min-width:610px;font-size:14px}th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{background:#edf3fa;color:#254667;font-size:12px;letter-spacing:.04em;text-transform:uppercase}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#fbfdff}.step{display:grid;grid-template-columns:40px 1fr;gap:12px;margin:17px 0;align-items:start}.step-num{display:grid;place-items:center;background:#1f5f9d;color:#fff;border-radius:11px;width:36px;height:36px;font-weight:850}.step h4{margin:0 0 4px}.qa-group{display:grid;grid-template-columns:1fr 1fr;gap:10px}.qa{border:1px solid #dce6f1;background:#fbfdff;border-radius:10px;padding:12px 14px;align-self:start}.qa summary{font-weight:700;cursor:pointer;color:#234667;line-height:1.45}.qa .answer{color:#40546d;padding-top:9px;font-size:14px}.qa .answer code{font-size:12px}.search-row{display:flex;gap:10px;align-items:center;margin:10px 0 17px}.search-row input{min-width:0;flex:1;border:1px solid #cbd9e8;border-radius:9px;padding:10px 12px;font:inherit}.btn{border:1px solid #bccde0;color:#214d7a;background:#eff5fc;border-radius:9px;padding:9px 12px;font-weight:700;cursor:pointer}.btn:hover{background:#dfedfc}.assignment{border:1px solid var(--line);border-radius:13px;padding:16px;margin:12px 0;background:#fcfdff}.assignment h4{margin:0 0 8px}.assignment .solution{margin-top:10px;background:#eff8f4;border-radius:9px;padding:10px 12px}.muted{color:#5d6e83}.tag{display:inline-block;border-radius:6px;background:#e7effa;color:#285587;font-weight:800;font-size:11px;padding:3px 7px;margin-right:5px}.checklist li{margin:7px 0}.small{font-size:13px}.footer{padding:26px 10px;color:#64758a;font-size:12px;text-align:center}.backtop{position:fixed;right:18px;bottom:18px;border:0;border-radius:50px;padding:11px 15px;background:#14385f;color:#fff;box-shadow:var(--shadow);cursor:pointer;font-weight:750;z-index:10}.hidden{display:none!important}.print-only{display:none}
+:root{--ink:#172b45;--muted:#52647b;--navy:#132c4c;--blue:#2463a6;--pale:#f3f7fc;--line:#d9e3ef;--green:#13795b;--amber:#8a5a00;--red:#a43232;--shadow:0 8px 28px rgba(26,54,93,.08)}
+.k8s-body {
+
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}
+.k8s-body {margin:0;background:#f7f9fc;color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:#175ea8;text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:#0d4079}code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}code{font-size:.92em;background:#edf2f8;padding:.12em .32em;border-radius:4px;overflow-wrap:anywhere}pre{position:relative;background:#101d2c;color:#eaf2fc;padding:18px 16px 18px;overflow:auto;border-radius:12px;line-height:1.5;font-size:13px;border:1px solid #27384a;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);margin:10px 0 20px}pre code{background:transparent;color:inherit;padding:0;white-space:pre}.code-label{margin:14px 0 -10px;padding:8px 13px;background:#e8eef7;border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;color:#364e6d;font-size:12px;font-weight:800;letter-spacing:.03em}.copy-btn{position:absolute;top:8px;right:8px;border:1px solid #63768b;background:#203246;color:white;border-radius:7px;padding:5px 9px;font-size:11px;cursor:pointer;z-index:2}.copy-btn:hover{background:#35516d}.layout{display:grid;grid-template-columns:275px minmax(0,1fr);max-width:1600px;margin:auto}.sidebar{position:sticky;top:0;height:100vh;overflow:auto;background:#102743;color:#d8e6f8;padding:24px 18px;border-right:1px solid #284260}.brand{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#a9c8f1}.brand span{display:inline-block;background:#2d72bd;color:white;border-radius:7px;padding:4px 7px;margin-right:7px}.sidebar h2{font-size:19px;color:#fff;margin:18px 0 8px}.sidebar .toc{display:grid;gap:4px}.sidebar a{color:#c9d9ed;text-decoration:none;font-size:13px;padding:7px 9px;border-radius:7px;line-height:1.35}.sidebar a:hover,.sidebar a.active{background:#21486f;color:#fff}.sidebar .small-note{font-size:12px;color:#9db3ce;border-top:1px solid #2c4360;margin-top:18px;padding-top:16px}.main{min-width:0;padding:0 32px 70px}.hero{margin:26px auto 22px;max-width:1180px;background:linear-gradient(130deg,#102d50,#1e4e82 68%,#2671ad);border-radius:24px;color:#fff;padding:42px 38px;position:relative;overflow:hidden;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;width:440px;height:440px;border:1px solid rgba(255,255,255,.16);border-radius:50%;right:-115px;top:-180px;box-shadow:0 0 0 35px rgba(255,255,255,.035),0 0 0 80px rgba(255,255,255,.025)}.hero .kicker{font-weight:800;text-transform:uppercase;letter-spacing:.13em;font-size:12px;color:#b8d9ff}.hero h1{font-size:clamp(31px,4.3vw,54px);line-height:1.08;margin:13px 0 14px;max-width:790px;letter-spacing:-.035em}.hero p{font-size:17px;max-width:810px;color:#e1ecf8}.hero .meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.pill{display:inline-flex;border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:6px 11px;background:rgba(255,255,255,.08);font-size:12px;font-weight:650}.hero figure{margin:23px 0 0;position:relative;z-index:1}.hero svg{display:block;max-width:800px;width:100%;height:auto}.content{max-width:1180px;margin:auto}.section{background:white;border:1px solid #e1e8f0;border-radius:18px;padding:28px 30px;margin:20px 0;box-shadow:0 4px 20px rgba(24,47,77,.035);scroll-margin-top:18px}.section h2{margin:0 0 15px;font-size:28px;letter-spacing:-.025em;line-height:1.22;color:#173556}.section h3{font-size:20px;color:#203f63;margin:26px 0 9px}.section h4{font-size:16px;color:#254d77;margin:18px 0 7px}.section p{margin:9px 0 13px}.lead{font-size:18px;color:#334a64}.section-intro{font-size:14px;color:var(--muted);margin-top:-7px!important}.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#3975b5;font-weight:850}.grid{display:grid;gap:14px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.tile{border:1px solid var(--line);border-radius:13px;padding:17px;background:#fbfdff}.tile h3{margin:5px 0 5px;font-size:18px}.tile p{margin:0;color:#52647b;font-size:14px}.callout{border-left:4px solid #3b78bf;background:#eef5fd;padding:14px 16px;border-radius:0 10px 10px 0;margin:16px 0;color:#27415f}.callout.warning{border-left-color:#d79722;background:#fff6e5;color:#624400}.callout.danger{border-left-color:#c44b4b;background:#fff0f0;color:#762d2d}.callout.success{border-left-color:#2a9975;background:#eaf8f2;color:#155a46}.viz{margin:17px 0 24px;border:1px solid #dce6f1;border-radius:15px;background:#fff;padding:10px 10px 4px;overflow:hidden}.diagram{display:block;width:100%;height:auto;min-width:300px}.viz figcaption{font-size:13px;color:#52647b;padding:6px 10px 11px;line-height:1.5}.viz figcaption strong{color:#203f63}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;margin:12px 0 18px}table{border-collapse:collapse;width:100%;min-width:610px;font-size:14px}th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{background:#edf3fa;color:#254667;font-size:12px;letter-spacing:.04em;text-transform:uppercase}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#fbfdff}.step{display:grid;grid-template-columns:40px 1fr;gap:12px;margin:17px 0;align-items:start}.step-num{display:grid;place-items:center;background:#1f5f9d;color:#fff;border-radius:11px;width:36px;height:36px;font-weight:850}.step h4{margin:0 0 4px}.qa-group{display:grid;grid-template-columns:1fr 1fr;gap:10px}.qa{border:1px solid #dce6f1;background:#fbfdff;border-radius:10px;padding:12px 14px;align-self:start}.qa summary{font-weight:700;cursor:pointer;color:#234667;line-height:1.45}.qa .answer{color:#40546d;padding-top:9px;font-size:14px}.qa .answer code{font-size:12px}.search-row{display:flex;gap:10px;align-items:center;margin:10px 0 17px}.search-row input{min-width:0;flex:1;border:1px solid #cbd9e8;border-radius:9px;padding:10px 12px;font:inherit}.btn{border:1px solid #bccde0;color:#214d7a;background:#eff5fc;border-radius:9px;padding:9px 12px;font-weight:700;cursor:pointer}.btn:hover{background:#dfedfc}.assignment{border:1px solid var(--line);border-radius:13px;padding:16px;margin:12px 0;background:#fcfdff}.assignment h4{margin:0 0 8px}.assignment .solution{margin-top:10px;background:#eff8f4;border-radius:9px;padding:10px 12px}.muted{color:#5d6e83}.tag{display:inline-block;border-radius:6px;background:#e7effa;color:#285587;font-weight:800;font-size:11px;padding:3px 7px;margin-right:5px}.checklist li{margin:7px 0}.small{font-size:13px}.footer{padding:26px 10px;color:#64758a;font-size:12px;text-align:center}.backtop{position:fixed;right:18px;bottom:18px;border:0;border-radius:50px;padding:11px 15px;background:#14385f;color:#fff;box-shadow:var(--shadow);cursor:pointer;font-weight:750;z-index:10}.hidden{display:none!important}.print-only{display:none}
 @media(max-width:950px){.layout{grid-template-columns:1fr}.sidebar{position:relative;height:auto;padding:14px 16px}.sidebar .toc{grid-template-columns:repeat(3,minmax(0,1fr));max-height:160px;overflow:auto}.sidebar h2{margin:8px 0}.sidebar .small-note{display:none}.main{padding:0 16px 50px}.hero{padding:30px 23px;margin:16px auto}.section{padding:22px 19px}.grid.three{grid-template-columns:1fr 1fr}}@media(max-width:620px){body{font-size:15px}.sidebar .toc{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h1{font-size:32px}.hero{border-radius:16px}.section h2{font-size:24px}.grid.two,.grid.three,.qa-group{grid-template-columns:1fr}.section{padding:19px 14px}.viz{padding:6px}.diagram{min-width:610px}.viz{overflow-x:auto}.hero figure{overflow-x:auto}.hero svg{min-width:610px}table{font-size:13px}}
 @media print{body{background:#fff;font-size:11pt}.layout{display:block}.sidebar,.backtop,.copy-btn,.search-row{display:none!important}.main{padding:0}.hero{box-shadow:none;background:#fff;color:#111;border:2px solid #294f79;margin:0 0 15px;padding:20px}.hero p,.hero .kicker{color:#333}.hero:after{display:none}.section{box-shadow:none;break-inside:avoid;border:1px solid #bbb;padding:18px;margin:10px 0}.section h2{font-size:20pt}.viz{break-inside:avoid}.diagram{min-width:0!important}pre{white-space:pre-wrap;word-break:break-word;background:#f4f6f9;color:#111;border-color:#aaa}.qa{break-inside:avoid}.qa-group{grid-template-columns:1fr 1fr}a{color:#111;text-decoration:none}.print-only{display:block}.assignment{break-inside:avoid}}
-</style></head><body id="top"><div class="layout"><aside class="sidebar"><div class="brand"><span>N</span>Nimbuswiztech</div><h2>Training guide</h2><nav class="toc" aria-label="Table of contents">
+
+}
+
+</style></head>
+<body id="top">
+  <!-- Top Navigation Bar -->
+<header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student &amp; Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+<aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 140+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4 — Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build &amp; Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☸️ Kubernetes</span>
+    <span class="badge">14</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Kubernetes/README.html">Kubernetes</a></li>
+    <li><a href="../Kubernetes/kubernetes-basic-objects.html">Basic Objects</a></li>
+    <li><a href="../Kubernetes/kubernetes-pod-lifecycle.html">Pod Lifecycle</a></li>
+    <li><a href="../Kubernetes/kubernetes-services.html">Services</a></li>
+    <li><a href="../Kubernetes/kubernetes-deployment-strategies.html">Deployment Strategies</a></li>
+    <li><a href="../Kubernetes/kubernetes-configmaps.html">ConfigMaps &amp; subPath</a></li>
+    <li><a href="../Kubernetes/kubernetes-secrets.html">Secrets</a></li>
+    <li><a href="../Kubernetes/kubernetes-namespaces-resource-quota.html">Namespaces &amp; ResourceQuota</a></li>
+    <li><a href="../Kubernetes/kubernetes-scheduling.html">Scheduling</a></li>
+    <li><a href="../Kubernetes/kubernetes-liveness-readiness-startup-probes.html">Liveness, Readiness &amp; Startup Probes</a></li>
+    <li><a href="../Kubernetes/kubernetes-hpa-vpa.html">HPA &amp; VPA</a></li>
+    <li><a href="../Kubernetes/kubernetes-ingress.html">Ingress</a></li>
+    <li><a href="../Kubernetes/kubernetes-daemonset-statefulset.html" class="active">DaemonSet &amp; StatefulSet</a></li>
+    <li><a href="../Kubernetes/kubernetes-container-patterns.html">Container Patterns</a></li>
+    <li><a href="../Kubernetes/kubernetes-service-accounts-rbac.html">Service Accounts &amp; RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" style="padding: 1.5rem 2rem 4rem; flex: 1; min-width: 0;">
+      <div class="k8s-body" style="max-width: 1200px; margin: 0 auto;">
+<div class="layout"><aside class="sidebar"><div class="brand"><span>N</span>Nimbuswiztech</div><h2>Training guide</h2><nav class="toc" aria-label="Table of contents">
 <a href="#start">Overview & objectives</a><a href="#foundations">Controller concepts</a><a href="#daemonset">DaemonSet theory</a><a href="#statefulset">StatefulSet theory</a><a href="#compare">Compare patterns</a><a href="#prereq">Prerequisites</a><a href="#lab-ds">Lab 1: DaemonSet</a><a href="#lab-ss">Lab 2: StatefulSet</a><a href="#end-to-end">End-to-end demo</a><a href="#troubleshoot">Troubleshooting</a><a href="#practices">Best practices</a><a href="#interview">Interview prep</a><a href="#assignments">Assignments</a><a href="#cheatsheet">Cheat sheet</a><a href="#cleanup">Cleanup</a><a href="#references">References</a>
 </nav><div class="small-note">Visual-first Kubernetes training • Embedded diagrams • Copy-ready labs<br><br>Lab namespace: <code>nimbus-ds-sts-lab</code><br>Review PVCs before deleting data.</div></aside><main class="main"><div class="content">
 <header class="hero"><div class="kicker">Kubernetes workload controllers • Practical training</div><h1>DaemonSet &amp; StatefulSet</h1><p>Understand node-local agents, stable Pod identity, headless DNS, per-replica storage, rollout behavior, and practical debugging in Kubernetes and Amazon EKS.</p><div class="meta"><span class="pill">Beginner → Intermediate</span><span class="pill">Estimated hands-on: 2.5–3.5 hours</span><span class="pill">Offline-friendly SVG diagrams</span><span class="pill">Nimbuswiztech</span></div><figure aria-label="Overview of DaemonSet node coverage and StatefulSet persistent identity"><svg viewBox="0 0 820 200" role="img" aria-labelledby="hero-svg-title hero-svg-desc" xmlns="http://www.w3.org/2000/svg"><title id="hero-svg-title">DaemonSet and StatefulSet at a glance</title><desc id="hero-svg-desc">The left side shows a node-local agent on three worker nodes. The right side shows three ordinal StatefulSet Pods linked to individual storage claims.</desc><rect x="1" y="1" width="818" height="198" rx="17" fill="#f4f8fd"/><text x="26" y="29" fill="#214568" font-size="14" font-weight="800">DAEMONSET · NODE COVERAGE</text><text x="424" y="29" fill="#214568" font-size="14" font-weight="800">STATEFULSET · STABLE IDENTITY</text><rect x="23" y="45" width="355" height="128" rx="12" fill="#eaf2fc" stroke="#b2c9e5"/><rect x="41" y="65" width="90" height="73" rx="8" fill="#fff" stroke="#6b95c5"/><rect x="154" y="65" width="90" height="73" rx="8" fill="#fff" stroke="#6b95c5"/><rect x="267" y="65" width="90" height="73" rx="8" fill="#fff" stroke="#6b95c5"/><g fill="#245d93" font-size="11" font-weight="700" text-anchor="middle"><text x="86" y="85">Node A</text><text x="199" y="85">Node B</text><text x="312" y="85">Node C</text><text x="86" y="111">agent Pod</text><text x="199" y="111">agent Pod</text><text x="312" y="111">agent Pod</text></g><g fill="#d3e5fa"><rect x="55" y="118" width="62" height="8" rx="4"/><rect x="168" y="118" width="62" height="8" rx="4"/><rect x="281" y="118" width="62" height="8" rx="4"/></g><text x="200" y="157" text-anchor="middle" font-size="11" fill="#385a7f">One Pod per eligible node</text><rect x="408" y="45" width="389" height="128" rx="12" fill="#eaf7f2" stroke="#a8d6c3"/><g stroke="#62a58b" fill="#fff"><rect x="427" y="62" width="100" height="50" rx="8"/><rect x="552" y="62" width="100" height="50" rx="8"/><rect x="677" y="62" width="100" height="50" rx="8"/><rect x="427" y="124" width="100" height="29" rx="7" fill="#d5f0e5"/><rect x="552" y="124" width="100" height="29" rx="7" fill="#d5f0e5"/><rect x="677" y="124" width="100" height="29" rx="7" fill="#d5f0e5"/></g><g fill="#245b4a" font-size="10.5" font-weight="700" text-anchor="middle"><text x="477" y="82">store-0</text><text x="477" y="98">Pod</text><text x="602" y="82">store-1</text><text x="602" y="98">Pod</text><text x="727" y="82">store-2</text><text x="727" y="98">Pod</text><text x="477" y="142">PVC-0</text><text x="602" y="142">PVC-1</text><text x="727" y="142">PVC-2</text></g><g stroke="#62a58b" stroke-width="2" stroke-dasharray="4 3"><path d="M477 112 V124"/><path d="M602 112 V124"/><path d="M727 112 V124"/></g><text x="602" y="164" text-anchor="middle" font-size="11" fill="#385a7f">Ordinal name + claim per replica</text></svg></figure></header>
@@ -320,99 +621,10 @@ kubectl get namespace nimbus-ds-sts-lab</code></pre>
   if(input){input.addEventListener('input',filter);clear.addEventListener('click',function(){input.value='';filter();input.focus()})}
   if('IntersectionObserver' in window){var links=Array.from(document.querySelectorAll('.toc a'));var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-10% 0px -75% 0px'});document.querySelectorAll('.section[id]').forEach(function(s){obs.observe(s)})}
 })();
-</script><!-- ===== INJECTED KUBERNETES SIDEBAR NAV ===== -->
-<div id="k8s-sidebar-overlay" style="
-  position:fixed; top:0; left:0; height:100vh; width:290px;
-  background:#0a0d17; border-right:1px solid #24324d; z-index:9999;
-  overflow-y:auto; transform:translateX(-100%);
-  transition:transform 0.3s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <div style="padding:16px 16px 12px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #24324d; flex-shrink:0;">
-    <a href="../index.html" style="text-decoration:none; display:flex; align-items:center; gap:8px; color:#f1f5f9; font-weight:700; font-size:0.92rem;">
-      <span style="font-size:1.3rem;">☸️</span>
-      <span>Kubernetes Module</span>
-    </a>
-    <button id="k8s-sidebar-close" style="margin-left:auto; background:none; border:1px solid #24324d; color:#94a3b8; cursor:pointer; border-radius:6px; padding:4px 8px; font-size:1rem; line-height:1;">✕</button>
-  </div>
-  <div style="padding:10px 12px 6px; flex-shrink:0; display:flex; gap:6px;">
-    <a href="../index.html" style="flex:1; text-align:center; padding:7px 4px; background:rgba(6,182,212,0.12); border:1px solid rgba(6,182,212,0.35); border-radius:8px; color:#22d3ee; text-decoration:none; font-size:0.78rem; font-weight:600;">📚 Master Hub</a>
-    <a href="../Kubernetes/README.html" style="flex:1; text-align:center; padding:7px 4px; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.35); border-radius:8px; color:#60a5fa; text-decoration:none; font-size:0.78rem; font-weight:600;">☸️ K8s Hub</a>
-  </div>
-  <div style="padding:10px 12px 4px; font-size:0.72rem; text-transform:uppercase; letter-spacing:.1em; color:#64748b; font-weight:700;">☸️ Kubernetes — 15 Lessons</div>
-  <ul style="list-style:none; margin:0; padding:0 8px 12px;">
-    <li><a href="../Kubernetes/README.html">Kubernetes Overview</a></li>
-    <li><a href="../Kubernetes/kubernetes-basic-objects.html">Basic Objects</a></li>
-    <li><a href="../Kubernetes/kubernetes-pod-lifecycle.html">Pod Lifecycle</a></li>
-    <li><a href="../Kubernetes/kubernetes-services.html">Services</a></li>
-    <li><a href="../Kubernetes/kubernetes-deployment-strategies.html">Deployment Strategies</a></li>
-    <li><a href="../Kubernetes/kubernetes-configmaps.html">ConfigMaps & subPath</a></li>
-    <li><a href="../Kubernetes/kubernetes-secrets.html">Secrets</a></li>
-    <li><a href="../Kubernetes/kubernetes-namespaces-resource-quota.html">Namespaces & ResourceQuota</a></li>
-    <li><a href="../Kubernetes/kubernetes-scheduling.html">Scheduling</a></li>
-    <li><a href="../Kubernetes/kubernetes-liveness-readiness-startup-probes.html">Liveness, Readiness & Startup Probes</a></li>
-    <li><a href="../Kubernetes/kubernetes-hpa-vpa.html">HPA & VPA</a></li>
-    <li><a href="../Kubernetes/kubernetes-ingress.html">Ingress</a></li>
-    <li><a href="../Kubernetes/kubernetes-daemonset-statefulset.html" class="k8s-nav-active">DaemonSet & StatefulSet</a></li>
-    <li><a href="../Kubernetes/kubernetes-container-patterns.html">Container Patterns</a></li>
-    <li><a href="../Kubernetes/kubernetes-service-accounts-rbac.html">Service Accounts & RBAC</a></li>
-  </ul>
-  <div style="padding:12px 12px 4px; font-size:0.72rem; text-transform:uppercase; letter-spacing:.1em; color:#64748b; font-weight:700; border-top:1px solid #1e293b;">🌐 All Course Modules</div>
-  <ul style="list-style:none; margin:0; padding:0 8px 16px;">
-    <li><a href="../linux/README.html">🐧 Linux (13 lessons)</a></li>
-    <li><a href="../shell-scripting/README.html">💻 Shell Scripting (3 lessons)</a></li>
-    <li><a href="../git/README.html">🌿 Git (24 lessons)</a></li>
-    <li><a href="../cicd-jenkins/README.html">🚀 CI/CD &amp; Jenkins (31 lessons)</a></li>
-    <li><a href="../aws/README.html">☁️ AWS Cloud (49 lessons)</a></li>
-    <li><a href="../docker/README.html">🐳 Docker (9 lessons)</a></li>
-    <li><a href="../Demo's/ALB_Creation_Guide.html">🎯 Hands-on Demos (11 guides)</a></li>
-    <li><a href="../Final_notes/Kubernetes.html">📚 Kubernetes Full Notes</a></li>
-  </ul>
-</div>
-
-<!-- Toggle button (always visible) -->
-<button id="k8s-sidebar-toggle" title="Open Navigation" style="
-  position:fixed; top:12px; left:12px; z-index:10000;
-  background:#0a0d17; border:1px solid #24324d; color:#22d3ee;
-  cursor:pointer; border-radius:8px; padding:8px 12px;
-  font-size:1.1rem; line-height:1; box-shadow:0 4px 12px rgba(0,0,0,0.4);
-  transition:all 0.2s ease;">☸️</button>
-
-<!-- Backdrop -->
-<div id="k8s-sidebar-backdrop" style="
-  display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5);
-  z-index:9998; backdrop-filter:blur(2px);"></div>
-
-<style>
-  #k8s-sidebar-overlay a {
-    display:block; padding:7px 10px; color:#94a3b8; text-decoration:none;
-    border-radius:6px; font-size:0.83rem; transition:all 0.15s ease;
-    margin-bottom:2px;
-  }
-  #k8s-sidebar-overlay a:hover { background:rgba(255,255,255,0.06); color:#f1f5f9; }
-  #k8s-sidebar-overlay a.k8s-nav-active {
-    background:rgba(6,182,212,0.15); color:#22d3ee;
-    border-left:3px solid #06b6d4; padding-left:7px;
-  }
-  #k8s-sidebar-overlay.open { transform:translateX(0); }
-  @media(max-width:600px) {
-    #k8s-sidebar-overlay { width:85vw; }
-  }
-</style>
-
-<script>
-(function(){
-  var sidebar   = document.getElementById('k8s-sidebar-overlay');
-  var toggle    = document.getElementById('k8s-sidebar-toggle');
-  var close     = document.getElementById('k8s-sidebar-close');
-  var backdrop  = document.getElementById('k8s-sidebar-backdrop');
-  function openSidebar()  { sidebar.classList.add('open');    backdrop.style.display='block'; }
-  function closeSidebar() { sidebar.classList.remove('open'); backdrop.style.display='none';  }
-  toggle.addEventListener('click', openSidebar);
-  close.addEventListener('click', closeSidebar);
-  backdrop.addEventListener('click', closeSidebar);
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeSidebar(); });
-})();
 </script>
-<!-- ===== END INJECTED SIDEBAR ===== -->
-
-</body></html>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>
