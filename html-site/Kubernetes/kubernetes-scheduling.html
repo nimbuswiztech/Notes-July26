@@ -309,6 +309,19 @@ details{border:1px solid var(--line);border-radius:8px;margin:.58rem 0;backgroun
     <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
   </ul>
 </div>
+    <div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>📚 Final Notes</span>
+    <span class="badge">5</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Final_notes/AWS.html">AWS Full Notes</a></li>
+    <li><a href="../Final_notes/Docker%20full%20notes.html">Docker Full Notes</a></li>
+    <li><a href="../Final_notes/Git%20.html">Git Notes</a></li>
+    <li><a href="../Final_notes/Jenkins%20%20Full%20notes.html">Jenkins Full Notes</a></li>
+    <li><a href="../Final_notes/Kubernetes.html">Kubernetes Notes</a></li>
+  </ul>
+</div>
     </aside>
 
     <!-- Main Content -->
@@ -320,7 +333,20 @@ details{border:1px solid var(--line);border-radius:8px;margin:.58rem 0;backgroun
 <div class="badges"><span class="badge">4 scheduling techniques</span><span class="badge">EKS-aware examples</span><span class="badge">Embedded SVG diagrams</span><span class="badge">Labs + interview prep</span></div></header>
 <div class="layout"><aside id="sidebar" aria-label="Guide navigation"><h2>Guide navigation</h2><ol>
 <li><a href="#roadmap">Objectives &amp; roadmap</a></li><li><a href="#intro">Scheduling fundamentals</a></li><li><a href="#comparison">Compare techniques</a></li><li><a href="#nodeselector">Node selector</a></li><li><a href="#nodeaffinity">Node affinity</a></li><li><a href="#podaffinity">Pod affinity</a></li><li><a href="#podantiaffinity">Pod anti-affinity</a></li><li><a href="#workflow">Scheduler workflow</a></li><li><a href="#eks">Amazon EKS notes</a></li><li><a href="#environment">Prepare the lab</a></li><li><a href="#labs">Hands-on exercises</a></li><li><a href="#endtoend">End-to-end scenario</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#bestpractices">Best practices</a></li><li><a href="#interview">Interview preparation</a></li><li><a href="#assignments">Practice assignments</a></li><li><a href="#revision">Cheat sheet</a></li><li><a href="#cleanup">Cleanup</a></li><li><a href="#references">References</a></li>
-</ol><p class="muted small">Core visuals are embedded. External reference links need internet access.</p></aside><main>
+</ol><p class="muted small">Core visuals are embedded. External reference links need internet access.</p><div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>📚 Final Notes</span>
+    <span class="badge">5</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Final_notes/AWS.html">AWS Full Notes</a></li>
+    <li><a href="../Final_notes/Docker%20full%20notes.html">Docker Full Notes</a></li>
+    <li><a href="../Final_notes/Git%20.html">Git Notes</a></li>
+    <li><a href="../Final_notes/Jenkins%20%20Full%20notes.html">Jenkins Full Notes</a></li>
+    <li><a href="../Final_notes/Kubernetes.html">Kubernetes Notes</a></li>
+  </ul>
+</div>
+    </aside><main>
 <section id="roadmap"><div class="kicker">00 · Start here</div><h2>Learning objectives and visual roadmap</h2>
 <figure><svg viewBox="0 0 940 260" role="img" aria-labelledby="hero-title hero-desc"><title id="hero-title">Four ways to influence Pod placement</title><desc id="hero-desc">Node selector matches node labels exactly. Node affinity expresses hard and soft node label rules. Pod affinity attracts a Pod toward topology domains containing matching Pods. Pod anti-affinity avoids topology domains containing matching Pods.</desc>
 <rect x="15" y="30" width="215" height="165" rx="12" fill="#eaf3ff" stroke="#75a2ce" stroke-width="2"/><text x="122" y="61" text-anchor="middle" font-size="16" font-weight="bold" fill="#194a73">nodeSelector</text><text x="122" y="90" text-anchor="middle" font-size="12" fill="#42698b">match node labels</text><rect x="40" y="108" width="165" height="34" rx="7" fill="#fff" stroke="#b2c9e2"/><text x="122" y="130" text-anchor="middle" font-size="12" fill="#315a7e">simple + required</text><text x="122" y="166" text-anchor="middle" font-size="11" fill="#42698b">all pairs must match</text>

@@ -1,18 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kubernetes — Clean Topic-Wise DevOps Notes</title>
 <style>
 :root{--bg:#080d18;--panel:#111a2c;--panel2:#18243c;--text:#edf3ff;--muted:#a9b6d0;--accent:#ff4f5e;--accent2:#ffb15c;--border:#293753;--code:#070b14}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:linear-gradient(135deg,#070b14,#101a2d 55%,#0b1220);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
-header{padding:54px 7vw 42px;border-bottom:1px solid var(--border);background:radial-gradient(circle at 80% 15%,rgba(255,79,94,.2),transparent 34%),radial-gradient(circle at 60% 90%,rgba(255,177,92,.09),transparent 35%)}
+.doc-content {margin:0;background:linear-gradient(135deg,#070b14,#101a2d 55%,#0b1220);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+header.doc-header {padding:54px 7vw 42px;border-bottom:1px solid var(--border);background:radial-gradient(circle at 80% 15%,rgba(255,79,94,.2),transparent 34%),radial-gradient(circle at 60% 90%,rgba(255,177,92,.09),transparent 35%)}
 .badge{display:inline-block;padding:6px 12px;border:1px solid rgba(255,177,92,.4);border-radius:999px;color:#ffd39e;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-h1{font-size:clamp(38px,5vw,66px);line-height:1.03;margin:18px 0 12px}header p{max-width:980px;color:var(--muted);font-size:17px}
+h1{font-size:clamp(38px,5vw,66px);line-height:1.03;margin:18px 0 12px}header.doc-header p{max-width:980px;color:var(--muted);font-size:17px}
 .layout{display:grid;grid-template-columns:300px 1fr;max-width:1500px;margin:auto}
-aside{position:sticky;top:0;height:100vh;overflow:auto;padding:24px 16px;border-right:1px solid var(--border);background:rgba(7,11,20,.82);backdrop-filter:blur(12px)}
-aside h3{margin:0 8px 14px;font-size:14px}.toc a{display:flex;gap:10px;padding:8px 10px;color:var(--muted);text-decoration:none;border-radius:8px;font-size:13px}.toc a:hover{background:var(--panel2);color:#fff}.toc span{color:var(--accent2);font-weight:800;min-width:25px}
+aside.doc-toc {position:sticky;top:0;height:100vh;overflow:auto;padding:24px 16px;border-right:1px solid var(--border);background:rgba(7,11,20,.82);backdrop-filter:blur(12px)}aside.doc-toc h3{margin:0 8px 14px;font-size:14px}.toc a{display:flex;gap:10px;padding:8px 10px;color:var(--muted);text-decoration:none;border-radius:8px;font-size:13px}.toc a:hover{background:var(--panel2);color:#fff}.toc span{color:var(--accent2);font-weight:800;min-width:25px}
 main{padding:30px 5vw 80px}.intro{background:linear-gradient(135deg,rgba(255,79,94,.12),rgba(255,177,92,.06));border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:24px}
 .topic{display:grid;grid-template-columns:56px 1fr;gap:18px;margin:24px 0;background:rgba(17,26,44,.86);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 12px 35px rgba(0,0,0,.16)}
 .topic-num{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
@@ -23,14 +26,316 @@ h2{margin:0 0 12px;font-size:25px}p,li{color:#c9d3e7}ul{padding-left:22px}
 pre{margin:0;padding:15px;overflow:auto;color:#dce7ff;font-size:13px;line-height:1.55}code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:15px}.grid div{background:#111a2e;border:1px solid #273653;border-radius:12px;padding:13px;color:#cbd5e8}
 footer{text-align:center;color:#7886a5;padding:30px;border-top:1px solid var(--border);font-size:12px}
-@media(max-width:900px){.layout{display:block}aside{position:relative;height:auto;max-height:45vh;border-right:0;border-bottom:1px solid var(--border)}.topic{grid-template-columns:1fr}.topic-num{margin-bottom:-4px}main{padding:20px}}
+@media(max-width:1150px){.layout{display:block}
+aside.doc-toc {position:relative;height:auto;max-height:45vh;border-right:0;border-bottom:1px solid var(--border)}.topic{grid-template-columns:1fr}.topic-num{margin-bottom:-4px}main{padding:20px}}
 </style>
 </head>
-<body>
-<header><div style="margin-bottom: 15px;"><a href="../index.html" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: inherit; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 500;">&larr; Master Index</a></div><span class="badge">NimbusWizTech • DevOps Training</span>
+<body id="top">
+  <!-- Top Navigation Bar -->
+<header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student &amp; Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+<aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 140+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4 — Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build &amp; Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☸️ Kubernetes</span>
+    <span class="badge">14</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Kubernetes/README.html">Kubernetes</a></li>
+    <li><a href="../Kubernetes/kubernetes-basic-objects.html">Basic Objects</a></li>
+    <li><a href="../Kubernetes/kubernetes-pod-lifecycle.html">Pod Lifecycle</a></li>
+    <li><a href="../Kubernetes/kubernetes-services.html">Services</a></li>
+    <li><a href="../Kubernetes/kubernetes-deployment-strategies.html">Deployment Strategies</a></li>
+    <li><a href="../Kubernetes/kubernetes-configmaps.html">ConfigMaps &amp; subPath</a></li>
+    <li><a href="../Kubernetes/kubernetes-secrets.html">Secrets</a></li>
+    <li><a href="../Kubernetes/kubernetes-namespaces-resource-quota.html">Namespaces &amp; ResourceQuota</a></li>
+    <li><a href="../Kubernetes/kubernetes-scheduling.html">Scheduling</a></li>
+    <li><a href="../Kubernetes/kubernetes-liveness-readiness-startup-probes.html">Liveness, Readiness &amp; Startup Probes</a></li>
+    <li><a href="../Kubernetes/kubernetes-hpa-vpa.html">HPA &amp; VPA</a></li>
+    <li><a href="../Kubernetes/kubernetes-ingress.html">Ingress</a></li>
+    <li><a href="../Kubernetes/kubernetes-daemonset-statefulset.html">DaemonSet &amp; StatefulSet</a></li>
+    <li><a href="../Kubernetes/kubernetes-container-patterns.html">Container Patterns</a></li>
+    <li><a href="../Kubernetes/kubernetes-service-accounts-rbac.html">Service Accounts &amp; RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    <div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>📚 Final Notes</span>
+    <span class="badge">5</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Final_notes/AWS.html">AWS Full Notes</a></li>
+    <li><a href="../Final_notes/Docker%20full%20notes.html">Docker Full Notes</a></li>
+    <li><a href="../Final_notes/Git%20.html">Git Notes</a></li>
+    <li><a href="../Final_notes/Jenkins%20%20Full%20notes.html">Jenkins Full Notes</a></li>
+    <li><a href="../Final_notes/Kubernetes.html" class="active">Kubernetes Notes</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" style="padding: 1.5rem 1.5rem 5rem; flex: 1; min-width: 0;">
+      <div class="doc-content">
+<header class="doc-header"><div style="margin-bottom: 15px;"></div><span class="badge">NimbusWizTech • DevOps Training</span>
 <h1>Kubernetes — Clean Topic-Wise Notes</h1>
 <p>Comprehensive, classroom-friendly Kubernetes notes reorganized from the supplied <b>Kubernetes_new_Notes.txt</b> and <b>NOTES KUBERNETES-V-2.docx</b>. Class timestamps and separators have been removed and related concepts have been grouped together.</p></header>
-<div class="layout"><aside><h3>Topics</h3><nav class="toc"><a href="#topic-01"><span>01</span>Kubernetes Fundamentals</a><a href="#topic-02"><span>02</span>Kubernetes Cluster &amp; Architecture</a><a href="#topic-03"><span>03</span>Control Plane Components</a><a href="#topic-04"><span>04</span>Worker Node Components</a><a href="#topic-05"><span>05</span>kubectl — Essential Operations</a><a href="#topic-06"><span>06</span>Manifest / YAML Structure</a><a href="#topic-07"><span>07</span>Pods</a><a href="#topic-08"><span>08</span>Labels &amp; Selectors</a><a href="#topic-09"><span>09</span>Services &amp; Service Discovery</a><a href="#topic-10"><span>10</span>Service Types</a><a href="#topic-11"><span>11</span>Ingress &amp; Ingress Controller</a><a href="#topic-12"><span>12</span>Volumes, PV, PVC &amp; StorageClass</a><a href="#topic-13"><span>13</span>Mounting Volumes into Pods</a><a href="#topic-14"><span>14</span>ConfigMaps</a><a href="#topic-15"><span>15</span>Secrets</a><a href="#topic-16"><span>16</span>Namespaces</a><a href="#topic-17"><span>17</span>ReplicaSet &amp; ReplicationController</a><a href="#topic-18"><span>18</span>Deployments</a><a href="#topic-19"><span>19</span>Deployment Strategies, Rollout &amp; Rollback</a><a href="#topic-20"><span>20</span>DaemonSet</a><a href="#topic-21"><span>21</span>StatefulSet &amp; Headless Service</a><a href="#topic-22"><span>22</span>Scheduling — nodeName &amp; nodeSelector</a><a href="#topic-23"><span>23</span>Node Affinity &amp; Pod Affinity</a><a href="#topic-24"><span>24</span>Taints &amp; Tolerations</a><a href="#topic-25"><span>25</span>Pod Probes — Liveness, Readiness &amp; Startup</a><a href="#topic-26"><span>26</span>Resource Requests, Limits &amp; ResourceQuota</a><a href="#topic-27"><span>27</span>RBAC — Role, ClusterRole &amp; Access Model</a><a href="#topic-28"><span>28</span>RoleBinding &amp; ClusterRoleBinding</a><a href="#topic-29"><span>29</span>Service Accounts &amp; Contexts</a><a href="#topic-30"><span>30</span>Kubernetes Security</a><a href="#topic-31"><span>31</span>Kubernetes High Availability</a><a href="#topic-32"><span>32</span>EKS Setup</a><a href="#topic-33"><span>33</span>Minikube &amp; Local Kubernetes</a><a href="#topic-34"><span>34</span>Helm — Kubernetes Package Manager</a><a href="#topic-35"><span>35</span>Helm Chart Files &amp; Templating</a><a href="#topic-36"><span>36</span>Helm Hooks &amp; Helm 2 vs Helm 3</a><a href="#topic-37"><span>37</span>Init Containers</a><a href="#topic-38"><span>38</span>Deployment Strategy Patterns</a><a href="#topic-39"><span>39</span>Service Mesh</a><a href="#topic-40"><span>40</span>Pod Failure Simulation &amp; Self-Healing</a><a href="#topic-41"><span>41</span>Cluster Failure &amp; Recovery Concepts</a><a href="#topic-42"><span>42</span>Troubleshooting &amp; Debugging Checklist</a><a href="#topic-43"><span>43</span>Interview Quick Answers</a><a href="#topic-44"><span>44</span>Practical DevOps Deployment Flow</a><a href="#topic-45"><span>45</span>Kubernetes Quick Revision Sheet</a></nav></aside>
+<div class="layout"><aside class="doc-toc"><h3>Topics</h3><nav class="toc"><a href="#topic-01"><span>01</span>Kubernetes Fundamentals</a><a href="#topic-02"><span>02</span>Kubernetes Cluster &amp; Architecture</a><a href="#topic-03"><span>03</span>Control Plane Components</a><a href="#topic-04"><span>04</span>Worker Node Components</a><a href="#topic-05"><span>05</span>kubectl — Essential Operations</a><a href="#topic-06"><span>06</span>Manifest / YAML Structure</a><a href="#topic-07"><span>07</span>Pods</a><a href="#topic-08"><span>08</span>Labels &amp; Selectors</a><a href="#topic-09"><span>09</span>Services &amp; Service Discovery</a><a href="#topic-10"><span>10</span>Service Types</a><a href="#topic-11"><span>11</span>Ingress &amp; Ingress Controller</a><a href="#topic-12"><span>12</span>Volumes, PV, PVC &amp; StorageClass</a><a href="#topic-13"><span>13</span>Mounting Volumes into Pods</a><a href="#topic-14"><span>14</span>ConfigMaps</a><a href="#topic-15"><span>15</span>Secrets</a><a href="#topic-16"><span>16</span>Namespaces</a><a href="#topic-17"><span>17</span>ReplicaSet &amp; ReplicationController</a><a href="#topic-18"><span>18</span>Deployments</a><a href="#topic-19"><span>19</span>Deployment Strategies, Rollout &amp; Rollback</a><a href="#topic-20"><span>20</span>DaemonSet</a><a href="#topic-21"><span>21</span>StatefulSet &amp; Headless Service</a><a href="#topic-22"><span>22</span>Scheduling — nodeName &amp; nodeSelector</a><a href="#topic-23"><span>23</span>Node Affinity &amp; Pod Affinity</a><a href="#topic-24"><span>24</span>Taints &amp; Tolerations</a><a href="#topic-25"><span>25</span>Pod Probes — Liveness, Readiness &amp; Startup</a><a href="#topic-26"><span>26</span>Resource Requests, Limits &amp; ResourceQuota</a><a href="#topic-27"><span>27</span>RBAC — Role, ClusterRole &amp; Access Model</a><a href="#topic-28"><span>28</span>RoleBinding &amp; ClusterRoleBinding</a><a href="#topic-29"><span>29</span>Service Accounts &amp; Contexts</a><a href="#topic-30"><span>30</span>Kubernetes Security</a><a href="#topic-31"><span>31</span>Kubernetes High Availability</a><a href="#topic-32"><span>32</span>EKS Setup</a><a href="#topic-33"><span>33</span>Minikube &amp; Local Kubernetes</a><a href="#topic-34"><span>34</span>Helm — Kubernetes Package Manager</a><a href="#topic-35"><span>35</span>Helm Chart Files &amp; Templating</a><a href="#topic-36"><span>36</span>Helm Hooks &amp; Helm 2 vs Helm 3</a><a href="#topic-37"><span>37</span>Init Containers</a><a href="#topic-38"><span>38</span>Deployment Strategy Patterns</a><a href="#topic-39"><span>39</span>Service Mesh</a><a href="#topic-40"><span>40</span>Pod Failure Simulation &amp; Self-Healing</a><a href="#topic-41"><span>41</span>Cluster Failure &amp; Recovery Concepts</a><a href="#topic-42"><span>42</span>Troubleshooting &amp; Debugging Checklist</a><a href="#topic-43"><span>43</span>Interview Quick Answers</a><a href="#topic-44"><span>44</span>Practical DevOps Deployment Flow</a><a href="#topic-45"><span>45</span>Kubernetes Quick Revision Sheet</a></nav></aside>
 <main><div class="intro"><b>Source basis:</b> The uploaded material covers architecture, Pods, Services, Ingress, storage, ConfigMaps, Secrets, namespaces, controllers, scheduling, probes, resource quotas, RBAC, ServiceAccounts, EKS, Helm, deployment strategies, service mesh, HA and troubleshooting.
 <br><br><b>Important:</b> The organization is cleaned up, but the original terminology and examples are preserved. Some commands/examples in the source are version-specific or legacy; they have not been silently replaced with outside material.</div>
 <section class="topic" id="topic-01"><div class="topic-num">01</div><div class="topic-content"><h2>Kubernetes Fundamentals</h2><p>Kubernetes is described in the supplied notes as an open-source container orchestration platform for managing containerized or microservice applications across a distributed cluster. The notes emphasize deployment, scaling, rollback, high availability, self-healing and reducing the complexity of managing many containers.</p><div class="note"><b>Why orchestration?</b> The source connects Kubernetes with the move from monoliths to microservices and the need to manage many containers with less manual work.</div><div class="commands"><div class="cmd-card"><div class="cmd-title">Core idea</div><pre><code>Kubernetes
@@ -538,4 +843,9 @@ kubectl logs &lt;pod&gt; -n &lt;namespace&gt;
 kubectl get svc -A
 kubectl get endpoints -A</code></pre></div></div></div></section></main></div>
 <footer>Kubernetes Clean Topic-Wise Notes • Based on user-provided Kubernetes sources • For training, demos and revision</footer>
-</body></html>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

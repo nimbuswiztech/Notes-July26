@@ -300,6 +300,19 @@
     <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
   </ul>
 </div>
+    <div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>📚 Final Notes</span>
+    <span class="badge">5</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Final_notes/AWS.html">AWS Full Notes</a></li>
+    <li><a href="../Final_notes/Docker%20full%20notes.html">Docker Full Notes</a></li>
+    <li><a href="../Final_notes/Git%20.html">Git Notes</a></li>
+    <li><a href="../Final_notes/Jenkins%20%20Full%20notes.html">Jenkins Full Notes</a></li>
+    <li><a href="../Final_notes/Kubernetes.html">Kubernetes Notes</a></li>
+  </ul>
+</div>
     </aside>
 
     <!-- Main Content -->
@@ -307,7 +320,20 @@
       <div class="k8s-body" style="max-width: 1200px; margin: 0 auto;">
 <div class="layout"><aside class="sidebar"><div class="brand"><span>N</span>Nimbuswiztech</div><h2>Training guide</h2><nav class="toc" aria-label="Table of contents">
 <a href="#start">Overview & objectives</a><a href="#foundations">Controller concepts</a><a href="#daemonset">DaemonSet theory</a><a href="#statefulset">StatefulSet theory</a><a href="#compare">Compare patterns</a><a href="#prereq">Prerequisites</a><a href="#lab-ds">Lab 1: DaemonSet</a><a href="#lab-ss">Lab 2: StatefulSet</a><a href="#end-to-end">End-to-end demo</a><a href="#troubleshoot">Troubleshooting</a><a href="#practices">Best practices</a><a href="#interview">Interview prep</a><a href="#assignments">Assignments</a><a href="#cheatsheet">Cheat sheet</a><a href="#cleanup">Cleanup</a><a href="#references">References</a>
-</nav><div class="small-note">Visual-first Kubernetes training • Embedded diagrams • Copy-ready labs<br><br>Lab namespace: <code>nimbus-ds-sts-lab</code><br>Review PVCs before deleting data.</div></aside><main class="main"><div class="content">
+</nav><div class="small-note">Visual-first Kubernetes training • Embedded diagrams • Copy-ready labs<br><br>Lab namespace: <code>nimbus-ds-sts-lab</code><br>Review PVCs before deleting data.</div><div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>📚 Final Notes</span>
+    <span class="badge">5</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Final_notes/AWS.html">AWS Full Notes</a></li>
+    <li><a href="../Final_notes/Docker%20full%20notes.html">Docker Full Notes</a></li>
+    <li><a href="../Final_notes/Git%20.html">Git Notes</a></li>
+    <li><a href="../Final_notes/Jenkins%20%20Full%20notes.html">Jenkins Full Notes</a></li>
+    <li><a href="../Final_notes/Kubernetes.html">Kubernetes Notes</a></li>
+  </ul>
+</div>
+    </aside><main class="main"><div class="content">
 <header class="hero"><div class="kicker">Kubernetes workload controllers • Practical training</div><h1>DaemonSet &amp; StatefulSet</h1><p>Understand node-local agents, stable Pod identity, headless DNS, per-replica storage, rollout behavior, and practical debugging in Kubernetes and Amazon EKS.</p><div class="meta"><span class="pill">Beginner → Intermediate</span><span class="pill">Estimated hands-on: 2.5–3.5 hours</span><span class="pill">Offline-friendly SVG diagrams</span><span class="pill">Nimbuswiztech</span></div><figure aria-label="Overview of DaemonSet node coverage and StatefulSet persistent identity"><svg viewBox="0 0 820 200" role="img" aria-labelledby="hero-svg-title hero-svg-desc" xmlns="http://www.w3.org/2000/svg"><title id="hero-svg-title">DaemonSet and StatefulSet at a glance</title><desc id="hero-svg-desc">The left side shows a node-local agent on three worker nodes. The right side shows three ordinal StatefulSet Pods linked to individual storage claims.</desc><rect x="1" y="1" width="818" height="198" rx="17" fill="#f4f8fd"/><text x="26" y="29" fill="#214568" font-size="14" font-weight="800">DAEMONSET · NODE COVERAGE</text><text x="424" y="29" fill="#214568" font-size="14" font-weight="800">STATEFULSET · STABLE IDENTITY</text><rect x="23" y="45" width="355" height="128" rx="12" fill="#eaf2fc" stroke="#b2c9e5"/><rect x="41" y="65" width="90" height="73" rx="8" fill="#fff" stroke="#6b95c5"/><rect x="154" y="65" width="90" height="73" rx="8" fill="#fff" stroke="#6b95c5"/><rect x="267" y="65" width="90" height="73" rx="8" fill="#fff" stroke="#6b95c5"/><g fill="#245d93" font-size="11" font-weight="700" text-anchor="middle"><text x="86" y="85">Node A</text><text x="199" y="85">Node B</text><text x="312" y="85">Node C</text><text x="86" y="111">agent Pod</text><text x="199" y="111">agent Pod</text><text x="312" y="111">agent Pod</text></g><g fill="#d3e5fa"><rect x="55" y="118" width="62" height="8" rx="4"/><rect x="168" y="118" width="62" height="8" rx="4"/><rect x="281" y="118" width="62" height="8" rx="4"/></g><text x="200" y="157" text-anchor="middle" font-size="11" fill="#385a7f">One Pod per eligible node</text><rect x="408" y="45" width="389" height="128" rx="12" fill="#eaf7f2" stroke="#a8d6c3"/><g stroke="#62a58b" fill="#fff"><rect x="427" y="62" width="100" height="50" rx="8"/><rect x="552" y="62" width="100" height="50" rx="8"/><rect x="677" y="62" width="100" height="50" rx="8"/><rect x="427" y="124" width="100" height="29" rx="7" fill="#d5f0e5"/><rect x="552" y="124" width="100" height="29" rx="7" fill="#d5f0e5"/><rect x="677" y="124" width="100" height="29" rx="7" fill="#d5f0e5"/></g><g fill="#245b4a" font-size="10.5" font-weight="700" text-anchor="middle"><text x="477" y="82">store-0</text><text x="477" y="98">Pod</text><text x="602" y="82">store-1</text><text x="602" y="98">Pod</text><text x="727" y="82">store-2</text><text x="727" y="98">Pod</text><text x="477" y="142">PVC-0</text><text x="602" y="142">PVC-1</text><text x="727" y="142">PVC-2</text></g><g stroke="#62a58b" stroke-width="2" stroke-dasharray="4 3"><path d="M477 112 V124"/><path d="M602 112 V124"/><path d="M727 112 V124"/></g><text x="602" y="164" text-anchor="middle" font-size="11" fill="#385a7f">Ordinal name + claim per replica</text></svg></figure></header>
 <section class="section" id="start"><h2>1. Learning objectives and roadmap</h2>
 <p class="lead">This guide teaches two different Kubernetes workload patterns: <b>DaemonSet</b> for node-local services and <b>StatefulSet</b> for replicas that need stable identity, ordered operations, and often persistent storage. It is designed for beginner-to-intermediate DevOps learners and includes copy-ready examples with deliberate safety boundaries.</p>
