@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud\_Computing &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html" class="active">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">Cloud\_Computing</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">Cloud\_Computing</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>What is Cloud Computing?</h2>
+<p>Cloud computing means using IT resources <strong>over the internet</strong> instead of purchasing and maintaining everything in your own data center.</p>
+<p>These resources can include:</p>
+<ul>
+<li>Servers</li>
+<li>Storage</li>
+<li>Databases</li>
+<li>Networking</li>
+<li>Applications</li>
+<li>Containers</li>
+<li>Security services</li>
+<li>Monitoring</li>
+<li>AI/ML services</li>
+</ul>
+<h3>Simple Example</h3>
+<p>Suppose a company needs a server to host its application.</p>
+<p><strong>Traditional approach</strong> – The company has to:</p>
+<ol>
+<li>Purchase a physical server</li>
+<li>Purchase storage</li>
+<li>Configure networking</li>
+<li>Install an operating system</li>
+<li>Maintain the hardware</li>
+<li>Handle failures</li>
+<li>Pay for electricity and data-center space</li>
+</ol>
+<p><strong>Cloud approach</strong> – The company can create an <strong>EC2 instance</strong> in AWS within minutes, install the application, and start using it.</p>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Cloud = On-demand IT resources + Internet access + Pay for what you use</strong></p>
+</div>
+</div>
+<h2>Why Do Companies Use Cloud?</h2>
+<table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>Explanation</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>On-demand</td>
+<td>Create resources whenever required</td>
+<td>Launch EC2</td>
+</tr>
+<tr>
+<td>Scalability</td>
+<td>Increase / decrease resources</td>
+<td>Auto Scaling</td>
+</tr>
+<tr>
+<td>Elasticity</td>
+<td>Automatically scale based on demand</td>
+<td>EC2 Auto Scaling</td>
+</tr>
+<tr>
+<td>Cost-effective</td>
+<td>Pay for consumed resources</td>
+<td>AWS EC2</td>
+</tr>
+<tr>
+<td>High Availability</td>
+<td>Run applications across multiple locations</td>
+<td>Multiple AZs</td>
+</tr>
+<tr>
+<td>Global Reach</td>
+<td>Deploy applications worldwide</td>
+<td>AWS Regions</td>
+</tr>
+<tr>
+<td>Automation</td>
+<td>Infrastructure can be created through code</td>
+<td>Terraform</td>
+</tr>
+<tr>
+<td>Managed Services</td>
+<td>Cloud provider manages infrastructure</td>
+<td>RDS</td>
+</tr>
+<tr>
+<td>Backup &amp; DR</td>
+<td>Easily maintain backups</td>
+<td>S3</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>IAM, encryption, security groups etc.</td>
+<td>AWS IAM</td>
+</tr>
+</tbody>
+</table>
+<h2>Types of Cloud Computing</h2>
+<p>There are two common ways to classify cloud computing:</p>
+<div class="columns-grid" style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+<div class="column-item" style="flex:1;min-width:280px;">
+<h3>Based on Deployment Model</h3>
+<ul>
+<li>Public Cloud</li>
+<li>Private Cloud</li>
+<li>Hybrid Cloud</li>
+<li>Multi-Cloud</li>
+</ul>
+</div>
+<div class="column-item" style="flex:1;min-width:280px;">
+<h3>Based on Service Model</h3>
+<ul>
+<li>IaaS (Infrastructure as a Service)</li>
+<li>PaaS (Platform as a Service)</li>
+<li>SaaS (Software as a Service)</li>
+<li>Serverless / FaaS (Function as a Service)</li>
+</ul>
+</div>
+</div>
+<h2>Public Cloud</h2>
+<p>A <strong>public cloud</strong> is cloud infrastructure provided by a cloud provider and <strong>shared among multiple customers</strong>.</p>
+<p><strong>Popular providers:</strong></p>
+<ul>
+<li>AWS</li>
+<li>Microsoft Azure</li>
+<li>Google Cloud Platform (GCP)</li>
+</ul>
+<h3>Example</h3>
+<p>A company wants to deploy an application. Instead of purchasing physical servers, they use:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">AWS
+ |
+ +-- EC2       (Compute)
+ +-- S3        (Storage)
+ +-- RDS       (Database)
+ +-- VPC       (Networking)
+ +-- ELB       (Load Balancing)
+</code></pre>
+</div>
+<h3>Real-World Use Case – E-Commerce Scaling</h3>
+<ul>
+<li>During normal days → <strong>10 EC2 instances</strong></li>
+<li>During a festival sale → <strong>100 EC2 instances</strong></li>
+<li>The company can <strong>scale resources according to demand</strong></li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Low initial investment</li>
+<li>Easy scalability</li>
+<li>Global infrastructure</li>
+<li>Pay-as-you-go</li>
+<li>Fast provisioning</li>
+</ul>
+<h2>Private Cloud</h2>
+<p>A <strong>private cloud</strong> is cloud infrastructure <strong>dedicated to a single organization</strong>.</p>
+<p>The infrastructure can be hosted:</p>
+<ul>
+<li>Inside the company's own data center</li>
+<li>Or by a third-party provider</li>
+</ul>
+<p><strong>Common technologies:</strong> VMware, OpenStack, Private Kubernetes platforms</p>
+<h3>Example</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Company Data Center
+       |
+   Private Cloud
+       |
+ +-----+------+
+ |            |
+VMs       Kubernetes
+</code></pre>
+</div>
+<h3>Use Cases</h3>
+<ul>
+<li>Banking</li>
+<li>Government</li>
+<li>Defense</li>
+<li>Healthcare</li>
+<li>Highly regulated applications</li>
+</ul>
+<h3>Main Advantage</h3>
+<p>The organization gets greater control over infrastructure, network, security, and data.</p>
+<h2>Hybrid Cloud</h2>
+<p><strong>Hybrid Cloud = Public Cloud + Private Cloud</strong></p>
+<p>This is extremely important in real-world enterprise environments.</p>
+<h3>Example</h3>
+<p>A bank has:</p>
+<ul>
+<li><strong>On-premises</strong> → Customer Database (sensitive data)</li>
+<li><strong>AWS</strong> → Web application (EC2 / EKS)</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">             Internet
+                |
+              AWS
+                |
+          Application
+                |
+        Secure Connection
+                |
+          On-Premises
+                |
+             Database
+</code></pre>
+</div>
+<h3>Why Use Hybrid Cloud?</h3>
+<ul>
+<li>Sensitive data → On-premises</li>
+<li>Web application → AWS</li>
+<li>Backup → S3</li>
+</ul>
+<h3>Use Cases</h3>
+<ul>
+<li>Banks &amp; financial institutions</li>
+<li>Large enterprises</li>
+<li>Legacy applications</li>
+<li>Government organizations</li>
+</ul>
+<h2>Multi-Cloud</h2>
+<p><strong>Multi-cloud</strong> means using services from <strong>multiple cloud providers</strong>.</p>
+<h3>Example</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">AWS              Azure             GCP
+ |                |                 |
+Application    Active Directory   Data Analytics
+</code></pre>
+</div>
+<p>A company might use:</p>
+<ul>
+<li><strong>AWS</strong> for infrastructure</li>
+<li><strong>Azure</strong> for Microsoft workloads</li>
+<li><strong>GCP</strong> for analytics / AI</li>
+</ul>
+<h3>Why Use Multi-Cloud?</h3>
+<table>
+<thead>
+<tr>
+<th>Reason</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Avoid vendor lock-in</td>
+<td>Don't depend entirely on one provider</td>
+</tr>
+<tr>
+<td>Best service</td>
+<td>Choose the best service from each provider</td>
+</tr>
+<tr>
+<td>Disaster recovery</td>
+<td>Use another cloud provider as a DR environment</td>
+</tr>
+</tbody>
+</table>
+<h3>Challenges</h3>
+<ul>
+<li>More complex architecture</li>
+<li>Different tools and APIs</li>
+<li>Security management</li>
+<li>Cost management</li>
+<li>Need for skilled engineers</li>
+</ul>
+<h2>IaaS – Infrastructure as a Service</h2>
+<p>IaaS provides <strong>infrastructure resources</strong> such as servers, storage, and networking.</p>
+<p><strong>Examples:</strong> AWS EC2, Azure Virtual Machines, Google Compute Engine</p>
+<h3>What You Manage vs What the Cloud Manages</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>IaaS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Physical Hardware</td>
+<td>☁️ Cloud</td>
+</tr>
+<tr>
+<td>Networking Infrastructure</td>
+<td>☁️ Cloud</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>👤 You</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>👤 You</td>
+</tr>
+<tr>
+<td>Application</td>
+<td>👤 You</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>👤 You</td>
+</tr>
+</tbody>
+</table>
+<h3>Example</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">EC2
+ └── Ubuntu
+      └── Docker
+           └── Jenkins
+</code></pre>
+</div>
+<p>You are responsible for managing the OS and software.</p>
+<h3>DevOps Use Cases</h3>
+<ul>
+<li>Jenkins server</li>
+<li>Docker host</li>
+<li>Kubernetes nodes</li>
+<li>Web servers</li>
+<li>Application servers</li>
+</ul>
+<h2>PaaS – Platform as a Service</h2>
+<p>PaaS provides a <strong>platform</strong> where developers can deploy applications <strong>without managing the underlying infrastructure</strong>.</p>
+<p><strong>Examples:</strong> AWS Elastic Beanstalk, Azure App Service, Google App Engine</p>
+<h3>Example</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Developer gives:    Application Code
+                         ↓
+Platform handles:   Servers, OS, Runtime, Scaling, Deployment
+</code></pre>
+</div>
+<p><strong>Simple scenario:</strong></p>
+<blockquote>
+<p>"I have a Java application. I just want to deploy it."</p>
+<p>PaaS handles the infrastructure required to run it.</p>
+</blockquote>
+<h3>Use Cases</h3>
+<ul>
+<li>Web applications</li>
+<li>APIs</li>
+<li>Rapid application development</li>
+<li>Development / testing environments</li>
+</ul>
+<h2>SaaS – Software as a Service</h2>
+<p>SaaS means using a <strong>complete software application over the internet</strong>.</p>
+<p>You don't manage servers, OS, runtime, or application infrastructure. You simply <strong>use the application</strong>.</p>
+<h3>Examples</h3>
+<ul>
+<li>Gmail</li>
+<li>Microsoft 365</li>
+<li>Salesforce</li>
+<li>Slack</li>
+<li>Zoom</li>
+</ul>
+<h3>Diagram</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Your Laptop
+     |
+   Internet
+     |
+   Gmail
+     |
+Google manages everything
+</code></pre>
+</div>
+<h3>Use Cases</h3>
+<ul>
+<li>Email</li>
+<li>CRM</li>
+<li>Collaboration</li>
+<li>Video conferencing</li>
+<li>Project management</li>
+</ul>
+<h2>Serverless / FaaS (Function as a Service)</h2>
+<p>Serverless means you run application code <strong>without directly managing servers</strong>.</p>
+<p><strong>Example:</strong> AWS Lambda</p>
+<h3>How It Works</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">User
+ |
+S3 (Upload Image)
+ |
+Lambda (Resize Image)
+ |
+Store Result
+</code></pre>
+</div>
+<p>You provide Python / Java / Node.js code. AWS manages servers, OS, infrastructure, and scaling.</p>
+<h3>Use Cases</h3>
+<ul>
+<li>Image processing</li>
+<li>File processing</li>
+<li>APIs</li>
+<li>Automation</li>
+<li>Event-driven applications</li>
+<li>Scheduled jobs</li>
+</ul>
+<h2>IaaS vs PaaS vs SaaS – The Pizza Analogy 🍕</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Pizza Analogy</th>
+<th>You Manage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IaaS</strong></td>
+<td>You receive basic ingredients and prepare most of it yourself</td>
+<td>MORE</td>
+</tr>
+<tr>
+<td><strong>PaaS</strong></td>
+<td>You receive a partially prepared pizza and customize / cook it</td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td><strong>SaaS</strong></td>
+<td>You order a ready-to-eat pizza and simply eat it</td>
+<td>LESS</td>
+</tr>
+</tbody>
+</table>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">                 YOU MANAGE
+IaaS  ------------------------&gt; MORE
+PaaS  ------------------------&gt; MEDIUM
+SaaS  ------------------------&gt; LESS
+</code></pre>
+</div>
+<h2>Shared Responsibility Model</h2>
+<p>This is an important <strong>DevOps interview concept</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>On-Prem</th>
+<th>IaaS</th>
+<th>PaaS</th>
+<th>SaaS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Physical Hardware</td>
+<td>You</td>
+<td>Cloud</td>
+<td>Cloud</td>
+<td>Cloud</td>
+</tr>
+<tr>
+<td>Networking</td>
+<td>You</td>
+<td>Cloud/You</td>
+<td>Cloud</td>
+<td>Cloud</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>You</td>
+<td>You</td>
+<td>Cloud</td>
+<td>Cloud</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>You</td>
+<td>You</td>
+<td>Cloud</td>
+<td>Cloud</td>
+</tr>
+<tr>
+<td>Application</td>
+<td>You</td>
+<td>You</td>
+<td>You</td>
+<td>Cloud</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>You</td>
+<td>You</td>
+<td>You</td>
+<td>You</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>The more managed the service, the less infrastructure you need to manage.</strong></p>
+</div>
+</div>
+<h2>Cloud Use Cases – Real-World Examples</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Use Case 1 – E-Commerce</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Users
+  |
+Route 53 (DNS)
+  |
+Load Balancer (ELB)
+  |
+EC2 / EKS (Application)
+  |
+RDS (Database)
+</code></pre>
+</div>
+<p><strong>Supporting services:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S3</td>
+<td>Product images</td>
+</tr>
+<tr>
+<td>CloudFront</td>
+<td>Content delivery (CDN)</td>
+</tr>
+<tr>
+<td>CloudWatch</td>
+<td>Monitoring</td>
+</tr>
+<tr>
+<td>SNS</td>
+<td>Notifications</td>
+</tr>
+<tr>
+<td>Lambda</td>
+<td>Automation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scaling problem:</strong></p>
+<ul>
+<li>Normal hours → 1,000 users</li>
+<li>Sale event → 1,00,000 users</li>
+</ul>
+<p><strong>Cloud solution:</strong> Load Balancer + Auto Scaling + Multi-AZ + CDN + Managed DB</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Use Case 2 – DevOps CI/CD Pipeline</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Developer
+    |
+   Git
+    |
+ Jenkins
+    |
+ Maven / Gradle
+    |
+ SonarQube
+    |
+ Docker
+    |
+   ECR (Container Registry)
+    |
+   EKS (Kubernetes)
+</code></pre>
+</div>
+<p>Cloud provides infrastructure for Jenkins, Kubernetes, container registry, monitoring, and storage.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Use Case 3 – Backup &amp; Storage</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Application → S3 → Backup
+</code></pre>
+</div>
+<p>S3 provides <strong>highly durable</strong> object storage for:</p>
+<ul>
+<li>Database backups</li>
+<li>Log storage</li>
+<li>Documents, images, videos</li>
+<li>Archives</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Use Case 4 – Disaster Recovery</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Primary             Backup / DR
+AWS Region A  ←→  AWS Region B
+</code></pre>
+</div>
+<p>Common services: S3, Route 53, RDS, EC2, EBS, AMIs</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Use Case 5 – Big Data &amp; Analytics</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Applications → Data Storage → Data Processing → Analytics → Reports
+</code></pre>
+</div>
+<p>Cloud makes it easier to provision large amounts of compute and storage on demand.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Use Case 6 – Application Modernization</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Legacy App (Physical Server, Old DB)
+         ↓
+  Containers → Docker → Kubernetes / EKS → RDS
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h3>Use Case 7 – Development &amp; Testing Environments</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Terraform
+   |
+   +---- DEV
+   +---- TEST
+   +---- UAT
+   +---- PROD
+</code></pre>
+</div>
+<p>Infrastructure can be <strong>created and destroyed automatically</strong> — this is where <strong>Terraform + AWS + DevOps</strong> becomes very useful.</p>
+</div>
+</div>
+</div>
+<h2>A Simple Cloud Architecture</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">                    USERS
+                      |
+                      v
+                 Route 53       (DNS)
+                      |
+                      v
+              Load Balancer     (ELB)
+                      |
+             +--------+--------+
+             |                 |
+           EC2               EC2    (Application Servers)
+             |                 |
+             +--------+--------+
+                      |
+                      v
+                    RDS         (Database)
+                      |
+                +-----+-----+
+                |           |
+               S3       CloudWatch
+           (Storage)   (Monitoring)
+</code></pre>
+</div>
+<h2>Cloud Computing Classification – Summary Diagram</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">                 CLOUD COMPUTING
+                       |
+          +------------+------------+
+          |                         |
+    Deployment Model          Service Model
+          |                         |
+    +-----+------+          +-------+-------+-------+
+    |     |      |          |       |       |       |
+ Public Private Hybrid    IaaS    PaaS    SaaS  Serverless
+    |
+ Multi-Cloud
+</code></pre>
+</div>
+<h3>One-Liner Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Public Cloud</strong></td>
+<td>Shared cloud infrastructure provided by a provider</td>
+</tr>
+<tr>
+<td><strong>Private Cloud</strong></td>
+<td>Dedicated cloud environment for one organization</td>
+</tr>
+<tr>
+<td><strong>Hybrid Cloud</strong></td>
+<td>Combination of private and public cloud</td>
+</tr>
+<tr>
+<td><strong>Multi-Cloud</strong></td>
+<td>Using multiple cloud providers</td>
+</tr>
+<tr>
+<td><strong>IaaS</strong></td>
+<td>Rent infrastructure</td>
+</tr>
+<tr>
+<td><strong>PaaS</strong></td>
+<td>Rent a development / application platform</td>
+</tr>
+<tr>
+<td><strong>SaaS</strong></td>
+<td>Use ready-made software</td>
+</tr>
+<tr>
+<td><strong>Serverless</strong></td>
+<td>Run code without managing servers</td>
+</tr>
+</tbody>
+</table>
+<h2>Classroom Quiz Questions ❓</h2>
+<details>
+
+<summary><strong>Q1:</strong> "If I create an EC2 instance, is that IaaS, PaaS, or SaaS?"</summary>
+
+**Answer:** IaaS – AWS provides infrastructure; we manage the OS, software, and application.
+
+</details>
+
+<details>
+
+<summary><strong>Q2:</strong> "If I use Gmail?"</summary>
+
+**Answer:** SaaS – Google manages everything; you simply use the application.
+
+</details>
+
+<details>
+
+<summary><strong>Q3:</strong> "If I deploy my application to AWS Elastic Beanstalk?"</summary>
+
+**Answer:** PaaS – The platform manages servers, OS, and runtime.
+
+</details>
+
+<details>
+
+<summary><strong>Q4:</strong> "If I execute Python code using AWS Lambda?"</summary>
+
+**Answer:** Serverless / FaaS – You only provide code; AWS manages everything else.
+
+</details>
+
+<h2>DevOps Perspective</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">             CLOUD
+               |
+      +--------+--------+
+      |                 |
+ Infrastructure      Managed Services
+      |                 |
+     EC2               RDS
+      |                 |
+     EKS               S3
+      |
+    Docker
+      |
+   Jenkins
+      |
+   CI/CD
+      |
+ Terraform
+      |
+Infrastructure as Code
+</code></pre>
+</div>
+<h3>Key Message</h3>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Cloud provides the infrastructure; DevOps provides the practices and automation to build, deploy, manage, and monitor applications efficiently.</strong></p>
+</div>
+</div>
+<h3>Final Classroom Statement</h3>
+<blockquote>
+<p><em>"Cloud tells us WHERE and HOW we get infrastructure and services; DevOps tells us HOW we automate and operate applications on that infrastructure."</em></p>
+</blockquote>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../aws/README.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">AWS</span>
+  </a>
+  <a href="../aws/aws-overview.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">AWS Overview</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

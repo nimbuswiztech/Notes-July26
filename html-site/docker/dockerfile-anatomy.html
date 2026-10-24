@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dockerfile Anatomy — Masterclass & Educational Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- removed custom styles -->
+
+    <link rel="stylesheet" href="../assets/css/style.css?v=2">
+</head>
+<body>
+<header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html" class="active">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+    <main class="doc-content">
+
+
+      <!-- Hero Banner -->
+      <section id="hero" class="hero-banner">
+        <div class="hero-pill">DevOps Curriculum — Instructor & Student Edition</div>
+        <h1 class="hero-title">The Anatomy of a Dockerfile</h1>
+        <p class="hero-desc">
+          A Dockerfile is not just a script—it is an <strong>immutable recipe</strong> that instructs the Docker Engine how to construct stacked, cached, read-only layers into a secure, runnable container image. Master every instruction, its internal engine mechanics, caching rules, and production battlegrounds.
+        </p>
+
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-num">17</div>
+            <div class="metric-label">Instructions Covered</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num">3</div>
+            <div class="metric-label">Confusing Showdowns</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">Exam & Production Ready</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num">0 ms</div>
+            <div class="metric-label">Build Cache Target</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Interactive Anatomy Inspector -->
+      <section id="inspector">
+        <div class="section-header">
+          <div class="section-tag">⚡ Live Classroom Demo</div>
+          <h2 class="section-title">Interactive Dockerfile Anatomy Inspector</h2>
+          <p class="section-subtitle">
+            Click on any line in the production-grade multi-stage Dockerfile below to inspect its anatomical stage, execution mechanics, and why instructors demand it.
+          </p>
+        </div>
+
+        <div class="inspector-wrapper">
+          <!-- Code Pane -->
+          <div class="code-editor-pane">
+            <div class="editor-top-bar">
+              <div class="window-dots">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+              </div>
+              <div class="editor-title">📄 Dockerfile (Node.js API Microservice)</div>
+              <div style="font-size: 0.75rem; color: #64748b;">Click lines to inspect 👆</div>
+            </div>
+
+            <div class="dockerfile-code-lines" id="dfCodeLines">
+              <div class="df-line active" data-step="1">
+                <span class="line-no">1</span>
+                <span class="line-content"><span class="cmt"># --- Stage 1: Build & Dependencies ---</span></span>
+              </div>
+              <div class="df-line" data-step="2">
+                <span class="line-no">2</span>
+                <span class="line-content"><span class="kw">FROM</span> node:20-alpine <span class="flg">AS</span> builder</span>
+              </div>
+              <div class="df-line" data-step="3">
+                <span class="line-no">3</span>
+                <span class="line-content"><span class="kw">WORKDIR</span> /usr/src/app</span>
+              </div>
+              <div class="df-line" data-step="4">
+                <span class="line-no">4</span>
+                <span class="line-content"><span class="kw">COPY</span> package*.json ./</span>
+              </div>
+              <div class="df-line" data-step="5">
+                <span class="line-no">5</span>
+                <span class="line-content"><span class="kw">RUN</span> npm ci --only=production</span>
+              </div>
+              <div class="df-line" data-step="6">
+                <span class="line-no">6</span>
+                <span class="line-content"><span class="cmt"># --- Stage 2: Minimal Production Image ---</span></span>
+              </div>
+              <div class="df-line" data-step="7">
+                <span class="line-no">7</span>
+                <span class="line-content"><span class="kw">FROM</span> node:20-alpine</span>
+              </div>
+              <div class="df-line" data-step="8">
+                <span class="line-no">8</span>
+                <span class="line-content"><span class="kw">LABEL</span> maintainer=<span class="str">"devops@school.edu"</span> version=<span class="str">"1.0"</span></span>
+              </div>
+              <div class="df-line" data-step="9">
+                <span class="line-no">9</span>
+                <span class="line-content"><span class="kw">ENV</span> NODE_ENV=production PORT=3000</span>
+              </div>
+              <div class="df-line" data-step="10">
+                <span class="line-no">10</span>
+                <span class="line-content"><span class="kw">WORKDIR</span> /app</span>
+              </div>
+              <div class="df-line" data-step="11">
+                <span class="line-no">11</span>
+                <span class="line-content"><span class="kw">COPY</span> <span class="flg">--from</span>=builder /usr/src/app/node_modules ./node_modules</span>
+              </div>
+              <div class="df-line" data-step="12">
+                <span class="line-no">12</span>
+                <span class="line-content"><span class="kw">COPY</span> <span class="flg">--chown</span>=node:node . .</span>
+              </div>
+              <div class="df-line" data-step="13">
+                <span class="line-no">13</span>
+                <span class="line-content"><span class="kw">USER</span> node</span>
+              </div>
+              <div class="df-line" data-step="14">
+                <span class="line-no">14</span>
+                <span class="line-content"><span class="kw">EXPOSE</span> 3000</span>
+              </div>
+              <div class="df-line" data-step="15">
+                <span class="line-no">15</span>
+                <span class="line-content"><span class="kw">HEALTHCHECK</span> <span class="flg">--interval</span>=30s <span class="kw">CMD</span> wget -qO- http://localhost:3000/health || exit 1</span>
+              </div>
+              <div class="df-line" data-step="16">
+                <span class="line-no">16</span>
+                <span class="line-content"><span class="kw">ENTRYPOINT</span> [<span class="str">"node"</span>]</span>
+              </div>
+              <div class="df-line" data-step="17">
+                <span class="line-no">17</span>
+                <span class="line-content"><span class="kw">CMD</span> [<span class="str">"server.js"</span>]</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inspector Dynamic Display -->
+          <div class="inspector-detail-pane" id="inspectorOutput">
+            <div class="anatomy-badge badge-stage-base" id="inspStage">Stage 1: Base Image Initialization</div>
+            <h3 class="inspector-card-title" id="inspTitle">FROM node:20-alpine AS builder</h3>
+            <p class="inspector-card-desc" id="inspDesc">
+              The root foundation of your container. Every valid Dockerfile must begin with a <code>FROM</code> instruction. Naming this stage <code>AS builder</code> initiates a <strong>Multi-Stage Build</strong>, allowing temporary compilation tools to be discarded later.
+            </p>
+
+            <div class="inspector-card-meta">
+              <div>
+                <div class="meta-box-label">Execution Time</div>
+                <div class="meta-box-val" id="inspExec">Build Time (Image Pull)</div>
+              </div>
+              <div>
+                <div class="meta-box-label">Creates Layer?</div>
+                <div class="meta-box-val" id="inspLayer">Yes (Root Image Layers)</div>
+              </div>
+              <div>
+                <div class="meta-box-label">Caching Impact</div>
+                <div class="meta-box-val" id="inspCache">High (Cached by Digest/Tag)</div>
+              </div>
+              <div>
+                <div class="meta-box-label">Security Focus</div>
+                <div class="meta-box-val" id="inspSec">Use minimal, verified tags</div>
+              </div>
+            </div>
+
+            <div class="teacher-tip-callout">
+              <div class="teacher-tip-title">🎓 Teacher's Anatomy Lesson</div>
+              <div id="inspTip">
+                Always pin base image versions (e.g. <code>node:20.11-alpine</code>) rather than using <code>latest</code>. If a student uses <code>latest</code>, their builds will break randomly in 6 months when major versions upgrade!
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: The Layer Cake Engine -->
+      <section id="layers">
+        <div class="section-header">
+          <div class="section-tag">🥞 Core Mechanics</div>
+          <h2 class="section-title">The Layer Cake & Build Cache Architecture</h2>
+          <p class="section-subtitle">
+            Understanding why Docker is so fast and efficient requires understanding <strong>Union File Systems (Overlay2)</strong> and layer caching.
+          </p>
+        </div>
+
+        <div class="layer-cake-grid">
+          <!-- Visual Stack -->
+          <div class="layer-stack-visual">
+            <!-- Top Container RW Layer -->
+            <div class="layer-item layer-writable">
+              <div class="layer-info">
+                <span class="layer-tag tag-rw">RW LAYER</span>
+                <div>
+                  <div class="layer-desc">Container Read-Write Layer (Ephemeral)</div>
+                  <div class="layer-cmd">Created at <code>docker run</code> • Discarded when container removed</div>
+                </div>
+              </div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: #34d399;">Only Writeable Area</div>
+            </div>
+
+            <!-- Read Only Layers -->
+            <div class="layer-item layer-readonly">
+              <div class="layer-info">
+                <span class="layer-tag tag-ro">LAYER 5</span>
+                <div>
+                  <div class="layer-desc">Application Source Code</div>
+                  <div class="layer-cmd"><code>COPY . .</code> (~15 MB)</div>
+                </div>
+              </div>
+              <span style="font-size: 0.75rem; color: #64748b;">Read-Only</span>
+            </div>
+
+            <div class="layer-item layer-readonly">
+              <div class="layer-info">
+                <span class="layer-tag tag-ro">LAYER 4</span>
+                <div>
+                  <div class="layer-desc">Production Dependencies</div>
+                  <div class="layer-cmd"><code>RUN npm ci --only=production</code> (~120 MB)</div>
+                </div>
+              </div>
+              <span style="font-size: 0.75rem; color: #64748b;">Read-Only</span>
+            </div>
+
+            <div class="layer-item layer-readonly">
+              <div class="layer-info">
+                <span class="layer-tag tag-ro">LAYER 3</span>
+                <div>
+                  <div class="layer-desc">Manifest Lockfiles</div>
+                  <div class="layer-cmd"><code>COPY package*.json ./</code> (~45 KB)</div>
+                </div>
+              </div>
+              <span style="font-size: 0.75rem; color: #64748b;">Read-Only</span>
+            </div>
+
+            <div class="layer-item layer-readonly">
+              <div class="layer-info">
+                <span class="layer-tag tag-ro">LAYER 2</span>
+                <div>
+                  <div class="layer-desc">System Dependencies & CA-Certificates</div>
+                  <div class="layer-cmd"><code>RUN apk add --no-cache curl tzdata</code> (~8 MB)</div>
+                </div>
+              </div>
+              <span style="font-size: 0.75rem; color: #64748b;">Read-Only</span>
+            </div>
+
+            <div class="layer-item layer-base">
+              <div class="layer-info">
+                <span class="layer-tag tag-ro">LAYER 1</span>
+                <div>
+                  <div class="layer-desc">Base Linux OS (Alpine Linux)</div>
+                  <div class="layer-cmd"><code>FROM alpine:3.19</code> (~7 MB)</div>
+                </div>
+              </div>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700;">Base Layer</span>
+            </div>
+          </div>
+
+          <!-- Explanation Card -->
+          <div class="card" style="margin-bottom: 0;">
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; color: var(--docker-blue-light);">
+              The 3 Golden Rules of Docker Layers
+            </h3>
+
+            <div style="margin-bottom: 1.25rem;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: #f87171; margin-bottom: 4px;">
+                1. Which Instructions Actually Create Layers?
+              </h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Only <strong><code>RUN</code></strong>, <strong><code>COPY</code></strong>, and <strong><code>ADD</code></strong> create physical, byte-storing filesystem layers. Instructions like <code>ENV</code>, <code>EXPOSE</code>, <code>WORKDIR</code>, <code>USER</code>, and <code>CMD</code> only modify <strong>image metadata JSON</strong> (0 MB added).
+              </p>
+            </div>
+
+            <div style="margin-bottom: 1.25rem;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: #f59e0b; margin-bottom: 4px;">
+                2. The "Cache Busting" Domino Effect
+              </h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Docker checks layer hashes from top to bottom. If <strong>any line changes</strong> (or files copied in that line are modified), Docker <strong>invalidates the cache for that layer AND every single layer that follows it!</strong>
+              </p>
+            </div>
+
+            <div>
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: #34d399; margin-bottom: 4px;">
+                3. The Copy-on-Write (CoW) Runtime Magic
+              </h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                When 100 containers run from the same 500 MB image, they all share the exact same read-only layers in RAM/Disk. Only modifications made while the container is running are written to its private thin top writable layer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Master Command Catalog (All 17 Instructions) -->
+      <section id="catalog">
+        <div class="section-header">
+          <div class="section-tag">📚 The Complete Reference</div>
+          <h2 class="section-title">The Master Catalog: All 17 Dockerfile Commands</h2>
+          <p class="section-subtitle">
+            Every instruction Docker supports, explained in crystal-clear language with syntax, engine internals, practical use cases, and student pitfalls.
+          </p>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="filter-search-container">
+          <div class="search-input-box">
+            <span>🔍</span>
+            <input type="text" id="cmdSearchInput" placeholder="Search commands (e.g. WORKDIR, cache, root)...">
+          </div>
+
+          <div class="filter-pills">
+            <button class="filter-pill active" data-filter="all">All (17)</button>
+            <button class="filter-pill" data-filter="base">Foundation</button>
+            <button class="filter-pill" data-filter="build">Build-Time</button>
+            <button class="filter-pill" data-filter="runtime">Runtime & Entry</button>
+            <button class="filter-pill" data-filter="network">Network & Storage</button>
+            <button class="filter-pill" data-filter="security">Security & Meta</button>
+          </div>
+        </div>
+
+        <!-- Catalog Items -->
+        <div class="cmd-catalog-grid" id="cmdCatalog">
+
+          <!-- 1. FROM -->
+          <article class="cmd-card" id="cmd-from" data-category="base">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">FROM</span>
+                <span class="cmd-role-badge" style="background: rgba(36,150,237,0.15); color: #38bdf8; border: 1px solid rgba(36,150,237,0.3);">Image Foundation</span>
+                <span class="cmd-role-badge badge-creates-layer">Creates Layer</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Order: First non-ARG instruction</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>FROM [--platform=&lt;platform&gt;] &lt;image&gt;[:&lt;tag&gt;] [AS &lt;name&gt;]</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> Think of <code>FROM</code> as choosing the foundation of a house. Are you building on Ubuntu, Debian, Alpine Linux, or a pre-configured Python/Node runtime? Everything you build sits on top of this base image. You can also start from pure scratch using <code>FROM scratch</code> for compiled Go/Rust binaries.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Production Best Practice: Explicit pinned version & lightweight Alpine distribution</span>
+<span class="kw">FROM</span> python:3.11-slim-bookworm <span class="flg">AS</span> base
+
+<span class="cmt"># Multi-stage build: Building in one stage, deploying in scratch</span>
+<span class="kw">FROM</span> golang:1.22-alpine <span class="flg">AS</span> builder
+<span class="kw">WORKDIR</span> /src
+<span class="kw">COPY</span> . .
+<span class="kw">RUN</span> CGO_ENABLED=0 go build -o /bin/app
+
+<span class="kw">FROM</span> scratch
+<span class="kw">COPY</span> --from=builder /bin/app /bin/app
+<span class="kw">ENTRYPOINT</span> ["/bin/app"]</code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ Common Student Trap</div>
+                <div>Never write <code>FROM node</code> or <code>FROM python:latest</code>. Using <code>latest</code> means your build is non-deterministic. If Python 3.12 drops tomorrow, your CI/CD pipeline might fail without any code changes!</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Teacher's Best Practice</div>
+                <div>Use minimal distribution tags like <code>-slim</code> or <code>-alpine</code> to keep images under 100 MB, eliminating thousands of unneeded packages and CVE security vulnerabilities.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. RUN -->
+          <article class="cmd-card" id="cmd-run" data-category="build">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">RUN</span>
+                <span class="cmd-role-badge" style="background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.3);">Build Execution</span>
+                <span class="cmd-role-badge badge-creates-layer">Creates Layer</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Forms: Shell Form & Exec Form</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>RUN &lt;command&gt; (shell form) &nbsp;|&nbsp; RUN ["executable", "param1", "param2"] (exec form)</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>RUN</code> executes commands during the <strong>build process</strong> to install software, create users, compile code, or configure directories. The resulting filesystem changes are committed into a new read-only image layer.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># BAD PRACTICE: Creates 3 separate heavy layers and leaves 40MB of apt-cache on disk</span>
+<span class="cmt"># RUN apt-get update</span>
+<span class="cmt"># RUN apt-get install -y curl git</span>
+<span class="cmt"># RUN rm -rf /var/lib/apt/lists/*</span>
+
+<span class="cmt"># GOOD PRACTICE: Chain commands with && and clean up in the SAME layer</span>
+<span class="kw">RUN</span> apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    git \
+ && rm -rf /var/lib/apt/lists/*</code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The Cache Poisoning Trap</div>
+                <div>If you write <code>RUN apt-get update</code> on its own line, Docker caches it. When you later add a package to <code>RUN apt-get install nginx</code>, Docker reuses the outdated cached update, leading to 404 package errors!</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Teacher's Best Practice</div>
+                <div>Always pair <code>apt-get update && apt-get install -y ...</code> together on one line, and always delete temporary package lists with <code>rm -rf /var/lib/apt/lists/*</code>.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. CMD -->
+          <article class="cmd-card" id="cmd-cmd" data-category="runtime">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">CMD</span>
+                <span class="cmd-role-badge" style="background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3);">Default Execution</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Override: Easily replaced by docker run</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>CMD ["executable","param1","param2"] (Exec) &nbsp;|&nbsp; CMD ["param1","param2"] (with ENTRYPOINT)</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>CMD</code> sets the <strong>default program or default arguments</strong> to execute when a container starts up. If the user passes any arguments to <code>docker run my-image [args...]</code>, the entire <code>CMD</code> is overridden and discarded!
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Preferred: Exec Form (JSON array)</span>
+<span class="kw">CMD</span> ["python", "app.py", "--host", "0.0.0.0"]
+
+<span class="cmt"># If paired with an ENTRYPOINT, CMD only provides default arguments:</span>
+<span class="kw">ENTRYPOINT</span> ["nginx"]
+<span class="kw">CMD</span> ["-g", "daemon off;"]
+
+<span class="cmt"># If the student runs:</span>
+<span class="cmt"># $ docker run my-nginx -g "daemon on;"</span>
+<span class="cmt"># CMD is completely replaced by the user's argument!</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ Shell Form vs Exec Form Bug</div>
+                <div>If you write <code>CMD python app.py</code> (shell form), Docker secretly runs <code>/bin/sh -c "python app.py"</code>. The shell becomes PID 1, and Linux signals like <code>SIGTERM</code> (used by <code>docker stop</code>) will not reach your Python app, causing graceful shutdowns to hang!</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Teacher's Best Practice</div>
+                <div>Always use the <strong>Exec form (JSON array with double quotes)</strong>: <code>CMD ["python", "app.py"]</code>.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. ENTRYPOINT -->
+          <article class="cmd-card" id="cmd-entrypoint" data-category="runtime">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">ENTRYPOINT</span>
+                <span class="cmd-role-badge" style="background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3);">Fixed Executable</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Override: Requires --entrypoint flag</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>ENTRYPOINT ["executable", "param1", "param2"]</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>ENTRYPOINT</code> turns your container into an executable command-line tool. It configures the command that <em>will always run</em>. Any arguments passed to <code>docker run</code> (or defined in <code>CMD</code>) will be appended directly to the <code>ENTRYPOINT</code>!
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Creating a container that behaves like a CLI tool (e.g. curl)</span>
+<span class="kw">FROM</span> alpine:3.19
+<span class="kw">RUN</span> apk add --no-cache curl
+<span class="kw">ENTRYPOINT</span> ["curl", "-s"]
+<span class="kw">CMD</span> ["https://api.github.com"]
+
+<span class="cmt"># Running without args: runs 'curl -s https://api.github.com'</span>
+<span class="cmt"># $ docker run my-curl</span>
+
+<span class="cmt"># Running with custom args: replaces CMD but keeps ENTRYPOINT!</span>
+<span class="cmt"># $ docker run my-curl https://httpbin.org/ip</span>
+<span class="cmt"># Runs: curl -s https://httpbin.org/ip</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ Accidentally Locking Out Shells</div>
+                <div>If you set <code>ENTRYPOINT ["node", "app.js"]</code>, a student trying to debug with <code>docker run -it my-img /bin/sh</code> will find that Docker tries to run <code>node app.js /bin/sh</code>! They must use <code>docker run --entrypoint /bin/sh -it my-img</code>.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Teacher's Best Practice</div>
+                <div>Use an <code>entrypoint.sh</code> script that performs migrations, checks database connectivity, and ends with <code>exec "$@"</code> to smoothly hand over PID 1 to the passed command.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. WORKDIR -->
+          <article class="cmd-card" id="cmd-workdir" data-category="base">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">WORKDIR</span>
+                <span class="cmd-role-badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3);">Execution Context</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Replacement for 'cd'</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>WORKDIR /path/to/workdir</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>WORKDIR</code> sets the working directory for all subsequent <code>RUN</code>, <code>CMD</code>, <code>ENTRYPOINT</code>, <code>COPY</code>, and <code>ADD</code> instructions. If the directory does not exist, Docker will automatically create it for you!
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># BAD PRACTICE: 'cd' does NOT persist across RUN instructions!</span>
+<span class="cmt"># RUN mkdir /app</span>
+<span class="cmt"># RUN cd /app</span>
+<span class="cmt"># RUN touch file.txt  <-- Created in root /, NOT in /app!</span>
+
+<span class="cmt"># GOOD PRACTICE: WORKDIR creates the folder and persists for all lines</span>
+<span class="kw">WORKDIR</span> /usr/src/app
+<span class="kw">COPY</span> package.json .
+<span class="kw">RUN</span> npm install
+<span class="kw">COPY</span> . .</code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The "cd doesn't work" Myth</div>
+                <div>Students often write <code>RUN cd /opt/myapp</code> and wonder why the next command runs in <code>/</code>. Each <code>RUN</code> statement starts in a fresh subshell! Always use <code>WORKDIR</code> instead of <code>RUN cd</code>.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Absolute vs Relative Paths</div>
+                <div>Always use absolute paths: <code>WORKDIR /app</code>. If you write relative paths: <code>WORKDIR a</code> then <code>WORKDIR b</code>, your path becomes <code>/a/b</code>, which can lead to confusion.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. COPY -->
+          <article class="cmd-card" id="cmd-copy" data-category="build">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">COPY</span>
+                <span class="cmd-role-badge" style="background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.3);">File Transfer</span>
+                <span class="cmd-role-badge badge-creates-layer">Creates Layer</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Recommended over ADD for files</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>COPY [--chown=&lt;user&gt;:&lt;group&gt;] [--from=&lt;stage&gt;] &lt;src&gt;... &lt;dest&gt;</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>COPY</code> takes files or directories from your host build context machine and duplicates them into the container filesystem. It is transparent, predictable, and standard.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># 1. Copy dependencies first for caching</span>
+<span class="kw">COPY</span> requirements.txt ./
+
+<span class="cmt"># 2. Copy with permissions applied directly (avoids an extra RUN chown layer!)</span>
+<span class="kw">COPY</span> --chown=appuser:appgroup config/ /etc/myapp/
+
+<span class="cmt"># 3. Multi-stage copying: grabbing the compiled artifact from the 'builder' stage</span>
+<span class="kw">COPY</span> --from=builder /go/bin/api-server /usr/local/bin/api-server</code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The Duplicate Chown Bloat</div>
+                <div>Writing <code>COPY app /app</code> followed by <code>RUN chown -R myuser:myuser /app</code> doubles your image size because Docker copies every file into a brand new layer! Always use <code>COPY --chown=myuser:myuser</code> instead.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Teacher's Best Practice</div>
+                <div>Always combine <code>COPY</code> with a solid <code>.dockerignore</code> file so you don't accidentally copy <code>.git</code>, <code>node_modules</code>, or <code>.env</code> files containing secret keys into the image.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. ADD -->
+          <article class="cmd-card" id="cmd-add" data-category="build">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">ADD</span>
+                <span class="cmd-role-badge" style="background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3);">Advanced Transfer</span>
+                <span class="cmd-role-badge badge-creates-layer">Creates Layer</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Features: Tar extraction & Remote URLs</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>ADD [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>ADD</code> is like <code>COPY</code>'s older brother with two magic tricks: (1) It can download files from a remote URL, and (2) It <strong>automatically unpacks local tar archives</strong> (like <code>.tar.gz</code>) directly into the destination folder.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># THE PRIMARY VALID USE CASE FOR ADD:</span>
+<span class="cmt"># Automatically uncompresses rootfs.tar.gz into the container root</span>
+<span class="kw">ADD</span> rootfs.tar.xz /
+
+<span class="cmt"># Unpacking application bundle</span>
+<span class="kw">ADD</span> dist-bundle.tar.gz /var/www/html/
+
+<span class="cmt"># WARNING: Remote URL downloading is discouraged!</span>
+<span class="cmt"># ADD https://example.com/bigfile.zip /tmp/  <-- Cannot clean up zip in same layer!</span>
+<span class="cmt"># Prefer: RUN curl -fsSL https://... | tar -xz -C /destination</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The URL Trap</div>
+                <div>Using <code>ADD &lt;url&gt;</code> downloads the file into an image layer. You cannot delete the downloaded archive in a subsequent step to save disk space. Use <code>RUN curl ... && tar ... && rm ...</code> instead.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ The Golden Docker Rule</div>
+                <div>The official Docker documentation states: If you are not unpacking a local tar file, <strong>always use COPY instead of ADD</strong> for clarity and security.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. ENV -->
+          <article class="cmd-card" id="cmd-env" data-category="runtime">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">ENV</span>
+                <span class="cmd-role-badge" style="background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3);">Persistent Environment</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Persists into running containers</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>ENV &lt;key&gt;=&lt;value&gt; &lt;key2&gt;=&lt;value2&gt;</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>ENV</code> defines environment variables that are available <strong>during the build AND persistently inside the running container</strong>. Applications access them using standard OS environment lookups (e.g. <code>process.env.PORT</code> in Node or <code>os.environ.get()</code> in Python).
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Defining multiple environment variables in one instruction</span>
+<span class="kw">ENV</span> NODE_ENV=production \
+    PORT=8080 \
+    APP_HOME=/usr/src/app \
+    PATH="/usr/src/app/bin:${PATH}"
+
+<span class="kw">WORKDIR</span> $APP_HOME
+<span class="kw">EXPOSE</span> $PORT
+
+<span class="cmt"># Can be overridden dynamically at runtime:</span>
+<span class="cmt"># $ docker run -e PORT=4000 -e DEBUG=true my-app</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ Hardcoding Secrets Security Flaw</div>
+                <div>NEVER put database passwords, AWS credentials, or API keys in <code>ENV</code>! Anyone who runs <code>docker inspect &lt;image&gt;</code> can see all ENV values in plain text JSON! Pass secrets via environment files or Docker secrets at runtime.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Variable Expansion Feature</div>
+                <div>ENV supports bash-style expansion: <code>${VAR:-default}</code> sets a fallback if not provided, and <code>${VAR:+alternate}</code> sets a value if VAR is set.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 9. ARG -->
+          <article class="cmd-card" id="cmd-arg" data-category="build">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">ARG</span>
+                <span class="cmd-role-badge" style="background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.3);">Build-Time Argument</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Build-only: Not present in container</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>ARG &lt;name&gt;[=&lt;default_value&gt;]</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>ARG</code> defines variables that users can pass to Docker at <strong>build-time only</strong> using <code>docker build --build-arg &lt;varname&gt;=&lt;value&gt;</code>. Once the image is finished building, <code>ARG</code> variables <strong>disappear completely</strong> and cannot be read inside the running container!
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># 1. ARG before FROM can define the base image version</span>
+<span class="kw">ARG</span> NODE_VERSION=20
+<span class="kw">FROM</span> node:${NODE_VERSION}-alpine
+
+<span class="cmt"># 2. Must redeclare inside the build stage if needed after FROM!</span>
+<span class="kw">ARG</span> APP_VERSION=1.0.0
+<span class="kw">LABEL</span> version=${APP_VERSION}
+
+<span class="cmt"># 3. Passing from build arg into persistent ENV if needed at runtime:</span>
+<span class="kw">ARG</span> BUILD_ENV=production
+<span class="kw">ENV</span> RUNTIME_ENV=${BUILD_ENV}
+
+<span class="cmt"># CLI Build Command:</span>
+<span class="cmt"># $ docker build --build-arg NODE_VERSION=18 --build-arg APP_VERSION=2.1.0 -t my-app .</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The ARG Before/After FROM Trap</div>
+                <div>An <code>ARG</code> declared before <code>FROM</code> is outside the build stage. If you need it in a <code>RUN</code> or <code>ENV</code> instruction after <code>FROM</code>, you must redeclare <code>ARG &lt;name&gt;</code> with no value inside the stage!</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Predefined Build Arguments</div>
+                <div>Docker provides built-in ARGs automatically without declaring them: <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, <code>TARGETPLATFORM</code>, and <code>TARGETARCH</code>.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 10. EXPOSE -->
+          <article class="cmd-card" id="cmd-expose" data-category="network">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">EXPOSE</span>
+                <span class="cmd-role-badge" style="background: rgba(6,182,212,0.15); color: #06b6d4; border: 1px solid rgba(6,182,212,0.3);">Network Intent</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Documentation & Port Contract</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>EXPOSE &lt;port&gt; [/&lt;tcp|udp&gt;] [...]</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>EXPOSE</code> is an architectural contract and documentation statement. It informs Docker and human operators that the container listens on specified network ports. <strong>Crucial Lesson:</strong> <code>EXPOSE</code> does <em>not</em> actually publish the port to your host computer! You must still pass <code>-p 8080:8080</code> when running the container.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Expose TCP web traffic</span>
+<span class="kw">EXPOSE</span> 80 443
+
+<span class="cmt"># Expose UDP traffic (e.g. DNS or gaming server)</span>
+<span class="kw">EXPOSE</span> 53/udp 53/tcp
+
+<span class="cmt"># Running with -P (Publish All): Automatically maps exposed ports to random high host ports</span>
+<span class="cmt"># $ docker run -d -P my-web-app</span>
+
+<span class="cmt"># Running with -p (Explicit Binding): Still strictly required!</span>
+<span class="cmt"># $ docker run -d -p 8080:80 my-web-app</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The #1 Student Confusion</div>
+                <div>Students write <code>EXPOSE 3000</code> and wonder why <code>http://localhost:3000</code> doesn't work in their browser. Tell them: <em>"EXPOSE is like putting a door on a house; -p unlocks the gate from the street."</em></div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Container Orchestrator Usage</div>
+                <div>Kubernetes and Amazon ECS read the <code>EXPOSE</code> metadata to auto-configure Service discovery and target port forwarding!</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 11. VOLUME -->
+          <article class="cmd-card" id="cmd-volume" data-category="network">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">VOLUME</span>
+                <span class="cmd-role-badge" style="background: rgba(6,182,212,0.15); color: #06b6d4; border: 1px solid rgba(6,182,212,0.3);">Storage Mount</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Data Persistence Boundary</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>VOLUME ["/var/log/", "/var/db/"] &nbsp;|&nbsp; VOLUME /data</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> Containers are ephemeral (they can be deleted at any moment). <code>VOLUME</code> creates a designated mount point for holding persistent or shared database/log data. Any data written to a declared volume bypasses the Union File System and is stored directly on the host machine.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Declaring persistent directories for PostgreSQL or MongoDB</span>
+<span class="kw">VOLUME</span> ["/var/lib/postgresql/data", "/var/log/postgresql"]
+
+<span class="cmt"># When run without flags, Docker generates an anonymous volume on the host:</span>
+<span class="cmt"># $ docker run -d postgres</span>
+
+<span class="cmt"># Production mapping with named volumes:</span>
+<span class="cmt"># $ docker run -d -v pgdata:/var/lib/postgresql/data postgres</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The Build Step Invalidation</div>
+                <div>Once a volume is declared in a Dockerfile (e.g. <code>VOLUME /data</code>), any subsequent <code>RUN</code> statement that modifies files inside <code>/data</code> will be discarded during the build! Always populate data <em>before</em> calling <code>VOLUME</code>.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ When to Declare in Dockerfile</div>
+                <div>Only declare <code>VOLUME</code> for directories that strictly require persistence (like databases or uploads). Avoid doing it for general codebases.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 12. USER -->
+          <article class="cmd-card" id="cmd-user" data-category="security">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">USER</span>
+                <span class="cmd-role-badge" style="background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3);">Security Best Practice</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Root Mitigation Defense</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>USER &lt;user&gt;[:&lt;group&gt;] &nbsp;|&nbsp; USER &lt;UID&gt;[:&lt;GID&gt;]</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> By default, Docker containers run as <strong>root (UID 0)</strong>. If a hacker breaches your web application running as root inside a container, they might be able to escape to the host kernel! <code>USER</code> drops permissions to a non-privileged user.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># 1. Create a dedicated non-root group and user with explicit UID</span>
+<span class="kw">RUN</span> addgroup -g 10001 appgroup && \
+    adduser -u 10001 -G appgroup -s /bin/sh -D appuser
+
+<span class="cmt"># 2. Assign folder permissions while still root</span>
+<span class="kw">WORKDIR</span> /app
+<span class="kw">COPY</span> --chown=appuser:appgroup . .
+
+<span class="cmt"># 3. Switch to the non-root user!</span>
+<span class="kw">USER</span> appuser
+
+<span class="cmt"># Now RUN, CMD, and ENTRYPOINT execute safely as appuser</span>
+<span class="kw">CMD</span> ["./start.sh"]</code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The Port 80 Privilege Trap</div>
+                <div>Linux restricts ports below 1024 to root only! If a student switches to <code>USER appuser</code> and tries to bind to port 80, the application will crash with <code>EACCES: permission denied</code>. Use port 3000, 8080, or 8443 instead.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Use Numeric UID/GID</div>
+                <div>Always prefer numeric UIDs (e.g. <code>USER 10001:10001</code>) for compatibility with Kubernetes <code>runAsNonRoot</code> and PodSecurityPolicies.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 13. HEALTHCHECK -->
+          <article class="cmd-card" id="cmd-healthcheck" data-category="security">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">HEALTHCHECK</span>
+                <span class="cmd-role-badge" style="background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3);">Self-Healing</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Used by Docker Swarm & Compose</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>HEALTHCHECK [OPTIONS] CMD &lt;command&gt; &nbsp;|&nbsp; HEALTHCHECK NONE</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> Just because a container is running doesn't mean your app is healthy (it might be stuck in an infinite loop or locked out of its database). <code>HEALTHCHECK</code> periodically runs a test command inside the container. If it returns exit code <code>0</code>, it is healthy; if <code>1</code>, Docker marks it <code>unhealthy</code>.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Production Web Application Healthcheck</span>
+<span class="kw">HEALTHCHECK</span> --interval=30s \
+            --timeout=5s \
+            --start-period=15s \
+            --retries=3 \
+  <span class="kw">CMD</span> curl -f http://localhost:8080/health || exit 1
+
+<span class="cmt"># Options Explained:</span>
+<span class="cmt"># --interval=30s     : Run test every 30 seconds</span>
+<span class="cmt"># --timeout=5s      : Fail if probe takes longer than 5 seconds</span>
+<span class="cmt"># --start-period=15s: Grace period during bootup (failures don't count)</span>
+<span class="cmt"># --retries=3       : Must fail 3 consecutive times to mark unhealthy</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ Forgetting Start Period</div>
+                <div>Heavy apps (Java Spring Boot, Rails) take 20+ seconds to boot. If you don't provide <code>--start-period</code>, Docker might kill or restart your container before it has even finished starting up!</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Disabling Inherited Healthchecks</div>
+                <div>If an upstream base image includes a healthcheck that fails in your environment, you can silence it using: <code>HEALTHCHECK NONE</code>.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 14. LABEL -->
+          <article class="cmd-card" id="cmd-label" data-category="security">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">LABEL</span>
+                <span class="cmd-role-badge" style="background: rgba(148,163,184,0.15); color: #cbd5e1; border: 1px solid rgba(148,163,184,0.3);">Image Metadata</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Replaces deprecated MAINTAINER</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>LABEL &lt;key&gt;=&lt;value&gt; &lt;key2&gt;=&lt;value2&gt;</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>LABEL</code> adds key-value metadata tags to your image. This is essential in corporate teams for tracking maintainers, source code Git commit hashes, licenses, documentation URLs, and CI build IDs.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Following Open Container Initiative (OCI) image specification</span>
+<span class="kw">LABEL</span> org.opencontainers.image.title="Customer Payment API" \
+      org.opencontainers.image.description="Processes Stripe & PayPal webhooks" \
+      org.opencontainers.image.version="2.4.1" \
+      org.opencontainers.image.authors="devops@university.edu" \
+      org.opencontainers.image.source="https://github.com/my-org/payments" \
+      org.opencontainers.image.licenses="MIT"
+
+<span class="cmt"># Note on MAINTAINER:</span>
+<span class="cmt"># MAINTAINER john@doe.com is DEPRECATED. Always use LABEL instead!</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The MAINTAINER Mistake</div>
+                <div>Many old Docker tutorials still teach <code>MAINTAINER</code>. Docker deprecated it years ago. Use <code>LABEL maintainer="name &lt;email&gt;"</code>.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Inspecting Labels</div>
+                <div>Students can view labels anytime without starting the container: <code>docker inspect --format='{{json .Config.Labels}}' my-image</code>.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 15. SHELL -->
+          <article class="cmd-card" id="cmd-shell" data-category="base">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">SHELL</span>
+                <span class="cmd-role-badge" style="background: rgba(99,102,241,0.15); color: #818cf8; border: 1px solid rgba(99,102,241,0.3);">Shell Configuration</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Overriding default /bin/sh</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>SHELL ["executable", "parameters"]</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> On Linux, Docker defaults to executing shell-form commands with <code>["/bin/sh", "-c"]</code>, and on Windows with <code>["cmd", "/S", "/C"]</code>. <code>SHELL</code> lets you override this to use <strong>Bash</strong> (with strict error safety flags) or <strong>PowerShell</strong>.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Enable strict Bash execution with pipefail (so piped errors cause build failure!)</span>
+<span class="kw">SHELL</span> ["/bin/bash", "-o", "pipefail", "-c"]
+
+<span class="cmt"># Now this build fails properly if curl errors, even when piped to grep!</span>
+<span class="kw">RUN</span> curl -fsSL https://example.com/bad-url | grep "OK"
+
+<span class="cmt"># Windows Containers Example: Switching from cmd.exe to PowerShell</span>
+<span class="kw">SHELL</span> ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]</code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The Silent Pipe Fail Trap</div>
+                <div>In default <code>/bin/sh</code>, if you run <code>curl https://fail | tar -xz</code>, the curl might return a 404 HTML error, but tar exits with code 0. Your build falsely passes with broken code! Using Bash with <code>-o pipefail</code> prevents this.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Reverting Shells</div>
+                <div>You can change the shell multiple times in a single Dockerfile, e.g., using PowerShell for Windows setup, then switching back to CMD for runtime.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 16. STOPSIGNAL -->
+          <article class="cmd-card" id="cmd-stopsignal" data-category="runtime">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">STOPSIGNAL</span>
+                <span class="cmd-role-badge" style="background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3);">Termination Signal</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Only</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Default: SIGTERM</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>STOPSIGNAL &lt;signal_name_or_number&gt;</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> When you tell Docker to stop a container via <code>docker stop</code>, it sends a Linux signal giving the process 10 seconds to finish in-flight requests and close DB connections before forcibly killing it with <code>SIGKILL</code>. While <code>SIGTERM</code> is standard, some web servers (like NGINX) require <code>SIGQUIT</code> to stop gracefully.
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Official NGINX Dockerfile uses SIGQUIT for immediate graceful connection drain:</span>
+<span class="kw">STOPSIGNAL</span> SIGQUIT
+
+<span class="cmt"># Systemd init-based containers require RTMIN+3 to shutdown cleanly:</span>
+<span class="kw">STOPSIGNAL</span> SIGRTMIN+3</code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The 10-Second Wait of Shame</div>
+                <div>Ever run <code>docker stop</code> and had to wait an annoying 10 seconds before it finished? That's because the container ignored <code>SIGTERM</code> and Docker had to forcefully send <code>SIGKILL</code>!</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Matching App Handlers</div>
+                <div>Make sure your Node, Python, or Go code listens for the exact signal configured in <code>STOPSIGNAL</code> (e.g. <code>process.on('SIGTERM', ...)</code>).</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 17. ONBUILD -->
+          <article class="cmd-card" id="cmd-onbuild" data-category="base">
+            <div class="cmd-card-header">
+              <div class="cmd-title-group">
+                <span class="cmd-name">ONBUILD</span>
+                <span class="cmd-role-badge" style="background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.3);">Deferred Trigger</span>
+                <span class="cmd-role-badge badge-metadata">Metadata Trigger</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-dim);">Triggered by DOWNSTREAM images</div>
+            </div>
+
+            <div class="cmd-syntax-strip">
+              <span>ONBUILD &lt;INSTRUCTION&gt;</span>
+              <span style="font-size: 0.75rem; color: #64748b;">Syntax</span>
+            </div>
+
+            <p class="cmd-plain-english">
+              <strong>In Plain English for Students:</strong> <code>ONBUILD</code> registers a "trigger" instruction that does <strong>nothing</strong> during the current image build. Instead, it gets baked into the image metadata. When another student uses your image as their <code>FROM my-base-image</code>, the <code>ONBUILD</code> triggers execute automatically!
+            </p>
+
+            <div class="code-block-wrapper">
+              <button class="copy-code-btn" onclick="copyCode(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># --- In the Organization's Base Dockerfile (company-python-base) ---</span>
+<span class="kw">FROM</span> python:3.11-slim
+<span class="kw">WORKDIR</span> /app
+
+<span class="cmt"># When a developer builds FROM company-python-base, these lines run automatically:</span>
+<span class="kw">ONBUILD</span> <span class="kw">COPY</span> requirements.txt .
+<span class="kw">ONBUILD</span> <span class="kw">RUN</span> pip install --no-cache-dir -r requirements.txt
+<span class="kw">ONBUILD</span> <span class="kw">COPY</span> . .
+
+<span class="cmt"># --- In the Developer's Downstream Project Dockerfile ---</span>
+<span class="kw">FROM</span> company-python-base
+<span class="kw">CMD</span> ["python", "main.py"]
+<span class="cmt"># ^ The developer doesn't need to write COPY or pip install! ONBUILD handles it!</span></code></pre>
+            </div>
+
+            <div class="cmd-insights-grid">
+              <div class="insight-card insight-pitfall">
+                <div class="insight-title">⚠️ The "Magic Hidden Action" Warning</div>
+                <div>Many DevOps teams avoid <code>ONBUILD</code> because it creates hidden actions that make downstream builds confusing to debug when files are missing.</div>
+              </div>
+              <div class="insight-card insight-bestpractice">
+                <div class="insight-title">✅ Instructions Not Allowed</div>
+                <div>You cannot chain <code>ONBUILD ONBUILD</code>, and you cannot trigger <code>ONBUILD FROM</code> or <code>ONBUILD MAINTAINER</code>.</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Section: The 3 Great Confusions (Showdowns) -->
+      <section id="showdowns">
+        <div class="section-header">
+          <div class="section-tag">⚔️ Conceptual Battlegrounds</div>
+          <h2 class="section-title">The 3 Great Confusions Solved</h2>
+          <p class="section-subtitle">
+            These are the three topics where students lose points on certification exams and make critical production errors. Let's make them crystal clear.
+          </p>
+        </div>
+
+        <div class="battleground-tabs">
+          <button class="battle-tab-btn active" data-target="battle-cmd-entry">1. ENTRYPOINT vs CMD</button>
+          <button class="battle-tab-btn" data-target="battle-copy-add">2. COPY vs ADD</button>
+          <button class="battle-tab-btn" data-target="battle-arg-env">3. ARG vs ENV</button>
+        </div>
+
+        <!-- Battle 1: ENTRYPOINT vs CMD -->
+        <div class="battle-panel active" id="battle-cmd-entry">
+          <div class="card">
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--docker-blue-light);">
+              Showdown 1: ENTRYPOINT vs CMD (The Command Combinator)
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.98rem; margin-bottom: 1.5rem;">
+              <strong>The Golden Mental Model:</strong> <code>ENTRYPOINT</code> defines <em>what program executes</em>. <code>CMD</code> defines the <em>default parameters passed to it</em>.
+            </p>
+
+            <!-- Interactive CLI Simulator -->
+            <div class="simulator-container">
+              <div style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent-cyan-light);">
+                🧪 Interactive Command-Line Simulator: Test What Actually Runs!
+              </div>
+
+              <div class="sim-controls-grid">
+                <div class="sim-field">
+                  <label>ENTRYPOINT Configuration</label>
+                  <select id="simEntrypoint">
+                    <option value='["python", "app.py"]'>ENTRYPOINT ["python", "app.py"]</option>
+                    <option value='["nginx"]'>ENTRYPOINT ["nginx"]</option>
+                    <option value='["echo"]'>ENTRYPOINT ["echo"]</option>
+                    <option value='none'>None (Empty)</option>
+                  </select>
+                </div>
+
+                <div class="sim-field">
+                  <label>CMD Configuration</label>
+                  <select id="simCmd">
+                    <option value='["--port", "8080"]'>CMD ["--port", "8080"]</option>
+                    <option value='["-g", "daemon off;"]'>CMD ["-g", "daemon off;"]</option>
+                    <option value='["Hello World"]'>CMD ["Hello World"]</option>
+                    <option value='["python", "script.py"]'>CMD ["python", "script.py"]</option>
+                    <option value='none'>None (Empty)</option>
+                  </select>
+                </div>
+
+                <div class="sim-field">
+                  <label>User's CLI Command (docker run)</label>
+                  <input type="text" id="simCli" placeholder="e.g. --port 5000 or custom args..." value="">
+                </div>
+              </div>
+
+              <div class="terminal-output-box">
+                <div class="term-header">
+                  <span>DOCKER ENGINE KERNEL SIMULATION</span>
+                  <span>PID 1 EXECUTABLE</span>
+                </div>
+                <div class="term-command" id="termInputPreview">$ docker run my-image</div>
+                <div class="term-result" id="termResultOutput">Result: python app.py --port 8080</div>
+                <div class="term-explanation" id="termExplanation">
+                  Because no CLI arguments were passed, Docker used <strong>ENTRYPOINT</strong> as the base executable and appended <strong>CMD</strong> as the default flags.
+                </div>
+              </div>
+            </div>
+
+            <!-- Official Matrix Table -->
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">The Complete Interaction Matrix</h4>
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>No ENTRYPOINT</th>
+                  <th>ENTRYPOINT ["exec_entry"]</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>No CMD</strong></td>
+                  <td>Error: Container fails to start (must specify command)</td>
+                  <td>Runs: <code>exec_entry</code></td>
+                </tr>
+                <tr>
+                  <td><strong>CMD ["p1", "p2"]</strong></td>
+                  <td>Runs: <code>p1 p2</code></td>
+                  <td>Runs: <code>exec_entry p1 p2</code></td>
+                </tr>
+                <tr>
+                  <td><strong>User runs: docker run img custom</strong></td>
+                  <td>CMD is ignored. Runs: <code>custom</code></td>
+                  <td>CMD is ignored. Runs: <code>exec_entry custom</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Battle 2: COPY vs ADD -->
+        <div class="battle-panel" id="battle-copy-add">
+          <div class="card">
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--docker-blue-light);">
+              Showdown 2: COPY vs ADD (Which Should You Teach?)
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.98rem; margin-bottom: 1.5rem;">
+              Almost every newcomer asks why both instructions exist. Here is the exact side-by-side comparison for students:
+            </p>
+
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th>Capability</th>
+                  <th>COPY</th>
+                  <th>ADD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Copying local files & folders</strong></td>
+                  <td>✅ Yes (Clean, explicit, recommended)</td>
+                  <td>✅ Yes</td>
+                </tr>
+                <tr>
+                  <td><strong>Multi-Stage Copying (<code>--from=stage</code>)</strong></td>
+                  <td>✅ Yes (<code>COPY --from=builder ...</code>)</td>
+                  <td>❌ No (COPY is mandatory here)</td>
+                </tr>
+                <tr>
+                  <td><strong>Auto-Extract Local Archives (.tar, .tar.gz, etc.)</strong></td>
+                  <td>❌ No (Copies archive as raw .tar file)</td>
+                  <td>✅ Yes (Automatically unpacks files into folder)</td>
+                </tr>
+                <tr>
+                  <td><strong>Remote URLs (https://example.com/file)</strong></td>
+                  <td>❌ No</td>
+                  <td>⚠️ Yes (discouraged; leaves uncleaned cache)</td>
+                </tr>
+                <tr>
+                  <td><strong>Security & Predictability</strong></td>
+                  <td>🛡️ Highest (Zero side effects)</td>
+                  <td>⚠️ Moderate (Risk of tarbombs or URL spoofing)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="teacher-tip-callout">
+              <div class="teacher-tip-title">👨‍🏫 Teacher's One-Sentence Exam Rule:</div>
+              <div><em>"Use <strong>COPY</strong> for 99% of your files. The only time you should ever reach for <strong>ADD</strong> is when you need to auto-extract a local .tar.gz archive into the image."</em></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Battle 3: ARG vs ENV -->
+        <div class="battle-panel" id="battle-arg-env">
+          <div class="card">
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--docker-blue-light);">
+              Showdown 3: ARG vs ENV (Lifecycle & Variable Scope)
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.98rem; margin-bottom: 1.5rem;">
+              The distinction between <code>ARG</code> and <code>ENV</code> is entirely about <strong>Time and Scope</strong>.
+            </p>
+
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th>Lifecycle Phase</th>
+                  <th>ARG (Build-Time Only)</th>
+                  <th>ENV (Build + Runtime)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>During <code>docker build</code></strong></td>
+                  <td>✅ Available in <code>RUN</code> commands</td>
+                  <td>✅ Available in <code>RUN</code> commands</td>
+                </tr>
+                <tr>
+                  <td><strong>During <code>docker run</code> (In Container)</strong></td>
+                  <td>❌ <strong>NOT AVAILABLE</strong> (Purged)</td>
+                  <td>✅ <strong>ACTIVE</strong> (Accessible to app)</td>
+                </tr>
+                <tr>
+                  <td><strong>How to pass from CLI</strong></td>
+                  <td><code>docker build --build-arg VAR=val</code></td>
+                  <td><code>docker run -e VAR=val</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Visible in <code>docker inspect</code></strong></td>
+                  <td>❌ No (Unless stored in build history)</td>
+                  <td>⚠️ Yes (Always visible in image metadata)</td>
+                </tr>
+                <tr>
+                  <td><strong>Ideal Use Case</strong></td>
+                  <td>Software versions, git commit SHAs, build flags</td>
+                  <td>Database hostnames, ports, environment mode</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Section: Optimization & Layer Caching Masterclass -->
+      <section id="optimization">
+        <div class="section-header">
+          <div class="section-tag">🚀 Production Readiness</div>
+          <h2 class="section-title">Optimization: Bad vs Good Dockerfile</h2>
+          <p class="section-subtitle">
+            Show your students the dramatic difference between a poorly constructed Dockerfile (slow, 1.4 GB image) and a production-grade multi-stage Dockerfile (blazing fast, 42 MB image).
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+          <!-- Bad Dockerfile -->
+          <div class="card" style="border-top: 4px solid #ef4444;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="color: #f87171; font-size: 1.25rem; font-weight: 700;">❌ The Amateur Dockerfile (1.4 GB)</h3>
+              <span style="font-size: 0.75rem; background: rgba(239,68,68,0.2); color: #f87171; padding: 3px 8px; border-radius: 4px;">Slow & Insecure</span>
+            </div>
+
+            <div class="code-block-wrapper" style="margin-bottom: 1rem;">
+              <pre><code><span class="cmt"># Flaw 1: Heavy bloated base image</span>
+<span class="kw">FROM</span> node:latest
+
+<span class="cmt"># Flaw 2: Copying ALL code before installing deps!</span>
+<span class="cmt"># (Busts cache every time you edit a line of JS!)</span>
+<span class="kw">COPY</span> . /app
+<span class="kw">WORKDIR</span> /app
+
+<span class="cmt"># Flaw 3: Installs devDependencies in production</span>
+<span class="kw">RUN</span> npm install
+
+<span class="cmt"># Flaw 4: Multiple separate RUN statements leaving junk</span>
+<span class="kw">RUN</span> apt-get update
+<span class="kw">RUN</span> apt-get install -y curl
+
+<span class="cmt"># Flaw 5: Running as default ROOT user</span>
+<span class="cmt"># Flaw 6: Shell form kills signal propagation</span>
+<span class="kw">CMD</span> npm start</code></pre>
+            </div>
+
+            <ul style="color: #cbd5e1; font-size: 0.88rem; list-style-position: inside; line-height: 1.8;">
+              <li>💔 Every code change requires re-downloading all NPM packages.</li>
+              <li>💔 Image contains build compilers and test libraries.</li>
+              <li>💔 Container runs with root capabilities on the host.</li>
+            </ul>
+          </div>
+
+          <!-- Good Dockerfile -->
+          <div class="card" style="border-top: 4px solid #10b981;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="color: #34d399; font-size: 1.25rem; font-weight: 700;">✅ The Pro Multi-Stage Dockerfile (42 MB)</h3>
+              <span style="font-size: 0.75rem; background: rgba(16,185,129,0.2); color: #34d399; padding: 3px 8px; border-radius: 4px;">Fast & Secure</span>
+            </div>
+
+            <div class="code-block-wrapper" style="margin-bottom: 1rem;">
+              <pre><code><span class="cmt"># Stage 1: Build & Dependencies</span>
+<span class="kw">FROM</span> node:20.11-alpine <span class="flg">AS</span> builder
+<span class="kw">WORKDIR</span> /build
+<span class="cmt"># Win: Copy package files first to cache layer!</span>
+<span class="kw">COPY</span> package*.json ./
+<span class="kw">RUN</span> npm ci --only=production
+
+<span class="cmt"># Stage 2: Clean, Tiny Production Container</span>
+<span class="kw">FROM</span> node:20.11-alpine
+<span class="kw">WORKDIR</span> /app
+<span class="kw">ENV</span> NODE_ENV=production PORT=8080
+
+<span class="cmt"># Win: Copy ONLY artifacts from builder</span>
+<span class="kw">COPY</span> --from=builder /build/node_modules ./node_modules
+<span class="kw">COPY</span> --chown=node:node . .
+
+<span class="cmt"># Win: Security non-root user</span>
+<span class="kw">USER</span> node
+<span class="kw">EXPOSE</span> 8080
+<span class="kw">CMD</span> ["node", "server.js"]</code></pre>
+            </div>
+
+            <ul style="color: #cbd5e1; font-size: 0.88rem; list-style-position: inside; line-height: 1.8;">
+              <li>🚀 Code changes build in <strong>0.5 seconds</strong> using cached dependencies.</li>
+              <li>🚀 Image size reduced by <strong>97%</strong>.</li>
+              <li>🚀 Secure non-root execution with proper PID 1 signal handling.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Student Knowledge Quiz -->
+      <section id="quiz">
+        <div class="section-header">
+          <div class="section-tag">📝 Classroom Self-Test</div>
+          <h2 class="section-title">Student Knowledge Check & Practice Quiz</h2>
+          <p class="section-subtitle">
+            Have your students test their knowledge on these 5 essential Dockerfile interview & certification questions. Instant feedback is provided for each answer.
+          </p>
+        </div>
+
+        <div class="quiz-container">
+
+          <!-- Question 1 -->
+          <div class="quiz-question-card" data-correct="2">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q1</span>
+              <span>Which of the following Dockerfile instructions will produce a physical filesystem layer on disk?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) <code>ENV PORT=8080</code></div>
+              <div class="quiz-option" data-idx="1">B) <code>WORKDIR /app</code></div>
+              <div class="quiz-option" data-idx="2">C) <code>RUN apt-get update && apt-get install -y curl</code></div>
+              <div class="quiz-option" data-idx="3">D) <code>EXPOSE 8080</code></div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="quiz-question-card" data-correct="1">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q2</span>
+              <span>A Dockerfile specifies <code>ENTRYPOINT ["python", "main.py"]</code> and <code>CMD ["--verbose"]</code>. If the user executes <code>docker run my-image --quiet</code>, what command actually executes inside the container?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) <code>--quiet</code></div>
+              <div class="quiz-option" data-idx="1">B) <code>python main.py --quiet</code></div>
+              <div class="quiz-option" data-idx="2">C) <code>python main.py --verbose --quiet</code></div>
+              <div class="quiz-option" data-idx="3">D) The container throws an error because ENTRYPOINT cannot take arguments</div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="quiz-question-card" data-correct="3">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q3</span>
+              <span>Why should you place <code>COPY package*.json ./</code> and <code>RUN npm install</code> BEFORE <code>COPY . .</code> in a Dockerfile?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) Because NPM will crash if application code already exists</div>
+              <div class="quiz-option" data-idx="1">B) Because Docker requires files to be copied alphabetically</div>
+              <div class="quiz-option" data-idx="2">C) To ensure the container runs as a non-root user</div>
+              <div class="quiz-option" data-idx="3">D) To leverage layer caching so dependencies aren't re-downloaded on every single source code change</div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="quiz-question-card" data-correct="0">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q4</span>
+              <span>What is the key difference between <code>ARG</code> and <code>ENV</code>?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) <code>ARG</code> values exist only during the build; <code>ENV</code> values persist inside the running container</div>
+              <div class="quiz-option" data-idx="1">B) <code>ARG</code> creates layers, whereas <code>ENV</code> is only stored in memory</div>
+              <div class="quiz-option" data-idx="2">C) <code>ENV</code> can only store strings, whereas <code>ARG</code> can store numbers and booleans</div>
+              <div class="quiz-option" data-idx="3">D) <code>ARG</code> is deprecated and was replaced by <code>ENV</code></div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="quiz-question-card" data-correct="2">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q5</span>
+              <span>A student writes <code>EXPOSE 8080</code> in their Dockerfile and runs <code>docker run -d my-app</code>. When they visit <code>http://localhost:8080</code> on their computer, it fails to connect. Why?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) Port 8080 is an invalid port in Docker</div>
+              <div class="quiz-option" data-idx="1">B) The container failed to build because EXPOSE requires UDP syntax</div>
+              <div class="quiz-option" data-idx="2">C) <code>EXPOSE</code> is documentation metadata only; they must pass <code>-p 8080:8080</code> to publish the port to the host</div>
+              <div class="quiz-option" data-idx="3">D) The container must run as <code>USER root</code> to communicate over the network</div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+        </div>
+      </section>
+
+    
+    </main>
+  </div>
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

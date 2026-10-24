@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real time use case and examples of vpc &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../README.html">Infra Setup</a></li>
+    <li><a href="../../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../linux/README.html">Linux</a></li>
+    <li><a href="../../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../../linux/day1.html">day1</a></li>
+    <li><a href="../../linux/day-2.html">day 2</a></li>
+    <li><a href="../../linux/day-3.html">Day 3</a></li>
+    <li><a href="../../linux/day-4.html">Day 4</a></li>
+    <li><a href="../../linux/day-5.html">Day 5</a></li>
+    <li><a href="../../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../git/README.html">Git</a></li>
+    <li><a href="../../git/git.html">git</a></li>
+    <li><a href="../../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../../git/git-version-control.html">git version control</a></li>
+    <li><a href="../../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../../git/git-and-github.html">git and github</a></li>
+    <li><a href="../../git/git-reset.html">git reset</a></li>
+    <li><a href="../../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../../git/git-revert.html">git revert</a></li>
+    <li><a href="../../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../../git/git-squash.html">git squash</a></li>
+    <li><a href="../../git/git-stash.html">git stash</a></li>
+    <li><a href="../../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../aws/README.html">AWS</a></li>
+    <li><a href="../../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../../aws/vpc/real-time-use-case-and-examples-of-vpc.html" class="active">Real time use case and examples of vpc</a></li>
+    <li><a href="../../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../../aws/s3/README.html">S3</a></li>
+    <li><a href="../../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../../aws/iam/README.html">IAM</a></li>
+    <li><a href="../../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../../aws/asg.html">ASG</a></li>
+    <li><a href="../../aws/stress-test.html">stress test</a></li>
+    <li><a href="../../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../../aws/kms.html">KMS</a></li>
+    <li><a href="../../aws/iac.html">IAC</a></li>
+    <li><a href="../../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../../aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../docker/README.html">Docker</a></li>
+    <li><a href="../../docker/docker.html">docker</a></li>
+    <li><a href="../../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">Real time use case and examples of vpc</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">Real time use case and examples of vpc</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>VPC Endpoints</h2>
+<p><strong>What They Are:</strong> VPC Endpoints are virtual devices that enable your EC2 instances and other AWS resources in a VPC to connect privately to AWS services without requiring internet access, NAT gateways, or VPN connections.</p>
+<h3>Real-World Use Case: E-Commerce Platform with Sensitive Data Storage</h3>
+<p>A mid-sized e-commerce company stores customer payment data and transaction logs in Amazon S3. They need to ensure that all data transfer between their private EC2 instances and S3 remains within AWS's internal network for compliance with PCI-DSS standards.</p>
+<p>By implementing an S3 VPC Gateway Endpoint, the company eliminates the need for a NAT gateway, reducing costs and latency. Additionally, they create interface endpoints for Secrets Manager and AWS Systems Manager to allow their applications to retrieve encrypted API keys and manage infrastructure without exposing these services to the public internet.</p>
+<h4>Key Benefits</h4>
+<ul>
+<li>Eliminates internet gateway requirement</li>
+<li>Reduces latency and improves performance</li>
+<li>Significantly lower costs compared to NAT gateway approach</li>
+<li>Enhanced security through private connectivity</li>
+<li>Reduced attack surface<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
+</ul>
+<h4>Types and Examples</h4>
+<table>
+<thead>
+<tr>
+<th>Endpoint Type</th>
+<th>Use Case</th>
+<th>Services</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gateway Endpoints<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+<td>Direct, high-bandwidth access</td>
+<td>S3, DynamoDB</td>
+</tr>
+<tr>
+<td>Interface Endpoints (PrivateLink)</td>
+<td>Service consumption and exposure</td>
+<td>SNS, SQS, Secrets Manager, KMS, Lambda, CloudWatch Logs, API Gateway</td>
+</tr>
+</tbody>
+</table>
+<h3>Microservices Architecture Example</h3>
+<p>A company with multiple development teams creates a Shared Services VPC containing centralized services such as logging, monitoring, and authentication. Each team's application VPC creates interface endpoints to these shared services.</p>
+<p>This allows applications to securely access shared infrastructure without exposing all resources, improving security posture and reducing operational complexity.</p>
+<h2>Transit Gateway</h2>
+<p><strong>What It Is:</strong> AWS Transit Gateway acts as a central hub that simplifies connections between multiple VPCs, on-premises networks, and remote offices, eliminating the need for complex point-to-point VPC peering connections.</p>
+<h3>Real-World Use Case: Multi-Branch Enterprise Network</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h4>Connect Multiple VPCs Centrally</h4>
+<p>Production, Staging, Development, and Shared Services VPCs all attach to a single Transit Gateway.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h4>Hybrid Connectivity</h4>
+<p>On-premises offices connect via Site-to-Site VPN through the Transit Gateway.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h4>Multi-Region Expansion</h4>
+<p>Transit Gateways in each region peer with each other for global connectivity.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h4>Centralized Security Policies</h4>
+<p>All inter-VPC traffic can be inspected through a centralized inspection stack running Palo Alto or similar.</p>
+</div>
+</div>
+</div>
+<h4>Key Advantages</h4>
+<ul>
+<li><strong>Scalability:</strong> Supports thousands of VPCs and simplifies management as infrastructure grows<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
+<li><strong>Transitive Routing:</strong> VPC A can route to VPC C through VPC B, unlike VPC peering.</li>
+<li><strong>Centralized Management:</strong> A single route table hub reduces operational overhead.</li>
+<li><strong>Multi-Region Support:</strong> Inter-region peering enables global architectures.</li>
+<li><strong>High Availability:</strong> Automatic redundancy across Availability Zones.</li>
+<li><strong>Better Monitoring:</strong> CloudWatch metrics, Flow Logs, and AWS Network Manager provide visibility.</li>
+</ul>
+<h3>Real-World Scenario: Hub-and-Spoke Architecture</h3>
+<p>A company with 15 VPCs implements distributed microservices:</p>
+<ul>
+<li><strong>Hub:</strong> Central Transit Gateway in us-east-1</li>
+<li><strong>Spokes:</strong> All application VPCs attach to TGW</li>
+<li><strong>On-Premises:</strong> Corporate office connects via VPN</li>
+<li><strong>Remote Offices:</strong> Branch offices connect via VPN</li>
+</ul>
+<p><strong>Result:</strong> Eliminates the need for 105 peering connections in a full mesh, reducing the design to just 17 attachments.</p>
+<h2>Customer Gateway</h2>
+<p><strong>What It Is:</strong> A Customer Gateway is a logical representation of your on-premises network device, such as a Cisco ASA, Palo Alto Networks, or FortiGate firewall, in AWS. It enables Site-to-Site VPN connections between your on-premises network and AWS.</p>
+<h3>Real-World Use Case: Secure Hybrid Cloud Migration</h3>
+<p>An enterprise is migrating applications from its on-premises data center to AWS. It needs continuous connectivity during migration, redundancy and failover, and dynamic routing capability.</p>
+<h4>Customer Gateway Configuration Example</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Customer Gateway Configuration:
+- Device: Palo Alto Networks
+- Public IP: 203.0.113.1
+- BGP ASN: 65001
+- Site-to-Site VPN Connection: 2 Tunnels (Tunnel 1 &amp; Tunnel 2)
+- Tunnel 1: IPSec connection to 198.51.100.1 (AWS VPN Endpoint)
+- Tunnel 2: IPSec connection to 198.51.100.2 (Backup AWS VPN Endpoint)
+- Pre-Shared Key: Shared secret for tunnel authentication
+- Route Propagation: BGP dynamic or Static prefix-based routing
+</code></pre>
+</div>
+<h4>Configuration Steps</h4>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h4>Create Customer Gateway in AWS Console</h4>
+<p>Provide your on-premises device public IP.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h4>Create Site-to-Site VPN Connection</h4>
+<p>Link the Customer Gateway to a Virtual Private Gateway or Transit Gateway.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h4>Download VPN Configuration File</h4>
+<p>Use AWS-provided config to apply settings to your on-prem device.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h4>Apply Configuration to On-Premises Firewall</h4>
+<p>Set up IPSec tunnels on your hardware appliance.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h4>Verify Both Tunnels Are "UP" in AWS Console</h4>
+<p>Ensure connectivity and failover are functioning.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h4>Configure Route Propagation</h4>
+<p>Use BGP dynamic routing or static routing as required.</p>
+</div>
+</div>
+</div>
+<h3>Multi-ISP Redundancy Example</h3>
+<p>A bank requires high availability with two different ISPs for failover. They create two separate Customer Gateways connecting to the same Virtual Private Gateway, ensuring failover if one ISP becomes unavailable.</p>
+<h4>IPSec Configuration Example</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># IPSec tunnel configuration (on-premises firewall)
+conn Tunnel1
+    authby=secret
+    auto=start
+    left=%defaultroute
+    leftid=203.0.113.1 (Your On-Prem Public IP)
+    right=198.51.100.1  (AWS VPN Endpoint)
+    ike=aes128-sha1-modp1024
+    esp=aes128-sha1-modp1024
+    keyexchange=ike
+
+# Tunnel authentication (PSK - Pre-Shared Key)
+203.0.113.1 198.51.100.1 : PSK &quot;YourPreSharedKey123&quot;
+</code></pre>
+</div>
+<h4>Advantages</h4>
+<ul>
+<li><strong>Two Tunnels Per Connection:</strong> Automatic failover if one tunnel fails.</li>
+<li><strong>BGP Support:</strong> Dynamic routing updates when network topology changes.</li>
+<li><strong>Static Routing Option:</strong> For devices that do not support BGP.</li>
+<li><strong>Multiple CGWs:</strong> Support multiple on-premises locations or ISPs.</li>
+</ul>
+<h2>Direct Connect</h2>
+<p><strong>What It Is:</strong> AWS Direct Connect is a dedicated network connection from your on-premises infrastructure to AWS, providing consistent network performance with speeds from 50Mbps to 100Gbps. Unlike VPN connections over the internet, Direct Connect uses private fiber optic connections.</p>
+<h3>Real-World Use Case: Financial Data Processing — Multi-Region Global Architecture</h3>
+<p>A large financial services firm processes terabytes of real-time market data across global locations.</p>
+<h4>Architecture</h4>
+<ul>
+<li><strong>On-Premises:</strong> Singapore data center with market data feeds</li>
+<li><strong>Direct Connect Location:</strong> Singapore AWS Direct Connect facility</li>
+<li><strong>Primary Connection:</strong> 100Gbps dedicated connection to AWS</li>
+<li><strong>Virtual Interfaces:</strong> Multiple private virtual interfaces for different workloads</li>
+<li><strong>Multi-Region:</strong> Uses Direct Connect Gateway to connect to VPCs in US-East, US-West, and EU-West regions</li>
+<li><strong>Disaster Recovery:</strong> Backup VPN connection for failover</li>
+</ul>
+<h4>Benefits for This Use Case</h4>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Solution</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low Latency</td>
+<td>Dedicated private connection</td>
+<td>Consistent &lt;10ms latency vs 50-150ms internet VPN</td>
+</tr>
+<tr>
+<td>High Throughput</td>
+<td>100Gbps connection</td>
+<td>Process real-time feeds without bottlenecks</td>
+</tr>
+<tr>
+<td>Cost Optimization</td>
+<td>Reduced data transfer costs</td>
+<td>Direct Connect data cheaper than NAT gateway/VPN</td>
+</tr>
+<tr>
+<td>Global Reach</td>
+<td>Direct Connect Gateway</td>
+<td>Single connection serves multiple regions</td>
+</tr>
+<tr>
+<td>Compliance</td>
+<td>Private fiber network</td>
+<td>Meets financial industry security requirements</td>
+</tr>
+</tbody>
+</table>
+<h4>Multi-Region Architecture Using Direct Connect Gateway</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">On-Premises Data Center
+        ↓
+AWS Direct Connect Location (Singapore)
+        ↓
+Direct Connect Gateway (Global, owned by Account Z)
+        ↓
+        ├─→ Transit Gateway (US-East-1)
+        │   └─→ VPC-A (Production)
+        │   └─→ VPC-B (Analytics)
+        │   └─→ VPC-C (Disaster Recovery)
+        │
+        ├─→ Transit Gateway (US-West-2)
+        │   └─→ VPC-D (Staging)
+        │   └─→ VPC-E (Development)
+        │
+        └─→ Transit Gateway (EU-West-1)
+            └─→ VPC-F (Compliance)
+            └─→ VPC-G (Backup)
+</code></pre>
+</div>
+<h3>Cross-Account Setup Example</h3>
+<p>Account Z creates and owns the Direct Connect Gateway. Account A and Account B propose associations to share connectivity to their VPCs.</p>
+<p>Account Z controls:</p>
+<ul>
+<li>Which CIDR blocks are allowed</li>
+<li>Route propagation policies</li>
+<li>BGP configurations</li>
+</ul>
+<h4>BGP Configuration for Direct Connect</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">On-Premises BGP Configuration:
+    AS Number: 65001
+    Neighbor: 169.254.10.1 (Amazon side)
+    Amazon AS: 64512
+
+BGP Advertisement:
+    On-premises networks: 10.0.0.0/8
+    Receive AWS prefixes: 172.31.0.0/16 (VPC A)
+                          172.32.0.0/16 (VPC B)
+                          172.33.0.0/16 (VPC C)
+
+Failover Timing:
+    Primary: Direct Connect (Active)
+    Backup: Site-to-Site VPN (Standby)
+    BGP convergence time: ~5-10 seconds
+</code></pre>
+</div>
+<h3>Redundancy and High Availability Pattern</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Primary Path:
+  On-Prem → DX Location A → DX Connection 1 (100Gbps) →
+  Direct Connect Gateway → Transit Gateway → Production VPC
+
+Backup Path:
+  On-Prem → Internet → VPN Gateway →
+  VPN Connection (10Gbps) → Transit Gateway → Production VPC
+</code></pre>
+</div>
+<h4>Advantages</h4>
+<ul>
+<li>Automatic failover via BGP</li>
+<li>Different connectivity technologies: DX and VPN</li>
+<li>DX for normal traffic and VPN for surge capacity</li>
+<li>RTO: &lt; 10 seconds</li>
+</ul>
+<h2>Real-World Integrated Architecture</h2>
+<div class="diagram-figure">
+  <div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/9e28f8f159f1c77e1682e86f270eb949/6a2996b9-a969-448b-ba35-16ec6a915a84/4fc85b22.png" alt="Hybrid Cloud Network Architecture: On-Premises to AWS Integration Using Transit Gateway, Direct Connect, and VPC Endpoints" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Hybrid Cloud Network Architecture: On-Premises to AWS Integration Using Transit Gateway, Direct Connect, and VPC Endpoints</div>
+</div>
+
+<h3>Use Case: Enterprise Mergers &amp; Acquisitions Integration</h3>
+<ul>
+<li>Three acquired companies on-premises connect via Site-to-Site VPN to Transit Gateway.</li>
+<li>Parent company uses Direct Connect for primary HQ connectivity.</li>
+<li>Transit Gateway is the central hub managing routing to multiple VPCs, including Shared Services, Production, and Finance.</li>
+<li>Shared Services, including Active Directory, logging, and monitoring, are accessed through VPC Endpoints by internal VPCs.</li>
+</ul>
+<h4>Connectivity Pattern</h4>
+<ul>
+<li>HQ → Direct Connect Gateway → Transit Gateway → All VPCs</li>
+<li>Acquired Co. A/B/C → VPN → Transit Gateway → All VPCs</li>
+</ul>
+<h2>VPC Endpoints: Real-World Microservices Use Case</h2>
+<div class="diagram-figure">
+  <div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/9e28f8f159f1c77e1682e86f270eb949/cd34f351-faac-4913-9d9b-eb5e1a66b5ce/3d7f20ab.png" alt="VPC Endpoints Real-World Use Case: Secure Microservices Architecture with Centralized Shared Services" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">VPC Endpoints Real-World Use Case: Secure Microservices Architecture with Centralized Shared Services</div>
+</div>
+
+<h3>Scenario: SaaS Provider Exposing Microservices Securely</h3>
+<ul>
+<li>Provider Account with a Shared Services VPC exposes services behind Network Load Balancers.</li>
+<li>Consumer Accounts create interface endpoints to consume the provider's services privately.</li>
+</ul>
+<h4>Benefits</h4>
+<ul>
+<li>No direct VPC access to shared services</li>
+<li>No peering</li>
+<li>Scales to thousands of customer accounts</li>
+<li>Granular security policies per endpoint</li>
+<li>On-prem customers can access via Direct Connect</li>
+</ul>
+<h4>Cost Comparison</h4>
+<div class="tabs-container">
+<div class="tabs-nav"><button class="tab-btn active">NAT Gateway Approach</button><button class="tab-btn">VPC Endpoint Approach</button></div>
+<div class="tab-panel active">
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">- NAT Gateway: $32/month (us-east-1)
+- Data processing: $0.045/GB ($450 for 10TB)
+- Monthly cost: $482
+</code></pre>
+</div>
+</div>
+<div class="tab-panel">
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">- Interface Endpoint: $7.20/month
+- Data processing: $0.01/GB ($100 for 10TB)
+- Monthly cost: $107.20
+</code></pre>
+</div>
+</div>
+</div>
+<p><strong>Savings:</strong> $374.80/month, a 78% reduction.</p>
+<h2>Transit Gateway with Customer Gateway Integration</h2>
+<div class="diagram-figure">
+  <div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/9e28f8f159f1c77e1682e86f270eb949/8c97b21f-8656-47c8-ba9a-10b32643285a/d954e1a1.png" alt="Transit Gateway Hub-and-Spoke with Customer Gateway: Multi-Site Enterprise Network Architecture" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Transit Gateway Hub-and-Spoke with Customer Gateway: Multi-Site Enterprise Network Architecture</div>
+</div>
+
+<h3>Multi-Site Enterprise Use Case: Global Retail Company</h3>
+<h4>On-Premises Locations</h4>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>City</th>
+<th>Device</th>
+<th>BGP ASN</th>
+<th>Primary Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HQ</td>
+<td>New York</td>
+<td>Cisco ASA</td>
+<td>65001</td>
+<td>Backup DX, failover VPN</td>
+</tr>
+<tr>
+<td>RDC-East</td>
+<td>New Jersey</td>
+<td>Palo Alto</td>
+<td>65002</td>
+<td>Real-time inventory sync</td>
+</tr>
+<tr>
+<td>RDC-Central</td>
+<td>Chicago</td>
+<td>FortiGate</td>
+<td>65003</td>
+<td>Dynamic routing, scale-out</td>
+</tr>
+<tr>
+<td>Regional Hub</td>
+<td>Dallas</td>
+<td>Juniper</td>
+<td>65004</td>
+<td>Branch office aggregation</td>
+</tr>
+<tr>
+<td>Regional Hub</td>
+<td>LA</td>
+<td>Fortinet</td>
+<td>65005</td>
+<td>West coast distribution</td>
+</tr>
+</tbody>
+</table>
+<p>Each location connects to Transit Gateway via Site-to-Site VPN with dual tunnels.</p>
+<h4>AWS VPCs Attached to Transit Gateway</h4>
+<ul>
+<li><strong>Production VPC (us-east-1):</strong> Real-time inventory database and point-of-sale APIs</li>
+<li><strong>Analytics VPC (us-east-1):</strong> Sales data processing and reporting</li>
+<li><strong>Backup VPC (us-west-2):</strong> DR replica of production</li>
+<li><strong>Shared Services VPC (us-east-1):</strong> Active Directory, DNS, and monitoring</li>
+<li><strong>Development VPC (us-east-1):</strong> New feature testing</li>
+<li><strong>Store Operations VPC (eu-west-1):</strong> European store management</li>
+</ul>
+<h4>Traffic Flow</h4>
+<p>Store → On-Premises VPN Gateway → Transit Gateway Route Table → Production, Analytics, and Shared Services VPCs</p>
+<h4>Connection Complexity Reduction</h4>
+<ul>
+<li><strong>Without TGW:</strong> 5×6 = 30 VPC peering connections plus VPN complexity</li>
+<li><strong>With TGW:</strong> 5 VPN attachments and 6 VPC attachments to a single TGW</li>
+<li><strong>Result:</strong> 91% reduction in connection complexity</li>
+</ul>
+<h2>Direct Connect Gateway: Multi-Region Global Architecture</h2>
+<div class="diagram-figure">
+  <div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/9e28f8f159f1c77e1682e86f270eb949/e6889971-fc7c-4496-8495-f12407532907/07ae1e2e.png" alt="AWS Direct Connect Gateway: Multi-Region Global Network Architecture" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">AWS Direct Connect Gateway: Multi-Region Global Network Architecture</div>
+</div>
+
+<h3>Financial Services Firm: Global Operations</h3>
+<h4>Connection Architecture</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">On-Premises (Singapore)
+    ↓ 100Gbps Direct Connect
+AWS Direct Connect Location (Singapore)
+    ↓ Private Virtual Interface (VIF)
+Direct Connect Gateway (Global)
+    ↓
+    ├─→ Transit Gateway (us-east-1): NYC operations
+    │   ├─→ Production VPC: Trading engine
+    │   ├─→ Risk Management VPC: Compliance
+    │   └─→ Backup VPC: Disaster recovery
+    ├─→ Transit Gateway (eu-west-1): London operations
+    │   ├─→ Production VPC: European trading
+    │   ├─→ Compliance VPC: GDPR requirements
+    │   └─→ Development VPC: Feature testing
+    └─→ Transit Gateway (ap-southeast-1): Singapore ops
+        ├─→ Primary VPC: Main application
+        ├─→ Database VPC: Data persistence
+        └─→ Monitoring VPC: Observability
+</code></pre>
+</div>
+<h4>Performance Metrics</h4>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Direct Connect</th>
+<th>VPN Fallback</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency</td>
+<td>8-12ms</td>
+<td>50-150ms</td>
+<td>12-18x lower</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>100Gbps</td>
+<td>1.5Gbps</td>
+<td>66x higher</td>
+</tr>
+<tr>
+<td>Consistency</td>
+<td>Fixed</td>
+<td>Variable</td>
+<td>99.99% uptime</td>
+</tr>
+<tr>
+<td>Cost/GB</td>
+<td>$0.02</td>
+<td>$0.09</td>
+<td>4.5x cheaper</td>
+</tr>
+</tbody>
+</table>
+<h4>Redundancy Configuration</h4>
+<ul>
+<li><strong>Primary:</strong> DX Connection #1, 100Gbps</li>
+<li><strong>Secondary:</strong> DX Connection #2, 10Gbps, to a different DX location</li>
+<li><strong>Failover:</strong> Site-to-Site VPN, 10Gbps, via internet as last resort</li>
+<li><strong>BGP convergence:</strong> &lt;10 seconds</li>
+<li><strong>RPO:</strong> 0, with continuous replication</li>
+<li><strong>RTO:</strong> &lt;10 seconds</li>
+</ul>
+<h2>Comparison Matrix: When to Use Each Component</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Best For</th>
+<th>Primary Advantage</th>
+<th>Cost Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VPC Endpoints</td>
+<td>AWS service access from private subnets</td>
+<td>No internet exposure, reduces NAT gateway costs</td>
+<td>$0.01-$7.20/endpoint + data processing</td>
+</tr>
+<tr>
+<td>Transit Gateway</td>
+<td>Multi-VPC, multi-region, hybrid connectivity</td>
+<td>Centralized hub eliminates peering complexity</td>
+<td>$0.05/attachment + $0.02/GB processed</td>
+</tr>
+<tr>
+<td>Customer Gateway</td>
+<td>On-premises VPN device representation</td>
+<td>Enables Site-to-Site VPN over internet</td>
+<td>Only data transfer costs, no gateway fee</td>
+</tr>
+<tr>
+<td>Direct Connect</td>
+<td>High-throughput, low-latency on-prem connectivity</td>
+<td>Dedicated private connection, cost-effective at scale</td>
+<td>$0.30/port-hour + $0.02/GB data transfer</td>
+</tr>
+</tbody>
+</table>
+<h2>Security Best Practices Across All Components</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h4>VPC Endpoints</h4>
+<p>Use endpoint policies to restrict service access and enable VPC Flow Logs.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h4>Transit Gateway</h4>
+<p>Implement route tables for traffic segmentation and use TGW Network Manager for monitoring.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">13</div>
+<div class="step-content">
+<h4>Customer Gateway</h4>
+<p>Use BGP communities for route filtering and enable MFA for VPN authentication.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">14</div>
+<div class="step-content">
+<h4>Direct Connect</h4>
+<p>Implement BGP authentication, use private virtual interfaces only, and enable CloudTrail logging.</p>
+</div>
+</div>
+</div>
+<p>This integrated approach creates enterprise-grade, secure, scalable AWS networking infrastructure suitable for mission-critical workloads spanning on-premises and multi-region cloud environments.</p>
+<h3>References</h3>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>https://aws.plainenglish.io/unlocking-the-power-of-vpc-endpoints-scenarios-use-cases-and-security-implications-6a65def9693f&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>https://www.acte.in/aws-transit-gateway-structure-working-and-benefits&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../../aws/vpc/vpc-components.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">vpc components</span>
+  </a>
+  <a href="../../aws/vpc/tgw-and-customer-gateway.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">tgw and customer gateway</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/main.js?v=2"></script>
+</body>
+</html>

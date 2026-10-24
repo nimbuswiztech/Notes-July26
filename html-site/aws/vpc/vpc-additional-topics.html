@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vpc additional topics &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../README.html">Infra Setup</a></li>
+    <li><a href="../../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../linux/README.html">Linux</a></li>
+    <li><a href="../../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../../linux/day1.html">day1</a></li>
+    <li><a href="../../linux/day-2.html">day 2</a></li>
+    <li><a href="../../linux/day-3.html">Day 3</a></li>
+    <li><a href="../../linux/day-4.html">Day 4</a></li>
+    <li><a href="../../linux/day-5.html">Day 5</a></li>
+    <li><a href="../../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../git/README.html">Git</a></li>
+    <li><a href="../../git/git.html">git</a></li>
+    <li><a href="../../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../../git/git-version-control.html">git version control</a></li>
+    <li><a href="../../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../../git/git-and-github.html">git and github</a></li>
+    <li><a href="../../git/git-reset.html">git reset</a></li>
+    <li><a href="../../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../../git/git-revert.html">git revert</a></li>
+    <li><a href="../../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../../git/git-squash.html">git squash</a></li>
+    <li><a href="../../git/git-stash.html">git stash</a></li>
+    <li><a href="../../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../aws/README.html">AWS</a></li>
+    <li><a href="../../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../../aws/vpc/vpc-additional-topics.html" class="active">vpc additional topics</a></li>
+    <li><a href="../../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../../aws/s3/README.html">S3</a></li>
+    <li><a href="../../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../../aws/iam/README.html">IAM</a></li>
+    <li><a href="../../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../../aws/asg.html">ASG</a></li>
+    <li><a href="../../aws/stress-test.html">stress test</a></li>
+    <li><a href="../../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../../aws/kms.html">KMS</a></li>
+    <li><a href="../../aws/iac.html">IAC</a></li>
+    <li><a href="../../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../../aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../docker/README.html">Docker</a></li>
+    <li><a href="../../docker/docker.html">docker</a></li>
+    <li><a href="../../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">vpc additional topics</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">vpc additional topics</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Customer Gateway (CGW) and Virtual Private Gateway (VGW)</h2>
+<h2>Gateway</h2>
+<p>In a general sense, a <strong>gateway serves as a point of entry or access to a particular place</strong>. When it comes to networking and technology, a gateway refers to a <strong>device or software application that connects two distinct networks</strong>, allowing them to communicate.</p>
+<p><strong>Various types of gateways</strong></p>
+<p><strong>Network Gateway:</strong> This type connects networks with different <strong>communication protocols</strong>, translating data between various network architectures.</p>
+<p><strong>Default Gateway:</strong> In computer networking, <strong>the default gateway is the node assumed to be on the directly connected network for any given IP address not on the same subnet.</strong></p>
+<p><strong>Router:</strong> Routers often <strong>act as gateways in networks, directing traffic between different networks.</strong></p>
+<p><strong>API Gateway:</strong> In the realm of web services, an <strong>API gateway is a server serving as an API front-end.</strong> It receives API requests, enforces throttling and security policies, passes requests to the back-end service, and returns responses to the requester.</p>
+<p><strong>Virtual Private Gateway (VGW):</strong> In cloud computing, particularly in AWS, a <strong>Virtual Private Gateway connects a VPC (Virtual Private Cloud) to an on-premises network.</strong></p>
+<p><strong>Customer Gateway (CGW):</strong> In the context of AWS VPNs, the Customer Gateway represents the customer’s side of a VPN connection.</p>
+<p>Now we will see <strong>VGW and CGW</strong></p>
+<figure><img src="../../../.gitbook/assets/0WIteZpIPt4CqW_Gv" alt="" height="490" width="700"><figcaption></figcaption></figure>
+
+<h2>Virtual Private Gateway (VGW)</h2>
+<p>The Virtual Private Gateway (VGW) is a key component in Amazon Web Services (AWS) that <strong>facilitates secure communication between your on-premises network and your Virtual Private Cloud (VPC).</strong></p>
+<p>Let’s break it down a bit:</p>
+<figure><img src="../../../.gitbook/assets/0n9z_56Eqv2AnceXl.jpeg" alt="" height="389" width="700"><figcaption></figcaption></figure>
+
+<p><strong>Virtual Private Cloud (VPC):</strong> In AWS, a VPC is a virtual network dedicated to your AWS account. It provides a logically isolated section of the AWS Cloud where you can launch AWS resources.</p>
+<p><strong>Virtual Private Gateway (VGW):</strong> The VGW is the AWS-side endpoint of your VPN connection. It allows you to connect your VPC with your on-premises network or another VPC using a secure IPsec VPN connection.</p>
+<ul>
+<li><strong>Connection to On-Premises Network:</strong> If you have resources on your own infrastructure (on-premises data center), you can establish a VPN connection between your on-premises network and the VGW.</li>
+<li><strong>Connection to Another VPC:</strong> VGWs can also be used for VPC peering, connecting one VPC to another.</li>
+</ul>
+<p><strong>Secure Communication:</strong> The VPN connection between the VGW and your on-premises network is encrypted, ensuring a secure communication channel over the public internet.</p>
+<p><strong>Routing:</strong> The VGW plays a role in routing traffic between your VPC and your on-premises network. It helps direct traffic appropriately, ensuring that data flows securely between the connected networks.</p>
+<p><strong>Attachment to VPC:</strong> The VGW is attached to a VPC, allowing it to serve as the gateway for that VPC. Multiple VPCs can share the same VGW, enabling connectivity between them.</p>
+<p>Virtual Private Gateway is a crucial component for establishing secure and encrypted communication between your AWS resources in a VPC and your on-premises network. It facilitates a <strong>seamless extension of your on-premises infrastructure into the AWS Cloud.</strong></p>
+<h2>Customer Gateway (CGW)</h2>
+<p>The Customer Gateway (CGW) is a crucial element within Amazon Web Services (AWS), particularly in the setup of <strong>Virtual Private Network (VPN)</strong> connections.</p>
+<figure><img src="../../../.gitbook/assets/0veOEP947V3Reqx11.png" alt="" height="162" width="551"><figcaption></figcaption></figure>
+
+<p>The Customer Gateway serves as the <strong>customer’s endpoint for the VPN connection</strong>, representing the <strong>on-premises side that connects to AWS.</strong></p>
+<p><strong>On-Premises Network Connection:</strong> Typically, the CGW is a physical device (such as a router or firewall) or a software application situated within the on-premises network infrastructure.</p>
+<p><strong>Secure Communication:</strong> When establishing a VPN connection between the on-premises network and AWS, the CGW takes on the responsibility of creating a secure and encrypted communication channel over the public internet.</p>
+<p><strong>IPsec VPN Connection:</strong> The CGW is instrumental in initiating an IPsec (Internet Protocol Security) VPN connection with the AWS-side Virtual Private Gateway (VGW).</p>
+<p><strong>Configuration Details:</strong> To set up the VPN connection, specific details, including IP addresses and authentication credentials, need to be configured on the CGW.</p>
+<p><strong>Bidirectional Communication:</strong> Facilitating bidirectional communication, the VPN connection allows secure data flow between the on-premises network and AWS resources hosted within a Virtual Private Cloud (VPC).</p>
+<p><strong>High Availability:</strong> For enhanced redundancy and high availability, it’s possible to configure multiple customer gateways.</p>
+<h2>VPC Endpoints</h2>
+<p>A <strong>VPC endpoint</strong> is a feature in Amazon Web Services (AWS) that enables private connections between your Virtual Private Cloud (VPC) and supported AWS services or VPC endpoint services. With VPC endpoints, resources in your VPC can access services without traversing the public internet, boosting both security and performance.</p>
+<h3>Why Use VPC Endpoints?</h3>
+<ul>
+<li><strong>Eliminate exposure to the public internet:</strong> Resources can communicate with AWS services privately, mitigating risks associated with public access.</li>
+<li><strong>Reduce latency and data transfer costs:</strong> Traffic stays within AWS infrastructure.</li>
+<li><strong>Simplify network architecture:</strong> No need for internet gateways, NAT devices, or VPNs for accessing AWS services.</li>
+</ul>
+<h3>Types of VPC Endpoints</h3>
+<p>There are three main types of VPC endpoints, each with distinct use cases and supported services:</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint Type</th>
+<th>How It Works</th>
+<th>Typical Use Cases</th>
+<th>Supported Services</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gateway Endpoint</strong></td>
+<td>Traffic is routed by a target in your VPC’s route table for S3 or DynamoDB</td>
+<td>Data storage, NoSQL access</td>
+<td>Amazon S3, DynamoDB</td>
+</tr>
+<tr>
+<td><strong>Interface Endpoint</strong></td>
+<td>Elastic Network Interface (ENI) with a private IP is deployed in your subnet</td>
+<td>Access most AWS services, SaaS, APIs</td>
+<td>Wide range: SQS, SNS, KMS, API Gateway, etc.</td>
+</tr>
+<tr>
+<td><strong>Gateway Load Balancer Endpoint</strong></td>
+<td>Routes traffic to virtual appliances (e.g., firewalls) via a Gateway Load Balancer</td>
+<td>Third-party appliances, security</td>
+<td>Services behind Gateway Load Balancers</td>
+</tr>
+</tbody>
+</table>
+<h3>Gateway Endpoints</h3>
+<ul>
+<li><strong>Used exclusively for Amazon S3 and DynamoDB.</strong></li>
+<li>Functions by adding a target to a VPC route table. Instances in your VPC can access S3 or DynamoDB <em>without public IPs</em>, and data never leaves AWS’s internal network.</li>
+<li><strong>No cost to use</strong> (except standard data transfer/storage fees).</li>
+<li>Controlled by <strong>endpoint policies</strong> to limit access to specific resources or workload requirements.</li>
+</ul>
+<h3>Interface Endpoints (Powered by AWS PrivateLink)</h3>
+<ul>
+<li><strong>Works for dozens of AWS services</strong> (e.g., API Gateway, SQS, SNS, KMS, Systems Manager, Lambda, and many AWS Marketplace partner/SaaS services).</li>
+<li>Creates <strong>one or more ENIs (Elastic Network Interfaces)</strong> with private IPs in your subnets; traffic is directed to these internal IPs for service access.</li>
+<li>Supports security group association for traffic control.</li>
+<li>Use cases: secure API access, connecting to partner SaaS apps, private communications between VPCs.</li>
+<li><strong>Billing note:</strong> Has an hourly charge plus per-GB data processed.</li>
+</ul>
+<h3>Gateway Load Balancer Endpoints</h3>
+<ul>
+<li><strong>Used to connect to virtual appliances</strong> (such as firewalls, intrusion detection, packet inspection) deployed behind Gateway Load Balancers.</li>
+<li>Routes traffic via a central gateway, allowing inspection/scanning before reaching its destination.</li>
+</ul>
+<h3>How VPC Endpoints Work</h3>
+<ul>
+<li><strong>For Gateway Endpoints:</strong></li>
+<li>Add a route in the VPC route table targeting the endpoint for S3/DynamoDB destination prefixes.</li>
+<li>Endpoints are tracked via prefix lists for efficient management.</li>
+<li>No need for public IPs or NAT gateways for private subnets to reach S3/DynamoDB.</li>
+<li><strong>For Interface Endpoints:</strong></li>
+<li>AWS creates ENIs in one or more subnets with private IPs.</li>
+<li>DNS for the target service is automatically updated to resolve to the local interface endpoint.</li>
+<li>Security groups control what can connect to the endpoint.</li>
+<li>IAM endpoint policies can control access granularly.</li>
+<li><strong>For Gateway Load Balancer Endpoints:</strong></li>
+<li>Route table entries send relevant traffic to the endpoint, which then forwards it to a Gateway Load Balancer and its attached appliances.</li>
+</ul>
+<h3>Benefits of Using VPC Endpoints</h3>
+<ul>
+<li><strong>Enhanced Security:</strong> No internet exposure.</li>
+<li><strong>Low Latency:</strong> Internal AWS routing is highly optimized.</li>
+<li><strong>Reduced Data Transfer Costs:</strong> Internal AWS transfers are usually more cost-effective.</li>
+<li><strong>Simplified Compliance:</strong> Eases requirements for private-only, highly regulated architectures.</li>
+</ul>
+<h3>Typical VPC Endpoint Use Cases</h3>
+<ul>
+<li><strong>Private access to S3 from private subnets.</strong></li>
+<li><strong>Restricting access to AWS services via endpoint policies.</strong></li>
+<li><strong>Connecting to third-party services via PrivateLink, without going over the internet.</strong></li>
+<li><strong>Meeting regulatory and compliance requirements, especially when internet traffic is forbidden.</strong></li>
+<li><strong>Centralized access to security appliances (virtual firewalls, IDS/IPS).</strong></li>
+</ul>
+<h3>Best Practices</h3>
+<ul>
+<li><strong>Use endpoint policies</strong> to restrict access as tightly as possible.</li>
+<li><strong>Enable private DNS</strong> (for interface endpoints) to simplify integration with SDKs and applications.</li>
+<li><strong>Monitor endpoint usage</strong> to optimize costs and spot unnecessary endpoints.</li>
+<li><strong>Associate interface endpoints with security groups</strong> for granular access control.</li>
+</ul>
+<h3>Visual Summary Table</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Gateway Endpoint</th>
+<th>Interface Endpoint</th>
+<th>Gateway Load Balancer Endpoint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target services</td>
+<td>S3, DynamoDB</td>
+<td>Most AWS, SaaS, custom services</td>
+<td>Virtual appliances behind GWLB</td>
+</tr>
+<tr>
+<td>Setup</td>
+<td>Route table target</td>
+<td>ENIs in subnets</td>
+<td>Route table + GWLB</td>
+</tr>
+<tr>
+<td>Private IP addresses</td>
+<td>No (uses route targets)</td>
+<td>Yes (ENI IPs)</td>
+<td>No (routes to GWLB endpoint)</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Free (standard AWS fees)</td>
+<td>Hourly + per-GB data charge</td>
+<td>Standard data transfer, GWLB charges</td>
+</tr>
+<tr>
+<td>Security controls</td>
+<td>Endpoint policy</td>
+<td>Endpoint policy, security groups</td>
+<td>Security groups, appliance policies</td>
+</tr>
+</tbody>
+</table>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../../aws/vpc/site-to-site-vpn-connection.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">site to site vpn connection</span>
+  </a>
+  <a href="../../aws/vpc/vpc-peering-and-tgw-diff.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">vpc peering and tgw diff</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/main.js?v=2"></script>
+</body>
+</html>

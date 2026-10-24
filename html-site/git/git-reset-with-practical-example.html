@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>git reset with practical example &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html" class="active">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🌿 Git</span>
+          <span class="separator">/</span>
+          <span class="current">git reset with practical example</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🌿 Git Module</div>
+          <h1 class="hero-title">git reset with practical example</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <p>Through our workflow with git as developers, we occasionally need to undo changes that we did to our code, and that is when we want to use <code>git reset</code>.</p>
+<p>But, if I’m being honest, sometimes that can be confusing, and even scary, to use <code>git reset</code>. I used to find this command a “black box” that I don’t know exactly what it does, but I do know that I’m scared that I might delete somehow parts of my code that I want to keep, or even somehow destroy the entire project.</p>
+<p>In this post we’ll look at git in general, and specifically <code>git reset</code>, to understand it. This assumes you have at least a basic familiarity with git and know basic commands.</p>
+<h2>How git works</h2>
+<p>We can think about git as a content manager that manages three trees:</p>
+<ol>
+<li>The Head: points to our last commit.</li>
+<li>The index: points to our next commit. After we use <code>git add</code>, the files we performed that command on are going to the staging area.</li>
+<li>The Working Directory (Working Tree): The place we work on our actual files in the project, before adding them to our staging area.</li>
+</ol>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>The Head and the Index store their data inside the <code>.git</code> directory.</p>
+</div>
+</div>
+<h2>Basic lifecycle</h2>
+<p>Usually, after adding a new file to our repository, we will have the following cycle:</p>
+<ul>
+<li>Make changes to our file.</li>
+<li>Stage our file.</li>
+<li>Commit our file.</li>
+<li>Push our file to our remote repository.</li>
+</ul>
+<p>Step 1 happens in the working tree (we made changes but did not stage those yet).\
+Step 2 happens in the index (we staged the changes, but did not commit yet).\
+Step 3 happens in the head (we committed; from there we push those changes to our remote repository).</p>
+<h2>Using git reset</h2>
+<p>Now that we understand git better, we can continue to the <code>git reset</code> command. There are two parts to <code>git reset</code>:</p>
+<ul>
+<li>The commit we go back to.</li>
+<li>In which trees we want to keep our changes.</li>
+</ul>
+<p>To control the second part, <code>git reset</code> provides three “flags”:</p>
+<ul>
+<li>soft: remove the changes from the Head tree, and keep them in the index and the working directory trees.</li>
+<li>mixed: remove the changes from the Head and the Index trees, and keep them in the working directory tree.</li>
+<li>hard: remove the changes from all three trees.</li>
+</ul>
+<p>Below is a practical example that demonstrates how these behave.</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Create file1.txt and commit it</h2>
+<p>Initialize a repo and create <code>file1.txt</code>. After creating it, <code>git status</code> shows it as untracked.</p>
+<p>Example commands and outputs:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git status
+
+# On branch master
+
+# No commits yet
+
+# Untracked files:
+
+#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+#         file1.txt
+
+# nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</code></pre>
+</div>
+<p>Right now <code>file1.txt</code> exists only in the working directory, not in the index (it's untracked). Add it to the index and re-run <code>git status</code>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add file1.txt
+
+git status
+
+# On branch master
+
+# No commits yet
+
+# Changes to be committed:
+
+#   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+
+#         new file:   file1.txt
+</code></pre>
+</div>
+<p>Now commit it and check status again:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git commit -m &quot;our first file&quot;
+
+# [master (root-commit) 7ed5dc0] our first file
+
+# 1 file changed, 0 insertions(+), 0 deletions(-)
+
+# create mode 100644 file1.txt
+
+git status
+
+# On branch master
+
+# nothing to commit, working tree clean
+</code></pre>
+</div>
+<p>At this stage, all three trees (HEAD, index, working directory) are synced.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Add file2.txt, commit it, then use mixed reset</h2>
+<p>Add <code>file2.txt</code> and perform the cycle again:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git status
+
+# On branch master
+
+# Untracked files:
+
+#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+#         file2.txt
+
+# nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+
+git add file2.txt
+
+git status
+
+# On branch master
+
+# Changes to be committed:
+
+#   (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+
+#         new file:   file2.txt
+
+git commit -m &quot;added file 2&quot;
+
+# [master 742c271] added file 2
+
+# 1 file changed, 0 insertions(+), 0 deletions(-)
+
+# create mode 100644 file2.txt
+
+git status
+
+# On branch master
+
+# nothing to commit, working tree clean
+</code></pre>
+</div>
+<p>View the two commits:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log
+
+# commit 742c2713887c8b0056bea68d32f542807dca2324 (HEAD -&gt; master)
+
+# Author: Yair &lt;yair543210@gmail.com&gt;
+
+# Date: ...
+
+#
+#     added file 2
+
+#
+# commit 7ed5dc012974aa577184f71077d02ccc63653225
+
+# Author: Yair &lt;yair543210@gmail.com&gt;
+
+# Date: ...
+
+#
+#     our first file
+</code></pre>
+</div>
+<p>Now use <code>git reset</code> to go back to the first commit (without flags):</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git reset 7ed5dc012974aa577184f71077d02ccc63653225
+</code></pre>
+</div>
+<p>Then check status:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git status
+
+# On branch master
+
+# Untracked files:
+
+#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+#         file2.txt
+</code></pre>
+</div>
+<p>When <code>git reset</code> was used without any flag, git used the mixed flag by default. That means changes from the second commit were removed from HEAD and the index, but stayed in the working directory. Stage and commit the file again:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add file2.txt
+git commit -m &quot;added file 2 again&quot;
+
+# [master c211158] added file 2 again
+
+# 1 file changed, 0 insertions(+), 0 deletions(-)
+
+# create mode 100644 file2.txt
+</code></pre>
+</div>
+<p>Now <code>git log</code> shows the first commit and this new commit:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log
+
+# commit c211158cee7a04c1cba4c7e10a2474c64b298d1c (HEAD -&gt; master)
+
+# Author: Yair &lt;yair543210@gmail.com&gt;
+
+# Date: ...
+
+#
+#     added file 2 again
+
+#
+# commit 7ed5dc012974aa577184f71077d02ccc63653225
+
+# Author: Yair &lt;yair543210@gmail.com&gt;
+
+# Date: ...
+
+#
+#     our first file
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>Hard reset to the first commit</h2>
+<p>Now use <code>git reset</code> with the <code>--hard</code> flag to go back to the first commit:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git reset --hard 7ed5dc012974aa577184f71077d02ccc63653225
+
+# HEAD is now at 7ed5dc0 our first file
+
+git status
+
+# On branch master
+
+# nothing to commit, working tree clean
+</code></pre>
+</div>
+<p>When using the <code>--hard</code> flag we deleted everything that was done after the commit we went back to. Because another file (<code>file2.txt</code>) was created after that commit, that file is gone:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ls
+
+# file1.txt
+
+# (file2.txt is no longer present)
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h2>Conclusion</h2>
+<p>Using <code>git reset</code> can be beneficial when you understand what it does. Try these commands in a safe environment (a throwaway repo) to gain confidence — small examples and experimentation are the best way to learn.</p>
+<p>Notes and references in the original article were authored by Yair Mishnayot.</p>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../git/git-reset.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">git reset</span>
+  </a>
+  <a href="../git/git-revert.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">git revert</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

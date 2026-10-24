@@ -1,0 +1,578 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Visual-first Kubernetes scheduling guide: nodeSelector, node affinity, pod affinity and anti-affinity, with EKS notes and hands-on labs.">
+<title>Kubernetes Scheduling Training Guide | Nimbuswiztech</title>
+<style>
+:root{--ink:#1e2b3b;--muted:#596a7b;--line:#d8e1eb;--bg:#f2f6fa;--blue:#2468ad;--bluebg:#eaf3ff;--green:#176d43;--greenbg:#e9f8ef;--amber:#805600;--amberbg:#fff4d8;--red:#972d2d;--redbg:#fff0ef;--purple:#514184;--code:#0d1928}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1rem}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--blue);overflow-wrap:anywhere}
+header{background:linear-gradient(125deg,#102641,#174d79);color:#fff;padding:2.4rem max(1rem,calc((100% - 1240px)/2));border-bottom:5px solid #7fc0ff}header .brand{color:#cee7ff;letter-spacing:.15em;font-size:.8rem;font-weight:850}header h1{font-size:clamp(2rem,4vw,3.3rem);line-height:1.12;margin:.55rem 0 .8rem}header p{max-width:950px;color:#e3eef9}.badges{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:1rem}.badge{font-size:.82rem;border:1px solid #93c3ee;border-radius:999px;background:#19476d;padding:.18rem .6rem}
+.layout{max-width:1360px;margin:auto;display:grid;grid-template-columns:255px minmax(0,1fr);gap:1rem;padding:1rem}.layout aside{align-self:start;position:sticky;top:1rem;max-height:calc(100vh - 2rem);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:1rem}.layout aside h2{font-size:1rem;border:0;padding:0;margin:.1rem 0 .5rem}.layout aside ol{padding-left:1.2rem}.layout aside li{font-size:.87rem;margin:.25rem 0}.layout aside a{text-decoration:none;color:#38536e}.layout aside a.active{font-weight:850;color:#145fa8}.layout main{min-width:0}
+section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:clamp(1rem,2.4vw,1.6rem);margin:0 0 1rem;box-shadow:0 2px 9px #193a5808}h2{font-size:1.6rem;line-height:1.25;margin:.1rem 0 .9rem;border-bottom:1px solid var(--line);padding-bottom:.55rem}h3{font-size:1.17rem;line-height:1.3;margin:1.2rem 0 .4rem}h4{margin:.8rem 0 .3rem}p{margin:.55rem 0}ul,ol{padding-left:1.5rem}li{margin:.23rem 0}.kicker{color:var(--blue);text-transform:uppercase;font-weight:850;letter-spacing:.12em;font-size:.75rem}.muted{color:var(--muted)}.small{font-size:.89rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem}.card{border:1px solid var(--line);border-radius:10px;padding:.9rem;background:#fff;margin:.85rem 0}.callout{padding:.85rem 1rem;border-left:4px solid var(--blue);background:var(--bluebg);border-radius:5px;margin:.8rem 0}.warn{border-left-color:#b17a0c!important;background:var(--amberbg)!important}.danger{border-left-color:var(--red)!important;background:var(--redbg)!important}.good{border-left-color:var(--green)!important;background:var(--greenbg)!important}
+figure{margin:1rem 0;padding:.55rem;border:1px solid var(--line);border-radius:10px;background:#fbfdff}figure svg{display:block;width:100%;height:auto;max-height:570px}figcaption{font-size:.88rem;color:var(--muted);padding:.55rem .2rem .05rem}figcaption strong{color:var(--ink)}.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;align-items:start}.split>*{min-width:0}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:.7rem 0}table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1px solid var(--line);padding:.62rem;text-align:left;vertical-align:top}th{background:#eaf0f7;color:#203d5b}tr:last-child td{border-bottom:0}
+pre{position:relative;background:var(--code);color:#e7eff9;padding:1.2rem 1rem 1rem;border-radius:9px;overflow:auto;line-height:1.52;font-size:.86rem;white-space:pre;tab-size:2;margin:.65rem 0}pre code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:inherit;background:none;padding:0}p code,li code,td code{font-family:ui-monospace,monospace;background:#edf2f7;color:#1b3c5e;padding:.1rem .3rem;border-radius:4px;font-size:.92em}.copy{position:absolute;right:.4rem;top:.4rem;background:#fff;color:#193b5e;border:1px solid #c2d1df;border-radius:5px;padding:.25rem .55rem;font-size:.78rem;font-weight:800;cursor:pointer}
+details{border:1px solid var(--line);border-radius:8px;margin:.58rem 0;background:#fff}summary{cursor:pointer;font-weight:750;padding:.65rem .8rem}details[open]>summary{background:#f0f6fc}details .answer{padding:.25rem .8rem .85rem;border-top:1px solid var(--line);background:#f8fafc}.search{width:100%;padding:.75rem;border:1px solid #afbdcc;border-radius:8px;font:inherit;margin:.5rem 0 1rem}.pill{display:inline-block;font-size:.8rem;border:1px solid #cad7e4;background:#f3f7fb;border-radius:999px;padding:.12rem .5rem}.stepflow{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin:.8rem 0}.stepflow span{background:#edf5ff;border:1px solid #ccdeef;border-radius:7px;padding:.45rem .65rem;font-weight:700}.stepflow b{color:var(--blue)}.toplink{display:inline-block;margin:.5rem 0}footer{text-align:center;padding:2rem 1rem;color:var(--muted)}
+@media(max-width:980px){.layout{grid-template-columns:1fr}.layout aside{position:relative;top:auto;max-height:none}.layout aside ol{columns:2;column-gap:2rem}.layout aside li{break-inside:avoid}.split{grid-template-columns:1fr}}@media(max-width:600px){.layout{padding:.55rem;gap:.6rem}.layout aside ol{columns:1}section{padding:1rem}h2{font-size:1.4rem}pre{font-size:.79rem;padding-top:2rem}figure{padding:.25rem}}
+@media print{body{background:#fff;color:#000;font-size:10pt}header{background:#fff;color:#000;border-bottom:2px solid #222;padding:1rem}header .brand,header p{color:#333}.layout{display:block;padding:0}.layout aside,.copy,.search,.toplink{display:none!important}section{box-shadow:none;border:1px solid #aaa;break-inside:avoid;margin:.5rem 0;padding:.7rem}figure{break-inside:avoid}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f5f5;color:#000;border:1px solid #aaa;padding:.5rem}details:not([open])>.answer{display:block}footer{padding:.4rem}}
+</style></head><body id="top">
+<header><div class="brand">NIMBUSWIZTECH · VISUAL-FIRST STUDENT GUIDE</div>
+<h1>Kubernetes Scheduling: Node Selector &amp; Affinity</h1>
+<p>Learn how Kubernetes decides where Pods should run. Compare nodeSelector with node affinity, use pod affinity to co-locate related workloads, apply pod anti-affinity to reduce concentration, and troubleshoot Pending Pods using practical labs that also apply to Amazon EKS.</p>
+<div class="badges"><span class="badge">4 scheduling techniques</span><span class="badge">EKS-aware examples</span><span class="badge">Embedded SVG diagrams</span><span class="badge">Labs + interview prep</span></div></header>
+<div class="layout"><aside id="sidebar" aria-label="Guide navigation"><h2>Guide navigation</h2><ol>
+<li><a href="#roadmap">Objectives &amp; roadmap</a></li><li><a href="#intro">Scheduling fundamentals</a></li><li><a href="#comparison">Compare techniques</a></li><li><a href="#nodeselector">Node selector</a></li><li><a href="#nodeaffinity">Node affinity</a></li><li><a href="#podaffinity">Pod affinity</a></li><li><a href="#podantiaffinity">Pod anti-affinity</a></li><li><a href="#workflow">Scheduler workflow</a></li><li><a href="#eks">Amazon EKS notes</a></li><li><a href="#environment">Prepare the lab</a></li><li><a href="#labs">Hands-on exercises</a></li><li><a href="#endtoend">End-to-end scenario</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#bestpractices">Best practices</a></li><li><a href="#interview">Interview preparation</a></li><li><a href="#assignments">Practice assignments</a></li><li><a href="#revision">Cheat sheet</a></li><li><a href="#cleanup">Cleanup</a></li><li><a href="#references">References</a></li>
+</ol><p class="muted small">Core visuals are embedded. External reference links need internet access.</p></aside><main>
+<section id="roadmap"><div class="kicker">00 · Start here</div><h2>Learning objectives and visual roadmap</h2>
+<figure><svg viewBox="0 0 940 260" role="img" aria-labelledby="hero-title hero-desc"><title id="hero-title">Four ways to influence Pod placement</title><desc id="hero-desc">Node selector matches node labels exactly. Node affinity expresses hard and soft node label rules. Pod affinity attracts a Pod toward topology domains containing matching Pods. Pod anti-affinity avoids topology domains containing matching Pods.</desc>
+<rect x="15" y="30" width="215" height="165" rx="12" fill="#eaf3ff" stroke="#75a2ce" stroke-width="2"/><text x="122" y="61" text-anchor="middle" font-size="16" font-weight="bold" fill="#194a73">nodeSelector</text><text x="122" y="90" text-anchor="middle" font-size="12" fill="#42698b">match node labels</text><rect x="40" y="108" width="165" height="34" rx="7" fill="#fff" stroke="#b2c9e2"/><text x="122" y="130" text-anchor="middle" font-size="12" fill="#315a7e">simple + required</text><text x="122" y="166" text-anchor="middle" font-size="11" fill="#42698b">all pairs must match</text>
+<rect x="245" y="30" width="215" height="165" rx="12" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="352" y="61" text-anchor="middle" font-size="16" font-weight="bold" fill="#165b38">Node affinity</text><text x="352" y="90" text-anchor="middle" font-size="12" fill="#326d4e">rich node-label rules</text><rect x="270" y="108" width="165" height="34" rx="7" fill="#fff" stroke="#a6d4b5"/><text x="352" y="130" text-anchor="middle" font-size="12" fill="#326d4e">hard or preferred</text><text x="352" y="166" text-anchor="middle" font-size="11" fill="#326d4e">operators + scoring</text>
+<rect x="475" y="30" width="215" height="165" rx="12" fill="#f0ecff" stroke="#a397d4" stroke-width="2"/><text x="582" y="61" text-anchor="middle" font-size="16" font-weight="bold" fill="#514184">Pod affinity</text><text x="582" y="90" text-anchor="middle" font-size="12" fill="#695c99">co-locate by Pod labels</text><rect x="500" y="108" width="165" height="34" rx="7" fill="#fff" stroke="#c5bae8"/><text x="582" y="130" text-anchor="middle" font-size="12" fill="#695c99">stay near a workload</text><text x="582" y="166" text-anchor="middle" font-size="11" fill="#695c99">same topology domain</text>
+<rect x="705" y="30" width="220" height="165" rx="12" fill="#fff4d8" stroke="#cfad5e" stroke-width="2"/><text x="815" y="61" text-anchor="middle" font-size="16" font-weight="bold" fill="#765100">Pod anti-affinity</text><text x="815" y="90" text-anchor="middle" font-size="12" fill="#85641e">avoid matching Pods</text><rect x="730" y="108" width="170" height="34" rx="7" fill="#fff" stroke="#dfc784"/><text x="815" y="130" text-anchor="middle" font-size="12" fill="#85641e">spread / separate</text><text x="815" y="166" text-anchor="middle" font-size="11" fill="#85641e">hard or preferred</text>
+<text x="470" y="224" text-anchor="middle" font-size="13" font-weight="bold" fill="#314e6c">The scheduler still checks resources, taints/tolerations, and other constraints.</text><text x="470" y="243" text-anchor="middle" font-size="11" fill="#597187">Affinity influences eligibility or scoring; it does not create capacity.</text></svg><figcaption><strong>Visual 1 — The placement toolkit.</strong> Choose the constraint based on whether you match nodes, co-locate Pods, or avoid concentration.</figcaption></figure>
+<div class="grid"><div class="card"><h3>Estimated duration</h3><p>120–180 minutes. This is a planning estimate.</p></div><div class="card"><h3>Prerequisites</h3><p>Pods, Deployments, labels/selectors, namespaces, basic YAML, and working <code>kubectl</code>.</p></div><div class="card"><h3>What you will build</h3><p>Node labels, hard/soft node affinity, a cache/workload affinity relationship, and replica anti-affinity.</p></div></div>
+<h3>Learning outcomes</h3><ul><li>Distinguish node labels from Pod labels.</li><li>Use nodeSelector and node affinity to choose a node pool.</li><li>Use pod affinity and anti-affinity with <code>topologyKey</code>.</li><li>Explain hard requirements versus soft preferences.</li><li>Diagnose Pending Pods through scheduler Events.</li><li>Apply scheduling rules in EKS while respecting capacity and node-group design.</li></ul>
+<div class="stepflow"><span>Understand</span><b>→</b><span>Compare</span><b>→</b><span>Label</span><b>→</b><span>Schedule</span><b>→</b><span>Verify</span><b>→</b><span>Troubleshoot</span><b>→</b><span>Clean up</span></div></section>
+
+<section id="intro"><div class="kicker">01 · Scheduling fundamentals</div><h2>What does the Kubernetes scheduler do?</h2>
+<p>When a Pod is created without an explicit node assignment, the scheduler evaluates nodes and chooses one that satisfies the Pod's requirements and has suitable available resources. Scheduling constraints can express hardware requirements, node pools, locality to another workload, or separation between replicas. Use them intentionally; Kubernetes already considers resources and other scheduling rules. The supplied Nimbuswiztech wiki describes examples such as using SSD-equipped nodes or co-locating services that communicate frequently.</p>
+<div class="split"><div><h3>Analogy: choosing a workspace</h3><p><strong>Node selector:</strong> only desks with a named feature are allowed. <strong>Node affinity:</strong> those desks are mandatory or merely preferred. <strong>Pod affinity:</strong> sit near a teammate in a zone or rack. <strong>Pod anti-affinity:</strong> avoid sharing the same failure domain with another replica.</p><h3>Real DevOps situations</h3><ul><li>Schedule CPU-intensive jobs to a dedicated node pool.</li><li>Keep a latency-sensitive API near its cache.</li><li>Spread replicas across nodes to reduce the impact of one node failing.</li><li>Prefer a CPU architecture when the application image needs it.</li><li>Constrain a workload to a governed node pool alongside appropriate security controls.</li></ul></div>
+<figure><svg viewBox="0 0 520 250" role="img" aria-labelledby="desk-title desk-desc"><title id="desk-title">Pod requirements map to node attributes</title><desc id="desk-desc">Three nodes have different labels. A Pod requires fast storage, so the node without that label is excluded. A preference then influences which remaining feasible node is chosen.</desc>
+<rect x="12" y="15" width="150" height="80" rx="9" fill="#eaf3ff" stroke="#75a2ce"/><text x="87" y="38" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">Node A</text><text x="87" y="59" text-anchor="middle" font-size="11" fill="#42698b">disk=fast</text><text x="87" y="76" text-anchor="middle" font-size="11" fill="#42698b">zone=a</text>
+<rect x="184" y="15" width="150" height="80" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="259" y="38" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">Node B</text><text x="259" y="59" text-anchor="middle" font-size="11" fill="#326d4e">disk=fast</text><text x="259" y="76" text-anchor="middle" font-size="11" fill="#326d4e">zone=b</text>
+<rect x="356" y="15" width="150" height="80" rx="9" fill="#fff0ef" stroke="#d38d8d"/><text x="431" y="38" text-anchor="middle" font-size="13" font-weight="bold" fill="#922f2f">Node C</text><text x="431" y="59" text-anchor="middle" font-size="11" fill="#9c4848">disk=standard</text><text x="431" y="76" text-anchor="middle" font-size="11" fill="#9c4848">zone=a</text>
+<path d="M87 95 V120 H259 V137 M259 95 V137 M431 95 V120 H259" fill="none" stroke="#527da2" stroke-width="2"/><rect x="122" y="138" width="274" height="51" rx="9" fill="#f0ecff" stroke="#a397d4"/><text x="259" y="159" text-anchor="middle" font-size="13" font-weight="bold" fill="#514184">Pod rules</text><text x="259" y="177" text-anchor="middle" font-size="11" fill="#695c99">require fast disk; prefer zone b</text><path d="M259 189 V209" stroke="#527da2" stroke-width="2"/><path d="M251 201 L259 210 L267 201" fill="none" stroke="#527da2" stroke-width="2"/><rect x="122" y="211" width="274" height="27" rx="7" fill="#e5f7ec" stroke="#69ad83"/><text x="259" y="229" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Node B is preferred if feasible</text></svg><figcaption><strong>Visual 2 — Filter, then score.</strong> Node C is excluded by the hard condition; the preference ranks only feasible candidates.</figcaption></figure></div>
+<div class="callout warn"><strong>Important:</strong> Labels are metadata, not hardware enforcement by themselves. A label such as <code>workload=secure</code> matters only if the organization governs who can set it and aligns the scheduling policy with taints, access and security design.</div></section>
+
+<section id="comparison"><div class="kicker">02 · Compare techniques</div><h2>Which scheduling rule should you use?</h2>
+<div class="table-wrap"><table><thead><tr><th>Technique</th><th>Matches</th><th>Strictness</th><th>Good for</th><th>Key limitation</th></tr></thead><tbody>
+<tr><td><code>nodeSelector</code></td><td>Node label key/value pairs</td><td>Hard</td><td>Simple exact label requirements.</td><td>No preference or expressions.</td></tr>
+<tr><td>Node affinity</td><td>Node labels + expressions</td><td>Required / preferred</td><td>Node pool requirements plus weighted preferences.</td><td>Hard rules may leave Pods Pending.</td></tr>
+<tr><td>Pod affinity</td><td>Labels of other Pods within a topology domain</td><td>Required / preferred</td><td>Co-location near cache or broker.</td><td>Depends on label scope and topology keys.</td></tr>
+<tr><td>Pod anti-affinity</td><td>Labels of other Pods within a topology domain</td><td>Required / preferred</td><td>Separate replicas across nodes or zones.</td><td>Hard rules can limit availability when domains are few.</td></tr>
+<tr><td>Topology spread</td><td>Counts matching Pods across domains</td><td>DoNotSchedule / ScheduleAnyway</td><td>Balanced distribution as replicas scale.</td><td>Different semantics from anti-affinity.</td></tr>
+<tr><td>Taints + tolerations</td><td>Node taints and Pod tolerations</td><td>Repel / permit</td><td>Dedicated node pools.</td><td>A toleration allows; it does not attract a Pod.</td></tr>
+</tbody></table></div>
+<figure><svg viewBox="0 0 920 205" role="img" aria-labelledby="hardsoft-title hardsoft-desc"><title id="hardsoft-title">Hard filters versus soft preferences</title><desc id="hardsoft-desc">Required constraints filter out nodes that fail the rule. Preferred constraints add weight to otherwise feasible nodes. The scheduler chooses among feasible nodes based on multiple priorities.</desc>
+<rect x="15" y="18" width="270" height="150" rx="10" fill="#fff0ef" stroke="#d38d8d" stroke-width="2"/><text x="150" y="43" text-anchor="middle" font-size="15" font-weight="bold" fill="#922f2f">Required / hard</text><text x="150" y="68" text-anchor="middle" font-size="12" fill="#9c4848">rule is not met →</text><text x="150" y="86" text-anchor="middle" font-size="12" fill="#9c4848">node is excluded</text><rect x="45" y="103" width="210" height="42" rx="7" fill="#fff" stroke="#d8aaaa"/><text x="150" y="120" text-anchor="middle" font-size="11" fill="#922f2f">No feasible node?</text><text x="150" y="135" text-anchor="middle" font-size="11" fill="#922f2f">Pod stays Pending</text>
+<rect x="325" y="18" width="270" height="150" rx="10" fill="#fff4d8" stroke="#cfad5e" stroke-width="2"/><text x="460" y="43" text-anchor="middle" font-size="15" font-weight="bold" fill="#765100">Preferred / soft</text><text x="460" y="68" text-anchor="middle" font-size="12" fill="#85641e">matching nodes gain</text><text x="460" y="86" text-anchor="middle" font-size="12" fill="#85641e">a scoring weight</text><rect x="355" y="103" width="210" height="42" rx="7" fill="#fff" stroke="#dfc784"/><text x="460" y="120" text-anchor="middle" font-size="11" fill="#765100">Preference unavailable?</text><text x="460" y="135" text-anchor="middle" font-size="11" fill="#765100">other node may win</text>
+<rect x="635" y="18" width="270" height="150" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="770" y="43" text-anchor="middle" font-size="15" font-weight="bold" fill="#165b38">Final selection</text><text x="770" y="68" text-anchor="middle" font-size="12" fill="#326d4e">all placement rules</text><text x="770" y="86" text-anchor="middle" font-size="12" fill="#326d4e">must be considered</text><rect x="665" y="103" width="210" height="42" rx="7" fill="#fff" stroke="#a6d4b5"/><text x="770" y="120" text-anchor="middle" font-size="11" fill="#165b38">Resources + taints + rules</text><text x="770" y="135" text-anchor="middle" font-size="11" fill="#165b38">are evaluated together</text><text x="460" y="194" text-anchor="middle" font-size="12" font-weight="bold" fill="#314e6c">Required is eligibility. Preferred is a scoring hint, not a guarantee.</text></svg><figcaption><strong>Visual 3 — Hard vs. soft.</strong> Strictness should reflect a genuine business or technical requirement.</figcaption></figure></section>
+
+<section id="nodeselector"><div class="kicker">03 · Technique 1</div><h2>Node selector: exact node-label matching</h2>
+<p><code>spec.nodeSelector</code> is the simplest node selection constraint. Every key/value pair must be present on a candidate node. It is a hard requirement: if no feasible node carries all requested labels, the Pod remains unscheduled.</p>
+<figure><svg viewBox="0 0 900 210" role="img" aria-labelledby="ns-title ns-desc"><title id="ns-title">Node selector filters candidate nodes</title><desc id="ns-desc">The Pod requires training disk equals fast. Node A with that exact label is eligible; Node B with standard is excluded; a node missing the label is also excluded.</desc>
+<rect x="20" y="20" width="245" height="64" rx="9" fill="#f0ecff" stroke="#a397d4"/><text x="142" y="44" text-anchor="middle" font-size="14" font-weight="bold" fill="#514184">Pod nodeSelector</text><text x="142" y="64" text-anchor="middle" font-size="12" fill="#695c99">training.disk=fast</text>
+<path d="M265 52 H303 V101 M303 101 H360 M303 101 H650" fill="none" stroke="#527da2" stroke-width="2"/><rect x="360" y="80" width="220" height="100" rx="9" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="470" y="105" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Node A</text><text x="470" y="127" text-anchor="middle" font-size="12" fill="#326d4e">training.disk=fast</text><text x="470" y="151" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Eligible ✓</text><text x="470" y="167" text-anchor="middle" font-size="10" fill="#326d4e">if other checks pass</text>
+<rect x="630" y="80" width="245" height="100" rx="9" fill="#fff0ef" stroke="#d38d8d" stroke-width="2"/><text x="752" y="105" text-anchor="middle" font-size="14" font-weight="bold" fill="#922f2f">Node B</text><text x="752" y="127" text-anchor="middle" font-size="12" fill="#9c4848">training.disk=standard</text><text x="752" y="151" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Excluded ✕</text><text x="752" y="167" text-anchor="middle" font-size="10" fill="#9c4848">value differs</text><text x="450" y="203" text-anchor="middle" font-size="11" fill="#5b7187">A node missing the required label key is also excluded.</text></svg><figcaption><strong>Visual 4 — Exact matching.</strong> More than one node can be eligible if they share the same label.</figcaption></figure>
+<h3>Complete manifest</h3><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: node-selector-demo
+  namespace: nimbus-scheduling-lab
+  labels:
+    app: node-selector-demo
+spec:
+  nodeSelector:
+    training.nimbuswiztech.io/scheduling-demo: enabled
+  containers:
+  - name: web
+    image: nginx:stable-alpine
+    ports:
+    - name: http
+      containerPort: 80</code></pre>
+<h3>Add a lab-specific label</h3><p>Only run node label changes if you have permission and the cluster administrator agrees. Use a unique key to avoid overwriting standard Kubernetes/cloud labels.</p><pre><code>kubectl get nodes --show-labels
+NODE=$(kubectl get nodes -o jsonpath='{.items[0].metadata.name}')
+kubectl label node "$NODE" training.nimbuswiztech.io/scheduling-demo=enabled --overwrite
+kubectl get nodes -L training.nimbuswiztech.io/scheduling-demo</code></pre>
+<div class="callout danger"><strong>Shared cluster warning:</strong> This changes node metadata at cluster scope. On a shared cluster, ask the instructor/admin before applying. Remove the training label during cleanup.</div>
+<p><strong>Verification:</strong> apply the YAML, then use <code>kubectl get pod node-selector-demo -n nimbus-scheduling-lab -o wide</code>. The NODE column should show a node carrying the lab label, assuming that node also satisfies resource, taint and readiness requirements.</p>
+</section>
+
+<section id="nodeaffinity"><div class="kicker">04 · Technique 2</div><h2>Node affinity: hard rules and weighted preferences</h2>
+<p>Node affinity expands nodeSelector with operators and preference scoring. Required rules filter feasible nodes; preferred rules influence ranking. The preferred weight is from 1 to 100.</p>
+<figure><svg viewBox="0 0 900 218" role="img" aria-labelledby="na-title na-desc"><title id="na-title">Required affinity filters and preferred affinity scores</title><desc id="na-desc">Required affinity filters all nodes that do not meet the labels. A preferred rule adds score to matching feasible nodes. The scheduler still uses resource fit and other scheduling scores.</desc>
+<rect x="15" y="18" width="260" height="70" rx="9" fill="#fff0ef" stroke="#d38d8d"/><text x="145" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#922f2f">Required rule</text><text x="145" y="62" text-anchor="middle" font-size="12" fill="#9c4848">filter candidates</text><text x="145" y="77" text-anchor="middle" font-size="10" fill="#9c4848">must match</text><path d="M275 53 H316" stroke="#527da2" stroke-width="2"/><path d="M307 45 L317 53 L307 61" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="321" y="18" width="260" height="70" rx="9" fill="#fff4d8" stroke="#cfad5e"/><text x="451" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#765100">Preferred rule</text><text x="451" y="62" text-anchor="middle" font-size="12" fill="#85641e">adds scoring weight</text><text x="451" y="77" text-anchor="middle" font-size="10" fill="#85641e">nice to have</text><path d="M581 53 H622" stroke="#527da2" stroke-width="2"/><path d="M613 45 L623 53 L613 61" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="627" y="18" width="258" height="70" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="756" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Scheduler choice</text><text x="756" y="62" text-anchor="middle" font-size="12" fill="#326d4e">among feasible nodes</text><text x="756" y="77" text-anchor="middle" font-size="10" fill="#326d4e">all criteria still matter</text>
+<rect x="30" y="117" width="405" height="81" rx="9" fill="#eaf3ff" stroke="#75a2ce"/><text x="232" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">Required example</text><text x="232" y="160" text-anchor="middle" font-size="12" fill="#42698b">class In [general, compute]</text><text x="232" y="180" text-anchor="middle" font-size="11" fill="#42698b">either value qualifies</text>
+<rect x="465" y="117" width="405" height="81" rx="9" fill="#f0ecff" stroke="#a397d4"/><text x="667" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="#514184">Preferred example</text><text x="667" y="160" text-anchor="middle" font-size="12" fill="#695c99">tier In [preferred], weight 80</text><text x="667" y="180" text-anchor="middle" font-size="11" fill="#695c99">not a reservation or guarantee</text></svg><figcaption><strong>Visual 5 — Required then preferred.</strong> Preferences cannot make a node eligible if it fails a hard rule.</figcaption></figure>
+<h3>Complete Pod example</h3><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: node-affinity-demo
+  namespace: nimbus-scheduling-lab
+  labels:
+    app: node-affinity-demo
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: training.nimbuswiztech.io/scheduling-demo
+            operator: In
+            values: ["enabled"]
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 80
+        preference:
+          matchExpressions:
+          - key: training.nimbuswiztech.io/preferred-node
+            operator: In
+            values: ["yes"]
+  containers:
+  - name: web
+    image: nginx:stable-alpine</code></pre>
+<h3>Operators and logical rules</h3><div class="table-wrap"><table><tr><th>Operator</th><th>Meaning</th><th>Example</th></tr><tr><td><code>In</code></td><td>Value matches one listed value.</td><td>class is general or compute.</td></tr><tr><td><code>NotIn</code></td><td>Value does not match listed values.</td><td>class not gpu.</td></tr><tr><td><code>Exists</code></td><td>Label key exists.</td><td>ssd capability key exists.</td></tr><tr><td><code>DoesNotExist</code></td><td>Label key is absent.</td><td>maintenance marker absent.</td></tr><tr><td><code>Gt</code>/<code>Lt</code></td><td>Numeric comparison where a single integer-like value is appropriate.</td><td>Compare a numeric label value.</td></tr></table></div>
+<div class="callout warn"><strong>Boolean logic:</strong> expressions in one <code>nodeSelectorTerm</code> are ANDed. Multiple terms are ORed. When <code>nodeSelector</code> and node affinity are both specified, both requirements must be met.</div>
+<p><strong>IgnoredDuringExecution:</strong> node affinity rules guide scheduling. Changing a node label later does not automatically evict a running Pod solely because the existing placement no longer matches the rule.</p>
+</section>
+
+<section id="podaffinity"><div class="kicker">05 · Technique 3</div><h2>Pod affinity: place related workloads near each other</h2>
+<p>Pod affinity uses labels on existing Pods—not only labels on nodes—to influence placement. The <code>labelSelector</code> identifies matching Pods; <code>topologyKey</code> names a node label that defines the scope, such as one node or one availability zone.</p>
+<figure><svg viewBox="0 0 900 235" role="img" aria-labelledby="pa-title pa-desc"><title id="pa-title">Pod affinity co-locates a client with a cache topology</title><desc id="pa-desc">Nodes A and B each contain a cache Pod labelled app equals cache, so a client requiring hostname topology affinity to that label can use either node. Node C has no matching Pod and is not eligible under the required rule.</desc>
+<rect x="18" y="18" width="260" height="165" rx="10" fill="#f8fafc" stroke="#9fb2c5" stroke-width="2"/><text x="148" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#304f6c">Node A · hostname=node-a</text><rect x="38" y="56" width="220" height="45" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="148" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Cache Pod · app=cache</text><text x="148" y="91" text-anchor="middle" font-size="10" fill="#326d4e">matching label</text><rect x="38" y="113" width="220" height="45" rx="8" fill="#f0ecff" stroke="#a397d4"/><text x="148" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#514184">Client eligible</text><text x="148" y="148" text-anchor="middle" font-size="10" fill="#695c99">same host domain</text>
+<rect x="320" y="18" width="260" height="165" rx="10" fill="#f8fafc" stroke="#9fb2c5" stroke-width="2"/><text x="450" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#304f6c">Node B · hostname=node-b</text><rect x="340" y="56" width="220" height="45" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="450" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Cache Pod · app=cache</text><text x="450" y="91" text-anchor="middle" font-size="10" fill="#326d4e">matching label</text><rect x="340" y="113" width="220" height="45" rx="8" fill="#f0ecff" stroke="#a397d4"/><text x="450" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#514184">Client eligible</text><text x="450" y="148" text-anchor="middle" font-size="10" fill="#695c99">same host domain</text>
+<rect x="622" y="18" width="260" height="165" rx="10" fill="#fff0ef" stroke="#d38d8d" stroke-width="2"/><text x="752" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#922f2f">Node C · hostname=node-c</text><rect x="642" y="56" width="220" height="45" rx="8" fill="#fff" stroke="#d8aaaa"/><text x="752" y="75" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">No cache Pod match</text><text x="752" y="91" text-anchor="middle" font-size="10" fill="#9c4848">app=cache absent</text><rect x="642" y="113" width="220" height="45" rx="8" fill="#fff" stroke="#d8aaaa"/><text x="752" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Required rule fails</text><text x="752" y="148" text-anchor="middle" font-size="10" fill="#9c4848">not eligible</text>
+<text x="450" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#314e6c">topologyKey=hostname scopes the relationship to one node.</text><text x="450" y="226" text-anchor="middle" font-size="11" fill="#5d7185">A zone topology key makes the domain wider: every node in a matching zone shares that scope.</text></svg><figcaption><strong>Visual 6 — Affinity follows topology domains.</strong> Selector identifies other Pods; topologyKey defines the domain used for the placement decision.</figcaption></figure>
+<h3>Example manifest fragment</h3><pre><code>affinity:
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchLabels:
+          app: cache
+      topologyKey: kubernetes.io/hostname</code></pre>
+<p>In plain English: “Schedule only onto a node whose hostname topology domain contains at least one matching Pod labelled <code>app=cache</code>.” This does not create connectivity or guarantee that the cache application itself is healthy.</p>
+<h3>Important fields</h3><ul><li><code>labelSelector</code> — <code>matchLabels</code> and/or <code>matchExpressions</code> identify the other Pods.</li><li><code>namespaces</code> — omitted/empty by default means the Pod's own namespace when no namespaceSelector broadens the scope.</li><li><code>namespaceSelector</code> — can broaden the namespaces searched for matching Pods; make this explicit when needed.</li><li><code>topologyKey</code> — a node-label key defining a domain such as hostname or zone.</li><li><code>required...</code> / <code>preferred...</code> — hard eligibility or a best-effort score.</li></ul>
+<div class="callout warn"><strong>Operational note:</strong> Required Pod affinity may leave a Pod Pending if matching Pods don't exist in the eligible topology, selector, or namespace scope. Pod affinity/anti-affinity adds scheduler work in large clusters; use it only when locality requirements justify it.</div>
+</section>
+
+<section id="podantiaffinity"><div class="kicker">06 · Technique 4</div><h2>Pod anti-affinity: avoid placing matching Pods together</h2>
+<p>Pod anti-affinity repels a Pod from topology domains containing matching Pods. It can reduce the risk that multiple replicas of one service are concentrated on one node. Prefer a soft rule when separation is desirable but not mandatory; use a required rule only when strict separation is worth the risk of unschedulable replicas.</p>
+<figure><svg viewBox="0 0 900 228" role="img" aria-labelledby="paa-title paa-desc"><title id="paa-title">Anti-affinity distributes replicas across nodes</title><desc id="paa-desc">Three replicas of a web application each run on a different hostname domain. A required anti-affinity rule prevents a second matching Pod from scheduling on a node already hosting one; preferred anti-affinity only encourages this distribution.</desc>
+<rect x="18" y="25" width="260" height="145" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="148" y="49" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Node A</text><rect x="40" y="66" width="216" height="70" rx="8" fill="#fff" stroke="#a6d4b5"/><text x="148" y="89" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">web replica 1</text><text x="148" y="108" text-anchor="middle" font-size="11" fill="#326d4e">app=web</text><text x="148" y="124" text-anchor="middle" font-size="10" fill="#326d4e">one per node</text>
+<rect x="320" y="25" width="260" height="145" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="450" y="49" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Node B</text><rect x="342" y="66" width="216" height="70" rx="8" fill="#fff" stroke="#a6d4b5"/><text x="450" y="89" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">web replica 2</text><text x="450" y="108" text-anchor="middle" font-size="11" fill="#326d4e">app=web</text><text x="450" y="124" text-anchor="middle" font-size="10" fill="#326d4e">one per node</text>
+<rect x="622" y="25" width="260" height="145" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="752" y="49" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Node C</text><rect x="644" y="66" width="216" height="70" rx="8" fill="#fff" stroke="#a6d4b5"/><text x="752" y="89" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">web replica 3</text><text x="752" y="108" text-anchor="middle" font-size="11" fill="#326d4e">app=web</text><text x="752" y="124" text-anchor="middle" font-size="10" fill="#326d4e">one per node</text><text x="450" y="198" text-anchor="middle" font-size="12" font-weight="bold" fill="#314e6c">topologyKey=kubernetes.io/hostname scopes separation to each node.</text><text x="450" y="216" text-anchor="middle" font-size="11" fill="#5d7185">Zone-level separation uses topology.kubernetes.io/zone and requires consistent zone labels.</text></svg><figcaption><strong>Visual 7 — Spread by avoiding peers.</strong> Strict anti-affinity can keep additional replicas Pending when there are too few eligible topology domains.</figcaption></figure>
+<h3>Preferred anti-affinity</h3><pre><code>affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchLabels:
+            app: web
+        topologyKey: kubernetes.io/hostname</code></pre>
+<p>Weight values are from 1 to 100. A preferred rule favors nodes whose hostname domain does not contain a matching Pod, but it can be outweighed by other scheduler scoring and constraints.</p>
+<h3>Required anti-affinity</h3><pre><code>affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchLabels:
+          app: web
+      topologyKey: kubernetes.io/hostname</code></pre>
+<p>This forbids a node from hosting another matching <code>app=web</code> Pod in the same hostname domain. If a Deployment requests three replicas but only two eligible nodes exist, a replica may remain Pending. Verify resource fit, taints and topology labels before concluding node count is the only cause.</p>
+<div class="table-wrap"><table><tr><th>Question</th><th>Pod anti-affinity</th><th>Topology spread constraints</th></tr><tr><td>Primary meaning</td><td>Avoid topology domains where selected Pods exist.</td><td>Keep matching Pod counts balanced across domains.</td></tr><tr><td>Strictness</td><td>Required / preferred.</td><td><code>DoNotSchedule</code> / <code>ScheduleAnyway</code>.</td></tr><tr><td>Best fit</td><td>Hard separation or soft avoidance.</td><td>Balanced spread across nodes/zones as replica counts change.</td></tr><tr><td>Possible result</td><td>Pending Pods if no domain passes strict anti-affinity.</td><td>Pending Pods if a strict constraint cannot maintain allowed skew.</td></tr></table></div>
+</section>
+
+<section id="workflow"><div class="kicker">07 · Scheduler mechanics</div><h2>From Pending Pod to node binding</h2>
+<figure><svg viewBox="0 0 900 275" role="img" aria-labelledby="sched-title sched-desc"><title id="sched-title">Scheduler filtering and scoring</title><desc id="sched-desc">The scheduler first filters infeasible nodes using required affinity, resources, taints and other constraints. It then scores feasible nodes using preferred rules and other scheduler priorities, binds the Pod to a selected node, and the kubelet starts it.</desc>
+<rect x="260" y="10" width="380" height="40" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="450" y="35" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">Pod created with scheduling rules</text><path d="M450 50 V66" stroke="#527da2" stroke-width="2"/>
+<rect x="210" y="67" width="480" height="50" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="450" y="87" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Filter feasible nodes</text><text x="450" y="104" text-anchor="middle" font-size="11" fill="#85641e">hard affinity + resources + taints/tolerations + other checks</text><path d="M450 117 V133" stroke="#527da2" stroke-width="2"/>
+<rect x="210" y="134" width="480" height="50" rx="8" fill="#f0ecff" stroke="#a397d4"/><text x="450" y="154" text-anchor="middle" font-size="13" font-weight="bold" fill="#514184">Score feasible nodes</text><text x="450" y="171" text-anchor="middle" font-size="11" fill="#695c99">preferred affinity and other scheduling scores</text><path d="M450 184 V200" stroke="#527da2" stroke-width="2"/>
+<rect x="315" y="201" width="270" height="38" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="450" y="225" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">Bind Pod to selected node</text>
+<path d="M210 91 H82 V151" fill="none" stroke="#b54848" stroke-width="2"/><rect x="12" y="152" width="140" height="63" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="82" y="174" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">No feasible node</text><text x="82" y="192" text-anchor="middle" font-size="11" fill="#9c4848">Pending + Events</text><text x="450" y="263" text-anchor="middle" font-size="11" fill="#5d7185">Simplified diagram: the real scheduler uses multiple plugins and cluster state.</text></svg><figcaption><strong>Visual 8 — Simplified scheduler workflow.</strong> Hard rules remove candidates; preferences influence ranking of the remaining feasible nodes.</figcaption></figure>
+<h3>Why a Pod may remain Pending</h3><ul><li>No node carries the requested label.</li><li>Pod affinity requires a matching Pod in an eligible topology domain, but none exists.</li><li>Required anti-affinity excludes all available domains.</li><li>CPU/memory requests do not fit on matching nodes.</li><li>Nodes have untolerated taints, are not Ready, or are cordoned.</li><li>Topology labels are missing or inconsistent.</li></ul>
+<div class="callout good"><strong>Debugging rule:</strong> Start with <code>kubectl describe pod POD_NAME -n NAMESPACE</code> and the recent Events. Verify rules and labels before weakening a hard constraint.</div></section>
+
+<section id="eks"><div class="kicker">08 · Amazon EKS</div><h2>Scheduling considerations in EKS</h2>
+<p>The scheduling fields are Kubernetes Pod fields and apply on EKS as on other clusters. EKS adds node-group, Fargate-profile, autoscaling, AMI, and infrastructure considerations. A correct affinity rule can still leave a Pod Pending if the eligible pool has no capacity or new nodes do not carry the expected labels.</p>
+<figure><svg viewBox="0 0 900 235" role="img" aria-labelledby="eks-title eks-desc"><title id="eks-title">EKS node groups are distinct scheduling pools</title><desc id="eks-desc">An EKS cluster can have general, compute and accelerated node pools with different labels, zones and capacity. Pod constraints filter available nodes; autoscaling is a separate mechanism that must be able to produce eligible nodes.</desc>
+<rect x="15" y="15" width="870" height="205" rx="12" fill="#f8fafc" stroke="#9fb2c5" stroke-width="2"/><text x="450" y="39" text-anchor="middle" font-size="15" font-weight="bold" fill="#304f6c">Amazon EKS cluster</text>
+<rect x="40" y="55" width="250" height="82" rx="9" fill="#eaf3ff" stroke="#75a2ce"/><text x="165" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">General node group</text><text x="165" y="98" text-anchor="middle" font-size="11" fill="#42698b">architecture + zone labels</text><text x="165" y="117" text-anchor="middle" font-size="10" fill="#42698b">general app capacity</text>
+<rect x="325" y="55" width="250" height="82" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="450" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">Compute node group</text><text x="450" y="98" text-anchor="middle" font-size="11" fill="#326d4e">class=compute</text><text x="450" y="117" text-anchor="middle" font-size="10" fill="#326d4e">specialized pool</text>
+<rect x="610" y="55" width="250" height="82" rx="9" fill="#fff4d8" stroke="#cfad5e"/><text x="735" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Accelerated pool</text><text x="735" y="98" text-anchor="middle" font-size="11" fill="#85641e">specific instance labels</text><text x="735" y="117" text-anchor="middle" font-size="10" fill="#85641e">may have taints / cost</text>
+<path d="M450 137 V160" stroke="#527da2" stroke-width="2"/><path d="M442 152 L450 161 L458 152" fill="none" stroke="#527da2" stroke-width="2"/><rect x="180" y="163" width="540" height="39" rx="8" fill="#f0ecff" stroke="#a397d4"/><text x="450" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#514184">Pod rules + capacity → candidate node</text><text x="450" y="194" text-anchor="middle" font-size="10" fill="#695c99">autoscaling must be able to create nodes that satisfy the rules</text></svg><figcaption><strong>Visual 9 — Capacity and policy are separate.</strong> Affinity selects from eligible nodes; it does not provision an EKS node group.</figcaption></figure>
+<h3>Inspect actual EKS node labels</h3><pre><code>kubectl get nodes -o wide
+kubectl get nodes --show-labels
+kubectl get nodes -L eks.amazonaws.com/nodegroup,topology.kubernetes.io/zone,kubernetes.io/arch
+kubectl describe node NODE_NAME</code></pre>
+<p>Commonly observed labels include <code>eks.amazonaws.com/nodegroup</code>, <code>topology.kubernetes.io/zone</code>, and <code>kubernetes.io/arch</code>. Inspect your actual nodes and provider configuration rather than assuming all node types expose identical custom labels.</p>
+<ul><li><strong>Managed/self-managed node groups:</strong> verify node labels, taints and capacity.</li><li><strong>Autoscaling:</strong> scaling templates must support the Pod's required labels, resources and tolerations.</li><li><strong>Availability Zones:</strong> ensure eligible capacity exists in the selected zones for zone-level requirements.</li><li><strong>Fargate:</strong> placement follows Fargate profile/platform rules; don't assume EC2 node-label exercises apply identically.</li><li><strong>Costs:</strong> GPU or accelerated pools may incur extra cloud cost. This guide does not create cloud resources.</li></ul>
+</section>
+
+<section id="environment"><div class="kicker">09 · Prepare the lab</div><h2>Environment setup and guardrails</h2>
+<figure><svg viewBox="0 0 900 112" role="img" aria-labelledby="prep-title prep-desc"><title id="prep-title">Scheduling lab preparation workflow</title><desc id="prep-desc">Verify kubectl, cluster connectivity and current context, inspect node inventory and labels, confirm permissions, create an isolated namespace, then run the lab.</desc>
+<defs><marker id="prep-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#527da2"/></marker></defs>
+<rect x="8" y="22" width="160" height="70" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="88" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">1. kubectl</text><text x="88" y="63" text-anchor="middle" font-size="10" fill="#42698b">right context</text><text x="88" y="78" text-anchor="middle" font-size="10" fill="#42698b">API reachable</text><path d="M168 57 H185" stroke="#527da2" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="190" y="22" width="160" height="70" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="270" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">2. Nodes</text><text x="270" y="63" text-anchor="middle" font-size="10" fill="#42698b">Ready / labels</text><text x="270" y="78" text-anchor="middle" font-size="10" fill="#42698b">capacity</text><path d="M350 57 H367" stroke="#527da2" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="372" y="22" width="160" height="70" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="452" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">3. Permissions</text><text x="452" y="63" text-anchor="middle" font-size="10" fill="#85641e">namespace</text><text x="452" y="78" text-anchor="middle" font-size="10" fill="#85641e">node label approval</text><path d="M532 57 H549" stroke="#527da2" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="554" y="22" width="160" height="70" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="634" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">4. Namespace</text><text x="634" y="63" text-anchor="middle" font-size="10" fill="#326d4e">isolated lab</text><text x="634" y="78" text-anchor="middle" font-size="10" fill="#326d4e">create resources</text><path d="M714 57 H731" stroke="#527da2" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="736" y="22" width="156" height="70" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="814" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">5. Run labs</text><text x="814" y="63" text-anchor="middle" font-size="10" fill="#326d4e">apply + verify</text><text x="814" y="78" text-anchor="middle" font-size="10" fill="#326d4e">then clean</text></svg><figcaption><strong>Visual 10 — Check before changing the cluster.</strong> Node labels are cluster-scoped metadata. Coordinate changes in shared environments.</figcaption></figure>
+<pre><code>kubectl version --client
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+kubectl config current-context
+kubectl auth can-i create pods
+kubectl auth can-i create namespaces
+kubectl auth can-i patch nodes</code></pre>
+<p>Create the lab namespace only if it does not already exist:</p><pre><code>kubectl get namespace nimbus-scheduling-lab
+kubectl create namespace nimbus-scheduling-lab</code></pre>
+<p>Prerequisites: a reachable cluster with at least one Ready node; permission to create Pods/Deployments; image-pull access to <code>nginx:stable-alpine</code> and <code>busybox:1.36</code>. Two or more nodes help demonstrate distribution. A single-node cluster can still illustrate hard/soft rules, but preference ranking and required anti-affinity are less illustrative.</p></section>
+
+<section id="labs"><div class="kicker">10 · Hands-on practice</div><h2>Progressive scheduling labs</h2>
+<p>All names use namespace <code>nimbus-scheduling-lab</code>. Check your context before applying YAML. Exact Pod names, status, scheduling time and output depend on cluster capacity and image availability.</p>
+<figure><svg viewBox="0 0 900 104" role="img" aria-labelledby="labflow-title labflow-desc"><title id="labflow-title">Lab workflow</title><desc id="labflow-desc">Inspect nodes and context, apply the lab-specific label, apply a manifest, inspect Pod placement, diagnose Pending Pods using Events, and clean up only lab resources and labels.</desc>
+<defs><marker id="lab-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#527da2"/></marker></defs>
+<rect x="8" y="20" width="135" height="60" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="75" y="43" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Inspect</text><text x="75" y="61" text-anchor="middle" font-size="10" fill="#42698b">nodes + context</text><path d="M143 50 H158" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="163" y="20" width="135" height="60" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="230" y="43" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Label</text><text x="230" y="61" text-anchor="middle" font-size="10" fill="#85641e">approved node</text><path d="M298 50 H313" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="318" y="20" width="135" height="60" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="385" y="43" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Apply</text><text x="385" y="61" text-anchor="middle" font-size="10" fill="#42698b">manifest</text><path d="M453 50 H468" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="473" y="20" width="135" height="60" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="540" y="43" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Verify</text><text x="540" y="61" text-anchor="middle" font-size="10" fill="#326d4e">node / status</text><path d="M608 50 H623" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="628" y="20" width="135" height="60" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="695" y="43" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Diagnose</text><text x="695" y="61" text-anchor="middle" font-size="10" fill="#85641e">events + rules</text><path d="M763 50 H778" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/><rect x="783" y="20" width="109" height="60" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="837" y="43" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Clean</text><text x="837" y="61" text-anchor="middle" font-size="10" fill="#9c4848">lab only</text></svg><figcaption><strong>Visual 11 — Repeatable lab method.</strong> Do not weaken a scheduling constraint until Events tell you what actually prevented placement.</figcaption></figure>
+<div class="card"><h3>Exercise 1 — Schedule a Pod using nodeSelector</h3><p><span class="pill">Objective</span> Place a Pod on a node carrying an exact lab label.</p>
+<p><strong>Step 1: Label an eligible lab node.</strong> Run only if you are authorized to modify node labels. Inspect <code>kubectl get nodes -o wide</code> first. If the first node is a tainted control-plane node or otherwise unsuitable, set <code>NODE</code> to the name of an eligible worker node rather than using the first-item shortcut.</p><pre><code>NODE=$(kubectl get nodes -o jsonpath='{.items[0].metadata.name}')
+kubectl label node "$NODE" training.nimbuswiztech.io/scheduling-demo=enabled --overwrite
+kubectl get nodes -L training.nimbuswiztech.io/scheduling-demo</code></pre>
+<p><strong>Step 2: Save as <code>01-node-selector.yaml</code>.</strong></p><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: node-selector-demo
+  namespace: nimbus-scheduling-lab
+  labels:
+    app: node-selector-demo
+spec:
+  nodeSelector:
+    training.nimbuswiztech.io/scheduling-demo: enabled
+  containers:
+  - name: web
+    image: nginx:stable-alpine
+    ports:
+    - name: http
+      containerPort: 80</code></pre>
+<p><strong>Step 3: Apply and verify.</strong></p><pre><code>kubectl apply -f 01-node-selector.yaml
+kubectl get pod node-selector-demo -n nimbus-scheduling-lab -o wide
+kubectl describe pod node-selector-demo -n nimbus-scheduling-lab</code></pre>
+<p><strong>Expected result:</strong> after the image is pulled and the Pod is ready, its NODE column should show a node carrying the lab label. A matching label alone does not guarantee scheduling if resources, taints, or node readiness prevent placement.</p>
+<p><strong>Troubleshooting:</strong> inspect node labels with the <code>-L</code> command and read scheduler Events. The label key and value must match exactly.</p><p><strong>Interview takeaway:</strong> nodeSelector is concise but hard; it cannot express soft preferences.</p></div>
+
+<div class="card"><h3>Exercise 2 — Required node affinity plus a preferred node</h3><p><span class="pill">Objective</span> Use label expressions to filter candidate nodes and optionally influence ranking.</p>
+<p><strong>Step 1: Save as <code>02-node-affinity.yaml</code>.</strong></p><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: node-affinity-demo
+  namespace: nimbus-scheduling-lab
+  labels:
+    app: node-affinity-demo
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: training.nimbuswiztech.io/scheduling-demo
+            operator: In
+            values: ["enabled"]
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 80
+        preference:
+          matchExpressions:
+          - key: training.nimbuswiztech.io/preferred-node
+            operator: In
+            values: ["yes"]
+  containers:
+  - name: web
+    image: nginx:stable-alpine</code></pre>
+<p><strong>Step 2: Apply and verify.</strong></p><pre><code>kubectl apply -f 02-node-affinity.yaml
+kubectl get pod node-affinity-demo -n nimbus-scheduling-lab -o wide
+kubectl describe pod node-affinity-demo -n nimbus-scheduling-lab</code></pre>
+<p>Only nodes with <code>training.nimbuswiztech.io/scheduling-demo=enabled</code> pass the required filter. If no eligible node has the preferred label, the Pod can still schedule on another feasible node satisfying the hard rule.</p>
+<p><strong>Optional multi-node demonstration:</strong> on an approved cluster, label another eligible node or the chosen node with the preference:</p><pre><code>kubectl label node NODE_NAME training.nimbuswiztech.io/preferred-node=yes --overwrite
+kubectl get nodes -L training.nimbuswiztech.io/scheduling-demo,training.nimbuswiztech.io/preferred-node</code></pre>
+<p>Replace <code>NODE_NAME</code> with a node name from <code>kubectl get nodes</code>. One-node clusters cannot show a preference between multiple candidates.</p><p><strong>Interview takeaway:</strong> expressions within one term are ANDed; separate nodeSelectorTerms are ORed.</p></div>
+
+<div class="card"><h3>Exercise 3 — Use Pod affinity to place a client near a cache</h3><p><span class="pill">Objective</span> Deploy a labelled prerequisite Pod and require a client Pod to share its node topology domain.</p>
+<p><strong>Step 1: Save as <code>03-cache.yaml</code>.</strong></p><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-cache
+  namespace: nimbus-scheduling-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-cache
+  template:
+    metadata:
+      labels:
+        app: demo-cache
+    spec:
+      nodeSelector:
+        training.nimbuswiztech.io/scheduling-demo: enabled
+      containers:
+      - name: cache-placeholder
+        image: busybox:1.36
+        command: ["/bin/sh", "-c"]
+        args: ["echo cache-placeholder-ready; sleep 3600"]</code></pre>
+<p><strong>Step 2: Apply and wait for the matching Pod.</strong></p><pre><code>kubectl apply -f 03-cache.yaml
+kubectl rollout status deployment/demo-cache -n nimbus-scheduling-lab --timeout=120s
+kubectl get pods -n nimbus-scheduling-lab -l app=demo-cache -o wide</code></pre>
+<p>This uses a placeholder process with the expected label, not a working cache server. The lab demonstrates placement rules rather than cache functionality.</p>
+<p><strong>Step 3: Save as <code>03-client-affinity.yaml</code>.</strong></p><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: cache-client-affinity
+  namespace: nimbus-scheduling-lab
+  labels:
+    app: cache-client-affinity
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app: demo-cache
+        topologyKey: kubernetes.io/hostname
+  containers:
+  - name: client
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args: ["echo scheduled-with-cache-topology; sleep 3600"]</code></pre>
+<p><strong>Step 4: Apply and compare node placement.</strong></p><pre><code>kubectl apply -f 03-client-affinity.yaml
+kubectl wait --for=condition=Ready pod/cache-client-affinity -n nimbus-scheduling-lab --timeout=120s
+kubectl get pods -n nimbus-scheduling-lab --show-labels -o wide
+kubectl describe pod cache-client-affinity -n nimbus-scheduling-lab</code></pre>
+<p><strong>Expected result:</strong> the client should be scheduled in a hostname domain containing a Pod labelled <code>app=demo-cache</code>. If the prerequisite Pod is missing or the selector/topology is wrong, the client can remain Pending.</p><p><strong>Interview takeaway:</strong> the selector identifies other Pods; <code>topologyKey</code> defines the domain for the rule.</p></div>
+
+<div class="card"><h3>Exercise 4 — Prefer spreading replicas with Pod anti-affinity</h3><p><span class="pill">Objective</span> Prefer to distribute replicas across nodes while still allowing a single-node lab to schedule them.</p>
+<p><strong>Step 1: Save as <code>04-web-spread.yaml</code>.</strong></p><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-spread
+  namespace: nimbus-scheduling-lab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-spread
+  template:
+    metadata:
+      labels:
+        app: web-spread
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: web-spread
+              topologyKey: kubernetes.io/hostname
+      containers:
+      - name: web
+        image: nginx:stable-alpine
+        ports:
+        - name: http
+          containerPort: 80</code></pre>
+<p><strong>Step 2: Apply and inspect distribution.</strong></p><pre><code>kubectl apply -f 04-web-spread.yaml
+kubectl rollout status deployment/web-spread -n nimbus-scheduling-lab --timeout=180s
+kubectl get pods -n nimbus-scheduling-lab -l app=web-spread -o wide</code></pre>
+<p><strong>Expected result:</strong> on multiple feasible nodes the scheduler should favor different hostname domains. On a single node, all three may run together because the anti-affinity rule is preferred.</p>
+<p><strong>Strict variant:</strong> replace the preferred rule with the following on a cluster with enough eligible nodes:</p><pre><code>podAntiAffinity:
+  requiredDuringSchedulingIgnoredDuringExecution:
+  - labelSelector:
+      matchLabels:
+        app: web-spread
+    topologyKey: kubernetes.io/hostname</code></pre>
+<p>On a one-node cluster, replicas beyond the first should remain Pending under this strict rule. This is expected behavior, not automatically a broken Deployment.</p><p><strong>Interview takeaway:</strong> hard anti-affinity trades scheduling availability for strict separation.</p></div>
+
+<div class="card"><h3>Exercise 5 — Combine node requirements and Pod placement rules</h3><p><span class="pill">Objective</span> Combine a node pool requirement, required cache affinity, and preferred web-replica separation.</p>
+<p><strong>Save as <code>05-combined-placement.yaml</code>.</strong> Apply only after the cache Deployment in Exercise 3 is Ready.</p><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-combined
+  namespace: nimbus-scheduling-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-combined
+  template:
+    metadata:
+      labels:
+        app: web-combined
+    spec:
+      nodeSelector:
+        training.nimbuswiztech.io/scheduling-demo: enabled
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: demo-cache
+            topologyKey: kubernetes.io/hostname
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: web-combined
+              topologyKey: kubernetes.io/hostname
+      containers:
+      - name: web
+        image: nginx:stable-alpine
+        ports:
+        - name: http
+          containerPort: 80</code></pre>
+<pre><code>kubectl apply -f 05-combined-placement.yaml
+kubectl rollout status deployment/web-combined -n nimbus-scheduling-lab --timeout=180s
+kubectl get pods -n nimbus-scheduling-lab -o wide
+kubectl describe pod -l app=web-combined -n nimbus-scheduling-lab</code></pre>
+<p><strong>Expected behavior:</strong> hard node selection and cache affinity first limit eligible placement; preferred anti-affinity then influences ranking. If only one cache Pod exists on one node, required cache affinity may confine both replicas to that hostname domain. The preferred anti-affinity cannot override that hard rule.</p>
+<div class="callout warn"><strong>Design lesson:</strong> hard constraints combine. If one policy allows only Node A and another excludes Node A, the Pod has no feasible candidate. Test combined policies and read Events before changing them.</div></div>
+</section>
+
+<section id="endtoend"><div class="kicker">11 · Real-world scenario</div><h2>End-to-end design: cache-local web workload in EKS</h2>
+<h3>Requirement</h3><p>Web Pods should run only in a general node pool, prefer a specific eligible node tier, co-locate with cache Pods by hostname topology, and try to spread replicas across nodes. The design must also account for resources, taints and real topology labels.</p>
+<figure><svg viewBox="0 0 900 250" role="img" aria-labelledby="e2e-title e2e-desc"><title id="e2e-title">Combined scheduling policy</title><desc id="e2e-desc">Node selector or required node affinity narrows to the intended node pool. Required Pod affinity narrows placement to a topology containing a cache Pod. Preferred node affinity and preferred Pod anti-affinity rank the remaining feasible nodes. If no node can satisfy every hard rule, the Pod remains Pending.</desc>
+<rect x="15" y="20" width="205" height="75" rx="9" fill="#eaf3ff" stroke="#75a2ce"/><text x="117" y="43" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">1 · Node selection</text><text x="117" y="63" text-anchor="middle" font-size="11" fill="#42698b">pool / capability</text><text x="117" y="80" text-anchor="middle" font-size="10" fill="#42698b">hard filter</text><path d="M220 57 H243" stroke="#527da2" stroke-width="2"/><path d="M235 49 L244 57 L235 65" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="248" y="20" width="205" height="75" rx="9" fill="#f0ecff" stroke="#a397d4"/><text x="350" y="43" text-anchor="middle" font-size="13" font-weight="bold" fill="#514184">2 · Pod affinity</text><text x="350" y="63" text-anchor="middle" font-size="11" fill="#695c99">cache topology</text><text x="350" y="80" text-anchor="middle" font-size="10" fill="#695c99">hard or preferred</text><path d="M453 57 H476" stroke="#527da2" stroke-width="2"/><path d="M468 49 L477 57 L468 65" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="481" y="20" width="190" height="75" rx="9" fill="#fff4d8" stroke="#cfad5e"/><text x="576" y="43" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">3 · Soft rules</text><text x="576" y="63" text-anchor="middle" font-size="11" fill="#85641e">weight / anti-affinity</text><text x="576" y="80" text-anchor="middle" font-size="10" fill="#85641e">ranking</text><path d="M671 57 H694" stroke="#527da2" stroke-width="2"/><path d="M686 49 L695 57 L686 65" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="699" y="20" width="185" height="75" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="791" y="43" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">4 · Bind / run</text><text x="791" y="63" text-anchor="middle" font-size="11" fill="#326d4e">if feasible node</text><text x="791" y="80" text-anchor="middle" font-size="10" fill="#326d4e">capacity permitting</text>
+<rect x="65" y="131" width="770" height="83" rx="10" fill="#fff0ef" stroke="#d38d8d" stroke-width="2"/><text x="450" y="155" text-anchor="middle" font-size="14" font-weight="bold" fill="#922f2f">No feasible node?</text><text x="450" y="177" text-anchor="middle" font-size="12" fill="#9c4848">Inspect Events, labels, matching Pod selectors, topology labels, resource fit and taints.</text><text x="450" y="198" text-anchor="middle" font-size="11" fill="#9c4848">Relax only rules that are not mandatory, or provide suitable capacity.</text><text x="450" y="238" text-anchor="middle" font-size="11" fill="#5d7185">This is a design pattern to reason about constraints, not a complete production platform architecture.</text></svg><figcaption><strong>Visual 12 — End-to-end placement logic.</strong> Separate hard business requirements from soft preferences before writing the manifest.</figcaption></figure>
+<h3>Implementation checklist</h3><ol><li>Inspect actual EKS node labels, zones, architecture, taints and current capacity.</li><li>Decide which properties are mandatory and which are preferences.</li><li>Confirm matching cache Pods exist with the intended labels, namespace and topology.</li><li>Check that at least one node satisfies every hard rule and has CPU/memory capacity.</li><li>Apply the workload change through reviewed configuration and watch rollout status.</li><li>Verify actual placement using <code>kubectl get pods -o wide</code>.</li><li>For every Pending replica, inspect its Events rather than inferring a cause from the status alone.</li></ol>
+<h3>Alternatives worth evaluating</h3><ul><li>Use a normal Service for stable discovery if strict co-location is unnecessary.</li><li>Use topology spread constraints when the goal is balanced distribution across a changing replica count.</li><li>Use taints/tolerations plus affinity when a node pool should repel unrelated workloads and attract the intended one.</li><li>Check node autoscaling and node-group templates if no eligible capacity exists; affinity itself does not provision a node.</li></ul>
+</section>
+
+<section id="troubleshooting"><div class="kicker">12 · Diagnose Pending Pods</div><h2>Scheduling troubleshooting flows</h2>
+<h3>Flow A — Do any nodes match the hard node rules?</h3>
+<figure><svg viewBox="0 0 880 245" role="img" aria-labelledby="diag1-title diag1-desc"><title id="diag1-title">Node selector and affinity troubleshooting</title><desc id="diag1-desc">Inspect the Pending Pod's events, compare required labels with node labels, and if a match exists inspect resource fit, taints, node readiness and cordon status. Make the targeted correction and recheck events.</desc>
+<rect x="265" y="10" width="350" height="39" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="440" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">Pod Pending with node rules</text><path d="M440 49 V64" stroke="#527da2" stroke-width="2"/><rect x="220" y="65" width="440" height="45" rx="8" fill="#fff" stroke="#a9bdcf"/><text x="440" y="83" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d4d6a">describe Pod + inspect actual node labels</text><text x="440" y="99" text-anchor="middle" font-size="10" fill="#536d84">kubectl describe pod · kubectl get nodes --show-labels</text>
+<path d="M220 87 H126 V120 M660 87 H754 V120" fill="none" stroke="#527da2" stroke-width="2"/><rect x="15" y="121" width="220" height="60" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="125" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">No node matches</text><text x="125" y="162" text-anchor="middle" font-size="11" fill="#9c4848">key/value/operator issue</text>
+<rect x="315" y="121" width="250" height="60" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="440" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Nodes match</text><text x="440" y="162" text-anchor="middle" font-size="11" fill="#85641e">check CPU/memory + taints</text><rect x="645" y="121" width="220" height="60" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="755" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Still Pending</text><text x="755" y="162" text-anchor="middle" font-size="11" fill="#326d4e">node Ready / cordoned?</text>
+<path d="M125 181 V201 H440 V215 M440 181 V215 M755 181 V201 H440" fill="none" stroke="#527da2" stroke-width="2"/><rect x="275" y="216" width="330" height="23" rx="7" fill="#eaf3ff" stroke="#75a2ce"/><text x="440" y="232" text-anchor="middle" font-size="11" font-weight="bold" fill="#194a73">Correct one evidenced cause; recheck Events</text></svg><figcaption><strong>Visual 13 — Node-rule diagnostic path.</strong> “No nodes match” differs from “insufficient CPU” or “untolerated taint.”</figcaption></figure>
+<h3>Flow B — Is Pod affinity/anti-affinity the blocker?</h3>
+<figure><svg viewBox="0 0 880 250" role="img" aria-labelledby="diag2-title diag2-desc"><title id="diag2-title">Pod affinity troubleshooting</title><desc id="diag2-desc">Check selector, namespace scope and topologyKey. For affinity, find a matching Pod in the relevant topology. For anti-affinity, inspect whether matching Pods repel all available domains and whether the cluster has enough eligible nodes.</desc>
+<rect x="260" y="10" width="360" height="39" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="440" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">Pod Pending with inter-Pod rules</text><path d="M440 49 V64" stroke="#527da2" stroke-width="2"/><rect x="220" y="65" width="440" height="45" rx="8" fill="#fff" stroke="#a9bdcf"/><text x="440" y="83" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d4d6a">Check selector + namespace + topologyKey</text><text x="440" y="99" text-anchor="middle" font-size="10" fill="#536d84">Does a matching Pod occupy a qualifying domain?</text>
+<path d="M220 87 H126 V120 M660 87 H754 V120" fill="none" stroke="#527da2" stroke-width="2"/><rect x="15" y="121" width="220" height="64" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="125" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Affinity has no match</text><text x="125" y="161" text-anchor="middle" font-size="11" fill="#9c4848">repair labels / scope / key</text><text x="125" y="176" text-anchor="middle" font-size="10" fill="#9c4848">or create prerequisite Pod</text>
+<rect x="315" y="121" width="250" height="64" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="440" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Anti-affinity too strict</text><text x="440" y="161" text-anchor="middle" font-size="11" fill="#85641e">not enough eligible domains</text><text x="440" y="176" text-anchor="middle" font-size="10" fill="#85641e">or consider soft behavior</text>
+<rect x="645" y="121" width="220" height="64" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="755" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Matches exist</text><text x="755" y="161" text-anchor="middle" font-size="11" fill="#326d4e">check resource fit / taints</text><text x="755" y="176" text-anchor="middle" font-size="10" fill="#326d4e">topology labels consistent?</text>
+<path d="M125 185 V204 H440 V216 M440 185 V216 M755 185 V204 H440" fill="none" stroke="#527da2" stroke-width="2"/><rect x="275" y="217" width="330" height="23" rx="7" fill="#eaf3ff" stroke="#75a2ce"/><text x="440" y="233" text-anchor="middle" font-size="11" font-weight="bold" fill="#194a73">Apply targeted fix and verify placement</text></svg><figcaption><strong>Visual 14 — Label and topology path.</strong> Do not treat the existence of a matching Pod as proof that all other constraints can be met.</figcaption></figure>
+<h3>Symptom → cause → command → resolution</h3><div class="table-wrap"><table><thead><tr><th>Symptom</th><th>Possible cause</th><th>Diagnostic</th><th>Targeted resolution</th></tr></thead><tbody>
+<tr><td>Pod Pending</td><td>No feasible node; required rules conflict; insufficient resources; untolerated taint.</td><td><code>kubectl describe pod POD -n nimbus-scheduling-lab</code></td><td>Use the exact Event message to identify the failing constraint.</td></tr>
+<tr><td>nodeSelector mismatch</td><td>Wrong label key/value or label never applied.</td><td><code>kubectl get nodes -L training.nimbuswiztech.io/scheduling-demo</code></td><td>Correct the label or manifest value after approval.</td></tr>
+<tr><td>Required node affinity no candidates</td><td>Wrong operator/value; AND/OR logic misunderstood; nodeSelector also fails.</td><td><code>kubectl get pod POD -o yaml -n nimbus-scheduling-lab</code></td><td>Compare each term to actual labels; remember both mechanisms apply if both are defined.</td></tr>
+<tr><td>Required Pod affinity blocks</td><td>Matching Pod absent, selector mismatch, wrong namespace scope or topology key.</td><td><code>kubectl get pods --show-labels -o wide -n nimbus-scheduling-lab</code></td><td>Fix selector/scope/topology or deploy the prerequisite Pod.</td></tr>
+<tr><td>Required anti-affinity leaves replicas Pending</td><td>Too few eligible domains or each domain already has a matching Pod.</td><td><code>kubectl describe pod POD -n nimbus-scheduling-lab</code></td><td>Add eligible capacity or use a preferred rule if strict separation isn't mandatory.</td></tr>
+<tr><td>Soft preference not followed</td><td>No candidate matches preference, or other scores/constraints dominate.</td><td><code>kubectl get nodes --show-labels</code></td><td>Verify the label; preferred rules are not guarantees.</td></tr>
+<tr><td>Running Pod stays after label change</td><td>Ignored-during-execution semantics do not automatically evict it.</td><td><code>kubectl get pods -o wide -n nimbus-scheduling-lab</code></td><td>Plan controlled rollout/rescheduling if placement must change.</td></tr>
+<tr><td>EKS Pod remains Pending after scale-up</td><td>New nodes lack the expected labels, have untolerated taints, or lack capacity.</td><td><code>kubectl describe pod POD -n NAMESPACE</code></td><td>Verify node group labels, taints, resource fit and autoscaler events.</td></tr>
+</tbody></table></div></section>
+
+<section id="bestpractices"><div class="kicker">13 · Production considerations</div><h2>Best practices and common mistakes</h2>
+<div class="grid"><div class="card"><h3>Prefer capability labels</h3><p>Use labels for a node pool or capability rather than pinning a workload to one ephemeral instance or hostname.</p></div><div class="card"><h3>Separate hard from soft</h3><p>Use required rules only for non-negotiable needs. Soft preferences allow the scheduler to make progress when ideal placement isn't available.</p></div><div class="card"><h3>Govern node labels</h3><p>Placement labels can affect security and workload isolation. Restrict who can edit them and pair the design with appropriate taints, RBAC and admission controls.</p></div><div class="card"><h3>Keep topology labels consistent</h3><p>Inter-Pod rules depend on labels such as hostname and zone. Missing or incorrect labels can produce unintended placement or block Pods.</p></div><div class="card"><h3>Use spread constraints for balancing</h3><p>When the requirement is even distribution as replica counts change, compare topology spread constraints with anti-affinity.</p></div><div class="card"><h3>Account for capacity</h3><p>Affinity does not supersede CPU/memory requests, taints, readiness, architecture compatibility or persistent-volume topology.</p></div></div>
+<figure><svg viewBox="0 0 900 210" role="img" aria-labelledby="mistake-title mistake-desc"><title id="mistake-title">Overly strict versus resilient scheduling</title><desc id="mistake-desc">An overly strict policy permits only two nodes but requests three replicas with required separation, leaving the third Pod Pending. A resilient design makes non-critical placement preferences soft or supplies enough eligible nodes while preserving genuine requirements.</desc>
+<rect x="20" y="18" width="410" height="165" rx="10" fill="#fff0ef" stroke="#d38d8d" stroke-width="2"/><text x="225" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#922f2f">Overly strict</text><rect x="44" y="57" width="106" height="48" rx="7" fill="#e5f7ec" stroke="#69ad83"/><text x="97" y="77" text-anchor="middle" font-size="11" fill="#165b38">node A</text><text x="97" y="93" text-anchor="middle" font-size="10" fill="#165b38">replica 1</text><rect x="171" y="57" width="106" height="48" rx="7" fill="#e5f7ec" stroke="#69ad83"/><text x="224" y="77" text-anchor="middle" font-size="11" fill="#165b38">node B</text><text x="224" y="93" text-anchor="middle" font-size="10" fill="#165b38">replica 2</text><rect x="298" y="57" width="106" height="48" rx="7" fill="#fff" stroke="#d38d8d"/><text x="351" y="77" text-anchor="middle" font-size="11" fill="#922f2f">replica 3</text><text x="351" y="93" text-anchor="middle" font-size="10" fill="#922f2f">Pending</text><text x="225" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Hard filters exclude all other nodes</text><text x="225" y="154" text-anchor="middle" font-size="11" fill="#9c4848">No feasible placement remains</text>
+<rect x="470" y="18" width="410" height="165" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="675" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Resilient by design</text><rect x="494" y="57" width="106" height="48" rx="7" fill="#fff" stroke="#a6d4b5"/><text x="547" y="77" text-anchor="middle" font-size="11" fill="#165b38">node A</text><text x="547" y="93" text-anchor="middle" font-size="10" fill="#165b38">replica 1</text><rect x="621" y="57" width="106" height="48" rx="7" fill="#fff" stroke="#a6d4b5"/><text x="674" y="77" text-anchor="middle" font-size="11" fill="#165b38">node B</text><text x="674" y="93" text-anchor="middle" font-size="10" fill="#165b38">replica 2</text><rect x="748" y="57" width="106" height="48" rx="7" fill="#fff" stroke="#a6d4b5"/><text x="801" y="77" text-anchor="middle" font-size="11" fill="#165b38">node C</text><text x="801" y="93" text-anchor="middle" font-size="10" fill="#165b38">replica 3</text><text x="675" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Hard requirements + soft preferences</text><text x="675" y="154" text-anchor="middle" font-size="11" fill="#326d4e">and enough eligible capacity</text></svg><figcaption><strong>Visual 15 — Avoid accidental unschedulability.</strong> Keep genuine hard requirements, but provide eligible capacity and make optional goals preferences.</figcaption></figure>
+<h3>Production review checklist</h3><ul><li>Document why each selector or affinity rule exists.</li><li>Confirm labels are stable, consistent and protected from unauthorized changes.</li><li>Use required anti-affinity only when strict separation outweighs the risk of a Pending replica.</li><li>Review topology spread if even distribution is the real goal.</li><li>Validate autoscaler templates against node labels, resources and taints.</li><li>Test rollout and scale up/down, not only initial creation.</li><li>For EKS, check the actual labels on nodes from each node group and understand Fargate placement rules.</li></ul></section>
+
+<section id="interview"><div class="kicker">14 · Interview preparation</div><h2>36 questions and answers</h2><p>Try answering before expanding each question. Search by keyword.</p>
+<input id="qsearch" class="search" type="search" placeholder="Search: nodeSelector, topologyKey, Pending, EKS…" aria-label="Search interview questions">
+<div id="questions">
+<h3>Level 1 — Basic questions</h3>
+<div class="qa"><details><summary>1. What does the Kubernetes scheduler do?</summary><div class="answer">It selects a feasible node for a Pod that has not been assigned to a node, considering resource fit, scheduling constraints and scoring rules. The scheduler does not create node capacity.</div></details></div>
+<div class="qa"><details><summary>2. What is nodeSelector?</summary><div class="answer">A hard constraint consisting of node-label key/value pairs. Candidate nodes must have every requested pair. Use it for simple exact requirements.</div></details></div>
+<div class="qa"><details><summary>3. What is node affinity?</summary><div class="answer">A more expressive node-label matching feature that supports required rules and preferred weighted rules. It belongs under <code>spec.affinity.nodeAffinity</code>.</div></details></div>
+<div class="qa"><details><summary>4. What is the difference between required and preferred affinity?</summary><div class="answer">Required rules filter nodes that don't match. Preferred rules contribute to node ranking but do not guarantee placement.</div></details></div>
+<div class="qa"><details><summary>5. What is Pod affinity?</summary><div class="answer">A rule that attracts a Pod to topology domains containing Pods selected by a label selector.</div></details></div>
+<div class="qa"><details><summary>6. What is Pod anti-affinity?</summary><div class="answer">A rule that avoids topology domains containing Pods selected by a label selector. It is often used to reduce replica concentration.</div></details></div>
+<div class="qa"><details><summary>7. What does topologyKey specify?</summary><div class="answer">A node-label key defining the topology domain for Pod affinity/anti-affinity. For example, <code>kubernetes.io/hostname</code> treats each node as a separate domain.</div></details></div>
+<div class="qa"><details><summary>8. What does topology.kubernetes.io/zone mean?</summary><div class="answer">It is a conventional node label whose value identifies an availability zone. As topologyKey, it defines a zone-wide domain, assuming labels are present and consistent.</div></details></div>
+<div class="qa"><details><summary>9. What is the purpose of node labels?</summary><div class="answer">They associate metadata with nodes. Node selectors and affinity can use them to target capabilities, architecture, node pools, zones or other governed properties.</div></details></div>
+<div class="qa"><details><summary>10. What does IgnoredDuringExecution mean?</summary><div class="answer">The rules guide scheduling. Changing labels later does not automatically evict an already-running Pod solely because the original rule no longer matches.</div></details></div>
+<div class="qa"><details><summary>11. Does a toleration force a Pod onto a tainted node?</summary><div class="answer">No. A toleration permits scheduling onto that node if other constraints pass. Use node affinity or nodeSelector if placement onto a particular pool is required.</div></details></div>
+<div class="qa"><details><summary>12. Why might a Pod be Pending?</summary><div class="answer">No node may satisfy all hard rules; nodes may lack CPU/memory, have untolerated taints, be unavailable/cordoned, or fail another scheduling check. Read the Pod Events for the actual reason.</div></details></div>
+
+<h3>Level 2 — Intermediate questions</h3>
+<div class="qa"><details><summary>13. If nodeSelector and node affinity are both defined, what happens?</summary><div class="answer">Both requirements must be satisfied. A node that matches one but not the other is not eligible.</div></details></div>
+<div class="qa"><details><summary>14. How do nodeSelectorTerms combine?</summary><div class="answer">Multiple terms are ORed: a node can satisfy any one term. Expressions within the same term are ANDed.</div></details></div>
+<div class="qa"><details><summary>15. What does node affinity weight do?</summary><div class="answer">For a matched preferred rule, the weight contributes to scoring. Weight is between 1 and 100; it influences ranking, not eligibility.</div></details></div>
+<div class="qa"><details><summary>16. Explain In, NotIn, Exists and DoesNotExist.</summary><div class="answer"><code>In</code>/<code>NotIn</code> compare a label value with a list; <code>Exists</code>/<code>DoesNotExist</code> test key presence. Node affinity also supports <code>Gt</code>/<code>Lt</code> for numeric-like values.</div></details></div>
+<div class="qa"><details><summary>17. Why does Pod affinity need both a selector and topologyKey?</summary><div class="answer">The selector identifies matching Pods; topologyKey defines the node-label domain in which those Pods affect eligibility or preference.</div></details></div>
+<div class="qa"><details><summary>18. Which namespace does Pod affinity search by default?</summary><div class="answer">If namespaces and namespaceSelector are omitted, matching Pods are searched in the incoming Pod's own namespace. Cross-namespace matching should be explicitly designed.</div></details></div>
+<div class="qa"><details><summary>19. Does affinity guarantee that two services communicate successfully?</summary><div class="answer">No. Affinity influences placement. It does not create Service connectivity, fix application configuration, ensure credentials, or make a dependency healthy.</div></details></div>
+<div class="qa"><details><summary>20. Why can required anti-affinity leave replicas Pending?</summary><div class="answer">Every eligible topology domain may already contain a matching Pod, or there may be fewer eligible domains than replicas. Other filters such as resources and taints also matter.</div></details></div>
+<div class="qa"><details><summary>21. What is the difference between Pod anti-affinity and topology spread?</summary><div class="answer">Anti-affinity repels selected Pods from topology domains. Topology spread constraints aim to keep counts balanced according to maxSkew and the selected unsatisfiable behavior.</div></details></div>
+<div class="qa"><details><summary>22. Why is nodeName usually not the first recommendation?</summary><div class="answer">Setting nodeName bypasses normal scheduler selection and can make a workload tightly coupled to one node. Use selectors/affinity when you want the scheduler to choose from eligible nodes.</div></details></div>
+<div class="qa"><details><summary>23. Can a soft preference be overridden?</summary><div class="answer">Yes. Preferred rules influence scoring but are not hard guarantees. Other scores, required constraints and capacity can result in a different feasible node.</div></details></div>
+<div class="qa"><details><summary>24. Why can Pod affinity/anti-affinity cost more scheduler work?</summary><div class="answer">The scheduler evaluates Pod selectors and relationships across topology domains. Use inter-Pod rules when they deliver a meaningful locality/separation benefit, and consider topology spread for balancing goals in large clusters.</div></details></div>
+
+<h3>Level 3 — Real-world scenario questions</h3>
+<div class="qa"><details><summary>25. A Pod is Pending with nodeSelector. How do you diagnose it?</summary><div class="answer"><strong>Approach:</strong> run <code>kubectl describe pod POD -n nimbus-scheduling-lab</code> and read Events. Compare exact keys/values with <code>kubectl get nodes --show-labels</code>. If a node matches, check resource requests, taints/tolerations and node readiness/cordoning. <strong>Fix:</strong> correct the mistaken label/rule, add suitable capacity, or supply the required toleration if appropriate. <strong>Verify:</strong> recheck Events and <code>kubectl get pod POD -o wide</code>. Alternative causes include image pull failure after binding, not scheduling failure.</div></details></div>
+<div class="qa"><details><summary>26. Node affinity requires SSD nodes, but no node is labelled SSD.</summary><div class="answer"><strong>Approach:</strong> inspect <code>kubectl get nodes --show-labels</code> and the node pool provisioning source. Confirm whether SSD is truly a requirement or just a preference. <strong>Fix:</strong> provision or correctly label suitable nodes according to the organization's node-label policy; only change a hard rule if the application can safely run without SSD. <strong>Verify:</strong> check that the Pod is scheduled on a node satisfying the rule and validate storage behavior.</div></details></div>
+<div class="qa"><details><summary>27. A preferred node affinity rule appears to be ignored.</summary><div class="answer"><strong>Approach:</strong> examine the preferred label, current feasible nodes and actual node assignment. Use <code>kubectl get nodes -L LABEL_KEY</code> with the real label key. <strong>Reason:</strong> soft rules affect scores; they cannot guarantee a node and may be outweighed by other priorities. <strong>Fix:</strong> correct labels if wrong; use required affinity only if the property is mandatory and unschedulability is acceptable. Verify over multiple feasible nodes—not just one.</div></details></div>
+<div class="qa"><details><summary>28. Web Pods with required cache affinity are Pending.</summary><div class="answer"><strong>Approach:</strong> verify cache Pod labels using <code>kubectl get pods --show-labels -o wide -n nimbus-scheduling-lab</code>; inspect <code>labelSelector</code>, namespace scope and topologyKey in the web Pod. Confirm the cache Pod is assigned to a node in the expected topology domain. <strong>Fix:</strong> correct the selector/scope/topology, deploy the prerequisite Pod first, or soften the locality requirement when appropriate. <strong>Verify:</strong> compare NODE columns and re-read scheduler Events. Resources or taints may still block placement.</div></details></div>
+<div class="qa"><details><summary>29. Three replicas use required hostname anti-affinity, but only two eligible nodes exist.</summary><div class="answer"><strong>Approach:</strong> inspect Events and count nodes satisfying all hard constraints, not just raw cluster node count. <strong>Reason:</strong> a required hostname rule prevents more than one matching replica per node. <strong>Fix:</strong> add eligible capacity or switch to preferred anti-affinity if strict separation is not mandatory. <strong>Verify:</strong> all replicas should be Ready when constraints and capacity allow; otherwise a remaining Pending replica is expected.</div></details></div>
+<div class="qa"><details><summary>30. Node labels change after a workload is running. Will the Pod move?</summary><div class="answer"><strong>Answer:</strong> not automatically due solely to the ignored-during-execution rule. Inspect actual placement with <code>kubectl get pods -o wide</code>. If placement must change, plan a controlled rollout or rescheduling after verifying new nodes satisfy all constraints. Don't assume a label update migrates an existing Pod.</div></details></div>
+<div class="qa"><details><summary>31. A Pod has nodeSelector and node affinity, but a candidate matches only one.</summary><div class="answer"><strong>Approach:</strong> inspect the full Pod spec and candidate labels. <strong>Reason:</strong> both requirements are applied when both are present. <strong>Fix:</strong> align the rules with the intended policy, but retain both if they represent distinct requirements. <strong>Verify:</strong> compare labels and ensure scheduler Events no longer report a selector/affinity mismatch.</div></details></div>
+<div class="qa"><details><summary>32. An EKS Pod remains Pending after a node group scales up.</summary><div class="answer"><strong>Approach:</strong> check Pod Events, <code>kubectl get nodes --show-labels</code>, node taints, allocatable resources and node readiness. Compare new nodes against the required node-group label, architecture and zone. Inspect autoscaler/controller events where available. <strong>Fix:</strong> adjust node-group configuration/labels or Pod policy based on the true requirement; add capacity that can satisfy hard rules. <strong>Verify:</strong> new nodes become Ready and match the constraints. Scaling alone doesn't guarantee eligibility.</div></details></div>
+<div class="qa"><details><summary>33. Anti-affinity uses zone topology, but some nodes lack zone labels.</summary><div class="answer"><strong>Approach:</strong> inspect <code>kubectl get nodes -L topology.kubernetes.io/zone</code> and actual cloud/provider labels. Pod anti-affinity requires consistent topology labels to behave predictably. <strong>Fix:</strong> correct node provisioning/provider labels or use a topology key that is reliably present. <strong>Verify:</strong> every eligible node has a valid topology value and the resulting placement matches expectations.</div></details></div>
+<div class="qa"><details><summary>34. A team wants replicas evenly spread across zones. Should it use anti-affinity?</summary><div class="answer"><strong>Approach:</strong> clarify whether the requirement is “never share a domain” or “keep replica counts balanced.” For balance, evaluate <code>topologySpreadConstraints</code> using <code>topology.kubernetes.io/zone</code>, a justified <code>maxSkew</code>, and <code>DoNotSchedule</code> versus <code>ScheduleAnyway</code>. <strong>Fix:</strong> ensure zones are labelled and have sufficient capacity. Verify counts per zone after rollout. Anti-affinity and topology spread are related but not equivalent.</div></details></div>
+<div class="qa"><details><summary>35. A team wants all workloads kept off a dedicated tainted pool. Are taints enough?</summary><div class="answer"><strong>Approach:</strong> check node taints and each Pod's tolerations. A matching toleration permits scheduling there, but does not attract a workload. If a workload must target that pool, add appropriate node affinity/selector. <strong>Fix:</strong> review taint effect, toleration matching and node labels together. <strong>Verify:</strong> inspect scheduled nodes and ensure unrelated workloads do not have broad unnecessary tolerations.</div></details></div>
+<div class="qa"><details><summary>36. How would you roll out a new affinity policy safely?</summary><div class="answer"><strong>Approach:</strong> inventory current labels, resources and capacity; classify each rule as mandatory or preferred; test with a small workload; validate node autoscaling compatibility; then update through reviewed configuration and watch rollout status/Events. <strong>Fix:</strong> retain a rollback plan and avoid strict rules until enough eligible capacity exists. <strong>Verify:</strong> confirm actual Pod placement, readiness and behavior during scaling/rolling update—not just successful manifest application.</div></details></div>
+</div></section>
+
+<section id="assignments"><div class="kicker">15 · Independent practice</div><h2>13 assignments with solution hints</h2><p>Attempt each task before opening hints. Use the dedicated namespace and only touch node labels after obtaining approval.</p>
+<h3>Beginner exercises</h3><ol><li><strong>Exact node selector.</strong> Create a Pod requiring a lab label. Expected state: Pod binds to a matching node. Verify with <code>kubectl get pod -o wide</code> and actual node labels. Hint: a unique label key avoids conflicts with standard labels.</li><li><strong>Required node affinity.</strong> Allow two values using <code>operator: In</code>. Expected state: either listed value can qualify. Verify the node's actual labels.</li><li><strong>Preferred affinity.</strong> Compare weight 30 with weight 90 across multiple eligible nodes. Explain why neither guarantees a node.</li><li><strong>Pod affinity.</strong> Create a labelled cache Pod and require a client to share its hostname topology. Compare NODE columns.</li><li><strong>Preferred anti-affinity.</strong> Deploy four replicas and try to spread them across eligible nodes. Explain one-node behavior.</li></ol>
+<h3>Modification / troubleshooting exercises</h3><ol start="6"><li>Typo a nodeSelector label value. Diagnose Events and repair the value.</li><li>Make nodeSelector and required node affinity disagree. Explain why a node matching only one remains ineligible.</li><li>Change a Pod-affinity selector to a non-existent label. Diagnose Pending and restore the selector/prerequisite workload.</li><li>Use required anti-affinity with three replicas on a two-node disposable lab cluster. Explain the Pending replica, then restore the preferred version.</li><li>In a disposable cluster only, test a missing zone label and immediately restore the original value. Do not do this on a shared/production cluster.</li></ol>
+<h3>Real-world scenario challenges</h3><ol start="11"><li><strong>GPU pool:</strong> design hard selection for GPU nodes and explain interactions with taints and capacity.</li><li><strong>Multi-zone service:</strong> choose between required anti-affinity and topology spread; explain behavior during a zone outage.</li><li><strong>EKS autoscaling:</strong> diagnose a Pod requiring a node-group label that stays Pending after scaling.</li></ol>
+<details><summary>Solution hints and diagnostic commands</summary><div class="answer"><pre><code>kubectl get nodes --show-labels
+kubectl get nodes -L training.nimbuswiztech.io/scheduling-demo,topology.kubernetes.io/zone,kubernetes.io/arch
+kubectl get pods -n nimbus-scheduling-lab --show-labels -o wide
+kubectl describe pod POD_NAME -n nimbus-scheduling-lab
+kubectl get events -n nimbus-scheduling-lab --sort-by=.metadata.creationTimestamp
+kubectl get pod POD_NAME -n nimbus-scheduling-lab -o yaml
+kubectl rollout status deployment/DEPLOYMENT_NAME -n nimbus-scheduling-lab --timeout=180s</code></pre><p>Replace placeholders with actual names. Explain which rule excludes each candidate node before changing the manifest.</p></div></details></section>
+
+<section id="revision"><div class="kicker">16 · Rapid review</div><h2>Scheduling cheat sheet</h2>
+<div class="table-wrap"><table><tr><th>Need</th><th>Likely tool</th><th>Remember</th></tr><tr><td>Exact node label pairs</td><td><code>nodeSelector</code></td><td>Hard match.</td></tr><tr><td>Label operators and preferences</td><td><code>nodeAffinity</code></td><td>Required filters; preferred weights score.</td></tr><tr><td>Co-locate near labelled Pods</td><td><code>podAffinity</code></td><td>Selector + namespace scope + topologyKey.</td></tr><tr><td>Avoid matching Pods</td><td><code>podAntiAffinity</code></td><td>Required can leave replicas Pending.</td></tr><tr><td>Even distribution across domains</td><td><code>topologySpreadConstraints</code></td><td>Review maxSkew and unsatisfiable behavior.</td></tr><tr><td>Keep general workloads off a dedicated pool</td><td>Taint + toleration + affinity</td><td>Toleration permits; affinity attracts/requires.</td></tr></table></div>
+<h3>Important commands</h3><pre><code>kubectl get nodes --show-labels
+kubectl get nodes -L topology.kubernetes.io/zone,kubernetes.io/arch
+kubectl get pods -n nimbus-scheduling-lab -o wide
+kubectl get pods -n nimbus-scheduling-lab --show-labels
+kubectl describe pod POD_NAME -n nimbus-scheduling-lab
+kubectl get events -n nimbus-scheduling-lab --sort-by=.metadata.creationTimestamp
+kubectl get pod POD_NAME -n nimbus-scheduling-lab -o yaml
+kubectl explain pod.spec.affinity
+kubectl explain pod.spec.affinity.nodeAffinity
+kubectl explain pod.spec.affinity.podAffinity</code></pre>
+<h3>Before the interview</h3><ol><li>Explain node labels versus Pod labels.</li><li>Explain hard filtering versus soft scoring.</li><li>Explain AND/OR semantics for node affinity terms and expressions.</li><li>Explain topologyKey and the namespace scope of Pod affinity.</li><li>Diagnose Pending using Events, labels, resources and taints.</li><li>Justify when topology spread is better than strict anti-affinity.</li></ol></section>
+
+<section id="cleanup"><div class="kicker">17 · Finish safely</div><h2>Cleanup and resource lifecycle</h2>
+<figure><svg viewBox="0 0 900 110" role="img" aria-labelledby="clean-title clean-desc"><title id="clean-title">Scheduling lab cleanup</title><desc id="clean-desc">Inspect the lab namespace, delete only lab resources or the namespace if exclusive, then remove the custom training labels from nodes that received them.</desc>
+<defs><marker id="clean-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#527da2"/></marker></defs>
+<rect x="8" y="20" width="200" height="60" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="108" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">1. Inspect resources</text><text x="108" y="62" text-anchor="middle" font-size="10" fill="#42698b">names first</text><path d="M208 50 H228" stroke="#527da2" stroke-width="2" marker-end="url(#clean-arr)"/>
+<rect x="233" y="20" width="200" height="60" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="333" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">2. Delete workloads</text><text x="333" y="62" text-anchor="middle" font-size="10" fill="#42698b">Pods / Deployments</text><path d="M433 50 H453" stroke="#527da2" stroke-width="2" marker-end="url(#clean-arr)"/>
+<rect x="458" y="20" width="200" height="60" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="558" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">3. Namespace</text><text x="558" y="62" text-anchor="middle" font-size="10" fill="#85641e">delete only if exclusive</text><path d="M658 50 H678" stroke="#527da2" stroke-width="2" marker-end="url(#clean-arr)"/><rect x="683" y="20" width="207" height="60" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="786" y="44" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">4. Remove custom labels</text><text x="786" y="62" text-anchor="middle" font-size="10" fill="#9c4848">only training keys</text></svg><figcaption><strong>Visual 16 — Cleanup has two scopes.</strong> Namespace resources and node labels are different scopes; deleting a namespace doesn't remove node labels.</figcaption></figure>
+<p>First inspect what exists:</p><pre><code>kubectl get all -n nimbus-scheduling-lab
+kubectl get pods -n nimbus-scheduling-lab -o wide</code></pre>
+<p>If the namespace contains only resources from this lesson, delete it:</p><pre><code>kubectl delete namespace nimbus-scheduling-lab</code></pre>
+<p>Remove the lab-specific labels only if they were created for this guide and you are authorized. Verify affected nodes first:</p><pre><code>kubectl get nodes -L training.nimbuswiztech.io/scheduling-demo,training.nimbuswiztech.io/preferred-node
+
+kubectl label nodes -l training.nimbuswiztech.io/scheduling-demo=enabled training.nimbuswiztech.io/scheduling-demo-
+kubectl label nodes -l training.nimbuswiztech.io/preferred-node=yes training.nimbuswiztech.io/preferred-node-</code></pre>
+<div class="callout danger"><strong>Cleanup warning:</strong> If the lab label existed before this exercise, restore its previous value rather than deleting it. Do not remove unrelated node labels, taints, cluster-wide components or another student's namespace.</div></section>
+
+<section id="references"><div class="kicker">18 · Sources</div><h2>References and source transparency</h2>
+<h3>Supplied Nimbuswiztech sources</h3><ul><li><a href="https://github.com/nimbuswiztech/Kubernetes/tree/July26/eks-kubernetes-scheduling" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes repository — July26/eks-kubernetes-scheduling</a></li><li><a href="https://github.com/nimbuswiztech/kubernetes/wiki/Node-Selector,-Node-Affinity,-Pod-Affinity-and-Anti-pod-Affinity" target="_blank" rel="noopener noreferrer">Nimbuswiztech Wiki — Node Selector, Node Affinity, Pod Affinity and Anti pod Affinity</a></li></ul>
+<p><strong>Source note:</strong> The supplied wiki article was retrieved. It covers nodeSelector, hard/soft node affinity, Pod affinity/anti-affinity and a cache/web-server co-location example. The supplied <code>July26/eks-kubernetes-scheduling</code> directory could not be independently retrieved. The hands-on manifests in this guide are therefore supplementary examples, not claimed copies of repository files.</p>
+<h3>Official Kubernetes documentation</h3><ul><li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/" target="_blank" rel="noopener noreferrer">Assigning Pods to Nodes — nodeSelector and affinity concepts</a></li><li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/" target="_blank" rel="noopener noreferrer">Assign Pods to Nodes — practical tutorial</a></li><li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/" target="_blank" rel="noopener noreferrer">Pod Topology Spread Constraints</a></li><li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/" target="_blank" rel="noopener noreferrer">Taints and Tolerations</a></li><li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/scheduling-framework/" target="_blank" rel="noopener noreferrer">Scheduling Framework</a></li><li><a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener noreferrer">kubectl and local Kubernetes tooling</a></li></ul>
+<h3>Amazon EKS</h3><ul><li><a href="https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html" target="_blank" rel="noopener noreferrer">Amazon EKS managed node groups</a></li><li><a href="https://docs.aws.amazon.com/eks/latest/userguide/fargate.html" target="_blank" rel="noopener noreferrer">Amazon EKS on Fargate</a></li><li><a href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-autoscaler.html" target="_blank" rel="noopener noreferrer">Cluster Autoscaler considerations for EKS</a></li></ul>
+<p class="muted small">The document uses embedded HTML, CSS, JavaScript and SVG for its essential presentation. It does not require a diagram CDN or image library; reference links need internet access.</p></section>
+<a class="toplink" href="#top">↑ Back to top</a></main></div>
+<footer>Nimbuswiztech student learning reference · Kubernetes Scheduling · Verify labels, topology, version, taints and capacity before applying strict placement rules.</footer>
+<script>
+(function(){
+document.querySelectorAll('pre').forEach(function(pre){var code=pre.querySelector('code');if(!code)return;var b=document.createElement('button');b.type='button';b.className='copy';b.textContent='Copy';b.setAttribute('aria-label','Copy code block');b.addEventListener('click',function(){var s=code.innerText;function fb(){var t=document.createElement('textarea');t.value=s;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');b.textContent='Copied'}catch(e){b.textContent='Select manually'}t.remove();setTimeout(function(){b.textContent='Copy'},1300)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1300)}).catch(fb)}else fb()});pre.appendChild(b)});
+var q=document.getElementById('qsearch');if(q)q.addEventListener('input',function(){var s=q.value.toLowerCase().trim();document.querySelectorAll('#questions .qa').forEach(function(n){n.style.display=n.textContent.toLowerCase().includes(s)?'':'none'})});
+var nav=[].slice.call(document.querySelectorAll('#sidebar a'));var secs=nav.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);if('IntersectionObserver'in window){var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)nav.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-14% 0px -72% 0px'});secs.forEach(function(s){ob.observe(s)})}
+})();
+</script></body></html>

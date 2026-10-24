@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jenkins parameters &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html" class="active">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🚀 CICD / Jenkins</span>
+          <span class="separator">/</span>
+          <span class="current">jenkins parameters</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🚀 CICD / Jenkins Module</div>
+          <h1 class="hero-title">jenkins parameters</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Executive Summary</h2>
+<p>Jenkins parameters enable dynamic, reusable pipeline configurations that accept runtime inputs without requiring job reconfiguration. This guide provides production-grade documentation of all 12 parameter types, detailed step-by-step implementation instructions, multiple triggering mechanisms, and real-world use cases optimized for enterprise DevOps environments. As a senior DevOps engineer managing CI/CD infrastructure, understanding parameter semantics, triggering strategies, and cascading parameter patterns is essential for building flexible, maintainable automation frameworks.</p>
+<h2>Overview: Why Parameters Matter</h2>
+<p>Traditional Jenkins workflows require job reconfiguration for every environment change, version specification, or conditional logic. Parameterized builds decouple configuration from execution, enabling a single job to serve multiple purposes. This reduces job proliferation, simplifies maintenance, and implements the DRY principle across your CI/CD pipeline.</p>
+<p>Key Benefits for Infrastructure-as-Code practices:</p>
+<ul>
+<li>Single source of truth for automation logic</li>
+<li>Reduced Jenkins configuration drift</li>
+<li>Compliance with infrastructure modularity standards</li>
+<li>Support for complex deployment scenarios with conditional execution</li>
+</ul>
+<h2>Parameter Types: Complete Reference</h2>
+<h3>1. String Parameter</h3>
+<p>The foundational parameter type for simple text input.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">parameters {
+    string(name: 'ENVIRONMENT', 
+           defaultValue: 'staging', 
+           description: 'Target deployment environment')
+}
+</code></pre>
+</div>
+<p>Freestyle Job Configuration:</p>
+<ul>
+<li>Add Parameter → String Parameter</li>
+<li>Name: <code>ENVIRONMENT</code></li>
+<li>Default Value: <code>staging</code></li>
+<li>Description: <code>Target deployment environment</code></li>
+</ul>
+<p>Usage in Shell:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+echo &quot;Deploying to: $ENVIRONMENT&quot;
+aws s3 sync ./dist s3://app-${ENVIRONMENT}/
+</code></pre>
+</div>
+<p>Use case: Environment names, AWS regions, Docker image tags, version numbers, artifact paths.</p>
+<hr />
+<h3>2. Text Parameter (Multiline)</h3>
+<p>Supports multi-line input with preserved formatting.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">parameters {
+    text(name: 'DEPLOYMENT_NOTES', 
+         defaultValue: 'Release notes here\n\nTeam: DevOps', 
+         description: 'Deployment information and change notes')
+}
+</code></pre>
+</div>
+<p>UI Rendering: Text area with automatic line breaks.</p>
+<p>Access in Pipeline:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">stage('Log Deployment') {
+    steps {
+        script {
+            writeFile file: 'deployment.txt', text: params.DEPLOYMENT_NOTES
+            sh 'cat deployment.txt'
+        }
+    }
+}
+</code></pre>
+</div>
+<p>Use case: Configuration file content, deployment changelogs, multi-line system properties, YAML manifest content.</p>
+<hr />
+<h3>3. Boolean Parameter</h3>
+<p>Binary flag parameter rendered as a checkbox.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">parameters {
+    booleanParam(name: 'RUN_TESTS', 
+                 defaultValue: true, 
+                 description: 'Execute test suite?')
+    booleanParam(name: 'DEBUG_MODE', 
+                 defaultValue: false, 
+                 description: 'Enable debug logging?')
+}
+</code></pre>
+</div>
+<p>Conditional Execution:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">stage('Test') {
+    when {
+        expression { params.RUN_TESTS == true }
+    }
+    steps {
+        sh 'npm test'
+    }
+}
+</code></pre>
+</div>
+<p>Important note: Jenkins boolean parameters are technically strings (<code>"true"</code> or <code>"false"</code>). When comparing:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">// Correct
+if (params.DEBUG_MODE == 'true') { ... }
+if (params.DEBUG_MODE.toBoolean()) { ... }
+
+// Incorrect
+if (params.DEBUG_MODE) { ... }
+</code></pre>
+</div>
+<p>Use case: Feature flags, test execution toggles, logging enablement, optional cleanup tasks, canary deployment decisions.</p>
+<hr />
+<h3>4. Choice Parameter</h3>
+<p>Dropdown selector with predefined options. First value is default.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">parameters {
+    choice(name: 'DEPLOYMENT_REGION', 
+           choices: ['us-east-1', 'us-west-2', 'eu-central-1', 'ap-southeast-1'], 
+           description: 'Select AWS region')
+
+    choice(name: 'LOG_LEVEL', 
+           choices: ['ERROR', 'WARN', 'INFO', 'DEBUG', 'TRACE'], 
+           description: 'Application log level')
+}
+</code></pre>
+</div>
+<p>Validation in Shell:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">case &quot;$DEPLOYMENT_REGION&quot; in
+    us-east-1|us-west-2|eu-central-1|ap-southeast-1)
+        echo &quot;Valid region: $DEPLOYMENT_REGION&quot;
+        ;;
+    *)
+        echo &quot;Invalid region: $DEPLOYMENT_REGION&quot;
+        exit 1
+        ;;
+esac
+</code></pre>
+</div>
+<p>Use case: Environment selection (prod/staging/dev), build types (release/snapshot), deployment strategies (blue-green/canary/rolling), service tier selection.</p>
+<hr />
+<h3>5. Password Parameter</h3>
+<p>Masked input field for sensitive data. Value is hidden in logs.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">parameters {
+    password(name: 'DB_PASSWORD', 
+             defaultValue: '', 
+             description: 'Database password for deployment')
+}
+</code></pre>
+</div>
+<p>Security considerations:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">// Avoid logging sensitive data
+withEnv(['DB_PASS=' + params.DB_PASSWORD]) {
+    sh '''
+        export PGPASSWORD=$DB_PASS
+        psql -h db.example.com -U admin -c &quot;SELECT version();&quot;
+    '''
+}
+</code></pre>
+</div>
+<p>Use case: Database credentials, API secrets, webhook tokens, encryption keys. Prefer Jenkins credentials store over password parameters in production.</p>
+<hr />
+<h3>6. Credentials Parameter</h3>
+<p>Integrates with Jenkins' encrypted credentials store. Requires the Credentials Plugin.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">parameters {
+    credentials(name: 'AWS_CREDENTIALS',
+                description: 'AWS IAM credentials for deployment',
+                credentialType: 'aws',
+                required: true,
+                defaultValue: 'prod-deployment-role')
+}
+</code></pre>
+</div>
+<p>Using in Pipeline:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">stage('Deploy') {
+    steps {
+        withAWS(credentials: params.AWS_CREDENTIALS, region: 'us-east-1') {
+            sh 'aws s3 ls'
+        }
+    }
+}
+
+withCredentials([usernamePassword(
+    credentialsId: params.AWS_CREDENTIALS,
+    usernameVariable: 'USERNAME',
+    passwordVariable: 'PASSWORD'
+)]) {
+    sh './deploy.sh'
+}
+</code></pre>
+</div>
+<p>Supported credential types include AWS, username/password, SSH keys, secret files, secret text, and certificates.</p>
+<hr />
+<h3>7. File Parameter</h3>
+<p>Accepts file uploads from the build trigger UI. Requires File Parameter Plugin.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">parameters {
+    file(name: 'CONFIG_FILE', 
+         description: 'Upload application configuration file')
+}
+</code></pre>
+</div>
+<p>Processing uploaded file:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">stage('Process Config') {
+    steps {
+        script {
+            sh 'ls -la $WORKSPACE/CONFIG_FILE'
+            sh 'cat $WORKSPACE/CONFIG_FILE | jq .'
+        }
+    }
+}
+</code></pre>
+</div>
+<p>Example config deployment:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">pipeline {
+    agent any
+    parameters {
+        file(name: 'APP_CONFIG', description: 'YAML configuration')
+    }
+    stages {
+        stage('Validate') {
+            steps {
+                sh 'yamllint $WORKSPACE/APP_CONFIG'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f $WORKSPACE/APP_CONFIG'
+            }
+        }
+    }
+}
+</code></pre>
+</div>
+<p>Use case: Configuration uploads, test data sets, SSL certificates, environment manifests.</p>
+<hr />
+<h3>8. Git Parameter</h3>
+<p>Dynamically fetches branches, tags, or pull requests. Requires Git Parameter Plugin.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">parameters {
+    gitParameter(type: 'PT_BRANCH',
+                 name: 'BRANCH_TO_BUILD',
+                 defaultValue: 'master',
+                 description: 'Select branch to build',
+                 branchFilter: 'origin/(.*)',
+                 sortMode: 'DESCENDING_SMART',
+                 selectedValue: 'DEFAULT')
+}
+</code></pre>
+</div>
+<p>Usage in checkout:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">stage('Checkout') {
+    steps {
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: params.BRANCH_TO_BUILD]],
+            userRemoteConfigs: [[url: 'https://github.com/org/repo.git']]
+        ])
+    }
+}
+</code></pre>
+</div>
+<p>Use case: Release deployments, feature branch testing, multi-repo orchestration, GitOps flows.</p>
+<hr />
+<h3>9. Run Parameter</h3>
+<p>Allows selection of previous build numbers.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">parameters {
+    run(name: 'PREVIOUS_BUILD',
+        description: 'Select a previous build to analyze')
+}
+</code></pre>
+</div>
+<p>Using previous build artifacts:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">stage('Analyze') {
+    steps {
+        copyArtifacts(
+            projectName: env.JOB_NAME,
+            selector: specific(params.PREVIOUS_BUILD),
+            target: 'previous-artifacts/'
+        )
+        sh 'diff -r previous-artifacts/ ./'
+    }
+}
+</code></pre>
+</div>
+<p>Use case: Build comparison, regression detection, artifact rollback, historical analysis.</p>
+<hr />
+<h3>10. Hidden Parameter</h3>
+<p>Parameters not displayed in the UI. Requires Hidden Parameter Plugin.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">properties([
+    parameters([
+        [$class: 'WHideParameterDefinition', 
+         name: 'INTERNAL_CONFIG', 
+         defaultValue: 'internal-value']
+    ])
+])
+</code></pre>
+</div>
+<p>Use case: Admin-configured values, internal system parameters, deprecated parameters, policy enforcement.</p>
+<hr />
+<h3>11. Active Choices Parameter</h3>
+<p>Dynamically generates values with Groovy. Requires Active Choices Plugin.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">[$class: 'ChoiceParameter',
+ choiceType: 'PT_SINGLE_SELECT',
+ name: 'AVAILABLE_DATABASES',
+ script: [
+     $class: 'GroovyScript',
+     script: '''
+         def databases = ['production-db', 'staging-db', 'dev-db']
+         return databases
+     '''
+ ],
+ description: 'Select database for query']
+</code></pre>
+</div>
+<p>Use case: Database names, dynamic cloud resource lists, environment inventory, feature flags.</p>
+<hr />
+<h3>12. Active Choices Reactive Parameter</h3>
+<p>Cascading parameters whose values depend on other parameters.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">[$class: 'ChoiceParameter',
+ name: 'REGION',
+ script: [
+     $class: 'GroovyScript',
+     script: 'return [&quot;us-east-1&quot;, &quot;us-west-2&quot;, &quot;eu-central-1&quot;]'
+ ]],
+
+[$class: 'CascadeChoiceParameter',
+ name: 'AVAILABILITY_ZONE',
+ referencedParameters: 'REGION',
+ script: [
+     $class: 'GroovyScript',
+     script: '''
+         def zones = [
+             &quot;us-east-1&quot;: [&quot;us-east-1a&quot;, &quot;us-east-1b&quot;, &quot;us-east-1c&quot;],
+             &quot;us-west-2&quot;: [&quot;us-west-2a&quot;, &quot;us-west-2b&quot;],
+             &quot;eu-central-1&quot;: [&quot;eu-central-1a&quot;, &quot;eu-central-1b&quot;]
+         ]
+         return zones[REGION] ?: []
+     '''
+ ]
+]
+</code></pre>
+</div>
+<p>Use case: Region → AZ, Cluster → Namespace → Pod, multi-level infrastructure selection.</p>
+<h2>Adding Parameters to Jobs</h2>
+<h3>Freestyle Jobs</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Configure the job</h3>
+<p>Open job → Configure</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Enable parameterization</h3>
+<p>Check <strong>This project is parameterized</strong></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Add a parameter</h3>
+<p>Click <strong>Add Parameter</strong> and choose type</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Configure parameter</h3>
+<p>Set name, default value, description</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Use parameters in build steps</h3>
+<p>Reference parameters (e.g., <code>$ENVIRONMENT</code> in shell)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Save and run</h3>
+<p>Save and use <strong>Build with Parameters</strong> button</p>
+</div>
+</div>
+</div>
+<hr />
+<h3>Declarative Pipeline (Jenkinsfile)</h3>
+<p>Example multi-parameter deployment pipeline:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'ENVIRONMENT', 
+               choices: ['dev', 'staging', 'production'],
+               description: 'Target environment')
+
+        string(name: 'APPLICATION_VERSION',
+               defaultValue: '1.0.0',
+               description: 'Application version to deploy')
+
+        booleanParam(name: 'RUN_SMOKE_TESTS',
+                     defaultValue: true,
+                     description: 'Execute smoke tests post-deployment?')
+
+        choice(name: 'DEPLOYMENT_STRATEGY',
+               choices: ['rolling', 'blue-green', 'canary'],
+               description: 'Deployment strategy')
+    }
+
+    environment {
+        DEPLOY_REGION = 'us-east-1'
+        APP_NAME = 'myapp'
+    }
+
+    stages {
+        stage('Validate Parameters') {
+            steps {
+                script {
+                    echo &quot;✓ Parameters Received:&quot;
+                    echo &quot;  Environment: ${params.ENVIRONMENT}&quot;
+                    echo &quot;  Version: ${params.APPLICATION_VERSION}&quot;
+                    echo &quot;  Strategy: ${params.DEPLOYMENT_STRATEGY}&quot;
+                    echo &quot;  Run Tests: ${params.RUN_SMOKE_TESTS}&quot;
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh '''
+                    echo &quot;Building ${APP_NAME}:${APPLICATION_VERSION}&quot;
+                    docker build -t ${APP_NAME}:${APPLICATION_VERSION} .
+                '''
+            }
+        }
+
+        stage('Smoke Tests') {
+            when {
+                expression { params.RUN_SMOKE_TESTS == 'true' }
+            }
+            steps {
+                sh 'npm test -- --testPathPattern=&quot;smoke&quot;'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    switch(params.DEPLOYMENT_STRATEGY) {
+                        case 'rolling':
+                            sh './deploy-rolling.sh'
+                            break
+                        case 'blue-green':
+                            sh './deploy-blue-green.sh'
+                            break
+                        case 'canary':
+                            sh './deploy-canary.sh'
+                            break
+                    }
+                }
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                sh '''
+                    echo &quot;Verifying deployment in ${ENVIRONMENT}...&quot;
+                    curl -f http://app-${ENVIRONMENT}.example.com/health || exit 1
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            echo &quot;Deployment to ${params.ENVIRONMENT} completed&quot;
+        }
+        failure {
+            mail to: 'devops@example.com',
+                 subject: &quot;Deployment Failed: ${APP_NAME} v${params.APPLICATION_VERSION}&quot;,
+                 body: &quot;Check build logs for details&quot;
+        }
+    }
+}
+</code></pre>
+</div>
+<h2>Triggering Parameterized Builds</h2>
+<h3>UI Trigger</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h3>Open job in Jenkins UI</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h3>Click <strong>Build with Parameters</strong></h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h3>Fill parameter values</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h3>Click <strong>Build</strong></h3>
+</div>
+</div>
+</div>
+<hr />
+<h3>Remote API: buildWithParameters</h3>
+<p>URL format:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">/job/{jobname}/buildWithParameters?PARAM1=VALUE1&amp;PARAM2=VALUE2
+</code></pre>
+</div>
+<p>Example:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">curl -X POST \
+  'http://jenkins.example.com:8080/job/deploy-app/buildWithParameters?ENVIRONMENT=staging&amp;VERSION=2.1.0&amp;DEBUG=true' \
+  -u username:api-token
+</code></pre>
+</div>
+<p>With file parameter:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">curl -X POST \
+  -F 'file=@config.yml' \
+  -F 'ENVIRONMENT=production' \
+  'http://jenkins.example.com:8080/job/ConfigDeploy/buildWithParameters' \
+  -u username:api-token
+</code></pre>
+</div>
+<hr />
+<h3>Remote API with Token (buildByToken)</h3>
+<p>Configure:</p>
+<ul>
+<li>Build Triggers → <strong>Trigger builds remotely</strong></li>
+<li>Authentication token: <code>SECURE_TOKEN_VALUE</code></li>
+</ul>
+<p>URL format:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">/buildByToken/buildWithParameters?token=TOKEN&amp;job=JOBNAME&amp;PARAM=VALUE
+</code></pre>
+</div>
+<p>Example:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">curl -X POST \
+  'http://jenkins.example.com:8080/buildByToken/buildWithParameters?token=mytoken&amp;job=deploy-job&amp;ENV=prod&amp;VERSION=1.2.3'
+</code></pre>
+</div>
+<hr />
+<h3>Parameterized Trigger Plugin (Job-to-Job)</h3>
+<p>Using Jenkinsfile:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">stage('Trigger Deployment') {
+    steps {
+        build(
+            job: 'deploy-application',
+            parameters: [
+                string(name: 'APP_VERSION', value: '2.0.0'),
+                string(name: 'TARGET_ENV', value: 'staging'),
+                booleanParam(name: 'RUN_TESTS', value: true)
+            ],
+            wait: true,
+            propagate: true
+        )
+    }
+}
+</code></pre>
+</div>
+<h2>Sample Real-World Use Cases</h2>
+<h3>Multi-Environment Deployment</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'ENVIRONMENT',
+               choices: ['dev', 'staging', 'production'],
+               description: 'Target environment')
+
+        string(name: 'VERSION',
+               defaultValue: 'latest',
+               description: 'Docker image tag')
+
+        booleanParam(name: 'ROLLBACK',
+                     defaultValue: false,
+                     description: 'Rollback to previous version?')
+    }
+
+    environment {
+        DOCKER_REGISTRY = 'registry.example.com'
+        APP_NAME = 'myapp'
+    }
+
+    stages {
+        stage('Deploy') {
+            steps {
+                script {
+                    sh '''
+                        if [ &quot;$ROLLBACK&quot; = &quot;true&quot; ]; then
+                            kubectl rollout undo deployment/${APP_NAME} -n ${ENVIRONMENT}
+                        else
+                            kubectl set image deployment/${APP_NAME} ${APP_NAME}=${DOCKER_REGISTRY}/${APP_NAME}:${VERSION} -n ${ENVIRONMENT}
+                            kubectl rollout status deployment/${APP_NAME} -n ${ENVIRONMENT}
+                        fi
+                    '''
+                }
+            }
+        }
+    }
+}
+</code></pre>
+</div>
+<hr />
+<h3>Dynamic Kubernetes Debugging with Cascading Parameters</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">pipeline {
+    agent any
+
+    parameters {
+        [$class: 'ChoiceParameter',
+         choiceType: 'PT_SINGLE_SELECT',
+         name: 'CLUSTER',
+         script: [
+             $class: 'GroovyScript',
+             script: '''
+                 return [&quot;prod-us-east&quot;, &quot;prod-eu-west&quot;, &quot;staging-us-east&quot;, &quot;dev-local&quot;]
+             '''
+         ]],
+
+        [$class: 'CascadeChoiceParameter',
+         choiceType: 'PT_SINGLE_SELECT',
+         name: 'NAMESPACE',
+         referencedParameters: 'CLUSTER',
+         script: [
+             $class: 'GroovyScript',
+             script: '''
+                 def namespaces = [
+                     &quot;prod-us-east&quot;: [&quot;default&quot;, &quot;monitoring&quot;, &quot;ingress-nginx&quot;, &quot;kube-system&quot;],
+                     &quot;prod-eu-west&quot;: [&quot;default&quot;, &quot;monitoring&quot;, &quot;ingress-nginx&quot;],
+                     &quot;staging-us-east&quot;: [&quot;default&quot;, &quot;testing&quot;],
+                     &quot;dev-local&quot;: [&quot;default&quot;]
+                 ]
+                 return namespaces[CLUSTER] ?: [&quot;default&quot;]
+             '''
+         ]],
+
+        [$class: 'CascadeChoiceParameter',
+         choiceType: 'PT_MULTI_SELECT',
+         name: 'POD_NAMES',
+         referencedParameters: 'CLUSTER,NAMESPACE',
+         script: [
+             $class: 'GroovyScript',
+             script: '''
+                 def cmd = &quot;kubectl get pods -n ${NAMESPACE} --context ${CLUSTER} -o jsonpath='{.items[*].metadata.name}'&quot;
+                 def pods = cmd.execute().text.split()
+                 return pods
+             '''
+         ]]
+    }
+
+    stages {
+        stage('Get Pod Status') {
+            steps {
+                sh '''
+                    echo &quot;Fetching status for pods in cluster: $CLUSTER, namespace: $NAMESPACE&quot;
+                    kubectl get pods -n $NAMESPACE --context $CLUSTER
+                '''
+            }
+        }
+
+        stage('Execute Debug') {
+            steps {
+                sh '''
+                    for POD in $POD_NAMES; do
+                        echo &quot;=== Debugging pod: $POD ===&quot;
+                        kubectl exec -it $POD -n $NAMESPACE --context $CLUSTER -- /bin/sh -c 'env | head -20'
+                    done
+                '''
+            }
+        }
+    }
+}
+</code></pre>
+</div>
+<hr />
+<h3>Terraform Provisioning with Parameters</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'ACTION',
+               choices: ['plan', 'apply', 'destroy'],
+               description: 'Terraform action')
+
+        choice(name: 'ENVIRONMENT',
+               choices: ['development', 'staging', 'production'],
+               description: 'Target environment')
+
+        string(name: 'INSTANCE_COUNT',
+               defaultValue: '3',
+               description: 'Number of instances')
+
+        credentials(name: 'AWS_CREDENTIALS',
+                    description: 'AWS credentials for Terraform',
+                    credentialType: 'aws',
+                    required: true)
+
+        booleanParam(name: 'AUTO_APPROVE',
+                     defaultValue: false,
+                     description: 'Auto-approve Terraform changes?')
+    }
+
+    environment {
+        TF_BACKEND = &quot;s3://terraform-state-${params.ENVIRONMENT}&quot;
+        TF_VARS_FILE = &quot;terraform/environments/${params.ENVIRONMENT}.tfvars&quot;
+    }
+
+    stages {
+        stage('Init') {
+            steps {
+                sh 'terraform init -backend-config=&quot;bucket=${TF_BACKEND}&quot; -upgrade'
+            }
+        }
+
+        stage('Plan') {
+            steps {
+                withAWS(credentials: params.AWS_CREDENTIALS, region: 'us-east-1') {
+                    sh '''
+                        terraform plan \
+                          -var-file=&quot;${TF_VARS_FILE}&quot; \
+                          -var=&quot;instance_count=${INSTANCE_COUNT}&quot; \
+                          -out=tfplan
+                    '''
+                }
+            }
+        }
+
+        stage('Review') {
+            when {
+                expression { params.ACTION != 'plan' &amp;&amp; !params.AUTO_APPROVE }
+            }
+            steps {
+                input 'Proceed with Terraform apply?'
+            }
+        }
+
+        stage('Apply/Destroy') {
+            when {
+                expression { params.ACTION in ['apply', 'destroy'] }
+            }
+            steps {
+                withAWS(credentials: params.AWS_CREDENTIALS, region: 'us-east-1') {
+                    script {
+                        if (params.ACTION == 'apply') {
+                            sh 'terraform apply tfplan'
+                        } else {
+                            sh 'terraform destroy -var-file=&quot;${TF_VARS_FILE}&quot; -auto-approve'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre>
+</div>
+<h2>Best Practices</h2>
+<ul>
+<li>Validate all parameters early in the pipeline (environment names, versions, numeric bounds)</li>
+<li>Avoid logging secrets; use Jenkins credentials + masking</li>
+<li>Use typed parameters (choice/boolean) instead of free text where possible</li>
+<li>Centralize common parameter sets via shared libraries or templates</li>
+<li>Keep parameter names stable and consistent across jobs</li>
+<li>Add clear descriptions so other teams can safely self-service jobs</li>
+</ul>
+<h2>Common Troubleshooting Tips</h2>
+<details>
+
+<summary>Parameters not recognized</summary>
+
+Cause: Name mismatch / case sensitive
+
+Solution: Ensure UI name matches Jenkinsfile and shell usage exactly
+
+</details>
+
+<details>
+
+<summary>Boolean always true</summary>
+
+Cause: String vs boolean confusion
+
+Solution: Use `params.FLAG.toBoolean()` or compare to `"true"`
+
+</details>
+
+<details>
+
+<summary>Git parameter empty</summary>
+
+Cause: Plugin or credential issue
+
+Solution: Verify Git Parameter plugin and repository access
+
+</details>
+
+<details>
+
+<summary>Active Choices failing</summary>
+
+Cause: Groovy errors / missing plugins
+
+Solution: Test script in Script Console and confirm plugin installed
+
+</details>
+
+<details>
+
+<summary>File not uploaded</summary>
+
+Cause: File size limits
+
+Solution: Increase maximum file upload size in Jenkins config
+
+</details>
+
+<details>
+
+<summary>Remote API 404</summary>
+
+Cause: Wrong endpoint
+
+Solution: Use `/buildWithParameters` for parameterized jobs, not `/build`
+
+</details>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../cicd-jenkins/pluggin-installation.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">pluggin installation</span>
+  </a>
+  <a href="../cicd-jenkins/built-in-variables.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Built in variables</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

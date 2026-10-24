@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Day 2 &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html" class="active">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🌿 Git</span>
+          <span class="separator">/</span>
+          <span class="current">Git Day 2</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🌿 Git Module</div>
+          <h1 class="hero-title">Git Day 2</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <hr />
+<h2>🎯 What You Will Learn Today</h2>
+<ul>
+<li>Merging branches with <code>git merge</code></li>
+<li>Understanding and resolving <strong>merge conflicts</strong></li>
+<li>Undoing mistakes safely with <code>git revert</code></li>
+<li>Hard-resetting history with <code>git reset --hard</code></li>
+<li>Cloning remote repositories with <code>git clone</code></li>
+<li>Pushing commits to remote with <code>git push</code></li>
+<li>Pulling latest changes with <code>git pull</code></li>
+<li>Fetching without merging using <code>git fetch</code></li>
+<li>Rebasing branches with <code>git rebase</code></li>
+</ul>
+<hr />
+<h2>🔄 Day 1 Recap — Quick Check</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initialize repo</td>
+<td><code>git init</code></td>
+</tr>
+<tr>
+<td>Stage a file</td>
+<td><code>git add file</code></td>
+</tr>
+<tr>
+<td>Commit</td>
+<td><code>git commit -m "msg"</code></td>
+</tr>
+<tr>
+<td>View history</td>
+<td><code>git log --oneline</code></td>
+</tr>
+<tr>
+<td>Create tag</td>
+<td><code>git tag v1.0</code></td>
+</tr>
+<tr>
+<td>Create branch</td>
+<td><code>git branch dev</code></td>
+</tr>
+<tr>
+<td>Switch branch</td>
+<td><code>git checkout dev</code></td>
+</tr>
+<tr>
+<td>Create + switch</td>
+<td><code>git checkout -b feature</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+<h2>🔀 Part 1 – <code>git merge</code> — Combining Branches</h2>
+<h3>Concept</h3>
+<p>When you finish work on a branch, you merge it back into <code>master</code> (or <code>main</code>).</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">master:   A --- B --- C
+                       \
+dev:                    D --- E
+</code></pre>
+</div>
+<p>After merging <code>dev</code> into <code>master</code>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">master:   A --- B --- C ---------- F  (merge commit)
+                       \          /
+dev:                    D --- E
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>You must be <strong>on the branch you want to merge INTO</strong>.</p>
+<p>"I am on <code>master</code>. I want to bring <code>dev</code> changes into me."</p>
+</div>
+</div>
+<h3>Syntax</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git merge branch_name
+</code></pre>
+</div>
+<h3>Live Demo</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Setup
+mkdir mergedemo &amp;&amp; cd mergedemo
+git init
+git config user.name &quot;Your Name&quot;
+git config user.email &quot;you@devops.com&quot;
+
+# First commit on master
+echo &quot;Master line 1&quot; &gt; master.txt
+git add master.txt
+git commit -m &quot;Initial commit on master&quot;
+
+# Create dev branch and switch
+git checkout -b dev
+
+# Work on dev
+echo &quot;Feature from dev&quot; &gt; feature.txt
+git add feature.txt
+git commit -m &quot;Added feature on dev&quot;
+
+# Switch back to master
+git checkout master
+
+# Merge dev into master
+git merge dev
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Updating a3f8c2d..b9d4e1c
+Fast-forward
+ feature.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 feature.txt
+</code></pre>
+</div>
+<p><strong>Fast-forward merge:</strong></p>
+<ul>
+<li>Happens when <code>master</code> had no new commits since <code>dev</code> branched off.</li>
+<li>Git simply moves the master pointer forward — no extra merge commit is created.</li>
+</ul>
+<hr />
+<h2>⚠️ Part 2 – Merge Conflicts</h2>
+<h3>What is a Merge Conflict?</h3>
+<p>A conflict happens when <strong>two branches edit the same line of the same file</strong>.</p>
+<p>Git cannot decide which version to keep — it stops and asks you to decide manually.</p>
+<h3>Create a Conflict — Follow Along</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Fresh repo
+mkdir conflictdemo &amp;&amp; cd conflictdemo
+git init
+git config user.name &quot;Your Name&quot;
+git config user.email &quot;you@devops.com&quot;
+
+# Initial commit
+echo &quot;Line 1: Hello&quot; &gt; app.txt
+git add app.txt
+git commit -m &quot;Initial app.txt&quot;
+
+# Create dev branch
+git checkout -b dev
+
+# Edit app.txt on dev
+echo &quot;Line 1: Hello from DEV branch&quot; &gt; app.txt
+git add app.txt
+git commit -m &quot;Dev branch edit&quot;
+
+# Switch back to master
+git checkout master
+
+# Edit the SAME line on master
+echo &quot;Line 1: Hello from MASTER branch&quot; &gt; app.txt
+git add app.txt
+git commit -m &quot;Master branch edit&quot;
+
+# Try to merge
+git merge dev
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Auto-merging app.txt
+CONFLICT (content): Merge conflict in app.txt
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+</div>
+<h3>How to Identify the Conflict</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git status
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">On branch master
+You have unmerged paths.
+
+Unmerged paths:
+  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+        both modified:   app.txt
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cat app.txt
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Line 1: Hello from MASTER branch
+=======
+Line 1: Hello from DEV branch
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; dev
+</code></pre>
+</div>
+<p><strong>Understanding the conflict markers:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Marker</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code></td>
+<td>Start of YOUR version (current branch — master)</td>
+</tr>
+<tr>
+<td><code>=======</code></td>
+<td>Divider between the two versions</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; dev</code></td>
+<td>Start of the INCOMING version (dev branch)</td>
+</tr>
+</tbody>
+</table>
+<h3>Solution — How to Resolve</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Open the file and edit it manually</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">vi app.txt
+</code></pre>
+</div>
+<p>Remove ALL conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>).</p>
+<p>Keep the content you want:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Line 1: Hello from both master and dev branches
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Stage the resolved file</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add app.txt
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Complete the merge</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git commit -m &quot;Resolved merge conflict between master and dev&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Verify</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+cat app.txt
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>In VS Code or IntelliJ, conflict markers are highlighted with color buttons (Accept Current / Accept Incoming / Accept Both). But understanding the raw text markers is essential for command-line work and interviews.</p>
+</div>
+</div>
+<hr />
+<h2>↩️ Part 3 – Undoing Commits</h2>
+<h3>Two ways to undo — important difference</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+<th>Safe for pushed branches?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git revert commit_id</code></td>
+<td>Creates a NEW commit that undoes the target commit</td>
+<td>✅ Yes — history preserved</td>
+</tr>
+<tr>
+<td><code>git reset --hard commit_id</code></td>
+<td>Permanently DELETES commits after the target</td>
+<td>❌ No — rewrites history</td>
+</tr>
+</tbody>
+</table>
+<h3><code>git revert commit_id</code> — Safe Undo</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+# c7d3e1a Bug introduced here
+# b4f2a8c Good commit
+# a3f8c2d Initial commit
+
+git revert c7d3e1a
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">[master d9f1a3b] Revert &quot;Bug introduced here&quot;
+ 1 file changed, 1 deletion(-)
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+# d9f1a3b Revert &quot;Bug introduced here&quot;   ← new undo commit on top
+# c7d3e1a Bug introduced here            ← original still in history
+# b4f2a8c Good commit
+# a3f8c2d Initial commit
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><code>git revert</code> never deletes anything. It adds a new "undo" commit on top.</p>
+<p>This is the safe way to undo on branches already pushed to GitHub.</p>
+</div>
+</div>
+<h3><code>git reset --hard commit_id</code> — Destructive Undo</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+# c7d3e1a Bad commit
+# b4f2a8c Good commit
+# a3f8c2d Initial commit
+
+git reset --hard b4f2a8c
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+# b4f2a8c Good commit     ← c7d3e1a is permanently GONE
+# a3f8c2d Initial commit
+</code></pre>
+</div>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p><strong>Warning:</strong> <code>git reset --hard</code> permanently destroys commits.</p>
+<p>If the branch was already pushed to a shared remote, this will break everyone else's copy.</p>
+<p>Use ONLY on local branches that have NOT been pushed yet.</p>
+<p><strong>On shared branches — always use <code>git revert</code> instead.</strong></p>
+</div>
+</div>
+<hr />
+<h2>☁️ Part 4 – Working with Remote Repositories</h2>
+<h3>What is a Remote?</h3>
+<p>A remote repository is a copy of your project on a server (GitHub, GitLab, Bitbucket).</p>
+<p><strong>Why use remotes:</strong></p>
+<ul>
+<li>Multiple developers can share and collaborate on the same codebase.</li>
+<li>Code is backed up even if your laptop is lost.</li>
+<li>CI/CD pipelines are triggered when code is pushed.</li>
+</ul>
+<h3><code>git clone</code> — Download a Remote Repository</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git clone https://github.com/username/repo-name.git
+</code></pre>
+</div>
+<p><strong>What it does:</strong></p>
+<ul>
+<li>Downloads the full repository — all commits, branches, and tags.</li>
+<li>Creates a local folder with the repo name.</li>
+<li>Automatically sets <code>origin</code> as the remote name.</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git clone https://github.com/torvalds/linux.git
+cd linux
+git log --oneline -5
+git branch -a     # List all local and remote branches
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>After cloning, <code>origin</code> is already configured. You can immediately <code>push</code> and <code>pull</code>.</p>
+</div>
+</div>
+<h3><code>git push</code> — Send Your Commits to Remote</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git push git_url
+# or the standard way:
+git push origin master
+git push origin dev
+</code></pre>
+</div>
+<p><strong>First-time push of a new branch:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git push -u origin dev
+</code></pre>
+</div>
+<p><code>-u</code> sets the upstream — after this, just <code>git push</code> is enough for that branch.</p>
+<p><strong>Typical workflow:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">echo &quot;New feature&quot; &gt; feature.txt
+git add feature.txt
+git commit -m &quot;Added feature&quot;
+git push origin master
+</code></pre>
+</div>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p>If someone else pushed after your last pull, Git will reject your push.</p>
+<p>Solution: Run <code>git pull</code> first, resolve conflicts, then push again.</p>
+</div>
+</div>
+<h3><code>git pull</code> — Get Latest Changes from Remote</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git pull git_url
+# or:
+git pull origin master
+</code></pre>
+</div>
+<p><strong>Internally, <code>git pull</code> does two things:</strong></p>
+<ol>
+<li><code>git fetch</code> — downloads remote commits</li>
+<li><code>git merge</code> — merges them into your current branch</li>
+</ol>
+<p><strong>Common daily workflow:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Start of day — get everyone's latest work
+git pull origin master
+
+# Do your work
+# ... edit files ...
+
+git add .
+git commit -m &quot;My today's work&quot;
+
+# End of day — send your work
+git push origin master
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Best practice:</strong> Always <code>git pull</code> before starting work. Always <code>git pull</code> before <code>git push</code>.</p>
+</div>
+</div>
+<hr />
+<h2>🔍 Part 5 – <code>git fetch</code> — Download Without Merging</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git fetch
+git fetch origin
+</code></pre>
+</div>
+<h3>Difference between <code>git fetch</code> and <code>git pull</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>git fetch</code></th>
+<th><code>git pull</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Downloads remote commits</td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Merges into your branch</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Affects your working files</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Safe to run anytime</td>
+<td>✅ Yes</td>
+<td>Depends</td>
+</tr>
+</tbody>
+</table>
+<p><strong>After <code>git fetch</code>, remote changes are stored in <code>FETCH_HEAD</code>:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git fetch origin
+
+git log FETCH_HEAD --oneline       # See what was fetched
+git diff HEAD FETCH_HEAD            # Compare your code vs fetched
+git merge FETCH_HEAD                # Merge when you are ready
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>Use <code>git fetch</code> when you want to <strong>review</strong> what changed on remote before merging.</p>
+<p>It gives you more control than <code>git pull</code>.</p>
+</div>
+</div>
+<hr />
+<h2>🧵 Part 6 – <code>git rebase</code> — Clean Linear History</h2>
+<h3>Concept</h3>
+<p><code>git rebase</code> moves your branch's commits to start from the latest point of another branch.</p>
+<p>The result is a clean, straight-line history — no merge commits.</p>
+<p><strong>Before rebase:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">master:   A --- B --- C
+                \
+dev:             D --- E
+</code></pre>
+</div>
+<p><strong>After <code>git rebase master</code> (from dev):</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">master:   A --- B --- C
+                       \
+dev:                    D' --- E'
+</code></pre>
+</div>
+<p>D and E are <strong>replayed</strong> on top of C. Commits get new IDs (D → D', E → E').</p>
+<h3>Syntax</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout dev
+git rebase master
+</code></pre>
+</div>
+<h3><code>git merge</code> vs <code>git rebase</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>git merge</code></th>
+<th><code>git rebase</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>History</td>
+<td>Keeps full history + adds merge commit</td>
+<td>Creates clean linear history</td>
+</tr>
+<tr>
+<td>Safe on shared branches</td>
+<td>✅ Yes</td>
+<td>❌ Never rebase a pushed branch</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Team collaboration</td>
+<td>Cleaning up before a pull request</td>
+</tr>
+</tbody>
+</table>
+<h3>Demo</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout -b feature
+echo &quot;Feature work&quot; &gt; feat.txt
+git add feat.txt
+git commit -m &quot;Feature commit&quot;
+
+git checkout master
+echo &quot;Hotfix on master&quot; &gt; hotfix.txt
+git add hotfix.txt
+git commit -m &quot;Hotfix on master&quot;
+
+git checkout feature
+git rebase master
+
+git log --oneline
+</code></pre>
+</div>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p><strong>Golden rule:</strong> Never rebase a branch that has already been pushed to a shared remote.</p>
+<p>It rewrites commit IDs and breaks everyone else's copy of that branch.</p>
+</div>
+</div>
+<hr />
+<h2>💻 Practice Exercises</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Create and resolve a merge conflict</h3>
+<p>Create two branches. Modify the <strong>same line</strong> of the same file on both. Merge → resolve the conflict → commit.</p>
+<p>Run <code>git log --oneline</code> to verify.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Revert a commit</h3>
+<p>Make 3 commits. Use <code>git revert</code> on the second commit.</p>
+<p>Check <code>git log --oneline</code> to confirm the undo-commit was added on top.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h3>Reset commit history</h3>
+<p>Make 3 commits. Use <code>git reset --hard</code> to go back to commit 1.</p>
+<p>Confirm that commits 2 and 3 are gone from <code>git log</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h3>Clone a public repository</h3>
+<p>Clone a public GitHub repo.</p>
+<p>Run <code>git log --oneline -10</code>. Run <code>git branch -a</code> to see all branches.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h3>Push commits to GitHub</h3>
+<p>Create a repo on GitHub. Clone it. Make 3 commits. Push them.</p>
+<p>Verify on GitHub.</p>
+</div>
+</div>
+</div>
+<hr />
+<h2>📝 Assignments</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h3>Conflict Practice</h3>
+<p>Create a repo with two branches that conflict on the same file. Resolve the conflict manually.</p>
+<p>Show the complete <code>git log --oneline</code> after resolution.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h3>Revert vs Reset</h3>
+<ul>
+<li>Create 5 commits.</li>
+<li>Use <code>git revert</code> on commit 3 — observe <code>git log</code>.</li>
+<li>In a fresh repo, use <code>git reset --hard</code> to go back to commit 2 — observe <code>git log</code>.</li>
+<li>Write down the difference in behaviour you observed.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h3>Remote Workflow</h3>
+<ul>
+<li>Create a GitHub repository.</li>
+<li>Clone it locally.</li>
+<li>Make 3 commits.</li>
+<li>Push to GitHub.</li>
+<li>Confirm commits appear on GitHub.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">13</div>
+<div class="step-content">
+<h3>Fetch vs Pull</h3>
+<p>In your own words, explain when you would use <code>git fetch</code> instead of <code>git pull</code> and why.</p>
+</div>
+</div>
+</div>
+<hr />
+<h2>🔁 Day 2 Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git merge branch_name</code></td>
+<td>Merge a branch into your current branch</td>
+</tr>
+<tr>
+<td><code>git status</code></td>
+<td>After a conflict — shows which files need resolution</td>
+</tr>
+<tr>
+<td><code>git revert commit_id</code></td>
+<td>Safely undo a commit by adding a new undo-commit</td>
+</tr>
+<tr>
+<td><code>git reset --hard commit_id</code></td>
+<td>Permanently delete commits after the given point</td>
+</tr>
+<tr>
+<td><code>git clone https://url</code></td>
+<td>Download a full remote repository locally</td>
+</tr>
+<tr>
+<td><code>git push origin branch</code></td>
+<td>Send local commits to the remote</td>
+</tr>
+<tr>
+<td><code>git push -u origin branch</code></td>
+<td>Push and set upstream tracking</td>
+</tr>
+<tr>
+<td><code>git pull origin branch</code></td>
+<td>Download + merge remote changes</td>
+</tr>
+<tr>
+<td><code>git fetch</code></td>
+<td>Download remote changes without merging</td>
+</tr>
+<tr>
+<td><code>git log FETCH_HEAD --oneline</code></td>
+<td>View what was fetched</td>
+</tr>
+<tr>
+<td><code>git diff HEAD FETCH_HEAD</code></td>
+<td>Compare local vs fetched code</td>
+</tr>
+<tr>
+<td><code>git merge FETCH_HEAD</code></td>
+<td>Merge fetched code manually</td>
+</tr>
+<tr>
+<td><code>git rebase master</code></td>
+<td>Replay current branch commits on top of master</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>🎤 Interview Questions</h2>
+<details>
+
+<summary><strong>What is a merge conflict and how do you resolve it?</strong></summary>
+
+A conflict occurs when two branches modify the same line of the same file. Git marks the conflict with `<<<<<<<`, `=======`, `>>>>>>>` markers. You manually edit the file to keep the right content, remove the markers, `git add` the file, and `git commit` to complete the merge.
+
+</details>
+
+<details>
+
+<summary><strong>What is the difference between <code>git revert</code> and <code>git reset</code>?</strong></summary>
+
+`git revert` creates a new commit that undoes a previous one — history is preserved, safe for shared branches. `git reset --hard` permanently deletes commits — dangerous on shared branches.
+
+</details>
+
+<details>
+
+<summary><strong>What is the difference between <code>git fetch</code> and <code>git pull</code>?</strong></summary>
+
+`git fetch` downloads remote changes but does NOT merge them. `git pull` = `git fetch` + `git merge`. Use `git fetch` when you want to review changes before merging.
+
+</details>
+
+<details>
+
+<summary><strong>What is <code>git rebase</code> and when should you use it?</strong></summary>
+
+`git rebase` replays your branch commits on top of another branch for a clean linear history. Use it only on local, unshared branches — never rebase a branch that has been pushed.
+
+</details>
+
+<details>
+
+<summary><strong>What does <code>git clone</code> do?</strong></summary>
+
+Downloads the entire remote repository including all commits, branches, and tags to your local machine.
+
+</details>
+
+<details>
+
+<summary><strong>What happens if two developers push to the same branch at the same time?</strong></summary>
+
+The second push is rejected by Git. The second developer must `git pull` first, resolve any conflicts, then push again.
+
+</details>
+
+<hr />
+<h2>📌 Coming Up – Day 3</h2>
+<ul>
+<li><code>git stash</code> — save unfinished work temporarily</li>
+<li><code>git cherry-pick</code> — pick a specific commit from another branch</li>
+<li><code>.gitignore</code> — exclude files from tracking</li>
+<li><code>git remote add origin</code> — link an existing local repo to GitHub</li>
+<li>GitHub Pull Requests — the real team workflow</li>
+<li>CI/CD integration — how a push triggers a pipeline</li>
+</ul>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../git/git-day-1.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">Git Day 1</span>
+  </a>
+  <a href="../git/git-day-3.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Git Day 3</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

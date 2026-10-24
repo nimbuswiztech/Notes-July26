@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Day 1 &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html" class="active">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🌿 Git</span>
+          <span class="separator">/</span>
+          <span class="current">Git Day 1</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🌿 Git Module</div>
+          <h1 class="hero-title">Git Day 1</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>🕐 Duration: 2 Hours | DevOps Batch</h2>
+<h2>🎯 What You Will Learn Today</h2>
+<ul>
+<li>What Git is and why it matters in DevOps</li>
+<li>Difference between a bare and non-bare repository</li>
+<li>The Git workflow — Working Directory → Staging Area → Local Repo</li>
+<li>Core commands: <code>init</code>, <code>status</code>, <code>add</code>, <code>commit</code>, <code>log</code></li>
+<li>Tagging commits with <code>git tag</code></li>
+<li>Navigating history with <code>git checkout</code></li>
+<li>Working with branches using <code>git branch</code></li>
+</ul>
+<h2>💡 Why Git?</h2>
+<p>Imagine two developers working on the same project.\
+Developer A changes <code>login.py</code>. Developer B also changes <code>login.py</code> at the same time.\
+<strong>Without a version control system — one person's work gets overwritten.</strong></p>
+<p><strong>Git solves this.</strong> It tracks every change made by every person and can merge them intelligently.</p>
+<p>Git is used by Google, Amazon, Netflix, and virtually every DevOps team in the world.</p>
+<h2>🗺️ Git Architecture — The Big Picture</h2>
+<p>Before writing any command, understand the four zones Git works with:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">┌─────────────────┐     git add      ┌───────────────┐     git commit     ┌───────────────┐
+│  Working         │ ──────────────→  │  Staging Area  │ ──────────────→   │  Local Repo   │
+│  Directory       │                  │  (Index)       │                   │  (.git folder)│
+└─────────────────┘                  └───────────────┘                   └───────────────┘
+       ↑                                                                          │
+       │                                                                   git push/pull
+  (you edit files here)                                                           ↓
+                                                                         ┌───────────────┐
+                                                                         │  Remote Repo  │
+                                                                         │  (GitHub etc) │
+                                                                         └───────────────┘
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>What it is</th>
+<th>Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Working Directory</strong></td>
+<td>Where you create and edit files</td>
+<td>Your desk</td>
+</tr>
+<tr>
+<td><strong>Staging Area (Index)</strong></td>
+<td>Files marked as "ready to save"</td>
+<td>A tray before filing</td>
+</tr>
+<tr>
+<td><strong>Local Repo</strong></td>
+<td>The <code>.git</code> folder — stores all commit history</td>
+<td>Filing cabinet on your machine</td>
+</tr>
+<tr>
+<td><strong>Remote Repo</strong></td>
+<td>GitHub / GitLab / Bitbucket</td>
+<td>Filing cabinet in the cloud</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <code>git add</code> → moves files from Working Directory to Staging Area\
+<code>git commit</code> → moves files from Staging Area to Local Repo\
+These are <strong>two separate steps</strong> — never confuse them.</p>
+</blockquote>
+<h2>🗂️ Part 1 – <code>git init</code> — Creating a Repository</h2>
+<h3>Two types of repositories</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Command</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Non-bare</strong></td>
+<td><code>git init</code></td>
+<td>Used by developers — has a working directory where you edit files</td>
+</tr>
+<tr>
+<td><strong>Bare</strong></td>
+<td><code>git init --bare</code></td>
+<td>Used as a central/remote server — no working directory, stores history only</td>
+</tr>
+</tbody>
+</table>
+<h3><code>git init</code> — Non-Bare Repository</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">mkdir myproject
+cd myproject
+git init
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Initialized empty Git repository in /home/ubuntu/myproject/.git/
+</code></pre>
+</div>
+<p><strong>What happened:</strong></p>
+<ul>
+<li>A hidden <code>.git</code> folder was created inside your directory</li>
+<li>This folder <strong>is</strong> your repository — it stores everything Git tracks</li>
+<li>Never delete the <code>.git</code> folder</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ls -a
+# Output: .  ..  .git
+
+ls .git
+# Output: HEAD  branches  config  description  hooks  info  objects  refs
+</code></pre>
+</div>
+<h3><code>git init --bare</code> — Bare Repository</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">mkdir central-repo.git
+cd central-repo.git
+git init --bare
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Initialized empty Git repository in /home/ubuntu/central-repo.git/
+</code></pre>
+</div>
+<p><strong>What is different from non-bare:</strong></p>
+<ul>
+<li>No working directory — you cannot create or edit files here</li>
+<li>The Git database files exist directly in the folder (no inner <code>.git</code> subfolder)</li>
+<li>Used as a <strong>central server</strong> that developers push to and pull from</li>
+<li>GitHub is essentially a hosted bare repository</li>
+</ul>
+<blockquote>
+<p>💡 Non-bare = developer's laptop (has files + history)\
+Bare = shared team server (only history, no personal workspace)</p>
+</blockquote>
+<h2>📊 Part 2 – <code>git status</code> — Check the State of Your Repo</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git status
+</code></pre>
+</div>
+<p><code>git status</code> shows you what is happening across your three local zones.</p>
+<p><strong>Three states it can report:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Untracked files</code></td>
+<td>File exists in working dir but Git doesn't know about it yet</td>
+</tr>
+<tr>
+<td><code>Changes to be committed</code></td>
+<td>File is in staging area — ready for commit</td>
+</tr>
+<tr>
+<td><code>Changes not staged for commit</code></td>
+<td>File was previously tracked, now modified, but not staged yet</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">mkdir demo &amp;&amp; cd demo &amp;&amp; git init
+echo &quot;Hello DevOps&quot; &gt; file1.txt
+git status
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">On branch master
+
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+        file1.txt
+</code></pre>
+</div>
+<h2>➕ Part 3 – <code>git add</code> — Move Files to Staging Area</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add file1.txt       # Add one specific file
+git add .               # Add ALL files in current directory
+git add *.txt           # Add all .txt files
+</code></pre>
+</div>
+<p><strong>After running <code>git add</code>:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git status
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">On branch master
+
+Changes to be committed:
+  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+        new file:   file1.txt
+</code></pre>
+</div>
+<blockquote>
+<p>💡 The file is now in the <strong>Staging Area</strong> — it is ready to commit, but NOT committed yet.\
+You can add some files and leave others out — you control exactly what goes into each commit.</p>
+</blockquote>
+<h2>💾 Part 4 – <code>git commit</code> — Save to Local Repository</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git commit -m &quot;Added file1.txt with welcome message&quot;
+</code></pre>
+</div>
+<p><strong>The <code>-m</code> flag:</strong></p>
+<ul>
+<li>Stands for <strong>message</strong></li>
+<li>Every commit must have a message describing what changed</li>
+<li>Without <code>-m</code>, Git opens vi/nano for you to type the message</li>
+</ul>
+<p><strong>First-time setup (run once if Git asks for your identity):</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;you@example.com&quot;
+</code></pre>
+</div>
+<p><strong>Output after commit:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">[master (root-commit) a3f8c2d] Added file1.txt with welcome message
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+</code></pre>
+</div>
+<p><strong>What is <code>a3f8c2d</code>?</strong></p>
+<ul>
+<li>This is the <strong>commit ID</strong> (also called SHA hash)</li>
+<li>Every commit gets a unique ID automatically</li>
+<li>You will use this ID later with <code>git checkout</code></li>
+</ul>
+<h2>📜 Part 5 – <code>git log</code> — View Commit History</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">commit a3f8c2d19e4b7c6a3d2e1f0987654321abcdef12
+Author: John Dev &lt;john@company.com&gt;
+Date:   Mon Jul 22 10:30:00 2024 +0530
+
+    Added file1.txt with welcome message
+</code></pre>
+</div>
+<p><strong>Useful variations:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log                    # Full log with author, date, message
+git log --oneline          # One line per commit — compact view
+git log --oneline --graph  # Visual branch graph
+git log -n 5               # Show only last 5 commits
+</code></pre>
+</div>
+<p><strong>Example with multiple commits:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">echo &quot;Line 2&quot; &gt;&gt; file1.txt
+git add file1.txt
+git commit -m &quot;Added line 2 to file1&quot;
+
+echo &quot;file2 content&quot; &gt; file2.txt
+git add file2.txt
+git commit -m &quot;Created file2.txt&quot;
+
+git log --oneline
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">c7d3e1a Created file2.txt
+b4f2a8c Added line 2 to file1
+a3f8c2d Added file1.txt with welcome message
+</code></pre>
+</div>
+<blockquote>
+<p>💡 The <strong>most recent commit is always at the top</strong> in <code>git log</code>.</p>
+</blockquote>
+<h2>🏷️ Part 6 – <code>git tag</code> — Mark Important Commits</h2>
+<p>Tags are <strong>named labels</strong> you attach to a specific commit.\
+Used to mark release points — <code>v1.0</code>, <code>v2.0</code>, <code>production-release</code>.</p>
+<p><strong>Why use tags?</strong>\
+Commit IDs like <code>a3f8c2d</code> are hard to remember.\
+A tag like <code>v1.0</code> is readable, meaningful, and permanent.</p>
+<h3>Create a Tag</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git tag v1.0              # Tag the current (latest) commit
+git tag v1.0 a3f8c2d     # Tag a specific older commit by its ID
+</code></pre>
+</div>
+<h3>List All Tags</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git tag
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">v1.0
+v1.1
+v2.0
+</code></pre>
+</div>
+<h3>Inspect a Tag</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git show v1.0
+</code></pre>
+</div>
+<h3>Real-World Use Case</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Developer finishes stable version → tags it as v1.0
+CI/CD pipeline deploys the v1.0 tag to production
+Development continues (v1.1-dev)
+Production breaks → rollback to v1.0 using git checkout v1.0
+</code></pre>
+</div>
+<blockquote>
+<p>💡 Tags are created after every release, every hotfix, every major milestone.</p>
+</blockquote>
+<h2>🌿 Part 7 – <code>git branch</code> — Working with Branches</h2>
+<p>A <strong>branch</strong> is an independent line of development.\
+Changes on one branch do not affect other branches.</p>
+<p><strong>Common branch names in real projects:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>master</code> / <code>main</code></td>
+<td>Production-ready, stable code</td>
+</tr>
+<tr>
+<td><code>dev</code></td>
+<td>Active development</td>
+</tr>
+<tr>
+<td><code>feature-login</code></td>
+<td>One specific new feature</td>
+</tr>
+<tr>
+<td><code>bugfix-payment</code></td>
+<td>A bug being fixed</td>
+</tr>
+<tr>
+<td><code>staging</code></td>
+<td>Pre-production testing</td>
+</tr>
+</tbody>
+</table>
+<h3>List All Branches</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git branch
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">* master
+  dev
+  feature-login
+</code></pre>
+</div>
+<ul>
+<li>The <code>*</code> shows the branch you are <strong>currently on</strong></li>
+<li>Default branch is <code>master</code> (older Git) or <code>main</code> (newer Git)</li>
+</ul>
+<h3>Create a New Branch</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git branch dev
+git branch feature-login
+</code></pre>
+</div>
+<blockquote>
+<p>⚠️ <code>git branch &lt;name&gt;</code> only <strong>creates</strong> the branch.\
+It does <strong>not</strong> switch you to it. Use <code>git checkout</code> to switch.</p>
+</blockquote>
+<h2>🔀 Part 8 – <code>git checkout</code> — Switching and Navigating</h2>
+<p><code>git checkout</code> has three distinct uses. Learn all three.</p>
+<h3>Use 1 — Switch to a Branch</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout dev
+git checkout feature-login
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Switched to branch 'dev'
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git branch
+# Output:
+  master
+* dev       ← asterisk is now here
+</code></pre>
+</div>
+<p><strong>Shortcut — create AND switch in one command:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout -b feature-payment
+</code></pre>
+</div>
+<h3>Use 2 — Switch to a Tag</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout v1.0
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Note: switching to 'v1.0'.
+
+You are in 'detached HEAD' state...
+</code></pre>
+</div>
+<p><strong>What is detached HEAD state?</strong></p>
+<ul>
+<li>You are no longer on a branch</li>
+<li>You are viewing the exact snapshot of code as it was at <code>v1.0</code></li>
+<li>You can look at files but any new commits here are temporary</li>
+<li>To return to normal: <code>git checkout master</code></li>
+</ul>
+<p><strong>When would you use this?</strong>\
+To check what production code looked like at the time of a specific release.</p>
+<h3>Use 3 — Switch to a Specific Commit</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout a3f8c2d
+</code></pre>
+</div>
+<p>Same as switching to a tag — puts you in <strong>detached HEAD</strong> state.\
+First use <code>git log --oneline</code> to find the commit ID you want.</p>
+<p><strong>When would you use this?</strong>\
+When a bug was introduced — go back commit by commit to find exactly where it started.</p>
+<h2>🔁 Full Hands-On Demo — Follow Along</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>1. Setup</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">mkdir gitdemo &amp;&amp; cd gitdemo
+git init
+git config user.name &quot;DevOps Student&quot;
+git config user.email &quot;student@devops.com&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>2. First commit</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">echo &quot;Version 1 content&quot; &gt; app.txt
+git add app.txt
+git commit -m &quot;Initial version of app&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>3. Tag it</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git tag v1.0
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>4. Second commit</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">echo &quot;Version 2 feature added&quot; &gt;&gt; app.txt
+git add app.txt
+git commit -m &quot;Added v2 feature&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h2>5. Tag it</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git tag v2.0
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h2>6. Third commit</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">echo &quot;Version 3 bugfix&quot; &gt;&gt; app.txt
+git add app.txt
+git commit -m &quot;Fixed bug in v3&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h2>7. View history</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h2>8. View tags</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git tag
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h2>9. Create and list branches</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git branch dev
+git branch
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h2>10. Switch to dev branch</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout dev
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h2>11. Go back to v1.0 tag</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout v1.0
+cat app.txt    # Only shows &quot;Version 1 content&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h2>12. Return to master</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout master
+cat app.txt    # Shows all 3 lines
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h2>💻 Practice Exercises</h2>
+<p>Try these on your own:</p>
+<ol>
+<li>Create a new directory, initialize a repo, create 3 files, add and commit each separately with a meaningful message.</li>
+<li>Run <code>git log --oneline</code> to see all commits. Checkout the very first commit using its ID. Verify the files. Return to <code>master</code>.</li>
+<li>Create a tag <code>v1.0</code> on commit 1 and <code>v2.0</code> on commit 2. List all tags. Checkout <code>v1.0</code> and confirm which files are visible.</li>
+<li>Create two branches: <code>dev</code> and <code>feature-test</code>. List all branches. Switch between them and run <code>git branch</code> each time to confirm.</li>
+</ol>
+<h2>📝 Assignments</h2>
+<p>Complete these before Day 2:</p>
+<ol>
+<li><strong>Full Workflow</strong>
+   * Create a project with at least 5 commits
+   * Tag commit 3 as <code>v1.0</code> and commit 5 as <code>v2.0</code>
+   * List tags, checkout <code>v1.0</code>, confirm the file state</li>
+<li><strong>Branch Practice</strong>
+   * On the same project, create branches: <code>main</code>, <code>dev</code>, <code>staging</code>
+   * List all branches
+   * Switch to each one and run <code>git status</code> to confirm</li>
+<li><strong>Theory — Answer in Your Own Words</strong>
+   * What is the difference between <code>git add</code> and <code>git commit</code>?
+   * What is detached HEAD state?
+   * What is the difference between a bare and non-bare repository?
+   * Why do we use tags instead of just using commit IDs?</li>
+</ol>
+<h2>🔁 Day 1 Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git init</code></td>
+<td>Create a non-bare (working) repository</td>
+</tr>
+<tr>
+<td><code>git init --bare</code></td>
+<td>Create a bare (server/central) repository</td>
+</tr>
+<tr>
+<td><code>git status</code></td>
+<td>Show state of working dir and staging area</td>
+</tr>
+<tr>
+<td><code>git add &lt;file&gt;</code></td>
+<td>Move a file to staging area</td>
+</tr>
+<tr>
+<td><code>git add .</code></td>
+<td>Move ALL files to staging area</td>
+</tr>
+<tr>
+<td><code>git commit -m "msg"</code></td>
+<td>Save staged files to local repo with a message</td>
+</tr>
+<tr>
+<td><code>git log</code></td>
+<td>Show full commit history</td>
+</tr>
+<tr>
+<td><code>git log --oneline</code></td>
+<td>Compact one-line commit history</td>
+</tr>
+<tr>
+<td><code>git log -n 5</code></td>
+<td>Show last 5 commits</td>
+</tr>
+<tr>
+<td><code>git tag &lt;name&gt;</code></td>
+<td>Tag the current commit</td>
+</tr>
+<tr>
+<td><code>git tag</code></td>
+<td>List all tags</td>
+</tr>
+<tr>
+<td><code>git show &lt;tag&gt;</code></td>
+<td>Show details of a tag</td>
+</tr>
+<tr>
+<td><code>git branch</code></td>
+<td>List all branches</td>
+</tr>
+<tr>
+<td><code>git branch &lt;name&gt;</code></td>
+<td>Create a new branch</td>
+</tr>
+<tr>
+<td><code>git checkout &lt;branch&gt;</code></td>
+<td>Switch to a branch</td>
+</tr>
+<tr>
+<td><code>git checkout -b &lt;name&gt;</code></td>
+<td>Create and switch to a new branch</td>
+</tr>
+<tr>
+<td><code>git checkout &lt;tag&gt;</code></td>
+<td>View code at a specific tag</td>
+</tr>
+<tr>
+<td><code>git checkout &lt;commit_id&gt;</code></td>
+<td>View code at a specific commit</td>
+</tr>
+<tr>
+<td><code>git config --global user.name</code></td>
+<td>Set your Git username</td>
+</tr>
+<tr>
+<td><code>git config --global user.email</code></td>
+<td>Set your Git email</td>
+</tr>
+</tbody>
+</table>
+<h2>🎤 Interview Questions</h2>
+<details>
+
+<summary>1. What is Git? How is it different from GitHub?</summary>
+
+Git is the version control tool. GitHub is a website that hosts Git repositories online.
+
+</details>
+
+<details>
+
+<summary>2. What is the difference between <code>git add</code> and <code>git commit</code>?</summary>
+
+`git add` moves changes to the staging area. `git commit` permanently saves staged changes to the local repository.
+
+</details>
+
+<details>
+
+<summary>3. What is a bare repository?</summary>
+
+A repository with no working directory. Used as a shared central server that developers push to and pull from.
+
+</details>
+
+<details>
+
+<summary>4. What is HEAD in Git?</summary>
+
+HEAD is a pointer to the current commit you are viewing. Normally it points to the latest commit on your current branch.
+
+</details>
+
+<details>
+
+<summary>5. What is detached HEAD state?</summary>
+
+When HEAD points directly to a commit or tag instead of a branch name. Any commits made in this state are temporary.
+
+</details>
+
+<details>
+
+<summary>6. Why do we use branches?</summary>
+
+To isolate features, bug fixes, and experiments from the main codebase — so different developers don't overwrite each other's work.
+
+</details>
+
+<details>
+
+<summary>7. What does <code>git status</code> tell you?</summary>
+
+It shows which files are untracked, staged, or modified since the last commit.
+
+</details>
+
+<h2>📌 Coming Up – Day 2</h2>
+<p>Today you worked entirely on your <strong>local machine</strong>.\
+Tomorrow we connect to the real world:</p>
+<ul>
+<li><code>git clone</code> — download a remote repository</li>
+<li><code>git remote</code> — link your local repo to GitHub</li>
+<li><code>git push</code> — send your commits to GitHub</li>
+<li><code>git pull</code> — get the latest changes from GitHub</li>
+<li><code>git merge</code> — combine branches together</li>
+<li><code>git diff</code> — see exactly what changed between commits</li>
+<li><strong>Resolving merge conflicts</strong> — the most important real-world skill</li>
+</ul>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../git/git-work-flow.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">git work flow</span>
+  </a>
+  <a href="../git/git-day-2.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Git Day 2</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

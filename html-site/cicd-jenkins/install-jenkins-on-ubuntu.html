@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install Jenkins on Ubuntu &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html" class="active">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🚀 CICD / Jenkins</span>
+          <span class="separator">/</span>
+          <span class="current">Install Jenkins on Ubuntu</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🚀 CICD / Jenkins Module</div>
+          <h1 class="hero-title">Install Jenkins on Ubuntu</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <div class="diagram-figure">
+  <div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/images" alt="How To Install Jenkins on Ubuntu" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">How To Install Jenkins on Ubuntu</div>
+</div>
+
+<h2>Introduction</h2>
+<p><a href="https://jenkins.io/">Jenkins</a> is an open-source <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-continuous-integration-delivery-and-deployment">CI/CD</a> automation server used to automate building, testing, and deploying applications. As a Java-based service, Jenkins runs continuously and integrates with a wide range of development and DevOps tools.</p>
+<p>In this tutorial, you will <a href="https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-22-04">install Jenkins on Ubuntu</a> using the official <a href="https://pkg.jenkins.io/debian/">Jenkins APT repository</a>, start and verify the Jenkins service, open firewall access on port <code>8080</code>, and complete the initial web-based setup by creating an administrative user. You will also learn how to troubleshoot common issues such as Java version incompatibilities, service startup failures, and port conflicts.</p>
+<p>By the end of this guide, you will have a working Jenkins installation for development and testing. Because Jenkins is not secure by default, the tutorial also highlights key security considerations to address before using Jenkins in production environments.</p>
+<p><strong>Key Takeaways:</strong></p>
+<ul>
+<li>Jenkins is a Java-based CI/CD automation server, and <a href="https://openjdk.org/projects/jdk/17/">Java 17</a> or later is required for Jenkins to install and run correctly on Ubuntu.</li>
+<li>To install the latest stable Jenkins version on Ubuntu, you should add the official Jenkins APT repository, as Ubuntu’s default repository often provides outdated releases.</li>
+<li>Jenkins runs as a <code>systemd</code> service on Ubuntu, allowing administrators to manage it easily using <code>systemctl start</code>, <code>stop</code>, <code>restart</code>, and <code>status</code>.</li>
+<li>By default, Jenkins listens on port <code>8080</code>, which must be opened in the UFW firewall to access the Jenkins web interface from a browser.</li>
+<li>During first-time setup, Jenkins must be unlocked using the initial admin password located at <code>/var/lib/jenkins/secrets/initialAdminPassword</code>.</li>
+<li>Installing the recommended Jenkins plugins during setup provides essential functionality and is the fastest way to get a <a href="https://www.digitalocean.com/solutions/cicd-pipelines">working CI/CD environment</a>.</li>
+<li>A default Jenkins installation on Ubuntu is not secure for production use and should be hardened with authentication, HTTPS via a reverse proxy, and restricted network access.</li>
+<li>Most Jenkins installation and startup issues, such as service failures, port conflicts, or inaccessible web UI can be resolved by checking Java compatibility, firewall rules, and Jenkins system logs.</li>
+</ul>
+<h3>Prerequisites</h3>
+<p>To follow this tutorial, you will need:</p>
+<ul>
+<li>One Ubuntu server configured with a non-root sudo user and firewall by following the <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04">Initial Server Setup with Ubuntu guide</a>. We recommend starting with at least 1 GB of RAM. Visit Jenkins’s “<a href="https://www.jenkins.io/doc/book/scaling/hardware-recommendations/">Hardware Recommendations</a>” for guidance in planning the capacity of a production-level Jenkins installation.</li>
+<li><a href="https://openjdk.org/projects/jdk/17/">OpenJDK 17</a> or higher installed, following our guidelines on <a href="https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-22-04#installing-specific-versions-of-openjdk">installing specific versions of OpenJDK on Ubuntu</a>.</li>
+</ul>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Installing Jenkins</h2>
+<p>The version of Jenkins available in the default Ubuntu repositories is often behind the version maintained by the Jenkins project. To install a more current and actively maintained release, add the official Jenkins repository and install Jenkins from there.</p>
+<p>Start by downloading the Jenkins repository signing key and storing it in the system keyrings directory:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo mkdir -p /etc/apt/keyrings
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+</code></pre>
+</div>
+<p>This command retrieves the Jenkins GPG key and saves it in <code>/etc/apt/keyrings</code>, which is the recommended location for repository keys on modern Ubuntu systems.</p>
+<p>Next, add the Jenkins Debian repository to your APT sources:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">echo &quot;deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]&quot; https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list &gt; /dev/null
+</code></pre>
+</div>
+<p>The <code>signed-by</code> option instructs <code>apt</code> to verify packages from this repository using the specific GPG key you downloaded earlier. This limits trust to only this repository and avoids using a system-wide key.</p>
+<p>After adding the repository, update the local package index so <code>apt</code> can recognize the new source:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo apt update
+</code></pre>
+</div>
+<p>Finally, install Jenkins and its required dependencies:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo apt install jenkins
+</code></pre>
+</div>
+<p>Once the installation completes, Jenkins is installed on the system but the service is not yet running.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Starting Jenkins</h2>
+<p>Now that Jenkins is installed, start it using <a href="https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units">systemctl</a>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl start jenkins.service
+</code></pre>
+</div>
+<p>Since <code>systemctl</code> does not display status output, use the <code>status</code> command to verify that Jenkins started successfully:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl status jenkins
+</code></pre>
+</div>
+<p>If everything went well, the beginning of the status output shows that the service is active and configured to start at boot:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">● jenkins.service - Jenkins Continuous Integration Server
+     Loaded: loaded (/usr/lib/systemd/system/jenkins.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2026-02-05 06:20:00 UTC; 29s ago
+   Main PID: 2292 (java)
+      Tasks: 50 (limit: 4655)
+     Memory: 718.8M (peak: 719.6M)
+        CPU: 27.378s
+     CGroup: /system.slice/jenkins.service
+             └─2292 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>Opening the Firewall</h2>
+<p>To set up a UFW firewall, check out <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu#step-4-%E2%80%94-setting-up-a-basic-firewall">Step 4 - Setting up a Basic Firewall</a> of our <em>Initial Server Setup with Ubuntu</em> guide. By default, Jenkins runs on port <code>8080</code>. Open that port using <code>ufw</code>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo ufw allow 8080
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>If the firewall is inactive, the following commands will allow OpenSSH and enable the firewall:</p>
+</div>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo ufw allow OpenSSH
+sudo ufw enable
+</code></pre>
+</div>
+<p>Check <code>ufw</code>’s status to confirm the new rules:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo ufw status
+</code></pre>
+</div>
+<p>You’ll notice that traffic is allowed to port <code>8080</code> from anywhere:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Status: active
+
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere
+8080                       ALLOW       Anywhere
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+8080 (v6)                  ALLOW       Anywhere (v6)
+</code></pre>
+</div>
+<p>With Jenkins installed and a firewall configured, you have completed the installation stage and can continue with configuring Jenkins.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>Setting Up Jenkins</h2>
+<p>To set up your installation, visit Jenkins on its default port, <code>8080</code>, using your server domain name or IP address: <code>http://your_server_ip_or_domain:8080</code></p>
+<p>You should receive the <strong>Unlock Jenkins</strong> screen, which displays the location of the initial password:</p>
+<div class="diagram-figure">
+<div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/images%20%281%29" alt="Unlock Jenkins screen" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Unlock Jenkins screen</div>
+</div>
+<p>In the terminal window, use the <code>cat</code> command to display the password:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+</code></pre>
+</div>
+<p>Copy the 32-character alphanumeric password from the terminal and paste it into the <strong>Administrator password</strong> field, then click <strong>Continue</strong>.</p>
+<p>The next screen presents the option of installing suggested plugins or selecting specific plugins:</p>
+<div class="diagram-figure">
+<div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/images%20%282%29" alt="Customize Jenkins Screen" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Customize Jenkins Screen</div>
+</div>
+<p>Select the <strong>Install suggested plugins</strong> option, which will immediately begin the installation process.</p>
+<div class="diagram-figure">
+<div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/images%20%283%29" alt="Jenkins Getting Started Install Plugins Screen" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Jenkins Getting Started Install Plugins Screen</div>
+</div>
+<p>When the installation is complete, you’ll be prompted to set up the first administrative user. It’s possible to skip this step and continue as <code>admin</code> using the initial password from above, but we’ll take a moment to create the user.</p>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p>The default Jenkins server is <strong>NOT</strong> encrypted, so the data submitted with this form is not protected. Refer to our article on <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-jenkins-with-ssl-using-an-nginx-reverse-proxy-on-ubuntu-22-04">How to Configure Jenkins with SSL</a> to protect user credentials and information about builds that are transmitted via the web interface.</p>
+</div>
+</div>
+<div class="diagram-figure">
+<div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/images%20%284%29" alt="Jenkins Create First Admin User Screen" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Jenkins Create First Admin User Screen</div>
+</div>
+<p>Enter the name and password for your user:</p>
+<div class="diagram-figure">
+<div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/images%20%285%29" alt="Jenkins Create User" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Jenkins Create User</div>
+</div>
+<p>You’ll receive an <strong>Instance Configuration</strong> page that will ask you to confirm the preferred URL for your Jenkins instance. Confirm either the domain name for your server or your server’s IP address:</p>
+<div class="diagram-figure">
+<div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/images%20%286%29" alt="Jenkins Instance Configuration" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Jenkins Instance Configuration</div>
+</div>
+<p>After confirming the appropriate information, click <strong>Save and Finish</strong>. You’ll receive a confirmation page confirming that <strong>“Jenkins is Ready!”</strong>:</p>
+<div class="diagram-figure">
+<div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/images%20%287%29" alt="Jenkins is ready screen" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Jenkins is ready screen</div>
+</div>
+<p>Click <strong>Start using Jenkins</strong> to visit the main Jenkins dashboard:</p>
+<div class="diagram-figure">
+<div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/images%20%288%29" alt="Welcome to Jenkins Screen" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Welcome to Jenkins Screen</div>
+</div>
+<p>At this point, you have completed a successful installation of Jenkins.</p>
+</div>
+</div>
+</div>
+<h2>Securing Jenkins</h2>
+<p>By default, a new Jenkins installation is intended for development and testing and is <strong>not hardened for production use</strong>. Before using Jenkins for real workloads or exposing it to the internet, you should apply several security measures to protect user credentials, build secrets, and source code.</p>
+<h3>Enable authentication and authorization</h3>
+<p>During the initial setup process, Jenkins prompts you to create an administrative user. You should always complete this step and avoid running Jenkins with anonymous access enabled. Authentication ensures that only authorized users can access the Jenkins dashboard and manage jobs.</p>
+<p>After completing the setup wizard, you can review and adjust security settings by navigating to <strong>Manage Jenkins</strong> and then <strong>Security</strong>. Jenkins should be configured to require users to log in before accessing any functionality.</p>
+<p>For most installations:</p>
+<ul>
+<li>Use Jenkins’s built-in user database for small teams.</li>
+<li>Assign the <strong>admin</strong> role only to trusted users.</li>
+<li>Avoid running Jenkins with unrestricted anonymous access.</li>
+</ul>
+<p>Limiting who can log in and what actions they can perform is the foundation of a secure Jenkins environment.</p>
+<h3>Protect Jenkins with HTTPS</h3>
+<p>By default, Jenkins serves traffic over plain HTTP, which means credentials and build data are transmitted unencrypted. This is acceptable only for local testing.</p>
+<p>For any remote or production use, Jenkins should be accessed over <strong>HTTPS</strong>. The recommended approach is to place Jenkins behind a reverse proxy such as <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-as-a-reverse-proxy-on-ubuntu-22-04"><strong>Nginx</strong></a> or <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-as-a-web-server-and-reverse-proxy-for-apache-on-one-ubuntu-20-04-server"><strong>Apache</strong></a>, which handles TLS termination.</p>
+<p>Using a reverse proxy allows you to:</p>
+<ul>
+<li>Encrypt traffic using TLS certificates (for example, from <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-let-s-encrypt">Let’s Encrypt</a>)</li>
+<li>Restrict access at the web server level</li>
+<li>Hide Jenkins from direct exposure on port <code>8080</code></li>
+</ul>
+<p>Once HTTPS is configured, ensure Jenkins is accessed only through the secure URL.</p>
+<h3>Restrict network access</h3>
+<p>Jenkins should not be publicly accessible unless absolutely necessary. Network-level restrictions provide an additional layer of security beyond authentication.</p>
+<p>At the firewall level:</p>
+<ul>
+<li>Allow access to Jenkins only from trusted IP addresses or internal networks.</li>
+<li>Avoid opening port <code>8080</code> to the entire internet when possible.</li>
+</ul>
+<p>If Jenkins must be exposed publicly, combine firewall restrictions with HTTPS and strong authentication to reduce risk. Limiting network access helps prevent unauthorized users from even reaching the Jenkins login page.</p>
+<h3>Keep Jenkins and plugins up to date</h3>
+<p>Security vulnerabilities are frequently discovered and patched in Jenkins core and its plugins. Keeping Jenkins and its plugins up to date is essential to maintaining a secure installation.</p>
+<p>To reduce exposure:</p>
+<ul>
+<li>Regularly update Jenkins to the latest supported release.</li>
+<li>Review installed plugins and remove any that are unused.</li>
+<li>Keep plugins updated, as outdated plugins are a common source of security issues.</li>
+</ul>
+<p>Updates can be managed from <strong>Manage Jenkins -&gt; Plugins</strong>.</p>
+<h3>Secure credentials and secrets</h3>
+<p>Jenkins often stores sensitive information such as:</p>
+<ul>
+<li>API tokens</li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server">SSH keys</a></li>
+<li>Cloud provider credentials</li>
+</ul>
+<p>Always store secrets using Jenkins’s <strong>Credentials</strong> system rather than hard-coding them in pipeline scripts or configuration files.</p>
+<p>Limit credential scope so that:</p>
+<ul>
+<li>Jobs can access only the credentials they need.</li>
+<li>Sensitive secrets are not exposed in build logs.</li>
+</ul>
+<h3>Run Jenkins with least privilege</h3>
+<p>Jenkins should run as its dedicated <code>jenkins</code> user, not as <code>root</code>. This limits the damage if Jenkins or a plugin is compromised.</p>
+<p>Ensure that:</p>
+<ul>
+<li>Jenkins owns its home directory (<code>/var/lib/jenkins</code>).</li>
+<li>File permissions do not allow unnecessary write access by other users.</li>
+</ul>
+<p>Avoid granting sudo privileges to the Jenkins user unless absolutely required.</p>
+<h3>Monitor logs and audit activity</h3>
+<p>Regularly reviewing logs helps detect misconfigurations or suspicious activity.</p>
+<p>Useful locations include:</p>
+<ul>
+<li>Jenkins system logs (available from the Jenkins UI)</li>
+<li>System logs via <code>journalctl -u jenkins</code></li>
+</ul>
+<p>Enable logging and auditing features as your environment grows, especially for production deployments.</p>
+<h3>Plan for backups and recovery</h3>
+<p>A secure Jenkins setup also includes recovery planning.</p>
+<p>You should regularly back up:</p>
+<ul>
+<li>The Jenkins home directory</li>
+<li>Job configurations</li>
+<li>Credentials and plugin configurations</li>
+</ul>
+<p>Backups ensure that you can recover quickly from security incidents, system failures, or accidental misconfigurations.</p>
+<p>Securing Jenkins is an ongoing process rather than a one-time task. By enabling authentication, encrypting traffic, restricting access, and keeping Jenkins up to date, you significantly reduce the risk of unauthorized access and data exposure.</p>
+<h2>Common Installation Issues and Fixes</h2>
+<p>While installing and setting up <a href="https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-22-04">Jenkins on Ubuntu</a> is usually straightforward, some common issues can prevent the service from starting correctly or make the web interface inaccessible. Let’s look at how to identify and resolve those problems.</p>
+<h3>Jenkins fails to start after installation</h3>
+<p>If Jenkins does not start after installation, the most common cause is an unsupported or missing Java version. Jenkins requires <strong>Java 17 or newer</strong>, and the service will fail if Java is not available or is too old.</p>
+<p>To check the Jenkins service status, run:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl status jenkins
+</code></pre>
+</div>
+<p>If the service is in a failed state, inspect the logs for more details:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo journalctl -u jenkins --no-pager
+</code></pre>
+</div>
+<p>Look for errors related to Java, such as <code>"Unsupported class version"</code> or <code>"java: command not found"</code>. Verify the installed Java version with:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">java -version
+</code></pre>
+</div>
+<p>If Java is missing or outdated, install a supported version and restart Jenkins:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl restart jenkins
+</code></pre>
+</div>
+<h3>Jenkins is running but the web interface is not accessible</h3>
+<p>If Jenkins appears to be running but you cannot access it in a browser, first confirm that it is listening on its default port (<code>8080</code>):</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ss -ltnp | grep 8080
+</code></pre>
+</div>
+<p>If Jenkins is not listening on this port, it may not have started correctly, or it may be configured to use a different port.</p>
+<p>Next, check the firewall status:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo ufw status
+</code></pre>
+</div>
+<p>Ensure that port <code>8080</code> is allowed. If it is not, allow traffic on that port:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo ufw allow 8080
+</code></pre>
+</div>
+<p>You can also test local access directly from the server:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">curl http://localhost:8080
+</code></pre>
+</div>
+<p>If this works locally but not from your browser, the issue is likely related to firewall rules, network configuration, or the server’s public IP or DNS settings.</p>
+<h3>Port 8080 is already in use</h3>
+<p>Jenkins uses port <code>8080</code> by default. If another service is already using this port, Jenkins will fail to start.</p>
+<p>To check which process is using port <code>8080</code>, run:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ss -ltnp | grep 8080
+</code></pre>
+</div>
+<p>If another service is bound to this port, you can either stop that service or change the port Jenkins uses. To change the Jenkins port, edit the default configuration file:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo nano /etc/default/jenkins
+</code></pre>
+</div>
+<p>Locate the following line:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">HTTP_PORT=8080
+</code></pre>
+</div>
+<p>Change the port number, save the file, and restart Jenkins:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl restart jenkins
+</code></pre>
+</div>
+<h3>Jenkins service starts and then stops immediately</h3>
+<p>If Jenkins starts and then exits shortly afterward, this is often caused by insufficient system resources or configuration errors.</p>
+<p>Check the logs to confirm the cause:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo journalctl -u jenkins --no-pager
+</code></pre>
+</div>
+<p>Common reasons include:</p>
+<ul>
+<li>Not enough available memory on the server</li>
+<li>Java version incompatibility</li>
+<li>File permission issues in <code>/var/lib/jenkins</code></li>
+</ul>
+<p>Ensure the system meets minimum memory requirements and that Jenkins owns its data directory:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo chown -R jenkins:jenkins /var/lib/jenkins
+</code></pre>
+</div>
+<p>Restart the service after making any changes.</p>
+<h3>Initial admin password file not found</h3>
+<p>During the first-time setup, Jenkins displays a prompt asking for the initial admin password. If the file cannot be found, Jenkins may not have completed its startup process.</p>
+<p>Verify that Jenkins is running:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl status jenkins
+</code></pre>
+</div>
+<p>Once the service is active, retrieve the password again:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+</code></pre>
+</div>
+<p>If the file still does not exist, check the logs to ensure Jenkins completed initialization successfully.</p>
+<h2>FAQs</h2>
+<details>
+
+<summary>What Java version is required for Jenkins on Ubuntu?</summary>
+
+Jenkins requires **Java 17 or newer** for current releases. Official documentation lists **Java 17 and Java 21** as supported runtime versions for the Jenkins controller. Running with an older or unsupported Java will cause Jenkins not to start.
+
+Supported versions for modern Jenkins releases:
+
+* **Java 17 (OpenJDK 17)**: Recommended for maximum stability and plugin compatibility
+* **Java 21 (OpenJDK 21)**: Fully supported and the default on Ubuntu 24.04
+
+On Ubuntu 24.04, installing `default-jdk` gives you **OpenJDK 21** by default, which is acceptable for Jenkins. You can verify your Java version with:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">java -version
+</code></pre>
+</div>
+
+
+If Java is older than version 17, Jenkins will fail to start.
+
+</details>
+
+<details>
+
+<summary>Can Jenkins run without Java installed?</summary>
+
+No. Jenkins is a **Java-based application**, and a compatible JVM is required to run the Jenkins server process. If Java is not installed _before_ Jenkins, the service will fail to start. Official install guidance explicitly recommends installing Java before Jenkins to avoid startup errors.
+
+</details>
+
+<details>
+
+<summary>How do I start and stop the Jenkins service?</summary>
+
+Jenkins on Ubuntu uses `systemd` for service management. You can control the service with standard `systemctl` commands:
+
+*   Start Jenkins:
+
+    ```bash
+    sudo systemctl start jenkins
+    ```
+*   Stop Jenkins:
+
+    ```bash
+    sudo systemctl stop jenkins
+    ```
+*   Restart Jenkins:
+
+    ```bash
+    sudo systemctl restart jenkins
+    ```
+*   Check the service status:
+
+    ```bash
+    sudo systemctl status jenkins
+    ```
+
+</details>
+
+<details>
+
+<summary>What port does Jenkins use by default?</summary>
+
+By default, Jenkins listens on **TCP port `8080`**.
+
+You can confirm this with:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ss -ltnp | grep 8080
+</code></pre>
+</div>
+
+
+If port `8080` is already in use, Jenkins will fail to start unless you change the port in:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">/etc/default/jenkins
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>How do I reset the Jenkins admin password?</summary>
+
+To reset the initial admin password, retrieve it from the Jenkins secrets directory:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+</code></pre>
+</div>
+
+
+If you’ve already completed setup and lost access:
+
+
+<div class="stepper-container" markdown="1">
+
+
+<div class="step-card" markdown="1">
+<div class="step-badge">5</div>
+<div class="step-content" markdown="1">
+
+## Stop Jenkins
+
+</div>
+</div>
+
+
+
+<div class="step-card" markdown="1">
+<div class="step-badge">6</div>
+<div class="step-content" markdown="1">
+
+## Use the Jenkins script console or disable security temporarily by editing
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">/var/lib/jenkins/config.xml
+</code></pre>
+</div>
+
+
+</div>
+</div>
+
+
+
+<div class="step-card" markdown="1">
+<div class="step-badge">7</div>
+<div class="step-content" markdown="1">
+
+## Restart Jenkins and create a new admin user
+
+</div>
+</div>
+
+
+</div>
+
+
+
+<div class="callout callout-warning" markdown="1">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body" markdown="1">
+
+This process grants full access. Always re-enable security immediately after recovery.
+
+</div>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>How do I uninstall Jenkins from Ubuntu?</summary>
+
+
+<div class="stepper-container" markdown="1">
+
+
+<div class="step-card" markdown="1">
+<div class="step-badge">8</div>
+<div class="step-content" markdown="1">
+
+## Stop the Jenkins service
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl stop jenkins
+</code></pre>
+</div>
+
+
+</div>
+</div>
+
+
+
+<div class="step-card" markdown="1">
+<div class="step-badge">9</div>
+<div class="step-content" markdown="1">
+
+## Remove the Jenkins package
+
+
+<div class="tabs-container" markdown="1">
+<div class="tabs-nav"><button class="tab-btn active">apt</button><button class="tab-btn">apt-get</button></div>
+
+<div class="tab-panel active" markdown="1">
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo apt remove --purge jenkins
+</code></pre>
+</div>
+
+
+</div>
+
+<div class="tab-panel" markdown="1">
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo apt-get remove --purge jenkins
+</code></pre>
+</div>
+
+
+</div>
+
+</div>
+
+
+The `--purge` option removes configuration files too.
+
+</div>
+</div>
+
+
+
+<div class="step-card" markdown="1">
+<div class="step-badge">10</div>
+<div class="step-content" markdown="1">
+
+## Optionally remove Jenkins data
+
+If you want to fully delete Jenkins settings, jobs, plugins, etc.:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo rm -rf /var/lib/jenkins
+</code></pre>
+</div>
+
+
+You may also remove the Jenkins user/group and repository files if desired:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo rm /etc/apt/sources.list.d/jenkins.list
+sudo rm /etc/apt/keyrings/jenkins-keyring.asc
+sudo apt update
+</code></pre>
+</div>
+
+
+</div>
+</div>
+
+
+</div>
+
+
+This ensures that Jenkins, its configuration files, and stored data are fully removed.
+
+</details>
+
+<h2>Conclusion</h2>
+<p>In this tutorial, you installed Jenkins on Ubuntu, started and verified the Jenkins service, configured firewall access, and completed the initial web-based setup. You also learned how to identify and resolve common installation issues related to Java versions, service startup failures, and port conflicts.</p>
+<p>At this point, you have a fully functional Jenkins installation for development and testing. Because Jenkins is not secure by default, you should apply additional hardening, such as enabling authentication, configuring HTTPS with a reverse proxy, restricting network access, and keeping Jenkins and plugins up to date before using it in production.</p>
+<p>With Jenkins installed and running, you can begin creating jobs, pipelines, and automation workflows to support your CI/CD processes.</p>
+<p>To learn more about what you can do using Jenkins, check out other tutorials on the subject:</p>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-build-android-apps-with-jenkins">How to Build Android Apps with Jenkins</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-continuous-integration-pipelines-in-jenkins-on-ubuntu-16-04">How To Set Up Continuous Integration Pipelines in Jenkins on Ubuntu 16.04</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-jenkins-with-ssl-using-an-nginx-reverse-proxy-on-ubuntu-22-04">How to Configure Jenkins with SSL Using an Nginx Reverse Proxy on Ubuntu 22.04</a></li>
+</ul>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../cicd-jenkins/cicd-flow.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">cicd flow</span>
+  </a>
+  <a href="../cicd-jenkins/system-configuration.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">system configuration</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

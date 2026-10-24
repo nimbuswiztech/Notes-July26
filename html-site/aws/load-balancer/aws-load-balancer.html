@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Load balancer &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../README.html">Infra Setup</a></li>
+    <li><a href="../../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../linux/README.html">Linux</a></li>
+    <li><a href="../../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../../linux/day1.html">day1</a></li>
+    <li><a href="../../linux/day-2.html">day 2</a></li>
+    <li><a href="../../linux/day-3.html">Day 3</a></li>
+    <li><a href="../../linux/day-4.html">Day 4</a></li>
+    <li><a href="../../linux/day-5.html">Day 5</a></li>
+    <li><a href="../../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../git/README.html">Git</a></li>
+    <li><a href="../../git/git.html">git</a></li>
+    <li><a href="../../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../../git/git-version-control.html">git version control</a></li>
+    <li><a href="../../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../../git/git-and-github.html">git and github</a></li>
+    <li><a href="../../git/git-reset.html">git reset</a></li>
+    <li><a href="../../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../../git/git-revert.html">git revert</a></li>
+    <li><a href="../../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../../git/git-squash.html">git squash</a></li>
+    <li><a href="../../git/git-stash.html">git stash</a></li>
+    <li><a href="../../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../aws/README.html">AWS</a></li>
+    <li><a href="../../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../../aws/s3/README.html">S3</a></li>
+    <li><a href="../../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancer.html" class="active">AWS Load balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../../aws/iam/README.html">IAM</a></li>
+    <li><a href="../../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../../aws/asg.html">ASG</a></li>
+    <li><a href="../../aws/stress-test.html">stress test</a></li>
+    <li><a href="../../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../../aws/kms.html">KMS</a></li>
+    <li><a href="../../aws/iac.html">IAC</a></li>
+    <li><a href="../../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../../aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../docker/README.html">Docker</a></li>
+    <li><a href="../../docker/docker.html">docker</a></li>
+    <li><a href="../../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">AWS Load balancer</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">AWS Load balancer</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h3>Definition <a href="#fb20" id="fb20"></a></h3>
+<p><strong>Load Balancing</strong> is the process of <strong>distributing incoming traffic evenly</strong> across multiple servers (e.g., EC2 instances) to ensure:</p>
+<ul>
+<li>High availability</li>
+<li>Fault tolerance</li>
+<li>Better performance</li>
+<li>Scalability</li>
+</ul>
+<p>In AWS, this is done using the <strong>Elastic Load Balancer (ELB)</strong> service.</p>
+<h3>🧠 Analogy <a href="#id-8d29" id="id-8d29"></a></h3>
+<p>Imagine a call center with <strong>three agents (EC2 instances)</strong> and one <strong>receptionist (Load Balancer)</strong>.\
+The receptionist sends each incoming call to the <strong>least busy agent</strong> — so no single agent gets overwhelmed.</p>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/1*dO12_2C6CMh5uugSB5NTXQ.png" alt="" height="337" width="700"><figcaption><p><strong>Fig1 : Analogy</strong></p></figcaption></figure>
+
+<h3>🧩 How It Works <a href="#id-9d4d" id="id-9d4d"></a></h3>
+<ol>
+<li>Users send requests (e.g., website hits, API calls).</li>
+<li>The <strong>Elastic Load Balancer</strong> receives the requests.</li>
+<li>It <strong>distributes traffic</strong> to multiple healthy <strong>EC2 instances</strong> behind it.</li>
+<li>If one instance becomes unhealthy, ELB automatically <strong>stops routing traffic</strong> to it.</li>
+</ol>
+<figure><img src="https://miro.medium.com/v2/resize:fit:684/1*zj9IRSyrhEy9ET_R3uJLuA.png" alt="" height="576" width="684"><figcaption><p><strong>Fig2 :Load Balancer Workflow</strong></p></figcaption></figure>
+
+<h3>⚖️ Why Use a Load Balancer (ELB)? <a href="#id-37f3" id="id-37f3"></a></h3>
+<p>A <strong>Load Balancer</strong> improves <strong>availability</strong>, <strong>security</strong>, and <strong>scalability</strong> by intelligently routing traffic across multiple EC2 instances or targets.</p>
+<h4>1️⃣ Distribute Workload Evenly <a href="#id-00ad" id="id-00ad"></a></h4>
+<ul>
+<li><strong>Spread load across multiple downstream instances</strong>\
+  → Prevents overloading one server and ensures better response time.\
+  ✅ Example: 4 EC2 instances behind one ALB handle 4× more requests efficiently.</li>
+</ul>
+<h4>2️⃣ Single Point of Access (DNS Entry) <a href="#id-3cfc" id="id-3cfc"></a></h4>
+<ul>
+<li>The ELB provides a <strong>single DNS name</strong> (e.g., <code>myapp-123.elb.amazonaws.com</code>)\
+  → Users always connect through this endpoint, regardless of backend instance changes.\
+  ✅ Simplifies management and failover.</li>
+</ul>
+<h4>3️⃣ High Availability <a href="#ba13" id="ba13"></a></h4>
+<ul>
+<li><strong>Multi-AZ Load Balancers</strong> ensure <strong>uptime even if one AZ fails</strong>.\
+  → Traffic automatically shifts to healthy targets in another AZ.</li>
+</ul>
+<h4>4️⃣ Fault Tolerance via Health Checks <a href="#id-4803" id="id-4803"></a></h4>
+<ul>
+<li>Performs <strong>regular health checks</strong> on downstream EC2 instances.\
+  → Automatically removes unhealthy targets until they recover.</li>
+</ul>
+<h4>5️⃣ Security &amp; HTTPS Offloading <a href="#id-1584" id="id-1584"></a></h4>
+<ul>
+<li><strong>SSL/TLS termination</strong> at the Load Balancer level (HTTPS support).\
+  → Frees backend servers from the CPU-intensive SSL decryption workload.\
+  ✅ Easier certificate management (ACM integration).</li>
+</ul>
+<h4>6️⃣ Session Stickiness <a href="#bcbc" id="bcbc"></a></h4>
+<ul>
+<li>Can <strong>enforce stickiness with cookies</strong> — routes a user’s requests to the same backend instance.\
+  → Useful for <strong>stateful applications</strong> (e.g., shopping carts, user sessions).</li>
+</ul>
+<h4>7️⃣ Traffic Segregation <a href="#d595" id="d595"></a></h4>
+<ul>
+<li>Can <strong>separate public vs private traffic</strong>\
+  → Example: Public ALB for web users, internal NLB for backend microservice calls.</li>
+</ul>
+<figure><img src="https://miro.medium.com/v2/resize:fit:608/1*Ohi6NoBglQFASG64KcsAvQ.png" alt="" height="1073" width="608"><figcaption><p><strong>Fig3: Benefits of using Load Balancer</strong></p></figcaption></figure>
+
+<h3><strong>AWS Load Balancer Types</strong> <a href="#eb56" id="eb56"></a></h3>
+<h4><strong>1. Application Load Balancer (ALB)</strong> <a href="#b4a6" id="b4a6"></a></h4>
+<ul>
+<li><strong>Layer:</strong> Operates at Layer 7 of the OSI model, the application layer.</li>
+<li><strong>Use Case:</strong> Ideal for routing HTTP and HTTPS traffic to web applications and microservices. It supports advanced routing rules based on content, hostnames, and paths.</li>
+<li><strong>Details:</strong> ALBs are designed for modern application architectures, providing features like content-based routing, support for containerized applications, and integration with AWS services like AWS Certificate Manager (ACM) for SSL/TLS termination. They are highly scalable and can handle complex routing scenarios.</li>
+</ul>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/1*nLJJbtcyc02bSAapg4qhHQ.png" alt="" height="540" width="700"><figcaption><p><strong>Fig4: Application Load Balancer</strong></p></figcaption></figure>
+
+<h4><strong>2. Network Load Balancer (NLB)</strong> <a href="#id-340e" id="id-340e"></a></h4>
+<ul>
+<li><strong>Layer:</strong> Operates at Layer 4 of the OSI model, the transport layer.</li>
+<li><strong>Use Case:</strong> Best suited for high-performance applications that require low latency and can handle TCP and UDP traffic.</li>
+<li><strong>Details:</strong> NLBs are designed to handle millions of requests per second while maintaining ultra-low latencies. They are ideal for applications like gaming, VoIP, and IoT where performance is critical. NLBs support static IP addresses per Availability Zone and can handle sudden traffic spikes.</li>
+</ul>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/1*8IInGWRrVolEsUyypFCkkw.png" alt="" height="648" width="700"><figcaption><p><strong>Fig5: Network Load Balancer</strong></p></figcaption></figure>
+
+<h4><strong>3. Gateway Load Balancer (GWLB)</strong> <a href="#id-3e51" id="id-3e51"></a></h4>
+<ul>
+<li><strong>Layer:</strong> Operates at Layer 3 of the OSI model, the network layer.</li>
+<li><strong>Use Case:</strong> Designed for deploying and managing network appliances such as firewalls, intrusion detection and prevention systems (IDS/IPS), and deep packet inspection (DPI) systems.</li>
+<li><strong>Details:</strong> GWLBs simplify the deployment of third-party network appliances by providing a single entry point for traffic. They support GENEVE encapsulation and can handle high volumes of traffic while maintaining security and compliance. GWLBs are particularly useful in environments where network security is paramount.</li>
+</ul>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/1*LQ_S5joWLIBWJXP0EwdaBA.png" alt="" height="530" width="700"><figcaption><p><strong>Fig5:Gateway Load Balancer</strong></p></figcaption></figure>
+
+<h4><strong>4. Classic Load Balancer (CLB)</strong> <a href="#a9c4" id="a9c4"></a></h4>
+<ul>
+<li><strong>Layer:</strong> Considered a legacy load balancer type.</li>
+<li><strong>Use Case:</strong> Primarily used in older EC2 environments. It is recommended to migrate to ALBs or NLBs for new designs.</li>
+<li><strong>Details:</strong> CLBs support both Layer 4 and Layer 7 traffic but lack the advanced features and performance of ALBs and NLBs. They are less flexible and scalable compared to the newer load balancer types. AWS recommends migrating from CLBs to ALBs or NLBs to take advantage of the latest features and improvements.</li>
+</ul>
+<figure><img src="https://miro.medium.com/v2/resize:fit:602/1*-0btXojU67RrEpnsTGNf7A.png" alt="" height="530" width="602"><figcaption><p><strong>Fig6 : Migrate to new Load Balancer for Enhanced Performance</strong></p></figcaption></figure>
+
+<p><strong>Conclusion:</strong></p>
+<p>Choosing the right AWS Load Balancer type is crucial for optimizing application performance, scalability, and security. ALBs are ideal for web applications and microservices, NLBs for high-performance TCP/UDP applications, GWLBs for network appliances, and CLBs are best avoided for new deployments. By understanding the OSI layer and use case of each load balancer, architects and developers can make informed decisions that align with their specific requirements.</p>
+<p>Thanks for reading!\
+If you found this article helpful, consider leaving a 👏 clap, 💬 comment, or 🔔 follow — it really helps others discover it too!</p>
+<p>🚀 Follow me for more hands-on content on AWS, Cloud Architecture, and Java backend development.</p>
+<p>🔜 Coming in Part 2: Real-Time AWS Architecture Scenarios\
+👉 We’ll dive into Auto Scaling, Cross-AZ load balancing, and how ELBs integrate with EC2, ECS, and Route 53 in production setups.</p>
+<p>📬 Hit “Follow” to get notified the moment it’s live — packed with practical visuals and architecture insights you can apply right away.</p>
+<p>✍️ Written by **Sreenivasulu Urimindi**\
+📌 Java | AWS | Cloud &amp; Backend Engineer | OCAJP Certified</p>
+<p>1</p>
+<p><a href="https://medium.com/@usreenivasulu47?source=post_page---post_author_info--30016f3e9347---------------------------------------">Written by Usreenivasulu</a><a href="https://medium.com/@usreenivasulu47/followers?source=post_page---post_author_info--30016f3e9347---------------------------------------">30 followers</a>·<a href="https://medium.com/@usreenivasulu47/following?source=post_page---post_author_info--30016f3e9347---------------------------------------">501 following</a></p>
+<p>Full‑Stack Java Developer specializing in Spring Boot, Microservices &amp; Cloud‑Native Architecture • Oracle OCAJP &amp; AWS SAA‑C03 Certified</p>
+<p>Follow</p>
+<h3>No responses yet</h3>
+<p><img src="https://miro.medium.com/v2/resize:fill:32:32/0*GlYOg9oFMcnml2BU" alt="Nimbuswiztech" height="32" width="32"></p>
+<p>Nimbuswiztech</p>
+<p>﻿<br></p>
+<p>CancelRespond<a href="https://help.medium.com/hc/en-us?source=post_page-----30016f3e9347---------------------------------------">Help</a><a href="https://status.medium.com/?source=post_page-----30016f3e9347---------------------------------------">Status</a><a href="https://medium.com/about?autoplay=1\&amp;source=post_page-----30016f3e9347---------------------------------------">About</a><a href="https://medium.com/jobs-at-medium/work-at-medium-959d1a85284e?source=post_page-----30016f3e9347---------------------------------------">Careers</a><a href="mailto:pressinquiries@medium.com">Press</a><a href="https://blog.medium.com/?source=post_page-----30016f3e9347---------------------------------------">Blog</a><a href="https://medium.com/store">Store</a><a href="https://policy.medium.com/medium-privacy-policy-f03bf92035c9?source=post_page-----30016f3e9347---------------------------------------">Privacy</a><a href="https://policy.medium.com/medium-rules-30e5502c4eb4?source=post_page-----30016f3e9347---------------------------------------">Rules</a><a href="https://policy.medium.com/medium-terms-of-service-9db0094a1e0f?source=post_page-----30016f3e9347---------------------------------------">Terms</a><a href="https://speechify.com/medium?source=post_page-----30016f3e9347---------------------------------------">Text to speech</a></p>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../../aws/load-balancer/README.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">Load Balancer</span>
+  </a>
+  <a href="../../aws/load-balancer/aws-load-balancers-explained.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">AWS Load Balancers Explained</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/main.js?v=2"></script>
+</body>
+</html>

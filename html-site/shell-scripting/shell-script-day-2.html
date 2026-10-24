@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shell Script Day 2 &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html" class="active">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>💻 Shell Scripting</span>
+          <span class="separator">/</span>
+          <span class="current">Shell Script Day 2</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">💻 Shell Scripting Module</div>
+          <h1 class="hero-title">Shell Script Day 2</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+<div class="diagram-figure" style="margin-top: 1.5rem; margin-bottom: 2.5rem; border: 2px solid var(--border-highlight); box-shadow: 0 0 35px var(--accent-cyan-glow);">
+  <div class="diagram-badge" style="background: linear-gradient(90deg, rgba(6,182,212,0.25), rgba(59,130,246,0.25)); font-size: 0.85rem;">
+    ⭐ FEATURED ARCHITECTURAL BLUEPRINT &bull; Bash Automation Patterns
+  </div>
+  <img src="../assets/images/shell-scripting-automation.jpg" alt="Bash Automation Patterns" class="diagram-img" loading="eager">
+  <div class="diagram-caption" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+    Advanced Bash Scripting, Control Loops and Automated Error Handling
+  </div>
+</div>
+
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Duration: 2 Hours | DevOps Batch</h2>
+<h2>What You Will Learn Today</h2>
+<ul>
+<li>How to use <code>for</code> and <code>while</code> loops</li>
+<li>How to take user input using <code>read</code></li>
+<li>How to do arithmetic using <code>expr</code></li>
+<li>How to check file types using <code>-f</code>, <code>-d</code>, <code>-L</code></li>
+<li>How to write real-world production scripts</li>
+<li>How to schedule scripts using <strong>Cron Jobs</strong></li>
+</ul>
+<h2>Day 1 Recap — Quick Check</h2>
+<p>Before we start, make sure you are confident with:</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shebang</td>
+<td><code>#!/bin/bash</code></td>
+</tr>
+<tr>
+<td>Run script</td>
+<td><code>./script.sh</code></td>
+</tr>
+<tr>
+<td>Positional argument</td>
+<td><code>$1</code>, <code>$2</code></td>
+</tr>
+<tr>
+<td>Define variable</td>
+<td><code>name="value"</code></td>
+</tr>
+<tr>
+<td>If-else</td>
+<td><code>if [ condition ]; then ... else ... fi</code></td>
+</tr>
+<tr>
+<td>Comparison</td>
+<td><code>-eq</code> <code>-ne</code> <code>-lt</code> <code>-gt</code> <code>-le</code> <code>-ge</code></td>
+</tr>
+<tr>
+<td>Argument count</td>
+<td><code>$#</code></td>
+</tr>
+<tr>
+<td>Exit status</td>
+<td><code>$?</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Today's Schedule</h2>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0:00 – 0:10</td>
+<td>Day 1 assignment review</td>
+</tr>
+<tr>
+<td>0:10 – 0:30</td>
+<td><code>for</code> loop</td>
+</tr>
+<tr>
+<td>0:30 – 0:55</td>
+<td><code>while</code> loop + <code>expr</code> arithmetic</td>
+</tr>
+<tr>
+<td>0:55 – 1:15</td>
+<td><code>read</code> command + file type checks</td>
+</tr>
+<tr>
+<td>1:15 – 1:35</td>
+<td>Real-world scripts</td>
+</tr>
+<tr>
+<td>1:35 – 1:50</td>
+<td>Cron Jobs</td>
+</tr>
+<tr>
+<td>1:50 – 2:00</td>
+<td>Assignments &amp; Recap</td>
+</tr>
+</tbody>
+</table>
+<h2>Part 1 – <code>for</code> Loop</h2>
+<h3>Syntax</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">for i in List
+do
+    commands
+done
+</code></pre>
+</div>
+<ul>
+<li>Runs the block <strong>once for each item</strong> in the list</li>
+<li><code>i</code> stores the current item on each iteration</li>
+</ul>
+<h3>Example 1 – Loop Over Names</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+for i in Alice Bob Charlie
+do
+    echo &quot;Hello $i&quot;
+done
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">Hello Alice
+Hello Bob
+Hello Charlie
+</code></pre>
+</div>
+<h3>Example 2 – Loop Over Numbers</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+for i in 1 2 3 4 5
+do
+    echo &quot;Number: $i&quot;
+done
+</code></pre>
+</div>
+<h3>Example 3 – Sum All Arguments Using <code>$*</code></h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+sum=0
+for i in $*
+do
+    sum=`expr $sum + $i`
+done
+echo &quot;Sum = $sum&quot;
+</code></pre>
+</div>
+<p><strong>Run it:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">./sum.sh 10 20 30 40
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">Sum = 100
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><code>$*</code> gives all arguments. The <code>for</code> loop picks them one by one.\
+<code>expr</code> performs integer arithmetic using backtick evaluation.</p>
+</div>
+</div>
+<h3>Example 4 – Loop Over Services</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+for service in nginx apache2 mysql
+do
+    echo &quot;Checking: $service&quot;
+done
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>This pattern is used in real service monitoring scripts — you will write one later today.</p>
+</div>
+</div>
+<h2>Part 2 – <code>while</code> Loop + <code>expr</code> Arithmetic</h2>
+<h3>Syntax</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">while [ condition ]
+do
+    commands
+done
+</code></pre>
+</div>
+<ul>
+<li>Keeps running <strong>as long as the condition is true</strong></li>
+<li>Best used when the number of iterations is not known in advance</li>
+</ul>
+<h3><code>expr</code> – Arithmetic in Bash</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">result=`expr $a + $b`    # Addition
+result=`expr $a - $b`    # Subtraction
+result=`expr $a \* $b`   # Multiplication  ← escape the *
+result=`expr $a / $b`     # Division
+</code></pre>
+</div>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p>Always wrap <code>expr</code> in backticks <code>`</code>.\
+For multiplication, write <code>\*</code> not <code>*</code> — the <code>*</code> must be escaped in shell.</p>
+</div>
+</div>
+<h3>Factorial Script Using <code>while</code></h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+num=$1
+fact=1
+while [ $num -gt 0 ]
+do
+    fact=`expr $fact \* $num`
+    num=`expr $num - 1`
+done
+echo &quot;The factorial of $1 is $fact&quot;
+</code></pre>
+</div>
+<p><strong>Run it:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">./factorial.sh 5
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">The factorial of 5 is 120
+</code></pre>
+</div>
+<p><strong>Step-by-step trace:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Iteration</th>
+<th><code>num</code></th>
+<th><code>fact</code> calculation</th>
+<th><code>fact</code> result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5</td>
+<td>1 × 5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>5 × 4</td>
+<td>20</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>20 × 3</td>
+<td>60</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>60 × 2</td>
+<td>120</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>120 × 1</td>
+<td>120</td>
+</tr>
+<tr>
+<td>Exit</td>
+<td>0</td>
+<td>condition is false</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3>Calculator Script (using <code>read</code> + <code>expr</code>)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+echo &quot;Enter Num1:&quot;
+read num1
+echo &quot;Enter Num2:&quot;
+read num2
+
+add=`expr $num1 + $num2`
+mul=`expr $num1 \* $num2`
+
+if [ $num1 -gt $num2 ]
+then
+    sub=`expr $num1 - $num2`
+    div=`expr $num1 / $num2`
+else
+    sub=`expr $num2 - $num1`
+    div=`expr $num2 / $num1`
+fi
+
+echo &quot;Addition       = $add&quot;
+echo &quot;Subtraction    = $sub&quot;
+echo &quot;Multiplication = $mul&quot;
+echo &quot;Division       = $div&quot;
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><code>read</code> pauses the script and waits for you to type a value, then stores it in the variable.</p>
+</div>
+</div>
+<h2>Part 3 – <code>read</code> Command + File Type Checks</h2>
+<h3><code>read</code> Command</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">read variable_name
+</code></pre>
+</div>
+<p>Pauses the script and stores whatever the user types into <code>variable_name</code>.</p>
+<h3>File Test Flags</h3>
+<p>Use these inside <code>if</code> conditions to check what type of path something is:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-f</code></td>
+<td>Is it a regular file?</td>
+</tr>
+<tr>
+<td><code>-d</code></td>
+<td>Is it a directory?</td>
+</tr>
+<tr>
+<td><code>-L</code></td>
+<td>Is it a symbolic link?</td>
+</tr>
+</tbody>
+</table>
+<h3>File, Directory, or Link Check</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+echo &quot;Enter the name to check:&quot;
+read name
+
+if [ -f $name ]
+then
+    echo &quot;The contents of $name are:&quot;
+    cat $name
+    echo &quot;Number of lines = `wc -l $name`&quot;
+elif [ -d $name ]
+then
+    echo &quot;List of files and directories in $name:&quot;
+    ls $name
+elif [ -L $name ]
+then
+    echo &quot;$name is a symbolic link&quot;
+else
+    echo &quot;$name does not exist&quot;
+fi
+</code></pre>
+</div>
+<p><strong>Run it:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">./checktype.sh
+</code></pre>
+</div>
+<p>Try entering: <code>/etc/passwd</code> (file), <code>/etc</code> (directory), or any name that doesn't exist.</p>
+<h3>Biggest of 3 Numbers</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+if [ $1 -gt $2 ] &amp;&amp; [ $1 -gt $3 ]
+then
+    echo &quot;$1 is big&quot;
+elif [ $2 -gt $3 ]
+then
+    echo &quot;$2 is big&quot;
+else
+    echo &quot;$3 is big&quot;
+fi
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><code>&amp;&amp;</code> means <strong>AND</strong> — both conditions on either side must be true.</p>
+</div>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">./biggest3.sh 10 45 30
+# Output: 45 is big
+</code></pre>
+</div>
+<h2>Part 4 – Real-World Scripts</h2>
+<h3>Script 1 – Disk Space Monitor</h3>
+<p>This type of script is run automatically every hour in production environments.\
+If disk usage crosses 90%, it sends an alert email.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+space=`df -h . | tail -1 | awk -F &quot; &quot; '{print $5}' | sed 's/%//g'`
+if [ $space -ge 90 ]
+then
+    echo &quot;Disk is full, Please take appropriate action.&quot; | mail -s &quot;Disk memory full&quot; admin@company.com
+fi
+</code></pre>
+</div>
+<p><strong>How the pipeline works — step by step:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>df -h .</code></td>
+<td>Show disk usage of current directory</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>tail -1</code></td>
+<td>Keep only the last data line</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>awk -F " " '{print $5}'</code></td>
+<td>Extract column 5 — the <code>Use%</code> value</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>sed 's/%//g'</code></td>
+<td>Remove the <code>%</code> so we get a plain number</td>
+</tr>
+</tbody>
+</table>
+<p>Run each step on its own to see the output build up:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">df -h .
+df -h . | tail -1
+df -h . | tail -1 | awk -F &quot; &quot; '{print $5}'
+df -h . | tail -1 | awk -F &quot; &quot; '{print $5}' | sed 's/%//g'
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>This is a core DevOps pattern — piping commands to extract exactly what you need.\
+This is also a very common <strong>interview question</strong>.</p>
+</div>
+</div>
+<h3>Script 2 – Service Status Checker</h3>
+<p>Checks if each service is running. If stopped, prints an alert.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+services=&quot;tomcat apache2 java&quot;
+for i in $services
+do
+    temp=`sudo service $i status`
+    if [ $? -ne 0 ]
+    then
+        echo &quot;$i service is stopped – please take action&quot;
+    fi
+done
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><code>$?</code> is the exit status of the last command.\
+<code>0</code> = success (service is running)\
+non-zero = failure (service is stopped) → we print the alert</p>
+</div>
+</div>
+<h3>Script 3 – Keep Only 20 Recent Files</h3>
+<p>Useful for log directories that fill up over time.\
+Keeps the 20 most recent files and deletes everything older.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+allfiles=`ls | wc -l`
+echo &quot;Total files and directories: $allfiles&quot;
+extrafiles=`expr $allfiles - 20`
+echo &quot;Extra files to delete: $extrafiles&quot;
+if [ $extrafiles -gt 0 ]
+then
+    ls -rt | head -$extrafiles | xargs rm -rf
+fi
+</code></pre>
+</div>
+<p><strong>How it works:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ls \| wc -l</code></td>
+<td>Count total files in directory</td>
+</tr>
+<tr>
+<td><code>expr $allfiles - 20</code></td>
+<td>Calculate how many are extra</td>
+</tr>
+<tr>
+<td><code>ls -rt</code></td>
+<td>List files oldest first</td>
+</tr>
+<tr>
+<td><code>head -$extrafiles</code></td>
+<td>Pick the oldest N files</td>
+</tr>
+<tr>
+<td><code>xargs rm -rf</code></td>
+<td>Delete them</td>
+</tr>
+</tbody>
+</table>
+<h2>Part 5 – Cron Jobs</h2>
+<p>Cron Jobs let you <strong>schedule scripts to run automatically</strong> at a specific time — daily, hourly, or weekly.</p>
+<h3>Cron Field Format</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">* * * * * /path/to/script.sh
+│ │ │ │ │
+│ │ │ │ └── Day of week  (0 = Sunday, 6 = Saturday)
+│ │ │ └──── Month        (1 – 12)
+│ │ └────── Day of month (1 – 31)
+│ └──────── Hour         (0 – 23)
+└────────── Minute       (0 – 59)
+</code></pre>
+</div>
+<h3>Cron Commands</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">crontab -l    # List all your scheduled cron jobs
+crontab -e    # Open editor to add/edit cron jobs
+</code></pre>
+</div>
+<h3>Common Examples</h3>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>* * * * *</code></td>
+<td>Every single minute</td>
+</tr>
+<tr>
+<td><code>0 * * * *</code></td>
+<td>Every hour (at :00)</td>
+</tr>
+<tr>
+<td><code>0 9 * * *</code></td>
+<td>Every day at 9:00 AM</td>
+</tr>
+<tr>
+<td><code>0 0 * * 0</code></td>
+<td>Every Sunday at midnight</td>
+</tr>
+<tr>
+<td><code>30 1 28 12 3</code></td>
+<td>Dec 28 at 1:30 AM, only on Wednesday</td>
+</tr>
+</tbody>
+</table>
+<h3>Schedule the disk space script to run every hour</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">crontab -e
+</code></pre>
+</div>
+<p>Add this line:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">0 * * * * /home/ubuntu/diskcheck.sh
+</code></pre>
+</div>
+<p>Save and exit. The script will now run automatically every hour.</p>
+<h2>Practice Exercises</h2>
+<p>Try these on your own:</p>
+<ol>
+<li>Write a <code>for</code> loop to print numbers 1 to 10</li>
+<li>Write a <code>while</code> loop that counts down from 5 to 1</li>
+<li>Write a script that reads your name and city, then prints both</li>
+<li>Run the disk monitor pipeline step by step and note each output</li>
+</ol>
+<h2>Assignments</h2>
+<p>Complete these before Day 3:</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Employee Age Filter</h2>
+<p>Given a file with employee name, ID, and age — print the names of employees older than 40.</p>
+<p>Sample file (<code>employee.txt</code>):</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Name     Emp-ID   Age
+ABC      202201   35
+EFG      202202   40
+HIJ      202203   38
+LMN      202204   45
+XYZ      202205   43
+GHY      202206   42
+</code></pre>
+</div>
+<p>Script:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+sed '1d' employee.txt &gt; age1
+while read line
+do
+    age=`echo &quot;$line&quot; | awk -F &quot; &quot; '{print $3}'`
+    if [ $age -gt 40 ]
+    then
+        echo &quot;$line&quot; | awk -F &quot; &quot; '{print $1}'
+    fi
+done &lt; age1
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Auto-Restart Services</h2>
+<p>Extend the service monitor script to also <strong>restart</strong> any service that is found to be stopped.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>File Cleanup with Argument</h2>
+<p>Modify the file cleanup script to accept a <strong>directory path as an argument</strong> instead of always running in the current directory.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>Factorial with <code>for</code> Loop</h2>
+<p>Rewrite the factorial script using a <code>for</code> loop instead of <code>while</code>.</p>
+</div>
+</div>
+</div>
+<h2>Day 2 Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>for</code> loop</td>
+<td><code>for i in list; do ... done</code></td>
+</tr>
+<tr>
+<td><code>while</code> loop</td>
+<td><code>while [ condition ]; do ... done</code></td>
+</tr>
+<tr>
+<td>User input</td>
+<td><code>read variable</code></td>
+</tr>
+<tr>
+<td>Addition</td>
+<td><code>result=`expr $a + $b`</code></td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td><code>result=`expr $a - $b`</code></td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td><code>result=`expr $a \* $b`</code></td>
+</tr>
+<tr>
+<td>Division</td>
+<td><code>result=`expr $a / $b`</code></td>
+</tr>
+<tr>
+<td>Is a file?</td>
+<td><code>[ -f $name ]</code></td>
+</tr>
+<tr>
+<td>Is a directory?</td>
+<td><code>[ -d $name ]</code></td>
+</tr>
+<tr>
+<td>Is a link?</td>
+<td><code>[ -L $name ]</code></td>
+</tr>
+<tr>
+<td>AND condition</td>
+<td><code>[ cond1 ] &amp;&amp; [ cond2 ]</code></td>
+</tr>
+<tr>
+<td>Last command status</td>
+<td><code>$?</code></td>
+</tr>
+<tr>
+<td>List cron jobs</td>
+<td><code>crontab -l</code></td>
+</tr>
+<tr>
+<td>Edit cron jobs</td>
+<td><code>crontab -e</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Coming Up – Day 3</h2>
+<ul>
+<li><code>awk</code> — column-based text processing</li>
+<li><code>sed</code> — find and replace in files</li>
+<li><code>grep</code> — search patterns inside files</li>
+<li>Combining <code>awk</code>, <code>sed</code>, <code>grep</code> in pipelines</li>
+<li>Advanced real-world automation scripts</li>
+<li>Script debugging with <code>set -x</code></li>
+</ul>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../shell-scripting/shell-script-day-1.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">Shell Script Day 1</span>
+  </a>
+  <a href="../git/README.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Git</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

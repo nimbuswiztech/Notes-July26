@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CICD Class 1 &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html" class="active">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🚀 CICD / Jenkins</span>
+          <span class="separator">/</span>
+          <span class="current">CICD Class 1</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🚀 CICD / Jenkins Module</div>
+          <h1 class="hero-title">CICD Class 1</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+<div class="diagram-figure" style="margin-top: 1.5rem; margin-bottom: 2.5rem; border: 2px solid var(--border-highlight); box-shadow: 0 0 35px var(--accent-cyan-glow);">
+  <div class="diagram-badge" style="background: linear-gradient(90deg, rgba(6,182,212,0.25), rgba(59,130,246,0.25)); font-size: 0.85rem;">
+    ⭐ FEATURED ARCHITECTURAL BLUEPRINT &bull; CI/CD Lifecycle Overview
+  </div>
+  <img src="../assets/images/cicd-pipeline-workflow.jpg" alt="CI/CD Lifecycle Overview" class="diagram-img" loading="eager">
+  <div class="diagram-caption" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+    CI/CD Continuous Integration and Continuous Deployment End-to-End Stages
+  </div>
+</div>
+
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <p><strong>Course:</strong> DevOps Fundamentals | <strong>Topic:</strong> CI/CD with Jenkins\
+<strong>Level:</strong> Beginner | <strong>Duration:</strong> 4–5 Hours</p>
+<hr />
+<h2>📋 What You'll Learn Today</h2>
+<ul>
+<li>✅ What CI/CD is and why it matters</li>
+<li>✅ The stages of a CI/CD pipeline</li>
+<li>✅ Key tools: Jenkins, SonarQube, Maven, Docker, Ansible, Kubernetes</li>
+<li>✅ How to read and write a basic Jenkinsfile</li>
+<li>✅ How Jenkins is installed and set up</li>
+</ul>
+<h2>1. What is CI/CD?</h2>
+<p><strong>CI/CD</strong> stands for <strong>Continuous Integration / Continuous Delivery (or Deployment).</strong></p>
+<p>It is a practice where every code change automatically goes through a series of steps — from <strong>building</strong> to <strong>testing</strong> to <strong>deploying</strong> — without manual intervention.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Continuous Integration (CI)</strong></td>
+<td>Every code change is automatically built and tested</td>
+</tr>
+<tr>
+<td><strong>Continuous Delivery (CD)</strong></td>
+<td>Tested builds are automatically prepared for deployment</td>
+</tr>
+<tr>
+<td><strong>Continuous Deployment (CD)</strong></td>
+<td>Every validated change is automatically released to production</td>
+</tr>
+</tbody>
+</table>
+<h3>💡 The Old Way vs. The CI/CD Way</h3>
+<p><strong>Before CI/CD:</strong></p>
+<ul>
+<li>Developers write code for weeks in separate branches</li>
+<li>Merge everything at the end → lots of conflicts</li>
+<li>Manual testing → takes days</li>
+<li>Manual deployment → human errors → production crashes 🔥</li>
+</ul>
+<p><strong>With CI/CD:</strong></p>
+<ul>
+<li>Code is integrated continuously (small, frequent commits)</li>
+<li>Automated tests run on every change</li>
+<li>Deployment is automated and consistent</li>
+<li>Bugs are caught early → faster, safer releases ✅</li>
+</ul>
+<h2>2. The CI/CD Pipeline — Overview</h2>
+<p>A <strong>pipeline</strong> is a series of automated steps that your code goes through from commit to production.</p>
+<h3>🖼️ Our Pipeline Architecture</h3>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><em>(Refer to the diagram shared in class)</em></p>
+</div>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">[Developer]
+     ↓  (pushes code)
+[GitHub]  ← webhook notifies Jenkins
+     ↓
+[Jenkins Pipeline]
+     ↓
+ ┌───────────────────────────────────────────────────┐
+ │  Stage 1: Checkout Code                           │
+ │  Stage 2: SonarQube Scan (Code Quality)           │
+ │  Stage 3: Maven Build (.war / .jar file)          │
+ │  Stage 4: Upload to JFrog Artifactory             │
+ │  Stage 5: Docker Image Build &amp; Push               │
+ └───────────────────────────────────────────────────┘
+     ↓  (CI complete → triggers CD)
+ ┌─────────────────────┐     ┌──────────────────────┐
+ │  Deploy to Tomcat   │     │  Deploy to Kubernetes │
+ │  (via Ansible)      │     │  (via kubectl / EKS)  │
+ └─────────────────────┘     └──────────────────────┘
+</code></pre>
+</div>
+<h2>3. Pipeline Stages Explained</h2>
+<h3>Stage 1: 📥 Code Checkout</h3>
+<ul>
+<li>Jenkins <strong>clones</strong> the repository from GitHub into its <strong>workspace</strong></li>
+<li>A <strong>webhook</strong> in GitHub automatically tells Jenkins when new code is pushed</li>
+<li>No manual triggering needed!</li>
+</ul>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Workspace</strong> = The folder on Jenkins server where your code is downloaded</p>
+</div>
+</div>
+<h3>Stage 2: 🔍 SonarQube Scan (Code Quality)</h3>
+<p>SonarQube scans your code and checks for:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bugs</strong></td>
+<td>Logic errors in the code</td>
+</tr>
+<tr>
+<td><strong>Vulnerabilities</strong></td>
+<td>Security weaknesses</td>
+</tr>
+<tr>
+<td><strong>Code Smells</strong></td>
+<td>Messy code that is hard to maintain</td>
+</tr>
+<tr>
+<td><strong>Code Coverage</strong></td>
+<td>How much of your code is tested</td>
+</tr>
+<tr>
+<td><strong>Duplications</strong></td>
+<td>Repeated/copy-pasted code blocks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quality Gate:</strong></p>
+<ul>
+<li>If the scan <strong>passes</strong> → pipeline continues ✅</li>
+<li>If the scan <strong>fails</strong> → pipeline is <strong>aborted</strong> ❌</li>
+</ul>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>Think of SonarQube as a <strong>code health check</strong> — bad code cannot proceed!</p>
+</div>
+</div>
+<h3>Stage 3: 🔨 Maven Build</h3>
+<p><strong>Maven</strong> is a build tool for Java projects. It:</p>
+<ul>
+<li>Reads the <code>pom.xml</code> file to understand your project</li>
+<li>Compiles your code</li>
+<li>Runs unit tests</li>
+<li>Packages everything into a <code>.war</code> (Web Archive) or <code>.jar</code> file</li>
+</ul>
+<p><strong>Common Maven command used in pipeline:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">mvn clean package
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Maven Goal</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clean</code></td>
+<td>Deletes old build files</td>
+</tr>
+<tr>
+<td><code>compile</code></td>
+<td>Compiles Java source code</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Runs unit tests</td>
+</tr>
+<tr>
+<td><code>package</code></td>
+<td>Creates the <code>.war</code> / <code>.jar</code> file</td>
+</tr>
+</tbody>
+</table>
+<h3>Stage 4: 📦 Upload to JFrog Artifactory</h3>
+<ul>
+<li>The <code>.war</code> file created by Maven is uploaded to <strong>JFrog Artifactory</strong></li>
+<li>Artifactory is like a <strong>storage warehouse</strong> for your build artifacts</li>
+<li>Every artifact is <strong>versioned</strong> — you can always go back to an older build</li>
+<li>Other teams and tools can download artifacts from here</li>
+</ul>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Artifact</strong> = The output of a build (e.g., <code>.war</code>, <code>.jar</code>, <code>.exe</code>)</p>
+</div>
+</div>
+<h3>Stage 5: 🐳 Docker Image Build &amp; Push</h3>
+<p><strong>Docker</strong> packages your application + its runtime environment into a <strong>container image</strong>.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">dockerfile</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="dockerfile"># Example Dockerfile
+FROM tomcat:9.0
+COPY target/myapp.war /usr/local/tomcat/webapps/
+EXPOSE 8080
+</code></pre>
+</div>
+<ul>
+<li>Jenkins builds the Docker image using the <code>Dockerfile</code> in your repo</li>
+<li>The image is pushed to <strong>Docker Hub</strong> or <strong>AWS ECR</strong> (container registry)</li>
+<li>This image can be deployed anywhere — consistent every time!</li>
+</ul>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Docker image</strong> = A portable package with your app + everything it needs to run</p>
+</div>
+</div>
+<h3>Stage 6: 🚀 Deployment (CD)</h3>
+<p>After CI is complete, the <strong>CD job</strong> is triggered automatically.</p>
+<div class="tabs-container">
+<div class="tabs-nav"><button class="tab-btn active">Option A: Deploy to Tomcat (via Ansible)</button><button class="tab-btn">Option B: Deploy to Kubernetes (EKS)</button></div>
+<div class="tab-panel active">
+<p><strong>Ansible</strong> is a configuration management tool that automates deployment steps:</p>
+<ol>
+<li>Download the <code>.war</code> from Artifactory to the Tomcat server</li>
+<li>Stop the running Tomcat service</li>
+<li>Take a backup of existing files</li>
+<li>Copy new files to the correct location</li>
+<li>Start Tomcat and verify the app is running</li>
+<li>If something fails → <strong>rollback</strong> to the previous version</li>
+</ol>
+</div>
+<div class="tab-panel">
+<p>For containerized applications:</p>
+<ol>
+<li>CD job checks out Kubernetes <strong>manifest YAML files</strong> from Git</li>
+<li>Updates the manifest with the new Docker image tag</li>
+<li>Runs <code>kubectl apply</code> to deploy to the EKS cluster</li>
+<li>Jenkins verifies that pods are running</li>
+<li>If deployment fails → inspect logs → rollback using <code>kubectl rollout undo</code></li>
+</ol>
+</div>
+</div>
+<h2>4. Tools Cheat Sheet</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub</strong></td>
+<td>Stores source code; sends webhooks to Jenkins</td>
+</tr>
+<tr>
+<td><strong>Jenkins</strong></td>
+<td>Runs the CI/CD pipeline automatically</td>
+</tr>
+<tr>
+<td><strong>SonarQube</strong></td>
+<td>Checks code quality and security</td>
+</tr>
+<tr>
+<td><strong>Maven</strong></td>
+<td>Builds Java projects into <code>.war</code>/<code>.jar</code> files</td>
+</tr>
+<tr>
+<td><strong>JFrog Artifactory</strong></td>
+<td>Stores build artifacts (versioned)</td>
+</tr>
+<tr>
+<td><strong>Docker</strong></td>
+<td>Packages apps into portable containers</td>
+</tr>
+<tr>
+<td><strong>Docker Hub / ECR</strong></td>
+<td>Stores Docker images</td>
+</tr>
+<tr>
+<td><strong>Ansible</strong></td>
+<td>Automates deployment to traditional servers</td>
+</tr>
+<tr>
+<td><strong>Kubernetes (EKS)</strong></td>
+<td>Runs and manages containers at scale</td>
+</tr>
+<tr>
+<td><strong>Helm</strong></td>
+<td>Kubernetes package manager (like apt for K8s)</td>
+</tr>
+<tr>
+<td><strong>Argo CD / Flux CD</strong></td>
+<td>GitOps-based CD for Kubernetes</td>
+</tr>
+</tbody>
+</table>
+<h2>5. What is Jenkins?</h2>
+<p><strong>Jenkins</strong> is an open-source automation server written in Java. It:</p>
+<ul>
+<li>Listens for triggers (code pushes, schedules, manual clicks)</li>
+<li>Runs pipeline stages one by one</li>
+<li>Reports build results (success ✅ / failure ❌)</li>
+<li>Integrates with 1800+ plugins (GitHub, Docker, Maven, Slack, etc.)</li>
+</ul>
+<h3>Jenkins Server Stack</h3>
+<table>
+<thead>
+<tr>
+<th>Server</th>
+<th>Software</th>
+<th>AWS Instance</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jenkins Server</td>
+<td>Java + Jenkins + Docker</td>
+<td>T2.Medium</td>
+<td>8080</td>
+</tr>
+<tr>
+<td>SonarQube Server</td>
+<td>Docker + SonarQube</td>
+<td>T2.Medium</td>
+<td>9000</td>
+</tr>
+<tr>
+<td>Tomcat Server</td>
+<td>Java + Tomcat</td>
+<td>T2.Micro</td>
+<td>8080</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Jenkins UI — Key Sections</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>What you'll find</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dashboard</strong></td>
+<td>List of all jobs with status indicators</td>
+</tr>
+<tr>
+<td><strong>New Item</strong></td>
+<td>Create a new job (pipeline, freestyle, etc.)</td>
+</tr>
+<tr>
+<td><strong>Manage Jenkins</strong></td>
+<td>Settings, plugins, nodes, security</td>
+</tr>
+<tr>
+<td><strong>Build History</strong></td>
+<td>Past builds with timestamps</td>
+</tr>
+<tr>
+<td><strong>Console Output</strong></td>
+<td>Real-time logs — use this to debug failures</td>
+</tr>
+<tr>
+<td><strong>Workspace</strong></td>
+<td>Files on the Jenkins server for a job</td>
+</tr>
+<tr>
+<td><strong>Credentials</strong></td>
+<td>Securely stored API keys and passwords</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Build Status Colors:</strong></p>
+<ul>
+<li>🔵 <strong>Blue</strong> = Last build succeeded</li>
+<li>🔴 <strong>Red</strong> = Last build failed</li>
+<li>⚪ <strong>Grey</strong> = Job never run</li>
+<li>🟡 <strong>Yellow</strong> = Unstable (tests partially failed)</li>
+</ul>
+<h2>7. Jenkins Pipeline Types</h2>
+<h3>Type 1: Declarative Pipeline ✅ (We'll use this)</h3>
+<p>Structured, readable. Great for beginners.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'mvn test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application...'
+            }
+        }
+    }
+    post {
+        success { echo '✅ Success!' }
+        failure { echo '❌ Build failed. Check the logs.' }
+    }
+}
+</code></pre>
+</div>
+<p><strong>Key blocks explained:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pipeline {}</code></td>
+<td>Wraps the entire pipeline</td>
+</tr>
+<tr>
+<td><code>agent any</code></td>
+<td>Use any available Jenkins node/server</td>
+</tr>
+<tr>
+<td><code>stages {}</code></td>
+<td>Contains all stages</td>
+</tr>
+<tr>
+<td><code>stage('name')</code></td>
+<td>A named step in the pipeline</td>
+</tr>
+<tr>
+<td><code>steps {}</code></td>
+<td>Commands to run in that stage</td>
+</tr>
+<tr>
+<td><code>post {}</code></td>
+<td>Runs after pipeline ends (success/failure/always)</td>
+</tr>
+</tbody>
+</table>
+<h3>Type 2: Scripted Pipeline</h3>
+<p>More flexible, Groovy-based. Used for complex workflows.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">node {
+    stage('Build') {
+        sh 'mvn clean package'
+    }
+    stage('Test') {
+        sh 'mvn test'
+    }
+}
+</code></pre>
+</div>
+<h3>Type 3: Multibranch Pipeline</h3>
+<ul>
+<li>Jenkins automatically discovers <strong>all branches</strong> in a repo</li>
+<li>Runs a pipeline for each branch using that branch's <code>Jenkinsfile</code></li>
+<li>Great for teams using <strong>feature branches</strong></li>
+</ul>
+<h2>8. Jenkins Job Types</h2>
+<table>
+<thead>
+<tr>
+<th>Job Type</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Freestyle Project</strong></td>
+<td>Simple tasks — run a script, build a project</td>
+</tr>
+<tr>
+<td><strong>Pipeline</strong></td>
+<td>Code-based pipelines using Jenkinsfile</td>
+</tr>
+<tr>
+<td><strong>Multibranch Pipeline</strong></td>
+<td>One pipeline per Git branch, auto-discovered</td>
+</tr>
+<tr>
+<td><strong>Folder</strong></td>
+<td>Organize many jobs (like folders in a file system)</td>
+</tr>
+<tr>
+<td><strong>GitHub Organization</strong></td>
+<td>Manage all repos in a GitHub org</td>
+</tr>
+</tbody>
+</table>
+<h2>9. Jenkinsfile — Where Pipeline Lives</h2>
+<p>A <strong>Jenkinsfile</strong> is a text file that contains the pipeline definition. It lives in the <strong>root of your repository</strong>.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">my-project/
+├── src/
+├── pom.xml
+├── Dockerfile
+└── Jenkinsfile   ← pipeline lives here
+</code></pre>
+</div>
+<p><strong>Benefits of Jenkinsfile:</strong></p>
+<ul>
+<li>Pipeline is version-controlled alongside your code</li>
+<li>You can review and audit pipeline changes</li>
+<li>Different branches can have different pipelines</li>
+</ul>
+<h2>10. Sample CI Pipeline (Full)</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">groovy</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="groovy">pipeline {
+    tools {
+        maven 'Maven3'
+    }
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/your-org/your-app.git'
+            }
+        }
+
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
+
+        stage('Maven Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Docker Build &amp; Push') {
+            steps {
+                sh 'docker build -t myapp:latest .'
+                sh 'docker push myrepo/myapp:latest'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl apply -f k8s-deployment.yaml'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Build and deployment successful!'
+        }
+        failure {
+            echo '❌ Something went wrong. Check Console Output.'
+        }
+    }
+}
+</code></pre>
+</div>
+<h2>11. Day 1 Lab — Jenkins Installation</h2>
+<h3>What we'll set up</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>EC2 instance (T2.Medium) for Jenkins</h2>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Install Java + Jenkins</h2>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>Install Docker on Jenkins server</h2>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>Access Jenkins UI at <code>http://&lt;EC2-IP&gt;:8080</code></h2>
+</div>
+</div>
+</div>
+<h3>Quick Commands Reference</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Update system
+sudo apt update -y
+
+# Install Java 17
+sudo apt install openjdk-17-jre -y
+
+# Verify Java
+java -version
+
+# Install Jenkins (Ubuntu/Debian)
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | \
+  sudo tee /usr/share/keyrings/jenkins-keyring.asc &gt; /dev/null
+
+echo &quot;deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/&quot; | \
+  sudo tee /etc/apt/sources.list.d/jenkins.list &gt; /dev/null
+
+sudo apt-get update
+sudo apt-get install jenkins -y
+
+# Start Jenkins
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+
+# Get initial admin password
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+</code></pre>
+</div>
+<h3>First Login Steps</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h2>Open Jenkins</h2>
+<p>Open browser → <code>http://&lt;your-ec2-ip&gt;:8080</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h2>Enter the admin password</h2>
+<p>Paste the admin password from the command above.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h2>Install plugins</h2>
+<p>Select <strong>"Install suggested plugins"</strong>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h2>Create an admin user</h2>
+<p>Create your admin user.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h2>Jenkins is ready! 🎉</h2>
+</div>
+</div>
+</div>
+<h2>12. Key Concepts — Quick Reference</h2>
+<h3>What is a Webhook?</h3>
+<p>A <strong>webhook</strong> is a signal sent from GitHub to Jenkins whenever code is pushed.\
+Jenkins doesn't constantly check GitHub — GitHub <em>tells</em> Jenkins when something changes.</p>
+<h3>What is an Artifact?</h3>
+<p>An <strong>artifact</strong> is the output of a build. For Java projects, this is usually a <code>.war</code> or <code>.jar</code> file. Artifacts are stored in JFrog Artifactory.</p>
+<h3>What is a Quality Gate?</h3>
+<p>A <strong>quality gate</strong> in SonarQube is a set of rules your code must pass.\
+Example: <em>"Code coverage must be above 80%"</em>\
+If the gate fails → the pipeline stops.</p>
+<h3>What is GitOps?</h3>
+<p><strong>GitOps</strong> means your infrastructure and deployment configurations are stored in Git.\
+Changes to deployments go through a Git commit/PR — giving full audit trails.</p>
+<h3>What is a Container vs. a VM?</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Virtual Machine (VM)</th>
+<th>Container (Docker)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Size</td>
+<td>GBs</td>
+<td>MBs</td>
+</tr>
+<tr>
+<td>Startup</td>
+<td>Minutes</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>Full OS</td>
+<td>Process-level</td>
+</tr>
+<tr>
+<td>Portability</td>
+<td>Limited</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<h2>13. Common Errors &amp; How to Fix Them</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Likely Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build failed at Maven stage</td>
+<td>Missing dependency or pom.xml error</td>
+<td>Check <code>Console Output</code> for the exact error</td>
+</tr>
+<tr>
+<td>SonarQube scan timeout</td>
+<td>SonarQube server not running</td>
+<td>Verify server is up on port 9000</td>
+</tr>
+<tr>
+<td>Docker push fails</td>
+<td>Not logged in to registry</td>
+<td>Run <code>docker login</code> first</td>
+</tr>
+<tr>
+<td>kubectl fails</td>
+<td>Wrong cluster config</td>
+<td>Run <code>aws eks update-kubeconfig</code></td>
+</tr>
+<tr>
+<td>Jenkins can't access GitHub</td>
+<td>Missing credentials</td>
+<td>Add GitHub token in Jenkins Credentials</td>
+</tr>
+</tbody>
+</table>
+<h2>📝 Practice Exercises</h2>
+<h3>Exercise 1 — Read a Pipeline</h3>
+<p>Look at the sample Jenkinsfile above. Answer:</p>
+<ul>
+<li>How many stages does it have?</li>
+<li>What happens if the Quality Gate fails?</li>
+<li>What command builds the Maven project?</li>
+</ul>
+<h3>Exercise 2 — Write a Simple Pipeline</h3>
+<p>Create a Jenkinsfile with 3 stages:</p>
+<ol>
+<li><code>Checkout</code> — print "Checking out code"</li>
+<li><code>Build</code> — run <code>echo "Building..."</code></li>
+<li><code>Deploy</code> — print "Deploying..."</li>
+</ol>
+<h3>Exercise 3 — Spot the Difference</h3>
+<p>Which of these is CI and which is CD?</p>
+<ul>
+<li>Compiling code after a commit → <strong>CI</strong></li>
+<li>Running unit tests → <strong>CI</strong></li>
+<li>Deploying the app to a test server → <strong>CD</strong></li>
+<li>Pushing Docker image to a registry → <strong>CI</strong> (part of build)</li>
+</ul>
+<h2>📚 Further Reading</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Resource</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jenkins Documentation</td>
+<td>https://www.jenkins.io/doc/</td>
+</tr>
+<tr>
+<td>SonarQube Docs</td>
+<td>https://docs.sonarsource.com/</td>
+</tr>
+<tr>
+<td>Maven Guide</td>
+<td>https://maven.apache.org/guides/</td>
+</tr>
+<tr>
+<td>Docker Getting Started</td>
+<td>https://docs.docker.com/get-started/</td>
+</tr>
+<tr>
+<td>Kubernetes Basics</td>
+<td>https://kubernetes.io/docs/tutorials/kubernetes-basics/</td>
+</tr>
+<tr>
+<td>GitOps Introduction</td>
+<td>https://www.gitops.tech/</td>
+</tr>
+</tbody>
+</table>
+<h2>✅ Checklist — What You Should Know After This Class</h2>
+<ul>
+<li>[ ] I can explain what CI and CD mean in simple terms</li>
+<li>[ ] I know the stages in a CI/CD pipeline</li>
+<li>[ ] I can name at least 5 tools used in a DevOps pipeline</li>
+<li>[ ] I can read a basic Jenkinsfile</li>
+<li>[ ] I understand what a webhook, quality gate, and artifact are</li>
+<li>[ ] I know the difference between Declarative and Scripted pipelines</li>
+<li>[ ] I can access Jenkins UI and locate key sections</li>
+</ul>
+<p><em>Student Handout | CI/CD Introduction — July 2026</em></p>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../cicd-jenkins/README.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">CICD / Jenkins</span>
+  </a>
+  <a href="../cicd-jenkins/class-images.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Class Images</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

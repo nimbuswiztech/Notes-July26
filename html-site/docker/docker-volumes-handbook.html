@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker Volumes & Persistent Storage — Student Lab Handbook & Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- removed custom styles -->
+
+    <link rel="stylesheet" href="../assets/css/style.css?v=2">
+</head>
+<body>
+<header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html" class="active">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+    <main class="doc-content">
+
+
+      <!-- Hero Banner -->
+      <section id="welcome" class="hero-banner">
+        <div class="badge-student" style="margin-bottom: 1.25rem; width: fit-content;">DevOps Hands-On Study Guide</div>
+        <h1 class="hero-title">Mastering Docker Volumes & Storage</h1>
+        <p class="hero-desc">
+          By default, Docker containers are completely <strong>ephemeral</strong>—meaning any files created inside them disappear forever when the container is removed. In this masterclass, you will learn how to connect containers to persistent storage, run production databases safely, hot-reload code in development, and perform automated backups.
+        </p>
+      </section>
+
+      <!-- Section: Storage Architecture Visual -->
+      <section id="architecture">
+        <div class="section-header">
+          <div class="section-tag">🖼️ Architectural Blueprint</div>
+          <h2 class="section-title">The 3 Docker Storage Strategies</h2>
+          <p class="section-subtitle">
+            Study how each mount type connects your container to the host computer.
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <img src="docker-volume-architecture.jpg" alt="Docker Volume Types Architecture" class="diagram-img">
+          <div class="diagram-caption">
+            Figure 1: Architectural relationship between Container Writable Layer, Docker-Managed Named Volumes, Host Bind Mounts, and Tmpfs RAM.
+          </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Mount Type</th>
+              <th>Where Data Lives on Host</th>
+              <th>When You Should Use It</th>
+              <th>Survival on `docker rm`</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Named Volume</strong></td>
+              <td>Docker-managed folder: <code>/var/lib/docker/volumes/</code></td>
+              <td>Production databases (Postgres, Mongo), stateful microservices</td>
+              <td>✅ 100% Preserved until explicitly deleted</td>
+            </tr>
+            <tr>
+              <td><strong>Bind Mount</strong></td>
+              <td>Any host path: e.g. <code>/Users/you/project/src</code></td>
+              <td>Local development hot-reloading & host configuration files</td>
+              <td>✅ Preserved on your laptop's filesystem</td>
+            </tr>
+            <tr>
+              <td><strong>Tmpfs Mount</strong></td>
+              <td>Host RAM memory (never touches physical hard drive)</td>
+              <td>Sensitive encryption keys, session credentials, temporary caches</td>
+              <td>❌ Destroyed immediately upon container stop</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section: Interactive Command Generator -->
+      <section id="interactive-builder">
+        <div class="section-header">
+          <div class="section-tag">🛠️ Interactive Tool</div>
+          <h2 class="section-title">Volume Command Generator</h2>
+          <p class="section-subtitle">
+            Configure your storage requirements below to generate both the shorthand <code>-v</code> and modern <code>--mount</code> command flags.
+          </p>
+        </div>
+
+        <div class="builder-card">
+          <div class="builder-grid">
+            <div class="builder-field">
+              <label>Mount Strategy</label>
+              <select id="genType">
+                <option value="volume">Named Volume (Docker Managed)</option>
+                <option value="bind">Host Bind Mount (Local Code)</option>
+                <option value="tmpfs">Tmpfs (In-Memory RAM)</option>
+              </select>
+            </div>
+
+            <div class="builder-field">
+              <label>Source (Volume Name or Host Path)</label>
+              <input type="text" id="genSource" value="my_database_data">
+            </div>
+
+            <div class="builder-field">
+              <label>Target Container Path</label>
+              <input type="text" id="genTarget" value="/var/lib/postgresql/data">
+            </div>
+
+            <div class="builder-field">
+              <label>Access Mode</label>
+              <select id="genMode">
+                <option value="rw">Read-Write (Default)</option>
+                <option value="ro">Read-Only (:ro / readonly)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan-light); margin-bottom: 8px;">
+            GENERATED COMMANDS:
+          </div>
+
+          <div class="code-box-wrapper" style="margin-bottom: 1rem;">
+            <span style="font-size: 0.72rem; color: #64748b; font-family: 'JetBrains Mono', monospace; display: block; margin-bottom: 4px;">Shorthand Syntax (-v):</span>
+            <pre><code id="outShort">$ docker run -d -v my_database_data:/var/lib/postgresql/data postgres</code></pre>
+          </div>
+
+          <div class="code-box-wrapper" style="margin-bottom: 0;">
+            <span style="font-size: 0.72rem; color: #64748b; font-family: 'JetBrains Mono', monospace; display: block; margin-bottom: 4px;">Modern Explicit Syntax (--mount):</span>
+            <pre><code id="outMount">$ docker run -d --mount type=volume,source=my_database_data,target=/var/lib/postgresql/data postgres</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Lab 1 -->
+      <section id="lab1">
+        <div class="section-header">
+          <div class="section-tag">🧪 Guided Exercise 1</div>
+          <h2 class="section-title">Zero Data Loss with PostgreSQL & Named Volumes</h2>
+          <p class="section-subtitle">
+            Follow these steps to experience how Docker volumes preserve data across container lifecycles.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="student-tip">
+            <div class="student-tip-title">🎯 Lab Objective:</div>
+            Write data to a database container, force-delete the container, start a completely new container with the same volume, and prove that no data was lost.
+          </div>
+
+          <h3 style="font-size: 1.15rem; color: var(--accent-cyan-light); margin-bottom: 0.5rem;">Step 1: Create a Dedicated Named Volume</h3>
+          <div class="code-box-wrapper">
+            <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+            <pre><code>docker volume create student_records_data</code></pre>
+          </div>
+
+          <h3 style="font-size: 1.15rem; color: var(--accent-cyan-light); margin-top: 1.5rem; margin-bottom: 0.5rem;">Step 2: Start Container 1 mounting this Volume</h3>
+          <div class="code-box-wrapper">
+            <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+            <pre><code>docker run -d \
+  --name database-server-v1 \
+  -v student_records_data:/var/lib/postgresql/data \
+  -e POSTGRES_PASSWORD=mysecretpassword \
+  postgres:16-alpine</code></pre>
+          </div>
+
+          <h3 style="font-size: 1.15rem; color: var(--accent-cyan-light); margin-top: 1.5rem; margin-bottom: 0.5rem;">Step 3: Create a Table and Insert Records</h3>
+          <div class="code-box-wrapper">
+            <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+            <pre><code>docker exec -i database-server-v1 psql -U postgres -c "
+  CREATE TABLE lab_results (id SERIAL, name VARCHAR(50), score INT);
+  INSERT INTO lab_results (name, score) VALUES ('Alex', 98), ('Sarah', 100);
+  SELECT * FROM lab_results;
+"</code></pre>
+          </div>
+
+          <h3 style="font-size: 1.15rem; color: #f87171; margin-top: 1.5rem; margin-bottom: 0.5rem;">Step 4: The Chaos Test - Destroy Container 1!</h3>
+          <div class="code-box-wrapper">
+            <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+            <pre><code><span class="cmt"># Force remove the container immediately!</span>
+docker rm -f database-server-v1</code></pre>
+          </div>
+
+          <h3 style="font-size: 1.15rem; color: var(--accent-emerald); margin-top: 1.5rem; margin-bottom: 0.5rem;">Step 5: Start Container 2 and Verify Zero Data Loss</h3>
+          <div class="code-box-wrapper">
+            <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+            <pre><code><span class="cmt"># Launch a brand-new container (v2) pointing to the same volume</span>
+docker run -d \
+  --name database-server-v2 \
+  -v student_records_data:/var/lib/postgresql/data \
+  -e POSTGRES_PASSWORD=mysecretpassword \
+  postgres:16-alpine
+
+<span class="cmt"># Query the new container!</span>
+docker exec -i database-server-v2 psql -U postgres -c "SELECT * FROM lab_results;"</code></pre>
+          </div>
+          <p style="font-size: 0.9rem; color: #34d399; font-weight: 600;">
+            🎉 Congratulations! Notice how Alex and Sarah's records are completely intact.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section: Lab 2 -->
+      <section id="lab2">
+        <div class="section-header">
+          <div class="section-tag">🧪 Guided Exercise 2</div>
+          <h2 class="section-title">Developer Hot-Reloading with Bind Mounts</h2>
+          <p class="section-subtitle">
+            How full-stack developers edit code on their host machine without rebuilding images.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="student-tip">
+            <div class="student-tip-title">💡 The "node_modules Shield" Pattern:</div>
+            When mounting your local project directory into a Linux container, your laptop's local dependencies might conflict with the container's OS. Adding an anonymous volume at <code>-v /app/node_modules</code> protects the container's internal libraries from being overwritten!
+          </div>
+
+          <div class="code-box-wrapper">
+            <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+            <pre><code><span class="cmt"># Mount host directory for live code editing</span>
+docker run -d \
+  --name local-dev-api \
+  -p 3000:3000 \
+  -v "$(pwd)":/usr/src/app \
+  -v /usr/src/app/node_modules \
+  node:20-alpine \
+  npm run dev</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Lab 3 Backup & Restore -->
+      <section id="lab3">
+        <div class="section-header">
+          <div class="section-tag">🧪 Guided Exercise 3</div>
+          <h2 class="section-title">Backup & Restore Using Ephemeral Helper Containers</h2>
+          <p class="section-subtitle">
+            The industry-standard Swiss-Army container pattern for extracting volume data into `.tar.gz`.
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <img src="docker-volume-backup-restore.jpg" alt="Docker Volume Backup and Restore Workflow" class="diagram-img">
+          <div class="diagram-caption">
+            Figure 2: The standard ephemeral helper container pattern for backing up and restoring named Docker volumes.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size: 1.15rem; color: var(--accent-cyan-light); margin-bottom: 0.5rem;">The 1-Line Backup Command</h3>
+          <div class="code-box-wrapper">
+            <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+            <pre><code><span class="cmt"># Spin up a temporary Alpine container that reads the volume and writes a tarball to your laptop</span>
+docker run --rm \
+  -v student_records_data:/data \
+  -v "$(pwd)":/backup \
+  alpine \
+  tar czf /backup/database_backup.tar.gz -C /data .</code></pre>
+          </div>
+
+          <h3 style="font-size: 1.15rem; color: var(--accent-cyan-light); margin-top: 1.5rem; margin-bottom: 0.5rem;">The 1-Line Restore Command</h3>
+          <div class="code-box-wrapper">
+            <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+            <pre><code><span class="cmt"># 1. Create a fresh target volume</span>
+docker volume create student_records_restored
+
+<span class="cmt"># 2. Extract the archive into the new volume</span>
+docker run --rm \
+  -v student_records_restored:/data \
+  -v "$(pwd)":/backup \
+  alpine \
+  tar xzf /backup/database_backup.tar.gz -C /data</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Dockerfile VOLUME -->
+      <section id="dockerfile">
+        <div class="section-header">
+          <div class="section-tag">📄 Dockerfile Deep Dive</div>
+          <h2 class="section-title">The `VOLUME` Instruction in Dockerfiles</h2>
+          <p class="section-subtitle">
+            How to declare persistence boundaries in your image recipes.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="code-box-wrapper">
+            <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+            <pre><code><span class="kw">FROM</span> alpine:3.19
+
+<span class="cmt"># Step 1: Create directories and set permissions BEFORE VOLUME</span>
+<span class="kw">RUN</span> mkdir -p /var/log/my-app && chown -R 1001:1001 /var/log/my-app
+
+<span class="cmt"># Step 2: Declare the volume mountpoint</span>
+<span class="kw">VOLUME</span> ["/var/log/my-app"]
+
+<span class="cmt"># ⚠️ CRITICAL RULE: Never place RUN instructions after VOLUME that write to that path!</span>
+<span class="cmt"># RUN touch /var/log/my-app/seed.log  <-- THIS WILL BE DISCARDED DURING BUILD!</span>
+
+<span class="kw">USER</span> 1001
+<span class="kw">CMD</span> ["tail", "-f", "/dev/null"]</code></pre>
+          </div>
+
+          <div class="student-tip">
+            <div class="student-tip-title">⚠️ What happens if you run an image with `VOLUME` without `-v`?</div>
+            Docker will automatically create an <strong>Anonymous Volume</strong> (a 64-character hash name). If you start and stop 20 containers without `-v`, you will leave 20 anonymous volumes cluttering your hard drive! Run <code>docker volume prune</code> regularly.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Troubleshooting -->
+      <section id="troubleshooting">
+        <div class="section-header">
+          <div class="section-tag">🩺 Debugging Clinic</div>
+          <h2 class="section-title">Common Student Storage Bugs</h2>
+          <p class="section-subtitle">
+            How to resolve the most frequent volume issues in development.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 style="color: #f87171; font-size: 1.15rem; margin-bottom: 0.5rem;">Bug 1: "Permission Denied" on Mounted Folders</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Occurs when a container running as a non-root user (e.g. UID 1000) tries to write to a host folder owned by root.
+          </p>
+          <div class="code-box-wrapper">
+            <pre><code><span class="cmt"># Fix: Tell Docker to match your current host laptop user's UID and GID</span>
+docker run -d --user "$(id -u):$(id -g)" -v "$(pwd)":/app my-image</code></pre>
+          </div>
+
+          <h3 style="color: #f87171; font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">Bug 2: "volume is in use" when deleting</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Docker will not let you delete a volume if even a stopped container is still attached to it.
+          </p>
+          <div class="code-box-wrapper">
+            <pre><code><span class="cmt"># Fix: Find and remove the stopped container first, then remove the volume</span>
+docker ps -a --filter volume=my_vol
+docker rm &lt;container_id&gt;
+docker volume rm my_vol</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Self-Test Quiz -->
+      <section id="quiz">
+        <div class="section-header">
+          <div class="section-tag">📝 Knowledge Certification</div>
+          <h2 class="section-title">Student Self-Test Practice Quiz</h2>
+          <p class="section-subtitle">
+            Test your understanding of Docker storage concepts with instant feedback.
+          </p>
+        </div>
+
+        <!-- Q1 -->
+        <div class="quiz-card" data-correct="1">
+          <div class="quiz-q">
+            <span>Q1: Where do Docker Named Volumes physically store their files by default on a Linux host?</span>
+          </div>
+          <div class="quiz-options">
+            <div class="quiz-opt" data-idx="0">A) Inside the user's home folder (<code>~/.docker/</code>)</div>
+            <div class="quiz-opt" data-idx="1">B) In the Docker-managed storage directory (<code>/var/lib/docker/volumes/</code>)</div>
+            <div class="quiz-opt" data-idx="2">C) In host RAM memory</div>
+            <div class="quiz-opt" data-idx="3">D) Inside the Docker image itself</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-card" data-correct="2">
+          <div class="quiz-q">
+            <span>Q2: Which storage type is the best choice for developer hot-reloading (live source code sync)?</span>
+          </div>
+          <div class="quiz-options">
+            <div class="quiz-opt" data-idx="0">A) Anonymous Volumes</div>
+            <div class="quiz-opt" data-idx="1">B) Tmpfs Mounts</div>
+            <div class="quiz-opt" data-idx="2">C) Host Bind Mounts (e.g. <code>-v $(pwd):/app</code>)</div>
+            <div class="quiz-opt" data-idx="3">D) Rebuilding the image on every line edit</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-card" data-correct="0">
+          <div class="quiz-q">
+            <span>Q3: What happens to a Tmpfs mount when its container stops?</span>
+          </div>
+          <div class="quiz-options">
+            <div class="quiz-opt" data-idx="0">A) All data is instantly and permanently destroyed (never written to disk)</div>
+            <div class="quiz-opt" data-idx="1">B) It is automatically converted into a Named Volume</div>
+            <div class="quiz-opt" data-idx="2">C) It is compressed into a .tar.gz archive</div>
+            <div class="quiz-opt" data-idx="3">D) It persists on the host hard drive</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-card" data-correct="3">
+          <div class="quiz-q">
+            <span>Q4: Which command safely reclaims disk space by deleting all unattached, dangling volumes?</span>
+          </div>
+          <div class="quiz-options">
+            <div class="quiz-opt" data-idx="0">A) <code>docker volume drop --all</code></div>
+            <div class="quiz-opt" data-idx="1">B) <code>docker rm -v</code></div>
+            <div class="quiz-opt" data-idx="2">C) <code>docker clean storage</code></div>
+            <div class="quiz-opt" data-idx="3">D) <code>docker volume prune</code></div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </section>
+
+    
+    </main>
+  </div>
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

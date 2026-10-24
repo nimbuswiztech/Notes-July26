@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>git reset and revert &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html" class="active">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🌿 Git</span>
+          <span class="separator">/</span>
+          <span class="current">git reset and revert</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🌿 Git Module</div>
+          <h1 class="hero-title">git reset and revert</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Overview of Git Revert and Reset</h2>
+<p>Git revert and Git reset are two commands used in Git to undo changes to a project code and history, but in different ways. In this section, we will provide an overview of how to use both revert and reset. Before diving into the process, let’s create a Git project.</p>
+<p><strong>Create a Git project</strong></p>
+<p>Below are the instructions to create a git project and initialize it with some files:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">mkdir git_revert_reset
+cd git_revert_reset
+git init .
+</code></pre>
+</div>
+<ul>
+<li><code>mkdir git_revert_reset</code> creates a folder called <code>git_revert_reset</code>.</li>
+<li><code>cd git_revert_reset</code> moves to the folder.</li>
+<li><code>git init .</code> initializes the folder as a git repository.</li>
+</ul>
+<p>Considering this as a data science project, we can create the following files for data acquisition, data preprocessing, and model training using this <code>touch</code> command:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">touch data_acquisition.py data_preprocessing.py model_training.py
+</code></pre>
+</div>
+<p>This is the final content of the project folder.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">git_revert_reset
+      |---------- data_acquisition.py
+      |---------- data_preprocessing.py
+      |---------- model_training.py
+</code></pre>
+</div>
+<h2>Git Reset</h2>
+<div class="diagram-figure">
+  <div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/Diagram_of_Before_and_After_Git_Reset_9af0fcc3e8.png" alt="Diagram of Before and After Git Reset" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Diagram of Before and After Git Reset</div>
+</div>
+
+<p>Git Reset diagram (<a href="https://www.scmgalaxy.com/tutorials/git-commands-tutorials-and-example-git-reset-git-revert/">Source</a>)</p>
+<p>The <code>git reset</code> command is used to undo the changes in your working directory and get back to a specific commit while discarding all the commits made after that one.</p>
+<p>For instance, imagine you made ten commits. Using <code>git reset</code> on the first commit will remove all nine commits, taking you back to the first commit stage.</p>
+<p>Before using <code>git reset</code>, it is important to consider the type of changes you plan to make; otherwise, you will create more chaos than good.</p>
+<p>You can use multiple options along with <code>git reset</code>, but these are the main ones. Each one is used depending on a specific situation: <code>git reset --soft</code>, <code>git reset --mixed</code>, and <code>git reset --hard</code>.</p>
+<h3>git reset --soft</h3>
+<p>The <code>--soft</code> aims to change the <code>HEAD</code> (where the last commit is in your local machine) reference to a specific commit. For instance, if we realize that we forgot to add a file to the commit, we can move back using the <code>--soft</code> with respect to the following format:</p>
+<ul>
+<li><code>git reset --soft HEAD~n</code> to move back to the commit with a specific reference (n). <code>git reset --soft HEAD~1</code> gets back to the last commit.</li>
+<li><code>git reset --soft &lt;commit ID&gt;</code> moves back to the head with the <code>&lt;commit ID&gt;</code>.</li>
+</ul>
+<p>Let’s look at some examples.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add data_acquisition.py data_preprocessing.py
+
+git add data
+
+git commit -m &quot;added data acquisition and preprocessing scripts&quot;
+</code></pre>
+</div>
+<p>This is the result of the previous command.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">[master (root-commit) faf864e] added python scripts and data folder
+2 files changed, 0 insertions(+), 0 deletions(-)
+create mode 100644 data_acquisition.py
+create mode 100644 data_preprocessing.py
+</code></pre>
+</div>
+<p>We can check the status of the commit as follows:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">git status
+
+On branch master
+Untracked files:
+(use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+model_training.py
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</code></pre>
+</div>
+<p>But, we forgot to add the <code>model_training.py</code> script to the commit.</p>
+<p>Since the last commit is located at the <code>HEAD</code>, we can fix this issue by running the following three statements.</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Get back to the pre-commit phase</h3>
+<p>Use <code>git reset --soft HEAD</code> allowing git reset file.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git reset --soft HEAD
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Add the forgotten file</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add model_training.py
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Make the changes with a final commit</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git commit -m &quot;added all the python scripts&quot;
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>The following result made <code>git reset</code> to master after all the previous steps:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">[master (root-commit) faf864e] added all the python scripts
+3 files changed, 0 insertions(+), 0 deletions(-)
+create mode 100644 data_acquisition.py
+create mode 100644 data_preprocessing.py
+create mode 100644 model_training.py
+</code></pre>
+</div>
+<h3>git reset --mixed</h3>
+<p>This is the default argument for <code>git reset</code>. Running this command has two impacts: (1) uncommit all the changes and (2) unstage them. Imagine that we accidentally added the <code>model_training.py</code> file, and we want to remove it because the model training is not finished yet. Here is how to proceed:</p>
+<ul>
+<li>Unstage the files that were in the commit with git reset HEAD.</li>
+<li>Only add the files we need for the commit.</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">git reset HEAD
+
+git status
+
+On branch master
+Untracked files:
+(use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+model_training.py
+data_acquisition.py
+data_preprocessing.py
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</code></pre>
+</div>
+<p>Now we can add only the last two files to be committed and make the commit.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add data_acquisition.py data_preprocessing.py
+
+git commit -m &quot;Removed the model_training.py from the commit&quot;
+</code></pre>
+</div>
+<h3>git reset --hard</h3>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p>This option has the potential of being dangerous. So, be cautious when using it!</p>
+</div>
+</div>
+<p>Basically, when using the hard reset on a specific commit, it forces the HEAD to get back to that commit and deletes everything else after that.</p>
+<p>Before running the hard reset, let's have a look at the content of the folder.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">ls
+data_acquisition.py data_preprocessing.py model_training.py
+
+git reset --hard
+HEAD is now at 97159bc added data acquisition and preprocessing scripts
+</code></pre>
+</div>
+<p>Now let's check the content of the folder:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">ls
+data_acquisition.py data_preprocessing.py
+</code></pre>
+</div>
+<p>We notice that the untracked file <em>model_training.py</em> is deleted. Again, make sure to understand what you are doing with the reset statement because the consequence can be dramatic!</p>
+<h2>Git Revert</h2>
+<div class="diagram-figure">
+  <div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/Diagram_of_Revert_Before_and_After_4b427cf59b.png" alt="Diagram of Revert - Before and After" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">Diagram of Revert - Before and After</div>
+</div>
+
+<p>Before and After Revert (<a href="https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting">Source</a>)</p>
+<p><code>Git revert</code> is similar to <code>git reset</code>, but the approach is slightly different. Instead of removing all the commits in its way, the revert ONLY undoes a single commit by taking you back to the staged files before the commit.</p>
+<p>So, instead of removing a commit, <code>git revert</code> inverts the changes introduced by the original commit by creating a new commit with the underlying inverse content. This is a safe way to revoke a commit because it prevents you from losing your history.</p>
+<p>It is important to know that the revert will have no effect unless the commit hash or reference is specified.</p>
+<p>Let’s explore a few common git revert options.</p>
+<h3>git revert --no-edit \<commit ID></h3>
+<p>The <code>--no-edit</code> option allows the user to not change the message used for the commit you attend to revert, and this will make git revert file to master branch.</p>
+<p>To illustrate this scenario, let’s create two new files to be added.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">touch model_monitoring.py data_monitoring.py
+</code></pre>
+</div>
+<p>After creating those files, we need to add them to the modified version staging area.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add model_monitoring.py
+</code></pre>
+</div>
+<p>Before moving on, let’s have a look at the status by running the following command.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">git status
+Changes to be committed:
+(use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+new file:   data_monitoring.py
+new file:   model_monitoring.py
+</code></pre>
+</div>
+<p>We can observe that the two files have been added, now, we can commit the changes.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">git commit -m &quot;Added the monitoring script files&quot;
+[master (root-commit) eae84e7] Added the monitoring script files
+2 files changed, 0 insertions(+), 0 deletions(-)
+create mode 100644 data_monitoring.py
+create mode 100644 model_monitoring.py
+</code></pre>
+</div>
+<p>Then, the commit hash can be generated through the following command. This is beneficial when trying to perform an action to this specific commit.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">git reflog
+eae84e7 (HEAD -&gt; master) HEAD@{0}: commit (initial): Added the monitoring script files
+</code></pre>
+</div>
+<p>Now, let's imagine that the previous commit was not intentional, and we want to get rid of it.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">git revert --no-edit eae84e7
+
+[master c61ef6b] Revert &quot;Added the monitoring script files&quot;
+Date: Sat Nov 12 20:14:17 2022 -0600
+2 files changed, 0 insertions(+), 0 deletions(-)
+delete mode 100644 data_monitoring.py
+delete mode 100644 model_monitoring.py
+</code></pre>
+</div>
+<p>Let’s have a look at the log of the commits:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">git log
+
+commit c61ef6b4e86f41f47c8c77de3b5fca3945a7c075 (HEAD -&gt; master)
+Author: Zoumana Keita &lt;keitnekozou@gmail.com&gt;
+Date:   Sat Nov 12 20:14:17 2022 -0600
+
+  Revert &quot;Added the monitoring script files&quot;
+
+  This reverts commit eae84e7669af733ee6c1b854f2fcd9acfea9d4a3.
+
+commit eae84e7669af733ee6c1b854f2fcd9acfea9d4a3
+Author: Zoumana Keita &lt;keitnekozou@gmail.com&gt;
+Date:   Sat Nov 12 20:05:57 2022 -0600
+
+  Added the monitoring script files
+</code></pre>
+</div>
+<p>From the log, we can notice that a new commit has been created with the ID <em><code>c61ef6b4e86f41f47c8c77de3b5fca3945a7c075</code></em> to reverse the original commit with the ID <em><code>eae84e7669af733ee6c1b854f2fcd9acfea9d4a3</code></em>.</p>
+<p>In this example, since we have a single commit, we could simply use <code>git revert HEAD,</code> which would have the same effect by reverting the last commit.</p>
+<h3>git revert \<commit hash></h3>
+<p>This will only remove the changes associated with this commit hash and does not impact any other commit.</p>
+<p><em>Which git revert do you think will have an effect, considering the previously generated ID?</em></p>
+<p>If your answer was <em><code>c61ef6b4e86f41f47c8c77de3b5fca3945a7c075</code></em> then you are right. Considering <em><code>eae84e7669af733ee6c1b854f2fcd9acfea9d4a3</code></em> will have no effect, since it is replaced by a new one.</p>
+<p>Let’s see what happens when trying to perform the revert.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">git revert c61ef6b4e86f41f47c8c77de3b5fca3945a7c075
+
+[master aaead40] Revert &quot;Revert &quot;Added the monitoring script files&quot;&quot;
+
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+ create mode 100644 data_monitoring.py
+
+ create mode 100644 model_monitoring.py
+</code></pre>
+</div>
+<p>As you can see, the two files initially created and committed have been brought back!</p>
+<h3>git revert --no-commit \<commit ID></h3>
+<p>The purpose of using the <code>--no-commit</code> or <code>-n</code> option is to prevent git from automatically committing the revert. This can be beneficial if you want to review the changes made by the revert statement before committing them.</p>
+<p>Let’s consider the following example:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git revert --no-commit c61ef6b4e86f41f47c8c77de3b5fca3945a7c075
+</code></pre>
+</div>
+<p>This will revert the changes made by the commit with the ID <em><code>c61ef6b4e86f41f47c8c77de3b5fca3945a7c075</code></em> but will not automatically create a new commit to record the revert. Instead, it will leave the changes unstaged so you can review them and decide whether to commit the revert manually.</p>
+<h2>Git Revert vs. Reset</h2>
+<h3>Git Revert</h3>
+<ul>
+<li>Using <code>git revert</code>, you have the ability to go back to previous states while creating a new commit.</li>
+<li>Go for this option if you want to undo changes on a public branch for safety.</li>
+</ul>
+<h3>Git Reset</h3>
+<ul>
+<li>With <code>git reset</code>, you can go back to the previous commits but you can’t create a new commit.</li>
+<li>This option is better when undoing changes on a private branch.</li>
+</ul>
+<h2>Conclusion</h2>
+<p>In this tutorial, we have seen how to perform <code>git reset</code> and <code>git revert</code> changes in your git repository. Remember that a hard reset can be very dangerous because it will cause you to lose your untracked files in the project.</p>
+<p>So, what is next? DataCano has multiple tutorials that could be a good next step to improve your Git skills, such as:</p>
+<ul>
+<li><a href="https://www.datacamp.com/tutorial/how-to-resolve-merge-conflicts-in-git-tutorial">How to Resolve Merge Conflicts in Git Tutorial</a></li>
+<li><a href="https://www.datacamp.com/tutorial/github-and-git-tutorial-for-beginners">GitHub, and Git Tutorial for Beginners</a></li>
+<li><a href="https://www.datacamp.com/tutorial/git-push-pull">Git Push and Pull Tutorial</a></li>
+</ul>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../git/git-revert.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">git revert</span>
+  </a>
+  <a href="../git/git-revert-checkout-and-reset-diff.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">git revert checkout and reset diff</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

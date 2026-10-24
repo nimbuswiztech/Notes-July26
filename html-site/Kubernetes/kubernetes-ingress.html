@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kubernetes Ingress | Nimbuswiztech Training Guide</title>
+<style>
+:root{--ink:#172033;--muted:#5d6b82;--blue:#2457d6;--blue2:#eaf0ff;--green:#137547;--greenbg:#e8f7ee;--amber:#8a5700;--amberbg:#fff4d8;--red:#a52626;--redbg:#fff0f0;--line:#dce3ee;--paper:#fff;--bg:#f4f7fb;--code:#101827}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--blue)}.layout{display:grid;grid-template-columns:270px minmax(0,1fr);max-width:1500px;margin:auto}.sidebar{position:sticky;top:0;height:100vh;overflow:auto;background:#111b31;color:#edf2ff;padding:24px 18px}.brand{font-weight:800;font-size:1.05rem;letter-spacing:.08em}.brand small{display:block;color:#a9b8d9;font-weight:500;letter-spacing:0;font-size:.8rem;margin-top:4px}.sidebar nav{margin-top:24px}.sidebar a{display:block;color:#d9e3ff;text-decoration:none;padding:7px 10px;border-radius:8px;font-size:.9rem}.sidebar a:hover,.sidebar a.active{background:#26395f;color:#fff}.main{padding:32px;min-width:0}.hero{background:linear-gradient(125deg,#10203d,#244fbb);color:white;border-radius:22px;padding:34px;overflow:hidden}.hero h1{font-size:clamp(2rem,4vw,3.5rem);line-height:1.1;margin:.35em 0}.hero p{max-width:850px;color:#e2eaff}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:800;color:#bdd0ff}.hero svg{width:100%;max-height:300px;margin-top:14px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.chip{background:#ffffff20;border:1px solid #ffffff35;border-radius:999px;padding:5px 11px;font-size:.84rem}.panel,.section{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px;margin:22px 0;box-shadow:0 3px 15px #1c2e4a08}.section h2{font-size:1.65rem;line-height:1.25;margin:.1em 0 .65em}.section h3{margin:1.2em 0 .35em;font-size:1.15rem}.section p{margin:.6em 0}.muted{color:var(--muted)}.grid2,.grid3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.callout{border-left:4px solid var(--blue);background:var(--blue2);padding:12px 15px;border-radius:8px;margin:14px 0}.warn{border-color:#d99a1c;background:var(--amberbg);color:#533900}.success{border-color:#24925b;background:var(--greenbg)}.danger{border-color:#d74b4b;background:var(--redbg)}figure{margin:18px 0;padding:14px;background:#f8faff;border:1px solid var(--line);border-radius:12px}figure svg{display:block;width:100%;height:auto;max-height:390px}figcaption{font-size:.9rem;color:var(--muted);margin-top:10px}pre{background:var(--code);color:#e7efff;border-radius:10px;padding:17px;overflow:auto;position:relative;font: .87rem/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}p code,li code,td code{background:#edf1f7;padding:2px 5px;border-radius:4px;color:#172033}button{border:0;background:var(--blue);color:#fff;border-radius:7px;padding:8px 12px;cursor:pointer;font-weight:650}.copy{float:right;margin:5px 5px 0 0;font-size:.78rem}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.94rem}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#edf2fa}details{border:1px solid var(--line);border-radius:9px;margin:10px 0;padding:12px 15px;background:#fff}summary{cursor:pointer;font-weight:700}.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;position:relative;padding:8px 8px 8px 48px;margin:8px 0;border:1px solid var(--line);border-radius:9px}.steps li:before{content:counter(step);position:absolute;left:12px;top:9px;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:white;font-weight:800}.tag{display:inline-block;padding:2px 7px;border-radius:5px;background:#e9eef8;font-size:.78rem;font-weight:700}.small{font-size:.88rem}.footer{color:var(--muted);text-align:center;padding:25px}.toc-search{width:100%;padding:9px;border-radius:7px;border:1px solid #53627e;background:#182742;color:white}.diagram-label{font-size:14px;fill:#172033;font-weight:650}.svg-note{font-size:12px;fill:#4d5c73}.hide-print{}.question{margin-bottom:14px} @media(max-width:950px){.layout{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.sidebar nav{columns:2}.main{padding:16px}.grid3{grid-template-columns:1fr 1fr}}@media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}.hero,.section,.panel{padding:18px}.sidebar nav{columns:1}.main{padding:10px}table{font-size:.82rem}td,th{padding:7px}}@media print{body{background:#fff;font-size:11pt}.layout{display:block}.sidebar,.copy,.toolbar,.toc-search{display:none!important}.main{padding:0}.hero{background:#fff;color:#111;border:2px solid #333}.hero p,.eyebrow{color:#333}.section,.panel{break-inside:avoid;box-shadow:none}.section{border:0;border-top:1px solid #aaa;border-radius:0;padding:12px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f4f4;color:#111;border:1px solid #aaa}a{color:#111;text-decoration:underline}details>*{display:block!important}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+<div class="brand">NIMBUSWIZTECH <small>Visual-first Kubernetes learning</small></div>
+<input class="toc-search" id="navSearch" placeholder="Filter sections…" aria-label="Filter navigation">
+<nav id="nav">
+<a href="#start">01 · Learning objectives</a><a href="#intro">02 · What is Ingress?</a><a href="#architecture">03 · Architecture & traffic flow</a><a href="#compare">04 · Ingress vs Service</a><a href="#prereq">05 · Prerequisites</a><a href="#lab">06 · Hands-on lab</a><a href="#eks">07 · Amazon EKS / ALB</a><a href="#troubleshoot">08 · Troubleshooting</a><a href="#best">09 · Best practices</a><a href="#interview">10 · Interview Q&A</a><a href="#assignments">11 · Practice assignments</a><a href="#cheatsheet">12 · Cheat sheet</a><a href="#cleanup">13 · Cleanup</a><a href="#references">14 · References</a>
+</nav>
+</aside>
+<main class="main">
+<header class="hero" id="top">
+<div class="eyebrow">Hands-on training guide · beginner friendly</div>
+<h1>Kubernetes Ingress</h1>
+<p>Understand how HTTP/HTTPS traffic enters a Kubernetes cluster, follows host and path rules, and reaches the correct application Service. Includes a copy-ready lab, EKS notes, diagnostic flows, and interview practice.</p>
+<div class="chips"><span class="chip">Theory + diagrams</span><span class="chip">Copy-ready YAML</span><span class="chip">Local cluster or EKS</span><span class="chip">Interview preparation</span></div>
+<svg viewBox="0 0 900 260" role="img" aria-labelledby="heroTitle heroDesc"><title id="heroTitle">Ingress traffic overview</title><desc id="heroDesc">A browser sends a request through an ingress endpoint, then to routing rules, a Service, and application Pods.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b9d2ff"/></marker></defs>
+<rect x="20" y="76" width="140" height="90" rx="15" fill="#fff" opacity=".97"/><text x="90" y="113" text-anchor="middle" fill="#172033" font-weight="700">Browser</text><text x="90" y="137" text-anchor="middle" fill="#53627e" font-size="13">HTTP request</text>
+<rect x="220" y="54" width="170" height="135" rx="15" fill="#dce8ff"/><text x="305" y="90" text-anchor="middle" fill="#172033" font-weight="700">Ingress endpoint</text><text x="305" y="115" text-anchor="middle" fill="#334a72" font-size="13">Controller implements</text><text x="305" y="135" text-anchor="middle" fill="#334a72" font-size="13">host/path rules</text>
+<rect x="455" y="76" width="145" height="90" rx="15" fill="#fff"/><text x="527" y="111" text-anchor="middle" fill="#172033" font-weight="700">Service</text><text x="527" y="135" text-anchor="middle" fill="#53627e" font-size="13">stable endpoint</text>
+<rect x="665" y="48" width="205" height="145" rx="15" fill="#d8f5e3"/><text x="767" y="77" text-anchor="middle" fill="#14532d" font-weight="700">Application Pods</text><rect x="690" y="94" width="65" height="55" rx="8" fill="#fff"/><rect x="780" y="94" width="65" height="55" rx="8" fill="#fff"/><text x="722" y="126" text-anchor="middle" fill="#14532d" font-size="12">Pod A</text><text x="812" y="126" text-anchor="middle" fill="#14532d" font-size="12">Pod B</text>
+<path d="M160 121 H215 M390 121 H450 M600 121 H660" stroke="#b9d2ff" stroke-width="3" marker-end="url(#arrow)"/><text x="450" y="228" text-anchor="middle" fill="#dce8ff" font-size="14">Conceptual flow — the actual load-balancer path depends on the controller</text></svg>
+</header>
+
+<section class="panel" id="start"><h2>Learning objectives and roadmap</h2><div class="grid2"><div><h3>By the end, you can</h3><ul><li>Explain Ingress, IngressClass, and Ingress Controller.</li><li>Describe host-based and path-based routing.</li><li>Deploy a demo app, Services, and an Ingress rule.</li><li>Verify traffic and diagnose common failures.</li><li>Explain the difference between generic Ingress and AWS ALB Ingress on EKS.</li></ul></div><div><h3>Prerequisites</h3><ul><li>Basic Pods, Deployments, and Services.</li><li><code>kubectl</code> and access to a Kubernetes cluster.</li><li>For local practice: an Ingress controller installed in kind/Minikube.</li><li>For EKS ALB practice: EKS, AWS Load Balancer Controller, IAM permissions, and correctly tagged subnets.</li></ul><p class="muted small">Estimated time: 90–150 minutes, depending on environment readiness.</p></div></div><figure><svg viewBox="0 0 900 110" role="img" aria-label="Lesson roadmap from concepts to lab and troubleshooting"><defs><marker id="roadArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2457d6"/></marker></defs><g font-size="15" font-weight="700" text-anchor="middle"><rect x="5" y="24" width="145" height="54" rx="10" fill="#eaf0ff" stroke="#2457d6"/><text x="77" y="56">Concepts</text><rect x="190" y="24" width="145" height="54" rx="10" fill="#eaf0ff" stroke="#2457d6"/><text x="262" y="56">Architecture</text><rect x="375" y="24" width="145" height="54" rx="10" fill="#e8f7ee" stroke="#137547"/><text x="447" y="56">Hands-on lab</text><rect x="560" y="24" width="145" height="54" rx="10" fill="#fff4d8" stroke="#8a5700"/><text x="632" y="56">Troubleshoot</text><rect x="745" y="24" width="145" height="54" rx="10" fill="#f0eaff" stroke="#7250a5"/><text x="817" y="56">Interview</text></g><path d="M150 51 H185 M335 51 H370 M520 51 H555 M705 51 H740" stroke="#2457d6" stroke-width="2.5" marker-end="url(#roadArrow)"/></svg><figcaption>Follow the lesson in sequence: learn the objects, see the request path, then practice and diagnose.</figcaption></figure></section>
+
+<section class="section" id="intro"><h2>02 · What is Kubernetes Ingress?</h2>
+<p><strong>Ingress</strong> is a Kubernetes API resource that defines rules for routing HTTP and HTTPS requests from outside the cluster to Services inside the cluster. Typical rules match a hostname, URL path, or both.</p>
+<div class="callout warn"><strong>Essential distinction:</strong> an Ingress object is configuration, not a proxy by itself. An <em>Ingress Controller</em> must be installed and watching the relevant Ingress resources to implement those rules. Kubernetes documentation now recommends considering Gateway API for new designs; the Ingress API remains supported but is frozen.</div>
+<div class="grid2"><div><h3>Analogy: an office reception desk</h3><p>A visitor gives the receptionist a department or destination. The receptionist directs them to the right team. Ingress rules are the routing instructions; the controller/load balancer is the system that enforces them.</p></div><div><h3>Real application example</h3><p>One domain can route <code>shop.example.com/</code> to a storefront Service and <code>shop.example.com/api</code> to an API Service, rather than exposing each application separately with its own public endpoint.</p></div></div>
+<figure><svg viewBox="0 0 800 250" role="img" aria-label="Host and path routing example"><defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6Z" fill="#2457d6"/></marker></defs><rect x="20" y="80" width="180" height="85" rx="12" fill="#eaf0ff" stroke="#2457d6"/><text x="110" y="110" text-anchor="middle" font-weight="700" fill="#172033">shop.example.com</text><text x="110" y="135" text-anchor="middle" fill="#53627e" font-size="13">/ or /api</text><rect x="280" y="65" width="180" height="115" rx="12" fill="#fff4d8" stroke="#d99a1c"/><text x="370" y="100" text-anchor="middle" font-weight="700" fill="#533900">Ingress rules</text><text x="370" y="125" text-anchor="middle" fill="#533900" font-size="13">host + path match</text><text x="370" y="147" text-anchor="middle" fill="#533900" font-size="13">choose backend</text><rect x="560" y="25" width="205" height="70" rx="12" fill="#e8f7ee" stroke="#137547"/><text x="662" y="55" text-anchor="middle" font-weight="700" fill="#14532d">storefront Service</text><text x="662" y="75" text-anchor="middle" fill="#14532d" font-size="12">/</text><rect x="560" y="145" width="205" height="70" rx="12" fill="#e8f7ee" stroke="#137547"/><text x="662" y="175" text-anchor="middle" font-weight="700" fill="#14532d">api Service</text><text x="662" y="195" text-anchor="middle" fill="#14532d" font-size="12">/api</text><path d="M200 120 H275 M460 95 L555 60 M460 150 L555 180" stroke="#2457d6" stroke-width="2.5" fill="none" marker-end="url(#a2)"/></svg><figcaption>One entry point can route requests to different Services. The exact behavior of path matching and rewrites depends on the Ingress implementation and its configuration.</figcaption></figure>
+<h3>Common capabilities</h3><ul><li>Host-based virtual hosting.</li><li>Path-based routing.</li><li>TLS termination when configured with a suitable controller and certificate.</li><li>Controller-specific features such as redirects, authentication, or advanced traffic controls.</li></ul><p class="muted small">Ingress is primarily for HTTP/HTTPS. For arbitrary TCP/UDP services, consider an appropriate Service type or a controller-specific capability.</p></section>
+
+<section class="section" id="architecture"><h2>03 · Architecture and request flow</h2>
+<figure><svg viewBox="0 0 900 360" role="img" aria-label="Ingress architecture showing client, external load balancer, controller, ingress resource, service, and pods"><defs><marker id="ar3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6Z" fill="#2457d6"/></marker></defs><rect x="20" y="28" width="170" height="64" rx="10" fill="#eaf0ff" stroke="#2457d6"/><text x="105" y="55" text-anchor="middle" font-weight="700" fill="#172033">Client / DNS</text><text x="105" y="75" text-anchor="middle" fill="#53627e" font-size="12">HTTP(S)</text><rect x="250" y="28" width="190" height="64" rx="10" fill="#eaf0ff" stroke="#2457d6"/><text x="345" y="55" text-anchor="middle" font-weight="700" fill="#172033">Entry point</text><text x="345" y="75" text-anchor="middle" fill="#53627e" font-size="12">LB or controller address</text><rect x="500" y="28" width="175" height="64" rx="10" fill="#fff4d8" stroke="#d99a1c"/><text x="587" y="55" text-anchor="middle" font-weight="700" fill="#533900">Controller</text><text x="587" y="75" text-anchor="middle" fill="#533900" font-size="12">implements rules</text><path d="M190 60 H245 M440 60 H495" stroke="#2457d6" stroke-width="2.5" marker-end="url(#ar3)"/><rect x="500" y="140" width="175" height="60" rx="10" fill="#f0eaff" stroke="#7250a5"/><text x="587" y="165" text-anchor="middle" font-weight="700" fill="#35224f">Ingress resource</text><text x="587" y="184" text-anchor="middle" fill="#35224f" font-size="12">desired routing rules</text><path d="M587 92 V135" stroke="#7250a5" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ar3)"/><rect x="250" y="250" width="190" height="60" rx="10" fill="#e8f7ee" stroke="#137547"/><text x="345" y="275" text-anchor="middle" font-weight="700" fill="#14532d">Kubernetes Service</text><text x="345" y="294" text-anchor="middle" fill="#14532d" font-size="12">selects ready endpoints</text><rect x="500" y="250" width="175" height="60" rx="10" fill="#e8f7ee" stroke="#137547"/><text x="587" y="275" text-anchor="middle" font-weight="700" fill="#14532d">Pods</text><text x="587" y="294" text-anchor="middle" fill="#14532d" font-size="12">application containers</text><path d="M500 170 H465 V280 H445 M440 280 H495" fill="none" stroke="#2457d6" stroke-width="2.5" marker-end="url(#ar3)"/><text x="450" y="338" text-anchor="middle" fill="#53627e" font-size="12">Conceptual control and traffic relationships; implementations differ.</text></svg><figcaption>Two related flows exist: the controller watches the Ingress object and configures a data-plane; client requests then travel through the configured data-plane to backend endpoints. This diagram is conceptual, not a claim that every controller routes through a controller Pod.</figcaption></figure>
+<ol class="steps"><li>Client resolves the hostname using DNS and connects to the published entry point.</li><li>The configured load balancer or Ingress data-plane receives the HTTP/HTTPS request.</li><li>Host and path rules select a backend Service (controller-specific behavior applies).</li><li>The Service's endpoint information identifies eligible Pods.</li><li>The application responds; the response returns through the established network path.</li></ol>
+<h3>Objects to know</h3><table><thead><tr><th>Object</th><th>Purpose</th><th>Remember</th></tr></thead><tbody><tr><td><code>Ingress</code></td><td>Declares HTTP/HTTPS routing rules.</td><td>Needs a controller.</td></tr><tr><td><code>IngressClass</code></td><td>Identifies which controller should handle an Ingress.</td><td>Use <code>spec.ingressClassName</code> where applicable.</td></tr><tr><td>Ingress Controller</td><td>Watches resources and configures the routing implementation.</td><td>Install and configure it separately.</td></tr><tr><td><code>Service</code></td><td>Stable virtual endpoint for selected Pods.</td><td>Backend Service port must match the Ingress backend port.</td></tr><tr><td>Deployment / Pods</td><td>Run the application.</td><td>Pod labels must match the Service selector.</td></tr></tbody></table></section>
+
+<section class="section" id="compare"><h2>04 · Ingress vs Service types</h2><table><thead><tr><th>Approach</th><th>Typical purpose</th><th>Layer / routing</th><th>Example</th></tr></thead><tbody><tr><td><code>ClusterIP</code></td><td>Internal application endpoint</td><td>Cluster network; no direct public endpoint</td><td>Ingress backend Service</td></tr><tr><td><code>NodePort</code></td><td>Expose a port on cluster nodes</td><td>Transport-level port exposure</td><td>Basic testing / specific architectures</td></tr><tr><td><code>LoadBalancer</code></td><td>Provision external load balancing through a provider/controller</td><td>Often L4 for a Service; provider-specific</td><td>Expose a TCP service</td></tr><tr><td><code>Ingress</code></td><td>HTTP/HTTPS host/path routing to Services</td><td>Layer 7; requires controller</td><td>Many web apps behind one entry point</td></tr><tr><td>Gateway API</td><td>Modern, extensible Kubernetes traffic-routing APIs</td><td>Role-oriented routing model</td><td>New designs needing richer standard APIs</td></tr></tbody></table>
+<div class="callout"><strong>Interview shortcut:</strong> Ingress is a set of HTTP/HTTPS routing rules. A controller implements them. A Service provides stable access to Pods. These are complementary objects, not substitutes for one another.</div></section>
+
+<section class="section" id="prereq"><h2>05 · Prepare the environment</h2><p>First verify that your current context points to the intended cluster. Commands below inspect state; they do not create cloud resources.</p><pre><button class="copy" onclick="copyCode(this)">Copy</button><code>kubectl version --client
+kubectl config current-context
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+kubectl get ingressclass</code></pre>
+<div class="callout warn"><strong>Local cluster note:</strong> kind and Minikube do not necessarily include an Ingress controller by default. Install and enable a controller appropriate to your local setup before expecting an Ingress rule to route traffic. A manifest can be accepted by the API even when no controller is fulfilling it.</div>
+<figure><svg viewBox="0 0 800 110" role="img" aria-label="Readiness workflow"><g text-anchor="middle" font-weight="700" font-size="14"><rect x="5" y="25" width="145" height="55" rx="9" fill="#eaf0ff" stroke="#2457d6"/><text x="77" y="57" fill="#172033">kubectl works?</text><rect x="165" y="25" width="145" height="55" rx="9" fill="#eaf0ff" stroke="#2457d6"/><text x="237" y="57" fill="#172033">Cluster reachable?</text><rect x="325" y="25" width="145" height="55" rx="9" fill="#fff4d8" stroke="#d99a1c"/><text x="397" y="57" fill="#533900">Controller ready?</text><rect x="485" y="25" width="145" height="55" rx="9" fill="#e8f7ee" stroke="#137547"/><text x="557" y="57" fill="#14532d">Namespace ready?</text><rect x="645" y="25" width="150" height="55" rx="9" fill="#e8f7ee" stroke="#137547"/><text x="720" y="57" fill="#14532d">Run lab</text></g><g stroke="#2457d6" stroke-width="2"><path d="M150 52 H163 M310 52 H323 M470 52 H483 M630 52 H643"/></g></svg><figcaption>Resolve each prerequisite in order. If the controller is missing, troubleshoot that before debugging application routing.</figcaption></figure></section>
+
+<section class="section" id="lab"><h2>06 · Hands-on lab: two web apps behind Ingress</h2>
+<p><span class="tag">Controller-neutral manifest</span> This lab deploys two small web apps and creates one Ingress with path-based routing. It uses the common <code>ingressClassName: nginx</code> convention, so it assumes an NGINX Ingress Controller with class <code>nginx</code> is installed. If your controller uses another class, change the field to match your environment.</p>
+<div class="callout warn">Run this in a test namespace. Do not apply these manifests to a production namespace without reviewing image policy, resource requests/limits, TLS, network exposure, and controller-specific settings.</div>
+<h3>Target architecture</h3><figure><svg viewBox="0 0 800 250" role="img" aria-label="One Ingress routes slash to web frontend and api path to API backend"><defs><marker id="ar6" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6Z" fill="#2457d6"/></marker></defs><rect x="20" y="82" width="155" height="70" rx="10" fill="#eaf0ff" stroke="#2457d6"/><text x="97" y="110" text-anchor="middle" fill="#172033" font-weight="700">Client</text><text x="97" y="131" text-anchor="middle" fill="#53627e" font-size="12">/ and /api</text><rect x="240" y="82" width="165" height="70" rx="10" fill="#fff4d8" stroke="#d99a1c"/><text x="322" y="110" text-anchor="middle" fill="#533900" font-weight="700">Ingress</text><text x="322" y="131" text-anchor="middle" fill="#533900" font-size="12">path routing</text><rect x="490" y="25" width="130" height="65" rx="10" fill="#e8f7ee" stroke="#137547"/><text x="555" y="52" text-anchor="middle" fill="#14532d" font-weight="700">web-svc</text><text x="555" y="72" text-anchor="middle" fill="#14532d" font-size="12">port 80</text><rect x="490" y="155" width="130" height="65" rx="10" fill="#e8f7ee" stroke="#137547"/><text x="555" y="182" text-anchor="middle" fill="#14532d" font-weight="700">api-svc</text><text x="555" y="202" text-anchor="middle" fill="#14532d" font-size="12">port 80</text><path d="M175 117 H235 M405 105 L485 58 M405 130 L485 187" fill="none" stroke="#2457d6" stroke-width="2.5" marker-end="url(#ar6)"/></svg><figcaption>Requests to <code>/</code> go to the web app; requests to <code>/api</code> go to the API demo. The sample backend returns its default page, so this demonstrates routing, not application API semantics.</figcaption></figure>
+<h3>Exercise 1 — create the namespace and applications</h3><p>Create <code>ingress-lab.yaml</code> with the following complete manifests.</p>
+<pre><button class="copy" onclick="copyCode(this)">Copy</button><code>apiVersion: v1
+kind: Namespace
+metadata:
+  name: ingress-lab
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: ingress-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+  namespace: ingress-lab
+spec:
+  type: ClusterIP
+  selector:
+    app: web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: ingress-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: hashicorp/http-echo:1.0.0
+        args: ["-text=Hello from the API demo"]
+        ports:
+        - name: http
+          containerPort: 5678
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-svc
+  namespace: ingress-lab
+spec:
+  type: ClusterIP
+  selector:
+    app: api
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre>
+<p><strong>What to notice:</strong> each Service selector must match its Deployment's Pod labels. The API container listens on 5678, while its Service exposes port 80 and forwards to the named container port <code>http</code>. The web Service forwards to NGINX port 80.</p>
+<h3>Exercise 2 — apply and verify backend resources</h3><pre><button class="copy" onclick="copyCode(this)">Copy</button><code>kubectl apply -f ingress-lab.yaml
+kubectl -n ingress-lab rollout status deployment/web
+kubectl -n ingress-lab rollout status deployment/api
+kubectl -n ingress-lab get deploy,pods,svc
+kubectl -n ingress-lab get endpointslices</code></pre>
+<p>Expected state: two ready replicas for each Deployment and Services with endpoint addresses. Exact Pod names, IPs, and timing vary. If a rollout fails, inspect <code>kubectl -n ingress-lab describe pod POD_NAME</code> and <code>kubectl -n ingress-lab logs deploy/api</code>.</p>
+<h3>Exercise 3 — add the Ingress rule</h3><p>Append this to the same file, or save as <code>ingress.yaml</code>.</p>
+<pre><button class="copy" onclick="copyCode(this)">Copy</button><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: ingress-lab
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: api-svc
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-svc
+            port:
+              number: 80</code></pre>
+<pre><button class="copy" onclick="copyCode(this)">Copy</button><code>kubectl apply -f ingress.yaml
+kubectl -n ingress-lab get ingress
+kubectl -n ingress-lab describe ingress demo-ingress
+kubectl get ingressclass</code></pre>
+<p>This example uses a hostless rule so it can be tested by IP/hostname with a suitable controller setup. In shared clusters, explicit hostnames are usually easier to manage. Path behavior can vary with controller features; this manifest does not configure a rewrite.</p>
+<h3>Exercise 4 — test the route</h3><p>Find the controller's external address using the controller documentation and service status. For example, if its Service is a LoadBalancer:</p>
+<pre><button class="copy" onclick="copyCode(this)">Copy</button><code>kubectl get svc -A
+# Set the address from your controller's published endpoint:
+export INGRESS_HOST="YOUR_INGRESS_ADDRESS"
+curl -i "http://${INGRESS_HOST}/"
+curl -i "http://${INGRESS_HOST}/api"</code></pre>
+<div class="callout success"><strong>Expected behavior:</strong> <code>/</code> should return the NGINX welcome page; <code>/api</code> should return text similar to <code>Hello from the API demo</code>. This is expected behavior based on the manifests, not output from an executed cluster.</div>
+<h3>Exercise 5 — verify Service endpoints directly</h3><pre><button class="copy" onclick="copyCode(this)">Copy</button><code>kubectl -n ingress-lab get svc
+kubectl -n ingress-lab get endpointslices
+kubectl -n ingress-lab port-forward svc/api-svc 8080:80
+# In a second terminal:
+curl -i http://127.0.0.1:8080/</code></pre>
+<p>Port-forwarding tests the Service-to-Pod path and helps separate backend issues from Ingress/controller issues.</p></section>
+
+<section class="section" id="eks"><h2>07 · Amazon EKS: Ingress with an AWS Application Load Balancer</h2>
+<p>On EKS, a common pattern is to install the <strong>AWS Load Balancer Controller</strong>. It watches Kubernetes resources and provisions AWS load-balancing resources. With the controller configured for it, a Kubernetes Ingress typically provisions an Application Load Balancer (ALB), suitable for HTTP/HTTPS Layer 7 routing.</p>
+<figure><svg viewBox="0 0 850 250" role="img" aria-label="EKS request flow from internet to ALB to application Pods"><defs><marker id="ar7" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6Z" fill="#2457d6"/></marker></defs><rect x="15" y="85" width="130" height="65" rx="10" fill="#eaf0ff" stroke="#2457d6"/><text x="80" y="112" text-anchor="middle" fill="#172033" font-weight="700">Internet</text><text x="80" y="132" text-anchor="middle" fill="#53627e" font-size="12">DNS hostname</text><rect x="210" y="85" width="160" height="65" rx="10" fill="#fff4d8" stroke="#d99a1c"/><text x="290" y="112" text-anchor="middle" fill="#533900" font-weight="700">AWS ALB</text><text x="290" y="132" text-anchor="middle" fill="#533900" font-size="12">HTTP/HTTPS L7</text><rect x="440" y="85" width="160" height="65" rx="10" fill="#eaf0ff" stroke="#2457d6"/><text x="520" y="112" text-anchor="middle" fill="#172033" font-weight="700">Target group</text><text x="520" y="132" text-anchor="middle" fill="#53627e" font-size="12">IP or instance targets</text><rect x="670" y="35" width="165" height="65" rx="10" fill="#e8f7ee" stroke="#137547"/><text x="752" y="62" text-anchor="middle" fill="#14532d" font-weight="700">Pods</text><text x="752" y="82" text-anchor="middle" fill="#14532d" font-size="12">IP target mode</text><rect x="670" y="145" width="165" height="65" rx="10" fill="#f0eaff" stroke="#7250a5"/><text x="752" y="172" text-anchor="middle" fill="#35224f" font-weight="700">NodePort path</text><text x="752" y="192" text-anchor="middle" fill="#35224f" font-size="12">instance target mode</text><path d="M145 117 H205 M370 117 H435 M600 110 L665 68 M600 126 L665 176" fill="none" stroke="#2457d6" stroke-width="2.5" marker-end="url(#ar7)"/></svg><figcaption>In IP target mode, ALB targets Pod IPs. In instance target mode, ALB targets worker nodes and traffic reaches a Service NodePort. Requirements and exact paths depend on the controller, networking, and cluster mode.</figcaption></figure>
+<h3>Typical prerequisites</h3><ul><li>A working EKS cluster and supported AWS Load Balancer Controller installation.</li><li>Correct IAM permissions for the controller and the required service account/role configuration.</li><li>Subnets in suitable Availability Zones, with the tags and routing required for public or internal load balancers.</li><li>Security groups and network routes that allow the intended traffic.</li><li>A controller-compatible IngressClass and annotations.</li></ul>
+<div class="callout warn"><strong>Cost and safety:</strong> creating an ALB can incur AWS charges. Use a training environment and remove the Ingress after the lab; wait for the controller to clean up its AWS resources. Do not install or upgrade the controller by copying a partial command. Follow the current official AWS setup guide for your EKS version and IAM model.</div>
+<h3>Illustrative ALB Ingress manifest</h3><p>This example assumes the AWS Load Balancer Controller is already installed and configured, and that the backend Service exists in the same namespace. Validate your environment's subnet, security, target-type, and class requirements before applying.</p>
+<pre><button class="copy" onclick="copyCode(this)">Copy</button><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-alb
+  namespace: ingress-lab
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: alb
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-svc
+            port:
+              number: 80</code></pre>
+<pre><button class="copy" onclick="copyCode(this)">Copy</button><code>kubectl apply -f web-alb.yaml
+kubectl -n ingress-lab describe ingress web-alb
+kubectl -n ingress-lab get ingress -w</code></pre>
+<p>The ADDRESS may take time to populate while the controller reconciles AWS resources. A blank address is a diagnostic starting point, not proof of a single specific cause.</p>
+<table><thead><tr><th>NGINX-style controller lab</th><th>AWS ALB on EKS</th></tr></thead><tbody><tr><td>Controller-specific install; commonly a controller runs in cluster.</td><td>AWS Load Balancer Controller manages AWS ALB resources.</td></tr><tr><td>Ingress class often named <code>nginx</code>.</td><td>Ingress class commonly named <code>alb</code> when configured that way.</td></tr><tr><td>External address depends on how the controller is exposed.</td><td>Ingress address is commonly the ALB DNS name.</td></tr><tr><td>Controller annotations/features vary by implementation.</td><td>ALB annotations control scheme, target type, health checks, and other AWS-specific behavior.</td></tr></tbody></table></section>
+
+<section class="section" id="troubleshoot"><h2>08 · Troubleshooting: follow the evidence</h2>
+<h3>Flow A — no address / no route</h3><figure><svg viewBox="0 0 760 290" role="img" aria-label="Troubleshooting tree for ingress not routing"><defs><marker id="ar8" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6Z" fill="#2457d6"/></marker></defs><rect x="240" y="8" width="280" height="42" rx="8" fill="#fff4d8" stroke="#d99a1c"/><text x="380" y="34" text-anchor="middle" fill="#533900" font-weight="700">Ingress has no address / fails?</text><rect x="20" y="95" width="210" height="55" rx="8" fill="#eaf0ff" stroke="#2457d6"/><text x="125" y="117" text-anchor="middle" fill="#172033" font-weight="700">Check controller + class</text><text x="125" y="136" text-anchor="middle" fill="#53627e" font-size="12">pods, events, IngressClass</text><rect x="275" y="95" width="210" height="55" rx="8" fill="#eaf0ff" stroke="#2457d6"/><text x="380" y="117" text-anchor="middle" fill="#172033" font-weight="700">Check backend Service</text><text x="380" y="136" text-anchor="middle" fill="#53627e" font-size="12">port, selector, endpoints</text><rect x="530" y="95" width="210" height="55" rx="8" fill="#eaf0ff" stroke="#2457d6"/><text x="635" y="117" text-anchor="middle" fill="#172033" font-weight="700">Check network / DNS</text><text x="635" y="136" text-anchor="middle" fill="#53627e" font-size="12">LB, security groups, DNS</text><rect x="220" y="210" width="320" height="48" rx="8" fill="#e8f7ee" stroke="#137547"/><text x="380" y="239" text-anchor="middle" fill="#14532d" font-weight="700">Fix the confirmed cause, then retest</text><path d="M380 50 V72 H125 V90 M380 72 V90 M380 72 H635 V90 M125 150 V180 H380 V205 M380 150 V205 M635 150 V180 H380" fill="none" stroke="#2457d6" stroke-width="2" marker-end="url(#ar8)"/></svg><figcaption>Use the object status and events to narrow the cause before changing configuration. The branches are diagnostic checks, not a guarantee that one of them is the cause.</figcaption></figure>
+<h3>Diagnostic command set</h3><pre><button class="copy" onclick="copyCode(this)">Copy</button><code>kubectl -n ingress-lab get ingress
+kubectl -n ingress-lab describe ingress demo-ingress
+kubectl get ingressclass
+kubectl -n ingress-lab get svc
+kubectl -n ingress-lab get endpointslices
+kubectl -n ingress-lab get pods -o wide
+kubectl -n ingress-lab get events --sort-by=.lastTimestamp</code></pre>
+<table><thead><tr><th>Symptom</th><th>Check</th><th>Likely areas to investigate</th></tr></thead><tbody><tr><td>Ingress exists but no address</td><td><code>describe ingress</code>, controller logs/events</td><td>Controller absent/unhealthy, wrong class, cloud provisioning prerequisites.</td></tr><tr><td>404 response</td><td>Host header, path, controller logs, rules</td><td>Request doesn't match host/path or controller default backend handles it.</td></tr><tr><td>502/503 response</td><td>Service ports and EndpointSlices</td><td>No ready endpoints, wrong backend port, app not listening, controller-to-backend connectivity.</td></tr><tr><td>Service has no endpoints</td><td><code>kubectl get pods --show-labels</code></td><td>Selector mismatch, Pods not Ready, Deployment not healthy.</td></tr><tr><td>DNS name fails</td><td><code>nslookup HOST</code> / <code>dig HOST</code></td><td>DNS record missing/stale or address not published correctly.</td></tr><tr><td>EKS ALB not provisioned</td><td>Controller logs, Ingress events, AWS console</td><td>IAM, subnet discovery/tags, security groups, class/annotations, controller configuration.</td></tr><tr><td>TLS certificate warning</td><td>Ingress TLS stanza and Secret/certificate</td><td>Certificate not found, hostname mismatch, incomplete chain, controller-specific TLS configuration.</td></tr></tbody></table>
+<h3>Flow B — backend returns errors</h3><ol class="steps"><li>Confirm the Ingress rule matches the request host and path.</li><li>Confirm the backend Service exists in the same namespace and the named port is valid.</li><li>Confirm EndpointSlices contain ready endpoints.</li><li>Test the Service with port-forwarding or an in-cluster client.</li><li>If Service testing succeeds but Ingress fails, inspect controller logs and controller-specific routing behavior.</li></ol></section>
+
+<section class="section" id="best"><h2>09 · Best practices</h2><div class="grid2"><div><h3>Prefer</h3><ul><li>Explicit <code>ingressClassName</code> when multiple controllers exist.</li><li>Use TLS for sensitive traffic and manage certificate renewal.</li><li>Keep Service selectors and named ports consistent.</li><li>Restrict who can create or modify public routing rules.</li><li>Use health checks/readiness correctly and observe controller logs/events.</li><li>Review controller-specific annotations before using them.</li><li>Use DNS names and explicit hosts for predictable routing.</li></ul></div><div><h3>Avoid</h3><ul><li>Assuming an Ingress object automatically creates routing without a controller.</li><li>Assuming all controllers support identical annotations or rewrite behavior.</li><li>Publishing internal services accidentally with a public scheme.</li><li>Using broad wildcard hosts without ownership and security review.</li><li>Deleting shared Ingress resources or controller components casually.</li><li>Assuming a successful <code>kubectl apply</code> means requests work end-to-end.</li></ul></div></div>
+<h3>Before vs after</h3><table><thead><tr><th>Risky / incomplete</th><th>Better approach</th></tr></thead><tbody><tr><td>Ingress has no class and multiple controllers exist.</td><td>Set <code>spec.ingressClassName</code> to the intended class.</td></tr><tr><td>Service selector label differs from Pod labels.</td><td>Match selector and Pod template labels; verify EndpointSlices.</td></tr><tr><td>Only tests <code>kubectl apply</code>.</td><td>Verify ingress address, backend endpoints, and actual HTTP response.</td></tr><tr><td>Public ALB created without checking cost/scope.</td><td>Confirm public vs internal scheme, security controls, ownership, and cleanup.</td></tr></tbody></table></section>
+
+<section class="section" id="interview"><h2>10 · Interview preparation</h2><p>Try answering each question before expanding the answer. Use the search box to filter questions by keyword.</p><input id="qSearch" class="toc-search" style="background:#fff;color:#172033;border-color:#cbd5e1" placeholder="Filter interview questions…" aria-label="Filter interview questions">
+<div id="questions">
+<details class="question"><summary>Basic 1. What is Kubernetes Ingress?</summary><p>An API resource defining HTTP/HTTPS routing rules from outside the cluster to backend Services, commonly using hostnames and paths.</p></details>
+<details class="question"><summary>Basic 2. Does an Ingress work by itself?</summary><p>No. A compatible Ingress Controller must be running and configured to fulfill it.</p></details>
+<details class="question"><summary>Basic 3. What is an Ingress Controller?</summary><p>A controller that watches Ingress-related resources and configures a proxy/load balancer or cloud load balancer to implement the desired routing.</p></details>
+<details class="question"><summary>Basic 4. What is IngressClass?</summary><p>A resource that identifies the controller implementation intended to handle an Ingress. The Ingress refers to it with <code>spec.ingressClassName</code>.</p></details>
+<details class="question"><summary>Basic 5. What is host-based routing?</summary><p>Routing based on the HTTP Host header, for example <code>api.example.com</code> to one Service and <code>shop.example.com</code> to another.</p></details>
+<details class="question"><summary>Basic 6. What is path-based routing?</summary><p>Routing based on the request URI path, for example <code>/api</code> to an API Service and <code>/</code> to a web Service.</p></details>
+<details class="question"><summary>Basic 7. What does pathType Prefix mean?</summary><p>It matches a path by URL path-element prefix according to Kubernetes Ingress path matching rules; it is not an arbitrary raw string-prefix rule.</p></details>
+<details class="question"><summary>Basic 8. Which API version should a new Ingress manifest use?</summary><p><code>networking.k8s.io/v1</code>.</p></details>
+<details class="question"><summary>Basic 9. Can Ingress expose raw TCP or UDP ports?</summary><p>Standard Ingress is designed for HTTP/HTTPS. Use an appropriate Service type or controller-specific features for other protocols.</p></details>
+<details class="question"><summary>Basic 10. How do you inspect an Ingress?</summary><p>Use <code>kubectl get ingress</code>, <code>kubectl describe ingress NAME</code>, and inspect controller status/logs as needed.</p></details>
+<details class="question"><summary>Intermediate 11. Why can an Ingress exist without a working endpoint?</summary><p>Kubernetes can store the configuration even if no controller fulfills it, or if the controller cannot provision/configure its data plane.</p></details>
+<details class="question"><summary>Intermediate 12. How do Ingress and Service relate?</summary><p>Ingress routes requests to a Service backend. The Service provides a stable endpoint and selects Pods through labels/selectors.</p></details>
+<details class="question"><summary>Intermediate 13. What causes an empty Service EndpointSlice?</summary><p>Common causes include mismatched selectors, absent Pods, Pods not Ready, or a workload that failed to start. Inspect Pod labels, readiness, and events.</p></details>
+<details class="question"><summary>Intermediate 14. What is TLS termination?</summary><p>The TLS connection is decrypted at a configured endpoint such as an ingress proxy or ALB, which then forwards traffic according to the controller's configuration.</p></details>
+<details class="question"><summary>Intermediate 15. How would you test a backend without Ingress?</summary><p>Use <code>kubectl port-forward svc/SERVICE LOCAL:REMOTE</code> or a temporary in-cluster client. This separates backend issues from Ingress routing issues.</p></details>
+<details class="question"><summary>Intermediate 16. What is the difference between a 404 and a 503 here?</summary><p>A 404 often indicates a route/host/path mismatch or default backend response. A 503 often points to unavailable backends, but verify the specific controller and logs.</p></details>
+<details class="question"><summary>Intermediate 17. Why specify ingressClassName?</summary><p>It directs the Ingress to the intended controller, especially when multiple controllers exist or there is no default class.</p></details>
+<details class="question"><summary>Intermediate 18. How does AWS ALB differ from a generic NGINX Ingress setup?</summary><p>The AWS Load Balancer Controller can provision and configure an AWS ALB from Ingress resources. NGINX-style setups use the chosen controller's own data-plane and exposure method. Annotations and operational requirements differ.</p></details>
+<details class="question"><summary>Intermediate 19. What is the difference between ALB and NLB on EKS?</summary><p>ALB is Layer 7 and commonly used for HTTP/HTTPS Ingress. NLB is Layer 4 and commonly used for Service type LoadBalancer with TCP/UDP use cases. Verify current AWS/controller behavior for the chosen setup.</p></details>
+<details class="question"><summary>Intermediate 20. Is Ingress the preferred API for every new Kubernetes networking design?</summary><p>No. The Ingress API is stable but frozen; Kubernetes recommends evaluating Gateway API for new designs that need its richer extensibility and role model.</p></details>
+<details class="question"><summary>Scenario 21. The Ingress has no ADDRESS. What do you do?</summary><p>Inspect Ingress events and class, confirm the controller is healthy, then inspect controller logs and any provider prerequisites. On EKS, check IAM, subnet discovery/tags, security groups, and controller configuration before assuming a single cause.</p></details>
+<details class="question"><summary>Scenario 22. The browser shows 404, but the Pods are healthy. Why?</summary><p>Check host header, path and pathType, IngressClass, and controller logs. Try a request matching the configured host/path. If host rules exist, an IP-only request may not match.</p></details>
+<details class="question"><summary>Scenario 23. The Ingress returns 503. What is your sequence?</summary><p>Check the backend Service and port, inspect EndpointSlices, confirm Pod readiness, test the Service directly, then inspect controller-to-backend connectivity and logs.</p></details>
+<details class="question"><summary>Scenario 24. One path works and another fails.</summary><p>Compare path definitions, ordering and controller-specific matching rules; verify both backend Services, port numbers, and EndpointSlices. Test the exact failing URL.</p></details>
+<details class="question"><summary>Scenario 25. The ALB is created but targets are unhealthy.</summary><p>Inspect target group health reason, security groups/routes, target type, Pod/service ports, health-check path and success codes. Confirm the app returns the expected response on the health-check endpoint.</p></details>
+<details class="question"><summary>Scenario 26. You need two hostnames to route to separate apps.</summary><p>Define two host rules under the Ingress (or separate Ingress objects if appropriate), map each host to its backend Service, configure DNS, and verify Host-header behavior.</p></details>
+<details class="question"><summary>Scenario 27. How do you add HTTPS?</summary><p>Configure a certificate and TLS settings according to the selected controller. For generic Ingress this often uses <code>spec.tls</code> and a TLS Secret; on EKS ALB, certificate ARN annotations and listener configuration are common. Follow the controller's current docs.</p></details>
+<details class="question"><summary>Scenario 28. A deployment is successful, but requests still fail.</summary><p>Deployment success only verifies workload rollout. Test Pod readiness, Service endpoints, Ingress rule matching, controller health, external DNS/network path, and actual HTTP response separately.</p></details>
+<details class="question"><summary>Scenario 29. How do you prevent accidentally exposing an internal app?</summary><p>Review public/internal load-balancer scheme, host rules, security groups, authentication/network controls, RBAC, and who can modify Ingress resources. Test exposure from the intended network boundary.</p></details>
+<details class="question"><summary>Scenario 30. Would you choose Ingress or Gateway API for a new platform?</summary><p>Compare required features, controller support, team familiarity, and migration constraints. Since Ingress is frozen and Kubernetes recommends Gateway API for new designs, evaluate Gateway API if its implementation and features meet requirements.</p></details>
+</div></section>
+
+<section class="section" id="assignments"><h2>11 · Practice assignments</h2>
+<h3>Beginner exercises</h3><ol><li>Create the namespace and deploy the two backend applications from the lab.</li><li>Change the web Deployment to three replicas and verify rollout status.</li><li>Change the API demo response text and redeploy it.</li><li>Inspect the IngressClass and identify which controller handles the lab.</li><li>Use port-forwarding to test each Service independently.</li></ol>
+<h3>Modification and troubleshooting exercises</h3><ol start="6"><li>Break a Service selector intentionally in a disposable namespace; observe EndpointSlices and repair it.</li><li>Change the backend Service port to an incorrect value; inspect the failure and fix it.</li><li>Add an explicit host rule and test with a matching Host header using <code>curl -H 'Host: demo.example.test' http://ADDRESS/</code>.</li><li>Make the Ingress class incorrect, observe the symptoms, and restore the correct class.</li><li>Test a path not present in the rules and document the observed response.</li></ol>
+<h3>Scenario challenges</h3><ol start="11"><li>Design host-based routing for <code>app.example.test</code> and <code>api.example.test</code>.</li><li>For EKS, document the prerequisites and verification steps for an internal ALB rather than an internet-facing ALB.</li><li>Create a diagnostic runbook for an ALB with unhealthy targets, including the commands and AWS-side checks you would perform.</li></ol>
+<details><summary>Hints and solution approach</summary><ul><li>For exercises 1–5, use the complete lab manifests and verify Deployments, Services, and EndpointSlices.</li><li>For selector/port failures, compare Deployment Pod labels, Service selectors, Service <code>port</code>, and <code>targetPort</code>.</li><li>For host-based routing, define <code>host</code> under an Ingress rule and test the exact Host header. DNS is not required to test a Host header locally.</li><li>For EKS challenges, consult the AWS Load Balancer Controller documentation for IAM, subnet discovery, scheme, target type, health checks, and security requirements.</li></ul></details></section>
+
+<section class="section" id="cheatsheet"><h2>12 · Quick revision cheat sheet</h2><table><thead><tr><th>Task</th><th>Command</th></tr></thead><tbody><tr><td>List Ingresses</td><td><code>kubectl get ingress -A</code></td></tr><tr><td>Inspect details and events</td><td><code>kubectl describe ingress NAME -n NAMESPACE</code></td></tr><tr><td>List classes</td><td><code>kubectl get ingressclass</code></td></tr><tr><td>Check Services and ports</td><td><code>kubectl get svc -n NAMESPACE</code></td></tr><tr><td>Check endpoint slices</td><td><code>kubectl get endpointslices -n NAMESPACE</code></td></tr><tr><td>Check Pod labels/readiness</td><td><code>kubectl get pods --show-labels -n NAMESPACE</code></td></tr><tr><td>Inspect recent events</td><td><code>kubectl get events -n NAMESPACE --sort-by=.lastTimestamp</code></td></tr><tr><td>Test Service locally</td><td><code>kubectl port-forward svc/SERVICE 8080:80 -n NAMESPACE</code></td></tr><tr><td>Apply configuration</td><td><code>kubectl apply -f FILE.yaml</code></td></tr><tr><td>Remove lab</td><td><code>kubectl delete namespace ingress-lab</code></td></tr></tbody></table>
+<div class="grid3"><div class="panel"><strong>Ingress</strong><p class="small">Routing intent: host/path → Service.</p></div><div class="panel"><strong>Controller</strong><p class="small">Implements routing and provisions/configures data plane.</p></div><div class="panel"><strong>Service</strong><p class="small">Stable endpoint and Pod selection.</p></div></div>
+<p><strong>Revision checklist:</strong> Can you explain the controller requirement? Trace a request? Check Service endpoints? Distinguish a host/path mismatch from a backend failure? Explain the EKS ALB prerequisites? Clean up cloud resources safely?</p></section>
+
+<section class="section" id="cleanup"><h2>13 · Cleanup and resource lifecycle</h2><figure><svg viewBox="0 0 800 110" role="img" aria-label="Resource lifecycle create, apply, verify, troubleshoot, delete"><g text-anchor="middle" font-size="14" font-weight="700"><rect x="5" y="25" width="125" height="55" rx="9" fill="#eaf0ff" stroke="#2457d6"/><text x="67" y="57" fill="#172033">Create YAML</text><rect x="165" y="25" width="125" height="55" rx="9" fill="#eaf0ff" stroke="#2457d6"/><text x="227" y="57" fill="#172033">Apply</text><rect x="325" y="25" width="125" height="55" rx="9" fill="#e8f7ee" stroke="#137547"/><text x="387" y="57" fill="#14532d">Verify</text><rect x="485" y="25" width="125" height="55" rx="9" fill="#fff4d8" stroke="#d99a1c"/><text x="547" y="57" fill="#533900">Troubleshoot</text><rect x="645" y="25" width="145" height="55" rx="9" fill="#fff0f0" stroke="#a52626"/><text x="717" y="57" fill="#a52626">Delete</text></g><g stroke="#2457d6" stroke-width="2"><path d="M130 52 H163 M290 52 H323 M450 52 H483 M610 52 H643"/></g></svg><figcaption>Use the lifecycle intentionally. Cloud-created load balancers may need time to be removed after their owning Kubernetes resources are deleted.</figcaption></figure>
+<pre><button class="copy" onclick="copyCode(this)">Copy</button><code># Review what is in the lab namespace first
+kubectl get all,ingress -n ingress-lab
+
+# Delete lab namespace and all namespaced lab objects
+kubectl delete namespace ingress-lab
+
+# Verify the namespace is gone
+kubectl get namespace ingress-lab</code></pre>
+<div class="callout danger"><strong>Shared cluster warning:</strong> do not delete the controller, shared IngressClass, or other teams' namespaces. If you created an EKS ALB Ingress, verify the associated AWS load balancer and target groups are removed after the controller reconciles. Manually created cloud resources may need separate cleanup.</div></section>
+
+<section class="section" id="references"><h2>14 · References and source notes</h2>
+<p>The guide uses the supplied Nimbuswiztech Ingress wiki as the primary topic framing. The wiki page was accessible and describes Ingress as host/path-based HTTP(S) routing, highlights the controller requirement, and lists consolidation, TLS termination, and routing as benefits. The supplied repository branch page could not be inspected through the available browser retrieval, so this guide does not claim to reproduce or verify its exact file contents.</p>
+<ul>
+<li><a href="https://github.com/nimbuswiztech/kubernetes/wiki/Ingress-in-Kubernetes" target="_blank" rel="noopener">Nimbuswiztech wiki — Ingress in Kubernetes</a></li>
+<li><a href="https://github.com/nimbuswiztech/Kubernetes/tree/July26/eks-kubernetes-ingress-demo" target="_blank" rel="noopener">Nimbuswiztech repository — EKS Kubernetes Ingress demo (supplied source)</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/" target="_blank" rel="noopener">Official Kubernetes documentation — Ingress</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/" target="_blank" rel="noopener">Official Kubernetes documentation — Ingress Controllers</a></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html" target="_blank" rel="noopener">AWS EKS — Route application and HTTP traffic with Application Load Balancers</a></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html" target="_blank" rel="noopener">AWS EKS — AWS Load Balancer Controller</a></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/best-practices/load-balancing.html" target="_blank" rel="noopener">AWS EKS Best Practices — Load Balancing</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/" target="_blank" rel="noopener">Kubernetes Gateway API documentation</a></li>
+</ul>
+<div class="callout"><strong>Version and implementation reminder:</strong> this is a training reference, not a substitute for the current documentation for your chosen controller. Controller annotations, installation steps, cloud requirements, and supported features can change. Validate the exact Kubernetes/EKS and controller versions in use.</div></section>
+<div class="toolbar hide-print"><button onclick="window.print()">Print / Save as PDF</button><button onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top ↑</button></div>
+<footer class="footer">Nimbuswiztech · Kubernetes Ingress Training Guide · Self-contained HTML with embedded SVG diagrams</footer>
+</main></div>
+<script>
+function copyCode(btn){const pre=btn.parentElement;const code=pre.querySelector('code');if(!code)return;const text=code.innerText; if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy',1300)}).catch(()=>fallbackCopy(text,btn))}else fallbackCopy(text,btn)}
+function fallbackCopy(text,btn){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy',1300)}catch(e){btn.textContent='Select code manually'}ta.remove()}
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('#nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
+document.getElementById('navSearch').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('#nav a').forEach(a=>a.style.display=a.textContent.toLowerCase().includes(q)?'block':'none')});
+document.getElementById('qSearch').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('.question').forEach(d=>d.style.display=d.textContent.toLowerCase().includes(q)?'block':'none')});
+</script>
+</body>
+</html>

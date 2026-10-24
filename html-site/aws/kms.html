@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS KMS Reference Handbook & Hands-on Lab — Student Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0d14;
+      --bg-secondary: #111622;
+      --bg-card: #161d2d;
+      --bg-card-hover: #1d263b;
+      --border-color: #242f46;
+      --border-highlight: #06b6d4;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent-kms: #9333ea;
+      --accent-kms-light: #c084fc;
+      --accent-kms-glow: rgba(147, 51, 234, 0.25);
+      --accent-cyan: #06b6d4;
+      --accent-cyan-glow: rgba(6, 182, 212, 0.2);
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      
+      --student-badge: #06b6d4;
+      --student-glow: rgba(6, 182, 212, 0.2);
+      
+      --code-bg: #0d1117;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.6);
+      
+      --sidebar-width: 290px;
+      --header-height: 70px;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-highlight: #0284c7;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --code-bg: #1e293b;
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --accent-kms-glow: rgba(147, 51, 234, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Header Nav */
+    header.top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(10, 13, 20, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 1000;
+    }
+
+    [data-theme="light"] header.top-nav {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #06b6d4, #9333ea);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 15px var(--accent-cyan-glow);
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #fff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .brand-title {
+      background: linear-gradient(90deg, #0f172a, #334155);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-badge {
+      background: var(--student-badge);
+      color: #032b35;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Lab Progress Bar in Header */
+    .lab-progress-widget {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .progress-track {
+      width: 100px;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #06b6d4, #10b981);
+      transition: width 0.3s ease;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-cyan);
+    }
+
+    /* Layout */
+    .layout-container {
+      display: flex;
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Sidebar Navigation */
+    aside.sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      position: fixed;
+      top: var(--header-height);
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-color) transparent;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 0 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item a:hover {
+      color: var(--text-main);
+      background: var(--bg-card);
+    }
+
+    .nav-item a.active {
+      color: #fff;
+      background: linear-gradient(90deg, #0284c7, rgba(6, 182, 212, 0.3));
+      font-weight: 600;
+    }
+
+    /* Content Area */
+    main.content-area {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 2.5rem 4rem;
+      max-width: 1200px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(147, 51, 234, 0.1) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-muted);
+    }
+
+    .badge-pill.cyan {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.1);
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      max-width: 850px;
+      margin-bottom: 1.8rem;
+    }
+
+    /* Quick Checklist Progress Bar Box */
+    .lab-summary-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Section Styling */
+    section.module-section {
+      margin-bottom: 4rem;
+      scroll-margin-top: calc(var(--header-height) + 1.5rem);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--accent-cyan);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Key Concepts Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Interactive SVG Diagram Container */
+    .diagram-container {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.8rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-md);
+      overflow-x: auto;
+    }
+
+    .diagram-caption {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+    }
+
+    table.spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    table.spec-table th {
+      background: var(--bg-card);
+      padding: 12px 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    table.spec-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+
+    table.spec-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Lab Checklist Item Card */
+    .lab-step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .lab-step-card.completed {
+      border-color: var(--accent-green);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, var(--bg-card) 100%);
+    }
+
+    .lab-step-header {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .lab-step-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Custom Checkbox */
+    .checkbox-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 2px solid var(--border-color);
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .checkbox-btn.checked {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+      color: #fff;
+    }
+
+    .lab-step-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .lab-step-body {
+      padding: 1.8rem;
+    }
+
+    /* Click Path List */
+    .click-path {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 1rem 0;
+    }
+
+    .click-path li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .click-idx {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--accent-cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      min-width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .console-ui {
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      color: #67e8f9;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+    }
+
+    /* Code Snippet Box */
+    .code-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      margin: 1rem 0;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      color: #fff;
+      border-color: var(--accent-cyan);
+    }
+
+    pre code {
+      display: block;
+      padding: 1rem 1.2rem;
+      overflow-x: auto;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* Callout & Alert Box */
+    .alert-box {
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+    }
+
+    .alert-amber {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fde68a;
+    }
+
+    .alert-red {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .alert-green {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #a7f3d0;
+    }
+
+    .alert-blue {
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: #bae6fd;
+    }
+
+    /* Self-Assessment Quiz */
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-question {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-opt:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-cyan);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.15) !important;
+      border-color: var(--accent-green) !important;
+      color: #34d399;
+    }
+
+    .quiz-opt.incorrect {
+      background: rgba(239, 68, 68, 0.15) !important;
+      border-color: var(--accent-red) !important;
+      color: #f87171;
+    }
+
+    .quiz-feedback {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      display: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    /* Floating Toolbar */
+    .floating-toolbar {
+      position: fixed;
+      bottom: 24px;
+      right: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+    }
+
+    @media print {
+      header.top-nav, aside.sidebar, .floating-toolbar, .checkbox-btn {
+        display: none !important;
+      }
+      main.content-area {
+        margin-left: 0;
+        padding: 0;
+        max-width: 100%;
+      }
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      aside.sidebar {
+        display: none;
+      }
+      main.content-area {
+        margin-left: 0;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- Navigation Bar -->
+  <header class="top-nav">
+    <div class="brand">
+      <div class="brand-logo">🛡️</div>
+      <div>
+        <div class="brand-title">AWS KMS Student Handbook</div>
+      </div>
+      <span class="brand-badge">DevOps Ref</span>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Live Progress Widget -->
+      <div class="lab-progress-widget">
+        <span>Lab Progress:</span>
+        <div class="progress-track">
+          <div class="progress-fill" id="headerProgressFill"></div>
+        </div>
+        <span id="headerProgressText">0/7</span>
+      </div>
+
+      <a href="kms-instructor-guide.html" class="btn btn-secondary" target="_blank">
+        👨‍🏫 Instructor Guide
+      </a>
+
+      <button class="btn btn-secondary" id="themeToggle" title="Toggle Theme">
+        🌓 Theme
+      </button>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-section-title">Navigation Index</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#overview" class="active"><span>0. Handbook Overview</span></a></li>
+        <li class="nav-item"><a href="#what-is-kms"><span>1. What is AWS KMS?</span></a></li>
+        <li class="nav-item"><a href="#envelope-encryption"><span>2. Envelope Encryption</span></a></li>
+        <li class="nav-item"><a href="#why-kms"><span>3. Why KMS is Essential</span></a></li>
+        <li class="nav-item"><a href="#devops-use-cases"><span>4. 5 Real-World Use Cases</span></a></li>
+        <li class="nav-item"><a href="#hands-on-lab"><span>5. Hands-on Console Lab (7 Steps)</span></a></li>
+        <li class="nav-item"><a href="#cheatsheet"><span>6. KMS Cheatsheet & Limits</span></a></li>
+        <li class="nav-item"><a href="#troubleshooting"><span>7. Error Troubleshooting</span></a></li>
+        <li class="nav-item"><a href="#self-quiz"><span>8. Knowledge Check Quiz</span></a></li>
+      </ul>
+
+      <div class="sidebar-section-title" style="margin-top: 1.5rem;">Lab Checklist</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); padding: 0 0.5rem;">
+        Tick checkboxes as you complete each step in the AWS Console. Your progress saves automatically!
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- Hero Banner -->
+      <div class="hero-banner" id="overview">
+        <div class="hero-badge-row">
+          <span class="badge-pill cyan">Student Edition</span>
+          <span class="badge-pill">Self-Paced Lab Guide</span>
+          <span class="badge-pill">AWS Console Only (Zero CLI)</span>
+          <span class="badge-pill">FIPS 140-2/3 Level 3 HSM</span>
+        </div>
+        <h1 class="hero-title">AWS Key Management Service (KMS) Reference Guide & Hands-on Lab</h1>
+        <p class="hero-subtitle">
+          Master the industry standard for cloud encryption at rest. Understand cryptographic key hierarchies, envelope encryption mechanics, dual-layer policy evaluation, and execute a 100% AWS Console lab isolating sensitive DevOps artifacts.
+        </p>
+
+        <div class="lab-summary-box">
+          <div>
+            <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--accent-cyan);">Your Lab Completion Status</div>
+            <div style="font-size: 1.25rem; font-weight: 700;" id="bannerProgressTitle">0 of 7 Steps Completed (0%)</div>
+          </div>
+          <button class="btn btn-secondary" onclick="resetLabProgress()">
+            🔄 Reset Checklist
+          </button>
+        </div>
+      </div>
+
+      <!-- MODULE 1: WHAT IS KMS -->
+      <section class="module-section" id="what-is-kms">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">01</div>
+            <h2 class="section-title">What is AWS KMS? Core Concepts</h2>
+          </div>
+        </div>
+
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.05rem;">
+          <strong>AWS Key Management Service (KMS)</strong> is a managed service that makes it easy to create and control cryptographic keys used to encrypt your data. It integrates seamlessly with over 100 AWS services and provides centralized audit logging via AWS CloudTrail.
+        </p>
+
+        <div class="alert-box alert-blue">
+          <span>💡</span>
+          <div>
+            <strong>Fundamental Rule:</strong> The plaintext key material of a KMS Customer Master Key (CMK) <strong>never leaves AWS KMS Hardware Security Modules (HSMs)</strong>, is never sent over the network, and cannot be viewed or downloaded by anyone—not even AWS staff.
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.25rem; margin: 1.5rem 0 1rem;">1.1 The 3 Key Tiers in AWS KMS</h3>
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Key Type</th>
+                <th>Who Creates It?</th>
+                <th>Can You Edit Policy?</th>
+                <th>Cross-Account Use?</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>AWS Owned Key</strong></td>
+                <td>Internal AWS teams (e.g. S3 system encryption)</td>
+                <td>❌ No</td>
+                <td>❌ No</td>
+                <td>Free</td>
+              </tr>
+              <tr>
+                <td><strong>AWS Managed Key</strong> (Alias: <code>aws/s3</code>, <code>aws/ebs</code>)</td>
+                <td>Created automatically on first service use</td>
+                <td>❌ No (View-only)</td>
+                <td>❌ No</td>
+                <td>Free to store, pay for API requests</td>
+              </tr>
+              <tr>
+                <td><strong style="color: var(--accent-cyan);">Customer Managed Key (CMK)</strong></td>
+                <td>Created and managed by you</td>
+                <td>✅ Full Control (Custom Key Policies)</td>
+                <td>✅ Yes (Via Key Policy Grants)</td>
+                <td>$1.00 / month / key + API requests</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="font-size: 1.25rem; margin: 1.5rem 0 1rem;">1.2 Key Specifications</h3>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-cyan);">
+              <span>🔑</span> Symmetric Keys (AES-256 GCM)
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              The <strong>standard for 99% of cloud workloads</strong>. A single 256-bit secret key is used for both encryption and decryption. Native integration with S3, EBS, RDS, DynamoDB, Secrets Manager, and Lambda.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-kms-light);">
+              <span>🔓</span> Asymmetric Keys (RSA & ECC)
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Generates a public/private keypair. The public key can be downloaded and distributed outside AWS to encrypt data or verify digital signatures; the private key never leaves the KMS HSM.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-green);">
+              <span>🌐</span> Multi-Region Keys
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Primary and replica keys shared across multiple AWS regions with identical key material and key IDs. Enables seamless client-side decryption in active-active disaster recovery architectures.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 2: ENVELOPE ENCRYPTION -->
+      <section class="module-section" id="envelope-encryption">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">02</div>
+            <h2 class="section-title">Envelope Encryption Explained</h2>
+          </div>
+        </div>
+
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+          AWS KMS direct <code>Encrypt</code> and <code>Decrypt</code> API calls have a <strong>hard limit of 4 KB</strong> of data. To encrypt large datasets (gigabytes or terabytes of S3 objects, EBS volumes, or database dumps), AWS uses a technique called <strong>Envelope Encryption</strong>.
+        </p>
+
+        <!-- Visual Diagram -->
+        <div class="diagram-container">
+          <h4 style="margin-bottom: 1rem; color: var(--accent-cyan); display:flex; align-items:center; gap:8px;">
+            <span>📐</span> The 4-Step Envelope Encryption Mechanism
+          </h4>
+
+          <svg viewBox="0 0 920 360" style="width: 100%; height: auto; font-family: 'Outfit', sans-serif;">
+            <defs>
+              <linearGradient id="kmsGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#9333ea"/>
+                <stop offset="100%" stop-color="#4f46e5"/>
+              </linearGradient>
+            </defs>
+
+            <!-- KMS HSM -->
+            <rect x="20" y="30" width="340" height="300" rx="12" fill="#111827" stroke="#9333ea" stroke-width="2" stroke-dasharray="5,5"/>
+            <text x="40" y="65" fill="#c084fc" font-weight="700" font-size="16">AWS KMS (FIPS 140-2 Level 3 HSM)</text>
+
+            <rect x="50" y="95" width="280" height="75" rx="8" fill="url(#kmsGrad2)"/>
+            <text x="70" y="130" fill="#ffffff" font-weight="700" font-size="15">🔑 Root Key / CMK</text>
+            <text x="70" y="152" fill="#e9d5ff" font-size="12">Never leaves the KMS Hardware</text>
+
+            <rect x="50" y="200" width="280" height="100" rx="8" fill="#1e293b" stroke="#334155"/>
+            <text x="65" y="225" fill="#38bdf8" font-weight="600" font-size="13">GenerateDataKey API</text>
+            <text x="65" y="250" fill="#94a3b8" font-size="11">Generates random 256-bit key</text>
+            <text x="65" y="275" fill="#34d399" font-size="11">Outputs: Plaintext DEK + Encrypted DEK</text>
+
+            <!-- Application Host -->
+            <rect x="500" y="30" width="400" height="300" rx="12" fill="#0b1329" stroke="#06b6d4" stroke-width="2"/>
+            <text x="520" y="65" fill="#38bdf8" font-weight="700" font-size="16">Application / Service (S3, Lambda, EC2)</text>
+
+            <!-- Plaintext Data -->
+            <rect x="525" y="95" width="160" height="60" rx="6" fill="#1e293b" stroke="#475569"/>
+            <text x="540" y="122" fill="#ffffff" font-weight="600" font-size="13">📄 Large File / Data</text>
+            <text x="540" y="142" fill="#94a3b8" font-size="11">(GBs or TBs)</text>
+
+            <!-- Plaintext DEK in RAM -->
+            <rect x="710" y="95" width="170" height="60" rx="6" fill="#1e293b" stroke="#10b981"/>
+            <text x="720" y="122" fill="#34d399" font-weight="600" font-size="12">🟢 Plaintext DEK</text>
+            <text x="720" y="142" fill="#94a3b8" font-size="10">InMemory (Erased immediately!)</text>
+
+            <!-- Stored Package -->
+            <rect x="525" y="195" width="355" height="110" rx="8" fill="#1e1b4b" stroke="#818cf8"/>
+            <text x="545" y="225" fill="#a5b4fc" font-weight="700" font-size="13">📦 Ciphertext Package (Stored at Rest)</text>
+            <rect x="545" y="240" width="155" height="50" rx="6" fill="#312e81"/>
+            <text x="555" y="270" fill="#c7d2fe" font-size="11">🔒 Encrypted File</text>
+            <rect x="715" y="240" width="150" height="50" rx="6" fill="#431407" stroke="#f97316"/>
+            <text x="725" y="270" fill="#fed7aa" font-size="11">🔐 Encrypted DEK</text>
+          </svg>
+          <div class="diagram-caption">
+            <strong>Analogy:</strong> The CMK is a master key that locks the small safety deposit box (DEK). The deposit box holds the actual data.
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-cyan);">1. Request DEK</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Your app or AWS service calls <code>GenerateDataKey</code>. KMS uses the CMK to generate a unique Data Encryption Key (DEK).
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-green);">2. Fast Local Encrypt</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              The plaintext DEK encrypts your massive file locally in milliseconds using AES-256 GCM without streaming data over the network.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-amber);">3. Zeroize Memory</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              The plaintext DEK is immediately overwritten and removed from memory. It is never stored on disk in plaintext!
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-kms-light);">4. Save Ciphertext DEK</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              The encrypted DEK is stored right next to the encrypted file. To decrypt later, send the encrypted DEK back to KMS <code>Decrypt</code>!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 3: WHY KMS -->
+      <section class="module-section" id="why-kms">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Why AWS KMS is Essential for Enterprise Cloud</h2>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-cyan);">
+              <span>🛡️</span> Separation of Duties
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Infra/DevOps engineers manage servers and buckets; Security Officers manage the keys. Even if an attacker steals an EC2 root login or an S3 bucket permission, without KMS key permissions the data is unreadable garbage.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-kms-light);">
+              <span>👑</span> Key Policies are King
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Unlike standard AWS resources where an IAM admin can access everything, KMS requires explicit authorization in the <strong>Key Policy</strong>. An IAM policy with <code>"Action": "*", "Resource": "*"</code> cannot touch a key unless the Key Policy delegates power to the account!
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-green);">
+              <span>🔄</span> Automated Key Rotation
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              One checkbox enables annual automatic rotation. AWS creates new key material for future encryptions while keeping the old cryptographic material to decrypt old data seamlessly. No re-encryption jobs required.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-amber);">
+              <span>📜</span> Tamper-Proof Audit Trail
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Every call to <code>Encrypt</code>, <code>Decrypt</code>, or <code>GenerateDataKey</code> generates an event in AWS CloudTrail with caller IAM identity, source IP, time, and Encryption Context.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 4: REAL-WORLD DEVOPS USE CASES -->
+      <section class="module-section" id="devops-use-cases">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">04</div>
+            <h2 class="section-title">5 Real-World DevOps Production Use Cases</h2>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card" style="border-top: 3px solid var(--accent-kms);">
+            <div class="card-title">1. CI/CD Pipeline & App Secrets</div>
+            <p style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.4rem;">
+              <strong>Services:</strong> SSM Parameter Store (`SecureString`) & Secrets Manager
+            </p>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Database passwords and API tokens are stored encrypted with a custom CMK. During deployment, the CI/CD runner IAM role calls SSM, KMS decrypts the secret, and injects it into container runtime env vars.
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid var(--accent-cyan);">
+            <div class="card-title">2. S3 Build Artifact & Data Lake Isolation</div>
+            <p style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.4rem;">
+              <strong>Services:</strong> Amazon S3 + SSE-KMS + S3 Bucket Keys
+            </p>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Production S3 buckets are encrypted with a Prod CMK. Developers with general S3 read permissions get instant <code>AccessDenied</code> if they try to download prod logs or customer exports because they lack <code>kms:Decrypt</code> rights.
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid var(--accent-green);">
+            <div class="card-title">3. EKS Kubernetes Secrets Encryption</div>
+            <p style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.4rem;">
+              <strong>Services:</strong> Amazon EKS + etcd + KMS CMK
+            </p>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Standard Kubernetes secrets are only base64-encoded strings in etcd. By enabling KMS Envelope Encryption on the EKS cluster, Kubernetes secrets are encrypted at rest with a CMK inside etcd, meeting SOC 2 and HIPAA requirements.
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid var(--accent-amber);">
+            <div class="card-title">4. Golden AMIs & EBS Volume Pipelines</div>
+            <p style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.4rem;">
+              <strong>Services:</strong> HashiCorp Packer + EC2 Image Builder + EBS
+            </p>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Golden AMI creation pipelines encrypt root snapshot volumes with a shared CMK. Target accounts are granted cross-account key permissions, allowing EC2 instances to launch securely from encrypted snapshots.
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid #f43f5e;">
+            <div class="card-title">5. Cross-Account Artifact Deployment</div>
+            <p style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.4rem;">
+              <strong>Services:</strong> Multi-Account AWS Organizations + KMS Grants
+            </p>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              A Central Tools Account produces Docker images or Lambda zip files and stores them encrypted with a CMK. Target Dev, Staging, and Prod accounts decrypt the packages via cross-account Key Policy delegations.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 5: HANDS-ON CONSOLE LAB -->
+      <section class="module-section" id="hands-on-lab">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Hands-on Lab: 100% AWS Console Walkthrough</h2>
+          </div>
+        </div>
+
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+          Complete each of the 7 steps below in your AWS Management Console. Check the boxes as you finish each step to track your lab progress.
+        </p>
+
+        <!-- LAB STEP 1 -->
+        <div class="lab-step-card" id="stepCard-1">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-1" onclick="toggleStepCheckbox(1)">✓</div>
+              <span class="lab-step-title">Step 1: Create a Customer Managed Key (CMK)</span>
+            </div>
+            <span class="badge-pill cyan">Estimated: 5 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>Open AWS Console ➔ Search and open <span class="console-ui">Key Management Service (KMS)</span>. (Ensure your region is set, e.g. <code>us-east-1</code>).</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>In the left navigation sidebar, click <span class="console-ui">Customer managed keys</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>Click the orange button: <span class="console-ui">Create key</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">4</span>
+                <div>
+                  <strong>Key type:</strong> Choose <span class="console-ui">Symmetric</span>.<br>
+                  <strong>Key usage:</strong> Choose <span class="console-ui">Encrypt and decrypt</span>. Click <span class="console-ui">Next</span>.
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">5</span>
+                <div>
+                  <strong>Alias:</strong> <code>devops-prod-cmk-demo</code><br>
+                  <strong>Description:</strong> <code>CMK for securing production configs and S3 data</code><br>
+                  <strong>Tag:</strong> Key = <code>Environment</code>, Value = <code>Production</code>. Click <span class="console-ui">Next</span>.
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">6</span>
+                <div>
+                  <strong>Define Key Administrative Permissions:</strong> Select your current IAM User / Role. Click <span class="console-ui">Next</span>.
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">7</span>
+                <div>
+                  <strong>Define Key Usage Permissions:</strong> Select your current IAM User / Role (to allow encrypt/decrypt). Click <span class="console-ui">Next</span>.
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">8</span>
+                <div>Review the Key Policy JSON and click <span class="console-ui">Finish</span>.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 2 -->
+        <div class="lab-step-card" id="stepCard-2">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-2" onclick="toggleStepCheckbox(2)">✓</div>
+              <span class="lab-step-title">Step 2: Inspect the Key Policy & Key Rotation</span>
+            </div>
+            <span class="badge-pill cyan">Estimated: 4 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>In the KMS keys list, click on your new key: <code>devops-prod-cmk-demo</code>.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Under the <span class="console-ui">Key policy</span> tab, locate the root delegation block:</div>
+              </li>
+            </ul>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>Key Policy: Root Delegation Clause</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre><code>{
+  "Sid": "Enable IAM User Permissions",
+  "Effect": "Allow",
+  "Principal": {
+    "AWS": "arn:aws:iam::YOUR-ACCOUNT-ID:root"
+  },
+  "Action": "kms:*",
+  "Resource": "*"
+}</code></pre>
+            </div>
+
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">3</span>
+                <div>Click the <span class="console-ui">Key rotation</span> tab next to Key policy. Notice the checkbox to <em>"Automatically rotate this KMS key every year"</em>.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 3 -->
+        <div class="lab-step-card" id="stepCard-3">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-3" onclick="toggleStepCheckbox(3)">✓</div>
+              <span class="lab-step-title">Step 3: Create an S3 Bucket with SSE-KMS & Bucket Key</span>
+            </div>
+            <span class="badge-pill cyan">Estimated: 6 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>Open a new browser tab and navigate to <span class="console-ui">Amazon S3 Console</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Click <span class="console-ui">Create bucket</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>
+                  <strong>Bucket name:</strong> <code>devops-secure-artifacts-kms-[your-initials]</code> (must be globally unique).<br>
+                  <strong>Region:</strong> Select the same region as your KMS key.
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">4</span>
+                <div>
+                  Under <span class="console-ui">Default encryption</span>:<br>
+                  • Choose <span class="console-ui">Server-side encryption with AWS Key Management Service keys (SSE-KMS)</span>.<br>
+                  • Choose <span class="console-ui">Choose from your AWS KMS keys</span> ➔ Select <code>devops-prod-cmk-demo</code>.<br>
+                  • <strong>Bucket Key:</strong> Select <span class="console-ui">Enable</span> (reduces KMS API call cost by ~99%).
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">5</span>
+                <div>Click <span class="console-ui">Create bucket</span>.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 4 -->
+        <div class="lab-step-card" id="stepCard-4">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-4" onclick="toggleStepCheckbox(4)">✓</div>
+              <span class="lab-step-title">Step 4: Upload Sensitive Config & Verify Encryption</span>
+            </div>
+            <span class="badge-pill cyan">Estimated: 5 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <p style="color: var(--text-muted); margin-bottom: 0.75rem;">
+              Create a local test file <code>app-db-config.json</code> with the following content:
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>app-db-config.json</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre><code>{
+  "environment": "production",
+  "database": {
+    "host": "aurora-pg-cluster.internal.devops.corp",
+    "port": 5432,
+    "username": "superadmin_devops",
+    "password": "SuperSecretVaultKey#2026!DoNotExpose"
+  }
+}</code></pre>
+            </div>
+
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>Inside your bucket <code>devops-secure-artifacts-kms-[initials]</code>, click <span class="console-ui">Upload</span> ➔ select <code>app-db-config.json</code> ➔ click <span class="console-ui">Upload</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Click on <code>app-db-config.json</code> to view its object properties.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>Scroll down to <span class="console-ui">Server-side encryption settings</span>. Confirm the Encryption type is <code>AWS KMS (SSE-KMS)</code> and the Key ARN points to your CMK.</div>
+              </li>
+              <li>
+                <span class="click-idx">4</span>
+                <div>Click <span class="console-ui">Open</span> or <span class="console-ui">Download</span>. The file opens and shows plaintext JSON because your IAM identity has <code>kms:Decrypt</code> permission.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 5 -->
+        <div class="lab-step-card" id="stepCard-5">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-5" onclick="toggleStepCheckbox(5)">✓</div>
+              <span class="lab-step-title">Step 5: The "Aha!" Security Test — Live Access Denial</span>
+            </div>
+            <span class="badge-pill cyan">Estimated: 5 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">
+              Test what happens when S3 permissions are intact but cryptographic permissions are blocked!
+            </p>
+
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>Go back to the <span class="console-ui">AWS KMS Console</span> tab.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Select your key <code>devops-prod-cmk-demo</code>.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>Click <span class="console-ui">Key actions</span> ➔ <span class="console-ui">Disable</span> ➔ Confirm disable. Key state becomes <strong style="color: var(--accent-red);">Disabled</strong>.</div>
+              </li>
+              <li>
+                <span class="click-idx">4</span>
+                <div>Return to the <span class="console-ui">Amazon S3 Console</span> tab for <code>app-db-config.json</code>.</div>
+              </li>
+              <li>
+                <span class="click-idx">5</span>
+                <div>
+                  Click <span class="console-ui">Open</span> or <span class="console-ui">Download</span>.<br>
+                  <div class="alert-box alert-red" style="margin-top: 8px;">
+                    <strong>Access Denied!</strong> S3 returns <code>KMS.DisabledException: arn:aws:kms:... is disabled.</code><br>
+                    <strong>Key Insight:</strong> Storage access does not grant data access. Cryptography is the true enforcer!
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">6</span>
+                <div>In KMS, click <span class="console-ui">Key actions</span> ➔ <span class="console-ui">Enable</span>. Refresh S3 and verify the file opens again.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 6 -->
+        <div class="lab-step-card" id="stepCard-6">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-6" onclick="toggleStepCheckbox(6)">✓</div>
+              <span class="lab-step-title">Step 6: Audit Cryptographic Events in AWS CloudTrail</span>
+            </div>
+            <span class="badge-pill cyan">Estimated: 4 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>Navigate to <span class="console-ui">AWS CloudTrail Console</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>In the left navigation menu, click <span class="console-ui">Event history</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>Filter by <span class="console-ui">Event source</span>: enter <code>kms.amazonaws.com</code> and press Enter.</div>
+              </li>
+              <li>
+                <span class="click-idx">4</span>
+                <div>
+                  Observe the events recorded by AWS:
+                  <ul style="margin-top: 6px; margin-left: 20px;">
+                    <li><code>GenerateDataKey</code> (called by S3 during your upload)</li>
+                    <li><code>Decrypt</code> (called by S3 during file download)</li>
+                    <li><code>DisableKey</code> and <code>EnableKey</code></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 7 -->
+        <div class="lab-step-card" id="stepCard-7">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-7" onclick="toggleStepCheckbox(7)">✓</div>
+              <span class="lab-step-title">Step 7: Clean-Up & Schedule Key Deletion (Zero Cost)</span>
+            </div>
+            <span class="badge-pill cyan">Estimated: 3 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>In <span class="console-ui">Amazon S3</span>, select your bucket ➔ click <span class="console-ui">Empty</span> ➔ type <code>permanently delete</code>.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Click <span class="console-ui">Delete</span> bucket and confirm.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>In <span class="console-ui">AWS KMS</span>, select <code>devops-prod-cmk-demo</code> ➔ <span class="console-ui">Key actions</span> ➔ <span class="console-ui">Schedule key deletion</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">4</span>
+                <div>Leave the default waiting period of <strong>7 days</strong> (KMS safety window preventing instant accidental loss). Confirm deletion.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 6: CHEATSHEET -->
+      <section class="module-section" id="cheatsheet">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">06</div>
+            <h2 class="section-title">KMS Quick Reference Cheatsheet</h2>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Attribute / Metric</th>
+                <th>Specification / Limit</th>
+                <th>DevOps Architectural Context</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Direct Encrypt/Decrypt Limit</strong></td>
+                <td><strong>4 KB</strong> max payload</td>
+                <td>Anything larger requires Envelope Encryption (GenerateDataKey).</td>
+              </tr>
+              <tr>
+                <td><strong>Cryptographic Backing</strong></td>
+                <td>FIPS 140-2 / 140-3 Level 3 HSMs</td>
+                <td>Tamper-resistant physical cryptographic hardware.</td>
+              </tr>
+              <tr>
+                <td><strong>Key Deletion Safety Window</strong></td>
+                <td><strong>7 to 30 days</strong></td>
+                <td>Keys cannot be deleted immediately to prevent disaster.</td>
+              </tr>
+              <tr>
+                <td><strong>Pricing</strong></td>
+                <td>$1.00 / month / CMK + $0.03 / 10k requests</td>
+                <td>Always enable <strong>S3 Bucket Keys</strong> to cut KMS API costs by up to 99%.</td>
+              </tr>
+              <tr>
+                <td><strong>Key Rotation Cadence</strong></td>
+                <td>Once every <strong>1 year</strong> (365 days)</td>
+                <td>Automatic rotation retains historical backing keys to decrypt past data.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MODULE 7: TROUBLESHOOTING -->
+      <section class="module-section" id="troubleshooting">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">07</div>
+            <h2 class="section-title">Troubleshooting Common KMS Errors</h2>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-red);">
+              <span>❌</span> AccessDeniedException
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              <strong>Cause:</strong> Either the IAM policy lacks <code>kms:Decrypt</code> or the KMS Key Policy does not delegate authority to the caller or account.<br>
+              <strong>Fix:</strong> Check Key Policy tab in KMS console to verify your IAM user/role ARN is explicitly listed under Key Users.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-amber);">
+              <span>⚠️</span> KMS.DisabledException
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              <strong>Cause:</strong> The key state is set to "Disabled" or "Pending deletion".<br>
+              <strong>Fix:</strong> In KMS console, select key ➔ Key actions ➔ Enable key.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-cyan);">
+              <span>🔍</span> InvalidCiphertextException
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              <strong>Cause:</strong> The ciphertext data was corrupted, or the wrong KMS key was specified for decryption, or the <strong>Encryption Context (AAD)</strong> provided during Decrypt does not match what was provided during Encrypt.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 8: SELF-CHECK QUIZ -->
+      <section class="module-section" id="self-quiz">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">08</div>
+            <h2 class="section-title">Knowledge Check: Test Your KMS Skills</h2>
+          </div>
+        </div>
+
+        <!-- Quiz 1 -->
+        <div class="quiz-card" id="quiz-1">
+          <div class="quiz-question">1. What is the maximum data payload that can be encrypted directly using the KMS Encrypt API?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">A) 5 Terabytes</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">B) 10 Megabytes</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, true, this)">C) 4 Kilobytes</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">D) Unlimited</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-1"></div>
+        </div>
+
+        <!-- Quiz 2 -->
+        <div class="quiz-card" id="quiz-2">
+          <div class="quiz-question">2. An IAM Administrator with full "AdministratorAccess" cannot decrypt data using a KMS key. Why?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">A) KMS requires multi-factor authentication for all reads.</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, true, this)">B) The Key Policy does not grant root delegation or user access.</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">C) AdministratorAccess only applies to EC2 and S3.</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">D) Only the AWS Root Account holder can call Decrypt.</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-2"></div>
+        </div>
+
+        <!-- Quiz 3 -->
+        <div class="quiz-card" id="quiz-3">
+          <div class="quiz-question">3. Why should you enable "S3 Bucket Keys" when configuring SSE-KMS on an Amazon S3 bucket?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(3, true, this)">A) It caches data keys in S3, reducing KMS API request costs by up to 99%.</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">B) It makes S3 objects completely public for easy download.</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">C) It disables encryption for small files.</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">D) It eliminates the need for IAM permissions.</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-3"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Floating Toolbar -->
+  <div class="floating-toolbar">
+    <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-cyan);">Student Reference Mode</span>
+    <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" onclick="window.print()">
+      🖨️ Print / Save PDF
+    </button>
+  </div>
+
+  <script>
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeToggle');
+    const body = document.body;
+
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('kms_student_theme', newTheme);
+    });
+
+    // Restore Theme
+    const savedTheme = localStorage.getItem('kms_student_theme');
+    if (savedTheme) {
+      body.setAttribute('data-theme', savedTheme);
+    }
+
+    // Lab Checklist Tracker
+    const TOTAL_STEPS = 7;
+    let completedSteps = JSON.parse(localStorage.getItem('kms_lab_progress') || '[]');
+
+    function updateProgressUI() {
+      const count = completedSteps.length;
+      const pct = Math.round((count / TOTAL_STEPS) * 100);
+
+      document.getElementById('headerProgressFill').style.width = pct + '%';
+      document.getElementById('headerProgressText').innerText = `${count}/${TOTAL_STEPS}`;
+      document.getElementById('bannerProgressTitle').innerText = `${count} of ${TOTAL_STEPS} Steps Completed (${pct}%)`;
+
+      for (let i = 1; i <= TOTAL_STEPS; i++) {
+        const btn = document.getElementById(`check-${i}`);
+        const card = document.getElementById(`stepCard-${i}`);
+        if (completedSteps.includes(i)) {
+          btn.classList.add('checked');
+          card.classList.add('completed');
+        } else {
+          btn.classList.remove('checked');
+          card.classList.remove('completed');
+        }
+      }
+    }
+
+    function toggleStepCheckbox(stepNum) {
+      if (completedSteps.includes(stepNum)) {
+        completedSteps = completedSteps.filter(s => s !== stepNum);
+      } else {
+        completedSteps.push(stepNum);
+      }
+      localStorage.setItem('kms_lab_progress', JSON.stringify(completedSteps));
+      updateProgressUI();
+    }
+
+    function resetLabProgress() {
+      if (confirm('Reset your lab checklist progress back to 0?')) {
+        completedSteps = [];
+        localStorage.removeItem('kms_lab_progress');
+        updateProgressUI();
+      }
+    }
+
+    // Initialize progress on load
+    updateProgressUI();
+
+    // Copy Code Snippet
+    function copyCode(btn) {
+      const pre = btn.parentElement.nextElementSibling;
+      const code = pre.querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'Copied! ✓';
+        btn.style.borderColor = 'var(--accent-green)';
+        btn.style.color = 'var(--accent-green)';
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.style.borderColor = '';
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+
+    // Interactive Quiz Logic
+    function checkQuiz(qNum, isCorrect, element) {
+      const parent = element.parentElement;
+      const opts = parent.querySelectorAll('.quiz-opt');
+      const feedback = document.getElementById(`feedback-${qNum}`);
+
+      opts.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+      });
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(16, 185, 129, 0.15)';
+        feedback.style.color = '#34d399';
+        feedback.style.border = '1px solid var(--accent-green)';
+        feedback.innerHTML = '<strong>Correct! 🎉</strong> Great understanding of KMS architectural fundamentals.';
+      } else {
+        element.classList.add('incorrect');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+        feedback.style.color = '#f87171';
+        feedback.style.border = '1px solid var(--accent-red)';
+        feedback.innerHTML = '<strong>Not quite!</strong> Review the core concepts above or check the cheatsheet table.';
+      }
+    }
+
+    // Active Sidebar ScrollSpy
+    const sections = document.querySelectorAll('section.module-section, .hero-banner');
+    const navLinks = document.querySelectorAll('.nav-list a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

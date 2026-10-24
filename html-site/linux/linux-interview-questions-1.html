@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>linux interview questions 1 &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html" class="active">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🐧 Linux</span>
+          <span class="separator">/</span>
+          <span class="current">linux interview questions 1</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🐧 Linux Module</div>
+          <h1 class="hero-title">linux interview questions 1</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Basic</h2>
+<details>
+
+<summary>What is Linux?</summary>
+
+Linus Torvalds developed Linux, a Unix-like, free, open-source kernel-based operating system. It is designed for systems, servers, embedded devices, mobile devices, and mainframes and is supported on major platforms such as ARM, x86, and SPARC.
+
+</details>
+
+<details>
+
+<summary>Explain the basic features of the Linux OS</summary>
+
+Some basic features of Linux are:
+
+* Linux is free and easily available.
+* It is more secure than other operating systems because it uses security auditing and password authentication features.
+* Linux has its personal software repositories.
+* It includes support for multiple languages and different language keyboards.
+* It offers both CLI and GUI to run commands and applications (e.g., Firefox, VLC).
+
+</details>
+
+<details>
+
+<summary>Name some Linux distros</summary>
+
+Commonly used distributions:
+
+* Ubuntu
+* Debian
+* CentOS
+* Fedora
+* RedHat
+
+</details>
+
+<details>
+
+<summary>Major differences between Linux and Windows</summary>
+
+| Comparison Factor |                  Linux |                        Windows |
+| ----------------- | ---------------------: | -----------------------------: |
+| Free/Paid         |  Free and open-source. |  Not open-source (commercial). |
+| Security          |         Highly secure. | Less secure compared to Linux. |
+| Path separator    | Uses forward slash (/) |           Uses backslash (`\`) |
+| Efficiency        |         More efficient |                 Less efficient |
+| Kernel type       |      Monolithic kernel |                    Microkernel |
+| File system       |         Case-sensitive |               Case-insensitive |
+
+</details>
+
+<details>
+
+<summary>Define the basic components of Linux</summary>
+
+Major components:
+
+* Kernel: Core part bridging hardware and software.
+* Shell: Interface between kernel and user.
+* GUI: Graphical user interface.
+* Application programs: Software that performs tasks.
+* System utilities: Tools to manage the system.
+
+</details>
+
+<details>
+
+<summary>File permissions in Linux</summary>
+
+Three basic file permissions:
+
+* Read: Open and read files.
+* Write: Modify files.
+* Execute: Run the file.
+
+</details>
+
+<details>
+
+<summary>What is the Linux Kernel? Is it legal to edit it?</summary>
+
+The kernel is low-level system software that manages resources and provides system interfaces. Linux is released under the GPL (General Public License), so it is legal to edit the kernel in accordance with the license.
+
+</details>
+
+<details>
+
+<summary>Explain LILO</summary>
+
+LILO (Linux Loader) is a boot loader that loads the Linux OS into memory and starts execution. It is one of several boot loaders available for Linux.
+
+</details>
+
+<details>
+
+<summary>What is Shell in Linux?</summary>
+
+Common shells:
+
+* csh (C Shell) — C-like syntax, job control.
+* ksh (Korn Shell) — advanced scripting features.
+* zsh (Z Shell) — advanced features like globbing, startup files.
+* bash (Bourne Again Shell) — default shell on many systems.
+* fish (Friendly Interactive Shell) — autosuggestions, web-based config.
+
+</details>
+
+<details>
+
+<summary>What is a root account?</summary>
+
+The root account is the system administrator account with complete system control. Ordinary users do not have root privileges.
+
+</details>
+
+<details>
+
+<summary>Describe CLI and GUI in Linux</summary>
+
+* CLI (Command Line Interface): Accepts commands as text input.
+* GUI (Graphical User Interface): Uses icons, menus, and windows manipulated with a mouse.
+
+</details>
+
+<details>
+
+<summary>What is Swap Space?</summary>
+
+Swap space is disk space used to extend RAM. The system moves inactive pages from RAM to swap to free physical memory.
+
+</details>
+
+<details>
+
+<summary>Difference between hard links and soft links</summary>
+
+| Hard Links                                                | Soft Links                                                                 |
+| --------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Include the original content (direct reference to inode). | Include the original file location (path reference).                       |
+| Faster.                                                   | Slower.                                                                    |
+| Share the same inode number.                              | Have different inode numbers.                                              |
+| No relative path concept (they reference the same inode). | Use relative or absolute paths.                                            |
+| Cannot link directories (typically).                      | Can link directories.                                                      |
+| Changes reflect across hard links.                        | Changes reflect between soft link and target; breaking target breaks link. |
+| Use less disk metadata.                                   | Use more metadata.                                                         |
+
+</details>
+
+<details>
+
+<summary>How do users create a symbolic link in Linux?</summary>
+
+Use the ln command with `-s` for symbolic links:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ln -s &lt;target&gt; &lt;link_name&gt;
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>What are the standard streams?</summary>
+
+Standard streams are:
+
+* stdin (standard input)
+* stdout (standard output)
+* stderr (standard error)
+
+They channel I/O between programs and their environment.
+
+</details>
+
+<h2>Intermediate-Level Linux Interview Questions</h2>
+<details>
+
+<summary>How do you mount and unmount filesystems in Linux?</summary>
+
+Use `mount` and `umount`.
+
+Mounting steps:
+
+* Identify partition: `fdisk -l` or `lsblk`
+* Create mount point: `mkdir /mnt/mountpnt`
+* Mount: `sudo mount <partition> <mount_point_directory>`
+
+Unmount:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo umount &lt;mount_point_directory&gt;
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>How do you troubleshoot network connectivity issues in Linux?</summary>
+
+Steps include:
+
+* Check physical connectivity (cables, interface up).
+* Verify network configuration: `ip addr` or `ifconfig`, `ip route`, check `/etc/resolv.conf`.
+* Check firewall rules (`ufw`, `iptables`).
+* Restart network interfaces (`ifdown`/`ifup`) and reboot if needed.
+* Use tools like `ping`, `traceroute`, `nslookup`/`dig` to further diagnose.
+
+</details>
+
+<details>
+
+<summary>How do you list all the processes running in Linux?</summary>
+
+* `ps` (e.g., `ps -ef`, `ps auxf`) for snapshots.
+* `top` and `htop` for real-time interactive views (`htop` has color, sorting, filtering).
+
+</details>
+
+<details>
+
+<summary>What is the chmod command and how do you use it?</summary>
+
+`chmod` changes file permissions.
+
+Example (add write and execute for user):
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">chmod u+wx ABC.sh
+</code></pre>
+</div>
+
+
+Supports symbolic modes and numeric modes.
+
+</details>
+
+<details>
+
+<summary>How do you check disk space usage?</summary>
+
+* `df` (e.g., `df -h`) to show filesystem disk space.
+* `du` (e.g., `du -sh ~/directory`) to estimate directory usage.
+* `ncdu` for interactive disk usage browsing.
+
+</details>
+
+<details>
+
+<summary>How do you find the PID of a running process?</summary>
+
+* `pgrep <process_name>`
+* `ps -e | grep -i <process_name>`
+
+</details>
+
+<details>
+
+<summary>What is rsync and how do you use it?</summary>
+
+`rsync` synchronizes files between directories or systems.
+
+Basic syntax:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">rsync &lt;options&gt; &lt;source&gt; &lt;destination&gt;
+</code></pre>
+</div>
+
+
+Example:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">rsync -av ~/Documents ~/Downloads
+rsync -avz --delete ~/Documents/ ~/Downloads/
+</code></pre>
+</div>
+
+
+Options:
+
+* `-a` preserve attributes
+* `-v` verbose
+* `-z` compress
+* `--delete` remove destination files not in source
+
+</details>
+
+<details>
+
+<summary>How do you create a user account?</summary>
+
+Use `useradd` or `adduser`.
+
+Example with `useradd` (set password separately):
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo useradd -m ron
+sudo passwd ron
+</code></pre>
+</div>
+
+
+Example with `adduser` (interactive):
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo adduser shawn
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>How do you format a disk in Linux?</summary>
+
+* List partitions: `lsblk`
+* Unmount if mounted: `umount <partition>`
+* Identify desired filesystem type (ext4, xfs, ntfs) and run one of:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">mkfs.ext4 &lt;partition&gt;
+mkfs.xfs &lt;partition&gt;
+mkfs.ntfs &lt;partition&gt;
+</code></pre>
+</div>
+
+
+Then mount the partition again. Always backup data before formatting.
+
+</details>
+
+<details>
+
+<summary>How do you change the password for a user account?</summary>
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">passwd &lt;username&gt;
+# e.g.
+passwd Ron
+</code></pre>
+</div>
+
+
+You'll be prompted to enter and confirm the new password.
+
+</details>
+
+<details>
+
+<summary>Difference between a process and a thread</summary>
+
+| Factor           | Process                       | Thread                   |
+| ---------------- | ----------------------------- | ------------------------ |
+| Creation time    | Higher                        | Lower                    |
+| Dependency       | Independent (separate memory) | Dependent (share memory) |
+| Resource usage   | Higher                        | Lower                    |
+| Termination time | Higher                        | Lower                    |
+
+</details>
+
+<details>
+
+<summary>What is the ulimit command and how do you use it?</summary>
+
+`ulimit` controls resource limits for user processes.
+
+Example: set max number of processes to 50
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ulimit -u 50
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>What is the find command and how do you use it?</summary>
+
+Searches for files based on criteria.
+
+Example:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">find ~/Downloads -name Linux.txt
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>What is RAID in Linux?</summary>
+
+RAID (Redundant Array of Independent Disks) combines physical disks into logical units for performance and redundancy.
+
+Common levels:
+
+* RAID 0 — striping (no redundancy)
+* RAID 1 — mirroring (full copy)
+* RAID 5 — distributed parity
+* RAID 6 — dual parity (higher redundancy)
+* RAID 10 — combination of RAID 1 and RAID 0
+
+</details>
+
+<details>
+
+<summary>What are the challenges of using Linux?</summary>
+
+Common challenges:
+
+* Hardware compatibility issues for some devices.
+* Steeper learning curve for configuration and commands.
+* Limited game compatibility compared to Windows.
+* Occasional driver/firmware issues.
+
+</details>
+
+<h2>Advanced-Level Linux Interview Questions</h2>
+<details>
+
+<summary>What is the /proc filesystem?</summary>
+
+`/proc` is a virtual filesystem exposing kernel and process information. It can be used to inspect system state and tune kernel parameters at runtime.
+
+</details>
+
+<details>
+
+<summary>How do you secure a Linux server?</summary>
+
+Common practices:
+
+* Use strong passwords.
+* Keep system updated and patched.
+* Use SSH with key-based authentication.
+* Deploy intrusion detection systems (IDS).
+* Configure firewalls and restrict services.
+* Disable unused services.
+* Regular backups and log audits.
+* Encrypt network traffic and enable monitoring.
+
+</details>
+
+<details>
+
+<summary>What is strace?</summary>
+
+`strace` traces system calls made by a process. Example:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">strace ls
+</code></pre>
+</div>
+
+
+It helps debug how a program interacts with the kernel.
+
+</details>
+
+<details>
+
+<summary>How do you optimize Linux system performance?</summary>
+
+Strategies:
+
+* Keep system updated.
+* Optimize disk usage and enable caching.
+* Manage memory and CPU usage.
+* Disable unnecessary services; use lightweight alternatives.
+* Monitor resources regularly.
+* Tune kernel parameters where appropriate.
+* Use monitoring tools (e.g., Performance Co-Pilot).
+
+</details>
+
+<details>
+
+<summary>How to administer Linux servers?</summary>
+
+Key tasks:
+
+* Manage users and permissions.
+* Configure system/network for performance and security.
+* Implement backups and recovery plans.
+* Set up monitoring for resource usage and system health.
+* Configure firewall and intrusion detection.
+* Document configurations and test recovery procedures.
+
+</details>
+
+<details>
+
+<summary>What is the Linux virtual memory system?</summary>
+
+Virtual memory allows the system to use disk space as an extension of RAM, swapping pages between RAM and disk to handle workloads that exceed physical memory.
+
+</details>
+
+<details>
+
+<summary>What is process scheduling in Linux?</summary>
+
+Process scheduling determines the order and CPU time allocation for processes. Linux uses priority-based, preemptive scheduling with scheduling policies that can change process ordering based on behavior and resources.
+
+</details>
+
+<details>
+
+<summary>Most important Linux commands</summary>
+
+Commonly used commands:
+
+* ls, mkdir, pwd
+* top, htop
+* grep, cat
+* tar, wget
+* free, df
+* man
+
+</details>
+
+<details>
+
+<summary>What is iptables and how is it used for filtering?</summary>
+
+`iptables` manages Netfilter firewall rules for packet filtering and NAT.
+
+* Show rules: `iptables -L`
+* Add rule example:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">iptables -A &lt;chain&gt; &lt;options&gt; -j &lt;target&gt;
+</code></pre>
+</div>
+
+
+* Make rules persistent:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">iptables-save &gt; /etc/iptables/rules.v4
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>How do you troubleshoot a Linux OS that fails to boot?</summary>
+
+Steps:
+
+* Check boot messages and logs.
+* Inspect GRUB boot options; try older kernel.
+* Check hardware (cables, RAM).
+* Identify recent changes that might have caused the issue.
+* Boot into recovery or live environment to repair.
+
+</details>
+
+<details>
+
+<summary>What is the init process?</summary>
+
+`init` (PID 1) is the first process started at boot, responsible for initializing the system. Modern systems commonly use `systemd` instead of SysV init.
+
+</details>
+
+<details>
+
+<summary>What is SMTP?</summary>
+
+SMTP (Simple Mail Transfer Protocol) is used to transmit email between servers. Models:
+
+* End-to-end (connects different organizations)
+* Store-and-forward (used within organizations)
+
+</details>
+
+<details>
+
+<summary>What is LVM?</summary>
+
+LVM (Logical Volume Manager) provides flexible disk management: create, resize, snapshot, and mirror logical volumes for dynamic storage allocation.
+
+</details>
+
+<details>
+
+<summary>Difference between UDP and TCP</summary>
+
+* UDP: connectionless, low overhead, no reliability (used for real-time apps like streaming, DNS).
+* TCP: connection-oriented, reliable (retransmission, ordering) used for file transfers, web, email.
+
+</details>
+
+<details>
+
+<summary>What is /etc/resolv.conf?</summary>
+
+Config file for DNS resolver settings (nameserver entries, search domains, resolver options).
+
+</details>
+
+<details>
+
+<summary>Absolute vs relative paths</summary>
+
+* Absolute path: starts at root `/`, e.g., `/home/user/geeksforgeeks.txt`
+* Relative path: relative to current working directory, e.g., `documents/file.txt`
+
+</details>
+
+<details>
+
+<summary>What is grep used for?</summary>
+
+`grep` searches for patterns in files or streams.
+
+Example:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">grep &quot;test&quot; file.txt
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>How to check status of a service/daemon?</summary>
+
+With systemd:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">systemctl status apache2
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Difference between /etc/passwd and /etc/shadow</summary>
+
+* `/etc/passwd`: user account info (usernames, UIDs, home dirs, shells) — world-readable.
+* `/etc/shadow`: encrypted passwords and security info — readable only by root.
+
+</details>
+
+<details>
+
+<summary>How to compress and decompress files?</summary>
+
+Create gzipped tarball:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">tar -czvf jayesh.tar.gz files
+</code></pre>
+</div>
+
+
+Extract:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">tar -xzvf jayesh.tar.gz
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Difference between a process and a daemon</summary>
+
+* Process: executing program instance (foreground or background).
+* Daemon: background service typically started at boot; runs without interactive user session.
+
+</details>
+
+<details>
+
+<summary>How to schedule recurring tasks?</summary>
+
+Use `crontab -e` and add an entry.
+
+Example — run script daily at 03:30:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">30 3 * * * /path/to/geeks.sh
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>What is sed used for?</summary>
+
+`sed` performs stream editing, e.g., find-and-replace:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sed 's/foo/bar/g' file.txt
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>What are runlevels?</summary>
+
+Runlevels define system states (single-user, multi-user, with/without GUI). Commonly: runlevel 3 (multi-user without GUI), runlevel 5 (with GUI). Modern systems use `systemd` targets.
+
+</details>
+
+<h2>Bonus Linux Interview Questions</h2>
+<details>
+
+<summary>What is sudo?</summary>
+
+`sudo` (superuser do) runs commands with elevated privileges. It typically requires the user's password for authorization.
+
+</details>
+
+<details>
+
+<summary>What is umask?</summary>
+
+`umask` sets default permission restrictions for newly created files and directories.
+
+</details>
+
+<details>
+
+<summary>How to find and kill a process?</summary>
+
+Find PID:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ps aux | grep &lt;process&gt;
+</code></pre>
+</div>
+
+
+Kill by PID:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">kill &lt;PID&gt;
+</code></pre>
+</div>
+
+
+Kill by name:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">pkill &lt;process&gt;
+</code></pre>
+</div>
+
+
+`pkill` sends SIGTERM by default.
+
+</details>
+
+<details>
+
+<summary>What is network bonding?</summary>
+
+Bonding combines multiple network interfaces into a single logical interface for redundancy and increased throughput.
+
+</details>
+
+<details>
+
+<summary>What is SELinux?</summary>
+
+Security-Enhanced Linux (SELinux) is a mandatory access control framework that provides an additional layer of access control and security policies.
+
+</details>
+
+<details>
+
+<summary>Purpose of SSH and how to connect securely</summary>
+
+SSH (Secure Shell) provides encrypted remote access. Example:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ssh username@remote_ip
+</code></pre>
+</div>
+
+
+Use key-based authentication for stronger security.
+
+</details>
+
+<details>
+
+<summary>How to check file contents without opening an editor?</summary>
+
+Use `cat`, `less`, or `more`.
+
+Example:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cat geeks.txt
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Purpose of the crontab file</summary>
+
+Crontab schedules recurring tasks (cron jobs). Edit with `crontab -e` and add timing and command lines.
+
+Example — run `jayesh.sh` daily at 05:00:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">0 5 * * * /path/to/jayesh.sh
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Find and replace text with sed</summary>
+
+Example — replace "true" with "False" in a file:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sed 's/true/False/g' file_name
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Purpose of the sudoers file and configuring sudo</summary>
+
+The `sudoers` file controls which users can run commands as root. Edit safely with:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo visudo
+</code></pre>
+</div>
+
+
+To grant full sudo access to a user:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">user_name ALL=(ALL) ALL
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Change ownership with chown</summary>
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">chown new_owner:new_group filename
+# e.g.
+chown jayesh:users file_name
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Purpose of ping and testing connectivity</summary>
+
+`ping` sends ICMP echo requests to test reachability:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ping &lt;remote_host_ip&gt;
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Recursively copy files and directories with cp</summary>
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cp -R source_directory destination_directory
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Purpose of netstat and viewing connections</summary>
+
+`netstat` shows active connections and listening ports.
+
+Example — list listening TCP/UDP ports:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">netstat -tuln
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Set up a static IP via CLI</summary>
+
+Location of config varies by distro (e.g., `/etc/network/interfaces`).
+
+Example stanza (for Debian-style `/etc/network/interfaces`):
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">iface eth0 inet static
+    address 192.168.1.100
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+    dns-nameservers 8.8.8.8 8.8.4.4
+</code></pre>
+</div>
+
+
+Save and restart networking service or reboot.
+
+</details>
+
+<details>
+
+<summary>Copy a file to multiple directories</summary>
+
+Methods include using `xargs`, `find`, `tee`, or a shell loop. Example using a loop:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">for d in dir1 dir2 dir3; do
+  cp file.txt &quot;$d&quot;/
+done
+</code></pre>
+</div>
+
+
+</details>
+
+<h2>Linux Admin Interview Questions</h2>
+<details>
+
+<summary>How are files organized in Linux?</summary>
+
+Hierarchical filesystem rooted at `/`. Files and directories are organized under `/`.
+
+</details>
+
+<details>
+
+<summary>How can you find the IP address of a Linux system?</summary>
+
+Use `ifconfig` or `ip addr show`.
+
+</details>
+
+<details>
+
+<summary>Distinction between hard link and symbolic link</summary>
+
+* Hard link: direct reference to file inode.
+* Symbolic link: path reference. Deleting the target breaks a symlink.
+
+</details>
+
+<details>
+
+<summary>How to check disk space usage?</summary>
+
+Use `df` (e.g., `df -h`) to show total/used/available space.
+
+</details>
+
+<details>
+
+<summary>How to start and stop a service?</summary>
+
+With systemd:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">systemctl start &lt;service&gt;
+systemctl stop &lt;service&gt;
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Common causes of file permission issues</summary>
+
+* Incorrect ownership
+* Improper permission bits
+* Conflicting user/group permissions
+
+</details>
+
+<details>
+
+<summary>Troubleshoot system can't connect to a remote server</summary>
+
+Check connectivity (`ping`), firewall rules, DNS, and relevant logs.
+
+</details>
+
+<h2>Linux Troubleshooting Interview Questions</h2>
+<details>
+
+<summary>Steps to fix a network connectivity issue</summary>
+
+* Verify physical connections.
+* Verify IP configuration and routes.
+* Check firewall and DNS.
+* Use `ping`, `traceroute`, `tcpdump` for deeper inspection.
+
+</details>
+
+<details>
+
+<summary>How to check system logs</summary>
+
+View logs in `/var/log` with `tail`, `less`, or `journalctl` (systemd):
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">tail -f /var/log/syslog
+# or
+journalctl -xe
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Possible reasons for running out of memory</summary>
+
+* Memory leaks in applications
+* Excessive memory usage by processes
+* Insufficient physical memory
+* Large dataset processing
+
+</details>
+
+<details>
+
+<summary>Troubleshoot a slow-performing server</summary>
+
+* Inspect `top`/`htop` for CPU/memory usage
+* Monitor disk I/O
+* Analyze network traffic
+* Check application logs for bottlenecks
+
+</details>
+
+<details>
+
+<summary>Common causes of running out of disk space</summary>
+
+* Large or growing log files
+* Accumulation of temporary files
+* Uncleaned old backups
+* Runaway processes generating output
+
+</details>
+
+<details>
+
+<summary>Identify and terminate high-CPU process</summary>
+
+Use `top`/`htop` to find high CPU processes, then `kill <PID>` to terminate.
+
+</details>
+
+<details>
+
+<summary>Troubleshoot a system that cannot boot</summary>
+
+* Check hardware and BIOS/UEFI settings
+* Boot into recovery or live environment
+* Inspect boot logs and filesystem integrity
+
+</details>
+
+<h2>Linux Networking Interview Questions</h2>
+<details>
+
+<summary>What does ifconfig do?</summary>
+
+Configures or displays network interfaces (addresses, netmasks). (`ip` is modern replacement.)
+
+</details>
+
+<details>
+
+<summary>How do you set up a fixed IP address?</summary>
+
+Edit network configuration files depending on distribution (e.g., `/etc/network/interfaces` or `/etc/sysconfig/network-scripts/ifcfg-<interface>`), set static address, netmask, gateway, DNS, then restart networking.
+
+</details>
+
+<details>
+
+<summary>How to configure a DNS server?</summary>
+
+Configure BIND or similar — edit `named.conf` and zone files, set forwarders/root hints as required.
+
+</details>
+
+<details>
+
+<summary>What is a firewall and how do you set it up?</summary>
+
+Firewall filters and controls network traffic. Use `iptables`, `nftables`, or higher-level tools (`ufw`, `firewalld`) to define rules and zones.
+
+</details>
+
+<details>
+
+<summary>How to check network connectivity between two systems?</summary>
+
+Use `ping` and `traceroute` to test reachability and path.
+
+</details>
+
+<details>
+
+<summary>Purpose of the route command</summary>
+
+View or modify the IP routing table.
+
+</details>
+
+<details>
+
+<summary>How to configure a Linux system as a router?</summary>
+
+Enable IP forwarding:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+# or set in /etc/sysctl.conf: net.ipv4.ip_forward=1
+</code></pre>
+</div>
+
+
+Then configure interfaces and routing tables appropriately.
+
+</details>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../linux/linux-commands-all.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">linux commands all</span>
+  </a>
+  <a href="../linux/linux-interview-questions.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">linux interview questions</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

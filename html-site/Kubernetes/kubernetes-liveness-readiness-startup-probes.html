@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Nimbuswiztech Kubernetes liveness, readiness, and startup probes training guide with practical labs, YAML, troubleshooting, and interview preparation.">
+<title>Kubernetes Liveness, Readiness and Startup Probes | Nimbuswiztech</title>
+<style>
+:root{--ink:#192839;--muted:#596b7e;--line:#d8e1eb;--paper:#fff;--bg:#f3f6fa;--navy:#102b49;--blue:#1b64a8;--bluebg:#eaf3ff;--green:#eaf8ef;--amber:#fff4d8;--red:#fff0ef;--code:#101b2a}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1rem}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--blue);overflow-wrap:anywhere}header{background:var(--navy);color:#fff;padding:2.25rem max(1rem,calc((100% - 1180px)/2));border-bottom:5px solid #67aaff}header .brand{font-size:.82rem;font-weight:800;letter-spacing:.14em;color:#c9e2ff}header h1{font-size:clamp(2rem,4vw,3.15rem);line-height:1.12;margin:.55rem 0 1rem}header p{max-width:920px;color:#e0eaf6}.wrap{max-width:1180px;margin:auto;padding:1.1rem}section,nav#toc{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:1.25rem;margin:1rem 0;box-shadow:0 2px 8px #102b4909}h2{font-size:1.6rem;line-height:1.25;margin-top:0;border-bottom:1px solid var(--line);padding-bottom:.45rem}h3{font-size:1.18rem;margin-bottom:.35rem}p{margin:.55rem 0}ul,ol{padding-left:1.5rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:.8rem}.card{border:1px solid var(--line);border-radius:10px;padding:1rem}.callout{padding:.85rem 1rem;border-left:4px solid var(--blue);background:var(--bluebg);border-radius:5px;margin:.8rem 0}.warn{border-left-color:#b77900;background:var(--amber)}.danger{border-left-color:#bd3838;background:var(--red)}.good{border-left-color:#21804d;background:var(--green)}.muted{color:var(--muted)}.small{font-size:.9rem}.pill{display:inline-block;border:1px solid #c9d8e9;background:#f2f7fc;padding:.1rem .5rem;border-radius:999px;font-size:.82rem;margin:.1rem}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.93rem}th,td{border:1px solid var(--line);padding:.58rem;text-align:left;vertical-align:top}th{background:#edf2f8}pre{position:relative;overflow:auto;background:var(--code);color:#e9f1fb;padding:1rem;border-radius:9px;line-height:1.48;font-size:.88rem;white-space:pre;tab-size:2}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code,td code{background:#edf1f6;padding:.12rem .3rem;border-radius:4px;color:#20344b}.copy{position:absolute;right:.5rem;top:.5rem;background:#fff;color:#102b49;border:0;border-radius:5px;padding:.3rem .55rem;cursor:pointer;font-weight:700}.exercise{border:1px solid var(--line);border-radius:10px;padding:1rem;margin:1rem 0}.question{border-top:1px solid var(--line);padding:.65rem 0}.question summary{cursor:pointer;font-weight:700}.answer{background:#f7f9fc;padding:.7rem;border-radius:6px;margin-top:.45rem}.searchbox{width:100%;padding:.7rem;border:1px solid #aebdce;border-radius:7px;font:inherit;margin:.5rem 0 1rem}.diagram{width:100%;height:auto;display:block;background:#f8fbff;border:1px solid var(--line);border-radius:10px;margin:.7rem 0}.toplink{display:inline-block;margin:.8rem 0}footer{text-align:center;padding:2rem 1rem;color:var(--muted)}details>summary{cursor:pointer}@media(max-width:650px){.wrap{padding:.65rem}nav#toc ol{columns:1}section,nav#toc{padding:1rem}table{font-size:.85rem}}@media print{body{background:#fff;font-size:10pt;color:#000}header{background:#fff;color:#000;border-bottom:2px solid #333;padding:1rem}header p,header .brand{color:#333}.wrap{max-width:none;padding:0}section,nav#toc{box-shadow:none;border:1px solid #aaa;break-inside:avoid;margin:.5rem 0;padding:.7rem}.copy,.searchbox,.toplink{display:none}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f4f4;color:#000;border:1px solid #aaa;padding:.5rem}details:not([open])>*:not(summary){display:block}h2,h3{break-after:avoid}footer{padding:.5rem}}
+</style>
+</head>
+<body id="top">
+<header><div class="brand">NIMBUSWIZTECH · STUDENT LEARNING REFERENCE</div><h1>Kubernetes Liveness, Readiness &amp; Startup Probes</h1><p>Learn how Kubernetes checks whether a container has started, is able to serve requests, and should be restarted. This hands-on guide includes self-contained diagrams, practical YAML, failure demonstrations, debugging workflows, revision notes, and interview practice.</p><p><span class="pill">Beginner-friendly</span> <span class="pill">Hands-on labs</span> <span class="pill">Health checks</span> <span class="pill">Interview prep</span></p></header>
+<main class="wrap">
+<nav id="toc" aria-label="Table of contents"><h2>Contents</h2><ol>
+<li><a href="#intro">Introduction and learning objectives</a></li><li><a href="#concepts">Core concepts and terminology</a></li><li><a href="#architecture">Architecture and probe workflow</a></li><li><a href="#environment">Environment preparation</a></li><li><a href="#labs">Step-by-step hands-on labs</a></li><li><a href="#complete">Complete practical workflow</a></li><li><a href="#troubleshoot">Troubleshooting guide</a></li><li><a href="#best">Best practices</a></li><li><a href="#interview">Interview preparation</a></li><li><a href="#assignments">Practice assignments</a></li><li><a href="#revision">Quick revision and cheat sheet</a></li><li><a href="#cleanup">Final lab cleanup</a></li><li><a href="#references">References</a></li></ol></nav>
+
+<section id="intro"><h2>1. Introduction</h2>
+<p>A <strong>Kubernetes probe</strong> is a diagnostic performed by the node's <strong>kubelet</strong> to learn something about a container. A probe can run a command inside the container or make a network request to the container. Kubernetes uses the result to decide whether to restart a container or treat its Pod as ready for traffic.</p>
+<div class="grid"><div class="card"><h3>Simple analogy</h3><p>Think of a hospital: a startup check asks, “Has the patient finished waking up after surgery?”; a readiness check asks, “Can the patient safely receive visitors?”; a liveness check asks, “Is the patient in a state that requires a restart of treatment?”</p></div><div class="card"><h3>Practical DevOps example</h3><p>A Java API takes 45 seconds to warm caches, later temporarily rejects requests when overloaded, and may occasionally deadlock. Startup gives it time to initialize, readiness keeps it out of traffic while unavailable, and liveness restarts it if it becomes irrecoverably stuck.</p></div><div class="card"><h3>Why probes matter</h3><p>A process can exist without being ready. A container can also remain running while the application is deadlocked. Probes give Kubernetes signals beyond “the process has a PID.”</p></div></div>
+<h3>Learning objectives</h3><ul><li>Explain the separate jobs of startup, readiness, and liveness probes.</li><li>Configure HTTP, TCP, and exec probe mechanisms, and understand where gRPC applies.</li><li>Set sensible probe timing, thresholds, and timeouts.</li><li>Observe readiness changes, endpoint membership, and container restarts.</li><li>Diagnose false failures, slow starts, bad paths, and over-aggressive checks.</li><li>Apply probe design safely in Deployments and shared environments.</li></ul>
+<div class="callout warn"><strong>Remember this first:</strong> a failed readiness probe normally makes the Pod unready; it does not restart the container. A failed liveness or startup probe, after its failure threshold is reached, causes the kubelet to terminate and restart the affected container according to the Pod's restart policy.</div>
+</section>
+
+<section id="concepts"><h2>2. Core concepts and terminology</h2>
+<h3>The three probe types</h3><div class="table-wrap"><table><thead><tr><th>Probe</th><th>Question it answers</th><th>What happens on repeated failure?</th><th>Typical use</th></tr></thead><tbody><tr><td><strong>Startup</strong></td><td>Has the application completed startup?</td><td>Kubelet kills/restarts the container after <code>failureThreshold</code> failures. Liveness and readiness checks do not run until startup succeeds.</td><td>Slow Java/.NET applications, migrations or cache warm-up.</td></tr><tr><td><strong>Liveness</strong></td><td>Is the running application still making progress, or is it irrecoverably stuck?</td><td>Kubelet kills/restarts the affected container.</td><td>Deadlock or unrecoverable internal failure detection.</td></tr><tr><td><strong>Readiness</strong></td><td>Can this container accept traffic right now?</td><td>Container continues running; Pod becomes not Ready and is excluded from normal Service endpoints.</td><td>Warm-up, overload, temporary dependency unavailability, maintenance mode.</td></tr></tbody></table></div>
+<h3>How readiness relates to a Service</h3><p>A Service typically routes to ready endpoints. When a readiness probe fails, the Pod's Ready condition becomes false and the EndpointSlice controller updates matching Service endpoint readiness. The Pod does not necessarily stop running; it can become ready again when later checks succeed.</p>
+<h3>Probe mechanisms</h3><div class="table-wrap"><table><thead><tr><th>Mechanism</th><th>How it checks health</th><th>Success condition</th><th>Important caveat</th></tr></thead><tbody><tr><td><code>httpGet</code></td><td>Kubelet makes an HTTP GET request to a port/path.</td><td>HTTP status code 200 through 399.</td><td>Endpoint should be fast and deterministic. HTTPS probes do not validate the server certificate.</td></tr><tr><td><code>tcpSocket</code></td><td>Kubelet attempts to open a TCP connection to the specified port.</td><td>Connection succeeds.</td><td>Proves a socket accepts connections, not that application requests succeed.</td></tr><tr><td><code>exec</code></td><td>Kubelet executes a command inside the container.</td><td>Exit code 0.</td><td>Frequent exec probes create processes and can add overhead. The command must exist in the image.</td></tr><tr><td><code>grpc</code></td><td>Kubelet uses the gRPC Health Checking Protocol.</td><td>Health response is SERVING.</td><td>Stable since Kubernetes v1.27. Requires application support; probe port is numeric, not a named port.</td></tr></tbody></table></div>
+<h3>Important probe fields</h3><div class="table-wrap"><table><thead><tr><th>Field</th><th>Meaning and practical guidance</th></tr></thead><tbody><tr><td><code>initialDelaySeconds</code></td><td>Delay before checks start after the container starts. Defaults to 0. A startup probe is usually more flexible for slow initialization than a very long delay.</td></tr><tr><td><code>periodSeconds</code></td><td>Approximate interval between checks; default 10 seconds, minimum 1. Readiness checks may run more frequently while a container is not Ready.</td></tr><tr><td><code>timeoutSeconds</code></td><td>How long a check may take before failing; default 1 second. Raise it when a legitimate check needs more time, but avoid hiding hangs.</td></tr><tr><td><code>failureThreshold</code></td><td>Consecutive failures needed to mark a check failed; default 3. Startup/liveness failures can trigger restart; readiness failure removes the Pod from normal traffic.</td></tr><tr><td><code>successThreshold</code></td><td>Consecutive successes required after a failed check before success is accepted; default 1. Must be 1 for startup and liveness probes.</td></tr><tr><td><code>terminationGracePeriodSeconds</code></td><td>Optional probe-specific grace period for startup/liveness failure; when set, it overrides the Pod-level grace period. It cannot be set for readiness probes.</td></tr><tr><td><code>httpGet.path</code></td><td>HTTP path called by the kubelet. Use a dedicated, low-cost endpoint such as <code>/healthz</code> or <code>/readyz</code>.</td></tr><tr><td><code>port</code></td><td>Container port number or name for HTTP/TCP. gRPC uses a numeric port.</td></tr></tbody></table></div>
+<h3>When should the probes be different?</h3><ul><li><strong>Startup vs liveness:</strong> startup can allow a long initialization window. Once startup succeeds, liveness can detect later deadlocks more quickly.</li><li><strong>Readiness vs liveness:</strong> temporary inability to serve requests should often make a Pod unready, not restart it. Restart only for states where process restart is likely to help.</li><li><strong>Separate endpoints:</strong> <code>/healthz</code> might check that the application process is alive; <code>/readyz</code> might additionally verify essential dependencies and that the app can serve its contract.</li></ul>
+<div class="callout danger"><strong>Avoid a cascading restart loop:</strong> never make liveness fail merely because a shared database or remote API is temporarily slow unless restarting the application is genuinely the correct recovery action. During a dependency outage, restarting every replica can amplify load and worsen the incident.</div>
+<h3>Common misunderstandings</h3><ul><li>“Running means ready.” Not necessarily; the process can still be warming up or rejecting requests.</li><li>“Readiness failure restarts the container.” Normally it does not; it affects the Pod Ready condition and Service endpoint eligibility.</li><li>“Startup runs continually.” Startup probing stops after the first successful result for that container lifecycle; liveness/readiness then take over.</li><li>“A TCP check proves the API works.” It only confirms that a TCP connection could be opened.</li><li>“A probe is a complete monitoring solution.” Probes are lifecycle/traffic signals, not a substitute for metrics, logs, tracing, synthetic tests, or service-level objectives.</li></ul>
+</section>
+
+<section id="architecture"><h2>3. Architecture and probe workflow</h2><p>The following original SVG is a conceptual workflow, not a screenshot of a live Kubernetes cluster.</p>
+<svg class="diagram" viewBox="0 0 980 455" role="img" aria-label="Diagram showing kubelet running startup probe first; after success, liveness and readiness checks run; readiness controls Service endpoint traffic and liveness failure restarts container"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#456789"/></marker></defs><rect x="340" y="18" width="300" height="62" rx="10" fill="#dceaff" stroke="#5288c1" stroke-width="2"/><text x="490" y="43" text-anchor="middle" font-size="17" font-weight="bold" fill="#183b62">Container starts</text><text x="490" y="64" text-anchor="middle" font-size="13" fill="#183b62">Kubelet runs startup probe</text><path d="M490 80V120" stroke="#456789" stroke-width="2" marker-end="url(#arrow)"/><polygon points="490,120 610,168 490,216 370,168" fill="#fff4d8" stroke="#c89b3c" stroke-width="2"/><text x="490" y="164" text-anchor="middle" font-size="15" font-weight="bold" fill="#704d00">Startup check</text><text x="490" y="183" text-anchor="middle" font-size="13" fill="#704d00">succeeds?</text><path d="M610 168H755V218" fill="none" stroke="#456789" stroke-width="2" marker-end="url(#arrow)"/><text x="650" y="155" font-size="13" fill="#155d38">Yes</text><path d="M370 168H180V218" fill="none" stroke="#456789" stroke-width="2" marker-end="url(#arrow)"/><text x="252" y="155" font-size="13" fill="#8c2525">No after threshold</text><rect x="30" y="220" width="300" height="64" rx="9" fill="#fff0ef" stroke="#c66" stroke-width="2"/><text x="180" y="244" text-anchor="middle" font-size="15" font-weight="bold" fill="#8c2525">Container terminated</text><text x="180" y="265" text-anchor="middle" font-size="13" fill="#8c2525">Restart policy applies</text><rect x="620" y="220" width="330" height="64" rx="9" fill="#eaf8ef" stroke="#4c9a70" stroke-width="2"/><text x="785" y="244" text-anchor="middle" font-size="15" font-weight="bold" fill="#155d38">Liveness + Readiness run</text><text x="785" y="265" text-anchor="middle" font-size="13" fill="#155d38">Startup probe no longer gates them</text><path d="M785 284V318H600V347" fill="none" stroke="#456789" stroke-width="2" marker-end="url(#arrow)"/><path d="M785 284V318H840V347" fill="none" stroke="#456789" stroke-width="2" marker-end="url(#arrow)"/><rect x="455" y="350" width="285" height="75" rx="9" fill="#eaf3ff" stroke="#5288c1" stroke-width="2"/><text x="597" y="373" text-anchor="middle" font-size="15" font-weight="bold" fill="#183b62">Readiness fails</text><text x="597" y="394" text-anchor="middle" font-size="13" fill="#183b62">Pod not Ready; excluded from</text><text x="597" y="411" text-anchor="middle" font-size="13" fill="#183b62">normal Service traffic endpoints</text><rect x="758" y="350" width="192" height="75" rx="9" fill="#fff0ef" stroke="#c66" stroke-width="2"/><text x="854" y="373" text-anchor="middle" font-size="15" font-weight="bold" fill="#8c2525">Liveness fails</text><text x="854" y="394" text-anchor="middle" font-size="13" fill="#8c2525">Container is</text><text x="854" y="411" text-anchor="middle" font-size="13" fill="#8c2525">restarted</text></svg>
+<h3>Walkthrough</h3><ol><li>The container begins running and Kubernetes has not yet decided that the application has completed initialization.</li><li>If a startup probe is defined, liveness and readiness checks wait for it to succeed.</li><li>If startup never succeeds within its failure budget, kubelet terminates the container; the Pod's restart policy controls subsequent behavior.</li><li>Once startup succeeds, liveness checks for unrecoverable failure and readiness checks whether the container should receive traffic.</li><li>Readiness changes update the Pod's Ready condition and endpoint eligibility for Services. Liveness failure instead initiates container restart.</li></ol>
+</section>
+
+<section id="environment"><h2>4. Environment preparation</h2><p>Use a local Minikube/kind cluster or an authorized existing Kubernetes cluster. The labs use a dedicated namespace and public images; no cloud load balancer, EKS, or paid service is required. Container image pulls require registry/network access. A basic single-node local cluster is sufficient.</p><h3>Verify access</h3><pre><code>kubectl version --client
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+kubectl config current-context</code></pre><ul><li><code>kubectl version --client</code> checks the installed command-line client.</li><li><code>kubectl cluster-info</code> verifies access to the API server and cluster services.</li><li><code>kubectl get nodes</code> lists available nodes and their readiness.</li><li><code>kubectl get namespaces</code> shows where resources are logically grouped.</li><li><code>kubectl config current-context</code> confirms which cluster commands will affect.</li></ul><p>Optional Minikube start command, when Minikube is already installed: <code>minikube start</code>.</p><h3>Prepare an isolated lab namespace</h3><pre><code>mkdir -p kubernetes-probes-lab
+cd kubernetes-probes-lab
+kubectl create namespace nimbus-probes-lab
+kubectl config set-context --current --namespace=nimbus-probes-lab</code></pre><div class="callout warn"><strong>Context note:</strong> the final command changes the default namespace for your current context, not the cluster itself. Commands in this guide still explicitly use <code>-n nimbus-probes-lab</code> so the target is obvious. If the namespace already exists, inspect it and ensure it belongs to your lab.</div><p>Check permissions if apply or patch is denied: <code>kubectl auth can-i create deployments -n nimbus-probes-lab</code> and <code>kubectl auth can-i patch deployments -n nimbus-probes-lab</code>.</section>
+
+<section id="labs"><h2>5. Step-by-step hands-on labs</h2><p>Run labs in order. Save manifests in the working folder named above. Outputs are representative; Pod names, timing, event wording, and image-pull duration can differ by cluster.</p>
+<div class="exercise"><h3>Exercise 1 — Deploy an HTTP app with all three probes</h3><p><strong>Objective:</strong> configure a healthy HTTP application with startup, liveness and readiness probes, then verify readiness and traffic through a Service.</p><p><strong>Concept:</strong> separate paths make it clear what each probe checks. A successful startup probe gates the other probes; readiness controls whether the Pod is eligible for Service traffic; liveness restarts the container after repeated failures.</p><p><strong>Step 1 — Save as <code>probes-web.yaml</code>:</strong></p><pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: probes-web-pages
+  namespace: nimbus-probes-lab
+data:
+  index.html: |
+    &lt;!doctype html&gt;
+    &lt;html&gt;&lt;body&gt;&lt;h1&gt;Nimbuswiztech Probe Lab&lt;/h1&gt;&lt;p&gt;Application is serving requests.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+  healthz: |
+    OK - process health endpoint
+  readyz: |
+    OK - ready to accept traffic
+  startupz: |
+    OK - startup completed
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: probes-web
+  namespace: nimbus-probes-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: probes-web
+  template:
+    metadata:
+      labels:
+        app: probes-web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        startupProbe:
+          httpGet:
+            path: /probes/startupz
+            port: http
+          periodSeconds: 2
+          timeoutSeconds: 2
+          failureThreshold: 30
+        livenessProbe:
+          httpGet:
+            path: /probes/healthz
+            port: http
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /probes/readyz
+            port: http
+          periodSeconds: 5
+          timeoutSeconds: 2
+          failureThreshold: 3
+          successThreshold: 1
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
+        volumeMounts:
+        - name: pages
+          mountPath: /usr/share/nginx/html/probes
+          readOnly: true
+      volumes:
+      - name: pages
+        configMap:
+          name: probes-web-pages
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: probes-web
+  namespace: nimbus-probes-lab
+spec:
+  selector:
+    app: probes-web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  type: ClusterIP</code></pre>
+<p><strong>Step 2 — Apply the manifest:</strong></p><pre><code>kubectl apply -f probes-web.yaml
+kubectl rollout status deployment/probes-web -n nimbus-probes-lab --timeout=180s</code></pre><p><strong>Step 3 — Verify the containers, probe configuration and Service endpoints:</strong></p><pre><code>kubectl get deployment,pods,service -n nimbus-probes-lab
+kubectl describe deployment probes-web -n nimbus-probes-lab
+kubectl get endpointslices -n nimbus-probes-lab -l kubernetes.io/service-name=probes-web</code></pre><p>When both replicas are ready, EndpointSlices should show ready endpoints for the Service. Exact addresses depend on the cluster.</p><p><strong>Step 4 — Test the page:</strong></p><pre><code>kubectl port-forward service/probes-web 18090:80 -n nimbus-probes-lab</code></pre><p>Leave that command running. In a second terminal execute <code>curl -i http://127.0.0.1:18090/</code> and <code>curl -i http://127.0.0.1:18090/probes/readyz</code>. The server should return an HTTP 200 status and the page text.</p><p><strong>Explain important fields:</strong> the named port <code>http</code> avoids repeating a numeric port; <code>startupProbe.failureThreshold: 30</code> with a 2-second interval allows a generous startup budget; readiness succeeds only when <code>/probes/readyz</code> is reachable; liveness uses a separate low-cost <code>/probes/healthz</code> endpoint. Requests and limits reserve and cap example resources.</p><p><strong>Troubleshooting:</strong> check image pull failures, probe HTTP paths, ConfigMap mount and Pod events. A misspelled path returns 404 and counts as a failed HTTP probe.</p><p><strong>Interview connection:</strong> Why use different readiness and liveness endpoints? Because an app can be alive but temporarily unable to serve requests.</p></div>
+
+<div class="exercise"><h3>Exercise 2 — Demonstrate readiness failure without a restart</h3><p><strong>Objective:</strong> intentionally make a Pod unready and prove the container continues running while its endpoint is removed from normal Service traffic.</p><p><strong>Concept:</strong> readiness failure is a traffic eligibility signal. It should not restart the container by itself.</p><p><strong>Step 1 — Confirm the starting state:</strong></p><pre><code>kubectl get pods -n nimbus-probes-lab -l app=probes-web
+kubectl get endpointslices -n nimbus-probes-lab -l kubernetes.io/service-name=probes-web</code></pre><p><strong>Step 2 — Change only the readiness path to a non-existent resource:</strong></p><pre><code>kubectl patch deployment probes-web -n nimbus-probes-lab --type=json -p='[{"op":"replace","path":"/spec/template/spec/containers/0/readinessProbe/httpGet/path","value":"/probes/not-ready"}]'</code></pre><p>This updates the Pod template and causes a Deployment rollout. New Pods should fail readiness because NGINX returns 404 for the path. Liveness still succeeds at <code>/probes/healthz</code>, so the container should not restart because of readiness failure.</p><p><strong>Step 3 — Observe the condition, endpoints and restart count:</strong></p><pre><code>kubectl get pods -n nimbus-probes-lab -l app=probes-web
+kubectl describe deployment probes-web -n nimbus-probes-lab
+kubectl get endpointslices -n nimbus-probes-lab -l kubernetes.io/service-name=probes-web
+kubectl get events -n nimbus-probes-lab --sort-by=.metadata.creationTimestamp</code></pre><p>Expected result: the new Pods are not Ready, the Service should not list them as ready backends, and their restart counts should remain unchanged for this readiness-only failure. On a rolling Deployment, availability may remain low or the rollout may stall until corrected.</p><p><strong>Step 4 — Restore readiness:</strong></p><pre><code>kubectl patch deployment probes-web -n nimbus-probes-lab --type=json -p='[{"op":"replace","path":"/spec/template/spec/containers/0/readinessProbe/httpGet/path","value":"/probes/readyz"}]'
+kubectl rollout status deployment/probes-web -n nimbus-probes-lab --timeout=180s</code></pre><p><strong>Interview takeaway:</strong> a readiness failure removes the Pod from normal Service traffic; it is not a restart command.</p></div>
+
+<div class="exercise"><h3>Exercise 3 — Demonstrate liveness failure and container restart</h3><p><strong>Objective:</strong> observe how a failed liveness check causes Kubernetes to restart the affected container.</p><p><strong>Safety:</strong> only run this experiment in the dedicated lab namespace. The intentionally bad path will make the workload unhealthy until the path is restored.</p><p><strong>Step 1 — Change the liveness path to a missing file:</strong></p><pre><code>kubectl patch deployment probes-web -n nimbus-probes-lab --type=json -p='[{"op":"replace","path":"/spec/template/spec/containers/0/livenessProbe/httpGet/path","value":"/probes/not-live"}]'</code></pre><p>Wait for Pods to be replaced by the new template. After three consecutive failures under the chosen interval, the kubelet kills and restarts each affected container. There can be a delay before the restart counter increments.</p><p><strong>Step 2 — Inspect Pod events and restart counts:</strong></p><pre><code>kubectl get pods -n nimbus-probes-lab -l app=probes-web -w
+kubectl describe pod POD_NAME -n nimbus-probes-lab</code></pre><p>Replace <code>POD_NAME</code> with a real Pod name from the first command. In the Pod Events section, look for <code>Unhealthy</code> and messages related to failed liveness checks; use the <code>RESTARTS</code> column to confirm container restarts. Timing and event messages vary.</p><p><strong>Step 3 — Restore the valid liveness endpoint:</strong></p><pre><code>kubectl patch deployment probes-web -n nimbus-probes-lab --type=json -p='[{"op":"replace","path":"/spec/template/spec/containers/0/livenessProbe/httpGet/path","value":"/probes/healthz"}]'
+kubectl rollout status deployment/probes-web -n nimbus-probes-lab --timeout=180s</code></pre><p><strong>Why it matters:</strong> liveness should fail for a state a process restart is likely to fix. Using an overly fragile liveness endpoint can repeatedly kill a working process and create cascading failures.</p></div>
+
+<div class="exercise"><h3>Exercise 4 — Protect a slow-starting application using a startup probe</h3><p><strong>Objective:</strong> simulate a container that takes 20 seconds to initialize and demonstrate that startup probing lets it finish before liveness/readiness checks begin.</p><p><strong>Step 1 — Save as <code>slow-start.yaml</code>:</strong></p><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: slow-start
+  namespace: nimbus-probes-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: slow-start
+  template:
+    metadata:
+      labels:
+        app: slow-start
+    spec:
+      containers:
+      - name: demo
+        image: busybox:1.36.1
+        command:
+        - /bin/sh
+        - -c
+        - |
+          echo "Starting simulated application initialization"
+          sleep 20
+          touch /tmp/started
+          echo "Initialization complete"
+          while true; do sleep 3600; done
+        startupProbe:
+          exec:
+            command: ["/bin/sh", "-c", "test -f /tmp/started"]
+          periodSeconds: 2
+          timeoutSeconds: 1
+          failureThreshold: 20
+        livenessProbe:
+          exec:
+            command: ["/bin/sh", "-c", "test -f /tmp/started"]
+          periodSeconds: 5
+          timeoutSeconds: 1
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command: ["/bin/sh", "-c", "test -f /tmp/started"]
+          periodSeconds: 3
+          timeoutSeconds: 1
+          failureThreshold: 3
+          successThreshold: 1
+        resources:
+          requests:
+            cpu: 10m
+            memory: 16Mi
+          limits:
+            cpu: 100m
+            memory: 64Mi</code></pre><p><strong>Step 2 — Apply and observe:</strong></p><pre><code>kubectl apply -f slow-start.yaml
+kubectl get pods -n nimbus-probes-lab -l app=slow-start -w</code></pre><p>Before about 20 seconds, the startup command fails because <code>/tmp/started</code> does not yet exist. Once initialization creates the file, startup succeeds and liveness/readiness checks begin. The pod should then become Ready, without a restart.</p><p><strong>Step 3 — Verify probe settings and events:</strong></p><pre><code>kubectl describe pod -l app=slow-start -n nimbus-probes-lab
+kubectl get deployment slow-start -n nimbus-probes-lab</code></pre><p><strong>Understand the startup budget:</strong> <code>failureThreshold: 20</code> times <code>periodSeconds: 2</code> gives approximately 40 seconds of probe-failure budget. It is not an exact wall-clock guarantee because scheduling, image pulls, probe timing and runtime behavior affect the overall elapsed time. The 20-second simulated initialization fits within the configured budget.</p><p><strong>Troubleshooting:</strong> if it restarts before initialization completes, check the startup threshold, command, image availability and events. Without a startup probe, a strict liveness check may terminate a slow application before it can initialize.</p></div>
+
+<div class="exercise"><h3>Exercise 5 — Compare an exec probe to an HTTP probe</h3><p><strong>Objective:</strong> understand command-based checks and observe the container restart count increase when a health file disappears.</p><p><strong>Step 1 — Save as <code>exec-liveness.yaml</code>:</strong></p><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: exec-liveness
+  namespace: nimbus-probes-lab
+  labels:
+    app: exec-liveness
+spec:
+  restartPolicy: Always
+  containers:
+  - name: demo
+    image: busybox:1.36.1
+    command:
+    - /bin/sh
+    - -c
+    - |
+      touch /tmp/healthy
+      echo "healthy file created"
+      sleep 30
+      rm -f /tmp/healthy
+      echo "healthy file removed; liveness should fail"
+      sleep 600
+    livenessProbe:
+      exec:
+        command: ["/bin/sh", "-c", "test -f /tmp/healthy"]
+      initialDelaySeconds: 3
+      periodSeconds: 5
+      timeoutSeconds: 2
+      failureThreshold: 2</code></pre><p><strong>Step 2 — Apply and inspect:</strong></p><pre><code>kubectl apply -f exec-liveness.yaml
+kubectl get pod exec-liveness -n nimbus-probes-lab -w</code></pre><p>After roughly 30 seconds the application removes the health file. Repeated command failures cause kubelet to restart the container, at which point the command creates the file again. The Pod may repeatedly restart; this is intentional for the lab.</p><p><strong>Step 3 — Observe events and restarts:</strong></p><pre><code>kubectl describe pod exec-liveness -n nimbus-probes-lab
+kubectl get pod exec-liveness -n nimbus-probes-lab</code></pre><p><strong>Compare:</strong> HTTP probes check an endpoint and are often a good fit for HTTP apps. Exec probes can check local state but spawn a process on each execution, which can be costly at high Pod densities or very short intervals.</p></div>
+</section>
+
+<section id="complete"><h2>6. Complete practical workflow</h2><h3>Requirement</h3><p>A two-replica web service must not receive traffic before startup has completed, should stop receiving traffic during temporary unavailability, and should restart if the application becomes stuck. This guide's <code>probes-web.yaml</code> implements that workflow using a startup HTTP endpoint, a readiness endpoint, a liveness endpoint, and a ClusterIP Service.</p><h3>Execution sequence</h3><ol><li>Verify cluster context and permissions.</li><li>Create the dedicated namespace.</li><li>Apply <code>probes-web.yaml</code>.</li><li>Wait for the Deployment rollout and check that both replicas are ready.</li><li>Inspect Pod details and EndpointSlices to verify traffic eligibility.</li><li>Open a port-forward and curl the app endpoints.</li><li>Perform the readiness-only failure and restore it; observe endpoint readiness without container restart.</li><li>Perform the liveness-failure experiment only in the lab; observe restarts, then restore the path.</li><li>Complete the cleanup steps.</li></ol><h3>Commands to verify the end state</h3><pre><code>kubectl rollout status deployment/probes-web -n nimbus-probes-lab
+kubectl get deployment,pods,service -n nimbus-probes-lab
+kubectl get endpointslices -n nimbus-probes-lab -l kubernetes.io/service-name=probes-web
+kubectl logs deployment/probes-web -n nimbus-probes-lab
+kubectl get events -n nimbus-probes-lab --sort-by=.metadata.creationTimestamp</code></pre><h3>Failure examples</h3><ul><li><strong>Incorrect HTTP path:</strong> HTTP 404 makes the probe fail. Confirm the ConfigMap key is mounted at the path called by the probe.</li><li><strong>App starts slowly:</strong> increase startup tolerance based on measured worst-case initialization, rather than weakening the ongoing liveness check blindly.</li><li><strong>Dependency unavailable:</strong> readiness may reflect a required dependency if the app cannot serve useful requests without it. Liveness should generally focus on failure that restarting the app can solve.</li><li><strong>Timeouts under load:</strong> check CPU/memory pressure and endpoint cost before increasing timeouts; a probe endpoint should be lightweight.</li></ul><div class="callout good"><strong>Completion criteria:</strong> two Ready Pods, Service endpoints marked ready, HTTP response from the service, a demonstrated readiness-only failure without an intentional container restart, and a demonstrated liveness failure that increases the restart count.</div></section>
+
+<section id="troubleshoot"><h2>7. Troubleshooting guide</h2><div class="table-wrap"><table><thead><tr><th>Symptom or error</th><th>Possible cause</th><th>Diagnostic command</th><th>Resolution</th></tr></thead><tbody>
+<tr><td>Pod is Running but 0/1 Ready</td><td>Readiness endpoint failing, wrong port/path, app not initialized, dependency unavailable.</td><td><code>kubectl describe pod POD_NAME -n nimbus-probes-lab</code><br><code>kubectl get endpointslices -n nimbus-probes-lab</code></td><td>Inspect Unhealthy events and endpoint response; fix path/port or app readiness condition.</td></tr>
+<tr><td>Container restarts repeatedly</td><td>Liveness/startup probe failure, process crash, OOM kill, or command failure.</td><td><code>kubectl describe pod POD_NAME -n nimbus-probes-lab</code><br><code>kubectl logs POD_NAME -n nimbus-probes-lab --previous</code></td><td>Inspect previous logs, events, exit reason and probe threshold; correct cause and avoid too-aggressive liveness.</td></tr>
+<tr><td>Startup probe keeps failing</td><td>Startup takes longer than budget, wrong check path, app fails to start, or listening port mismatch.</td><td><code>kubectl describe pod POD_NAME -n nimbus-probes-lab</code><br><code>kubectl logs POD_NAME -n nimbus-probes-lab</code></td><td>Confirm the app's actual startup signal and adjust a measured startup budget; do not just make liveness permissive forever.</td></tr>
+<tr><td>HTTP probe receives 404</td><td>Path is wrong or file/handler isn't served at the configured path.</td><td><code>kubectl describe pod POD_NAME -n nimbus-probes-lab</code><br><code>kubectl get configmap probes-web-pages -n nimbus-probes-lab -o yaml</code></td><td>Check case, path, ConfigMap mount and application route. To test the response itself, port-forward the Pod or Service and run curl from your terminal, for example: kubectl port-forward service/probes-web 18090:80 -n nimbus-probes-lab, then curl -i http://127.0.0.1:18090/probes/readyz.</td></tr>
+<tr><td>HTTP probe times out</td><td>Service thread blocked, app overload, CPU throttling, wrong port, or too-tight timeout.</td><td><code>kubectl top pod -n nimbus-probes-lab</code><br><code>kubectl describe pod POD_NAME -n nimbus-probes-lab</code></td><td>Inspect metrics, node/pod resources, endpoint cost and port binding; tune timeout using measured behavior.</td></tr>
+<tr><td>TCP probe succeeds but users see errors</td><td>Socket accepts connections but application logic or dependencies fail.</td><td><code>kubectl logs POD_NAME -n nimbus-probes-lab</code><br><code>kubectl describe pod POD_NAME -n nimbus-probes-lab</code></td><td>Use an application-aware HTTP/gRPC/exec readiness check when appropriate; TCP is only a connection test.</td></tr>
+<tr><td>Readiness succeeds but requests still fail</td><td>Probe checks too little, upstream issue, incorrect application response or routing problem.</td><td><code>kubectl get endpointslices -n nimbus-probes-lab</code><br><code>kubectl logs deployment/probes-web -n nimbus-probes-lab</code></td><td>Test representative business requests and use meaningful readiness logic; inspect dependency and application metrics.</td></tr>
+<tr><td>Exec probe reports command not found</td><td>Minimal container image lacks shell/tool or command path is wrong.</td><td><code>kubectl describe pod POD_NAME -n nimbus-probes-lab</code></td><td>Use a command known to exist in the image or prefer native HTTP/TCP probes when suitable.</td></tr>
+<tr><td>Probe failures begin during heavy load</td><td>Health endpoint is expensive, CPU/memory starved, timeout too small, or thresholds too strict.</td><td><code>kubectl top pod -n nimbus-probes-lab</code><br><code>kubectl describe pod POD_NAME -n nimbus-probes-lab</code></td><td>Keep probes lightweight, set resource requests/limits, and tune with real latency and failure data.</td></tr>
+<tr><td>Pod never becomes a Service endpoint</td><td>Pod is unready, selector mismatch, missing Service, or endpoint controller has not reconciled yet.</td><td><code>kubectl get pods --show-labels -n nimbus-probes-lab</code><br><code>kubectl get svc,endpointslices -n nimbus-probes-lab</code></td><td>Check labels/selectors and readiness. Readiness does not create a Service; a Service must exist.</td></tr>
+<tr><td>kubectl apply/patch returns Forbidden</td><td>User lacks RBAC permission in the namespace.</td><td><code>kubectl auth can-i patch deployments -n nimbus-probes-lab</code></td><td>Request authorized least-privilege access; don't bypass controls.</td></tr>
+<tr><td>ImagePullBackOff</td><td>Registry access, image tag or rate-limit issue.</td><td><code>kubectl describe pod POD_NAME -n nimbus-probes-lab</code></td><td>Correct image reference and verify registry connectivity/authentication.</td></tr>
+</tbody></table></div><h3>Standard diagnostic sequence</h3><pre><code>kubectl get pods -n nimbus-probes-lab -o wide
+kubectl describe pod POD_NAME -n nimbus-probes-lab
+kubectl logs POD_NAME -n nimbus-probes-lab
+kubectl logs POD_NAME -n nimbus-probes-lab --previous
+kubectl get events -n nimbus-probes-lab --sort-by=.metadata.creationTimestamp
+kubectl get deployment probes-web -n nimbus-probes-lab -o yaml
+kubectl get endpointslices -n nimbus-probes-lab</code></pre><p class="muted small">Replace <code>POD_NAME</code> with a name returned by <code>kubectl get pods</code>. <code>--previous</code> retrieves logs from the prior container instance when available. Not every failure can be diagnosed with every command; choose based on evidence.</p></section>
+
+<section id="best"><h2>8. Best practices</h2><ul><li><strong>Use startup probes for slow initialization.</strong> Measure worst-case startup time, then set <code>failureThreshold × periodSeconds</code> large enough to cover it with a sensible margin.</li><li><strong>Keep liveness narrow.</strong> Check whether the process can make progress. Avoid making it fail for every transient dependency problem, or all replicas may restart at once.</li><li><strong>Make readiness reflect ability to serve.</strong> If configuration has not loaded, caches are warming, or a required dependency is unavailable, the app may need to remain out of traffic.</li><li><strong>Use inexpensive endpoints.</strong> Health endpoints should return quickly and avoid expensive database queries, broad fan-out or large payloads.</li><li><strong>Choose realistic timing.</strong> Defaults are a starting point, not a universal best configuration. Tune period, timeout, and thresholds using application startup and response measurements.</li><li><strong>Model dependencies deliberately.</strong> If database failure makes the app unserviceable, it may affect readiness; consider whether it should affect liveness only if restarting can actually fix the condition.</li><li><strong>Check all replicas during deployment.</strong> Probes can gate readiness, but confirm the Deployment's available replicas, rollout status, endpoint membership, and application metrics.</li><li><strong>Use resource requests and limits thoughtfully.</strong> CPU throttling or memory pressure can cause timeouts. Limits that are too small can create false health failures.</li><li><strong>Use version-controlled manifests and clear labels.</strong> Probe settings are part of app deployment configuration. Review them like code.</li><li><strong>Use container images with appropriate tooling.</strong> An exec probe that calls <code>curl</code> fails if curl isn't installed. The image must contain every command the probe uses.</li><li><strong>Do not rely on a single probe for observability.</strong> Collect logs, metrics, traces and external synthetic checks as well.</li><li><strong>Minimize exec frequency for large clusters.</strong> Exec probes start processes. Native HTTP/TCP mechanisms can be more efficient where they appropriately represent app health.</li><li><strong>Test failure paths in non-production.</strong> Intentionally break probe paths only in an isolated namespace and restore them afterward.</li><li><strong>Understand shutdown grace periods.</strong> Probe-triggered restarts need time to stop gracefully. A custom probe-level termination grace period is supported for startup/liveness, not readiness; use only when needed.</li></ul><div class="callout good"><strong>Production rule of thumb:</strong> separate “process can make progress” from “this instance should receive traffic.” A container may be live but not ready. That separation is often the most important probe-design decision.</div></section>
+
+<section id="interview"><h2>9. Interview preparation</h2><p>Search questions by keyword. Expand each question to view an answer or troubleshooting approach.</p><input class="searchbox" id="qsearch" type="search" placeholder="Search questions: startup, timeout, endpoint, restart…" aria-label="Search interview questions"><div id="questions">
+<h3>Level 1 — Basic questions</h3>
+<div class="question"><details><summary>1. What is a Kubernetes probe?</summary><div class="answer">A diagnostic run by the kubelet against a container. It can execute a command or make a network request and influences restart or readiness behavior.</div></details></div>
+<div class="question"><details><summary>2. What are the three probe types?</summary><div class="answer">Startup checks whether initialization completed; liveness checks whether a container should be restarted; readiness checks whether it should receive traffic.</div></details></div>
+<div class="question"><details><summary>3. What happens when a liveness probe fails repeatedly?</summary><div class="answer">After the configured failure threshold, the kubelet terminates and restarts the affected container. The Pod's restart policy governs subsequent behavior.</div></details></div>
+<div class="question"><details><summary>4. What happens when a readiness probe fails?</summary><div class="answer">The container keeps running, but the Pod becomes not Ready and is excluded from normal Service traffic endpoints while it remains unready.</div></details></div>
+<div class="question"><details><summary>5. Why is startupProbe useful?</summary><div class="answer">It lets slow-starting applications initialize without being killed by liveness checks that are intended to detect failures after startup. Liveness and readiness checks do not begin until startup succeeds.</div></details></div>
+<div class="question"><details><summary>6. Which probe mechanisms are supported?</summary><div class="answer">HTTP GET, TCP socket, exec command, and gRPC health check. gRPC support became stable in Kubernetes v1.27.</div></details></div>
+<div class="question"><details><summary>7. What does periodSeconds mean?</summary><div class="answer">It is the configured interval, in seconds, between probe checks. Its default is 10 seconds; minimum is 1 second.</div></details></div>
+<div class="question"><details><summary>8. What does timeoutSeconds mean?</summary><div class="answer">It is how long Kubernetes waits for the probe to complete before considering that attempt failed. The default is 1 second.</div></details></div>
+<div class="question"><details><summary>9. What is failureThreshold?</summary><div class="answer">The number of consecutive failures before a probe is considered failed. The default is 3; consequences depend on the probe type.</div></details></div>
+<div class="question"><details><summary>10. What HTTP status codes count as success?</summary><div class="answer">HTTP response codes from 200 through 399 count as successful for an HTTP probe. Other status codes fail the probe.</div></details></div>
+<div class="question"><details><summary>11. How do you view probe failures?</summary><div class="answer">Use <code>kubectl describe pod POD_NAME -n NAMESPACE</code> and inspect the Events section for Unhealthy and probe-failure messages. Also check current and previous container logs.</div></details></div>
+<div class="question"><details><summary>12. Does a Pod need a Service to use probes?</summary><div class="answer">No. Probes are configured on a container in a Pod and work without a Service. Readiness affects use as a backend when Services select that Pod.</div></details></div>
+
+<h3>Level 2 — Intermediate questions</h3>
+<div class="question"><details><summary>13. Why should readiness and liveness often use separate endpoints?</summary><div class="answer">An application can be running and capable of recovery, yet temporarily unable to serve requests. Separate endpoints let readiness remove it from traffic while liveness avoids unnecessary restarts.</div></details></div>
+<div class="question"><details><summary>14. Why not check the database from liveness?</summary><div class="answer">If a shared database outage makes every Pod's liveness fail, Kubernetes may restart all replicas simultaneously, increasing recovery load and worsening the incident. Model dependency failure as readiness when appropriate unless restarting the app is a justified recovery action.</div></details></div>
+<div class="question"><details><summary>15. How do you calculate startup tolerance?</summary><div class="answer">A practical approximation is <code>failureThreshold × periodSeconds</code>. For example, 30 failures at 10 seconds is about 300 seconds of probe budget. Scheduling, image pull, and probe execution affect total elapsed startup time.</div></details></div>
+<div class="question"><details><summary>16. Does readinessProbe run only during startup?</summary><div class="answer">No. Readiness probes run throughout the container's lifecycle, so a Pod can become unready later if it temporarily cannot accept traffic.</div></details></div>
+<div class="question"><details><summary>17. Does liveness wait for readiness to pass?</summary><div class="answer">No. Liveness and readiness are independent. A startup probe, if defined, gates both until startup succeeds; otherwise use appropriate startup behavior and delays.</div></details></div>
+<div class="question"><details><summary>18. What is the difference between HTTP and TCP probes?</summary><div class="answer">HTTP checks an application endpoint and its status code; TCP checks only whether a connection can be opened to a port. TCP can miss application-level failure.</div></details></div>
+<div class="question"><details><summary>19. When is an exec probe appropriate?</summary><div class="answer">When a local check is needed and a valid command exists in the image. Keep it lightweight; every check launches a process and may add overhead at scale.</div></details></div>
+<div class="question"><details><summary>20. What must be true for a gRPC probe?</summary><div class="answer">The application must implement the gRPC Health Checking Protocol and the numeric probe port must be configured. A SERVING response is success; gRPC probes do not support named ports.</div></details></div>
+<div class="question"><details><summary>21. Can HTTP probes validate a server TLS certificate?</summary><div class="answer">No. With <code>scheme: HTTPS</code>, the kubelet sends HTTPS but skips certificate verification. Use an appropriate external security check if certificate validity must be independently verified.</div></details></div>
+<div class="question"><details><summary>22. What is successThreshold?</summary><div class="answer">The consecutive successes required to recover a previously failing probe. It defaults to 1. Startup and liveness probes require it to be 1; readiness can use a larger value.</div></details></div>
+<div class="question"><details><summary>23. What is probe-level terminationGracePeriodSeconds?</summary><div class="answer">It overrides the Pod-level termination grace period for startup or liveness probe failure when configured. It cannot be set on readiness probes and is stable starting in Kubernetes v1.28.</div></details></div>
+<div class="question"><details><summary>24. How do probes interact with Deployments?</summary><div class="answer">Readiness affects Pod availability and rollout progress, while liveness/startup failures can trigger container restarts. A Deployment may stall if replacement Pods never become Ready.</div></details></div>
+
+<h3>Level 3 — Scenario-based questions</h3>
+<div class="question"><details><summary>25. A Pod is Running but does not receive Service traffic. How do you investigate?</summary><div class="answer"><strong>Approach:</strong> run <code>kubectl get pods --show-labels</code>, <code>kubectl describe pod</code>, and inspect EndpointSlices for the Service. If the Pod is not Ready, inspect probe events, path/port and application startup/dependencies. If Ready but missing from endpoints, check Service selectors, namespace and endpoint controller updates. Verify with a request after correction.</div></details></div>
+<div class="question"><details><summary>26. Your Deployment keeps restarting after adding liveness. What do you do?</summary><div class="answer">Describe a new Pod, inspect Unhealthy/Killing events and previous logs. Test the health endpoint inside the container. Check the path, port, status, timeout, failure threshold, app startup and resource pressure. If liveness is detecting a temporary dependency outage rather than a stuck process, redesign the health endpoint. Restore a known-good probe configuration and verify restart counts stabilize.</div></details></div>
+<div class="question"><details><summary>27. A Java application needs 90 seconds to start but restarts after 30 seconds.</summary><div class="answer">Add a startup probe with a measured failure budget greater than worst-case initialization, for example a 5-second period and 30 failures (roughly 150 seconds). Use an endpoint or command that accurately signals startup completion. Confirm events show startup succeeds and liveness/readiness begin afterward; don't simply disable health checks.</div></details></div>
+<div class="question"><details><summary>28. All Pods become unready during a database incident, but do not restart. Is that correct?</summary><div class="answer">It may be correct if the application cannot serve valid requests without the database and readiness represents that dependency. Check database reachability, readiness endpoint behavior, EndpointSlices, and app metrics. Keep liveness independent if restarting the app will not fix the shared database outage.</div></details></div>
+<div class="question"><details><summary>29. A health endpoint returns 302 and the probe succeeds, but the endpoint is redirecting to a login page.</summary><div class="answer">HTTP probe status codes 200–399 count as success, including redirects. Configure a dedicated health endpoint that returns a clear, minimal 200 only when the intended check passes; don't rely on redirect behavior. Verify with curl and Pod events.</div></details></div>
+<div class="question"><details><summary>30. A TCP liveness probe passes while users receive HTTP 500 errors.</summary><div class="answer">TCP only proves that the port accepts connections. Use application logs and metrics to find handler/dependency errors, then consider HTTP or gRPC health checks that reflect a meaningful state. Verify the new endpoint behavior from inside the Pod and validate failure semantics in a lab.</div></details></div>
+<div class="question"><details><summary>31. Probe failures started after CPU limits were reduced.</summary><div class="answer">Check <code>kubectl top pod</code> if metrics-server is available, Pod requests/limits, CPU throttling signals from monitoring, and event timing. Compare endpoint latency to timeoutSeconds. Right-size resources and optimize the health endpoint; adjust the timeout only when measured evidence supports it.</div></details></div>
+<div class="question"><details><summary>32. An exec probe fails with “curl: not found.”</summary><div class="answer">The container image does not contain curl. Prefer native HTTP probes if the app exposes HTTP, or use a small command that is guaranteed to exist in the image. Avoid installing tools ad hoc into immutable production containers. Verify the actual container image and command path.</div></details></div>
+<div class="question"><details><summary>33. A liveness probe checks an external payment API and restarts every replica during an outage. What is wrong?</summary><div class="answer">The liveness check is coupled to a shared external dependency that a container restart cannot recover. Remove that check from liveness; consider readiness if payment dependency is essential to serving valid requests, apply bounded timeouts/circuit breakers, and monitor the dependency separately.</div></details></div>
+<div class="question"><details><summary>34. Readiness fails for one Pod but its restart count is unchanged. Is Kubernetes broken?</summary><div class="answer">No. That is normal. Readiness failure marks the Pod unready and removes it from normal Service endpoints while leaving the container running. Inspect the endpoint path, events and application state, and verify the Ready condition changes back after the endpoint recovers.</div></details></div>
+<div class="question"><details><summary>35. A Pod has no previous logs. How else can you debug?</summary><div class="answer">Previous logs are available only after a prior container instance and if retained. Use <code>kubectl describe pod</code>, Events, current logs, Deployment status, probe configuration from <code>kubectl get pod -o yaml</code>, application metrics and controlled tests against the endpoint.</div></details></div>
+<div class="question"><details><summary>36. Liveness is failing intermittently but manually curling the endpoint succeeds.</summary><div class="answer">Check probe timeout, timing, node-to-Pod connectivity, endpoint binding, response spikes, resource pressure and the exact status code during failures. Manual curl from your workstation may follow a different network path than the kubelet. Inspect events and app metrics and design the endpoint for low latency.</div></details></div>
+</div></section>
+
+<section id="assignments"><h2>10. Practice assignments</h2><p>Attempt each task before revealing the solution hints. Keep the exercises inside <code>nimbus-probes-lab</code>.</p><h3>Beginner assignments</h3><ol><li><strong>HTTP health checks:</strong> create an NGINX Pod with a liveness HTTP GET path. Expected state: Pod stays running and ready. Verify using <code>kubectl describe pod</code> and a local port-forward. Hint: use a path actually served by NGINX.</li><li><strong>Separate readiness:</strong> configure a separate readiness endpoint. Expected: readiness controls Pod Ready status. Verify Pod conditions and matching EndpointSlices. Hint: a failed readiness probe should not restart the container.</li><li><strong>Startup gating:</strong> use a slow startup command and startup probe. Expected: initialization finishes before liveness/readiness begin. Verify events and restart count. Hint: size the failure budget to measured startup duration.</li><li><strong>TCP health:</strong> configure a TCP probe for an app listening on a known port. Expected: check succeeds while the socket listens. Verify port binding and events. Hint: TCP does not test application response logic.</li><li><strong>Exec health:</strong> configure an exec probe that exits 0 only when a known file exists. Expected: successful check while file exists. Verify event behavior after controlled file removal. Hint: ensure the command is installed.</li></ol>
+<h3>Modification and troubleshooting assignments</h3><ol start="6"><li>Change the readiness path to a non-existent path. Show that the Pod becomes unready without a liveness-triggered restart, then restore the route.</li><li>Change the liveness path to a missing resource. Collect evidence of container restart and restore the correct path.</li><li>Set timeoutSeconds too low for a deliberately slow lab endpoint; explain the event, then choose a value using measured response times.</li><li>Remove a command required by an exec probe by switching to an image without that command. Diagnose the failure and design a supported fix.</li><li>Run the slow-start app without startupProbe and describe the effect of a strict liveness check. Then add startupProbe and compare restart counts.</li></ol>
+<h3>Scenario challenges</h3><ol start="11"><li><strong>Shared database outage:</strong> design distinct liveness and readiness behavior so Pods stop taking invalid traffic but are not needlessly restarted. Include the assumptions and verification strategy.</li><li><strong>False health failures under load:</strong> use Pod events, app metrics and resource data to decide whether to tune probe timeout, reduce endpoint cost or adjust resources.</li><li><strong>Slow startup in production:</strong> propose a startup budget based on measured warm-up times, with reasons for failure threshold and interval. Include a test plan for slow and failed initialization.</li></ol>
+<details><summary><strong>Expandable solution hints and starter diagnostics</strong></summary><div class="answer"><pre><code># Inspect status and probe events
+kubectl get pods -n nimbus-probes-lab -o wide
+kubectl describe pod POD_NAME -n nimbus-probes-lab
+kubectl get events -n nimbus-probes-lab --sort-by=.metadata.creationTimestamp
+kubectl logs POD_NAME -n nimbus-probes-lab
+kubectl logs POD_NAME -n nimbus-probes-lab --previous
+
+# Verify Service endpoint readiness
+kubectl get svc,endpointslices -n nimbus-probes-lab
+
+# Inspect the full probe configuration
+kubectl get deployment probes-web -n nimbus-probes-lab -o yaml
+
+# Restore the lab's readiness or liveness paths as needed
+kubectl patch deployment probes-web -n nimbus-probes-lab --type=json -p='[{"op":"replace","path":"/spec/template/spec/containers/0/readinessProbe/httpGet/path","value":"/probes/readyz"}]'
+kubectl patch deployment probes-web -n nimbus-probes-lab --type=json -p='[{"op":"replace","path":"/spec/template/spec/containers/0/livenessProbe/httpGet/path","value":"/probes/healthz"}]'</code></pre><p>Replace <code>POD_NAME</code> with an existing Pod name. For the database challenge, avoid placing every shared dependency in liveness unless restarting the app is known to resolve the failure.</p></div></details></section>
+
+<section id="revision"><h2>11. Quick revision and cheat sheet</h2><h3>Essential differences</h3><ul><li><strong>Startup:</strong> “Has it finished initialization?” Gates liveness/readiness until success. Repeated failure restarts the container.</li><li><strong>Liveness:</strong> “Should this container be restarted?” Repeated failure restarts the container.</li><li><strong>Readiness:</strong> “Should this Pod receive traffic right now?” Failure marks it unready; the container continues running.</li><li><strong>HTTP:</strong> success status is 200–399; <strong>TCP:</strong> connection succeeds; <strong>exec:</strong> command exits 0; <strong>gRPC:</strong> Health Checking Protocol responds SERVING.</li></ul><h3>Compact configuration template</h3><pre><code>startupProbe:
+  httpGet:
+    path: /startupz
+    port: http
+  periodSeconds: 5
+  failureThreshold: 30
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: http
+  periodSeconds: 10
+  timeoutSeconds: 2
+  failureThreshold: 3
+readinessProbe:
+  httpGet:
+    path: /readyz
+    port: http
+  periodSeconds: 5
+  timeoutSeconds: 2
+  failureThreshold: 3</code></pre><p>These values are examples, not universal production defaults. Confirm that the app actually serves these paths and tune timing with measurements.</p><h3>Frequently used commands</h3><pre><code>kubectl get pods -n nimbus-probes-lab -o wide
+kubectl describe pod POD_NAME -n nimbus-probes-lab
+kubectl logs POD_NAME -n nimbus-probes-lab
+kubectl logs POD_NAME -n nimbus-probes-lab --previous
+kubectl get events -n nimbus-probes-lab --sort-by=.metadata.creationTimestamp
+kubectl get deployment probes-web -n nimbus-probes-lab -o yaml
+kubectl rollout status deployment/probes-web -n nimbus-probes-lab
+kubectl get endpointslices -n nimbus-probes-lab
+kubectl auth can-i patch deployments -n nimbus-probes-lab</code></pre><p class="small muted">Replace POD_NAME with an actual Pod name. The <code>--previous</code> logs option works when a prior container instance exists and its logs are available.</p><h3>Pre-interview checklist</h3><ul><li>Can I explain what occurs after each probe type fails?</li><li>Can I describe when startup probe gates liveness and readiness?</li><li>Can I tell the difference between container Running and Pod Ready?</li><li>Can I inspect events, current logs, previous logs and EndpointSlices?</li><li>Can I explain why a TCP check may pass while an application is unhealthy?</li><li>Can I justify probe values using startup and response-time measurements?</li></ul></section>
+
+<section id="cleanup"><h2>12. Final lab cleanup</h2><p>Stop any running <code>kubectl port-forward</code> terminal with Ctrl+C. Then inspect the dedicated lab namespace to ensure it contains only resources created for these exercises.</p><pre><code>kubectl get all,configmap -n nimbus-probes-lab</code></pre><p>Delete only resources created in these labs:</p><pre><code>kubectl delete deployment probes-web slow-start -n nimbus-probes-lab --ignore-not-found
+kubectl delete pod exec-liveness -n nimbus-probes-lab --ignore-not-found
+kubectl delete service probes-web -n nimbus-probes-lab --ignore-not-found
+kubectl delete configmap probes-web-pages -n nimbus-probes-lab --ignore-not-found</code></pre><p>If the namespace was created exclusively for this guide, confirm nothing else remains and remove it:</p><pre><code>kubectl get all,configmap -n nimbus-probes-lab
+kubectl delete namespace nimbus-probes-lab</code></pre><div class="callout danger"><strong>Shared-cluster warning:</strong> namespace deletion removes all namespaced objects inside it, including resources created by other students. Never delete a shared namespace, cluster-wide components, ClusterRoles, nodes, or the cluster for this lab. If the namespace is shared, delete only the named lab resources after verifying ownership.</div></section>
+
+<section id="references"><h2>13. References</h2><h3>Supplied Nimbuswiztech resources</h3><ul><li><a href="https://github.com/nimbuswiztech/Kubernetes/tree/main/kubernetes-liveness-readiness" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes repository — kubernetes-liveness-readiness directory</a></li><li><a href="https://github.com/nimbuswiztech/kubernetes/wiki/Liveness,-Readiness-and-Startup-Probes" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes Wiki — Liveness, Readiness and Startup Probes</a></li></ul><p>The supplied wiki was accessible and contains probe explanations and examples for exec, HTTP, TCP, startup, and readiness behavior. The supplied repository directory could not be independently retrieved in this session, so its files and exact examples are not claimed as copied. Practical manifests in this guide are supplementary teaching examples, adapted to keep API versions and commands consistent with official Kubernetes documentation.</p><h3>Official Kubernetes documentation</h3><ul><li><a href="https://kubernetes.io/docs/concepts/workloads/pods/probes/" target="_blank" rel="noopener noreferrer">Liveness, Readiness, and Startup Probes — concepts and behavior</a></li><li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/" target="_blank" rel="noopener noreferrer">Configure Liveness, Readiness and Startup Probes — step-by-step tutorial</a></li><li><a href="https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/" target="_blank" rel="noopener noreferrer">Pod API reference</a></li><li><a href="https://kubernetes.io/docs/concepts/services-networking/service/" target="_blank" rel="noopener noreferrer">Services, Load Balancing, and Networking</a></li><li><a href="https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/" target="_blank" rel="noopener noreferrer">EndpointSlices</a></li><li><a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener noreferrer">Install Tools — kubectl and local cluster options</a></li></ul></section>
+<a href="#top" class="toplink">↑ Back to top</a>
+</main><footer>Nimbuswiztech student learning reference · Kubernetes Liveness, Readiness and Startup Probes · Use current official documentation and validate settings against your application and cluster.</footer>
+<script>
+(function(){
+ document.querySelectorAll('pre').forEach(function(pre){var code=pre.querySelector('code');if(!code)return;var button=document.createElement('button');button.type='button';button.className='copy';button.textContent='Copy';button.setAttribute('aria-label','Copy code block');button.addEventListener('click',function(){var text=code.innerText;function fallback(){var area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{document.execCommand('copy');button.textContent='Copied'}catch(e){button.textContent='Select manually'}area.remove();setTimeout(function(){button.textContent='Copy'},1300)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){button.textContent='Copied';setTimeout(function(){button.textContent='Copy'},1300)}).catch(fallback)}else fallback()});pre.appendChild(button)});
+ var search=document.getElementById('qsearch');if(search)search.addEventListener('input',function(){var q=search.value.toLowerCase().trim();document.querySelectorAll('#questions .question').forEach(function(item){item.style.display=item.textContent.toLowerCase().includes(q)?'':'none'})});
+})();
+</script>
+</body>
+</html>

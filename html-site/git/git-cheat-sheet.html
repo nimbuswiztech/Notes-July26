@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>git cheat sheet &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html" class="active">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🌿 Git</span>
+          <span class="separator">/</span>
+          <span class="current">git cheat sheet</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🌿 Git Module</div>
+          <h1 class="hero-title">git cheat sheet</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+<div class="diagram-figure" style="margin-top: 1.5rem; margin-bottom: 2.5rem; border: 2px solid var(--border-highlight); box-shadow: 0 0 35px var(--accent-cyan-glow);">
+  <div class="diagram-badge" style="background: linear-gradient(90deg, rgba(6,182,212,0.25), rgba(59,130,246,0.25)); font-size: 0.85rem;">
+    ⭐ FEATURED ARCHITECTURAL BLUEPRINT &bull; Git Visual Cheat Sheet
+  </div>
+  <img src="../assets/images/Git%20Cheat%20Sheet.png" alt="Git Visual Cheat Sheet" class="diagram-img" loading="eager">
+  <div class="diagram-caption" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+    Git Command Cheat Sheet & Working Directory Lifecycle
+  </div>
+</div>
+
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <p><strong>Git Cheat Sheet</strong> is a comprehensive quick guide for learning <strong>Git</strong> concepts, from very basic to advanced levels. By this <strong>Git Cheat Sheet</strong>, our aim is to provide a handy reference tool for both beginners and experienced developers/DevOps engineers. This <strong>Git Cheat Sheet</strong> not only makes it easier for newcomers to get started but also serves as a refresher for experienced professionals.</p>
+<figure><img src="../../.gitbook/assets/Git Cheat Sheet.png" alt="Git Cheat Sheet" width="1000"><figcaption><p>Git Cheat Sheet</p></figcaption></figure>
+
+<p>In this <strong>Git Cheat Sheet,</strong> we’ve covered all the basics to advanced Git commands that the developers required during the development and deployment process. Moreover, it is well-structured and categorized according to different use cases. It includes Git and GitHub, Git download, Git Configuration &amp; Setup, Git commands, Git bash, Creating and Getting Git Projects, Git Snapshots, Branching and Merging in Git, Sharing and Updating in Git, Git Comparison, Managing History in Git, and more.</p>
+<h3>What is Git?</h3>
+<p>Git is the free and open-source distributed <a href="https://www.geeksforgeeks.org/version-control-systems/">version control systems</a> that's responsible for everything <strong>GitHub</strong> related that happens locally on your computer.</p>
+<h3>Understanding Version Control</h3>
+<p>Version control, also known as source control, is the technique of tracking and managing changes to codes and these are the systems that are software tools that enable software teams to manage modifications to source code as time passes.</p>
+<h3>What is GitHub?</h3>
+<p>GitHub is a widely-used Free-to-use cloud Storage platform with version control and many other essential features that specifically helps developers to manage and deploy their projects on GitHub.</p>
+<h3>Benefits of Using Git</h3>
+<ul>
+<li><strong>History Tracking</strong>: Git allows you to track every change made in your project, including: who made the change and when it was made.</li>
+<li><strong>Collaboration</strong>: Multiple developers can be able work on the same project at the same time, and Git efficiently manages the merging of changes in code.</li>
+<li><strong>Branching and Merging</strong>: Git enables developers to create branches to work on new features or bug fixes and later merge them back into the main codebase.</li>
+<li><strong>Offline Work</strong>: Git works offline, which means you can commit changes and work on your project even without an internet connection.</li>
+</ul>
+<h2>Learn Git Cheat Sheet (Basic to Advanced Concepts)</h2>
+<h3>Git Installation Commands</h3>
+<p>Here are the Git installation commands for different operating systems:</p>
+<table>
+<thead>
+<tr>
+<th>Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git for Windows stand-alone installer.</td>
+<td>For more Details <a href="https://www.geeksforgeeks.org/how-to-install-git-on-windows-command-line/">Read Here</a></td>
+</tr>
+<tr>
+<td>$ brew install git</td>
+<td>Install Git with <strong>Homebrew</strong> on Mac OS</td>
+</tr>
+<tr>
+<td>$ sudo port selfupdate</td>
+<td>Install Git with <strong>MacPorts</strong> on Mac OS</td>
+</tr>
+<tr>
+<td>$ sudo apt-get install git</td>
+<td>Install Command for Linux</td>
+</tr>
+<tr>
+<td>$ git --version</td>
+<td>Shows the current version of your Git</td>
+</tr>
+</tbody>
+</table>
+<h3>Git Configuration &amp; Setup</h3>
+<p>Here are Git configuration and setup commands:</p>
+<table>
+<thead>
+<tr>
+<th>Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git config --global user.name "Your Name"</td>
+<td>Set your username globally.</td>
+</tr>
+<tr>
+<td>git config --global user.email "youremail@example.com"</td>
+<td>Set your email globally.</td>
+</tr>
+<tr>
+<td>git config --global color.ui auto -</td>
+<td>Set to display colored output in the terminal</td>
+</tr>
+<tr>
+<td>git help</td>
+<td>Display the main help documentation, showing a list of commonly used Git commands.</td>
+</tr>
+</tbody>
+</table>
+<h3>Initializing a Repository</h3>
+<p>Here are the Git initializing a repository commands:</p>
+<table>
+<thead>
+<tr>
+<th>Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git init</td>
+<td>Initializes a new Git repository in the current directory.</td>
+</tr>
+<tr>
+<td>git init \<directory></td>
+<td>Creates a new Git repository in the specified directory.</td>
+</tr>
+<tr>
+<td>git clone \<repository\_url></td>
+<td>this Clones a repository from a remote server to your local machine.</td>
+</tr>
+<tr>
+<td>git clone --branch \<branch\_name> \<repository\_url></td>
+<td>Clones a specific branch from a repository.</td>
+</tr>
+</tbody>
+</table>
+<h3>Basic Git Commands</h3>
+<p>Here are some basic Git commands:</p>
+<table>
+<thead>
+<tr>
+<th>Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git add \<file></td>
+<td>Adds a specific file to the staging area.</td>
+</tr>
+<tr>
+<td>git add . or git add --all</td>
+<td>Adds all modified and new files to the staging area.</td>
+</tr>
+<tr>
+<td>git status</td>
+<td>Shows the current state of your repository, including tracked and untracked files, modified files, and branch information.</td>
+</tr>
+<tr>
+<td>git status --ignored</td>
+<td>Displays ignored files in addition to the regular status output.</td>
+</tr>
+<tr>
+<td>git diff</td>
+<td>Shows the changes between the working directory and the staging area (index).</td>
+</tr>
+<tr>
+<td>git diff \<commit1> \<commit2></td>
+<td>Displays the differences between two commits.</td>
+</tr>
+<tr>
+<td>git diff --staged or git diff --cached</td>
+<td>Displays the changes between the staging area (index) and the last commit.</td>
+</tr>
+<tr>
+<td>git diff HEAD</td>
+<td>Display the difference between the current directory and the last commit</td>
+</tr>
+<tr>
+<td>git commit</td>
+<td>Creates a new commit with the changes in the staging area and opens the default text editor for adding a commit message.</td>
+</tr>
+<tr>
+<td>git commit -m "\<message>" or git commit --message "\<message>"</td>
+<td>Creates a new commit with the changes in the staging area and specifies the commit message inline.</td>
+</tr>
+<tr>
+<td>git commit -a or git commit --all</td>
+<td>Commits all modified and deleted files in the repository without explicitly using git add to stage the changes.</td>
+</tr>
+<tr>
+<td>git notes add</td>
+<td>Creates a new note and associates it with an object (commit, tag, etc.).</td>
+</tr>
+<tr>
+<td>git restore \<file></td>
+<td>Restores the file in the working directory to its state in the last commit.</td>
+</tr>
+<tr>
+<td>git reset \<commit></td>
+<td>Moves the branch pointer to a specified commit, resetting the staging area and the working directory to match the specified commit.</td>
+</tr>
+<tr>
+<td>git reset --soft \<commit></td>
+<td>Moves the branch pointer to a specified commit, preserving the changes in the staging area and the working directory.</td>
+</tr>
+<tr>
+<td>git reset --hard \<commit></td>
+<td>Moves the branch pointer to a specified commit, discarding all changes in the staging area and the working directory, effectively resetting the repository to the specified commit.</td>
+</tr>
+<tr>
+<td>git rm \<file></td>
+<td>Removes a file from both the working directory and the repository, staging the deletion.</td>
+</tr>
+<tr>
+<td>git mv</td>
+<td>Moves or renames a file or directory in your Git repository.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Also, check</strong>: <a href="https://www.geeksforgeeks.org/basic-git-commands-with-examples/">Basic Git Commands with Examples</a></p>
+</div>
+</div>
+<h3>Git Commit (Updated Commands)</h3>
+<p>Here are some of the updated commands for Git commit:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Commands</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git commit -m "feat: message"</td>
+<td>Create a new commit in a Git repository with a specific message to indicate a new feature commit in the repository.</td>
+</tr>
+<tr>
+<td>git commit -m "fix: message"</td>
+<td>Create a new commit in a Git repository with a specific message to fix the bugs in codebases</td>
+</tr>
+<tr>
+<td>git commit -m "chore: message"</td>
+<td>Create a new commit in a Git repository with a specific message to show routine tasks or maintenance.</td>
+</tr>
+<tr>
+<td>git commit -m "refactor: message"</td>
+<td>Create a new commit in a Git repository with a specific message to change the code base and improve the structure.</td>
+</tr>
+<tr>
+<td>git commit -m "docs: message"</td>
+<td>Create a new commit in a Git repository with a specific message to change the documentation.</td>
+</tr>
+<tr>
+<td>git commit -m "style: message"</td>
+<td>Create a new commit in a Git repository with a specific message to change the styling and formatting of the codebase.</td>
+</tr>
+<tr>
+<td>git commit -m "test: message"</td>
+<td>Create a new commit in a Git repository with a specific message to indicate test-related changes.</td>
+</tr>
+<tr>
+<td>git commit -m "perf: message"</td>
+<td>Create a new commit in a Git repository with a specific message to indicate performance-related changes.</td>
+</tr>
+<tr>
+<td>git commit -m "ci: message"</td>
+<td>Create a new commit in a Git repository with a specific message to indicate the continuous integration (CI) system-related changes.</td>
+</tr>
+<tr>
+<td>git commit -m "build: message"</td>
+<td>Create a new commit in a Git repository with a specific message to indicate the changes related to the build process.</td>
+</tr>
+<tr>
+<td>git commit -m "revert: message"</td>
+<td>Create a new commit in a Git repository with a specific message to indicate the changes related to revert a previous commit.</td>
+</tr>
+</tbody>
+</table>
+<h3>Branching and Merging</h3>
+<p>Here are some Git branching and merging commands:</p>
+<table>
+<thead>
+<tr>
+<th>Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git branch</td>
+<td>Lists all branches in the repository.</td>
+</tr>
+<tr>
+<td>git branch \<branch-name></td>
+<td>Creates a new branch with the specified name.</td>
+</tr>
+<tr>
+<td>git branch -d \<branch-name></td>
+<td>Deletes the specified branch.</td>
+</tr>
+<tr>
+<td>git branch -a</td>
+<td>Lists all local and remote branches.</td>
+</tr>
+<tr>
+<td>git branch -r</td>
+<td>Lists all remote branches.</td>
+</tr>
+<tr>
+<td>git checkout \<branch-name></td>
+<td>Switches to the specified branch.</td>
+</tr>
+<tr>
+<td>git checkout -b \<new-branch-name></td>
+<td>Creates a new branch and switches to it.</td>
+</tr>
+<tr>
+<td>git checkout -- \<file></td>
+<td>Discards changes made to the specified file and revert it to the version in the last commit.</td>
+</tr>
+<tr>
+<td>git merge \<branch></td>
+<td>Merges the specified branch into the current branch.</td>
+</tr>
+<tr>
+<td>git log</td>
+<td>Displays the commit history of the current branch.</td>
+</tr>
+<tr>
+<td>git log \&lt;branch-d</td>
+<td>Displays the commit history of the specified branch.</td>
+</tr>
+<tr>
+<td>git log --follow \<file></td>
+<td>Displays the commit history of a file, including its renames.</td>
+</tr>
+<tr>
+<td>git log --all</td>
+<td>Displays the commit history of all branches.</td>
+</tr>
+<tr>
+<td>git stash</td>
+<td>Stashes the changes in the working directory, allowing you to switch to a different branch or commit without committing the changes.</td>
+</tr>
+<tr>
+<td>git stash list</td>
+<td>Lists all stashes in the repository.</td>
+</tr>
+<tr>
+<td>git stash pop</td>
+<td>Applies and removes the most recent stash from the stash list.</td>
+</tr>
+<tr>
+<td>git stash drop</td>
+<td>Removes the most recent stash from the stash list.</td>
+</tr>
+<tr>
+<td>git tag</td>
+<td>Lists all tags in the repository.</td>
+</tr>
+<tr>
+<td>git tag \<tag-name></td>
+<td>Creates a lightweight tag at the current commit.</td>
+</tr>
+<tr>
+<td>git tag \<tag-name> \<commit></td>
+<td>Creates a lightweight tag at the specified commit.</td>
+</tr>
+<tr>
+<td>git tag -a \<tag-name> -m "\<message>"</td>
+<td>Creates an annotated tag at the current commit with a custom message.</td>
+</tr>
+</tbody>
+</table>
+<h3>Remote Repositories</h3>
+<p>Here are some Git remote repositories commands:</p>
+<table>
+<thead>
+<tr>
+<th>Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git fetch</td>
+<td>Retrieves change from a remote repository, including new branches and commit.</td>
+</tr>
+<tr>
+<td>git fetch \<remote></td>
+<td>Retrieves change from the specified remote repository.</td>
+</tr>
+<tr>
+<td>git fetch --prune</td>
+<td>Removes any remote-tracking branches that no longer exist on the remote repository.</td>
+</tr>
+<tr>
+<td>git pull</td>
+<td>Fetches changes from the remote repository and merges them into the current branch.</td>
+</tr>
+<tr>
+<td>git pull \<remote></td>
+<td>Fetches changes from the specified remote repository and merges them into the current branch.</td>
+</tr>
+<tr>
+<td>git pull --rebase</td>
+<td>Fetches changes from the remote repository and rebases the current branch onto the updated branch.</td>
+</tr>
+<tr>
+<td>git push</td>
+<td>Pushes local commits to the remote repository.</td>
+</tr>
+<tr>
+<td>git push \<remote></td>
+<td>Pushes local commits to the specified remote repository.</td>
+</tr>
+<tr>
+<td>git push \<remote> \<branch></td>
+<td>Pushes local commits to the specified branch of the remote repository.</td>
+</tr>
+<tr>
+<td>git push --all</td>
+<td>Pushes all branches to the remote repository.</td>
+</tr>
+<tr>
+<td>git remote</td>
+<td>Lists all remote repositories.</td>
+</tr>
+<tr>
+<td>git remote add \<name> \<url></td>
+<td>Adds a new remote repository with the specified name and URL.</td>
+</tr>
+</tbody>
+</table>
+<h3>Git Comparison</h3>
+<p>Here are some Git comparison commands:</p>
+<table>
+<thead>
+<tr>
+<th>Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git show</td>
+<td>Shows the details of a specific commit, including its changes.</td>
+</tr>
+<tr>
+<td>git show \<commit></td>
+<td>Shows the details of the specified commit, including its changes.</td>
+</tr>
+</tbody>
+</table>
+<h3>Git Managing History</h3>
+<p>Here are some Git managing history commands:</p>
+<table>
+<thead>
+<tr>
+<th>Commands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git revert \<commit></td>
+<td>Creates a new commit that undoes the changes introduced by the specified commit.</td>
+</tr>
+<tr>
+<td>git revert --no-commit \<commit></td>
+<td>Undoes the changes introduced by the specified commit, but does not create a new commit.</td>
+</tr>
+<tr>
+<td>git rebase \<branch></td>
+<td>Reapplies commits on the current branch onto the tip of the specified branch.</td>
+</tr>
+</tbody>
+</table>
+<h2>Why use Git?</h2>
+<p>Here are some of the reasons why you might want to use Git:</p>
+<ul>
+<li>Track changes to your code</li>
+<li>Collaborate on projects with others</li>
+<li>Maintain an organized code history</li>
+<li>Easily revert to previous versions when needed</li>
+<li>Release your code efficiently and manage versions</li>
+<li>Enhance productivity and code integrity in software development.</li>
+</ul>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../git/git-stash.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">git stash</span>
+  </a>
+  <a href="../cicd-jenkins/README.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">CICD / Jenkins</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS ECS with AWS Fargate — Step-by-Step Console Teaching Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0d17;
+      --bg-secondary: #121829;
+      --bg-card: #182038;
+      --bg-card-hover: #1f2b4a;
+      --border-color: #273559;
+      --border-highlight: #f97316;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent-fargate: #f97316;
+      --accent-fargate-light: #fb923c;
+      --accent-fargate-glow: rgba(249, 115, 22, 0.25);
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-purple: #8b5cf6;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      
+      --instructor-badge: #ec4899;
+      --instructor-glow: rgba(236, 72, 153, 0.25);
+      
+      --code-bg: #0b1122;
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.6);
+      
+      --sidebar-width: 310px;
+      --header-height: 70px;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-highlight: #f97316;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --code-bg: #1e293b;
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --accent-fargate-glow: rgba(249, 115, 22, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Header Nav */
+    header.top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(10, 13, 23, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 1000;
+    }
+
+    [data-theme="light"] header.top-nav {
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 0 16px var(--accent-fargate-glow);
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #ffffff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .brand-title {
+      background: linear-gradient(90deg, #0f172a, #334155);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .badge-fargate {
+      background: rgba(249, 115, 22, 0.2);
+      color: #fb923c;
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Live Session Stopwatch */
+    .timer-widget {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 5px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--accent-fargate-light);
+    }
+
+    .timer-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .timer-btn:hover {
+      color: #fff;
+      background: var(--border-color);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-fargate-light);
+    }
+
+    .btn-switch {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
+      font-weight: 600;
+      border: 1px solid #38bdf8;
+      box-shadow: 0 0 12px rgba(2, 132, 199, 0.3);
+    }
+
+    .btn-switch:hover {
+      background: linear-gradient(135deg, #0369a1, #075985);
+      transform: translateY(-1px);
+    }
+
+    /* Layout */
+    .layout-container {
+      display: flex;
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Sidebar Navigation */
+    aside.sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      position: fixed;
+      top: var(--header-height);
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-color) transparent;
+    }
+
+    .progress-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .progress-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-bar-bg {
+      height: 8px;
+      background: var(--code-bg);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #f97316, #10b981);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 0 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item a:hover {
+      color: var(--text-main);
+      background: var(--bg-card);
+    }
+
+    .nav-item a.active {
+      color: #fff;
+      background: linear-gradient(90deg, rgba(249, 115, 22, 0.9), rgba(249, 115, 22, 0.4));
+      font-weight: 600;
+    }
+
+    .time-badge {
+      font-size: 0.7rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-fargate-light);
+    }
+
+    /* Content Area */
+    main.content-area {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 2.5rem 3.5rem;
+      max-width: 1250px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.16) 0%, rgba(6, 182, 212, 0.1) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-muted);
+    }
+
+    .badge-pill.hot {
+      border-color: var(--accent-fargate);
+      color: var(--accent-fargate-light);
+      background: rgba(249, 115, 22, 0.15);
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      max-width: 900px;
+      margin-bottom: 2rem;
+    }
+
+    .session-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+    }
+
+    .meta-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-value {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Section Styling */
+    section.module-section {
+      margin-bottom: 4rem;
+      scroll-margin-top: calc(var(--header-height) + 1.5rem);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent-fargate-light);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .section-time-pill {
+      font-size: 0.82rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-fargate-light);
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* Concept & Architecture Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .info-card:hover {
+      border-color: var(--border-highlight);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .info-card h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Interactive Step Box */
+    .step-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .step-box.completed {
+      border-color: var(--accent-green);
+      background: rgba(16, 185, 129, 0.03);
+    }
+
+    .step-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .step-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .step-checkbox {
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      accent-color: var(--accent-green);
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(249, 115, 22, 0.15);
+      color: var(--accent-fargate-light);
+      font-weight: 600;
+    }
+
+    .step-heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    /* Console Breadcrumb */
+    .console-path {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .console-path .arrow {
+      color: var(--text-dim);
+    }
+
+    /* Field Configuration Table */
+    .config-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.92rem;
+    }
+
+    .config-table th {
+      background: var(--code-bg);
+      text-align: left;
+      padding: 10px 14px;
+      color: var(--text-dim);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .config-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+
+    .config-table tr:hover td {
+      background: var(--bg-card-hover);
+    }
+
+    .field-name {
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .field-val {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-fargate-light);
+      background: rgba(249, 115, 22, 0.08);
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .field-note {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* Instructor Callout Box */
+    .instructor-box {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(249, 115, 22, 0.08) 100%);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      border-left: 5px solid var(--instructor-badge);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    .instructor-box-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #f472b6;
+      margin-bottom: 0.75rem;
+    }
+
+    .talk-track {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      padding: 0.9rem 1.1rem;
+      margin-top: 0.75rem;
+      border-left: 3px solid var(--accent-fargate-light);
+      font-style: italic;
+      color: #cbd5e1;
+    }
+
+    .talk-track-label {
+      display: block;
+      font-style: normal;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent-fargate-light);
+      margin-bottom: 4px;
+    }
+
+    /* Classroom Trap Callout */
+    .trap-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-left: 5px solid var(--accent-red);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+    }
+
+    .trap-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #f87171;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Pro Tip Callout */
+    .tip-box {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-left: 5px solid var(--accent-green);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+    }
+
+    .tip-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #34d399;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Code Snippet Box */
+    .snippet-container {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+
+    .snippet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .copy-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      color: #fff;
+      border-color: var(--accent-fargate-light);
+    }
+
+    pre code {
+      display: block;
+      padding: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+
+    /* UI Simulation Box */
+    .console-mockup {
+      background: var(--code-bg);
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+      font-size: 0.88rem;
+    }
+
+    .mockup-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 6px;
+    }
+
+    .mockup-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+    }
+
+    .mockup-row:last-child {
+      border-bottom: none;
+    }
+
+    .mockup-badge {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .badge-running { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .badge-pending { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .badge-fargate-pill { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
+
+    /* Accordion FAQ */
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 14px 18px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .faq-question:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .faq-answer {
+      padding: 0 18px 16px;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      display: none;
+      line-height: 1.6;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+      padding-top: 14px;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-icon {
+      transition: transform 0.2s;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      display: none;
+      z-index: 2000;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      aside.sidebar {
+        display: none;
+      }
+      main.content-area {
+        margin-left: 0;
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation -->
+  <header class="top-nav">
+    <div class="brand">
+      <div class="brand-logo">⚡</div>
+      <div>
+        <div class="brand-title">AWS ECS Masterclass</div>
+      </div>
+      <span class="badge-fargate">AWS Fargate (Serverless)</span>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Live Session Stopwatch -->
+      <div class="timer-widget" title="Demonstration Timer">
+        <span>⏱️</span>
+        <span id="display-time">00:00:00</span>
+        <button class="timer-btn" id="btn-timer-toggle" title="Start/Pause">▶</button>
+        <button class="timer-btn" id="btn-timer-reset" title="Reset">↺</button>
+      </div>
+
+      <!-- Quick Switch to EC2 Guide -->
+      <a href="ecs-ec2-step-by-step-guide.html" class="btn btn-switch" title="Open the EC2 Launch Type Guide">
+        <span>Go to EC2 Guide</span> ➔
+      </a>
+
+      <!-- Theme Toggle -->
+      <button class="btn btn-secondary" id="theme-toggle" title="Toggle Dark/Light Mode">🌓</button>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar Navigation & Checklist Tracker -->
+    <aside class="sidebar">
+      <div class="progress-box">
+        <div class="progress-title">
+          <span>Demo Progress</span>
+          <span id="progress-text">0/6 Done</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Classroom Modules</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#section-overview" class="active">
+              <span>01. Mental Model & Architecture</span>
+              <span class="time-badge">8m</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#section-prerequisites">
+              <span>02. Prerequisites & Security</span>
+              <span class="time-badge">5m</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#step-1-cluster">
+              <span>03. Step 1: Create Cluster</span>
+              <span class="time-badge">4m</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#step-custom-image">
+              <span>03b. (Opt) Push Custom Image</span>
+              <span class="time-badge">8m</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#step-2-taskdef">
+              <span>04. Step 2: Task Definition</span>
+              <span class="time-badge">8m</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#step-3-service">
+              <span>05. Step 3: Deploy Service</span>
+              <span class="time-badge">10m</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#step-4-verify">
+              <span>06. Step 4: Verify & Inspect</span>
+              <span class="time-badge">7m</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#step-5-experiments">
+              <span>07. Step 5: Self-Healing Demo</span>
+              <span class="time-badge">6m</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#step-6-cleanup">
+              <span>08. Step 6: Teardown & Clean-up</span>
+              <span class="time-badge">3m</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#section-troubleshooting">
+              <span>09. Troubleshooting Playbook</span>
+              <span class="time-badge">FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+        <div style="font-size: 0.75rem; color: var(--text-dim); text-align: center;">
+          Instructor Live Console Edition • 2026<br>
+          Amazon Web Services Containers
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <div class="hero-badge-row">
+          <span class="badge-pill hot">Hands-On Teaching Blueprint</span>
+          <span class="badge-pill">AWS Fargate Serverless</span>
+          <span class="badge-pill">AWS Console Only</span>
+          <span class="badge-pill">Zero Server Patching</span>
+        </div>
+        <h1 class="hero-title">Demonstrating Amazon ECS with AWS Fargate</h1>
+        <p class="hero-subtitle">
+          A definitive, step-by-step console demonstration guide for instructors. Teach your students how to run microservices on AWS serverless compute with zero virtual machines to manage, automatic network isolation, and built-in self-healing.
+        </p>
+
+        <div class="session-meta-grid">
+          <div class="meta-card">
+            <span class="meta-label">Target Audience</span>
+            <span class="meta-value">DevOps & Cloud Students</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Demo Duration</span>
+            <span class="meta-value">40 – 50 Minutes</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Total Cost</span>
+            <span class="meta-value">&lt; $0.02 (Billed per second)</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Compute Engine</span>
+            <span class="meta-value">AWS Fargate (MicroVMs)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 1: MENTAL MODEL & ARCHITECTURE -->
+      <section id="section-overview" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">01</div>
+            <h2 class="section-title">The Mental Model: What is AWS Fargate?</h2>
+          </div>
+          <span class="section-time-pill">Lecture: 8 mins</span>
+        </div>
+
+        <div class="instructor-box">
+          <div class="instructor-box-header">
+            <span>🎙️</span> Instructor Talk Track (What to say to your students)
+          </div>
+          <p>
+            "Students, when we ran Docker on our laptops or on a standard EC2 instance, we had to worry about the underlying operating system, kernel patching, disk space, and Docker daemon crashes. 
+            <strong>AWS Fargate turns compute into a serverless utility.</strong> You don't think in terms of servers anymore. You simply tell AWS: <em>'Here is my container image, give me 0.5 vCPU and 1 GB of RAM'</em>, and AWS spins up a dedicated, isolated micro-virtual machine (Firecracker) just for your task within seconds."
+          </p>
+          <div class="talk-track">
+            <span class="talk-track-label">Key Takeaway for Students</span>
+            With Fargate, your fundamental unit of compute is the <strong>Task</strong>, not the EC2 instance!
+          </div>
+        </div>
+
+        <!-- Architecture Diagram SVG -->
+        <div class="snippet-container" style="background: var(--bg-card); padding: 1.5rem; text-align: center;">
+          <h4 style="margin-bottom: 1rem; color: var(--accent-fargate-light); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">
+            AWS Fargate Architecture Diagram (Under the Hood)
+          </h4>
+          <svg viewBox="0 0 900 320" style="width: 100%; max-width: 850px; height: auto;">
+            <!-- Outer VPC Box -->
+            <rect x="20" y="20" width="860" height="280" rx="16" fill="#0f172a" stroke="#334155" stroke-width="2" />
+            <text x="45" y="55" fill="#94a3b8" font-size="14" font-weight="700">AWS Cloud VPC (172.31.0.0/16)</text>
+
+            <!-- Internet Gateway -->
+            <rect x="730" y="45" width="130" height="50" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5" />
+            <text x="750" y="75" fill="#38bdf8" font-size="12" font-weight="600">🌐 Internet Gateway</text>
+
+            <!-- Public Subnet A -->
+            <rect x="50" y="80" width="370" height="200" rx="12" fill="#1e293b" stroke="#273559" stroke-width="1.5" />
+            <text x="70" y="110" fill="#a5f3fc" font-size="13" font-weight="600">Public Subnet (us-east-1a)</text>
+
+            <!-- Public Subnet B -->
+            <rect x="450" y="80" width="370" height="200" rx="12" fill="#1e293b" stroke="#273559" stroke-width="1.5" />
+            <text x="470" y="110" fill="#a5f3fc" font-size="13" font-weight="600">Public Subnet (us-east-1b)</text>
+
+            <!-- Fargate Task 1 Box -->
+            <rect x="75" y="130" width="320" height="130" rx="10" fill="#182038" stroke="#f97316" stroke-width="2" />
+            <text x="95" y="160" fill="#fed7aa" font-size="13" font-weight="700">⚡ Fargate Task #1 (MicroVM)</text>
+            <rect x="95" y="175" width="135" height="65" rx="6" fill="#0b1122" stroke="#475569" />
+            <text x="105" y="200" fill="#ffffff" font-size="11" font-weight="600">📦 Container: web-app</text>
+            <text x="105" y="222" fill="#94a3b8" font-size="10">Port 80 (HTTP)</text>
+            
+            <rect x="245" y="175" width="135" height="65" rx="6" fill="#0b1122" stroke="#06b6d4" />
+            <text x="255" y="200" fill="#38bdf8" font-size="11" font-weight="600">🔌 Task ENI (awsvpc)</text>
+            <text x="255" y="222" fill="#10b981" font-size="10">Public IP + SG</text>
+
+            <!-- Fargate Task 2 Box -->
+            <rect x="475" y="130" width="320" height="130" rx="10" fill="#182038" stroke="#f97316" stroke-width="2" />
+            <text x="495" y="160" fill="#fed7aa" font-size="13" font-weight="700">⚡ Fargate Task #2 (MicroVM)</text>
+            <rect x="495" y="175" width="135" height="65" rx="6" fill="#0b1122" stroke="#475569" />
+            <text x="505" y="200" fill="#ffffff" font-size="11" font-weight="600">📦 Container: web-app</text>
+            <text x="505" y="222" fill="#94a3b8" font-size="10">Port 80 (HTTP)</text>
+
+            <rect x="645" y="175" width="135" height="65" rx="6" fill="#0b1122" stroke="#06b6d4" />
+            <text x="655" y="200" fill="#38bdf8" font-size="11" font-weight="600">🔌 Task ENI (awsvpc)</text>
+            <text x="655" y="222" fill="#10b981" font-size="10">Public IP + SG</text>
+          </svg>
+        </div>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <h4>🛡️ Dedicated MicroVM Isolation</h4>
+            <p>Every Fargate task runs inside its own dedicated kernel microVM (powered by AWS Firecracker). Two tasks never share a kernel, guaranteeing defense-in-depth security.</p>
+          </div>
+          <div class="info-card">
+            <h4>🌐 Native AWS VPC Networking</h4>
+            <p>Every Fargate task gets its own Elastic Network Interface (ENI) with its own private and public IP address (using the <code>awsvpc</code> network mode).</p>
+          </div>
+          <div class="info-card">
+            <h4>📈 True Zero-Maintenance Scaling</h4>
+            <p>Scale from 1 to 500 tasks without worrying whether your cluster has enough EC2 worker nodes. AWS provisions capacity on-demand behind the scenes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: PREREQUISITES -->
+      <section id="section-prerequisites" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">02</div>
+            <h2 class="section-title">Prerequisites & Security Setup</h2>
+          </div>
+          <span class="section-time-pill">Prep: 5 mins</span>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+          Before clicking into the ECS Console, ensure the networking and IAM foundation is ready in your AWS Account.
+        </p>
+
+        <!-- Step Box: Security Group -->
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">PRE-REQ 1</span>
+              <h3 class="step-heading">Create a Web Security Group (ecs-fargate-sg)</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="console-path">
+            <span>AWS Management Console</span>
+            <span class="arrow">➔</span>
+            <span>EC2</span>
+            <span class="arrow">➔</span>
+            <span>Network &amp; Security</span>
+            <span class="arrow">➔</span>
+            <span>Security Groups</span>
+            <span class="arrow">➔</span>
+            <span>Create security group</span>
+          </div>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Console Input Value</th>
+                <th>Why This Matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Security group name</td>
+                <td><span class="field-val">ecs-fargate-sg</span></td>
+                <td>Distinct identifier for the Fargate demo.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Description</td>
+                <td><span class="field-val">Allow HTTP inbound traffic for ECS Fargate</span></td>
+                <td>Clear documentation for students.</td>
+              </tr>
+              <tr>
+                <td class="field-name">VPC</td>
+                <td><span class="field-val">Default VPC</span></td>
+                <td>Ensures public subnets with Internet Gateway route.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Inbound Rule: Type</td>
+                <td><span class="field-val">HTTP</span></td>
+                <td>Port 80 for web server demonstration.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Inbound Rule: Source</td>
+                <td><span class="field-val">Anywhere-IPv4 (0.0.0.0/0)</span></td>
+                <td>Allows students to access the website from their browsers.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="tip-box">
+            <div class="tip-header">💡 Why No SSH (Port 22)?</div>
+            <p>Fargate has no operating system shell or SSH daemon! If you need to inspect running containers, AWS provides <strong>ECS Exec</strong> via AWS Systems Manager Session Manager, completely eliminating the need for open SSH ports.</p>
+          </div>
+        </div>
+
+        <!-- Step Box: IAM Role -->
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">PRE-REQ 2</span>
+              <h3 class="step-heading">Verify the Task Execution Role (ecsTaskExecutionRole)</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            When you create your first task in the modern ECS console, AWS will automatically offer to create this role if it does not already exist. It attaches the managed policy <code>AmazonECSTaskExecutionRolePolicy</code>.
+          </p>
+
+          <div class="instructor-box" style="margin: 0;">
+            <div class="instructor-box-header">
+              <span>🎙️</span> Teaching Distinction: Task Execution Role vs. Task Role
+            </div>
+            <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+              <li><strong>Task Execution Role:</strong> Used by the <em>ECS Agent / Fargate Infrastructure</em> before your container starts (to download your container image from ECR/DockerHub and send logs to CloudWatch).</li>
+              <li><strong>Task Role (Optional):</strong> Used by the <em>Application code inside your container</em> (e.g., if your Python or Node.js code needs to read from an S3 bucket or DynamoDB table).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 1: CREATE CLUSTER -->
+      <section id="step-1-cluster" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Step 1: Create an ECS Fargate Cluster</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 4 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">STEP 1</span>
+              <h3 class="step-heading">Launch the Serverless Cluster</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="console-path">
+            <span>AWS Management Console</span>
+            <span class="arrow">➔</span>
+            <span>Elastic Container Service (ECS)</span>
+            <span class="arrow">➔</span>
+            <span>Clusters</span>
+            <span class="arrow">➔</span>
+            <span>Create cluster</span>
+          </div>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Console Input Value</th>
+                <th>Why This Setting Matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Cluster name</td>
+                <td><span class="field-val">fargate-demo-cluster</span></td>
+                <td>A clean, descriptive namespace for our services.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Infrastructure</td>
+                <td><span class="field-val">AWS Fargate (serverless)</span></td>
+                <td><strong>Check this box (Selected by default).</strong> Leaves EC2 unchecked!</td>
+              </tr>
+              <tr>
+                <td class="field-name">Monitoring (Optional)</td>
+                <td><span class="field-val">Use Container Insights (unchecked)</span></td>
+                <td>Keep unchecked to avoid extra CloudWatch metric fees for the lab.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="instructor-box">
+            <div class="instructor-box-header">
+              <span>🎙️</span> What to Point Out in Class Right Now
+            </div>
+            <p>
+              "Click <strong>Create</strong>. Notice how quickly this finishes—literally <strong>under 10 seconds!</strong> Why? Because in Fargate, an ECS cluster is merely a logical grouping and namespace in the AWS control plane. AWS does not have to boot or initialize any EC2 virtual machines!"
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 1B: (OPTIONAL) BUILD & PUSH CUSTOM DOCKER IMAGE TO PUBLIC ECR -->
+      <section id="step-custom-image" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">03b</div>
+            <h2 class="section-title">Step 1b: (Optional) Build &amp; Push Custom Image to Public ECR</h2>
+          </div>
+          <span class="section-time-pill">Optional Hands-On: 8 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag" style="background: rgba(6, 182, 212, 0.2); color: #38bdf8;">CUSTOM IMAGE WORKFLOW</span>
+              <h3 class="step-heading">Create Dockerfile, Tag &amp; Push to Amazon ECR Public Gallery</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="instructor-box" style="margin-top: 0;">
+            <div class="instructor-box-header">
+              <span>🎙️</span> Instructor Talk Track (Why Show This in Class?)
+            </div>
+            <p>
+              "Students often ask: <em>'The pre-made AWS sample image is great for a quick test, but how do I deploy MY OWN application code on ECS?'</em>
+              Here is the exact production CI/CD workflow: You write a <strong>Dockerfile</strong>, build the container image locally, push it to <strong>Amazon Elastic Container Registry (ECR)</strong>, and tell ECS to pull and run that image!"
+            </p>
+          </div>
+
+          <!-- Sub-step 1: The Dockerfile and HTML Code -->
+          <h4 style="margin: 1.5rem 0 0.5rem; color: var(--accent-fargate-light);">1. Create Sample Code &amp; Dockerfile (Local Machine)</h4>
+          <p style="color: var(--text-muted); margin-bottom: 0.75rem;">
+            In an empty directory on your machine (e.g. <code>my-ecs-app/</code>), create two simple files:
+          </p>
+
+          <!-- File 1: Dockerfile -->
+          <div class="snippet-container">
+            <div class="snippet-header">
+              <span>Dockerfile</span>
+              <button class="copy-btn" onclick="copyText(`FROM nginx:alpine\nCOPY index.html /usr/share/nginx/html/index.html\nEXPOSE 80\nCMD [\"nginx\", \"-g\", \"daemon off;\"]`)">Copy Dockerfile</button>
+            </div>
+            <pre><code># Stage 1: Fast, lightweight Nginx web server
+FROM nginx:alpine
+
+# Copy our custom student application HTML page into Nginx document root
+COPY index.html /usr/share/nginx/html/index.html
+
+# Expose HTTP port 80
+EXPOSE 80
+
+# Launch Nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+          </div>
+
+          <!-- File 2: index.html -->
+          <div class="snippet-container">
+            <div class="snippet-header">
+              <span>index.html</span>
+              <button class="copy-btn" onclick="copyText(`<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>DevOps ECS Custom App</title>\n  <style>\n    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0b0f19; color: #f1f5f9; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }\n    .card { background: #182235; border: 2px solid #f97316; border-radius: 16px; padding: 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 520px; }\n    h1 { color: #fb923c; margin-bottom: 10px; font-size: 26px; }\n    p { color: #94a3b8; line-height: 1.6; font-size: 15px; }\n    .badge { background: #f97316; color: white; padding: 6px 14px; border-radius: 99px; font-weight: bold; font-size: 13px; display: inline-block; margin-top: 15px; }\n  </style>\n</head>\n<body>\n  <div class=\"card\">\n    <h1>🚀 Deployed on AWS Fargate!</h1>\n    <p>This custom microservice was built locally with Docker, pushed to Amazon ECR Public Gallery, and launched serverless on Amazon ECS.</p>\n    <div class=\"badge\">Live Student Build • Version 1.0</div>\n  </div>\n</body>\n</html>`)">Copy index.html</button>
+            </div>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;DevOps ECS Custom App&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0b0f19; color: #f1f5f9; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .card { background: #182235; border: 2px solid #f97316; border-radius: 16px; padding: 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 520px; }
+    h1 { color: #fb923c; margin-bottom: 10px; font-size: 26px; }
+    p { color: #94a3b8; line-height: 1.6; font-size: 15px; }
+    .badge { background: #f97316; color: white; padding: 6px 14px; border-radius: 99px; font-weight: bold; font-size: 13px; display: inline-block; margin-top: 15px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="card"&gt;
+    &lt;h1&gt;🚀 Deployed on AWS Fargate!&lt;/h1&gt;
+    &lt;p&gt;This custom microservice was built locally with Docker, pushed to Amazon ECR Public Gallery, and launched serverless on Amazon ECS.&lt;/p&gt;
+    &lt;div class="badge"&gt;Live Student Build • Version 1.0&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+
+          <!-- Sub-step 2: Create Public ECR Repository in Console -->
+          <h4 style="margin: 1.5rem 0 0.5rem; color: var(--accent-fargate-light);">2. Create Public ECR Repository in AWS Console</h4>
+          <div class="console-path">
+            <span>AWS Console</span>
+            <span class="arrow">➔</span>
+            <span>Amazon Elastic Container Registry (ECR)</span>
+            <span class="arrow">➔</span>
+            <span>Repositories</span>
+            <span class="arrow">➔</span>
+            <span style="color: #fb923c; font-weight: 700;">Select "Public" tab</span>
+            <span class="arrow">➔</span>
+            <span>Create repository</span>
+          </div>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Configuration Field</th>
+                <th>Console Setting Value</th>
+                <th>Explanation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Visibility settings</td>
+                <td><span class="field-val">Public</span></td>
+                <td>Creates repository in the Amazon ECR Public Gallery (accessible globally).</td>
+              </tr>
+              <tr>
+                <td class="field-name">Repository name</td>
+                <td><span class="field-val">devops-fargate-app</span></td>
+                <td>Name of your container image repository.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="color: var(--text-muted); margin: 0.75rem 0;">
+            Click <strong>Create repository</strong>. Copy your generated <strong>Public repository URI</strong> (e.g. <code>public.ecr.aws/&lt;your-alias&gt;/devops-fargate-app</code>).
+          </p>
+
+          <!-- Sub-step 3: Authenticate, Build, Tag & Push -->
+          <h4 style="margin: 1.5rem 0 0.5rem; color: var(--accent-fargate-light);">3. Authenticate, Build, Tag &amp; Push (Terminal)</h4>
+
+          <div class="tip-box">
+            <div class="tip-header">💡 Important ECR Public Authentication Nuance</div>
+            <p>
+              Amazon ECR Public authentication endpoint is <strong>always hosted in region <code>us-east-1</code></strong>! Even if your ECS cluster is in <code>eu-west-1</code> or <code>ap-south-1</code>, the authentication command must specify <code>--region us-east-1</code>.
+            </p>
+          </div>
+
+          <div class="snippet-container">
+            <div class="snippet-header">
+              <span>Terminal Command: Step 1 - Authenticate Docker to Public ECR</span>
+              <button class="copy-btn" onclick="copyText('aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws')">Copy</button>
+            </div>
+            <pre><code>$ aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+Login Succeeded</code></pre>
+          </div>
+
+          <div class="snippet-container">
+            <div class="snippet-header">
+              <span>Terminal Command: Step 2 - Build Local Image</span>
+              <button class="copy-btn" onclick="copyText('docker build -t devops-fargate-app:v1 .')">Copy</button>
+            </div>
+            <pre><code>$ docker build -t devops-fargate-app:v1 .</code></pre>
+          </div>
+
+          <div class="snippet-container">
+            <div class="snippet-header">
+              <span>Terminal Command: Step 3 - Tag Image with Public ECR URI</span>
+              <button class="copy-btn" onclick="copyText('docker tag devops-fargate-app:v1 public.ecr.aws/<YOUR-PUBLIC-ALIAS>/devops-fargate-app:v1')">Copy</button>
+            </div>
+            <pre><code># Replace <YOUR-PUBLIC-ALIAS> with your actual alias from ECR console (e.g. k5n8z2d1)
+$ docker tag devops-fargate-app:v1 public.ecr.aws/&lt;YOUR-PUBLIC-ALIAS&gt;/devops-fargate-app:v1</code></pre>
+          </div>
+
+          <div class="snippet-container">
+            <div class="snippet-header">
+              <span>Terminal Command: Step 4 - Push to Public ECR</span>
+              <button class="copy-btn" onclick="copyText('docker push public.ecr.aws/<YOUR-PUBLIC-ALIAS>/devops-fargate-app:v1')">Copy</button>
+            </div>
+            <pre><code>$ docker push public.ecr.aws/&lt;YOUR-PUBLIC-ALIAS&gt;/devops-fargate-app:v1
+The push refers to repository [public.ecr.aws/k5n8z2d1/devops-fargate-app]
+v1: digest: sha256:4b910... size: 1362</code></pre>
+          </div>
+
+          <!-- Private ECR Note -->
+          <div class="faq-item" style="margin-top: 1rem;">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>🔒 Prefer a Private ECR Repository instead? (Click to view commands)</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              If your organization uses Private ECR repositories, use these regional commands:
+              <pre style="margin-top: 8px;"><code># Authenticate to private ECR
+aws ecr get-login-password --region &lt;YOUR-REGION&gt; | docker login --username AWS --password-stdin &lt;ACCOUNT-ID&gt;.dkr.ecr.&lt;YOUR-REGION&gt;.amazonaws.com
+
+# Tag and push
+docker tag devops-fargate-app:v1 &lt;ACCOUNT-ID&gt;.dkr.ecr.&lt;YOUR-REGION&gt;.amazonaws.com/devops-fargate-app:v1
+docker push &lt;ACCOUNT-ID&gt;.dkr.ecr.&lt;YOUR-REGION&gt;.amazonaws.com/devops-fargate-app:v1</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: CREATE TASK DEFINITION -->
+      <section id="step-2-taskdef" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">04</div>
+            <h2 class="section-title">Step 2: Create a Task Definition (The Blueprint)</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 8 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">STEP 2</span>
+              <h3 class="step-heading">Configure the Task Definition</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="console-path">
+            <span>ECS Console</span>
+            <span class="arrow">➔</span>
+            <span>Task definitions</span>
+            <span class="arrow">➔</span>
+            <span>Create new task definition</span>
+            <span class="arrow">➔</span>
+            <span>Create new task definition</span>
+          </div>
+
+          <h4 style="margin: 1rem 0 0.5rem; color: var(--accent-fargate-light);">1. Task Definition Configuration</h4>
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Console Input Value</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Task definition family</td>
+                <td><span class="field-val">fargate-web-task</span></td>
+                <td>Creates Revision 1 (<code>fargate-web-task:1</code>).</td>
+              </tr>
+              <tr>
+                <td class="field-name">Launch type</td>
+                <td><span class="field-val">AWS Fargate</span></td>
+                <td>Enforces Fargate serverless resource allocation.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Operating system/Architecture</td>
+                <td><span class="field-val">Linux/X86_64</span></td>
+                <td>Standard container architecture.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Task CPU</td>
+                <td><span class="field-val">0.5 vCPU (512)</span></td>
+                <td>Lightweight allocation for the demo.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Task Memory</td>
+                <td><span class="field-val">1 GB (1024)</span></td>
+                <td>Plenty for our lightweight sample web app.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Task execution role</td>
+                <td><span class="field-val">Create new role (or ecsTaskExecutionRole)</span></td>
+                <td>Grants permission to pull the container image & push logs.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin: 1.5rem 0 0.5rem; color: var(--accent-fargate-light);">2. Container - 1 Details (Choose Option A or Option B)</h4>
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Console Input Value</th>
+                <th>Copy &amp; Paste Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Name</td>
+                <td><span class="field-val">web-app</span></td>
+                <td>Identifier inside the task definition.</td>
+              </tr>
+              <tr style="background: rgba(249, 115, 22, 0.08);">
+                <td class="field-name" style="font-weight: 700; color: #fb923c;">Image URI (Option A: AWS Public Sample)</td>
+                <td>
+                  <span class="field-val">public.ecr.aws/ecs-sample-image/amazon-ecs-sample:latest</span>
+                </td>
+                <td>
+                  <button class="copy-btn" onclick="copyText('public.ecr.aws/ecs-sample-image/amazon-ecs-sample:latest')">Copy URI</button>
+                </td>
+              </tr>
+              <tr style="background: rgba(6, 182, 212, 0.08);">
+                <td class="field-name" style="font-weight: 700; color: #38bdf8;">Image URI (Option B: Your Custom ECR Image)</td>
+                <td>
+                  <span class="field-val">public.ecr.aws/&lt;YOUR-ALIAS&gt;/devops-fargate-app:v1</span>
+                </td>
+                <td>
+                  <span style="font-size: 0.8rem; color: var(--text-dim);">Use image pushed in Step 1b</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="field-name">Container port</td>
+                <td><span class="field-val">80</span></td>
+                <td>HTTP port listened to by Apache/Nginx.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Protocol</td>
+                <td><span class="field-val">TCP</span></td>
+                <td>Default TCP network traffic.</td>
+              </tr>
+              <tr>
+                <td class="field-name">App protocol</td>
+                <td><span class="field-val">HTTP</span></td>
+                <td>Enables ECS Service Connect inspection.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Logging</td>
+                <td><span class="field-val">Use log collection (Checked / awslogs)</span></td>
+                <td>Auto-creates log group <code>/ecs/fargate-web-task</code> in CloudWatch.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="tip-box">
+            <div class="tip-header">💡 Pro-Tip for Instructors: Alternative Images</div>
+            <p>
+              You can also use <code>nginxdemos/hello</code> or <code>httpd:alpine</code>. We recommend the official AWS sample (<code>public.ecr.aws/ecs-sample-image/amazon-ecs-sample:latest</code>) because it outputs a vivid, branded webpage specifically stating <em>"Amazon ECS Sample App"</em> with container hostname details!
+            </p>
+          </div>
+
+          <p style="margin-top: 1rem; color: var(--text-muted);">
+            Scroll to the bottom and click <strong style="color: #fff;">Create</strong>. AWS will confirm: <em>"Successfully created task definition fargate-web-task:1"</em>.
+          </p>
+        </div>
+      </section>
+
+      <!-- STEP 3: DEPLOY SERVICE -->
+      <section id="step-3-service" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Step 3: Deploy as an ECS Service</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 10 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">STEP 3</span>
+              <h3 class="step-heading">Deploy 2 Tasks Behind an ECS Service</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="console-path">
+            <span>ECS Console</span>
+            <span class="arrow">➔</span>
+            <span>Clusters</span>
+            <span class="arrow">➔</span>
+            <span>fargate-demo-cluster</span>
+            <span class="arrow">➔</span>
+            <span>Services tab</span>
+            <span class="arrow">➔</span>
+            <span>Create</span>
+          </div>
+
+          <div class="instructor-box">
+            <div class="instructor-box-header">
+              <span>🎙️</span> Teaching Distinction: Standalone Task vs. Service
+            </div>
+            <p>
+              "Ask your students: <em>'Why don't we just click Run Task?'</em> A standalone task runs once and dies if it crashes or completes. 
+              <strong>An ECS Service ensures self-healing and high availability!</strong> If we specify Desired Tasks = 2, ECS continuously monitors health. If a container crashes, the Service immediately launches a replacement to maintain exactly 2 tasks running 24/7."
+            </p>
+          </div>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Configuration Section</th>
+                <th>Console Setting</th>
+                <th>Exact Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Compute options</td>
+                <td>Launch type</td>
+                <td><span class="field-val">FARGATE</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Deployment configuration</td>
+                <td>Application type</td>
+                <td><span class="field-val">Service</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Task definition</td>
+                <td>Family / Revision</td>
+                <td><span class="field-val">fargate-web-task (revision 1)</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Service name</td>
+                <td>Text field</td>
+                <td><span class="field-val">fargate-web-service</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Desired tasks</td>
+                <td>Number of instances</td>
+                <td><span class="field-val">2</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Networking: VPC</td>
+                <td>Dropdown</td>
+                <td><span class="field-val">Default VPC</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Networking: Subnets</td>
+                <td>Multi-select</td>
+                <td><span class="field-val">Select at least 2 Public Subnets</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Security group</td>
+                <td>Existing Security Group</td>
+                <td><span class="field-val">ecs-fargate-sg (Port 80 open)</span></td>
+              </tr>
+              <tr style="background: rgba(239, 68, 68, 0.08);">
+                <td class="field-name" style="color: #f87171; font-weight: 700;">Public IP (CRITICAL!)</td>
+                <td style="color: #f87171; font-weight: 700;">Toggle / Dropdown</td>
+                <td><span class="field-val" style="border-color: #ef4444; color: #fca5a5;">TURNED ON (Enabled)</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Load balancing</td>
+                <td>Optional for basic demo</td>
+                <td><span class="field-val">None (or Application Load Balancer)</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- THE CLASSROOM TRAP -->
+          <div class="trap-box">
+            <div class="trap-header">
+              <span>⚠️</span> THE #1 CLASSROOM TRAP: Public IP Disabled!
+            </div>
+            <p>
+              Students frequently leave <strong>Public IP</strong> turned off or forget to check it. 
+              <strong>What happens?</strong> Because the task is placed in a public subnet without a NAT Gateway, without a Public IP it has no route to the Internet Gateway. The task will get stuck indefinitely in <code>PENDING</code> or fail with:
+              <br><br>
+              <code style="background: #000; padding: 4px 8px; border-radius: 4px; color: #f87171;">
+                CannotPullContainerError: inspect image has been retried 1 time(s) ... connection timed out
+              </code>
+              <br><br>
+              <strong>Emphasize this loudly to your classroom!</strong>
+            </p>
+          </div>
+
+          <p style="margin-top: 1rem; color: var(--text-muted);">
+            Click <strong style="color: #fff;">Create</strong>. ECS begins provisioning your serverless service.
+          </p>
+        </div>
+      </section>
+
+      <!-- STEP 4: VERIFY & INSPECT -->
+      <section id="step-4-verify" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">06</div>
+            <h2 class="section-title">Step 4: Inspect, Test & Verify Live Containers</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 7 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">STEP 4</span>
+              <h3 class="step-heading">Verify Running Tasks & Access Webpage</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Watch the lifecycle progression in real time. Within 30–45 seconds, the tasks transition through the states:
+          </p>
+
+          <!-- Mockup of Console Task Status -->
+          <div class="console-mockup">
+            <div class="mockup-header">
+              <span>AWS ECS Console</span> • <span>Cluster: fargate-demo-cluster</span> • <span>Tasks View</span>
+            </div>
+            <div class="mockup-row">
+              <div>
+                <strong>Task ID:</strong> <code>a1b2c3d4-89ab-cdef-0123-456789abcdef</code><br>
+                <span style="font-size: 0.78rem; color: var(--text-dim);">Task Definition: fargate-web-task:1</span>
+              </div>
+              <div>
+                <span class="mockup-badge badge-fargate-pill">FARGATE</span>
+                <span class="mockup-badge badge-running">RUNNING</span>
+              </div>
+            </div>
+            <div class="mockup-row">
+              <div>
+                <strong>Task ID:</strong> <code>f9e8d7c6-4321-fedc-ba98-76543210fedc</code><br>
+                <span style="font-size: 0.78rem; color: var(--text-dim);">Task Definition: fargate-web-task:1</span>
+              </div>
+              <div>
+                <span class="mockup-badge badge-fargate-pill">FARGATE</span>
+                <span class="mockup-badge badge-running">RUNNING</span>
+              </div>
+            </div>
+          </div>
+
+          <h4 style="margin: 1.5rem 0 0.5rem; color: var(--text-main);">How to Retrieve the Public IP:</h4>
+          <ol style="padding-left: 1.5rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
+            <li>In the <strong>Tasks</strong> tab, click on the hyperlinked <strong>Task ID</strong> of Task #1.</li>
+            <li>In the <strong>Configuration</strong> section, look for <strong>Network bindings</strong> or <strong>Public IP</strong>.</li>
+            <li>Copy the <strong>Public IP</strong> (e.g., <code>54.210.35.120</code>).</li>
+            <li>Open a new browser tab and navigate to: <code style="color: var(--accent-fargate-light); font-weight: 600;">http://&lt;Public-IP&gt;:80</code></li>
+          </ol>
+
+          <div class="tip-box">
+            <div class="tip-header">🎉 Success! What You Will See in the Browser</div>
+            <p>
+              The browser will display the green <strong>"Amazon ECS Sample App"</strong> page with header text: <em>"Congratulations! Your Amazon ECS container is running on AWS Fargate."</em>
+              <br>Students can also run from their terminal:
+            </p>
+            <div class="snippet-container" style="margin-top: 10px;">
+              <div class="snippet-header">
+                <span>Terminal verification</span>
+                <button class="copy-btn" onclick="copyText('curl -I http://<YOUR-TASK-PUBLIC-IP>')">Copy</button>
+              </div>
+              <pre><code>$ curl -I http://&lt;YOUR-TASK-PUBLIC-IP&gt;
+HTTP/1.1 200 OK
+Server: Apache/2.4.58 (Amazon Linux)</code></pre>
+            </div>
+          </div>
+
+          <h4 style="margin: 1.5rem 0 0.5rem; color: var(--text-main);">Inspecting CloudWatch Logs from the Console:</h4>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Show students that they don't have to SSH into a server to view logs!
+          </p>
+          <ol style="padding-left: 1.5rem; color: var(--text-muted); line-height: 1.8;">
+            <li>Inside the Task view, click on the <strong>Logs</strong> tab.</li>
+            <li>Observe real-time container standard output (stdout/stderr): Apache access logs showing your incoming HTTP request and User-Agent!</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- STEP 5: EXPERIMENTS (SELF-HEALING & SCALING) -->
+      <section id="step-5-experiments" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">07</div>
+            <h2 class="section-title">Step 5: Classroom Live Demos (Resilience & Scaling)</h2>
+          </div>
+          <span class="section-time-pill">Demonstration: 6 mins</span>
+        </div>
+
+        <!-- Experiment A -->
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag" style="background: rgba(239, 68, 68, 0.2); color: #f87171;">DEMO A</span>
+              <h3 class="step-heading">Simulate a Crash: Test Self-Healing (Desired Count = 2)</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Prove to your students that an ECS Service guarantees high availability.
+          </p>
+
+          <ol style="padding-left: 1.5rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.25rem;">
+            <li>Go to <code>fargate-demo-cluster</code> ➔ <strong>Tasks</strong> tab.</li>
+            <li>Select one of the two running tasks by clicking its checkbox.</li>
+            <li>Click the <strong style="color: #ef4444;">Stop</strong> button at the top right.</li>
+            <li>Confirm by clicking <strong>Stop selected tasks</strong>.</li>
+          </ol>
+
+          <div class="instructor-box">
+            <div class="instructor-box-header">
+              <span>🎙️</span> What to Tell the Class While Waiting 15 Seconds
+            </div>
+            <p>
+              "Notice the task state becomes <code>STOPPED</code>. Now look at the top bar: the ECS Service deployment controller realizes: <em>'Hey, my desired count is 2, but I only have 1 task running!'</em>
+              Within seconds, watch a brand-new task appear in state <code>PROVISIONING</code> ➔ <code>PENDING</code> ➔ <code>RUNNING</code> with a new microVM and new IP address. <strong>That is production self-healing in action!</strong>"
+            </p>
+          </div>
+        </div>
+
+        <!-- Experiment B -->
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">DEMO B</span>
+              <h3 class="step-heading">Horizontal Scale-Out: Scale from 2 to 3 Tasks</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <ol style="padding-left: 1.5rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem;">
+            <li>Inside <code>fargate-demo-cluster</code>, click on the <strong>Services</strong> tab.</li>
+            <li>Select <code>fargate-web-service</code> and click <strong>Update</strong>.</li>
+            <li>Change <strong>Desired tasks</strong> from <code>2</code> to <code style="color: var(--accent-green); font-weight: 700;">3</code>.</li>
+            <li>Click <strong>Update service</strong> at the bottom.</li>
+            <li>Return to the <strong>Tasks</strong> tab: Observe Task #3 launching instantly!</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- STEP 6: CLEAN-UP & TEARDOWN -->
+      <section id="step-6-cleanup" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">08</div>
+            <h2 class="section-title">Step 6: Teardown & Clean-Up (Prevent Billing)</h2>
+          </div>
+          <span class="section-time-pill">Clean-Up: 3 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag" style="background: rgba(239, 68, 68, 0.2); color: #f87171;">TEARDOWN</span>
+              <h3 class="step-heading">Complete Safe Resource Destruction</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="instructor-box" style="margin-top: 0;">
+            <div class="instructor-box-header">
+              <span>💰</span> Clean-Up Order (Crucial for Students)
+            </div>
+            <p>
+              Always delete the <strong>Service</strong> first! If students just stop tasks without deleting the service, the ECS service will endlessly keep launching replacement tasks, consuming resources.
+            </p>
+          </div>
+
+          <ol style="padding-left: 1.5rem; color: var(--text-muted); line-height: 2;">
+            <li>
+              <strong>Delete the Service:</strong> Go to <code>fargate-demo-cluster</code> ➔ <strong>Services</strong> tab ➔ select <code>fargate-web-service</code> ➔ click <strong>Delete</strong> ➔ Check <em>"Force delete service"</em> ➔ Type <code>delete</code> ➔ Confirm.
+            </li>
+            <li>
+              <strong>Delete the Cluster:</strong> Click <strong>Clusters</strong> in the left navigation ➔ select <code>fargate-demo-cluster</code> ➔ click <strong>Delete cluster</strong> ➔ Type <code>delete fargate-demo-cluster</code> ➔ Confirm.
+            </li>
+            <li>
+              <strong>Deregister Task Definition (Optional):</strong> Go to <strong>Task definitions</strong> ➔ select <code>fargate-web-task</code> ➔ select Revision 1 ➔ Actions ➔ <strong>Deregister</strong>.
+            </li>
+            <li>
+              <strong>Delete Security Group:</strong> EC2 Console ➔ Security Groups ➔ delete <code>ecs-fargate-sg</code>.
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- SECTION 7: TROUBLESHOOTING PLAYBOOK -->
+      <section id="section-troubleshooting" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">09</div>
+            <h2 class="section-title">Troubleshooting Playbook (Common Student Errors)</h2>
+          </div>
+          <span class="section-time-pill">Reference</span>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>🔴 1. Task is stuck in "PENDING" or fails with "CannotPullContainerError"</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <strong>Root Cause:</strong> The Fargate task cannot connect to the internet to download the image from ECR / Docker Hub.<br>
+            <strong>Fix:</strong>
+            <ul style="margin: 8px 0 0 20px;">
+              <li>Verify that the task was launched in a <strong>Public Subnet</strong> that has an attached Internet Gateway.</li>
+              <li>Ensure <strong>Auto-assign Public IP</strong> was set to <code>TURNED ON</code> when creating the service.</li>
+              <li>If using private subnets, ensure a <strong>NAT Gateway</strong> or AWS VPC Endpoints (for ECR and S3) are configured.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>🔴 2. Task status is "STOPPED" with "Essential container in task exited"</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <strong>Root Cause:</strong> The container booted up, but the main application process failed or exited with code 1 or 137.<br>
+            <strong>Fix:</strong>
+            <ul style="margin: 8px 0 0 20px;">
+              <li>Click on the stopped task ➔ open the <strong>Containers</strong> row.</li>
+              <li>Look at the <strong>Exit code</strong> and <strong>Stopped reason</strong>.</li>
+              <li>Click on the <strong>Logs</strong> tab to see the stack trace printed by the application right before crashing.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>🔴 3. Browser hangs or times out when connecting to Public IP:80</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <strong>Root Cause:</strong> Security Group inbound rule is blocking port 80.<br>
+            <strong>Fix:</strong> Go to EC2 Console ➔ Security Groups ➔ <code>ecs-fargate-sg</code> ➔ Inbound Rules. Ensure there is a rule for <strong>Type: HTTP</strong>, <strong>Port: 80</strong>, <strong>Source: 0.0.0.0/0</strong>.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>🔴 4. "ResourceInitializationError: unable to pull secrets or registry auth"</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <strong>Root Cause:</strong> The Task Execution Role (<code>ecsTaskExecutionRole</code>) is missing or doesn't have the <code>AmazonECSTaskExecutionRolePolicy</code> attached, preventing the ECS agent from getting ECR auth tokens.
+          </div>
+        </div>
+
+        <!-- Next Guide Callout -->
+        <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(249, 115, 22, 0.1) 100%); border: 1px solid #0284c7; border-radius: 14px; padding: 2rem; margin-top: 3rem; text-align: center;">
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: #38bdf8;">Ready for the Next Architecture?</h3>
+          <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 1.5rem;">
+            Now that your students understand serverless Fargate, show them how ECS manages actual virtual machine infrastructure with the <strong>EC2 Launch Type</strong>, container instances, and Docker bridge port mappings!
+          </p>
+          <a href="ecs-ec2-step-by-step-guide.html" class="btn btn-switch" style="font-size: 1rem; padding: 10px 22px;">
+            Open ECS with EC2 Launch Type Guide ➔
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast">
+    <span>📋</span> Copied to clipboard!
+  </div>
+
+  <script>
+    // Theme Toggle Logic
+    const themeBtn = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('ecs_guide_theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const target = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', target);
+      localStorage.setItem('ecs_guide_theme', target);
+    });
+
+    // Copy to Clipboard Toast
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'flex';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 2200);
+      });
+    }
+
+    // Step Checkbox Progress Logic
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('.step-checkbox');
+      let checkedCount = 0;
+      checkboxes.forEach(cb => {
+        const stepBox = cb.closest('.step-box');
+        if (cb.checked) {
+          checkedCount++;
+          if (stepBox) stepBox.classList.add('completed');
+        } else {
+          if (stepBox) stepBox.classList.remove('completed');
+        }
+      });
+      const total = checkboxes.length;
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('progress-text').innerText = `${checkedCount}/${total} Done`;
+      document.getElementById('progress-fill').style.width = pct + '%';
+    }
+
+    function toggleStep(cb) {
+      updateProgress();
+    }
+
+    // Accordion Toggle
+    function toggleFaq(el) {
+      el.parentElement.classList.toggle('active');
+    }
+
+    // Live Classroom Stopwatch
+    let timerInterval = null;
+    let secondsElapsed = 0;
+    let isRunning = false;
+
+    const display = document.getElementById('display-time');
+    const toggleBtn = document.getElementById('btn-timer-toggle');
+    const resetBtn = document.getElementById('btn-timer-reset');
+
+    function formatTime(sec) {
+      const hrs = String(Math.floor(sec / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+      const secs = String(sec % 60).padStart(2, '0');
+      return `${hrs}:${mins}:${secs}`;
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (!isRunning) {
+        isRunning = true;
+        toggleBtn.innerText = '⏸';
+        timerInterval = setInterval(() => {
+          secondsElapsed++;
+          display.innerText = formatTime(secondsElapsed);
+        }, 1000);
+      } else {
+        isRunning = false;
+        toggleBtn.innerText = '▶';
+        clearInterval(timerInterval);
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      isRunning = false;
+      toggleBtn.innerText = '▶';
+      clearInterval(timerInterval);
+      secondsElapsed = 0;
+      display.innerText = '00:00:00';
+    });
+
+    // Active Navigation Scroll Spy
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section.module-section');
+      const navLinks = document.querySelectorAll('.nav-item a');
+      let currentSectionId = '';
+
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) {
+          currentSectionId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Initialize progress bar on load
+    updateProgress();
+  </script>
+</body>
+</html>

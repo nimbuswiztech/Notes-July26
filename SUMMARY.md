@@ -1,9 +1,15 @@
 # Table of contents
 
-## July 26 Daily class notes
+<details>
+<summary>Infra Setup</summary>
 
 * [Infra Setup](README.md)
   * [aws account setup](july-26-daily-class-notes/infra-setup/aws-account-setup.md)
+</details>
+
+<details>
+<summary>Linux</summary>
+
 * [Linux](july-26-daily-class-notes/linux/README.md)
   * [linux basics](july-26-daily-class-notes/linux/linux-basics.md)
   * [different shells in linux](july-26-daily-class-notes/linux/different-shells-in-linux.md)
@@ -17,9 +23,19 @@
   * [linux interview questions 1](july-26-daily-class-notes/linux/linux-interview-questions-1.md)
   * [linux interview questions](july-26-daily-class-notes/linux/linux-interview-questions.md)
   * [linux unix tutorial](july-26-daily-class-notes/linux/linux-unix-tutorial.md)
+</details>
+
+<details>
+<summary>Shell Scripting</summary>
+
 * [Shell Scripting](july-26-daily-class-notes/shell-scripting/README.md)
   * [Shell Script Day 1](july-26-daily-class-notes/shell-scripting/shell-script-day-1.md)
   * [Shell Script Day 2](july-26-daily-class-notes/shell-scripting/shell-script-day-2.md)
+</details>
+
+<details>
+<summary>Git</summary>
+
 * [Git](july-26-daily-class-notes/git/README.md)
   * [git](july-26-daily-class-notes/git/git.md)
   * [version control systems](july-26-daily-class-notes/git/version-control-systems.md)
@@ -44,6 +60,11 @@
   * [git squash](july-26-daily-class-notes/git/git-squash.md)
   * [git stash](july-26-daily-class-notes/git/git-stash.md)
   * [git cheat sheet](july-26-daily-class-notes/git/git-cheat-sheet.md)
+</details>
+
+<details>
+<summary>CICD / Jenkins</summary>
+
 * [CICD / Jenkins](july-26-daily-class-notes/cicd-jenkins/README.md)
   * [CICD Class 1](july-26-daily-class-notes/cicd-jenkins/cicd-class-1.md)
   * [Class Images](july-26-daily-class-notes/cicd-jenkins/class-images.md)
@@ -75,6 +96,11 @@
   * [jenkins q and a with implementation steps](july-26-daily-class-notes/cicd-jenkins/jenkins-q-and-a-with-implementation-steps.md)
   * [jenkins q and a](july-26-daily-class-notes/cicd-jenkins/jenkins-q-and-a.md)
   * [RBAC](july-26-daily-class-notes/cicd-jenkins/rbac.md)
+</details>
+
+<details>
+<summary>AWS</summary>
+
 * [AWS](july-26-daily-class-notes/aws/README.md)
   * [Cloud\_Computing](july-26-daily-class-notes/aws/cloud_computing.md)
   * [AWS Overview](july-26-daily-class-notes/aws/aws-overview.md)
@@ -84,34 +110,10 @@
   * [EC2 Instance Types](july-26-daily-class-notes/aws/ec2-instance-types.md)
   * [VPC Virtual Private Cloud](july-26-daily-class-notes/aws/vpc-virtual-private-cloud.md)
   * [VPC](july-26-daily-class-notes/aws/vpc/README.md)
-    * [CIDR](july-26-daily-class-notes/aws/vpc/cidr.md)
-    * [CIDR calculation guide](july-26-daily-class-notes/aws/vpc/cidr-calculation-guide.md)
-    * [VPC demo](july-26-daily-class-notes/aws/vpc/vpc-demo.md)
-    * [vpc components](july-26-daily-class-notes/aws/vpc/vpc-components.md)
-    * [Real time use case and examples of vpc](july-26-daily-class-notes/aws/vpc/real-time-use-case-and-examples-of-vpc.md)
-    * [tgw and customer gateway](july-26-daily-class-notes/aws/vpc/tgw-and-customer-gateway.md)
-    * [site to site vpn connection](july-26-daily-class-notes/aws/vpc/site-to-site-vpn-connection.md)
-    * [vpc additional topics](july-26-daily-class-notes/aws/vpc/vpc-additional-topics.md)
-    * [vpc peering and tgw diff](july-26-daily-class-notes/aws/vpc/vpc-peering-and-tgw-diff.md)
-    * [vpc security config](july-26-daily-class-notes/aws/vpc/vpc-security-config.md)
-    * [scenarioQuestions on vpc](july-26-daily-class-notes/aws/vpc/scenarioquestions-on-vpc.md)
   * [AWS Storage solutions](july-26-daily-class-notes/aws/aws-storage-solutions.md)
   * [S3](july-26-daily-class-notes/aws/s3/README.md)
-    * [AWS S3 Static website hosting](july-26-daily-class-notes/aws/s3/aws-s3-static-website-hosting.md)
-    * [S3 Basics](july-26-daily-class-notes/aws/s3/s3-basics.md)
-    * [s3 storage classes](july-26-daily-class-notes/aws/s3/s3-storage-classes.md)
-    * [AWS s3 bucket policies detailed](july-26-daily-class-notes/aws/s3/aws-s3-bucket-policies-detailed.md)
-    * [s3 cross account access management using bucket policies and iam](july-26-daily-class-notes/aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.md)
   * [Load Balancer](july-26-daily-class-notes/aws/load-balancer/README.md)
-    * [AWS Load balancer](july-26-daily-class-notes/aws/load-balancer/aws-load-balancer.md)
-    * [AWS Load Balancers Explained](july-26-daily-class-notes/aws/load-balancer/aws-load-balancers-explained.md)
-    * [Load Balancing Algorithms](july-26-daily-class-notes/aws/load-balancer/load-balancing-algorithms.md)
-    * [Load Balancing Explained From Scratch](july-26-daily-class-notes/aws/load-balancer/load-balancing-explained-from-scratch.md)
-    * [ALB Creation Guide](july-26-daily-class-notes/aws/load-balancer/alb-creation-guide.md)
-    * [aws clb vs alb routing](july-26-daily-class-notes/aws/load-balancer/aws-clb-vs-alb-routing.md)
   * [IAM](july-26-daily-class-notes/aws/iam/README.md)
-    * [EC2 to s3 logging guide](july-26-daily-class-notes/aws/iam/ec2-to-s3-logging-guide.md)
-    * [IAM](july-26-daily-class-notes/aws/iam/iam.md)
   * [ASG](july-26-daily-class-notes/aws/asg.md)
   * [stress test](july-26-daily-class-notes/aws/stress-test.md)
   * [ECS ECR](july-26-daily-class-notes/aws/ecs-ecr.md)
@@ -122,9 +124,52 @@
   * [Secrets Manager](july-26-daily-class-notes/aws/secrets-manager.md)
   * [rds pgsql](july-26-daily-class-notes/aws/rds-pgsql.md)
   * [lambda](july-26-daily-class-notes/aws/lambda.md)
-* [LDAP](july-26-daily-class-notes/ldap.md)
-* [Apache HTTPD guide](july-26-daily-class-notes/apache-httpd-guide.md)
-* [stress test](july-26-daily-class-notes/stress-test.md)
+</details>
+
+<details>
+<summary>Docker</summary>
+
 * [Docker](july-26-daily-class-notes/docker/README.md)
   * [docker](july-26-daily-class-notes/docker/docker.md)
   * [docker\_evolution\_visual](july-26-daily-class-notes/docker/docker_evolution_visual.md)
+  * [Docker Part 2](july-26-daily-class-notes/docker/docker-2.md)
+  * [Build & Run Scenarios](july-26-daily-class-notes/docker/docker-build-run-scenarios.md)
+  * [Docker Networks](july-26-daily-class-notes/docker/docker-networks.md)
+  * [Docker Volumes Handbook](july-26-daily-class-notes/docker/docker-volumes-handbook.md)
+  * [Docker Guide](july-26-daily-class-notes/docker/docker_guide.md)
+  * [Dockerfile Anatomy](july-26-daily-class-notes/docker/dockerfile-anatomy.md)
+</details>
+
+<details>
+<summary>LDAP</summary>
+
+* [LDAP](july-26-daily-class-notes/ldap.md)
+</details>
+
+<details>
+<summary>Apache HTTPD guide</summary>
+
+* [Apache HTTPD guide](july-26-daily-class-notes/apache-httpd-guide.md)
+</details>
+
+<details>
+<summary>stress test</summary>
+
+* [stress test](july-26-daily-class-notes/stress-test.md)
+</details>
+
+<details>
+<summary>Demos</summary>
+
+* [Demos](Demo's/README.md)
+  * [ALB Creation Guide](Demo's/ALB_Creation_Guide.html)
+  * [AWS ASG Complete Guide](Demo's/AWS_ASG_Complete_Guide.html)
+  * [AWS CloudTrail Guide](Demo's/AWS_CloudTrail_Guide.html)
+  * [AWS CloudWatch Guide](Demo's/AWS_CloudWatch_Guide.html)
+  * [AWS IAM Complete Guide](Demo's/AWS_IAM_Complete_Guide.html)
+  * [AWS Route53 Guide](Demo's/AWS_Route53_Guide.html)
+  * [AWS SNS Guide](Demo's/AWS_SNS_Guide.html)
+  * [AWS SQS Guide](Demo's/AWS_SQS_Guide.html)
+  * [Apache Guide](Demo's/apache_guide.html)
+  * [AWS S3 Hosting](Demo's/aws_s3_hosting.html)
+</details>

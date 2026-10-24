@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Day 3 &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html" class="active">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🌿 Git</span>
+          <span class="separator">/</span>
+          <span class="current">Git Day 3</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🌿 Git Module</div>
+          <h1 class="hero-title">Git Day 3</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>🕐 Hands-On Practice&#x20;</h2>
+<h2>🎯 What You Will Do Today</h2>
+<p>Today is a <strong>full practice session</strong>.</p>
+<p>You will use a Kubernetes <strong>ReplicaSet YAML</strong> as your project file and apply every Git command learned in Day 1 and Day 2 on it.</p>
+<p>This is exactly how Git is used in real DevOps teams — versioning Kubernetes configs, rolling back bad deployments, collaborating on branches.</p>
+<h2>📄 Your Project File — ReplicaSet YAML</h2>
+<p>A <strong>ReplicaSet</strong> tells Kubernetes how many identical copies (pods) of an application to run.</p>
+<p>You will version this file as your "project" throughout today's exercises.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">yaml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="yaml"># replicaset.yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webapp-rs
+  labels:
+    app: webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: nginx:1.19
+        ports:
+        - containerPort: 80
+</code></pre>
+</div>
+<p><strong>Key fields to understand:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>replicas: 3</code></td>
+<td>Run 3 identical pods at all times</td>
+</tr>
+<tr>
+<td><code>image: nginx:1.19</code></td>
+<td>The container image and version</td>
+</tr>
+<tr>
+<td><code>containerPort: 80</code></td>
+<td>The port the application listens on</td>
+</tr>
+</tbody>
+</table>
+<h2>⚙️ Setup — Create Your Repo</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">mkdir k8s-project &amp;&amp; cd k8s-project
+git init
+git config user.name &quot;Your Name&quot;
+git config user.email &quot;you@devops.com&quot;
+</code></pre>
+</div>
+<p>Create the file:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cat &gt; replicaset.yaml &lt;&lt; 'EOF'
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webapp-rs
+  labels:
+    app: webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: nginx:1.19
+        ports:
+        - containerPort: 80
+EOF
+</code></pre>
+</div>
+<p>First commit:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add replicaset.yaml
+git commit -m &quot;Initial ReplicaSet - 3 replicas, nginx:1.19&quot;
+git log --oneline
+</code></pre>
+</div>
+<h2>🔴 Exercise 1 – Build a Commit History</h2>
+<p>Make 4 changes to the file — each one simulates a real DevOps scenario.</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Commit 2 — Scale Up to 5 Replicas</h3>
+<p><strong>Scenario:</strong> App traffic increased. Need more replicas.</p>
+<p>Open <code>replicaset.yaml</code> and change <code>replicas: 3</code> to <code>replicas: 5</code>.</p>
+<p>Then commit:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add replicaset.yaml
+git commit -m &quot;Scale up: replicas 3 → 5 (traffic increase)&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Commit 3 — Upgrade Container Image</h3>
+<p><strong>Scenario:</strong> New nginx version released. Upgrade.</p>
+<p>Change <code>image: nginx:1.19</code> to <code>image: nginx:1.21</code></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add replicaset.yaml
+git commit -m &quot;Upgrade image: nginx:1.19 → nginx:1.21&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Commit 4 — Add Resource Limits</h3>
+<p><strong>Scenario:</strong> Best practice — always set resource limits in Kubernetes.</p>
+<p>Add this block under the <code>ports</code> section in your YAML:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">yaml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="yaml">        resources:
+          limits:
+            cpu: &quot;500m&quot;
+            memory: &quot;128Mi&quot;
+          requests:
+            cpu: &quot;250m&quot;
+            memory: &quot;64Mi&quot;
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add replicaset.yaml
+git commit -m &quot;Add resource limits and requests to container&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Commit 5 — Bad Deployment (Intentional Mistake)</h3>
+<p><strong>Scenario:</strong> Someone accidentally pushed a wrong image tag.</p>
+<p>Change <code>image: nginx:1.21</code> to <code>image: nginx:BROKEN</code></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add replicaset.yaml
+git commit -m &quot;Update image - nginx:BROKEN (bad commit)&quot;
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h3>Check Your History</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+</code></pre>
+</div>
+<p><strong>Expected output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">e5f8a2c Update image - nginx:BROKEN (bad commit)
+d4c7b1a Add resource limits and requests to container
+c3b6a0d Upgrade image: nginx:1.19 → nginx:1.21
+b2a5f9e Scale up: replicas 3 → 5 (traffic increase)
+a1d4e8c Initial ReplicaSet - 3 replicas, nginx:1.19
+</code></pre>
+</div>
+<details>
+
+<summary>❓ Which commit introduced the bug?</summary>
+
+✅ The last one — `nginx:BROKEN`
+
+</details>
+
+<h2>🔴 Exercise 2 – <code>git revert</code> — Safe Rollback</h2>
+<p><strong>Scenario:</strong> Production is down. Undo the bad commit without destroying history.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Get the commit ID of the bad commit from git log --oneline
+git log --oneline
+
+# Revert it (replace ID with YOUR actual bad commit ID)
+git revert e5f8a2c
+</code></pre>
+</div>
+<p>Git opens a text editor for the commit message. Save and close:</p>
+<ul>
+<li>In vim: press <code>Esc</code>, type <code>:wq</code>, press <code>Enter</code></li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+</code></pre>
+</div>
+<p><strong>Output — new revert commit added on top:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">f6a9b3d Revert &quot;Update image - nginx:BROKEN (bad commit)&quot;
+e5f8a2c Update image - nginx:BROKEN (bad commit)
+d4c7b1a Add resource limits and requests to container
+...
+</code></pre>
+</div>
+<p>Verify the fix:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">grep &quot;image&quot; replicaset.yaml
+</code></pre>
+</div>
+<p>Should show <code>image: nginx:1.21</code> — the bad commit is undone.</p>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>The bad commit <code>e5f8a2c</code> is still in history.</p>
+<p><code>git revert</code> only <strong>adds a new undo commit on top</strong> — it never deletes.</p>
+<p>This is the safe way to undo on branches that have been pushed to GitHub.</p>
+</div>
+</div>
+<h2>🔴 Exercise 3 – <code>git reset --hard</code> — Discard Commits</h2>
+<p><strong>Scenario:</strong> You want to completely go back to the state BEFORE the bad commit.</p>
+<p>You have NOT pushed to GitHub yet, so it is safe.</p>
+<p>First, view your log and copy the ID of <code>"Add resource limits..."</code>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+</code></pre>
+</div>
+<p>Reset to that commit:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git reset --hard d4c7b1a    # replace with your actual commit ID
+</code></pre>
+</div>
+<p>Check:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline
+</code></pre>
+</div>
+<p>The commits after <code>d4c7b1a</code> are <strong>permanently gone</strong>.</p>
+<p>Verify the file is back to the correct state:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">grep &quot;image&quot; replicaset.yaml     # Should show nginx:1.21
+grep &quot;replicas&quot; replicaset.yaml  # Should show replicas: 5
+</code></pre>
+</div>
+<h3><code>git revert</code> vs <code>git reset --hard</code> — Key Difference</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>git revert</code></th>
+<th><code>git reset --hard</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it does</td>
+<td>Adds a new undo-commit</td>
+<td>Permanently deletes commits</td>
+</tr>
+<tr>
+<td>History</td>
+<td>Preserved</td>
+<td>Destroyed</td>
+</tr>
+<tr>
+<td>Safe after push to GitHub?</td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td>When to use</td>
+<td>Always on shared branches</td>
+<td>Only on local, unpushed work</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p>Never use <code>git reset --hard</code> on a branch that teammates have already cloned or pulled from.</p>
+</div>
+</div>
+<h2>🔴 Exercise 4 – Branch + Merge Conflict</h2>
+<p><strong>Scenario:</strong> Two developers both changed <code>replicas</code> on different branches.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># You are on master
+# Create a branch for Team A
+git checkout -b dev-teamA
+
+# Team A scales up to 10 replicas
+# Edit replicaset.yaml: replicas: 5 → replicas: 10
+git add replicaset.yaml
+git commit -m &quot;TeamA: Scale to 10 replicas for load test&quot;
+
+# Switch back to master
+git checkout master
+
+# Meanwhile, master gets scaled down to 2 (cost saving)
+# Edit replicaset.yaml: replicas: 5 → replicas: 2
+git add replicaset.yaml
+git commit -m &quot;Master: Scale down to 2 replicas (cost saving)&quot;
+
+# Now merge dev-teamA into master
+git merge dev-teamA
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">CONFLICT (content): Merge conflict in replicaset.yaml
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+</div>
+<p>View the conflict:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cat replicaset.yaml
+</code></pre>
+</div>
+<p>You will see:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+  replicas: 2
+=======
+  replicas: 10
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; dev-teamA
+</code></pre>
+</div>
+<p><strong>Resolve it:</strong></p>
+<p>Open <code>replicaset.yaml</code> in vi, remove the conflict markers, and set an agreed value:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">yaml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="yaml">  replicas: 5
+</code></pre>
+</div>
+<p>Then complete the merge:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add replicaset.yaml
+git commit -m &quot;Merge dev-teamA: agreed on replicas: 5 after discussion&quot;
+</code></pre>
+</div>
+<p>View the final history:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git log --oneline --graph
+</code></pre>
+</div>
+<h2>🔴 Exercise 5 – <code>git clone</code>, <code>push</code>, <code>pull</code></h2>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>You need a <strong>GitHub account</strong> for this exercise.</p>
+</div>
+</div>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Create a repo on GitHub</h3>
+<ul>
+<li>Go to github.com → New Repository</li>
+<li>Name it <code>k8s-project</code></li>
+<li>Leave it <strong>empty</strong> (no README, no .gitignore)</li>
+<li>Copy the HTTPS URL</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Push your local repo to GitHub</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git remote add origin https://github.com/&lt;your-username&gt;/k8s-project.git
+git push -u origin master
+</code></pre>
+</div>
+<p>Verify on GitHub — you should see <code>replicaset.yaml</code> and all your commits.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h3>Simulate another developer</h3>
+<p>Open a <strong>new terminal window</strong> and clone to a different location:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cd /tmp
+git clone https://github.com/&lt;your-username&gt;/k8s-project.git k8s-clone
+cd k8s-clone
+
+# Make a change
+# Edit replicaset.yaml: change replicas to 7
+git add replicaset.yaml
+git commit -m &quot;Clone: scale to 7 replicas&quot;
+git push origin master
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h3>Pull the change back</h3>
+<p>In your original terminal:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cd ~/k8s-project
+git pull origin master
+grep &quot;replicas&quot; replicaset.yaml
+# replicas: 7
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>This is the daily workflow of every DevOps team:</p>
+<p><strong>pull → edit → commit → push</strong></p>
+</div>
+</div>
+<h2>🔴 Exercise 6 – <code>git fetch</code> + <code>git rebase</code></h2>
+<h3><code>git fetch</code></h3>
+<p>Make a change directly on GitHub (edit <code>replicaset.yaml</code> in the browser → change replicas).</p>
+<p>Then in your terminal:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git fetch origin
+
+git log FETCH_HEAD --oneline         # What changed on remote?
+git diff HEAD FETCH_HEAD              # Exact diff — your version vs remote
+git merge FETCH_HEAD                  # Merge when you are ready
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><code>git fetch</code> lets you <strong>look before you merge</strong> — unlike <code>git pull</code> which does both automatically.</p>
+</div>
+</div>
+<h3><code>git rebase</code></h3>
+<p>Create a feature branch and add a liveness probe to the YAML:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout -b feature-probe
+</code></pre>
+</div>
+<p>Add this under the <code>ports</code> section in <code>replicaset.yaml</code>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">yaml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="yaml">        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git add replicaset.yaml
+git commit -m &quot;Add liveness probe to container&quot;
+</code></pre>
+</div>
+<p>Meanwhile, add a comment to master:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout master
+echo &quot;# Managed by DevOps Team - do not edit manually&quot; &gt;&gt; replicaset.yaml
+git add replicaset.yaml
+git commit -m &quot;Add management comment to YAML&quot;
+</code></pre>
+</div>
+<p>Rebase feature branch on top of master:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">git checkout feature-probe
+git rebase master
+
+git log --oneline
+</code></pre>
+</div>
+<p><strong>Result:</strong> Your feature commit is now replayed on top of master's latest commit — clean linear history, no merge commit.</p>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p>Rule: Only rebase branches that have <strong>not been pushed</strong> to GitHub.</p>
+</div>
+</div>
+<h2>📝 Assignments</h2>
+<p>Complete before next class:</p>
+<ol>
+<li>Create a fresh repo with any Kubernetes YAML (Deployment, Service, or ConfigMap)</li>
+<li>Make 5 commits with meaningful changes</li>
+<li>Use <code>git revert</code> to undo commit #3 — show <code>git log --oneline</code> after</li>
+<li>Create a <code>hotfix</code> branch, change the image version, merge back to <code>master</code></li>
+<li>Push the entire repo to GitHub — share the link</li>
+</ol>
+<h2>🔁 Day 3 Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git log --oneline</code></td>
+<td>View compact commit history</td>
+</tr>
+<tr>
+<td><code>git revert &lt;id&gt;</code></td>
+<td>Safely undo a commit — adds undo-commit on top</td>
+</tr>
+<tr>
+<td><code>git reset --hard &lt;id&gt;</code></td>
+<td>Permanently delete commits after the given point</td>
+</tr>
+<tr>
+<td><code>git checkout -b &lt;name&gt;</code></td>
+<td>Create and switch to a new branch</td>
+</tr>
+<tr>
+<td><code>git merge &lt;branch&gt;</code></td>
+<td>Merge a branch into current branch</td>
+</tr>
+<tr>
+<td><code>git remote add origin &lt;url&gt;</code></td>
+<td>Link local repo to GitHub</td>
+</tr>
+<tr>
+<td><code>git push -u origin master</code></td>
+<td>Push + set upstream tracking</td>
+</tr>
+<tr>
+<td><code>git pull origin master</code></td>
+<td>Download + merge remote changes</td>
+</tr>
+<tr>
+<td><code>git clone &lt;url&gt;</code></td>
+<td>Download a full remote repo</td>
+</tr>
+<tr>
+<td><code>git fetch</code></td>
+<td>Download remote changes — do NOT merge yet</td>
+</tr>
+<tr>
+<td><code>git diff HEAD FETCH_HEAD</code></td>
+<td>Compare local vs fetched</td>
+</tr>
+<tr>
+<td><code>git merge FETCH_HEAD</code></td>
+<td>Merge fetched changes when ready</td>
+</tr>
+<tr>
+<td><code>git rebase master</code></td>
+<td>Replay branch commits on top of master</td>
+</tr>
+</tbody>
+</table>
+<h2>🎤 Interview Questions — Practice These</h2>
+<details>
+
+<summary><strong>Q1: "Production is broken due to a bad Kubernetes config committed to Git. What do you do?"</strong></summary>
+
+Run `git log --oneline` to find the bad commit.
+
+Use `git revert <commit-id>` to create an undo commit.
+
+Push the revert to remote — the pipeline redeploys the corrected config.
+
+</details>
+
+<details>
+
+<summary><strong>Q2: "Two developers both edited the <code>replicas</code> field in the same YAML. What happens when they merge?"</strong></summary>
+
+A merge conflict occurs. Git cannot auto-decide which value is correct.
+
+Open the file, remove `<<<<<<<`, `=======`, `>>>>>>>` markers.
+
+Keep the agreed value, `git add`, then `git commit` to complete the merge.
+
+</details>
+
+<details>
+
+<summary><strong>Q3: "What is the difference between <code>git fetch</code> and <code>git pull</code>?"</strong></summary>
+
+`git fetch` downloads remote commits but does NOT merge them.
+
+`git pull` = `git fetch` + `git merge`.
+
+Use `git fetch` when you want to review what changed before deciding to merge.
+
+</details>
+
+<details>
+
+<summary><strong>Q4: "What is GitOps?"</strong></summary>
+
+GitOps is a DevOps practice where all infrastructure configuration — Kubernetes YAMLs, Terraform files, Helm charts — is stored in Git.
+
+Git is the single source of truth.
+
+Changes to infrastructure are made via Git commits and pull requests, not manual commands.
+
+Tools like ArgoCD and Flux automatically sync the cluster with what's in Git.
+
+</details>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../git/git-day-2.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">Git Day 2</span>
+  </a>
+  <a href="../git/git-day-4.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Git Day 4</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

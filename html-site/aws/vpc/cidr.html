@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIDR &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../README.html">Infra Setup</a></li>
+    <li><a href="../../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../linux/README.html">Linux</a></li>
+    <li><a href="../../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../../linux/day1.html">day1</a></li>
+    <li><a href="../../linux/day-2.html">day 2</a></li>
+    <li><a href="../../linux/day-3.html">Day 3</a></li>
+    <li><a href="../../linux/day-4.html">Day 4</a></li>
+    <li><a href="../../linux/day-5.html">Day 5</a></li>
+    <li><a href="../../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../git/README.html">Git</a></li>
+    <li><a href="../../git/git.html">git</a></li>
+    <li><a href="../../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../../git/git-version-control.html">git version control</a></li>
+    <li><a href="../../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../../git/git-and-github.html">git and github</a></li>
+    <li><a href="../../git/git-reset.html">git reset</a></li>
+    <li><a href="../../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../../git/git-revert.html">git revert</a></li>
+    <li><a href="../../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../../git/git-squash.html">git squash</a></li>
+    <li><a href="../../git/git-stash.html">git stash</a></li>
+    <li><a href="../../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../aws/README.html">AWS</a></li>
+    <li><a href="../../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../../aws/vpc/cidr.html" class="active">CIDR</a></li>
+    <li><a href="../../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../../aws/s3/README.html">S3</a></li>
+    <li><a href="../../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../../aws/iam/README.html">IAM</a></li>
+    <li><a href="../../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../../aws/asg.html">ASG</a></li>
+    <li><a href="../../aws/stress-test.html">stress test</a></li>
+    <li><a href="../../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../../aws/kms.html">KMS</a></li>
+    <li><a href="../../aws/iac.html">IAC</a></li>
+    <li><a href="../../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../../aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../docker/README.html">Docker</a></li>
+    <li><a href="../../docker/docker.html">docker</a></li>
+    <li><a href="../../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">CIDR</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">CIDR</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h3>The CIDR Formula</h3>
+<p>Total IP Addresses = 2^(32 - CIDR prefix)</p>
+<p>Examples:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">10.0.0.0/16 = 2^(32-16) = 2^16 = 65,536 addresses
+10.0.1.0/24 = 2^(32-24) = 2^8  = 256 addresses
+10.0.1.0/25 = 2^(32-25) = 2^7  = 128 addresses
+</code></pre>
+</div>
+<h3>The 5 Reserved Addresses in Each AWS Subnet</h3>
+<p>In an AWS VPC subnet, five addresses are reserved and cannot be assigned to instances.</p>
+<p>Example: <code>10.0.1.0/24</code> (256 total addresses)</p>
+<ul>
+<li><code>10.0.1.0</code> ← Network address (reserved)</li>
+<li><code>10.0.1.1</code> ← VPC router (reserved)</li>
+<li><code>10.0.1.2</code> ← AWS DNS server (reserved)</li>
+<li><code>10.0.1.3</code> ← Reserved for future use (reserved)</li>
+<li><code>10.0.1.4-10.0.1.254</code> ← Usable for EC2, RDS, etc. (251 addresses)</li>
+<li><code>10.0.1.255</code> ← Broadcast (reserved)</li>
+</ul>
+<p>Usable = 256 - 5 = 251 addresses</p>
+<h3>Binary Understanding</h3>
+<p>Each octet = 8 bits = decimal 0–255</p>
+<p>Bit positions and powers:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Bit Position:  7  6  5  4  3  2  1  0
+Power of 2:  128 64 32 16 8  4  2  1
+</code></pre>
+</div>
+<p>Example: Convert 192 to binary\
+192 = 128 + 64 = 11000000 (binary)</p>
+<h2>Subnet Planning Approach</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Choose VPC CIDR</h3>
+<ul>
+<li>Most common: /16 (65,536 addresses)</li>
+<li>Provides flexibility for growth</li>
+<li>Example: 10.0.0.0/16</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Plan Subnets</h3>
+<ul>
+<li>Most common subnet size: /24 (256 addresses)</li>
+<li>A /16 VPC can contain up to 256 /24 subnets</li>
+<li>Example subnets:</li>
+<li>Public-1: 10.0.1.0/24</li>
+<li>Private-1: 10.0.2.0/24</li>
+<li>Public-2: 10.0.3.0/24</li>
+<li>Private-2: 10.0.4.0/24</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Verify No Overlap</h3>
+<ul>
+<li>Each subnet must have a unique CIDR block.</li>
+<li>Subnets in a VPC cannot overlap.</li>
+<li>Use a calculator or binary boundary checks to confirm ranges.</li>
+</ul>
+</div>
+</div>
+</div>
+<h2>Quick Reference Chart</h2>
+<table>
+<thead>
+<tr>
+<th>CIDR</th>
+<th style="text-align: right;">Total IPs</th>
+<th style="text-align: right;">Usable (AWS)</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/16</td>
+<td style="text-align: right;">65,536</td>
+<td style="text-align: right;">65,531</td>
+<td>Entire VPC</td>
+</tr>
+<tr>
+<td>/20</td>
+<td style="text-align: right;">4,096</td>
+<td style="text-align: right;">4,091</td>
+<td>Large subnet</td>
+</tr>
+<tr>
+<td>/22</td>
+<td style="text-align: right;">1,024</td>
+<td style="text-align: right;">1,019</td>
+<td>Medium subnet</td>
+</tr>
+<tr>
+<td>/24</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">251</td>
+<td>Standard subnet (most common)</td>
+</tr>
+<tr>
+<td>/25</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">123</td>
+<td>Small subnet</td>
+</tr>
+<tr>
+<td>/26</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">59</td>
+<td>Tiny subnet</td>
+</tr>
+<tr>
+<td>/28</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">11</td>
+<td>Minimal subnet</td>
+</tr>
+</tbody>
+</table>
+<h2>Key Points to Emphasize</h2>
+<ol>
+<li><strong>CIDR Prefix = Network Bits</strong>
+   * <code>/24</code> means the first 24 bits are network bits and the last 8 bits are host bits.
+   * A higher prefix number means a smaller network.</li>
+<li><strong>Powers of 2 Are Critical</strong>
+   * Common mappings:<ul>
+<li><code>/16</code> = 65,536</li>
+<li><code>/20</code> = 4,096</li>
+<li><code>/24</code> = 256</li>
+<li><code>/25</code> = 128</li>
+<li><code>/26</code> = 64</li>
+</ul>
+</li>
+<li><strong>AWS Reserves 5 IPs</strong>
+   * Always subtract 5 when planning usable IPs.</li>
+<li><strong>No Overlapping Subnets</strong>
+   * Overlap example: <code>10.0.1.0/24</code> overlaps with <code>10.0.1.128/25</code>.</li>
+<li><strong>Plan for Growth</strong>
+   * Prefer <code>/16</code> VPCs for flexibility rather than small VPC CIDRs.</li>
+</ol>
+<h2>Assessment Methods</h2>
+<h3>Quick Checks</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Q: How many usable IPs in 10.0.1.0/26?
+A: 64 - 5 = 59
+
+Q: What's the range of 172.16.0.0/22?
+A: 172.16.0.0 - 172.16.3.255
+
+Q: Can you have 10.0.0.0/24 and 10.0.0.128/25 in the same VPC?
+A: No — they overlap
+</code></pre>
+</div>
+<h3>Interview Simulation Prompts</h3>
+<ul>
+<li>Design a VPC for 5 AZs with 3 subnets each.</li>
+<li>Calculate usable IPs for given subnets.</li>
+<li>Determine which CIDR can be added to a VPC without overlap.</li>
+</ul>
+<h2>Interview Q\&amp;A</h2>
+<details>
+
+<summary>Q1: How many IPs in a /24?</summary>
+
+Answer: 256 total addresses, 251 usable in AWS (accounting for 5 reserved IPs).
+
+</details>
+
+<details>
+
+<summary>Q2: How to design a VPC?</summary>
+
+Answer: Use a /16 VPC (10.0.0.0/16) and carve /24 subnets for each AZ/service—ensures room for growth and multiple non-overlapping subnets.
+
+</details>
+
+<details>
+
+<summary>Q3: Can these two subnets coexist?</summary>
+
+Answer: Check overlap. If ranges overlap (e.g., 10.0.1.0/24 and 10.0.1.128/25), they cannot coexist.
+
+</details>
+
+<details>
+
+<summary>Q4: What if we run out of IPs?</summary>
+
+Answer: Add a secondary CIDR block to the VPC (AWS supports multiple CIDR blocks per VPC).
+
+</details>
+
+<details>
+
+<summary>Q5: What CIDR ranges should we use?</summary>
+
+Answer: Use RFC 1918 private ranges: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 depending on design needs.
+
+</details>
+
+<h2>Real-World Examples &amp; Practice</h2>
+<ul>
+<li>The main guide includes multiple worked examples and practice problems. See <code>cidr_calculation_guide.md</code>: Parts 6 and 7.</li>
+<li>Include practice problems where students compute usable IPs, check for overlap, and design subnets for given requirements.</li>
+</ul>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../../aws/vpc/README.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">VPC</span>
+  </a>
+  <a href="../../aws/vpc/cidr-calculation-guide.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">CIDR calculation guide</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/main.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>day 2 &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html" class="active">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🐧 Linux</span>
+          <span class="separator">/</span>
+          <span class="current">day 2</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🐧 Linux Module</div>
+          <h1 class="hero-title">day 2</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Vi/Vim Editor Commands</h2>
+<h3>16. <code>:/pattern</code></h3>
+<p><strong>Purpose</strong>: Search for a pattern in the current file within Vim editor.\
+<strong>Usage</strong>: <code>/pattern</code> searches forward from the current cursor position for the first occurrence of "pattern".\
+<strong>Example</strong>: <code>:/devops</code> will find the first occurrence of "devops" in the file.</p>
+<p><strong>Navigation</strong>:</p>
+<ul>
+<li>Press <code>n</code> to go to the next occurrence</li>
+<li>Press <code>N</code> to go to the previous occurrence</li>
+</ul>
+<h3>17. <code>:%s/Testing/development/g</code></h3>
+<p><strong>Purpose</strong>: Replace all occurrences of "Testing" with "development" across the entire file.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>%</code> = Apply to all lines in the file</li>
+<li><code>s</code> = Substitute command</li>
+<li><code>/Testing/</code> = Find pattern</li>
+<li><code>/development/</code> = Replace pattern</li>
+<li><code>g</code> = Global flag (replace all occurrences on each line)</li>
+</ul>
+<p><strong>Example</strong>: If file has <code>Testing is important. Testing is critical.</code> it becomes <code>development is important. development is critical.</code></p>
+<h3>18. <code>:1 s/Testing/dev/g</code></h3>
+<p><strong>Purpose</strong>: Replace all occurrences of "Testing" with "dev" on line 1 only.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>:1</code> = Target line 1</li>
+<li><code>s/Testing/dev/</code> = Substitute command</li>
+<li><code>g</code> = Replace all occurrences on that line</li>
+</ul>
+<p><strong>Example</strong>: On line 1, <code>Testing Testing code</code> becomes <code>dev dev code</code></p>
+<h3>19. <code>:5,$ s/Testing/dev/g</code></h3>
+<p><strong>Purpose</strong>: Replace all occurrences of "Testing" with "dev" from line 5 to the end of the file.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>:5,$</code> = Line 5 to end of file (<code>$</code> represents last line)</li>
+<li><code>s/Testing/dev/</code> = Substitute command</li>
+<li><code>g</code> = Replace all occurrences on each line in the range</li>
+</ul>
+<p><strong>Example</strong>: All lines from 5 onwards have "Testing" replaced with "dev"</p>
+<h3>20. <code>1,5 s/Testing/dev/g</code></h3>
+<p><strong>Purpose</strong>: Replace all occurrences of "Testing" with "dev" from line 1 to line 5.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>1,5</code> = Lines 1 through 5</li>
+<li><code>s/Testing/dev/</code> = Substitute command</li>
+<li><code>g</code> = Replace all occurrences on each line</li>
+</ul>
+<p><strong>Example</strong>: Only the first 5 lines are affected by the replacement</p>
+<h2>Directory and File Creation</h2>
+<h3>21. <code>mkdir -p dir1/dir2/dir3/Users/apple/Documents/Devops/Ref class Notes/linux Devops-class-13-May-2022.txt</code></h3>
+<p><strong>Purpose</strong>: Create a nested directory structure, creating parent directories as needed.\
+<strong>Note</strong>: The <code>.txt</code> file is actually part of the directory path (not a file).\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>mkdir</code> = Make directory command</li>
+<li><code>-p</code> = Parent flag (creates all intermediate directories if they don't exist)</li>
+<li>Path creates: <code>dir1/dir2/dir3/Users/apple/Documents/Devops/Ref class Notes/linux Devops-class-13-May-2022.txt</code> as a directory</li>
+</ul>
+<p><strong>Important</strong>: Without <code>-p</code>, this command would fail if parent directories don't exist. With <code>-p</code>, all missing parent directories are automatically created.</p>
+<p><strong>Example</strong>: Creates the entire hierarchy in one command instead of creating each level separately.</p>
+<h2>Word Count Command (<code>wc</code>)</h2>
+<h3>22. <code>wc filename</code></h3>
+<p><strong>Purpose</strong>: Display the number of lines, words, and bytes in a file.\
+<strong>Output Format</strong>: <code>[lines] [words] [bytes] filename</code>\
+<strong>Example Output</strong>: <code>10 50 250 filename</code></p>
+<h3>23. <code>wc -l f1</code></h3>
+<p><strong>Purpose</strong>: Count and display only the number of lines in file <code>f1</code>.\
+<strong>Breakdown</strong>: <code>-l</code> = Lines only flag\
+<strong>Example Output</strong>: <code>42 f1</code> (means the file has 42 lines)</p>
+<h3>24. <code>wc -w f1</code></h3>
+<p><strong>Purpose</strong>: Count and display only the number of words in file <code>f1</code>.\
+<strong>Breakdown</strong>: <code>-w</code> = Words only flag\
+<strong>Example Output</strong>: <code>156 f1</code> (means the file has 156 words)</p>
+<h3>25. <code>wc -c f1</code></h3>
+<p><strong>Purpose</strong>: Count and display only the number of bytes in file <code>f1</code>.\
+<strong>Breakdown</strong>: <code>-c</code> = Bytes only flag\
+<strong>Example Output</strong>: <code>1024 f1</code> (means the file is 1024 bytes)</p>
+<h3>26. <code>wc -m f1</code></h3>
+<p><strong>Purpose</strong>: Count and display only the number of characters in file <code>f1</code>.\
+<strong>Breakdown</strong>: <code>-m</code> = Characters only flag\
+<strong>Note</strong>: Unlike <code>-c</code> (bytes), <code>-m</code> counts actual characters (important for multi-byte UTF-8 characters)</p>
+<p><strong>Example Output</strong>: <code>950 f1</code> (means the file has 950 characters)</p>
+<h2>Echo Command</h2>
+<h3>27. <code>echo "statement"</code></h3>
+<p><strong>Purpose</strong>: Print the text "statement" to standard output (terminal).\
+<strong>Output</strong>: <code>statement</code></p>
+<p><strong>Usage</strong>: Commonly used to display messages, variables, or create file content in scripts.</p>
+<h3>28. <code>echo -e "Hi \nThis is devops class \nThird line"</code></h3>
+<p><strong>Purpose</strong>: Print text with escape sequences interpreted (newlines will be actual line breaks).\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>-e</code> = Enable interpretation of backslash escapes</li>
+<li><code>\n</code> = Newline character</li>
+</ul>
+<p><strong>Output</strong>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Hi
+This is devops class
+Third line
+</code></pre>
+</div>
+<p><strong>Without <code>-e</code></strong>: Would print literally as <code>Hi \nThis is devops class \nThird line</code></p>
+<h2>Input/Output Redirection</h2>
+<h3>29. <code>&gt;</code> Redirect</h3>
+<p><strong>Purpose</strong>: Redirect standard output to a file, overwriting the file if it exists.\
+<strong>Example</strong>: <code>echo "Hello" &gt; output.txt</code> creates <code>output.txt</code> with content <code>"Hello"</code>\
+<strong>Important</strong>: Overwrites existing file content without warning.</p>
+<p><strong>Usage</strong>: <code>command &gt; filename</code></p>
+<h3>30. <code>&gt;&gt;</code> Append</h3>
+<p><strong>Purpose</strong>: Redirect standard output to a file, appending to existing content (does not overwrite).\
+<strong>Example</strong>: <code>echo "New line" &gt;&gt; output.txt</code> adds <code>"New line"</code> to the end of <code>output.txt</code>\
+<strong>Important</strong>: Preserves existing file content and adds new content at the end.</p>
+<p><strong>Usage</strong>: <code>command &gt;&gt; filename</code></p>
+<h2>Disk Usage Command (<code>du</code>)</h2>
+<h3>31. <code>du filename</code></h3>
+<p><strong>Purpose</strong>: Display disk usage of a specific file in disk blocks (usually 512 bytes per block).\
+<strong>Output Example</strong>: <code>8 filename</code> (means 8 blocks, approximately 4KB)</p>
+<p><strong>Note</strong>: For files, <code>du</code> shows allocated disk space, not logical file size.</p>
+<h3>32. <code>du -sh filename</code></h3>
+<p><strong>Purpose</strong>: Display human-readable disk usage of a file in a simplified format.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>-s</code> = Summary (total size only, not details)</li>
+<li><code>-h</code> = Human-readable (shows K, M, G, T for kilobytes, megabytes, gigabytes, terabytes)</li>
+</ul>
+<p><strong>Output Example</strong>: <code>2.5M filename</code></p>
+<h3>33. <code>du -sh directory_name</code></h3>
+<p><strong>Purpose</strong>: Display total human-readable disk usage of a directory and all its contents.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>-s</code> = Summary of the entire directory</li>
+<li><code>-h</code> = Human-readable format</li>
+</ul>
+<p><strong>Output Example</strong>: <code>1.2G directory_name</code></p>
+<h3>34. <code>du -sh *</code></h3>
+<p><strong>Purpose</strong>: Display human-readable disk usage of all files and directories in the current directory.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>-s</code> = Summary for each item</li>
+<li><code>-h</code> = Human-readable format</li>
+<li><code>*</code> = All items in current directory</li>
+</ul>
+<p><strong>Output Example</strong>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">4.2K file1.txt
+2.1M directory1
+512K file2.txt
+</code></pre>
+</div>
+<h2>Head Command</h2>
+<h3>35. <code>head filename</code></h3>
+<p><strong>Purpose</strong>: Display the first 10 lines of a file (default behavior).\
+<strong>Example</strong>: Shows the beginning of a file for quick preview.</p>
+<h3>36. <code>head -3 f1</code></h3>
+<p><strong>Purpose</strong>: Display the first 3 lines of file <code>f1</code>.\
+<strong>Breakdown</strong>: <code>-3</code> specifies the number of lines to display</p>
+<p><strong>Example Output</strong>: First 3 lines of the file appear</p>
+<h3>37. <code>head -20 f1</code></h3>
+<p><strong>Purpose</strong>: Display the first 20 lines of file <code>f1</code>.\
+<strong>Breakdown</strong>: <code>-20</code> specifies display of first 20 lines</p>
+<p><strong>Example Output</strong>: First 20 lines of the file appear</p>
+<h2>Tail Command</h2>
+<h3>38. <code>tail f1</code></h3>
+<p><strong>Purpose</strong>: Display the last 10 lines of file <code>f1</code> (default behavior).\
+<strong>Example</strong>: Shows the end of a file for quick preview.</p>
+<h3>39. <code>tail -2 f1</code></h3>
+<p><strong>Purpose</strong>: Display the last 2 lines of file <code>f1</code>.\
+<strong>Breakdown</strong>: <code>-2</code> specifies the number of lines to display from the end</p>
+<p><strong>Example Output</strong>: Last 2 lines of the file appear</p>
+<h3>40. <code>tail -20 f1</code></h3>
+<p><strong>Purpose</strong>: Display the last 20 lines of file <code>f1</code>.\
+<strong>Breakdown</strong>: <code>-20</code> specifies display of last 20 lines</p>
+<p><strong>Example Output</strong>: Last 20 lines of the file appear</p>
+<h2>Pipe Operator</h2>
+<h3>41. <code>|</code> Pipe</h3>
+<p><strong>Purpose</strong>: Connect the output of one command as input to another command.\
+<strong>Usage</strong>: <code>command1 | command2</code>\
+<strong>Benefit</strong>: Allows chaining multiple commands together for complex operations.</p>
+<p><strong>Example</strong>: <code>cat file | wc -l</code> (shows content of file and counts lines)</p>
+<h3>42. <code>ls -l|wc -l</code></h3>
+<p><strong>Purpose</strong>: List files in detailed format and count the number of lines in the output.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>ls -l</code> = Long format listing of files</li>
+<li><code>|</code> = Pipe the output to the next command</li>
+<li><code>wc -l</code> = Count lines in the piped output</li>
+</ul>
+<p><strong>Result</strong>: Shows total number of files/directories (including header line) in current directory\
+<strong>Output Example</strong>: <code>15</code> (means 14 items plus 1 header line)</p>
+<h3>43. <code>head -10 file|tail -1</code></h3>
+<p><strong>Purpose</strong>: Display only the 10th line of a file.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>head -10 file</code> = First 10 lines of the file</li>
+<li><code>|</code> = Pipe to the next command</li>
+<li><code>tail -1</code> = Last line of the piped output (which is the 10th line)</li>
+</ul>
+<p><strong>Result</strong>: Shows exactly the 10th line of the file\
+<strong>Use Case</strong>: Extracting a specific line from the middle of a file</p>
+<h2>Grep Command</h2>
+<h3>44. <code>grep</code></h3>
+<p><strong>Purpose</strong>: Search for lines containing a specific pattern in a file or input.\
+<strong>Basic Usage</strong>: <code>grep "pattern" filename</code>\
+<strong>Output</strong>: All lines that contain the pattern</p>
+<p><strong>Example</strong>: <code>grep "error" logfile.txt</code> shows all lines containing "error"</p>
+<h3>45. <code>grep -i "devops" f1</code></h3>
+<p><strong>Purpose</strong>: Search for "devops" in file <code>f1</code>, case-insensitive.\
+<strong>Breakdown</strong>: <code>-i</code> = Ignore case (matches "devops", "DEVOPS", "DevOps", etc.)</p>
+<p><strong>Output</strong>: All lines containing "devops" regardless of case\
+<strong>Example</strong>: Finds <code>"DEVOPS Engineer"</code> and <code>"devops class"</code> with same command</p>
+<h3>46. <code>grep -in "pattern" filename</code></h3>
+<p><strong>Purpose</strong>: Search for "pattern" in <code>filename</code>, case-insensitive, and show line numbers.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>-i</code> = Ignore case</li>
+<li><code>-n</code> = Print line numbers</li>
+</ul>
+<p><strong>Output Format</strong>: <code>[line_number]:[matching_line]</code>\
+<strong>Example Output</strong>: <code>5:This is a pattern line</code> (pattern found on line 5)</p>
+<h3>47. <code>grep -ic "pattern" filename</code></h3>
+<p><strong>Purpose</strong>: Count how many lines contain the pattern (case-insensitive).\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>-i</code> = Ignore case</li>
+<li><code>-c</code> = Count matching lines</li>
+</ul>
+<p><strong>Output</strong>: Just the count number\
+<strong>Example Output</strong>: <code>7</code> (7 lines contain the pattern)</p>
+<h3>48. <code>grep -iw "devops" f1</code></h3>
+<p><strong>Purpose</strong>: Search for "devops" as a whole word only, case-insensitive.\
+<strong>Breakdown</strong>: <code>-w</code> = Word boundaries (won't match <code>"devopsclass"</code> or <code>"mydevops"</code>)</p>
+<p><strong>Output</strong>: Lines containing "devops" as a complete word\
+<strong>Difference</strong>: Without <code>-w</code>, <code>"devops"</code> in <code>"devopsclass"</code> would match; with <code>-w</code>, it won't</p>
+<h3>49. <code>grep -li "devops" *</code></h3>
+<p><strong>Purpose</strong>: List filenames containing "devops" (case-insensitive) from all files in current directory.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>-l</code> = List filenames only (not the matching lines)</li>
+<li><code>-i</code> = Ignore case</li>
+<li><code>*</code> = All files in current directory</li>
+</ul>
+<p><strong>Output</strong>: Filenames that contain the pattern</p>
+<p><strong>Example Output</strong>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">file1.txt
+file3.txt
+notes.md
+</code></pre>
+</div>
+<h3>50. <code>grep -ilr "devops" *</code></h3>
+<p><strong>Purpose</strong>: Recursively search all files in current directory and subdirectories for "devops", listing matching filenames.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>-i</code> = Ignore case</li>
+<li><code>-l</code> = List filenames only</li>
+<li><code>-r</code> = Recursive (search subdirectories)</li>
+<li><code>*</code> = Start from current directory</li>
+</ul>
+<p><strong>Output</strong>: Filenames from all directories containing the pattern</p>
+<p><strong>Use Case</strong>: Finding files across entire project/directory tree</p>
+<h3>51. <code>grep -ie "devops" -e "teams" f1</code></h3>
+<p><strong>Purpose</strong>: Search for lines containing either "devops" OR "teams" in file <code>f1</code>.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>-i</code> = Ignore case</li>
+<li><code>-e "devops"</code> = First pattern to match</li>
+<li><code>-e "teams"</code> = Second pattern to match</li>
+</ul>
+<p><strong>Output</strong>: All lines matching either pattern</p>
+<p><strong>Example</strong>: A line with <code>"devops class"</code> OR <code>"teams collaboration"</code> would both match</p>
+<p><strong>Use Case</strong>: Searching for multiple alternative patterns</p>
+<h2>Complex Pipeline Commands</h2>
+<h3>52. <code>head -8 f1|tail -1|wc -w</code></h3>
+<p><strong>Purpose</strong>: Count the number of words on the 8th line of file <code>f1</code>.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>head -8 f1</code> = Get first 8 lines</li>
+<li><code>|tail -1</code> = Get the last line of those (which is line 8)</li>
+<li><code>|wc -w</code> = Count words in that line</li>
+</ul>
+<p><strong>Result</strong>: Shows word count of exactly the 8th line\
+<strong>Output Example</strong>: <code>5</code> (the 8th line has 5 words)</p>
+<p><strong>Use Case</strong>: Extracting and analyzing specific lines</p>
+<h2>System Information Commands</h2>
+<h3>53. <code>df -h</code></h3>
+<p><strong>Purpose</strong>: Display disk space usage of all mounted filesystems in human-readable format.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>df</code> = Disk free (shows filesystem usage)</li>
+<li><code>-h</code> = Human-readable (shows K, M, G, T)</li>
+</ul>
+<p><strong>Output Columns</strong>: Filesystem, Size, Used, Available, Use%, Mount point</p>
+<p><strong>Example Output</strong>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       50G   30G   20G  60%  /
+/dev/sda2      100G   50G   50G  50%  /home
+tmpfs           8.0G    0  8.0G   0%  /dev/shm
+</code></pre>
+</div>
+<p><strong>Use Case</strong>: Checking available disk space before large operations</p>
+<h3>54. <code>free -g</code></h3>
+<p><strong>Purpose</strong>: Display memory (RAM) usage in gigabytes.\
+<strong>Breakdown</strong>:</p>
+<ul>
+<li><code>free</code> = Show free and used memory</li>
+<li><code>-g</code> = Display in gigabytes (alternative: <code>-m</code> for megabytes, <code>-h</code> for human-readable)</li>
+</ul>
+<p><strong>Output Columns</strong>: Total, Used, Free, Shared, Buffer/Cache, Available</p>
+<p><strong>Example Output</strong>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">              total   used   free  shared  buffers  available
+Mem:             16      8      8       1        2          6
+Swap:             4      0      4       0        0          4
+</code></pre>
+</div>
+<p><strong>Use Case</strong>: Monitoring system memory availability and usage</p>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../linux/day1.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">day1</span>
+  </a>
+  <a href="../linux/day-3.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Day 3</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IAC &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html" class="active">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">IAC</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">IAC</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <p>Master the foundational concepts, architectural pillars, market tool comparison, and practical implementation of modern Infrastructure as Code. Follow the step-by-step Terraform lab to provision, mutate, drift-detect, and tear down AWS infrastructure.</p>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p><strong>Student Reminder:</strong> Always run <code>terraform destroy</code> at the conclusion of the lab to prevent unexpected AWS cloud charges.</p>
+</div>
+</div>
+<ul>
+<li><strong>Prerequisites:</strong> Basic AWS &amp; Terminal Concepts</li>
+<li><strong>Tools:</strong> Terraform v1.5+ &amp; AWS CLI</li>
+<li><strong>Lab Tier:</strong> 100% Free-Tier Eligible</li>
+</ul>
+<h2>What is Infrastructure as Code (IaC)?</h2>
+<p><strong>Infrastructure as Code (IaC)</strong> is the practice of managing, provisioning, and configuring computer data centers, networks, virtual machines, load balancers, and connection topologies using machine-readable definition files rather than physical hardware configuration or interactive configuration tools (the "ClickOps" antipattern).</p>
+<p><strong>Key Philosophy:</strong> Treat your infrastructure with the exact same rigor as your application source code. It is stored in Git, reviewed by peers in Pull Requests, linted and tested automatically in CI/CD pipelines, and deployed through automated execution plans.</p>
+<h3>The 4 Essential Pillars of Modern IaC</h3>
+<h4>🎯 Declarative Paradigm</h4>
+<p>You specify <strong>WHAT</strong> the target end-state should look like (e.g., <em>"I need a VPC with CIDR 10.0.0.0/16 and 1 public subnet"</em>), rather than writing imperative code detailing <strong>HOW</strong> to make it step-by-step.</p>
+<p>The engine automatically calculates the resource dependency graph, discovers which API calls to execute in parallel, and executes them in the correct sequence.</p>
+<h4>🔁 Idempotency</h4>
+<p>Executing the same IaC code multiple times produces the exact same infrastructure without unwanted side-effects or duplicate resources.</p>
+<p>If your desired state matches reality, running <code>terraform apply</code> performs zero actions: <em>"No changes. Your infrastructure matches the configuration."</em></p>
+<h4>🧊 Immutability</h4>
+<p>In traditional <em>mutable</em> systems, engineers SSH into servers to apply patches and tweak configs, causing unrepeatable "snowflake servers".</p>
+<p>In <em>immutable</em> systems, servers are never modified live. Any change triggers the provisioning of brand new, fresh instances, switching traffic seamlessly, and terminating the obsolete machines (Blue/Green).</p>
+<h4>🗺️ State Management</h4>
+<p>Cloud providers deal in physical IDs (e.g. <code>vpc-04a1b2c3d4e5f6</code>), while your code defines human-friendly names (e.g. <code>aws_vpc.main</code>).</p>
+<p>The <strong>State File</strong> acts as the mapping bridge. It tracks metadata, records actual cloud state, and enables the planner to predict the exact delta between your code and physical reality.</p>
+<h3>Architecture Diagram: Declarative Reconciliation Loop</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h4>Code (Desired)</h4>
+<p><code>main.tf</code> / Git</p>
+<p>VPC + EC2 Specs</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h4>Engine + State</h4>
+<p>Calculates Precise Delta</p>
+<p>State: <code>.tfstate</code> file</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h4>Real Cloud (Actual)</h4>
+<p>AWS REST APIs</p>
+<p>Provisioned Resources</p>
+</div>
+</div>
+</div>
+<h2>Why IaC is Used: Business &amp; Engineering Benefits</h2>
+<table>
+<thead>
+<tr>
+<th>Operational Dimension</th>
+<th>Manual "ClickOps" Console</th>
+<th>Ad-hoc Bash / Python Scripts</th>
+<th>Modern Declarative IaC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Deployment Speed</strong></td>
+<td>Slow (Hours to days of manual clicking)</td>
+<td>Moderate (Fast until errors occur)</td>
+<td><strong>Blazing Fast (Minutes for complete multi-tier stacks)</strong></td>
+</tr>
+<tr>
+<td><strong>Consistency &amp; Drift</strong></td>
+<td>Catastrophic drift; high human error</td>
+<td>High drift; unhandled partial failures</td>
+<td><strong>Zero drift; continuous self-healing detection</strong></td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>Tribal knowledge in engineer's head</td>
+<td>Obscure command line arguments</td>
+<td><strong>Self-documenting, clean version-controlled files</strong></td>
+</tr>
+<tr>
+<td><strong>Disaster Recovery</strong></td>
+<td>Nightmarish; frantic manual rebuild</td>
+<td>Fragile; scripts fail on clean accounts</td>
+<td><strong>Instant; change region variable and apply</strong></td>
+</tr>
+<tr>
+<td><strong>Cost Optimization</strong></td>
+<td>Idle test servers left running indefinitely</td>
+<td>Manual tracking in spreadsheets</td>
+<td><strong>Ephemeral preview envs destroyed on PR merge</strong></td>
+</tr>
+<tr>
+<td><strong>Audit &amp; Compliance</strong></td>
+<td>Scattered CloudTrail logs</td>
+<td>No approval trail</td>
+<td><strong>Complete Git commit &amp; PR review history</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>DevOps Real-Time Production Use Cases</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Multi-Environment Parity</h3>
+<p>Maintain identical infrastructure topologies across Dev, QA, Staging, and Production.</p>
+<p><strong>How it works:</strong> The code definitions for networking, compute, and security are 100% shared. Only environment-specific parameters (instance sizes, cluster node counts, domains) are swapped via <code>dev.tfvars</code> or <code>prod.tfvars</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Automated GitOps CI/CD Pipelines</h3>
+<p>Infrastructure changes are pushed as Git Pull Requests.</p>
+<p><strong>How it works:</strong> GitHub Actions triggers <code>terraform plan</code>, commenting the exact resource diff onto the PR. When seniors approve and merge to <code>main</code>, CI automatically provisions the updates with zero manual access keys on developer laptops.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Ephemeral Pull Request Previews</h3>
+<p>Dynamic on-demand testing environments for product QA.</p>
+<p><strong>How it works:</strong> When a PR is opened, an isolated sandbox stack is stamped out. Once automated tests complete or the PR is closed, a webhook triggers <code>terraform destroy</code>, saving thousands in idle cloud bills.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h3>Policy as Code &amp; Security Guardrails</h3>
+<p>Security compliance enforced BEFORE provisioning happens.</p>
+<p><strong>How it works:</strong> Tools like Checkov, tfsec, or Open Policy Agent (OPA) scan code in CI. If an engineer forgets to enable encryption on an S3 bucket or opens SSH to <code>0.0.0.0/0</code>, the pipeline breaks and blocks the pull request immediately.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h3>Disaster Recovery &amp; Multi-Region Failover</h3>
+<p>Rapid regional resurrection in the event of an AWS outage.</p>
+<p><strong>How it works:</strong> If <code>us-east-1</code> experiences an outage, executing the blueprint with <code>-var="aws_region=us-west-2"</code> replicates identical VPCs, subnets, route tables, and servers in minutes.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h3>Internal Developer Platforms (IDP)</h3>
+<p>Platform engineering teams empowering self-service development.</p>
+<p><strong>How it works:</strong> Software engineers instantiate pre-approved, hardened Terraform modules without needing deep cloud networking or IAM security permissions.</p>
+</div>
+</div>
+</div>
+<h2>Market IaC Tools Deep-Dive &amp; Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Language</th>
+<th>Cloud Coverage</th>
+<th>State Mechanism</th>
+<th>Key Strengths</th>
+<th>Best Fit Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Terraform / OpenTofu</strong></td>
+<td>HCL (Declarative)</td>
+<td>Multi-Cloud (3,500+ Providers)</td>
+<td>Remote S3/DynamoDB Lock</td>
+<td>Vast provider ecosystem, massive community, mature modules</td>
+<td>Industry default for general infrastructure provisioning</td>
+</tr>
+<tr>
+<td><strong>AWS CloudFormation</strong></td>
+<td>YAML / JSON</td>
+<td>AWS Native Only</td>
+<td>Fully Managed by AWS</td>
+<td>Zero client state file management, immediate day-zero AWS support</td>
+<td>Pure AWS environments &amp; AWS Service Catalog stacks</td>
+</tr>
+<tr>
+<td><strong>AWS CDK</strong></td>
+<td>TypeScript, Python, Java, Go</td>
+<td>AWS (Synthesizes to CFn)</td>
+<td>CloudFormation Engine</td>
+<td>High-level abstractions (L3 Constructs), IDE autocomplete, loops &amp; classes</td>
+<td>Developers who prefer general programming languages over HCL/YAML</td>
+</tr>
+<tr>
+<td><strong>Pulumi</strong></td>
+<td>TypeScript, Python, Go, C#</td>
+<td>Multi-Cloud</td>
+<td>Pulumi Service or S3</td>
+<td>Native unit testing (Jest/PyTest), real code power across multi-cloud</td>
+<td>Engineering teams wanting programming language power outside of AWS</td>
+</tr>
+<tr>
+<td><strong>Ansible</strong></td>
+<td>YAML Playbooks</td>
+<td>OS &amp; Multi-Vendor</td>
+<td>State-Free (SSH/WinRM)</td>
+<td>Agentless, superior OS package management &amp; config templating</td>
+<td>Configuring software <em>inside</em> VMs after Terraform provisions them</td>
+</tr>
+<tr>
+<td><strong>Crossplane</strong></td>
+<td>Kubernetes YAML (CRDs)</td>
+<td>Multi-Cloud</td>
+<td>K8s etcd + Continuous Loop</td>
+<td>Continuous reconciliation loop, turns K8s into a universal cloud control plane</td>
+<td>Platform teams building Internal Developer Platforms (IDPs)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>The Mental Model: Provisioning vs Configuration Management</strong></p>
+<ul>
+<li><strong>Terraform / CloudFormation / Pulumi:</strong> Builds the infrastructure foundation (VPCs, Subnets, Disks, Load Balancers, VMs).</li>
+<li><strong>Ansible / Chef / Puppet:</strong> Configures what runs <em>inside</em> the operating system (installing Apache, creating system users, updating config files).</li>
+</ul>
+</div>
+</div>
+<h2>Hands-On Practice Lab: AWS Terraform Runbook</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h3>Verify Prerequisites &amp; Create Project Folder</h3>
+<p>Ensure you have Terraform (v1.5+) and AWS CLI installed with active AWS credentials.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># 1. Verify installed versions
+terraform -version
+aws sts get-caller-identity
+
+# 2. Create project directory
+mkdir -p ~/iac-demo &amp;&amp; cd ~/iac-demo
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h3>Create Infrastructure Code Files</h3>
+<p>Create the four standard modular files in your <code>~/iac-demo</code> folder.</p>
+<h4>File 1: <code>providers.tf</code></h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">hcl</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="hcl">terraform {
+  required_version = &quot;&gt;= 1.5.0&quot;
+
+  required_providers {
+    aws = {
+      source  = &quot;hashicorp/aws&quot;
+      version = &quot;~&gt; 5.0&quot;
+    }
+  }
+}
+
+provider &quot;aws&quot; {
+  region = var.aws_region
+
+  default_tags {
+    tags = {
+      Project     = &quot;IaC-Masterclass-Demo&quot;
+      ManagedBy   = &quot;Terraform&quot;
+      Environment = &quot;Demo&quot;
+    }
+  }
+}
+</code></pre>
+</div>
+<h4>File 2: <code>variables.tf</code></h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">hcl</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="hcl">variable &quot;aws_region&quot; {
+  type        = string
+  default     = &quot;us-east-1&quot;
+  description = &quot;Target AWS deployment region&quot;
+}
+
+variable &quot;vpc_cidr&quot; {
+  type        = string
+  default     = &quot;10.0.0.0/16&quot;
+  description = &quot;CIDR block for the custom VPC&quot;
+}
+
+variable &quot;subnet_cidr&quot; {
+  type        = string
+  default     = &quot;10.0.1.0/24&quot;
+  description = &quot;CIDR block for the public subnet&quot;
+}
+
+variable &quot;instance_type&quot; {
+  type        = string
+  default     = &quot;t2.micro&quot;
+  description = &quot;EC2 Instance type (Free-Tier eligible)&quot;
+}
+</code></pre>
+</div>
+<h4>File 3: <code>main.tf</code> (VPC, Subnet, IGW, Route Table, Security Group, EC2)</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">hcl</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="hcl"># 1. Custom Virtual Private Cloud (VPC)
+resource &quot;aws_vpc&quot; &quot;main&quot; {
+  cidr_block           = var.vpc_cidr
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+
+  tags = {
+    Name = &quot;iac-masterclass-vpc&quot;
+  }
+}
+
+# 2. Internet Gateway (IGW)
+resource &quot;aws_internet_gateway&quot; &quot;igw&quot; {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = &quot;iac-masterclass-igw&quot;
+  }
+}
+
+# 3. Public Subnet
+resource &quot;aws_subnet&quot; &quot;public&quot; {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.subnet_cidr
+  availability_zone       = &quot;${var.aws_region}a&quot;
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = &quot;iac-masterclass-public-subnet&quot;
+  }
+}
+
+# 4. Custom Route Table
+resource &quot;aws_route_table&quot; &quot;public_rt&quot; {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = &quot;0.0.0.0/0&quot;
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = &quot;iac-masterclass-public-rt&quot;
+  }
+}
+
+# 5. Route Table Association
+resource &quot;aws_route_table_association&quot; &quot;public_assoc&quot; {
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
+# 6. Least-Privilege Security Group
+resource &quot;aws_security_group&quot; &quot;web_sg&quot; {
+  name        = &quot;iac-web-sg&quot;
+  description = &quot;Allow inbound HTTP port 80 and outbound traffic&quot;
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = &quot;Allow HTTP from anywhere&quot;
+    from_port   = 80
+    to_port     = 80
+    protocol    = &quot;tcp&quot;
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+  }
+
+  egress {
+    description = &quot;Allow all outbound traffic&quot;
+    from_port   = 0
+    to_port     = 0
+    protocol    = &quot;-1&quot;
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+  }
+
+  tags = {
+    Name = &quot;iac-masterclass-web-sg&quot;
+  }
+}
+
+# 7. Query Latest Amazon Linux 2023 AMI
+data &quot;aws_ami&quot; &quot;amazon_linux_2023&quot; {
+  most_recent = true
+  owners      = [&quot;amazon&quot;]
+
+  filter {
+    name   = &quot;name&quot;
+    values = [&quot;al2023-ami-2023.*-x86_64&quot;]
+  }
+}
+
+# 8. EC2 Web Server Instance with Automated User Data Bootstrap
+resource &quot;aws_instance&quot; &quot;web_server&quot; {
+  ami                    = data.aws_ami.amazon_linux_2023.id
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.public.id
+  vpc_security_group_ids = [aws_security_group.web_sg.id]
+
+  user_data = &lt;&lt;-EOF
+    /var/www/html/index.html
+    IaC Masterclass — Live Demo
+    PROVISIONED VIA INFRASTRUCTURE AS CODE
+    # 🚀 Terraform Live Demo Active!
+    This entire AWS infrastructure was created 100% declaratively.
+
+    **Instance ID:** $INSTANCE_ID
+    **Availability Zone:** $AZ
+    **Public IPv4:** $PUBLIC_IP
+    **Provisioned By:** Terraform HashiCorp Engine
+
+    HTML
+  EOF
+
+  tags = {
+    Name = &quot;iac-masterclass-web-server&quot;
+  }
+}
+</code></pre>
+</div>
+<h4>File 4: <code>outputs.tf</code></h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">hcl</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="hcl">output &quot;website_url&quot; {
+  description = &quot;Public URL of the provisioned web server&quot;
+  value       = &quot;http://${aws_instance.web_server.public_ip}&quot;
+}
+
+output &quot;instance_public_ip&quot; {
+  description = &quot;Public IP address of the EC2 instance&quot;
+  value       = aws_instance.web_server.public_ip
+}
+
+output &quot;vpc_id&quot; {
+  description = &quot;VPC ID of the created infrastructure&quot;
+  value       = aws_vpc.main.id
+}
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h3>Initialize the Directory (<code>terraform init</code>)</h3>
+<p>Downloads the AWS provider plugin and generates the dependency lock file <code>.terraform.lock.hcl</code>.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">terraform init
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">13</div>
+<div class="step-content">
+<h3>Format &amp; Validate Configuration</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">terraform fmt
+terraform validate
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">14</div>
+<div class="step-content">
+<h3>Generate Execution Plan (<code>terraform plan</code>)</h3>
+<p>Performs dry-run reconciliation and saves the plan output to <code>tfplan</code>.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">terraform plan -out=tfplan
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">15</div>
+<div class="step-content">
+<h3>Execute Provisioning (<code>terraform apply</code>)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">terraform apply &quot;tfplan&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">16</div>
+<div class="step-content">
+<h3>Test In-Place Mutation &amp; Drift Detection</h3>
+<h4>Open the Live Web Page</h4>
+<p>Copy the <code>website_url</code> from your terminal output and paste it into your browser. You should see the live dashboard!</p>
+<h4>Live Mutation (Updating Without Destroying)</h4>
+<p>Edit <code>main.tf</code> to add a new tag <code>CostCenter = "Student-Lab"</code> to the EC2 resource. Run:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">terraform plan
+terraform apply -auto-approve
+</code></pre>
+</div>
+<p>Notice that Terraform updates the server in-place without restarting or terminating it!</p>
+<h4>Drift Detection</h4>
+<p>Log in to the AWS Console, edit the Security Group to add a temporary port 8080 rule, then run <code>terraform plan</code> in your terminal. Watch how Terraform flags the unauthorized drift and offers to delete it!</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">17</div>
+<div class="step-content">
+<h3>Mandatory Cleanup (<code>terraform destroy</code>)</h3>
+<div class="callout callout-danger">
+<div class="callout-icon">🚨</div>
+<div class="callout-body">
+<p><strong>CRITICAL REMINDER:</strong> Run this command to destroy all VPC, Subnet, and EC2 resources to prevent AWS charges.</p>
+</div>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">terraform destroy -auto-approve
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h2>Production Best Practices &amp; CLI Cheatsheet</h2>
+<h3>🔐 Remote State &amp; State Locking</h3>
+<p>Never store <code>terraform.tfstate</code> on your local laptop in team environments.</p>
+<p>Store state in an encrypted Amazon S3 bucket with versioning enabled, and configure an Amazon DynamoDB table for distributed state locking to prevent two engineers from running <code>apply</code> at the exact same moment.</p>
+<h3>🛡️ Secrets Management</h3>
+<p>Never hardcode database passwords, IAM secret keys, or API tokens into <code>.tf</code> files.</p>
+<p>Add <code>*.tfvars</code> and <code>*.tfstate</code> to <code>.gitignore</code>. Fetch secrets dynamically from AWS Secrets Manager or HashiCorp Vault.</p>
+<h3>📦 Pin Provider Versions</h3>
+<p>Always commit <code>.terraform.lock.hcl</code> to your Git repository.</p>
+<p>Pin provider versions using the optimistic pessimistic operator (e.g. <code>version = "~&gt; 5.0"</code>) to prevent accidental breaking changes from automatic minor upgrades.</p>
+<h3>Essential Terraform CLI Cheatsheet</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>terraform init</code></td>
+<td>Initializes directory, configures backend, and downloads provider plugins</td>
+</tr>
+<tr>
+<td><code>terraform fmt -recursive</code></td>
+<td>Rewrites all configuration files to canonical format and style</td>
+</tr>
+<tr>
+<td><code>terraform validate</code></td>
+<td>Verifies configuration syntax and internal variable consistency</td>
+</tr>
+<tr>
+<td><code>terraform plan -out=tfplan</code></td>
+<td>Generates execution dry-run and saves speculative changes to file</td>
+</tr>
+<tr>
+<td><code>terraform apply "tfplan"</code></td>
+<td>Executes the planned changes against the real cloud provider APIs</td>
+</tr>
+<tr>
+<td><code>terraform output</code></td>
+<td>Displays the values of all defined output variables</td>
+</tr>
+<tr>
+<td><code>terraform state list</code></td>
+<td>Lists all physical resources tracked in the current state file</td>
+</tr>
+<tr>
+<td><code>terraform destroy</code></td>
+<td>Destroys all managed infrastructure in reverse dependency order</td>
+</tr>
+</tbody>
+</table>
+<h2>Interactive Self-Assessment Quiz</h2>
+<details>
+
+<summary>What does it mean for an IaC operation to be "Idempotent"?</summary>
+
+A) It executes concurrently across multiple cloud providers at the exact same millisecond.
+
+B) Applying the code 1 time or 100 times results in the exact same infrastructure without unwanted side effects.
+
+C) It automatically restarts servers when CPU utilization exceeds 90%.
+
+**Correct!** Idempotency guarantees that if no code changes are made, running `terraform apply` will make zero changes to your existing cloud environment.
+
+</details>
+
+<details>
+
+<summary>What is the primary role of the Terraform State File (`terraform.tfstate`)?</summary>
+
+A) It compiles Go binaries for the AWS CLI.
+
+B) It maps declared code resources to physical cloud resource IDs and tracks actual cloud attributes.
+
+C) It stores encrypted Git commit messages for SOC2 audits.
+
+**Correct!** The state file acts as the single source of truth mapping your code definitions (e.g. `aws_instance.web_server`) to actual cloud resource IDs (e.g. `i-0123456789abcdef0`).
+
+</details>
+
+<details>
+
+<summary>What is the fundamental difference between Terraform and Ansible?</summary>
+
+A) Terraform is an infrastructure provisioning tool; Ansible is primarily an OS configuration management and software automation tool.
+
+B) Terraform only works on AWS, while Ansible only works on Azure.
+
+C) Ansible uses HCL, while Terraform uses Python.
+
+**Correct!** Terraform provisions the underlying cloud infrastructure (VPCs, EC2 VMs, subnets), while Ansible configures the OS, installs packages, and manages users inside those VMs.
+
+</details>
+
+<h2>Troubleshooting FAQ &amp; Final Verification</h2>
+<details>
+
+<summary>Symptom: RequestExpired / InvalidClientTokenId</summary>
+
+Your AWS CLI session token has expired.
+
+**Solution:** Refresh your terminal session by running `aws configure` or refreshing your AWS SSO credentials.
+
+</details>
+
+<details>
+
+<summary>Symptom: VpcLimitExceeded</summary>
+
+AWS accounts default to a maximum of 5 VPCs per region.
+
+**Solution:** Either delete old unused VPCs from previous labs or switch regions in your command: `terraform apply -var="aws_region=us-west-2"`.
+
+</details>
+
+<details>
+
+<summary>Symptom: Web server not loading in browser</summary>
+
+Browser displays "Site can't be reached" after apply.
+
+**Solution:** Ensure you are using `http://` and NOT `https://` (we opened port 80, not 443). Also allow 60-90 seconds for the EC2 `user_data` script to finish executing dnf package installs.
+
+</details>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../aws/kms.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">KMS</span>
+  </a>
+  <a href="../aws/cloudformation.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">cloudformation</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aws clb vs alb routing &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../README.html">Infra Setup</a></li>
+    <li><a href="../../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../linux/README.html">Linux</a></li>
+    <li><a href="../../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../../linux/day1.html">day1</a></li>
+    <li><a href="../../linux/day-2.html">day 2</a></li>
+    <li><a href="../../linux/day-3.html">Day 3</a></li>
+    <li><a href="../../linux/day-4.html">Day 4</a></li>
+    <li><a href="../../linux/day-5.html">Day 5</a></li>
+    <li><a href="../../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../git/README.html">Git</a></li>
+    <li><a href="../../git/git.html">git</a></li>
+    <li><a href="../../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../../git/git-version-control.html">git version control</a></li>
+    <li><a href="../../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../../git/git-and-github.html">git and github</a></li>
+    <li><a href="../../git/git-reset.html">git reset</a></li>
+    <li><a href="../../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../../git/git-revert.html">git revert</a></li>
+    <li><a href="../../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../../git/git-squash.html">git squash</a></li>
+    <li><a href="../../git/git-stash.html">git stash</a></li>
+    <li><a href="../../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../aws/README.html">AWS</a></li>
+    <li><a href="../../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../../aws/s3/README.html">S3</a></li>
+    <li><a href="../../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../aws/load-balancer/aws-clb-vs-alb-routing.html" class="active">aws clb vs alb routing</a></li>
+    <li><a href="../../aws/iam/README.html">IAM</a></li>
+    <li><a href="../../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../../aws/asg.html">ASG</a></li>
+    <li><a href="../../aws/stress-test.html">stress test</a></li>
+    <li><a href="../../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../../aws/kms.html">KMS</a></li>
+    <li><a href="../../aws/iac.html">IAC</a></li>
+    <li><a href="../../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../../aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../docker/README.html">Docker</a></li>
+    <li><a href="../../docker/docker.html">docker</a></li>
+    <li><a href="../../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">aws clb vs alb routing</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">aws clb vs alb routing</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>1. Classic Load Balancer (CLB)</h2>
+<p>With a Classic Load Balancer, you do <strong>not</strong> configure path-based or host-based routing rules.</p>
+<p>The basic flow is:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Client
+   |
+   v
+Classic Load Balancer
+   |
+   |---&gt; EC2-1
+   |---&gt; EC2-2
+   |---&gt; EC2-3
+</code></pre>
+</div>
+<p>You configure the backend instances under the <strong>Instances</strong> section of the Classic Load Balancer.</p>
+<h3>CLB Configuration</h3>
+<p>You typically configure:</p>
+<ul>
+<li>Listener → <code>HTTP :80 → HTTP :80</code></li>
+<li>Health checks</li>
+<li>Registered EC2 instances</li>
+<li>Connection settings</li>
+</ul>
+<h3>What CLB Does Not Support</h3>
+<p>CLB does not provide modern Layer 7 routing such as:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">/app  → Java application servers
+/api  → API servers
+</code></pre>
+</div>
+<p>or:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">example.com     → Application A
+api.example.com → Application B
+</code></pre>
+</div>
+<hr />
+<h2>2. Application Load Balancer (ALB)</h2>
+<p>With an Application Load Balancer, routing is configured through <strong>Listener Rules</strong>.</p>
+<p>The architecture is:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Client
+   |
+   v
+ALB
+   |
+Listener :80
+   |
+   +----------------------+
+   | Listener Rules       |
+   |                      |
+   | /app/*  → App-TG     |
+   | /api/*  → API-TG     |
+   +----------------------+
+          |          |
+          v          v
+       App-TG      API-TG
+       / | \        / | \
+      EC1 EC2 EC3  EC4 EC5 EC6
+</code></pre>
+</div>
+<h2>Where do we configure ALB routing?</h2>
+<p>In the AWS Console:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">EC2
+ └── Load Balancers
+      └── Your ALB
+           └── Listeners
+                └── HTTP :80
+                     └── Listener rules
+</code></pre>
+</div>
+<p>The <strong>Listener Rules</strong> determine where the incoming request should go.</p>
+<hr />
+<h2>3. Path-Based Routing</h2>
+<p>Example:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">IF Path is /app/*
+THEN Forward to App-TG
+</code></pre>
+</div>
+<p>And:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">IF Path is /api/*
+THEN Forward to API-TG
+</code></pre>
+</div>
+<p>Architecture:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">                  ALB
+                   |
+              Listener :80
+                   |
+          +--------+--------+
+          |                 |
+       /app/*            /api/*
+          |                 |
+          v                 v
+       App-TG             API-TG
+       / | \              / | \
+      EC1 EC2 EC3        EC4 EC5 EC6
+</code></pre>
+</div>
+<h3>Example Requests</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">http://example.com/app
+</code></pre>
+</div>
+<p>goes to:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">App-TG
+</code></pre>
+</div>
+<p>While:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">http://example.com/api
+</code></pre>
+</div>
+<p>goes to:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">API-TG
+</code></pre>
+</div>
+<hr />
+<h2>4. Host-Based Routing</h2>
+<p>ALB can also route traffic based on the hostname.</p>
+<p>Example:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">IF Host header is www.example.com
+THEN Forward to Web-TG
+</code></pre>
+</div>
+<p>And:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">IF Host header is api.example.com
+THEN Forward to API-TG
+</code></pre>
+</div>
+<p>Architecture:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">                       ALB
+                        |
+                  Listener :80
+                        |
+              +---------+---------+
+              |                   |
+      www.example.com       api.example.com
+              |                   |
+              v                   v
+           Web-TG              API-TG
+          /  |  \             /  |  \
+        EC1 EC2 EC3          EC4 EC5 EC6
+</code></pre>
+</div>
+<hr />
+<h2>5. Target Groups and Routing</h2>
+<p>A Target Group is a logical collection of backend targets.</p>
+<p>For example:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">App-TG
+ ├── EC2-1
+ ├── EC2-2
+ └── EC2-3
+</code></pre>
+</div>
+<p>and:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">API-TG
+ ├── EC2-4
+ ├── EC2-5
+ └── EC2-6
+</code></pre>
+</div>
+<p>The ALB listener rule decides <strong>which Target Group</strong> receives the request.</p>
+<p>The Target Group then distributes the request among its healthy targets.</p>
+<hr />
+<h2>6. Complete ALB Request Flow</h2>
+<p>The most important flow to remember is:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Client
+   |
+   v
+ALB
+   |
+   v
+Listener
+   |
+   v
+Listener Rule
+   |
+   v
+Target Group
+   |
+   v
+Healthy Target
+   |
+   v
+Application
+</code></pre>
+</div>
+<p>Or simply:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">ALB
+ ↓
+Listener
+ ↓
+Rule
+ ↓
+Target Group
+ ↓
+EC2 / IP / Lambda
+</code></pre>
+</div>
+<hr />
+<h2>7. CLB vs ALB</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>CLB</th>
+<th>ALB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Listener</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Health checks</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Backend configuration</td>
+<td>Registered EC2 instances</td>
+<td>Target Groups</td>
+</tr>
+<tr>
+<td>Path-based routing</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Host-based routing</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Listener rules</td>
+<td>Basic listener configuration</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Multiple target groups</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Layer 7 routing</td>
+<td>Limited/legacy</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Modern microservice routing</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>8. Interview Answer</h2>
+<p>If an interviewer asks:</p>
+<p><strong>"Where do you configure routing in CLB and ALB?"</strong></p>
+<blockquote>
+<p>In Classic Load Balancer, we mainly configure listeners, health checks, and registered EC2 instances. It does not support modern path-based or host-based routing rules.</p>
+<p>In Application Load Balancer, routing is configured under the <strong>Listener Rules</strong>. We define conditions such as path or host headers and then forward the request to the appropriate <strong>Target Group</strong>.</p>
+<p>For example, <code>/app/*</code> can go to the App Target Group and <code>/api/*</code> can go to the API Target Group.</p>
+</blockquote>
+<hr />
+<h2>9. Easy Way to Remember</h2>
+<div class="columns-grid" style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+<div class="column-item" style="flex:1;min-width:280px;">
+<h3>CLB</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">CLB
+ ↓
+Registered EC2 Instances
+</code></pre>
+</div>
+</div>
+<div class="column-item" style="flex:1;min-width:280px;">
+<h3>ALB</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">ALB
+ ↓
+Listener
+ ↓
+Listener Rule
+ ↓
+Target Group
+ ↓
+Targets
+</code></pre>
+</div>
+</div>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Key point:</strong> <strong>In ALB, the routing mechanism is configured in the Listener Rules.</strong></p>
+</div>
+</div>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../../aws/load-balancer/alb-creation-guide.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">ALB Creation Guide</span>
+  </a>
+  <a href="../../aws/iam/README.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">IAM</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/main.js?v=2"></script>
+</body>
+</html>

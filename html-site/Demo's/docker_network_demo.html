@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker Networking Masterclass — Interactive Teaching Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0d17;
+      --bg-secondary: #121829;
+      --bg-card: #182038;
+      --bg-card-hover: #1f2b4a;
+      --border-color: #273559;
+      --border-highlight: #38bdf8;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent-docker: #38bdf8;
+      --accent-docker-light: #7dd3fc;
+      --accent-docker-glow: rgba(56, 189, 248, 0.25);
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-purple: #8b5cf6;
+      
+      --code-bg: #0b1122;
+      --sidebar-width: 320px;
+      --header-height: 75px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Outfit', sans-serif; background-color: var(--bg-primary); color: var(--text-main); line-height: 1.65; overflow-x: hidden; }
+
+    /* Header Nav */
+    header.top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--header-height);
+      background: rgba(10, 13, 23, 0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; z-index: 1000;
+    }
+    
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-logo { width: 44px; height: 44px; background: linear-gradient(135deg, #0ea5e9, #0369a1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 16px var(--accent-docker-glow); }
+    .brand-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; background: linear-gradient(90deg, #ffffff, #e0f2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .badge-docker { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.05em; }
+
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .timer-widget { display: flex; align-items: center; gap: 8px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 30px; padding: 6px 14px; font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 600; color: var(--accent-docker-light); }
+    .timer-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.9rem; padding: 2px 4px; border-radius: 4px; }
+    .timer-btn:hover { color: #fff; background: var(--border-color); }
+
+    /* Layout */
+    .layout-container { display: flex; margin-top: var(--header-height); min-height: calc(100vh - var(--header-height)); }
+    aside.sidebar { width: var(--sidebar-width); background: var(--bg-secondary); border-right: 1px solid var(--border-color); position: fixed; top: var(--header-height); bottom: 0; left: 0; overflow-y: auto; padding: 1.5rem 1.25rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    
+    .progress-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem; }
+    .progress-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; display: flex; justify-content: space-between; }
+    .progress-bar-bg { height: 8px; background: var(--code-bg); border-radius: 999px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #0ea5e9, #10b981); border-radius: 999px; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    .sidebar-section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); padding: 0 0.75rem; margin-bottom: 0.5rem; }
+    .nav-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .nav-item a { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
+    .nav-item a:hover { color: var(--text-main); background: var(--bg-card); }
+    .nav-item a.active { color: #fff; background: linear-gradient(90deg, rgba(14, 165, 233, 0.8), rgba(14, 165, 233, 0.2)); font-weight: 600; border-left: 3px solid #38bdf8; }
+    .time-badge { font-size: 0.7rem; background: rgba(255, 255, 255, 0.08); padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; color: var(--accent-docker-light); }
+
+    main.content-area { margin-left: var(--sidebar-width); flex: 1; padding: 2.5rem 4rem; max-width: 1200px; }
+
+    /* Hero Banner */
+    .hero-banner { background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%); border: 1px solid var(--border-color); border-radius: 20px; padding: 3rem; margin-bottom: 3.5rem; position: relative; overflow: hidden; }
+    .hero-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 60%); pointer-events: none; }
+    
+    .badge-pill { font-size: 0.8rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-muted); margin-right: 8px; }
+    .badge-pill.hot { border-color: var(--accent-docker); color: var(--accent-docker-light); background: rgba(14, 165, 233, 0.15); }
+    .hero-title { font-size: 2.8rem; font-weight: 800; line-height: 1.2; margin: 1.25rem 0; letter-spacing: -0.03em; background: linear-gradient(90deg, #ffffff, #e0f2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin-bottom: 2.5rem; line-height: 1.7; }
+    
+    .session-meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 2rem; }
+    .meta-card { display: flex; flex-direction: column; gap: 4px; }
+    .meta-label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+    .meta-value { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
+
+    /* Sections */
+    section.module-section { margin-bottom: 5rem; scroll-margin-top: calc(var(--header-height) + 2rem); }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+    .section-title-wrap { display: flex; align-items: center; gap: 16px; }
+    .section-number { width: 44px; height: 44px; border-radius: 12px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; color: var(--accent-docker-light); }
+    .section-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+    .section-time-pill { font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; color: var(--accent-docker-light); background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); padding: 6px 14px; border-radius: 999px; font-weight: 600; }
+
+    /* Concept & Info Cards */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .info-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.75rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .info-card:hover { border-color: var(--accent-docker); background: var(--bg-card-hover); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
+    .info-card h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent-docker-light); display: flex; align-items: center; gap: 10px; }
+    .info-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+    /* Step Boxes (Scenarios) */
+    .step-box { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; margin-bottom: 2.5rem; position: relative; transition: all 0.3s; }
+    .step-box.completed { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.03); }
+    .step-box:hover { border-color: #334155; box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+    
+    .step-box-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); }
+    .step-title-group { display: flex; align-items: center; gap: 14px; }
+    .step-checkbox { width: 24px; height: 24px; cursor: pointer; accent-color: var(--accent-green); transition: transform 0.2s; }
+    .step-checkbox:hover { transform: scale(1.1); }
+    .step-tag { font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; padding: 4px 10px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); color: var(--accent-docker-light); font-weight: 700; letter-spacing: 0.05em; }
+    .step-heading { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.01em; }
+
+    /* Callouts */
+    .callout { border-radius: 12px; padding: 1.5rem 1.75rem; margin: 1.75rem 0; border-left: 5px solid; position: relative; }
+    .callout-header { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+    
+    .instructor-box { background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(56, 189, 248, 0.08) 100%); border-color: #f472b6; border-left-color: #ec4899; }
+    .instructor-box .callout-header { color: #f472b6; }
+    .instructor-box .talk-track { background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 1.25rem; margin-top: 1rem; border-left: 3px solid #f472b6; font-style: italic; color: #cbd5e1; }
+    
+    .trap-box { background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.3); border-left-color: var(--accent-red); }
+    .trap-box .callout-header { color: #f87171; }
+    
+    .tip-box { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.3); border-left-color: var(--accent-green); }
+    .tip-box .callout-header { color: #34d399; }
+
+    /* Code Snippets */
+    .snippet-container { background: var(--code-bg); border: 1px solid var(--border-color); border-radius: 12px; margin: 1.5rem 0; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+    .snippet-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(255, 255, 255, 0.04); border-bottom: 1px solid var(--border-color); font-size: 0.82rem; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+    .copy-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-muted); border-radius: 6px; padding: 4px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .copy-btn:hover { color: #fff; border-color: var(--accent-docker-light); background: rgba(56, 189, 248, 0.1); }
+    pre code { display: block; padding: 16px; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.9rem; color: #e2e8f0; overflow-x: auto; line-height: 1.6; }
+
+    /* Architecture Diagrams (ASCII) */
+    .diagram-container { background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 2rem; margin: 2rem 0; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #58a6ff; line-height: 1.5; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    
+    /* Tables */
+    .config-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
+    .config-table th { background: rgba(255, 255, 255, 0.03); text-align: left; padding: 14px 18px; color: var(--text-dim); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border-color); }
+    .config-table td { padding: 14px 18px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
+    .config-table tr:last-child td { border-bottom: none; }
+    .config-table tr:nth-child(even) td { background: rgba(255, 255, 255, 0.01); }
+    .config-table tr:hover td { background: var(--bg-card-hover); }
+
+    /* Toast */
+    #toast { position: fixed; bottom: 30px; right: 30px; background: #10b981; color: #fff; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 10px 25px rgba(0,0,0,0.3); display: none; z-index: 2000; align-items: center; gap: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation -->
+  <header class="top-nav">
+    <div class="brand">
+      <div class="brand-logo">🐳</div>
+      <div>
+        <div class="brand-title">Docker Networks Masterclass</div>
+      </div>
+      <span class="badge-docker">Live Demo Guide</span>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Live Session Stopwatch -->
+      <div class="timer-widget" title="Demonstration Timer">
+        <span>⏱️</span>
+        <span id="display-time">00:00:00</span>
+        <button class="timer-btn" id="btn-timer-toggle" title="Start/Pause">▶</button>
+        <button class="timer-btn" id="btn-timer-reset" title="Reset">↺</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar Navigation & Checklist Tracker -->
+    <aside class="sidebar">
+      <div class="progress-box">
+        <div class="progress-title">
+          <span>Class Progress</span>
+          <span id="progress-text">0/8 Done</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Teaching Modules</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#module-intro" class="active"><span>01. Why Docker Networks?</span><span class="time-badge">10m</span></a></li>
+          <li class="nav-item"><a href="#module-bridge"><span>02. Default Bridge</span><span class="time-badge">15m</span></a></li>
+          <li class="nav-item"><a href="#module-custom"><span>03. Custom Bridge & DNS</span><span class="time-badge">20m</span></a></li>
+          <li class="nav-item"><a href="#module-app"><span>04. Web + Database App</span><span class="time-badge">25m</span></a></li>
+          <li class="nav-item"><a href="#module-isolation"><span>05. Network Isolation</span><span class="time-badge">15m</span></a></li>
+          <li class="nav-item"><a href="#module-multinet"><span>06. Multi-Network Backend</span><span class="time-badge">15m</span></a></li>
+          <li class="nav-item"><a href="#module-host"><span>07. Host & None Networks</span><span class="time-badge">10m</span></a></li>
+          <li class="nav-item"><a href="#module-overlay"><span>08. Swarm Overlay Network</span><span class="time-badge">20m</span></a></li>
+        </ul>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+        <div style="font-size: 0.75rem; color: var(--text-dim); text-align: center;">
+          Instructor Live Console Edition • 2026<br>
+          Container Networking Deep Dive
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <div class="hero-badge-row">
+          <span class="badge-pill hot">Instructor Guide</span>
+          <span class="badge-pill">Hands-On Demos</span>
+          <span class="badge-pill">Docker Swarm</span>
+        </div>
+        <h1 class="hero-title">Demystifying Docker Networks</h1>
+        <p class="hero-subtitle">
+          A progressive, story-driven hands-on class to teach students the fundamentals of Docker networking. From simple bridge networking and DNS resolution, all the way to complex multi-host Swarm overlay networks.
+        </p>
+
+        <div class="session-meta-grid">
+          <div class="meta-card">
+            <span class="meta-label">Target Audience</span>
+            <span class="meta-value">DevOps Students</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Demo Duration</span>
+            <span class="meta-value">120 Minutes Total</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Prerequisites</span>
+            <span class="meta-value">Basic Docker run commands</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Final Goal</span>
+            <span class="meta-value">Multi-host Swarm Cluster</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 1: INTRO -->
+      <section id="module-intro" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">01</div>
+            <h2 class="section-title">Why Do We Need Docker Networks?</h2>
+          </div>
+          <span class="section-time-pill">Theory: 10 mins</span>
+        </div>
+
+        <div class="callout instructor-box">
+          <div class="callout-header"><span>🎙️</span> Instructor Talk Track</div>
+          <p>
+            Start with a simple real-world analogy. "Imagine Docker containers are different computers in a data center. If two containers need to communicate, they need some form of networking."
+          </p>
+        </div>
+
+        <div class="diagram-container">
+Browser
+   |
+   v
+Frontend Container
+   |
+   v
+Backend Container
+   |
+   v
+Database Container
+        </div>
+
+        <div class="card-grid">
+          <div class="info-card">
+            <h4>🔄 Container-to-Container</h4>
+            <p>Allow your microservices, like a Node.js backend and a PostgreSQL database, to talk to each other securely without going out to the public internet.</p>
+          </div>
+          <div class="info-card">
+            <h4>🌐 Container-to-Host</h4>
+            <p>Publish ports using <code>-p</code> so that external traffic from the user's browser hitting the Host machine gets routed to the correct container.</p>
+          </div>
+          <div class="info-card">
+            <h4>🛡️ Network Isolation</h4>
+            <p>Ensure that the database container is completely isolated from the internet, and only the backend container can reach it.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 2: BRIDGE -->
+      <section id="module-bridge" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">02</div>
+            <h2 class="section-title">Scenario 1 & 2: Default Bridge</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 15 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">SCENARIO 1</span>
+              <h3 class="step-heading">Explore the Default Bridge</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+          
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Check existing networks on the host machine.</p>
+
+          <div class="snippet-container">
+            <div class="snippet-header"><span>Terminal</span><button class="copy-btn" onclick="copyText('docker network ls')">Copy</button></div>
+            <pre><code>$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+xxxx           bridge    bridge    local
+xxxx           host      host      local
+xxxx           none      null      local</code></pre>
+          </div>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Network</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>bridge</strong></td>
+                <td>Default container networking</td>
+              </tr>
+              <tr>
+                <td><strong>host</strong></td>
+                <td>Container shares host network namespace</td>
+              </tr>
+              <tr>
+                <td><strong>none</strong></td>
+                <td>No external networking</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">SCENARIO 2</span>
+              <h3 class="step-heading">Container-to-Container Communication</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Run two Ubuntu containers and show that they can ping each other using IP addresses.</p>
+
+          <div class="snippet-container">
+            <div class="snippet-header"><span>Terminal</span><button class="copy-btn" onclick="copyText('docker run -dit --name container1 ubuntu bash
+docker run -dit --name container2 ubuntu bash')">Copy</button></div>
+            <pre><code>$ docker run -dit --name container1 ubuntu bash
+$ docker run -dit --name container2 ubuntu bash</code></pre>
+          </div>
+
+          <div class="snippet-container">
+            <div class="snippet-header"><span>Terminal: Find IP Address</span><button class="copy-btn" onclick="copyText('docker inspect -f '{{.NetworkSettings.IPAddress}}' container1')">Copy</button></div>
+            <pre><code>$ docker inspect -f '{{.NetworkSettings.IPAddress}}' container1
+172.17.0.2
+
+$ docker inspect -f '{{.NetworkSettings.IPAddress}}' container2
+172.17.0.3</code></pre>
+          </div>
+
+          <div class="callout trap-box">
+            <div class="callout-header"><span>⚠️</span> Important Teaching Point</div>
+            <p>
+              Ask students: <em>"Can container1 directly use container2's name?"</em><br><br>
+              Try to ping <code>container2</code> from <code>container1</code>. It will FAIL! On the default bridge network, name-based discovery is not supported. This gives you a great reason to introduce <strong>Custom Networks</strong>!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 3: CUSTOM BRIDGE & DNS -->
+      <section id="module-custom" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Scenario 3 & 4: Custom Bridge & DNS</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 20 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">SCENARIO 3 & 4</span>
+              <h3 class="step-heading">Create Custom Network & Test DNS</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="snippet-container">
+            <div class="snippet-header"><span>Terminal</span><button class="copy-btn" onclick="copyText('docker network create mynetwork')">Copy</button></div>
+            <pre><code>$ docker network create mynetwork</code></pre>
+          </div>
+
+          <p style="color: var(--text-muted); margin: 1.5rem 0 1rem;">Now launch two containers explicitly attaching them to the custom network:</p>
+
+          <div class="snippet-container">
+            <div class="snippet-header"><span>Terminal</span><button class="copy-btn" onclick="copyText('docker run -dit --name app1 --network mynetwork ubuntu bash
+docker run -dit --name app2 --network mynetwork ubuntu bash')">Copy</button></div>
+            <pre><code>$ docker run -dit --name app1 --network mynetwork ubuntu bash
+$ docker run -dit --name app2 --network mynetwork ubuntu bash</code></pre>
+          </div>
+
+          <div class="diagram-container">
+app1
+  |
+  | ping app2
+  |
+  v
+Docker DNS
+  |
+  v
+app2 IP
+          </div>
+
+          <div class="callout tip-box">
+            <div class="callout-header"><span>💡</span> The "Aha!" Moment</div>
+            <p>
+              When students ping <code>app2</code> from <code>app1</code>, it works! Students don't need to remember IP addresses like <code>172.18.0.3</code>. They can simply use container names, because user-defined bridge networks provide automatic DNS resolution.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 4: WEB + DATABASE -->
+      <section id="module-app" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">04</div>
+            <h2 class="section-title">Scenario 5: Real App (Web + DB)</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 25 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">SCENARIO 5</span>
+              <h3 class="step-heading">Build a Production-Style Architecture</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="diagram-container">
+             User
+               |
+               |
+          Host Port 8080
+               |
+               v
+        ┌───────────────┐
+        │ Web Container │
+        │    nginx      │
+        └───────┬───────┘
+                |
+                |
+         Docker Network
+                |
+                v
+        ┌───────────────┐
+        │ DB Container  │
+        │  PostgreSQL   │
+        └───────────────┘
+          </div>
+
+          <div class="snippet-container">
+            <div class="snippet-header"><span>Terminal</span><button class="copy-btn" onclick="copyText('docker network create app-network
+
+docker run -d --name database --network app-network -e POSTGRES_PASSWORD=admin postgres
+
+docker run -d --name web --network app-network -p 8080:80 nginx')">Copy</button></div>
+            <pre><code>$ docker network create app-network
+
+# Start PostgreSQL Database
+$ docker run -d --name database --network app-network -e POSTGRES_PASSWORD=admin postgres
+
+# Start Web Frontend
+$ docker run -d --name web --network app-network -p 8080:80 nginx</code></pre>
+          </div>
+
+          <div class="callout instructor-box">
+            <div class="callout-header"><span>🎙️</span> Very Important Rule to Teach</div>
+            <div class="talk-track">
+              <strong>-p = external access</strong><br>
+              <strong>--network = internal communication</strong><br><br>
+              Explain that <code>-p 8080:80</code> is for Host-to-Container traffic. <code>--network app-network</code> is for Container-to-Container traffic.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 5: ISOLATION -->
+      <section id="module-isolation" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Scenario 7: Network Isolation</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 15 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">SCENARIO 7</span>
+              <h3 class="step-heading">Prove Containers Cannot Communicate Across Networks</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="snippet-container">
+            <div class="snippet-header"><span>Terminal</span><button class="copy-btn" onclick="copyText('docker network create frontend
+docker network create backend
+
+docker run -dit --name front-app --network frontend ubuntu bash
+docker run -dit --name back-app --network backend ubuntu bash')">Copy</button></div>
+            <pre><code>$ docker network create frontend
+$ docker network create backend
+
+$ docker run -dit --name front-app --network frontend ubuntu bash
+$ docker run -dit --name back-app --network backend ubuntu bash</code></pre>
+          </div>
+
+          <div class="diagram-container">
+frontend network             backend network
+
+   frontend                      backend
+      |
+      X
+      |
+   backend
+          </div>
+
+          <p style="color: var(--text-muted);">
+            They are isolated! Containers connected to different Docker networks cannot normally communicate directly with each other. This is highly useful for segmenting security zones.
+          </p>
+        </div>
+      </section>
+
+      <!-- MODULE 6: MULTI-NETWORK -->
+      <section id="module-multinet" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">06</div>
+            <h2 class="section-title">Scenario 8: Multi-Network Containers</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 15 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">SCENARIO 8</span>
+              <h3 class="step-heading">Bridging Two Networks Dynamically</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="diagram-container">
+             frontend-net
+          ┌─────────────────┐
+          │                 │
+       frontend          backend
+                            │
+                            │
+                       backend-net
+                            │
+                            │
+                         database
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">You can dynamically attach a running container to a second network without restarting it!</p>
+
+          <div class="snippet-container">
+            <div class="snippet-header"><span>Terminal</span><button class="copy-btn" onclick="copyText('docker network connect backend-net backend
+
+docker inspect backend')">Copy</button></div>
+            <pre><code># Connect the backend container to the backend-net network dynamically
+$ docker network connect backend-net backend
+
+# Verify the container is now connected to TWO networks
+$ docker inspect backend</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 7: HOST/NONE -->
+      <section id="module-host" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">07</div>
+            <h2 class="section-title">Scenario 12 & 13: Host & None Networks</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 10 mins</span>
+        </div>
+
+        <div class="card-grid" style="margin-top: 0;">
+          <div class="info-card" style="border-color: var(--accent-docker);">
+            <h4 style="color: var(--text-main);">Host Network</h4>
+            <pre style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; margin: 10px 0; color: #a5b4fc; font-size: 0.8rem;"><code>--network host</code></pre>
+            <p>The container shares the host's network namespace. On Linux, this means the container can use the host's network interfaces directly. <code>-p</code> mappings are completely ignored because the container binds directly to host ports.</p>
+          </div>
+          <div class="info-card">
+            <h4 style="color: var(--text-main);">None Network</h4>
+            <pre style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; margin: 10px 0; color: #a5b4fc; font-size: 0.8rem;"><code>--network none</code></pre>
+            <p>The container doesn't get normal external networking. If you inspect <code>ip addr</code> inside the container, you will only see the loopback interface (lo). Useful for highly isolated workloads.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 8: OVERLAY SWARM -->
+      <section id="module-overlay" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">08</div>
+            <h2 class="section-title">Overlay Networking (Docker Swarm)</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 20 mins</span>
+        </div>
+
+        <div class="callout instructor-box">
+          <div class="callout-header"><span>🎙️</span> The Critical Question to Ask Students</div>
+          <div class="talk-track">
+            "How can Container A on Server 1 communicate with Container B on Server 2?"
+          </div>
+        </div>
+
+        <div class="diagram-container">
+BRIDGE NETWORK
+────────────────────────────────
+Docker Host 1
+┌──────────────────────────────┐
+│  ┌───────┐     ┌───────┐     │
+│  │ App 1 │─────│ DB 1  │     │
+│  └───────┘     └───────┘     │
+│       Docker Bridge          │
+└──────────────────────────────┘
+
+
+OVERLAY NETWORK
+────────────────────────────────
+       Docker Host 1                  Docker Host 2
+┌──────────────────────┐       ┌──────────────────────┐
+│   ┌───────┐          │       │          ┌───────┐   │
+│   │ App 1 │          │       │          │ App 2 │   │
+│   └───┬───┘          │       │          └───┬───┘   │
+└───────┼──────────────┘       └──────────────┼───────┘
+        │                                     │
+        └──────────── OVERLAY ────────────────┘
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag" style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd;">SWARM DEMO</span>
+              <h3 class="step-heading">Deploying an Overlay Network across EC2s</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">This is where you make the concept very clear. Create an overlay network and attach two cross-host services to it.</p>
+
+          <div class="snippet-container">
+            <div class="snippet-header"><span>Terminal: On Manager Node</span><button class="copy-btn" onclick="copyText('docker network create --driver overlay my-overlay
+
+docker service create --name redis --network my-overlay redis
+docker service create --name app --network my-overlay nginx')">Copy</button></div>
+            <pre><code># Create overlay network
+$ docker network create --driver overlay my-overlay
+
+# Create Redis database service
+$ docker service create --name redis --network my-overlay redis
+
+# Create Web App service
+$ docker service create --name app --network my-overlay nginx</code></pre>
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+            The application can communicate with <code>redis:6379</code> seamlessly across physical EC2 hosts without needing Redis to be exposed publicly. That's a massive production concept!
+          </p>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Bridge</th>
+                <th>Overlay</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Scope</strong></td>
+                <td>Single Docker host</td>
+                <td style="color: var(--accent-docker-light);">Multiple Docker hosts</td>
+              </tr>
+              <tr>
+                <td><strong>Common use</strong></td>
+                <td>Standalone Docker</td>
+                <td style="color: var(--accent-docker-light);">Docker Swarm</td>
+              </tr>
+              <tr>
+                <td><strong>Cross-host communication</strong></td>
+                <td style="color: var(--accent-red);">❌ No</td>
+                <td style="color: var(--accent-green);">✅ Yes</td>
+              </tr>
+              <tr>
+                <td><strong>Service discovery</strong></td>
+                <td>✅ (user-defined only)</td>
+                <td>✅ Yes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast">
+    <span>📋</span> Copied to clipboard!
+  </div>
+
+  <script>
+    // Copy to Clipboard Toast
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'flex';
+        setTimeout(() => toast.style.display = 'none', 2200);
+      });
+    }
+
+    function copyCode(btn) {
+      const pre = btn.parentElement.nextElementSibling;
+      copyText(pre.innerText);
+    }
+
+    // Step Checkbox Progress
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('.step-checkbox');
+      let checkedCount = 0;
+      checkboxes.forEach(cb => {
+        const stepBox = cb.closest('.step-box');
+        if (cb.checked) {
+          checkedCount++;
+          if (stepBox) stepBox.classList.add('completed');
+        } else {
+          if (stepBox) stepBox.classList.remove('completed');
+        }
+      });
+      const total = checkboxes.length;
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('progress-text').innerText = `${checkedCount}/${total} Done`;
+      document.getElementById('progress-fill').style.width = pct + '%';
+    }
+    
+    // Live Classroom Stopwatch
+    let timerInterval = null;
+    let secondsElapsed = 0;
+    let isRunning = false;
+    const display = document.getElementById('display-time');
+    const toggleBtn = document.getElementById('btn-timer-toggle');
+    const resetBtn = document.getElementById('btn-timer-reset');
+
+    function formatTime(sec) {
+      const hrs = String(Math.floor(sec / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+      const secs = String(sec % 60).padStart(2, '0');
+      return `${hrs}:${mins}:${secs}`;
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (!isRunning) {
+        isRunning = true;
+        toggleBtn.innerText = '⏸';
+        timerInterval = setInterval(() => {
+          secondsElapsed++;
+          display.innerText = formatTime(secondsElapsed);
+        }, 1000);
+      } else {
+        isRunning = false;
+        toggleBtn.innerText = '▶';
+        clearInterval(timerInterval);
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      isRunning = false;
+      toggleBtn.innerText = '▶';
+      clearInterval(timerInterval);
+      secondsElapsed = 0;
+      display.innerText = '00:00:00';
+    });
+
+    // Active Navigation Scroll Spy
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section.module-section');
+      const navLinks = document.querySelectorAll('.nav-item a');
+      let currentSectionId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) currentSectionId = sec.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) link.classList.add('active');
+      });
+    });
+
+    // Initialize
+    updateProgress();
+  </script>
+</body>
+</html>

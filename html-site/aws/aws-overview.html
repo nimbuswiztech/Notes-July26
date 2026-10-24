@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS\_Overview &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html" class="active">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">AWS\_Overview</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">AWS\_Overview</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>What is AWS?</h2>
+<p><strong>Amazon Web Services (AWS)</strong> is a comprehensive cloud computing platform provided by <strong>Amazon</strong>. It offers <strong>200+ managed services</strong> on secure, globally distributed, highly available infrastructure.</p>
+<h3>Key Facts</h3>
+<ul>
+<li>Launched in <strong>2006</strong></li>
+<li>Currently the <strong>#1 cloud provider</strong> globally (market share \~31%)</li>
+<li>Used by Netflix, LinkedIn, NASA, and thousands of startups</li>
+<li>Available in <strong>30+ Regions</strong> worldwide</li>
+<li>Offers a <strong>Free Tier</strong> for hands-on learning</li>
+</ul>
+<h3>AWS = Collection of Cloud Services</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">AWS
+ ├── Compute        → EC2, Lambda, ECS, EKS
+ ├── Storage        → S3, EBS, EFS, Glacier
+ ├── Database       → RDS, DynamoDB, Aurora, Redshift
+ ├── Networking     → VPC, Route 53, CloudFront, ELB
+ ├── Security       → IAM, KMS, WAF, Shield
+ ├── Monitoring     → CloudWatch, CloudTrail
+ ├── DevOps         → CodeCommit, CodeBuild, CodeDeploy, CodePipeline
+ ├── Containers     → ECR, ECS, EKS, Fargate
+ ├── Serverless     → Lambda, API Gateway, Step Functions
+ ├── AI/ML          → SageMaker, Rekognition, Comprehend
+ └── Management     → CloudFormation, Systems Manager, Config
+</code></pre>
+</div>
+<h2>Why AWS?</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pay-as-you-go</strong></td>
+<td>Only pay for what you use</td>
+</tr>
+<tr>
+<td><strong>Global Infrastructure</strong></td>
+<td>30+ Regions, 100+ Availability Zones</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>Scale up or down in minutes</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>SOC, PCI, HIPAA, ISO compliant</td>
+</tr>
+<tr>
+<td><strong>Reliability</strong></td>
+<td>99.99% SLA for many services</td>
+</tr>
+<tr>
+<td><strong>Managed Services</strong></td>
+<td>Less operational overhead</td>
+</tr>
+<tr>
+<td><strong>Free Tier</strong></td>
+<td>Experiment and learn for free</td>
+</tr>
+</tbody>
+</table>
+<h2>Getting Started with AWS</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Create an AWS Account</h3>
+<ol>
+<li>Go to <a href="https://aws.amazon.com/">aws.amazon.com</a></li>
+<li>Click <strong>"Create an AWS Account"</strong></li>
+<li>Provide email, password, and account name</li>
+<li>Add payment information (credit/debit card)</li>
+<li>Select the <strong>Free Tier</strong> plan</li>
+<li>Complete identity verification</li>
+</ol>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Access the AWS Management Console</h3>
+<ul>
+<li>URL: <a href="https://console.aws.amazon.com/">console.aws.amazon.com</a></li>
+<li>The <strong>AWS Management Console</strong> is a web-based interface to manage all AWS services</li>
+<li>You can search for services, manage resources, and monitor usage</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Set Up IAM</h3>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p><strong>Never use the Root Account for daily tasks.</strong> Create an IAM user with appropriate permissions.</p>
+</div>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Root Account (Owner)
+     |
+     +-- IAM User 1 (Admin)
+     +-- IAM User 2 (Developer)
+     +-- IAM User 3 (Read-Only)
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h2>Core AWS Services – Overview</h2>
+<h3>Compute Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EC2</strong></td>
+<td>Virtual servers in the cloud</td>
+<td>Web servers, app servers</td>
+</tr>
+<tr>
+<td><strong>Lambda</strong></td>
+<td>Serverless compute (run code without servers)</td>
+<td>Event-driven automation</td>
+</tr>
+<tr>
+<td><strong>ECS</strong></td>
+<td>Container orchestration (Docker)</td>
+<td>Microservices</td>
+</tr>
+<tr>
+<td><strong>EKS</strong></td>
+<td>Managed Kubernetes</td>
+<td>Container orchestration</td>
+</tr>
+<tr>
+<td><strong>Fargate</strong></td>
+<td>Serverless containers</td>
+<td>Run containers without managing servers</td>
+</tr>
+<tr>
+<td><strong>Elastic Beanstalk</strong></td>
+<td>PaaS – Deploy apps easily</td>
+<td>Quick application deployment</td>
+</tr>
+<tr>
+<td><strong>Lightsail</strong></td>
+<td>Simple VPS</td>
+<td>Small websites, blogs</td>
+</tr>
+</tbody>
+</table>
+<h4>EC2 – Elastic Compute Cloud (Most Important)</h4>
+<p>EC2 is the <strong>backbone</strong> of AWS compute.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">EC2 Instance
+ ├── Instance Type     → t2.micro, m5.large, c5.xlarge
+ ├── AMI               → Amazon Machine Image (OS template)
+ ├── Key Pair          → SSH access
+ ├── Security Group    → Firewall rules
+ ├── EBS Volume        → Storage (Hard Disk)
+ ├── Elastic IP        → Static public IP
+ └── User Data         → Startup script
+</code></pre>
+</div>
+<p><strong>EC2 Instance Types:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>t</strong></td>
+<td>General purpose (burstable)</td>
+<td>t2.micro, t3.medium</td>
+</tr>
+<tr>
+<td><strong>m</strong></td>
+<td>General purpose (balanced)</td>
+<td>m5.large, m6i.xlarge</td>
+</tr>
+<tr>
+<td><strong>c</strong></td>
+<td>Compute optimized</td>
+<td>c5.xlarge</td>
+</tr>
+<tr>
+<td><strong>r</strong></td>
+<td>Memory optimized</td>
+<td>r5.large</td>
+</tr>
+<tr>
+<td><strong>g/p</strong></td>
+<td>GPU instances</td>
+<td>p3.2xlarge</td>
+</tr>
+<tr>
+<td><strong>i/d</strong></td>
+<td>Storage optimized</td>
+<td>i3.large</td>
+</tr>
+</tbody>
+</table>
+<p><strong>EC2 Pricing Models:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>On-Demand</strong></td>
+<td>Pay per hour / second, no commitment</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>1 or 3 year commitment, up to 72% discount</td>
+</tr>
+<tr>
+<td><strong>Spot</strong></td>
+<td>Bid for unused capacity, up to 90% discount</td>
+</tr>
+<tr>
+<td><strong>Savings Plans</strong></td>
+<td>Flexible pricing with commitment</td>
+</tr>
+<tr>
+<td><strong>Dedicated Hosts</strong></td>
+<td>Physical server dedicated to you</td>
+</tr>
+</tbody>
+</table>
+<h3>Storage Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Type</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S3</strong></td>
+<td>Object storage</td>
+<td>Files, images, backups, static websites</td>
+</tr>
+<tr>
+<td><strong>EBS</strong></td>
+<td>Block storage</td>
+<td>EC2 instance hard disks</td>
+</tr>
+<tr>
+<td><strong>EFS</strong></td>
+<td>File storage (NFS)</td>
+<td>Shared file systems</td>
+</tr>
+<tr>
+<td><strong>S3 Glacier</strong></td>
+<td>Archive storage</td>
+<td>Long-term backups, compliance</td>
+</tr>
+<tr>
+<td><strong>Storage Gateway</strong></td>
+<td>Hybrid storage</td>
+<td>On-prem to cloud bridge</td>
+</tr>
+</tbody>
+</table>
+<h4>S3 – Simple Storage Service (Most Important)</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">S3
+ ├── Bucket        → Container for objects (globally unique name)
+ ├── Object        → File stored in a bucket (up to 5TB)
+ ├── Key           → Unique identifier for an object
+ ├── Versioning    → Keep multiple versions of an object
+ ├── Lifecycle     → Automatically move/delete objects
+ └── Encryption    → Server-side or client-side
+</code></pre>
+</div>
+<p><strong>S3 Storage Classes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Use Case</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S3 Standard</td>
+<td>Frequently accessed data</td>
+<td>Highest</td>
+</tr>
+<tr>
+<td>S3 Standard-IA</td>
+<td>Infrequently accessed</td>
+<td>Lower</td>
+</tr>
+<tr>
+<td>S3 One Zone-IA</td>
+<td>Single AZ, infrequent access</td>
+<td>Even lower</td>
+</tr>
+<tr>
+<td>S3 Glacier Instant</td>
+<td>Archive with instant access</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>S3 Glacier Flexible</td>
+<td>Archive (minutes to hours)</td>
+<td>Very low</td>
+</tr>
+<tr>
+<td>S3 Glacier Deep Archive</td>
+<td>Long-term archive (12 hours)</td>
+<td>Lowest</td>
+</tr>
+</tbody>
+</table>
+<h3>Database Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Type</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RDS</strong></td>
+<td>Relational DB (managed)</td>
+<td>MySQL, PostgreSQL, Oracle, SQL Server</td>
+</tr>
+<tr>
+<td><strong>Aurora</strong></td>
+<td>AWS-built relational DB</td>
+<td>High-performance MySQL/PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>DynamoDB</strong></td>
+<td>NoSQL (key-value)</td>
+<td>High-speed, low-latency apps</td>
+</tr>
+<tr>
+<td><strong>ElastiCache</strong></td>
+<td>In-memory cache</td>
+<td>Redis / Memcached</td>
+</tr>
+<tr>
+<td><strong>Redshift</strong></td>
+<td>Data warehouse</td>
+<td>Analytics, reporting</td>
+</tr>
+<tr>
+<td><strong>DocumentDB</strong></td>
+<td>Document DB</td>
+<td>MongoDB-compatible</td>
+</tr>
+</tbody>
+</table>
+<h4>RDS – Relational Database Service</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">RDS
+ ├── Engine          → MySQL, PostgreSQL, MariaDB, Oracle, SQL Server, Aurora
+ ├── Multi-AZ        → High availability (standby in another AZ)
+ ├── Read Replicas   → Scale read operations
+ ├── Automated Backups → Point-in-time recovery
+ ├── Snapshots       → Manual backups
+ └── Encryption      → At rest and in transit
+</code></pre>
+</div>
+<h3>Networking Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VPC</strong></td>
+<td>Virtual Private Cloud – Your own private network in AWS</td>
+</tr>
+<tr>
+<td><strong>Subnets</strong></td>
+<td>Divide your VPC into public and private sections</td>
+</tr>
+<tr>
+<td><strong>Internet Gateway</strong></td>
+<td>Connect VPC to the internet</td>
+</tr>
+<tr>
+<td><strong>NAT Gateway</strong></td>
+<td>Allow private subnets to access the internet</td>
+</tr>
+<tr>
+<td><strong>Route Tables</strong></td>
+<td>Control traffic routing</td>
+</tr>
+<tr>
+<td><strong>Security Groups</strong></td>
+<td>Instance-level firewall (stateful)</td>
+</tr>
+<tr>
+<td><strong>NACLs</strong></td>
+<td>Subnet-level firewall (stateless)</td>
+</tr>
+<tr>
+<td><strong>Route 53</strong></td>
+<td>DNS service</td>
+</tr>
+<tr>
+<td><strong>CloudFront</strong></td>
+<td>CDN (Content Delivery Network)</td>
+</tr>
+<tr>
+<td><strong>ELB</strong></td>
+<td>Elastic Load Balancer</td>
+</tr>
+<tr>
+<td><strong>VPC Peering</strong></td>
+<td>Connect two VPCs</td>
+</tr>
+<tr>
+<td><strong>VPN / Direct Connect</strong></td>
+<td>Connect on-prem to AWS</td>
+</tr>
+</tbody>
+</table>
+<h4>VPC – Virtual Private Cloud</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">VPC (10.0.0.0/16)
+ |
+ ├── Public Subnet (10.0.1.0/24)
+ |    ├── Internet Gateway
+ |    ├── EC2 (Web Server)
+ |    └── NAT Gateway
+ |
+ └── Private Subnet (10.0.2.0/24)
+      ├── EC2 (App Server)
+      └── RDS (Database)
+</code></pre>
+</div>
+<h3>Security &amp; Identity Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IAM</strong></td>
+<td>Identity and Access Management – Users, Groups, Roles, Policies</td>
+</tr>
+<tr>
+<td><strong>KMS</strong></td>
+<td>Key Management Service – Encryption keys</td>
+</tr>
+<tr>
+<td><strong>Secrets Manager</strong></td>
+<td>Store secrets (passwords, API keys)</td>
+</tr>
+<tr>
+<td><strong>WAF</strong></td>
+<td>Web Application Firewall</td>
+</tr>
+<tr>
+<td><strong>Shield</strong></td>
+<td>DDoS protection</td>
+</tr>
+<tr>
+<td><strong>GuardDuty</strong></td>
+<td>Threat detection</td>
+</tr>
+<tr>
+<td><strong>Inspector</strong></td>
+<td>Security assessment</td>
+</tr>
+<tr>
+<td><strong>CloudTrail</strong></td>
+<td>API activity logging (audit trail)</td>
+</tr>
+</tbody>
+</table>
+<h4>IAM – Identity and Access Management</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">IAM
+ ├── Users          → Individual people
+ ├── Groups         → Collection of users
+ ├── Roles          → Temporary permissions (for services)
+ ├── Policies       → JSON documents defining permissions
+ └── MFA            → Multi-Factor Authentication
+</code></pre>
+</div>
+<p><strong>IAM Policy Example:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">json</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="json">{
+  &quot;Version&quot;: &quot;2012-10-17&quot;,
+  &quot;Statement&quot;: [
+    {
+      &quot;Effect&quot;: &quot;Allow&quot;,
+      &quot;Action&quot;: &quot;s3:GetObject&quot;,
+      &quot;Resource&quot;: &quot;arn:aws:s3:::my-bucket/*&quot;
+    }
+  ]
+}
+</code></pre>
+</div>
+<h3>Monitoring &amp; Management</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CloudWatch</strong></td>
+<td>Monitoring – Metrics, Alarms, Logs, Dashboards</td>
+</tr>
+<tr>
+<td><strong>CloudTrail</strong></td>
+<td>Audit – Track API calls and user activity</td>
+</tr>
+<tr>
+<td><strong>CloudFormation</strong></td>
+<td>Infrastructure as Code (IaC) – YAML/JSON templates</td>
+</tr>
+<tr>
+<td><strong>Systems Manager</strong></td>
+<td>Manage EC2 instances at scale</td>
+</tr>
+<tr>
+<td><strong>Config</strong></td>
+<td>Track resource configuration changes</td>
+</tr>
+<tr>
+<td><strong>Trusted Advisor</strong></td>
+<td>Best practice recommendations</td>
+</tr>
+</tbody>
+</table>
+<h3>Container &amp; DevOps Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ECR</strong></td>
+<td>Elastic Container Registry – Store Docker images</td>
+</tr>
+<tr>
+<td><strong>ECS</strong></td>
+<td>Elastic Container Service – Run Docker containers</td>
+</tr>
+<tr>
+<td><strong>EKS</strong></td>
+<td>Elastic Kubernetes Service – Managed Kubernetes</td>
+</tr>
+<tr>
+<td><strong>Fargate</strong></td>
+<td>Serverless container engine</td>
+</tr>
+<tr>
+<td><strong>CodeCommit</strong></td>
+<td>Git repository (like GitHub)</td>
+</tr>
+<tr>
+<td><strong>CodeBuild</strong></td>
+<td>Build service (compile, test)</td>
+</tr>
+<tr>
+<td><strong>CodeDeploy</strong></td>
+<td>Deployment automation</td>
+</tr>
+<tr>
+<td><strong>CodePipeline</strong></td>
+<td>CI/CD pipeline orchestration</td>
+</tr>
+</tbody>
+</table>
+<h2>AWS Free Tier</h2>
+<p>AWS offers a <strong>Free Tier</strong> to help beginners learn:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Free Tier Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EC2</td>
+<td>750 hours/month of t2.micro (12 months)</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>5 GB storage (12 months)</td>
+</tr>
+<tr>
+<td>RDS</td>
+<td>750 hours/month of db.t2.micro (12 months)</td>
+</tr>
+<tr>
+<td>Lambda</td>
+<td>1 million requests/month (always free)</td>
+</tr>
+<tr>
+<td>DynamoDB</td>
+<td>25 GB storage (always free)</td>
+</tr>
+<tr>
+<td>CloudWatch</td>
+<td>10 custom metrics, 10 alarms (always free)</td>
+</tr>
+<tr>
+<td>SNS</td>
+<td>1 million publishes (12 months)</td>
+</tr>
+<tr>
+<td>SQS</td>
+<td>1 million requests (always free)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p><strong>Always monitor your billing!</strong> Set up a <strong>Billing Alarm</strong> in CloudWatch.</p>
+</div>
+</div>
+<h2>AWS CLI (Command Line Interface)</h2>
+<h3>Install AWS CLI</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># macOS
+brew install awscli
+
+# Linux
+curl &quot;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&quot; -o &quot;awscliv2.zip&quot;
+unzip awscliv2.zip
+sudo ./aws/install
+
+# Verify
+aws --version
+</code></pre>
+</div>
+<h3>Configure AWS CLI</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">aws configure
+# Enter:
+#   AWS Access Key ID
+#   AWS Secret Access Key
+#   Default region (e.g., ap-south-1)
+#   Default output format (json)
+</code></pre>
+</div>
+<h3>Common AWS CLI Commands</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># EC2
+aws ec2 describe-instances
+aws ec2 run-instances --image-id ami-xxxxx --instance-type t2.micro --key-name mykey
+aws ec2 start-instances --instance-ids i-xxxxx
+aws ec2 stop-instances --instance-ids i-xxxxx
+aws ec2 terminate-instances --instance-ids i-xxxxx
+
+# S3
+aws s3 ls
+aws s3 mb s3://my-bucket
+aws s3 cp file.txt s3://my-bucket/
+aws s3 sync ./folder s3://my-bucket/folder
+aws s3 rm s3://my-bucket/file.txt
+
+# IAM
+aws iam list-users
+aws iam create-user --user-name devuser
+aws iam create-group --group-name devgroup
+</code></pre>
+</div>
+<h2>AWS Architecture – Typical Web Application</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">                         USERS
+                           |
+                           v
+                      Route 53 (DNS)
+                           |
+                           v
+                    CloudFront (CDN)
+                           |
+                           v
+                   ALB (Load Balancer)
+                           |
+              +------------+------------+
+              |                         |
+         EC2 (AZ-a)               EC2 (AZ-b)
+              |                         |
+              +------------+------------+
+                           |
+                           v
+                    RDS (Multi-AZ)
+                           |
+                    +------+------+
+                    |             |
+                 Primary       Standby
+                 (AZ-a)        (AZ-b)
+                    |
+              +-----+-----+
+              |           |
+             S3       CloudWatch
+          (Storage)  (Monitoring)
+</code></pre>
+</div>
+<h2>AWS vs Azure vs GCP</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>AWS</th>
+<th>Azure</th>
+<th>GCP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compute</strong></td>
+<td>EC2</td>
+<td>Virtual Machines</td>
+<td>Compute Engine</td>
+</tr>
+<tr>
+<td><strong>Serverless</strong></td>
+<td>Lambda</td>
+<td>Azure Functions</td>
+<td>Cloud Functions</td>
+</tr>
+<tr>
+<td><strong>Object Storage</strong></td>
+<td>S3</td>
+<td>Blob Storage</td>
+<td>Cloud Storage</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>RDS / Aurora</td>
+<td>Azure SQL</td>
+<td>Cloud SQL</td>
+</tr>
+<tr>
+<td><strong>Kubernetes</strong></td>
+<td>EKS</td>
+<td>AKS</td>
+<td>GKE</td>
+</tr>
+<tr>
+<td><strong>DNS</strong></td>
+<td>Route 53</td>
+<td>Azure DNS</td>
+<td>Cloud DNS</td>
+</tr>
+<tr>
+<td><strong>CDN</strong></td>
+<td>CloudFront</td>
+<td>Azure CDN</td>
+<td>Cloud CDN</td>
+</tr>
+<tr>
+<td><strong>IaC</strong></td>
+<td>CloudFormation</td>
+<td>ARM Templates</td>
+<td>Deployment Manager</td>
+</tr>
+<tr>
+<td><strong>Container Registry</strong></td>
+<td>ECR</td>
+<td>ACR</td>
+<td>GCR / Artifact Registry</td>
+</tr>
+<tr>
+<td><strong>Monitoring</strong></td>
+<td>CloudWatch</td>
+<td>Azure Monitor</td>
+<td>Cloud Monitoring</td>
+</tr>
+</tbody>
+</table>
+<h2>AWS for DevOps – Key Services</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">DevOps on AWS
+     |
+     ├── Source Code      → CodeCommit / GitHub
+     ├── Build            → CodeBuild
+     ├── Test             → CodeBuild + Third-party
+     ├── Deploy           → CodeDeploy
+     ├── Pipeline          → CodePipeline
+     ├── Infrastructure   → CloudFormation / Terraform
+     ├── Containers       → ECR + ECS / EKS
+     ├── Monitoring       → CloudWatch + CloudTrail
+     ├── Security         → IAM + KMS + Secrets Manager
+     └── Automation       → Lambda + Systems Manager
+</code></pre>
+</div>
+<h3>Typical DevOps CI/CD on AWS</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Developer
+    |
+   Git Push → CodeCommit / GitHub
+    |
+   CodePipeline (Orchestrator)
+    |
+   CodeBuild (Build + Test)
+    |
+   Docker Image → ECR
+    |
+   CodeDeploy / EKS
+    |
+   Application Running
+    |
+   CloudWatch (Monitor)
+</code></pre>
+</div>
+<h2>Important AWS Concepts for Interviews</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Region</strong></td>
+<td>Geographic area with multiple data centers</td>
+</tr>
+<tr>
+<td><strong>Availability Zone (AZ)</strong></td>
+<td>Isolated data center within a region</td>
+</tr>
+<tr>
+<td><strong>Edge Location</strong></td>
+<td>CDN endpoint for CloudFront</td>
+</tr>
+<tr>
+<td><strong>ARN</strong></td>
+<td>Amazon Resource Name – unique resource identifier</td>
+</tr>
+<tr>
+<td><strong>SLA</strong></td>
+<td>Service Level Agreement – uptime guarantee</td>
+</tr>
+<tr>
+<td><strong>Shared Responsibility</strong></td>
+<td>AWS secures the cloud; you secure what's in the cloud</td>
+</tr>
+<tr>
+<td><strong>Well-Architected Framework</strong></td>
+<td>AWS best practices (5 pillars)</td>
+</tr>
+<tr>
+<td><strong>Auto Scaling</strong></td>
+<td>Automatically adjust number of instances</td>
+</tr>
+<tr>
+<td><strong>Elastic</strong></td>
+<td>Resources can grow and shrink with demand</td>
+</tr>
+<tr>
+<td><strong>High Availability</strong></td>
+<td>System remains operational even during failures</td>
+</tr>
+<tr>
+<td><strong>Fault Tolerance</strong></td>
+<td>System continues operating despite component failures</td>
+</tr>
+</tbody>
+</table>
+<h2>AWS Well-Architected Framework – 5 Pillars</h2>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Operational Excellence</strong></td>
+<td>Automate operations, monitor, and improve</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>Protect data, systems, and assets</td>
+</tr>
+<tr>
+<td><strong>Reliability</strong></td>
+<td>Recover from failures, meet demand</td>
+</tr>
+<tr>
+<td><strong>Performance Efficiency</strong></td>
+<td>Use resources efficiently</td>
+</tr>
+<tr>
+<td><strong>Cost Optimization</strong></td>
+<td>Avoid unnecessary costs</td>
+</tr>
+</tbody>
+</table>
+<h2>Next Steps</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Create an AWS Free Tier account</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Set up IAM users (never use root)</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Launch your first EC2 instance</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h3>Create an S3 bucket</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h3>Set up a VPC with public and private subnets</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h3>Deploy an application using Elastic Beanstalk</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h3>Set up CloudWatch alarms and billing alerts</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h3>Practice AWS CLI commands</h3>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h3>Study for AWS Certified Cloud Practitioner</h3>
+</div>
+</div>
+</div>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../aws/cloud_computing.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">Cloud\_Computing</span>
+  </a>
+  <a href="../aws/regions-and-availability-zones.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Regions and Availability Zones</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

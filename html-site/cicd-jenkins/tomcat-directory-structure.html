@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tomcat\_Directory\_Structure &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html" class="active">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🚀 CICD / Jenkins</span>
+          <span class="separator">/</span>
+          <span class="current">Tomcat\_Directory\_Structure</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🚀 CICD / Jenkins Module</div>
+          <h1 class="hero-title">Tomcat\_Directory\_Structure</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>For Tomcat training, it's crucial to teach the directory structure from a <strong>DevOps/production troubleshooting perspective</strong>. Students should understand what each directory contains, who uses it, what changes there, and what happens when something goes wrong.</p>
+</div>
+</div>
+<h2>Overview</h2>
+<p>A typical Tomcat installation looks like:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">/apache-tomcat/
+│
+├── bin/
+├── conf/
+├── lib/
+├── logs/
+├── temp/
+├── webapps/
+├── work/
+└── webapps.dist/     (Ubuntu/Debian installations may have this)
+</code></pre>
+</div>
+<p>The most important directories for DevOps engineers are: <code>bin/</code>, <code>conf/</code>, <code>webapps/</code>, <code>logs/</code>, <code>lib/</code>, <code>work/</code>, and <code>temp/</code>.</p>
+<h2>CATALINA_HOME vs CATALINA_BASE</h2>
+<p>This is one of the most important concepts to teach.</p>
+<ul>
+<li><strong><code>CATALINA_HOME</code></strong>: Points to the Tomcat installation directory (e.g., <code>/opt/tomcat</code>). It contains Tomcat's binaries and core files.</li>
+<li><strong><code>CATALINA_BASE</code></strong>: Represents the runtime/instance directory (e.g., <code>/opt/tomcat-instance</code>). It contains <code>conf/</code>, <code>logs/</code>, <code>webapps/</code>, <code>work/</code>, and <code>temp/</code>.</li>
+</ul>
+<p><strong>Why are both useful?</strong></p>
+<p>Suppose you want to run two Tomcat instances using the same Tomcat installation. This is useful when running multiple applications or environments on the same server.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">mermaid</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="mermaid">graph TD
+    A[Tomcat installation] --&gt; B[CATALINA_HOME]
+    A --&gt; C[Instance 1]
+    C --&gt; D[CATALINA_BASE]
+    A --&gt; E[Instance 2]
+    E --&gt; F[CATALINA_BASE]
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>For beginners, simply remember:</strong></p>
+<ul>
+<li><code>CATALINA_HOME</code> = Tomcat software</li>
+<li><code>CATALINA_BASE</code> = Tomcat runtime instance</li>
+</ul>
+</div>
+</div>
+<h2><code>bin/</code> — Tomcat Executables and Startup Scripts</h2>
+<p>This is the directory students will frequently use while managing Tomcat manually.</p>
+<h3>Important files</h3>
+<ul>
+<li><strong><code>startup.sh</code></strong>: Starts Tomcat in the background. (e.g., <code>./startup.sh</code> or <code>$CATALINA_HOME/bin/startup.sh</code>)</li>
+<li><strong><code>shutdown.sh</code></strong>: Stops Tomcat.</li>
+<li><strong><code>catalina.sh</code></strong>: The most important script. <code>startup.sh</code> and <code>shutdown.sh</code> internally use this.</li>
+<li><code>./catalina.sh start</code> -&gt; Starts in background</li>
+<li><code>./catalina.sh run</code> -&gt; Starts in foreground (excellent for troubleshooting startup errors directly in the terminal)</li>
+<li><strong><code>version.sh</code></strong>: Shows Tomcat and Java information.</li>
+</ul>
+<h2><code>conf/</code> — Configuration Directory</h2>
+<p>This is probably the <strong>#1 directory</strong> to focus on during Tomcat training.</p>
+<h3><code>server.xml</code> — Critical Configuration</h3>
+<p>Location: <code>$CATALINA_HOME/conf/server.xml</code></p>
+<p>This is Tomcat's primary server configuration file.</p>
+<p><strong>Hierarchy:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">mermaid</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="mermaid">graph TD
+    A[Server] --&gt; B[Service]
+    B --&gt; C[Connector]
+    B --&gt; D[Engine]
+    D --&gt; E[Host]
+    E --&gt; F[Context]
+</code></pre>
+</div>
+<h4>Tomcat Port (Connector)</h4>
+<p>Students frequently need to find the Tomcat port.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">xml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="xml">&lt;Connector port=&quot;8080&quot;
+           protocol=&quot;HTTP/1.1&quot;
+           connectionTimeout=&quot;20000&quot;
+           redirectPort=&quot;8443&quot; /&gt;
+</code></pre>
+</div>
+<ul>
+<li><code>8080</code> → HTTP</li>
+<li><code>8443</code> → HTTPS redirect/secure connector</li>
+</ul>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>If someone asks: <em>"Tomcat is running, but I cannot access the application."</em></p>
+<p>Have them check the port:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">grep -n &quot;Connector&quot; conf/server.xml
+</code></pre>
+</div>
+<p>Then check if it's listening:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ss -lntp | grep 8080
+</code></pre>
+</div>
+</div>
+</div>
+<h4>HTTPS Configuration Example</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">xml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="xml">&lt;Connector
+    port=&quot;8443&quot;
+    protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;
+    SSLEnabled=&quot;true&quot;
+    scheme=&quot;https&quot;
+    secure=&quot;true&quot;
+    keystoreFile=&quot;/opt/tomcat/conf/keystore.jks&quot;
+    keystorePass=&quot;changeit&quot; /&gt;
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>In production, TLS termination is often done at the load balancer (like Nginx) rather than directly in Tomcat.</p>
+</div>
+</div>
+<h3><code>web.xml</code></h3>
+<p>Location: <code>conf/web.xml</code></p>
+<p>Global deployment descriptor. Defines default web application behavior.</p>
+<ul>
+<li><code>conf/web.xml</code> -&gt; Global/default configuration</li>
+<li><code>WEB-INF/web.xml</code> -&gt; Application-specific configuration</li>
+</ul>
+<h3><code>context.xml</code></h3>
+<p>Location: <code>conf/context.xml</code></p>
+<p>Contains default Tomcat Context configuration. A Context represents a deployed web application.</p>
+<h3><code>tomcat-users.xml</code></h3>
+<p>Location: <code>conf/tomcat-users.xml</code></p>
+<p>Defines Tomcat users and roles (e.g., for Tomcat Manager).</p>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p><strong>Important security point for students:</strong> Never teach students to use <code>password="password"</code> in production, and explain that exposing Tomcat Manager directly to the internet is a severe security risk.</p>
+</div>
+</div>
+<h3><code>catalina.properties</code> &amp; <code>logging.properties</code></h3>
+<ul>
+<li><strong><code>catalina.properties</code></strong>: Controls class-loading behavior. Important for <code>ClassNotFoundException</code>.</li>
+<li><strong><code>logging.properties</code></strong>: Controls Tomcat's Java logging configuration.</li>
+</ul>
+<h2><code>webapps/</code> — Application Deployment</h2>
+<p>The second most important directory where applications are deployed (e.g., <code>ROOT/</code>, <code>manager/</code>, <code>myapp/</code>).</p>
+<h3>WAR File Deployment</h3>
+<p>Copy a <code>.war</code> file to <code>webapps/</code>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cp myapp.war /opt/tomcat/webapps/
+</code></pre>
+</div>
+<p>Tomcat automatically extracts it into a folder (<code>myapp/</code>). The application URL normally becomes <code>http://server-ip:8080/myapp</code>.</p>
+<h3>The <code>ROOT/</code> Application</h3>
+<p><code>http://server-ip:8080/</code> points to the <code>ROOT</code> application, whereas <code>http://server-ip:8080/myapp</code> points to <code>myapp/</code>.</p>
+<h3><code>WEB-INF</code> Directory</h3>
+<p>Inside an application (e.g., <code>myapp/WEB-INF/</code>), this folder is special. A client cannot directly access resources under it over HTTP.</p>
+<ul>
+<li><strong><code>WEB-INF/classes/</code></strong>: Compiled Java classes (<code>.class</code>). Important for troubleshooting <code>ClassNotFoundException</code>.</li>
+<li><strong><code>WEB-INF/lib/</code></strong>: Application-specific JAR files. Important for dependency conflicts.</li>
+</ul>
+<h2><code>logs/</code> — Production Troubleshooting</h2>
+<p>The most important directory for DevOps during production issues.</p>
+<ul>
+<li><strong><code>catalina.out</code></strong>: First place to check for errors (e.g., <code>OutOfMemoryError</code>, <code>Address already in use</code>). Use <code>tail -f logs/catalina.out</code>.</li>
+<li><strong>Access Logs</strong> (e.g., <code>localhost_access_log.txt</code>): Records HTTP requests (e.g., <code>GET /myapp HTTP/1.1 200</code>).</li>
+</ul>
+<h2><code>temp/</code>, <code>work/</code>, and <code>lib/</code></h2>
+<ul>
+<li><strong><code>temp/</code></strong>: Temporary processing files.</li>
+<li><strong><code>work/</code></strong>: Generated runtime working files (e.g., compiled JSPs). If a JSP behaves strangely, this folder is relevant.</li>
+<li><strong><code>lib/</code></strong>: Shared Tomcat libraries.</li>
+<li><code>$CATALINA_HOME/lib</code> -&gt; Tomcat-wide libraries</li>
+<li><code>webapps/myapp/WEB-INF/lib</code> -&gt; Application-specific libraries</li>
+</ul>
+<h2>The 5 Paths Students Must Remember</h2>
+<ol>
+<li><strong><code>bin/</code></strong>: <em>How do I start/stop Tomcat?</em> (<code>./startup.sh</code>)</li>
+<li><strong><code>conf/server.xml</code></strong>: <em>Where is the port configured?</em> (<code>grep -n "Connector" conf/server.xml</code>)</li>
+<li><strong><code>webapps/</code></strong>: <em>Where is my app deployed?</em> (<code>ls -lh webapps/</code>)</li>
+<li><strong><code>logs/</code></strong>: <em>Why is my app failing?</em> (<code>tail -f logs/catalina.out</code>)</li>
+<li><strong><code>work/</code></strong>: <em>Where are compiled JSPs?</em> (<code>ls -R work/</code>)</li>
+</ol>
+<h2>Production Troubleshooting Flow (Classroom Exercise)</h2>
+<p>Scenario: <em>"My application is deployed, but I cannot access it."</em> (Don't immediately restart Tomcat!)</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Check process</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ps -ef | grep tomcat
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Check port</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ss -lntp | grep 8080
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Check server.xml</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">grep -n &quot;Connector&quot; conf/server.xml
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Check deployment</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ls -lh webapps/
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Check logs</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">tail -100 logs/catalina.out
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Test locally</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">curl http://localhost:8080/myapp
+</code></pre>
+</div>
+<p>Helps separate a Tomcat problem from a Network/LB problem.</p>
+</div>
+</div>
+</div>
+<h2>Simple Mental Model</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">mermaid</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="mermaid">graph TD
+    A[TOMCAT] --&gt; B[bin&lt;br/&gt;Manage Tomcat]
+    A --&gt; C[conf&lt;br/&gt;Configure Tomcat]
+    A --&gt; D[webapps&lt;br/&gt;Deploy Applications]
+    A --&gt; E[logs&lt;br/&gt;Troubleshoot]
+    A --&gt; F[lib&lt;br/&gt;Libraries]
+    A --&gt; G[work&lt;br/&gt;Runtime/Generated Files]
+    A --&gt; H[temp&lt;br/&gt;Temporary Files]
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>For a DevOps training session, spend the most time on <code>bin/</code>, <code>conf/server.xml</code>, <code>webapps/</code>, <code>WEB-INF/</code>, and <code>logs/</code>—these are the paths students will repeatedly use in deployment, troubleshooting, and production support.</p>
+</div>
+</div>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../cicd-jenkins/tomcat-class-notes.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">Tomcat Class Notes</span>
+  </a>
+  <a href="../cicd-jenkins/tomcat-imp-files.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Tomcat Imp FIles</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

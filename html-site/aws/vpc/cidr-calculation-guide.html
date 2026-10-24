@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIDR calculation guide &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../README.html">Infra Setup</a></li>
+    <li><a href="../../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../linux/README.html">Linux</a></li>
+    <li><a href="../../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../../linux/day1.html">day1</a></li>
+    <li><a href="../../linux/day-2.html">day 2</a></li>
+    <li><a href="../../linux/day-3.html">Day 3</a></li>
+    <li><a href="../../linux/day-4.html">Day 4</a></li>
+    <li><a href="../../linux/day-5.html">Day 5</a></li>
+    <li><a href="../../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../git/README.html">Git</a></li>
+    <li><a href="../../git/git.html">git</a></li>
+    <li><a href="../../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../../git/git-version-control.html">git version control</a></li>
+    <li><a href="../../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../../git/git-and-github.html">git and github</a></li>
+    <li><a href="../../git/git-reset.html">git reset</a></li>
+    <li><a href="../../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../../git/git-revert.html">git revert</a></li>
+    <li><a href="../../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../../git/git-squash.html">git squash</a></li>
+    <li><a href="../../git/git-stash.html">git stash</a></li>
+    <li><a href="../../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../aws/README.html">AWS</a></li>
+    <li><a href="../../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../../aws/vpc/cidr-calculation-guide.html" class="active">CIDR calculation guide</a></li>
+    <li><a href="../../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../../aws/s3/README.html">S3</a></li>
+    <li><a href="../../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../../aws/iam/README.html">IAM</a></li>
+    <li><a href="../../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../../aws/asg.html">ASG</a></li>
+    <li><a href="../../aws/stress-test.html">stress test</a></li>
+    <li><a href="../../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../../aws/kms.html">KMS</a></li>
+    <li><a href="../../aws/iac.html">IAC</a></li>
+    <li><a href="../../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../../aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../docker/README.html">Docker</a></li>
+    <li><a href="../../docker/docker.html">docker</a></li>
+    <li><a href="../../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">CIDR calculation guide</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">CIDR calculation guide</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Binary Math, Subnetting, and Real-World Examples</h2>
+<h2>Part 1: CIDR Fundamentals</h2>
+<h3>What is CIDR?</h3>
+<p><strong>CIDR</strong> (Classless Inter-Domain Routing) is a method of representing IP address ranges using notation like <code>10.0.0.0/16</code>.</p>
+<p>Breaking down the notation:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">10.0.0.0/16
+│       │
+│       └─ Prefix length (number of network bits)
+└───────── IP address in decimal
+</code></pre>
+</div>
+<h3>IPv4 Address Structure</h3>
+<p>Every IPv4 address consists of <strong>32 bits</strong> divided into 4 octets (groups of 8 bits):</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Decimal:   10       .       0       .       0       .       0
+           │                │                │                │
+Binary:    00001010 . 00000000 . 00000000 . 00000000
+           │        │ │        │ │        │ │        │
+           Octet 1  │ Octet 2  │ Octet 3  │ Octet 4  │
+                    8 bits     │ 8 bits     │ 8 bits    │
+                             16 bits total
+
+Total: 8 + 8 + 8 + 8 = 32 bits
+</code></pre>
+</div>
+<h3>Understanding the CIDR Prefix</h3>
+<p>The CIDR prefix (e.g., <code>/16</code>) tells you how many bits are used for the <strong>network portion</strong>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">10.0.0.0/16
+├─ First 16 bits  = Network portion (fixed, defines the network)
+└─ Remaining 16 bits = Host portion (variable, identifies devices)
+
+Bits:    1-8    9-16   17-24   25-32
+        ┌────────────┬────────────┐
+        │  Network   │    Hosts   │
+        │  (16 bits) │ (16 bits)  │
+        └────────────┴────────────┘
+
+        /16 prefix = First 16 bits are network
+</code></pre>
+</div>
+<h3>Key Relationship</h3>
+<p>IP Addresses in CIDR block = 2^(32 - prefix)</p>
+<p>Examples:</p>
+<ul>
+<li><code>/16</code> = 2^(32-16) = 2^16 = <strong>65,536 addresses</strong></li>
+<li><code>/24</code> = 2^(32-24) = 2^8 = <strong>256 addresses</strong></li>
+<li><code>/25</code> = 2^(32-25) = 2^7 = <strong>128 addresses</strong></li>
+<li><code>/30</code> = 2^(32-30) = 2^2 = <strong>4 addresses</strong></li>
+</ul>
+<h2>Part 2: Binary-to-Decimal Conversion</h2>
+<h3>Decimal to Binary Conversion</h3>
+<p>Method: Powers of 2 in each octet</p>
+<p>Each bit position represents a power of 2:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Bit Position:  7      6     5     4     3     2     1     0
+               │      │     │     │     │     │     │     │
+Power of 2:   128 +  64 +  32 +  16 +  8 +  4 +  2 +  1
+</code></pre>
+</div>
+<p>Example: Convert 192 to binary</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">192 ÷ 2 = 96 remainder 0  → bit 0 = 0
+96  ÷ 2 = 48 remainder 0  → bit 1 = 0
+48  ÷ 2 = 24 remainder 0  → bit 2 = 0
+24  ÷ 2 = 12 remainder 0  → bit 3 = 0
+12  ÷ 2 = 6  remainder 0  → bit 4 = 0
+6   ÷ 2 = 3  remainder 0  → bit 5 = 0
+3   ÷ 2 = 1  remainder 1  → bit 6 = 1
+1   ÷ 2 = 0  remainder 1  → bit 7 = 1
+
+Binary: 11000000
+Check: 128 + 64 = 192 ✓
+</code></pre>
+</div>
+<p>Example: Convert 168 to binary</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Using the power of 2 chart:
+168 = 128 + 40
+40  = 32 + 8
+
+So: 128 + 32 + 8 = 168
+
+Binary positions: 128(1) + 64(0) + 32(1) + 16(0) + 8(1) + 4(0) + 2(0) + 1(0)
+Binary: 10101000 ✓
+</code></pre>
+</div>
+<h3>Binary to Decimal Conversion</h3>
+<p>Example: Convert 10101000 to decimal</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">1  0  1  0  1  0  0  0
+│  │  │  │  │  │  │  │
+128 + 0 + 32 + 0 + 8 + 0 + 0 + 0 = 168
+</code></pre>
+</div>
+<p>Example: Convert 11110000 to decimal</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">1  1  1  1  0  0  0  0
+│  │  │  │  │  │  │  │
+128 + 64 + 32 + 16 + 0 + 0 + 0 + 0 = 240
+</code></pre>
+</div>
+<h2>Part 3: CIDR Calculation Methods</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Method 1: Calculate Total IP Addresses</h2>
+<p>Formula: Total IPs = 2^(32 - prefix_length)</p>
+<p>Example 1: How many IPs in 10.0.0.0/22?</p>
+<ul>
+<li>Prefix = 22</li>
+<li>Host bits = 32 - 22 = 10</li>
+<li>Total IPs = 2^10 = 1,024 addresses</li>
+</ul>
+<p>Example 2: How many IPs in 172.16.0.0/20?</p>
+<ul>
+<li>Prefix = 20</li>
+<li>Host bits = 32 - 20 = 12</li>
+<li>Total IPs = 2^12 = 4,096 addresses</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Method 2: Find Usable IP Addresses (AWS VPC Context)</h2>
+<p>In AWS VPC, the first 4 and last 1 IP addresses are reserved:</p>
+<p>Formula: Usable IPs = 2^(32 - prefix) - 5</p>
+<p>Example: 10.0.0.0/24 subnet</p>
+<ul>
+<li>Total IPs = 2^(32-24) = 2^8 = 256</li>
+<li>Reserved addresses:</li>
+<li>10.0.0.0 (Network address)</li>
+<li>10.0.0.1 (VPC Router)</li>
+<li>10.0.0.2 (DNS Server)</li>
+<li>10.0.0.3 (Reserved for future use)</li>
+<li>10.0.0.255 (Broadcast address)</li>
+<li>Usable IPs = 256 - 5 = 251 addresses</li>
+</ul>
+<p>Example: 192.168.1.0/25 subnet</p>
+<ul>
+<li>Total IPs = 2^(32-25) = 2^7 = 128</li>
+<li>Usable IPs = 128 - 5 = 123 addresses</li>
+<li>First address: 192.168.1.0</li>
+<li>Last address: 192.168.1.127</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>Method 3: Find Subnet Boundaries</h2>
+<p>To find the range of a subnet, identify which bits are variable.</p>
+<p>Example: Find range for 10.0.1.0/24</p>
+<ul>
+<li>/24 means first 24 bits are network (3 octets fixed)</li>
+<li>Last 8 bits are hosts (variable)</li>
+<li>First address: 10.0.1.0</li>
+<li>Last address: 10.0.1.255</li>
+</ul>
+<p>Example: Find range for 10.0.1.0/25</p>
+<ul>
+<li>/25 means first 25 bits are network (3 octets + 1 bit)</li>
+<li>Last 7 bits are hosts</li>
+<li>4th octet: bit 7 fixed at 0, bits 6-0 variable</li>
+<li>First /25: 10.0.1.0 - 10.0.1.127</li>
+<li>Next /25: 10.0.1.128 - 10.0.1.255</li>
+</ul>
+</div>
+</div>
+</div>
+<h2>Part 4: Subnet Planning &amp; Design</h2>
+<h3>Planning a VPC with Multiple Subnets</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>Choose VPC CIDR block</h2>
+<p>VPC CIDR: 10.0.0.0/16</p>
+<ul>
+<li>Provides 65,536 total IPs</li>
+<li>Leaves room for secondary CIDR blocks if needed</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h2>Divide into subnets</h2>
+<p>Common approach: Use /24 for subnets (256 IPs each)</p>
+<p>VPC: 10.0.0.0/16</p>
+<ul>
+<li>AZ-1 (us-east-1a)</li>
+<li>Public Subnet-1: 10.0.1.0/24 (256 IPs, 251 usable)</li>
+<li>Private Subnet-1: 10.0.2.0/24 (256 IPs, 251 usable)</li>
+<li>AZ-2 (us-east-1b)</li>
+<li>Public Subnet-2: 10.0.3.0/24 (256 IPs, 251 usable)</li>
+<li>Private Subnet-2: 10.0.4.0/24 (256 IPs, 251 usable)</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h2>Verify no overlap &amp; remaining space</h2>
+<p>Ranges:</p>
+<ul>
+<li>10.0.1.0/24 = 10.0.1.0 - 10.0.1.255 ✓ No overlap</li>
+<li>10.0.2.0/24 = 10.0.2.0 - 10.0.2.255 ✓ No overlap</li>
+<li>10.0.3.0/24 = 10.0.3.0 - 10.0.3.255 ✓ No overlap</li>
+<li>10.0.4.0/24 = 10.0.4.0 - 10.0.4.255 ✓ No overlap</li>
+</ul>
+<p>Used: 4 × 256 = 1,024 addresses\
+Total: 65,536 addresses\
+Remaining: 64,512 addresses (for future growth)</p>
+</div>
+</div>
+</div>
+<h3>CIDR Planning Table</h3>
+<table>
+<thead>
+<tr>
+<th>Subnet Name</th>
+<th>CIDR Block</th>
+<th>Range</th>
+<th>AZ</th>
+<th>Type</th>
+<th>Usable IPs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public-1</td>
+<td>10.0.1.0/24</td>
+<td>10.0.1.0 - 10.0.1.255</td>
+<td>us-east-1a</td>
+<td>Public</td>
+<td>251</td>
+</tr>
+<tr>
+<td>Private-1</td>
+<td>10.0.2.0/24</td>
+<td>10.0.2.0 - 10.0.2.255</td>
+<td>us-east-1a</td>
+<td>Private</td>
+<td>251</td>
+</tr>
+<tr>
+<td>Public-2</td>
+<td>10.0.3.0/24</td>
+<td>10.0.3.0 - 10.0.3.255</td>
+<td>us-east-1b</td>
+<td>Public</td>
+<td>251</td>
+</tr>
+<tr>
+<td>Private-2</td>
+<td>10.0.4.0/24</td>
+<td>10.0.4.0 - 10.0.4.255</td>
+<td>us-east-1b</td>
+<td>Private</td>
+<td>251</td>
+</tr>
+</tbody>
+</table>
+<h2>Part 5: AWS VPC CIDR Constraints</h2>
+<h3>VPC CIDR Block Rules</h3>
+<p>Allowed VPC CIDR sizes:</p>
+<ul>
+<li>Minimum: <code>/28</code> (16 IP addresses)</li>
+<li>Maximum: <code>/16</code> (65,536 IP addresses)</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">/16 = 65,536 IPs  ← Recommended for production
+/17 = 32,768 IPs
+/18 = 16,384 IPs
+/19 = 8,192 IPs
+/20 = 4,096 IPs
+...
+/28 = 16 IPs       ← Minimum (not recommended)
+</code></pre>
+</div>
+<h3>Subnet CIDR Block Rules</h3>
+<p>Allowed Subnet CIDR sizes:</p>
+<ul>
+<li>Minimum: <code>/28</code> (16 IP addresses, only 11 usable)</li>
+<li>Maximum: <code>/16</code> (65,536 IP addresses, only 65,531 usable)</li>
+</ul>
+<p>AWS Reserved Addresses in Each Subnet:</p>
+<p>In a subnet with CIDR <code>10.0.0.0/24</code>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">10.0.0.0     - Network address (reserved)
+10.0.0.1     - VPC Router (reserved)
+10.0.0.2     - DNS Server (reserved)
+10.0.0.3     - Reserved for future use
+10.0.0.4     - First usable IP for EC2 instances
+10.0.0.5-254 - Usable IPs
+10.0.0.255   - Broadcast address (reserved)
+</code></pre>
+</div>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p>Always reserve 5 addresses when planning subnets!</p>
+</div>
+</div>
+<h3>RFC 1918 Private Address Ranges</h3>
+<p>AWS recommends using these ranges for VPCs:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">10.0.0.0/8          (10.0.0.0 - 10.255.255.255)
+├─ Largest range
+├─ Allows /16 subnets from 10.0.0.0/16 to 10.255.0.0/16
+└─ Most flexible for growth
+
+172.16.0.0/12       (172.16.0.0 - 172.31.255.255)
+├─ Medium range
+├─ Allows multiple /16 subnets
+└─ Good for mid-sized deployments
+
+192.168.0.0/16      (192.168.0.0 - 192.168.255.255)
+├─ Small range
+├─ Limited flexibility
+└─ Common for small labs
+</code></pre>
+</div>
+<h3>Reserved CIDR Ranges (Cannot be used)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">0.0.0.0/8              - This network
+127.0.0.0/8            - Loopback addresses
+169.254.0.0/16         - Link-local addresses
+224.0.0.0/4            - Multicast addresses
+172.17.0.0/16          - Reserved by AWS (Cloud9, SageMaker)
+</code></pre>
+</div>
+<h3>VPC CIDR Overlap Restrictions</h3>
+<table>
+<thead>
+<tr>
+<th>Existing CIDR</th>
+<th>Restricted CIDR</th>
+<th>Permitted CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.0.0.0/8</td>
+<td>172.16.0.0/12, 192.168.0.0/16</td>
+<td>Any other 10.0.0.0/8 range</td>
+</tr>
+<tr>
+<td>172.16.0.0/12</td>
+<td>10.0.0.0/8, 192.168.0.0/16</td>
+<td>Any other 172.16.0.0/12 range</td>
+</tr>
+<tr>
+<td>192.168.0.0/16</td>
+<td>10.0.0.0/8, 172.16.0.0/12</td>
+<td>Any other 192.168.0.0/16 range</td>
+</tr>
+</tbody>
+</table>
+<p>Example: If you have a VPC with <code>10.0.0.0/16</code>, you CANNOT add secondary CIDR from <code>172.16.0.0/12</code>.</p>
+<h2>Part 6: Real-World Examples</h2>
+<h3>Example 1: Simple 2-Subnet Setup</h3>
+<p>Requirement: Create a web + database tier in one AZ</p>
+<p>Solution:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">VPC CIDR: 10.0.0.0/16 (65,536 total IPs)
+
+Public Subnet (Web Tier):
+  CIDR: 10.0.1.0/24
+  Usable: 251 IPs
+  Range: 10.0.1.0 - 10.0.1.255
+  Instances: 10.0.1.10, 10.0.1.11, ...
+
+Private Subnet (Database Tier):
+  CIDR: 10.0.2.0/24
+  Usable: 251 IPs
+  Range: 10.0.2.0 - 10.0.2.255
+  Instances: 10.0.2.10 (RDS primary), 10.0.2.11 (RDS replica)
+</code></pre>
+</div>
+<p>Calculation:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Total IPs used = 2 subnets × 256 = 512
+Remaining space = 65,536 - 512 = 65,024 (for future growth)
+</code></pre>
+</div>
+<h3>Example 2: Multi-AZ with Room for Scaling</h3>
+<p>Requirement: 3 AZs × 2 subnets per AZ = 6 subnets</p>
+<p>Solution:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">VPC CIDR: 10.0.0.0/16
+
+AZ-1 (us-east-1a):
+  Public:  10.0.1.0/24
+  Private: 10.0.2.0/24
+
+AZ-2 (us-east-1b):
+  Public:  10.0.3.0/24
+  Private: 10.0.4.0/24
+
+AZ-3 (us-east-1c):
+  Public:  10.0.5.0/24
+  Private: 10.0.6.0/24
+</code></pre>
+</div>
+<p>Verification:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">IPs per subnet: 256
+Total for 6 subnets: 6 × 256 = 1,536
+VPC total: 65,536
+Remaining: 65,536 - 1,536 = 64,000 (plenty of room)
+</code></pre>
+</div>
+<h3>Example 3: Detailed Subnet Allocation</h3>
+<p>Requirement: Unequal subnet sizes based on expected load</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">VPC: 10.0.0.0/16
+
+Web Tier (high traffic):
+  Subnet-1: 10.0.0.0/23  → 512 IPs, 507 usable
+  Subnet-2: 10.0.2.0/23  → 512 IPs, 507 usable
+
+App Tier (medium traffic):
+  Subnet-1: 10.0.4.0/24  → 256 IPs, 251 usable
+  Subnet-2: 10.0.5.0/24  → 256 IPs, 251 usable
+
+Database Tier (low traffic):
+  Subnet-1: 10.0.6.0/25  → 128 IPs, 123 usable
+  Subnet-2: 10.0.6.128/25 → 128 IPs, 123 usable
+</code></pre>
+</div>
+<p>Calculation:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Web:      512 + 512 = 1,024
+App:      256 + 256 = 512
+Database: 128 + 128 = 256
+Total:    1,792 IPs
+Remaining: 65,536 - 1,792 = 63,744 IPs
+</code></pre>
+</div>
+<h2>Part 7: Practice Problems with Solutions</h2>
+<details>
+
+<summary>Problem 1: Calculate Usable IPs</summary>
+
+Question: How many usable IP addresses are in subnet `192.168.10.0/26`?
+
+Solution:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Total = 2^(32-26) = 2^6 = 64
+Usable = 64 - 5 = 59 addresses
+
+Answer: 59 usable IP addresses
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Problem 2: Find Subnet Range</summary>
+
+Question: What is the IP range for subnet `172.16.5.0/25`?
+
+Solution:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">/25 = first 25 bits fixed, last 7 bits variable
+Minimum (00000000): 172.16.5.0
+Maximum (01111111): 172.16.5.127
+
+Answer: 172.16.5.0 - 172.16.5.127 (128 total IPs)
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Problem 3: Design Subnets</summary>
+
+Question: Divide VPC `10.1.0.0/24` into 4 equal subnets. What are the CIDR blocks?
+
+Solution:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Original subnet = /24 = 256 IPs
+Need 4 equal subnets = 256 / 4 = 64 IPs each
+64 = 2^6 → host bits = 6 → Prefix = 32 - 6 = /26
+
+Subnets:
+- 10.1.0.0/26    (10.1.0.0 - 10.1.0.63)
+- 10.1.0.64/26   (10.1.0.64 - 10.1.0.127)
+- 10.1.0.128/26  (10.1.0.128 - 10.1.0.191)
+- 10.1.0.192/26  (10.1.0.192 - 10.1.0.255)
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Problem 4: Multi-VPC Planning</summary>
+
+Question: Create 3 VPCs with non-overlapping CIDR blocks for a multi-region deployment
+
+Solution:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Production VPC (us-east-1):   10.0.0.0/16
+Staging VPC (us-west-2):      10.1.0.0/16
+Development VPC (eu-west-1):  10.2.0.0/16
+
+Verification:
+- No overlaps among 10.0.0.0/16, 10.1.0.0/16, 10.2.0.0/16
+- All within 10.0.0.0/8 range
+- Room for additional /16 VPCs if needed
+</code></pre>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Problem 5: Subnet Sizing Decision</summary>
+
+Question: You need subnets with minimum 100 usable IPs. What's the smallest prefix you should use?
+
+Solution:
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Need 100 usable + 5 reserved = 105 total IPs
+Smallest power of 2 ≥ 105 is 2^7 = 128
+Host bits = 7 → Prefix = 32 - 7 = /25
+/25 = 128 total IPs → Usable = 128 - 5 = 123 usable ✓
+
+Answer: Use /25 or larger
+</code></pre>
+</div>
+
+
+</details>
+
+<h2>Part 8: CIDR Calculator Quick Reference</h2>
+<h3>Powers of 2 Cheat Sheet</h3>
+<table>
+<thead>
+<tr>
+<th>Power</th>
+<th style="text-align: right;">Value</th>
+<th style="text-align: right;">CIDR Bits Used</th>
+<th style="text-align: right;">Prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2^0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">/32</td>
+</tr>
+<tr>
+<td>2^1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">/31</td>
+</tr>
+<tr>
+<td>2^2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">/30</td>
+</tr>
+<tr>
+<td>2^3</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">/29</td>
+</tr>
+<tr>
+<td>2^4</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">/28</td>
+</tr>
+<tr>
+<td>2^5</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">/27</td>
+</tr>
+<tr>
+<td>2^6</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">/26</td>
+</tr>
+<tr>
+<td>2^7</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">/25</td>
+</tr>
+<tr>
+<td>2^8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">/24</td>
+</tr>
+<tr>
+<td>2^9</td>
+<td style="text-align: right;">512</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">/23</td>
+</tr>
+<tr>
+<td>2^10</td>
+<td style="text-align: right;">1,024</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">/22</td>
+</tr>
+<tr>
+<td>2^11</td>
+<td style="text-align: right;">2,048</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">/21</td>
+</tr>
+<tr>
+<td>2^12</td>
+<td style="text-align: right;">4,096</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">/20</td>
+</tr>
+<tr>
+<td>2^13</td>
+<td style="text-align: right;">8,192</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">/19</td>
+</tr>
+<tr>
+<td>2^14</td>
+<td style="text-align: right;">16,384</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">/18</td>
+</tr>
+<tr>
+<td>2^15</td>
+<td style="text-align: right;">32,768</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">/17</td>
+</tr>
+<tr>
+<td>2^16</td>
+<td style="text-align: right;">65,536</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">/16</td>
+</tr>
+</tbody>
+</table>
+<h3>CIDR Common Sizes</h3>
+<table>
+<thead>
+<tr>
+<th>CIDR</th>
+<th style="text-align: right;">Total IPs</th>
+<th style="text-align: right;">Usable IPs</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/16</td>
+<td style="text-align: right;">65,536</td>
+<td style="text-align: right;">65,531</td>
+<td>VPC size</td>
+</tr>
+<tr>
+<td>/20</td>
+<td style="text-align: right;">4,096</td>
+<td style="text-align: right;">4,091</td>
+<td>Large subnet</td>
+</tr>
+<tr>
+<td>/22</td>
+<td style="text-align: right;">1,024</td>
+<td style="text-align: right;">1,019</td>
+<td>Medium subnet</td>
+</tr>
+<tr>
+<td>/24</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">251</td>
+<td>Standard subnet</td>
+</tr>
+<tr>
+<td>/25</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">123</td>
+<td>Small subnet</td>
+</tr>
+<tr>
+<td>/26</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">59</td>
+<td>Very small subnet</td>
+</tr>
+<tr>
+<td>/28</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">11</td>
+<td>Minimal subnet</td>
+</tr>
+</tbody>
+</table>
+<h2>Part 9: Common CIDR Mistakes in AWS</h2>
+<h3>Mistake 1: Overlapping Subnets</h3>
+<p>❌ Wrong:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">VPC: 10.0.0.0/16
+Subnet-1: 10.0.1.0/24  (10.0.1.0 - 10.0.1.255)
+Subnet-2: 10.0.1.128/25 (10.0.1.128 - 10.0.1.255)  ← Overlaps!
+</code></pre>
+</div>
+<p>✅ Correct:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">VPC: 10.0.0.0/16
+Subnet-1: 10.0.1.0/24  (10.0.1.0 - 10.0.1.255)
+Subnet-2: 10.0.2.0/24  (10.0.2.0 - 10.0.2.255)    ← No overlap
+</code></pre>
+</div>
+<h3>Mistake 2: Not Accounting for Reserved IPs</h3>
+<p>❌ Wrong:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Using /28 subnet (16 total IPs) for VPC router, DNS, and 14 EC2 instances
+Actually: 16 - 5 reserved = 11 usable IPs
+Can only launch 11 instances, not 14
+</code></pre>
+</div>
+<p>✅ Correct:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Calculate: Need 14 instances + 5 reserved = 19 total
+Use /25 (128 IPs): 128 - 5 = 123 usable
+Plenty of room
+</code></pre>
+</div>
+<h3>Mistake 3: Too Small Subnet from the Start</h3>
+<p>❌ Wrong:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">VPC: 192.168.0.0/24 (256 total IPs)
+Public Subnet: 192.168.0.0/24 (using all 256)
+Can't create any other subnets!
+</code></pre>
+</div>
+<p>✅ Correct:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">VPC: 10.0.0.0/16 (65,536 IPs)
+Allows flexible subnetting:
+- Public: 10.0.1.0/24
+- Private: 10.0.2.0/24
+- Future growth: 65,000+ remaining
+</code></pre>
+</div>
+<h3>Mistake 4: Forgetting CIDR Reservation Conflicts</h3>
+<p>❌ Wrong:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Using 172.17.0.0/16 for VPC (conflicts with Cloud9/SageMaker)
+</code></pre>
+</div>
+<p>✅ Correct:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Using 10.0.0.0/16 or 172.16.0.0/16 (from RFC 1918)
+Avoid 172.17.0.0/16
+</code></pre>
+</div>
+<h2>Summary: CIDR Quick Decision Tree</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">┌─ How many IPs do I need?
+│  ├─ Less than 256 → /24
+│  ├─ 256-1,024 → /22
+│  ├─ 1,024-4,096 → /20
+│  └─ 4,096+ → /16 or split into multiple VPCs
+│
+├─ How many subnets do I need?
+│  ├─ 2-4 subnets → Use /24 within /16 VPC
+│  ├─ 5-10 subnets → Use /24 within /16 VPC (plenty of room)
+│  └─ 10+ subnets → Use /23 or /22
+│
+├─ Do I have future growth plans?
+│  ├─ Yes → /16 VPC with /24 subnets
+│  └─ No → /20 VPC with /24 subnets (if small)
+│
+└─ Have I checked for CIDR conflicts?
+   ├─ Using RFC 1918 ranges (10.x, 172.16.x, 192.168.x)? ✓
+   ├─ Avoiding 172.17.0.0/16? ✓
+   ├─ No overlap with on-premises networks? ✓
+   └─ No overlap with other AWS accounts? ✓
+</code></pre>
+</div>
+<h2>Resources for Practice</h2>
+<ul>
+<li>Interactive CIDR Calculator: https://www.ipaddressguide.com/cidr</li>
+<li>Visual Subnet Calculator: http://davidc.net/sites/default/subnets/subnets.html</li>
+<li>AWS Documentation: https://docs.aws.amazon.com/vpc/</li>
+<li>Binary Converter: https://www.rapidtables.com/convert/number/binary-converter.html</li>
+</ul>
+<p>Practice until you can calculate CIDR blocks without a calculator!</p>
+<p>This skill is essential for VPC design and will be tested in AWS Solutions Architect and DevOps certifications.</p>
+<p>Last Updated: January 2026\
+Version: 1.0\
+Suitable for: DevOps engineers, AWS Solutions Architects, Network engineers</p>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../../aws/vpc/cidr.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">CIDR</span>
+  </a>
+  <a href="../../aws/vpc/vpc-demo.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">VPC demo</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/main.js?v=2"></script>
+</body>
+</html>

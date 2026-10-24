@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Load Balancers Explained &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../README.html">Infra Setup</a></li>
+    <li><a href="../../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../linux/README.html">Linux</a></li>
+    <li><a href="../../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../../linux/day1.html">day1</a></li>
+    <li><a href="../../linux/day-2.html">day 2</a></li>
+    <li><a href="../../linux/day-3.html">Day 3</a></li>
+    <li><a href="../../linux/day-4.html">Day 4</a></li>
+    <li><a href="../../linux/day-5.html">Day 5</a></li>
+    <li><a href="../../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../git/README.html">Git</a></li>
+    <li><a href="../../git/git.html">git</a></li>
+    <li><a href="../../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../../git/git-version-control.html">git version control</a></li>
+    <li><a href="../../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../../git/git-and-github.html">git and github</a></li>
+    <li><a href="../../git/git-reset.html">git reset</a></li>
+    <li><a href="../../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../../git/git-revert.html">git revert</a></li>
+    <li><a href="../../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../../git/git-squash.html">git squash</a></li>
+    <li><a href="../../git/git-stash.html">git stash</a></li>
+    <li><a href="../../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../aws/README.html">AWS</a></li>
+    <li><a href="../../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../../aws/s3/README.html">S3</a></li>
+    <li><a href="../../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancers-explained.html" class="active">AWS Load Balancers Explained</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../../aws/iam/README.html">IAM</a></li>
+    <li><a href="../../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../../aws/asg.html">ASG</a></li>
+    <li><a href="../../aws/stress-test.html">stress test</a></li>
+    <li><a href="../../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../../aws/kms.html">KMS</a></li>
+    <li><a href="../../aws/iac.html">IAC</a></li>
+    <li><a href="../../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../../aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../docker/README.html">Docker</a></li>
+    <li><a href="../../docker/docker.html">docker</a></li>
+    <li><a href="../../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">AWS Load Balancers Explained</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">AWS Load Balancers Explained</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <figure><img src="https://miro.medium.com/v2/resize:fit:700/1*8QhAIq6cg9FwdJi93wDEVQ.png" alt="" height="350" width="700"><figcaption></figcaption></figure>
+
+<p>Most engineers know the one-line version: ALB is for HTTP, NLB is for TCP, and GWLB is for network appliances. That’s enough to pass an interview. It’s not enough to make the right architectural decision when your production traffic behaves unexpectedly or your health checks are failing in ways the AWS documentation doesn’t quite explain.</p>
+<p>The real distinctions between these load balancers show up in the edge cases: when latency matters at the microsecond level, when you need to preserve client IPs without header manipulation, when connection draining isn’t working the way you expected, or when you’re running a third-party firewall in AWS and traffic inspection needs to be transparent.</p>
+<p>This article covers the operational behavior that the basic explanations skip.</p>
+<h3>ALB: more than just HTTP routing <a href="#id-22b9" id="id-22b9"></a></h3>
+<p>Press enter or click to view image in full size</p>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/1*lMKhmgNXkcv0gS4G5-gBPw.png" alt="" height="603" width="700"><figcaption></figcaption></figure>
+
+<p>The Application Load Balancer operates at Layer 7. It terminates the connection, reads the HTTP request, makes a routing decision based on content, and opens a new connection to the target. This full proxy behavior is what makes ALB powerful and also what makes it slower than NLB.</p>
+<p>The routing capabilities go well beyond hostname and path matching:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">{
+  &quot;Conditions&quot;: [
+    {
+      &quot;Field&quot;: &quot;http-header&quot;,
+      &quot;HttpHeaderConfig&quot;: {
+        &quot;HttpHeaderName&quot;: &quot;X-Feature-Flag&quot;,
+        &quot;Values&quot;: [&quot;canary&quot;]
+      }
+    }
+  ],
+  &quot;Actions&quot;: [
+    {
+      &quot;Type&quot;: &quot;forward&quot;,
+      &quot;TargetGroupArn&quot;: &quot;arn:aws:elasticloadbalancing:ap-south-1:123456789012:targetgroup/canary-tg/abc123&quot;
+    }
+  ]
+}
+</code></pre>
+</div>
+<p>Header-based routing lets you route canary users to a different target group based on a custom header. Combined with query string conditions, source IP conditions, and method conditions, this creates a routing layer that would otherwise require application code.</p>
+<p><strong>Weighted target groups</strong> are how you implement traffic splitting without Argo Rollouts or a service mesh:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">{
+  &quot;Type&quot;: &quot;forward&quot;,
+  &quot;ForwardConfig&quot;: {
+    &quot;TargetGroups&quot;: [
+      {
+        &quot;TargetGroupArn&quot;: &quot;arn:aws:elasticloadbalancing:ap-south-1:123456789012:targetgroup/stable/abc123&quot;,
+        &quot;Weight&quot;: 90
+      },
+      {
+        &quot;TargetGroupArn&quot;: &quot;arn:aws:elasticloadbalancing:ap-south-1:123456789012:targetgroup/canary/def456&quot;,
+        &quot;Weight&quot;: 10
+      }
+    ]
+  }
+}
+</code></pre>
+</div>
+<p>10% of traffic goes to canary, 90% to stable, controlled entirely at the load balancer layer.</p>
+<p>The sharp edge with ALB: because it terminates and re-initiates connections, the target sees the ALB’s IP as the source, not the client’s IP. To get the real client IP, you read the <code>X-Forwarded-For</code> header. This matters for rate limiting, geoblocking, audit logging, and any application that makes decisions based on source IP. If your security groups on the target allow traffic from the ALB's security group and you're filtering IPs in application code, you're filtering the wrong IP.</p>
+<p><strong>ALB and gRPC:</strong> ALB natively supports gRPC routing and health checks as of 2020. You can route based on gRPC service name and method, and health checks use the gRPC health checking protocol rather than HTTP. This makes ALB the right choice for gRPC microservices without needing a separate service mesh or proxy layer.</p>
+<h3>NLB: when Layer 7 overhead is the problem <a href="#aa2b" id="aa2b"></a></h3>
+<p>Press enter or click to view image in full size</p>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/1*Q-Z2cqTnjJJ2aE3005NH7Q.png" alt="" height="633" width="700"><figcaption></figcaption></figure>
+
+<p>NLB operates at Layer 4. It doesn’t read the packet content. It sees a TCP/UDP connection, looks up the target group, and forwards the packet. No connection termination, no added headers, no buffering.</p>
+<p>This has two significant consequences:</p>
+<p><strong>Latency.</strong> NLB adds single-digit millisecond overhead. ALB typically adds 20–30ms because of the connection termination and re-establishment. For most web applications this difference is irrelevant. For financial services, gaming, or any real-time system where latency compounds across dozens of service calls, NLB wins.</p>
+<p><strong>Client IP preservation.</strong> Because NLB doesn’t terminate the connection, the client’s IP address is preserved at the target. No <code>X-Forwarded-For</code> required. Your target sees the actual client IP in the socket connection. This matters for any protocol that doesn't have an equivalent of <code>X-Forwarded-For</code>, for UDP workloads, and for applications where reading a header is not an option.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class=""># Verify client IP preservation with NLB
+# On the target instance, check connection source IPs
+ss -tnp | grep :8080
+# You'll see the client IP directly, not the NLB IP
+</code></pre>
+</div>
+<p>The operational behavior most teams don’t expect: NLB uses flow hash-based routing. A given client IP and source port combination consistently routes to the same target as long as that target is healthy. This is stickiness without a cookie, built into the nature of Layer 4 routing. The implication: if you need true random distribution, NLB’s flow-based routing means clients with the same source IP/port tuple will stick to one target.</p>
+<p><strong>NLB and TLS termination:</strong> NLB can terminate TLS (called TLS passthrough is also supported). When terminating TLS, NLB adds <code>X-Forwarded-For</code> behavior through Proxy Protocol v2, which the target must support. Most modern applications do. If your target doesn't support Proxy Protocol, either disable it or use ALB for TLS termination.</p>
+<p><strong>Static IPs:</strong> NLB gets a fixed IP per Availability Zone. This matters for clients that need to whitelist IPs in their firewall. ALB can’t provide this because its IPs change. NLB’s static IPs or Elastic IP attachments make it the right choice for B2B integrations where the client controls the ingress firewall.</p>
+<h3>GWLB: transparent traffic inspection <a href="#id-2340" id="id-2340"></a></h3>
+<p>Press enter or click to view image in full size</p>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/1*5x4X6LUNkc82WcL27HSy3w.png" alt="" height="586" width="700"><figcaption></figcaption></figure>
+
+<p>Gateway Load Balancer is the least understood of the three and also the one with the most specific use case. It was designed for network virtual appliances: third-party firewalls, intrusion detection systems, deep packet inspection tools that need to sit in the traffic path without requiring changes to application routing.</p>
+<p>GWLB operates at Layer 3 using the GENEVE encapsulation protocol (port 6081). It receives packets from your VPC route table, forwards them to your appliance fleet, and then returns the packets to their original destination after inspection. The traffic path is transparent to both the source and destination.</p>
+<p>The architecture:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">VPC Route Table
+  0.0.0.0/0 → GWLB Endpoint
+
+GWLB Endpoint (in inspection VPC)
+  ↓ GENEVE encapsulation
+Appliance fleet (Palo Alto, Fortinet, CheckPoint, etc.)
+  ↓ inspected and returned
+GWLB Endpoint
+  ↓
+Original destination (back to VPC routing)
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class=""># Check GWLB endpoint association
+aws ec2 describe-vpc-endpoint-service-configurations \
+  --query 'ServiceConfigurations[?ServiceType[?ServiceType==`GatewayLoadBalancer`]]'
+
+# Verify route table entry pointing to GWLB endpoint
+aws ec2 describe-route-tables \
+  --route-table-ids rtb-0abc123def456789 \
+  --query 'RouteTables[*].Routes[?GatewayId!=null]'
+</code></pre>
+</div>
+<p>The key operational property: GWLB uses 5-tuple flow hash stickiness (source IP, destination IP, source port, destination port, protocol). All packets belonging to the same flow go to the same appliance instance. This is essential for stateful inspection. A firewall that sees the SYN but not the SYN-ACK can’t make the right decision.</p>
+<p>GWLB is not a general-purpose load balancer. If you’re not running network appliances that need to inspect traffic transparently, you don’t need GWLB.</p>
+<h3>Target groups: the configuration that matters most <a href="#df68" id="df68"></a></h3>
+<p>Target groups are where load balancer behavior gets specific. The right target type, health check configuration, and deregistration behavior make the difference between reliable deployments and traffic drops during scale events.</p>
+<p><strong>Target types:</strong></p>
+<ul>
+<li><strong>Instance:</strong> routes to EC2 instance IDs. The instance must have the port accessible.</li>
+<li><strong>IP:</strong> routes to specific IP addresses. Required for targets outside the VPC (on-premises), Lambda functions as targets, or ECS Fargate tasks (which don’t have instance IDs).</li>
+<li><strong>Lambda:</strong> routes HTTP requests directly to a Lambda function. ALB serializes the request into a JSON event.</li>
+</ul>
+<p><strong>Deregistration delay:</strong> when a target is deregistered (scale-in event, deployment replacement), ALB and NLB stop sending new connections to it but keep existing connections open until they complete or the deregistration delay expires. The default is 300 seconds.</p>
+<p>300 seconds is too long for most APIs. If your requests complete within 30 seconds, set the delay to 30 seconds plus a safety margin:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">aws elbv2 modify-target-group-attributes \
+  --target-group-arn arn:aws:elasticloadbalancing:ap-south-1:123456789012:targetgroup/api/abc123 \
+  --attributes Key=deregistration_delay.timeout_seconds,Value=30
+</code></pre>
+</div>
+<p>A 300-second delay means a rolling deployment with 10 instances takes 50 minutes for old instances to fully drain. A 30-second delay makes the same deployment complete in 5 minutes.</p>
+<p><strong>Slow start duration:</strong> when a new target registers and passes its first health check, it immediately receives its full share of traffic. For targets with long initialization times (JVM warm-up, cache population), this causes elevated error rates at startup. Slow start ramps traffic from 0 to full share over a configurable duration:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">aws elbv2 modify-target-group-attributes \
+  --target-group-arn arn:aws:elasticloadbalancing:ap-south-1:123456789012:targetgroup/api/abc123 \
+  --attributes Key=slow_start.duration_seconds,Value=30
+</code></pre>
+</div>
+<h3>Health checks: where load balancer reliability actually lives <a href="#id-1987" id="id-1987"></a></h3>
+<p>Health checks are the mechanism that makes load balancers useful. A misconfigured health check is worse than no health check. It either marks healthy targets as unhealthy (unnecessary traffic reduction) or keeps unhealthy targets in rotation (user-facing errors).</p>
+<p><strong>The right health check path:</strong> your health check endpoint should reflect the actual health of the target, not just that the process is running. A web server that responds 200 to <code>/health</code> while its database connection pool is exhausted is lying to the load balancer. Your health check should verify that the application can actually serve requests.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class=""># A meaningful health check
+@app.route('/health')
+def health():
+    checks = {
+        'database': check_db_connection(),
+        'cache': check_cache_connection(),
+        'downstream_api': check_downstream()
+    }
+    if all(checks.values()):
+        return jsonify({'status': 'healthy', 'checks': checks}), 200
+    return jsonify({'status': 'unhealthy', 'checks': checks}), 503
+</code></pre>
+</div>
+<p><strong>Threshold tuning:</strong> the defaults (10 seconds interval, 3 consecutive failures before unhealthy) mean a target isn’t removed from rotation for 30 seconds after it starts failing. For latency-sensitive applications, reduce this:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">aws elbv2 modify-target-group \
+  --target-group-arn arn:aws:elasticloadbalancing:ap-south-1:123456789012:targetgroup/api/abc123 \
+  --health-check-interval-seconds 10 \
+  --healthy-threshold-count 2 \
+  --unhealthy-threshold-count 2 \
+  --health-check-timeout-seconds 5
+</code></pre>
+</div>
+<p>Two consecutive failures (20 seconds) before marking unhealthy. Two consecutive successes (20 seconds) before marking healthy again. A target that flaps doesn’t get cycled in and out repeatedly with these settings. Two clean passes are required.</p>
+<p><strong>NLB health checks behave differently from ALB.</strong> NLB health checks are TCP-level by default. A TCP health check succeeds if the port accepts a connection, even if the application is deadlocked and not processing requests. Use HTTP health checks on NLB when possible:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">aws elbv2 modify-target-group \
+  --target-group-arn arn:aws:elasticloadbalancing:ap-south-1:123456789012:targetgroup/tcp-api/abc123 \
+  --health-check-protocol HTTP \
+  --health-check-path /health
+</code></pre>
+</div>
+<h3>Choosing the right load balancer <a href="#id-3ca6" id="id-3ca6"></a></h3>
+<p>Dimension ALB NLB GWLB Layer 7 (HTTP/HTTPS/gRPC) 4 (TCP/UDP/TLS) 3 (all IP traffic) Latency 20–30ms overhead Single-digit ms Depends on appliance Client IP X-Forwarded-For header Preserved natively Preserved Static IPs No Yes (per AZ) Yes (per AZ) Routing logic Headers, paths, query, method Flow hash GENEVE encapsulation TLS termination Yes Yes (+ passthrough) No Use case HTTP APIs, microservices Low-latency TCP, IP whitelisting Network appliances, inspection</p>
+<p>The decision is mostly made by the protocol and latency requirements. HTTP workloads without strict latency requirements go to ALB. TCP workloads, UDP workloads, and anything requiring IP whitelisting go to NLB. Traffic inspection and firewall appliances go to GWLB.</p>
+<p>Where teams get it wrong: choosing NLB for an HTTP API because “it’s faster” without considering that they lose header-based routing, request-level visibility in access logs, and native gRPC support. The latency difference rarely justifies the feature loss for typical web APIs. NLB earns its place for protocols that ALB doesn’t speak and for scenarios where static IPs are required</p>
+<p><br></p>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../../aws/load-balancer/aws-load-balancer.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">AWS Load balancer</span>
+  </a>
+  <a href="../../aws/load-balancer/load-balancing-algorithms.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Load Balancing Algorithms</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/main.js?v=2"></script>
+</body>
+</html>

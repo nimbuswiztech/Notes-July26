@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EC2 Instance Types &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html" class="active">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">EC2 Instance Types</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">EC2 Instance Types</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>1. What Are EC2 Instance Types?</h2>
+<p>An <strong>EC2 Instance Type</strong> defines the <strong>hardware configuration</strong> of the virtual server. It determines:</p>
+<ul>
+<li><strong>vCPUs</strong> – Number of virtual CPUs</li>
+<li><strong>Memory (RAM)</strong> – Amount of RAM</li>
+<li><strong>Storage</strong> – Type and amount of storage</li>
+<li><strong>Network Performance</strong> – Bandwidth available</li>
+<li><strong>Processor</strong> – Intel, AMD, or AWS Graviton (ARM)</li>
+</ul>
+<h3>Simple Analogy for Students</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Instance Type = Choosing the right computer for the job
+
+Need to write documents?      → Small laptop (t2.micro)
+Need to edit videos?          → Powerful workstation (c5.4xlarge)
+Need to run databases?        → High-memory server (r5.2xlarge)
+Need GPU for ML training?     → GPU machine (p3.2xlarge)
+</code></pre>
+</div>
+<h2>2. Instance Type Naming Convention</h2>
+<p>Every instance type follows this naming pattern:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">    m  5  a  .  2xlarge
+    │  │  │     │
+    │  │  │     └── Size (nano, micro, small, medium, large, xlarge, 2xlarge, ...)
+    │  │  │
+    │  │  └── Additional Attribute (a=AMD, g=Graviton, n=Network, d=local storage)
+    │  │
+    │  └── Generation (higher = newer, better)
+    │
+    └── Family (m=General, c=Compute, r=Memory, etc.)
+</code></pre>
+</div>
+<h3>Breakdown Examples</h3>
+<table>
+<thead>
+<tr>
+<th>Instance Type</th>
+<th>Family</th>
+<th>Generation</th>
+<th>Attribute</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>t2.micro</code></td>
+<td>t (Burstable)</td>
+<td>2nd gen</td>
+<td>—</td>
+<td>micro</td>
+</tr>
+<tr>
+<td><code>t3.medium</code></td>
+<td>t (Burstable)</td>
+<td>3rd gen</td>
+<td>—</td>
+<td>medium</td>
+</tr>
+<tr>
+<td><code>m5.large</code></td>
+<td>m (General)</td>
+<td>5th gen</td>
+<td>—</td>
+<td>large</td>
+</tr>
+<tr>
+<td><code>m5a.xlarge</code></td>
+<td>m (General)</td>
+<td>5th gen</td>
+<td>AMD</td>
+<td>xlarge</td>
+</tr>
+<tr>
+<td><code>m7g.2xlarge</code></td>
+<td>m (General)</td>
+<td>7th gen</td>
+<td>Graviton</td>
+<td>2xlarge</td>
+</tr>
+<tr>
+<td><code>c5.4xlarge</code></td>
+<td>c (Compute)</td>
+<td>5th gen</td>
+<td>—</td>
+<td>4xlarge</td>
+</tr>
+<tr>
+<td><code>c5n.xlarge</code></td>
+<td>c (Compute)</td>
+<td>5th gen</td>
+<td>Network</td>
+<td>xlarge</td>
+</tr>
+<tr>
+<td><code>r5.8xlarge</code></td>
+<td>r (Memory)</td>
+<td>5th gen</td>
+<td>—</td>
+<td>8xlarge</td>
+</tr>
+<tr>
+<td><code>r6gd.xlarge</code></td>
+<td>r (Memory)</td>
+<td>6th gen</td>
+<td>Graviton+disk</td>
+<td>xlarge</td>
+</tr>
+<tr>
+<td><code>p3.2xlarge</code></td>
+<td>p (GPU)</td>
+<td>3rd gen</td>
+<td>—</td>
+<td>2xlarge</td>
+</tr>
+<tr>
+<td><code>i3.large</code></td>
+<td>i (Storage)</td>
+<td>3rd gen</td>
+<td>—</td>
+<td>large</td>
+</tr>
+</tbody>
+</table>
+<h3>Additional Attributes</h3>
+<table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>a</strong></td>
+<td>AMD processors (often cheaper than Intel)</td>
+</tr>
+<tr>
+<td><strong>g</strong></td>
+<td>AWS Graviton (ARM-based, best price-performance)</td>
+</tr>
+<tr>
+<td><strong>n</strong></td>
+<td>Enhanced networking / higher bandwidth</td>
+</tr>
+<tr>
+<td><strong>d</strong></td>
+<td>Local NVMe instance store (temporary fast storage)</td>
+</tr>
+<tr>
+<td><strong>e</strong></td>
+<td>Extra storage or memory</td>
+</tr>
+<tr>
+<td><strong>z</strong></td>
+<td>High frequency (high single-core performance)</td>
+</tr>
+<tr>
+<td><strong>flex</strong></td>
+<td>Flexible instance (combines different sizes)</td>
+</tr>
+</tbody>
+</table>
+<h3>Size Progression</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">nano → micro → small → medium → large → xlarge → 2xlarge → ... → metal
+
+Each step roughly DOUBLES the resources:
+
+t3.micro:    2 vCPU,   1 GB RAM
+t3.small:    2 vCPU,   2 GB RAM
+t3.medium:   2 vCPU,   4 GB RAM
+t3.large:    2 vCPU,   8 GB RAM
+t3.xlarge:   4 vCPU,  16 GB RAM
+t3.2xlarge:  8 vCPU,  32 GB RAM
+</code></pre>
+</div>
+<h2>3. Instance Families – Complete Overview</h2>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Category</th>
+<th>Best For</th>
+<th>Key Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>T</strong></td>
+<td>General Purpose (Burstable)</td>
+<td>Dev/test, small apps</td>
+<td>CPU credits / burst</td>
+</tr>
+<tr>
+<td><strong>M</strong></td>
+<td>General Purpose (Balanced)</td>
+<td>Enterprise apps, mid-size DBs</td>
+<td>Balanced compute/memory</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Compute Optimized</td>
+<td>HPC, batch, gaming</td>
+<td>Highest CPU performance</td>
+</tr>
+<tr>
+<td><strong>R</strong></td>
+<td>Memory Optimized</td>
+<td>Large DBs, in-memory cache</td>
+<td>High memory-to-CPU ratio</td>
+</tr>
+<tr>
+<td><strong>X</strong></td>
+<td>Memory Optimized (Extreme)</td>
+<td>SAP HANA, very large DBs</td>
+<td>Massive memory (up to 4 TB)</td>
+</tr>
+<tr>
+<td><strong>I</strong></td>
+<td>Storage Optimized</td>
+<td>NoSQL DBs, data warehousing</td>
+<td>High sequential I/O</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>Storage Optimized (Dense)</td>
+<td>MapReduce, HDFS, data lakes</td>
+<td>Very high disk throughput</td>
+</tr>
+<tr>
+<td><strong>H</strong></td>
+<td>Storage Optimized (HDD)</td>
+<td>Hadoop, log processing</td>
+<td>High throughput HDD</td>
+</tr>
+<tr>
+<td><strong>P</strong></td>
+<td>Accelerated Computing (GPU)</td>
+<td>ML training, deep learning</td>
+<td>NVIDIA GPUs</td>
+</tr>
+<tr>
+<td><strong>G</strong></td>
+<td>Accelerated Computing (Graphics)</td>
+<td>Video rendering, gaming</td>
+<td>Graphics GPUs</td>
+</tr>
+<tr>
+<td><strong>Inf</strong></td>
+<td>Machine Learning Inference</td>
+<td>ML inference at scale</td>
+<td>AWS Inferentia chips</td>
+</tr>
+<tr>
+<td><strong>Trn</strong></td>
+<td>Machine Learning Training</td>
+<td>Large-scale ML training</td>
+<td>AWS Trainium chips</td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td>FPGA</td>
+<td>Hardware acceleration</td>
+<td>FPGAs</td>
+</tr>
+<tr>
+<td><strong>Mac</strong></td>
+<td>macOS</td>
+<td>iOS/macOS app builds</td>
+<td>Apple Mac mini hardware</td>
+</tr>
+</tbody>
+</table>
+<h2>4. General Purpose Instances (T, M)</h2>
+<h3>T Family – Burstable Performance</h3>
+<p>The <strong>T family</strong> uses a <strong>CPU credit system</strong> that allows instances to burst above baseline performance.</p>
+<h4>How CPU Credits Work</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Baseline Performance (e.g., t2.micro = 10% CPU)
+     │
+     │  ──── CPU is IDLE ──── Credits ACCUMULATE
+     │
+     │  ──── CPU is BUSY ──── Credits are SPENT
+     │
+     │  ──── Credits = 0 ──── Performance drops to BASELINE
+     │
+     └── Unless &quot;Unlimited&quot; mode is enabled (charged for extra usage)
+</code></pre>
+</div>
+<h4>T2 vs T3</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>T2</th>
+<th>T3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Credit Mode</strong></td>
+<td>Standard (credits deplete)</td>
+<td>Unlimited (default)</td>
+</tr>
+<tr>
+<td><strong>Processor</strong></td>
+<td>Intel Xeon</td>
+<td>Intel Xeon (newer)</td>
+</tr>
+<tr>
+<td><strong>Network</strong></td>
+<td>Moderate</td>
+<td>Better</td>
+</tr>
+<tr>
+<td><strong>Free Tier</strong></td>
+<td>✅ t2.micro</td>
+<td>❌ (but t3.micro in some regions)</td>
+</tr>
+<tr>
+<td><strong>Recommendation</strong></td>
+<td>Learning/testing</td>
+<td>Production burstable workloads</td>
+</tr>
+</tbody>
+</table>
+<h4>Common T Instance Sizes</h4>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>Memory</th>
+<th>Baseline CPU</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>t2.nano</code></td>
+<td>1</td>
+<td>0.5 GB</td>
+<td>5%</td>
+<td>Tiny test instances</td>
+</tr>
+<tr>
+<td><code>t2.micro</code></td>
+<td>1</td>
+<td>1 GB</td>
+<td>10%</td>
+<td>Free Tier, learning ✅</td>
+</tr>
+<tr>
+<td><code>t2.small</code></td>
+<td>1</td>
+<td>2 GB</td>
+<td>20%</td>
+<td>Small web apps</td>
+</tr>
+<tr>
+<td><code>t2.medium</code></td>
+<td>2</td>
+<td>4 GB</td>
+<td>40%</td>
+<td>Dev/test environments</td>
+</tr>
+<tr>
+<td><code>t2.large</code></td>
+<td>2</td>
+<td>8 GB</td>
+<td>60%</td>
+<td>Small production apps</td>
+</tr>
+<tr>
+<td><code>t3.micro</code></td>
+<td>2</td>
+<td>1 GB</td>
+<td>10%</td>
+<td>Better than t2.micro</td>
+</tr>
+<tr>
+<td><code>t3.medium</code></td>
+<td>2</td>
+<td>4 GB</td>
+<td>20%</td>
+<td>Jenkins, small apps</td>
+</tr>
+<tr>
+<td><code>t3.large</code></td>
+<td>2</td>
+<td>8 GB</td>
+<td>30%</td>
+<td>Medium workloads</td>
+</tr>
+<tr>
+<td><code>t3.xlarge</code></td>
+<td>4</td>
+<td>16 GB</td>
+<td>40%</td>
+<td>Larger applications</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>t2.micro</strong> is the go-to for Free Tier learning. <strong>t3.medium</strong> is great for small production workloads.</p>
+</div>
+</div>
+<h3>M Family – Balanced / General Purpose</h3>
+<p>The <strong>M family</strong> provides a <strong>fixed, consistent</strong> balance of compute, memory, and networking.</p>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>Memory</th>
+<th>Network</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>m5.large</code></td>
+<td>2</td>
+<td>8 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Small app servers</td>
+</tr>
+<tr>
+<td><code>m5.xlarge</code></td>
+<td>4</td>
+<td>16 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Medium workloads</td>
+</tr>
+<tr>
+<td><code>m5.2xlarge</code></td>
+<td>8</td>
+<td>32 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Enterprise applications</td>
+</tr>
+<tr>
+<td><code>m5.4xlarge</code></td>
+<td>16</td>
+<td>64 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Large databases</td>
+</tr>
+<tr>
+<td><code>m6i.large</code></td>
+<td>2</td>
+<td>8 GB</td>
+<td>Up to 12.5 Gbps</td>
+<td>6th gen Intel</td>
+</tr>
+<tr>
+<td><code>m7g.large</code></td>
+<td>2</td>
+<td>8 GB</td>
+<td>Up to 12.5 Gbps</td>
+<td>7th gen Graviton (best value!)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Enterprise applications</li>
+<li>Mid-size databases</li>
+<li>Caching servers</li>
+<li>Backend servers</li>
+<li>Development environments</li>
+</ul>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>m7g (Graviton)</strong> instances offer the <strong>best price-performance</strong> in the general purpose category.</p>
+</div>
+</div>
+<h2>5. Compute Optimized Instances (C)</h2>
+<p>The <strong>C family</strong> is designed for <strong>CPU-intensive workloads</strong> that need high-performance processors.</p>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>Memory</th>
+<th>Network</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>c5.large</code></td>
+<td>2</td>
+<td>4 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Batch processing</td>
+</tr>
+<tr>
+<td><code>c5.xlarge</code></td>
+<td>4</td>
+<td>8 GB</td>
+<td>Up to 10 Gbps</td>
+<td>HPC</td>
+</tr>
+<tr>
+<td><code>c5.2xlarge</code></td>
+<td>8</td>
+<td>16 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Scientific modeling</td>
+</tr>
+<tr>
+<td><code>c5.4xlarge</code></td>
+<td>16</td>
+<td>32 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Video encoding</td>
+</tr>
+<tr>
+<td><code>c5n.xlarge</code></td>
+<td>4</td>
+<td>10.5 GB</td>
+<td>Up to 25 Gbps</td>
+<td>Network-intensive compute</td>
+</tr>
+<tr>
+<td><code>c7g.large</code></td>
+<td>2</td>
+<td>4 GB</td>
+<td>Up to 12.5 Gbps</td>
+<td>Graviton compute</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Characteristic:</strong> <strong>High CPU-to-memory ratio</strong> (2:1 CPU:RAM compared to M's 1:4)</p>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Batch processing</li>
+<li>Scientific computing</li>
+<li>Machine learning inference</li>
+<li>Gaming servers</li>
+<li>Video encoding/transcoding</li>
+<li>High-performance web servers</li>
+<li>Ad serving</li>
+</ul>
+<h2>6. Memory Optimized Instances (R, X)</h2>
+<h3>R Family – Memory Optimized</h3>
+<p>Designed for workloads that need to <strong>process large data sets in memory</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>Memory</th>
+<th>Network</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>r5.large</code></td>
+<td>2</td>
+<td>16 GB</td>
+<td>Up to 10 Gbps</td>
+<td>In-memory DBs</td>
+</tr>
+<tr>
+<td><code>r5.xlarge</code></td>
+<td>4</td>
+<td>32 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Redis/Memcached</td>
+</tr>
+<tr>
+<td><code>r5.2xlarge</code></td>
+<td>8</td>
+<td>64 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Large relational DBs</td>
+</tr>
+<tr>
+<td><code>r5.4xlarge</code></td>
+<td>16</td>
+<td>128 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Real-time analytics</td>
+</tr>
+<tr>
+<td><code>r6g.large</code></td>
+<td>2</td>
+<td>16 GB</td>
+<td>Up to 10 Gbps</td>
+<td>Graviton memory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Characteristic:</strong> <strong>High memory-to-CPU ratio</strong> (1:8 CPU:RAM)</p>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>High-performance relational databases (MySQL, PostgreSQL)</li>
+<li>In-memory databases (Redis, Memcached, ElastiCache)</li>
+<li>Real-time big data analytics</li>
+<li>Apache Spark</li>
+<li>SAP applications</li>
+</ul>
+<h3>X Family – Extreme Memory</h3>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>Memory</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x1.16xlarge</code></td>
+<td>64</td>
+<td>976 GB (\~1 TB)</td>
+<td>SAP HANA</td>
+</tr>
+<tr>
+<td><code>x1.32xlarge</code></td>
+<td>128</td>
+<td>1,952 GB (\~2 TB)</td>
+<td>Large SAP HANA</td>
+</tr>
+<tr>
+<td><code>x2idn.32xlarge</code></td>
+<td>128</td>
+<td>2,048 GB (2 TB)</td>
+<td>Very large in-memory DBs</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>These are for <strong>extremely memory-intensive</strong> workloads like SAP HANA.</p>
+</div>
+</div>
+<h2>7. Storage Optimized Instances (I, D, H)</h2>
+<h3>I Family – High I/O (NVMe SSD)</h3>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>Memory</th>
+<th>Storage</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>i3.large</code></td>
+<td>2</td>
+<td>15.25 GB</td>
+<td>1 x 475 GB NVMe</td>
+<td>NoSQL databases</td>
+</tr>
+<tr>
+<td><code>i3.xlarge</code></td>
+<td>4</td>
+<td>30.5 GB</td>
+<td>1 x 950 GB NVMe</td>
+<td>MongoDB, Cassandra</td>
+</tr>
+<tr>
+<td><code>i3.2xlarge</code></td>
+<td>8</td>
+<td>61 GB</td>
+<td>1 x 1,900 GB NVMe</td>
+<td>Elasticsearch</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>NoSQL databases (MongoDB, Cassandra, DynamoDB local)</li>
+<li>Elasticsearch / OpenSearch</li>
+<li>Data warehousing (Redshift)</li>
+<li>High-frequency OLTP systems</li>
+</ul>
+<h3>D Family – Dense Storage (HDD)</h3>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>Memory</th>
+<th>Storage</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>d2.xlarge</code></td>
+<td>4</td>
+<td>30.5 GB</td>
+<td>3 x 2 TB HDD</td>
+<td>MapReduce</td>
+</tr>
+<tr>
+<td><code>d2.2xlarge</code></td>
+<td>8</td>
+<td>61 GB</td>
+<td>6 x 2 TB HDD</td>
+<td>Hadoop HDFS</td>
+</tr>
+<tr>
+<td><code>d2.8xlarge</code></td>
+<td>36</td>
+<td>244 GB</td>
+<td>24 x 2 TB HDD</td>
+<td>Data lakes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>MapReduce / Hadoop</li>
+<li>Distributed file systems (HDFS)</li>
+<li>Data lake storage</li>
+<li>Log processing</li>
+</ul>
+<h2>8. Accelerated Computing (GPU) Instances (P, G, Inf, Trn)</h2>
+<h3>P Family – GPU Compute (ML Training)</h3>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>Memory</th>
+<th>GPU</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p3.2xlarge</code></td>
+<td>8</td>
+<td>61 GB</td>
+<td>1x NVIDIA V100</td>
+<td>ML training</td>
+</tr>
+<tr>
+<td><code>p3.8xlarge</code></td>
+<td>32</td>
+<td>244 GB</td>
+<td>4x NVIDIA V100</td>
+<td>Large-scale ML</td>
+</tr>
+<tr>
+<td><code>p4d.24xlarge</code></td>
+<td>96</td>
+<td>1,152 GB</td>
+<td>8x NVIDIA A100</td>
+<td>Deep learning</td>
+</tr>
+<tr>
+<td><code>p5.48xlarge</code></td>
+<td>192</td>
+<td>2,048 GB</td>
+<td>8x NVIDIA H100</td>
+<td>Largest ML models</td>
+</tr>
+</tbody>
+</table>
+<h3>G Family – Graphics / Video</h3>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>Memory</th>
+<th>GPU</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>g4dn.xlarge</code></td>
+<td>4</td>
+<td>16 GB</td>
+<td>1x NVIDIA T4</td>
+<td>ML inference, video</td>
+</tr>
+<tr>
+<td><code>g5.xlarge</code></td>
+<td>4</td>
+<td>16 GB</td>
+<td>1x NVIDIA A10G</td>
+<td>Graphics rendering</td>
+</tr>
+</tbody>
+</table>
+<h3>Inf / Trn Family – AWS Custom Chips</h3>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>Chip</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>inf1.xlarge</code></td>
+<td>AWS Inferentia</td>
+<td>ML inference</td>
+</tr>
+<tr>
+<td><code>inf2.xlarge</code></td>
+<td>AWS Inferentia2</td>
+<td>Large model inference</td>
+</tr>
+<tr>
+<td><code>trn1.2xlarge</code></td>
+<td>AWS Trainium</td>
+<td>ML model training</td>
+</tr>
+</tbody>
+</table>
+<h2>9. Choosing the Right Instance Type – Decision Guide</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">What is your workload?
+     │
+     ├── General web application?
+     │    ├── Low/intermittent traffic → t3.micro / t3.small (Burstable)
+     │    └── Steady traffic → m5.large / m7g.large (General Purpose)
+     │
+     ├── CPU-intensive processing?
+     │    └── c5.xlarge / c7g.xlarge (Compute Optimized)
+     │
+     ├── Large database?
+     │    ├── Moderate → m5.xlarge (General Purpose)
+     │    └── Memory-heavy → r5.xlarge / r6g.xlarge (Memory Optimized)
+     │
+     ├── In-memory cache (Redis/Memcached)?
+     │    └── r5.large / r6g.large (Memory Optimized)
+     │
+     ├── Machine Learning training?
+     │    └── p3.2xlarge / p4d.24xlarge (GPU)
+     │
+     ├── High I/O database (MongoDB, Cassandra)?
+     │    └── i3.xlarge (Storage Optimized)
+     │
+     ├── Big Data / Hadoop?
+     │    └── d2.xlarge / h1.2xlarge (Dense Storage)
+     │
+     └── Learning / Free Tier?
+          └── t2.micro ✅
+</code></pre>
+</div>
+<h2>10. Instance Types for DevOps Use Cases</h2>
+<table>
+<thead>
+<tr>
+<th>DevOps Use Case</th>
+<th>Recommended Instance</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Jenkins Server</strong></td>
+<td><code>t3.medium</code> (2 vCPU, 4 GB)</td>
+<td>Bursty build workloads</td>
+</tr>
+<tr>
+<td><strong>Jenkins Build Agent</strong></td>
+<td><code>c5.large</code> (2 vCPU, 4 GB)</td>
+<td>CPU-intensive builds</td>
+</tr>
+<tr>
+<td><strong>Docker Host</strong></td>
+<td><code>m5.large</code> (2 vCPU, 8 GB)</td>
+<td>Balanced for containers</td>
+</tr>
+<tr>
+<td><strong>Kubernetes Node</strong></td>
+<td><code>m5.xlarge</code> (4 vCPU, 16 GB)</td>
+<td>Run multiple pods</td>
+</tr>
+<tr>
+<td><strong>SonarQube</strong></td>
+<td><code>t3.large</code> (2 vCPU, 8 GB)</td>
+<td>Memory for analysis</td>
+</tr>
+<tr>
+<td><strong>Nexus/Artifactory</strong></td>
+<td><code>m5.large</code> (2 vCPU, 8 GB)</td>
+<td>Storage-heavy</td>
+</tr>
+<tr>
+<td><strong>Monitoring (Prometheus)</strong></td>
+<td><code>r5.large</code> (2 vCPU, 16 GB)</td>
+<td>Memory for time-series</td>
+</tr>
+<tr>
+<td><strong>ELK Stack</strong></td>
+<td><code>r5.xlarge</code> (4 vCPU, 32 GB)</td>
+<td>Memory + I/O</td>
+</tr>
+<tr>
+<td><strong>Tomcat Application</strong></td>
+<td><code>t3.medium</code> (2 vCPU, 4 GB)</td>
+<td>Java web apps</td>
+</tr>
+<tr>
+<td><strong>MySQL/PostgreSQL</strong></td>
+<td><code>r5.large</code> (2 vCPU, 16 GB)</td>
+<td>Memory for DB cache</td>
+</tr>
+<tr>
+<td><strong>Learning/Testing</strong></td>
+<td><code>t2.micro</code> (1 vCPU, 1 GB)</td>
+<td>Free Tier ✅</td>
+</tr>
+</tbody>
+</table>
+<h2>11. AWS Graviton – Best Price-Performance</h2>
+<p><strong>AWS Graviton</strong> processors are ARM-based chips designed by AWS. They offer:</p>
+<ul>
+<li><strong>Up to 40% better price-performance</strong> vs Intel/AMD</li>
+<li>Lower power consumption</li>
+<li>Available in most instance families (suffix <code>g</code>)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Intel/AMD</th>
+<th>Graviton Equivalent</th>
+<th>Savings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>m5.large</code></td>
+<td><code>m7g.large</code></td>
+<td>\~20-40% cheaper</td>
+</tr>
+<tr>
+<td><code>c5.xlarge</code></td>
+<td><code>c7g.xlarge</code></td>
+<td>\~20-40% cheaper</td>
+</tr>
+<tr>
+<td><code>r5.large</code></td>
+<td><code>r7g.large</code></td>
+<td>\~20-40% cheaper</td>
+</tr>
+<tr>
+<td><code>t3.medium</code></td>
+<td><code>t4g.medium</code></td>
+<td>\~20% cheaper</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Always consider Graviton instances</strong> if your application supports ARM/Linux.</p>
+</div>
+</div>
+<h2>12. How to Check Instance Type Info</h2>
+<h3>From AWS CLI</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># List all instance types
+aws ec2 describe-instance-types --query 'InstanceTypes[*].[InstanceType,VCpuInfo.DefaultVCpus,MemoryInfo.SizeInMiB]' --output table
+
+# Get specific instance type details
+aws ec2 describe-instance-types --instance-types t2.micro --output json
+
+# Filter by family
+aws ec2 describe-instance-types --filters &quot;Name=instance-type,Values=t3.*&quot; --query 'InstanceTypes[*].[InstanceType,VCpuInfo.DefaultVCpus,MemoryInfo.SizeInMiB]' --output table
+</code></pre>
+</div>
+<h3>From AWS Console</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">EC2 → Instance Types (left sidebar) → Filter and compare
+</code></pre>
+</div>
+<h2>13. Quick Reference – Most Used Instance Types</h2>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPU</th>
+<th>RAM</th>
+<th>Category</th>
+<th>Free Tier</th>
+<th>Monthly Cost (approx.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>t2.micro</code></td>
+<td>1</td>
+<td>1 GB</td>
+<td>Burstable</td>
+<td>✅ Yes</td>
+<td>\~$8.50</td>
+</tr>
+<tr>
+<td><code>t2.small</code></td>
+<td>1</td>
+<td>2 GB</td>
+<td>Burstable</td>
+<td>❌</td>
+<td>\~$17</td>
+</tr>
+<tr>
+<td><code>t3.medium</code></td>
+<td>2</td>
+<td>4 GB</td>
+<td>Burstable</td>
+<td>❌</td>
+<td>\~$30</td>
+</tr>
+<tr>
+<td><code>t3.large</code></td>
+<td>2</td>
+<td>8 GB</td>
+<td>Burstable</td>
+<td>❌</td>
+<td>\~$60</td>
+</tr>
+<tr>
+<td><code>m5.large</code></td>
+<td>2</td>
+<td>8 GB</td>
+<td>General</td>
+<td>❌</td>
+<td>\~$70</td>
+</tr>
+<tr>
+<td><code>m5.xlarge</code></td>
+<td>4</td>
+<td>16 GB</td>
+<td>General</td>
+<td>❌</td>
+<td>\~$140</td>
+</tr>
+<tr>
+<td><code>c5.large</code></td>
+<td>2</td>
+<td>4 GB</td>
+<td>Compute</td>
+<td>❌</td>
+<td>\~$62</td>
+</tr>
+<tr>
+<td><code>c5.xlarge</code></td>
+<td>4</td>
+<td>8 GB</td>
+<td>Compute</td>
+<td>❌</td>
+<td>\~$124</td>
+</tr>
+<tr>
+<td><code>r5.large</code></td>
+<td>2</td>
+<td>16 GB</td>
+<td>Memory</td>
+<td>❌</td>
+<td>\~$91</td>
+</tr>
+<tr>
+<td><code>r5.xlarge</code></td>
+<td>4</td>
+<td>32 GB</td>
+<td>Memory</td>
+<td>❌</td>
+<td>\~$182</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>Prices are approximate for <code>ap-south-1</code> (Mumbai) On-Demand. Actual prices vary by Region.</p>
+</div>
+</div>
+<h2>14. Classroom Quiz Questions ❓</h2>
+<details>
+
+<summary><strong>Q1:</strong> "What instance type should you use for the Free Tier?"</summary>
+
+**Answer:** `t2.micro` – 1 vCPU, 1 GB RAM, Free Tier eligible.
+
+</details>
+
+<details>
+
+<summary><strong>Q2:</strong> "What does the letter 'c' in <code>c5.xlarge</code> stand for?"</summary>
+
+**Answer:** Compute optimized – designed for CPU-intensive workloads.
+
+</details>
+
+<details>
+
+<summary><strong>Q3:</strong> "What is the difference between T and M instance types?"</summary>
+
+**Answer:** T instances are **burstable** (use CPU credits), while M instances provide **fixed, consistent** performance.
+
+</details>
+
+<details>
+
+<summary><strong>Q4:</strong> "Which instance type would you choose for a Jenkins server?"</summary>
+
+**Answer:** `t3.medium` (2 vCPU, 4 GB RAM) – builds are bursty, doesn't need constant high CPU.
+
+</details>
+
+<details>
+
+<summary><strong>Q5:</strong> "What does the 'g' suffix mean in <code>m7g.large</code>?"</summary>
+
+**Answer:** AWS **Graviton** (ARM-based) processor – offers better price-performance.
+
+</details>
+
+<details>
+
+<summary><strong>Q6:</strong> "What happens when a T2 instance runs out of CPU credits?"</summary>
+
+**Answer:** Performance drops to the **baseline level** (e.g., 10% for t2.micro). In T3 with Unlimited mode, it continues at full speed but charges extra.
+
+</details>
+
+<details>
+
+<summary><strong>Q7:</strong> "Which instance family would you use for an in-memory Redis database?"</summary>
+
+**Answer:** **R family** (Memory Optimized) – `r5.large` or `r6g.large`.
+
+</details>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../aws/ec2-elastic-compute-cloud.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">EC2 Elastic Compute Cloud</span>
+  </a>
+  <a href="../aws/vpc-virtual-private-cloud.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">VPC Virtual Private Cloud</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

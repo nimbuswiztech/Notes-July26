@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS RDS PostgreSQL Lab Handbook & Reference Guide — Student Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0d14;
+      --bg-secondary: #111622;
+      --bg-card: #161d2d;
+      --bg-card-hover: #1d263b;
+      --border-color: #242f46;
+      --border-highlight: #06b6d4;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent-rds: #3b82f6;
+      --accent-rds-light: #60a5fa;
+      --accent-rds-glow: rgba(59, 130, 246, 0.25);
+      --accent-cyan: #06b6d4;
+      --accent-cyan-light: #22d3ee;
+      --accent-cyan-glow: rgba(6, 182, 212, 0.2);
+      --accent-indigo: #6366f1;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-red: #ef4444;
+      
+      --student-badge: #06b6d4;
+      --student-glow: rgba(6, 182, 212, 0.25);
+      
+      --code-bg: #0d1117;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.6);
+      
+      --sidebar-width: 290px;
+      --header-height: 70px;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-highlight: #0284c7;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --code-bg: #1e293b;
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --accent-cyan-glow: rgba(6, 182, 212, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Top Navigation */
+    header.top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(10, 13, 20, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 1000;
+    }
+
+    [data-theme="light"] header.top-nav {
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 15px var(--accent-cyan-glow);
+    }
+
+    .brand-title {
+      font-size: 1.22rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #fff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .brand-title {
+      background: linear-gradient(90deg, #0f172a, #334155);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-badge {
+      background: var(--student-badge);
+      color: #04252e;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+      box-shadow: 0 0 10px var(--student-glow);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Progress Pill */
+    .progress-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 6px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent-cyan-light);
+    }
+
+    .progress-bar-wrap {
+      width: 80px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #06b6d4, #10b981);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-cyan);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, #0284c7, #06b6d4);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--accent-cyan-glow);
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px var(--accent-cyan-glow);
+    }
+
+    /* Main Layout */
+    .layout-container {
+      display: flex;
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Sidebar Navigation */
+    aside.sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      position: fixed;
+      top: var(--header-height);
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-color) transparent;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 0 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item a:hover {
+      color: var(--text-main);
+      background: var(--bg-card);
+    }
+
+    .nav-item a.active {
+      color: #fff;
+      background: linear-gradient(90deg, rgba(6, 182, 212, 0.3), rgba(6, 182, 212, 0.06));
+      border-left: 3px solid var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    /* Content Area */
+    main.content-area {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 2.5rem 3.5rem;
+      max-width: 1240px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.16) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(16, 185, 129, 0.08) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-muted);
+    }
+
+    .badge-pill.student {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan-light);
+      background: rgba(6, 182, 212, 0.12);
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 880px;
+      margin-bottom: 1.8rem;
+    }
+
+    /* Progress Card in Banner */
+    .lab-progress-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.2rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Section Headers */
+    section.module-section {
+      margin-bottom: 4.5rem;
+      scroll-margin-top: calc(var(--header-height) + 1.5rem);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--accent-cyan-light);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Common Card Grid */
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-highlight);
+    }
+
+    .info-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-card-icon {
+      font-size: 1.5rem;
+    }
+
+    .info-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    /* Student Callout Alert */
+    .callout-box {
+      background: rgba(6, 182, 212, 0.08);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-left: 5px solid var(--accent-cyan);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin: 1.4rem 0;
+      font-size: 0.92rem;
+    }
+
+    .callout-box.tip {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.3);
+      border-left-color: var(--accent-emerald);
+    }
+
+    .callout-box.warning {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+      border-left-color: var(--accent-amber);
+    }
+
+    /* Code Snippet Box */
+    .code-container {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      margin: 1.2rem 0;
+      overflow: hidden;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .copy-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 5px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      color: #fff;
+      border-color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.15);
+    }
+
+    pre code {
+      display: block;
+      padding: 1.2rem 1.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      line-height: 1.55;
+    }
+
+    /* Tables */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: var(--bg-card);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .comparison-table th {
+      background: var(--bg-secondary);
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table td {
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:hover td {
+      background: var(--bg-card-hover);
+    }
+
+    /* Lab Step Cards */
+    .lab-step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .lab-step-card.completed {
+      border-color: var(--accent-emerald);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, var(--bg-card) 100%);
+    }
+
+    .lab-step-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .lab-step-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lab-checkbox-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .lab-checkbox-btn:hover {
+      border-color: var(--accent-emerald);
+      color: #fff;
+    }
+
+    .lab-checkbox-btn.checked {
+      background: var(--accent-emerald);
+      color: #fff;
+      border-color: var(--accent-emerald);
+    }
+
+    /* Tab switcher */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      color: var(--accent-cyan-light);
+      border-bottom-color: var(--accent-cyan);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* Interactive SQL Simulator */
+    .sql-simulator {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+
+    .sql-sim-header {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sql-sim-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-cyan-light);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .run-query-btn {
+      background: linear-gradient(135deg, #0284c7, #06b6d4);
+      border: none;
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 5px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .run-query-btn:hover {
+      opacity: 0.9;
+    }
+
+    .sql-sim-output {
+      padding: 1rem 1.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      background: #090c10;
+      border-top: 1px solid var(--border-color);
+      display: none;
+      overflow-x: auto;
+    }
+
+    .sql-sim-output.show {
+      display: block;
+    }
+
+    /* Quiz Widget */
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-opt:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-cyan);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.15) !important;
+      border-color: var(--accent-emerald) !important;
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    .quiz-opt.incorrect {
+      background: rgba(239, 68, 68, 0.15) !important;
+      border-color: var(--accent-red) !important;
+      color: #f87171;
+    }
+
+    .quiz-feedback {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #06b6d4;
+      color: #04252e;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2000;
+    }
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 1024px) {
+      aside.sidebar {
+        display: none;
+      }
+      main.content-area {
+        margin-left: 0;
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="brand">
+      <div class="brand-logo">🐘</div>
+      <div>
+        <span class="brand-title">AWS RDS PostgreSQL</span>
+        <span class="brand-badge">Student Edition</span>
+      </div>
+    </div>
+    
+    <div class="nav-actions">
+      <!-- Interactive Progress Pill -->
+      <div class="progress-pill">
+        <span>Lab Progress:</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="headerProgressFill"></div>
+        </div>
+        <span id="headerProgressText">0/7</span>
+      </div>
+
+      <!-- Theme Switcher -->
+      <button class="btn btn-secondary" id="themeToggle" title="Toggle Light/Dark Mode">
+        🌓 Mode
+      </button>
+
+      <!-- Instructor View Link -->
+      <a href="rds-pgsql-instructor-guide.html" class="btn btn-secondary" target="_blank">
+        👨‍🏫 Instructor View
+      </a>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-section-title">Reference Modules</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#hero" class="active"><span>Overview & Tracker</span></a></li>
+        <li class="nav-item"><a href="#module-1"><span>1. Database Fundamentals</span></a></li>
+        <li class="nav-item"><a href="#module-2"><span>2. What is Amazon RDS</span></a></li>
+        <li class="nav-item"><a href="#module-3"><span>3. EC2 vs RDS Comparison</span></a></li>
+        <li class="nav-item"><a href="#module-4"><span>4. DevOps Use Cases</span></a></li>
+        <li class="nav-item"><a href="#module-5"><span>5. Hands-on Lab Steps</span></a></li>
+        <li class="nav-item"><a href="#module-troubleshoot"><span>6. 60s Troubleshooting</span></a></li>
+        <li class="nav-item"><a href="#module-quiz"><span>7. Knowledge Check Quiz</span></a></li>
+        <li class="nav-item"><a href="#module-cheatsheet"><span>8. PSQL Cheat Sheet</span></a></li>
+      </ul>
+
+      <div class="sidebar-section-title" style="margin-top: 1rem;">Hands-On Lab Steps</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#step-1"><span>Step 1: Create RDS Instance</span></a></li>
+        <li class="nav-item"><a href="#step-2"><span>Step 2: PSQL CLI Login</span></a></li>
+        <li class="nav-item"><a href="#step-3"><span>Step 3: Install pgAdmin 4</span></a></li>
+        <li class="nav-item"><a href="#step-4"><span>Step 4: Connect via pgAdmin</span></a></li>
+        <li class="nav-item"><a href="#step-5"><span>Step 5: Create DB Tables</span></a></li>
+        <li class="nav-item"><a href="#step-6"><span>Step 6: Run Queries & ACID</span></a></li>
+        <li class="nav-item"><a href="#step-7"><span>Step 7: Cleanup / Cost Guard</span></a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- Hero Banner -->
+      <section id="hero" class="hero-banner">
+        <div class="hero-badge-row">
+          <span class="badge-pill student">🎓 Student Reference & Lab Handbook</span>
+          <span class="badge-pill">PostgreSQL 16.x</span>
+          <span class="badge-pill">Amazon RDS</span>
+          <span class="badge-pill">pgAdmin 4 GUI</span>
+        </div>
+
+        <h1 class="hero-title">Amazon RDS with PostgreSQL Hands-on Lab & Reference</h1>
+        <p class="hero-subtitle">
+          Your complete student lab handbook for mastering PostgreSQL on AWS RDS. Follow the step-by-step lab instructions, copy production SQL scripts, test queries in the interactive simulator, and track your progress.
+        </p>
+
+        <!-- Progress Box -->
+        <div class="lab-progress-box">
+          <div>
+            <div style="font-weight: 700; font-size: 1.05rem;" id="bannerProgressTitle">0 of 7 Lab Milestones Completed (0%)</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Check off each step below as you complete it during the live lab session.</div>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <div style="width: 140px; height: 10px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden;">
+              <div id="bannerProgressFill" style="height: 100%; width: 0%; background: linear-gradient(90deg, #06b6d4, #10b981); transition: width 0.3s;"></div>
+            </div>
+            <button class="btn btn-secondary" onclick="resetLabProgress()" style="font-size: 0.78rem; padding: 5px 10px;">Reset</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 1: DATABASE FUNDAMENTALS -->
+      <section id="module-1" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">01</div>
+            <h2 class="section-title">What is a Database & Database Fundamentals</h2>
+          </div>
+        </div>
+
+        <p>A <strong>database</strong> is an organized, persistent repository of structured information stored electronically. A <strong>Database Management System (DBMS)</strong> is the engine software that processes queries, enforces constraints, guarantees data integrity, and handles concurrent access.</p>
+
+        <div class="card-grid-3">
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">📂</span>
+              <span class="info-card-title">Flat Files (CSV/JSON)</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Good for configuration files. Terrible for concurrency — multiple writers corrupt files; full table scans required for every search.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">🐘</span>
+              <span class="info-card-title">Relational (PostgreSQL)</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Strict tabular schema, mathematical relational algebra, Primary/Foreign keys, declarative SQL, and strict ACID transaction guarantees.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">⚡</span>
+              <span class="info-card-title">NoSQL (DynamoDB/Redis)</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Key-Value, Document, or In-memory caching. Designed for ultra-high throughput and horizontal scaling with eventual consistency.</p>
+          </div>
+        </div>
+
+        <h3 style="margin: 2rem 0 0.8rem; font-size: 1.3rem;">1.1 Relational Building Blocks: Quick Reference</h3>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Relational Term</th>
+              <th>Definition</th>
+              <th>Example in E-Commerce</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Table (Relation)</strong></td>
+              <td>A collection of related data entries structured into rows and columns.</td>
+              <td><code>customers</code> table</td>
+            </tr>
+            <tr>
+              <td><strong>Row (Tuple / Record)</strong></td>
+              <td>A single, discrete data item within a table.</td>
+              <td>Customer "Sarah Connor", ID: 101</td>
+            </tr>
+            <tr>
+              <td><strong>Column (Attribute)</strong></td>
+              <td>A typed field containing a specific attribute.</td>
+              <td><code>email VARCHAR(100) NOT NULL</code></td>
+            </tr>
+            <tr>
+              <td><strong>Primary Key (PK)</strong></td>
+              <td>Unique identifier for each row. Automatically creates an indexed B-tree.</td>
+              <td><code>customer_id SERIAL PRIMARY KEY</code></td>
+            </tr>
+            <tr>
+              <td><strong>Foreign Key (FK)</strong></td>
+              <td>A column pointing to the PK of another table to maintain <em>referential integrity</em>.</td>
+              <td><code>orders.customer_id REFERENCES customers</code></td>
+            </tr>
+            <tr>
+              <td><strong>Index</strong></td>
+              <td>Auxiliary B-tree or Hash structure accelerating lookups from O(N) to O(log N).</td>
+              <td><code>CREATE INDEX idx_email ON customers(email)</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin: 2rem 0 0.8rem; font-size: 1.3rem;">1.2 The ACID Transaction Guarantee</h3>
+        <p>Why do banking systems, e-commerce stores, and flight booking platforms depend on PostgreSQL? Because of the <strong>ACID</strong> promise:</p>
+
+        <div class="card-grid-2">
+          <div class="info-card" style="border-left: 4px solid var(--accent-rds);">
+            <h4 style="color: var(--accent-rds-light); margin-bottom: 6px;">🅰️ Atomicity</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);"><strong>All or Nothing.</strong> If a money transfer deducts $100 from Account A, but fails while adding to Account B, the entire transaction is rolled back. No partial executions!</p>
+          </div>
+          <div class="info-card" style="border-left: 4px solid var(--accent-cyan);">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">🇨 Consistency</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);"><strong>Valid state only.</strong> Data must satisfy all defined constraints (CHECK, FOREIGN KEY, NOT NULL). An account balance cannot become -$50 if <code>CHECK (balance >= 0)</code> exists.</p>
+          </div>
+          <div class="info-card" style="border-left: 4px solid var(--accent-indigo);">
+            <h4 style="color: var(--accent-indigo); margin-bottom: 6px;">🇮 Isolation</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);"><strong>No crosstalk.</strong> Concurrent transactions do not see uncommitted intermediate states of other transactions, preventing dirty reads and lost updates.</p>
+          </div>
+          <div class="info-card" style="border-left: 4px solid var(--accent-emerald);">
+            <h4 style="color: var(--accent-emerald); margin-bottom: 6px;">🇩 Durability</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);"><strong>Never lost after commit.</strong> Once a transaction is acknowledged, changes are committed to the non-volatile Write-Ahead Log (WAL) and will survive server crashes or power failures.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 2: WHAT IS AMAZON RDS -->
+      <section id="module-2" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">02</div>
+            <h2 class="section-title">What is Amazon RDS & Architectural Breakdown</h2>
+          </div>
+        </div>
+
+        <p><strong>Amazon Relational Database Service (Amazon RDS)</strong> is a managed database service that makes it easy to set up, operate, and scale a relational database in the AWS cloud. It provides cost-efficient and resizable capacity while automating time-consuming administrative tasks.</p>
+
+        <div class="callout-box">
+          <strong>Key Mental Model:</strong> Amazon RDS is <strong>100% native PostgreSQL</strong>. All PostgreSQL tools (pgAdmin, psql, DBeaver, Prisma, Django ORM) connect seamlessly using standard PostgreSQL connection strings on port 5432.
+        </div>
+
+        <h3 style="margin: 2rem 0 0.8rem; font-size: 1.3rem;">2.1 AWS RDS Multi-AZ & Network Security Architecture</h3>
+        <p>A complete architectural view of VPC isolation, private subnets across dual Availability Zones, synchronous standby replication, and secure client access through port 5432:</p>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.5rem; margin: 1.5rem 0; text-align: center;">
+          <img src="aws-rds-multiaz-architecture.jpg" alt="AWS RDS Multi-AZ & Network Security Architecture" style="width: 100%; max-width: 1100px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 12px 36px rgba(0,0,0,0.55); display: block; margin: 0 auto;" />
+        </div>
+
+        <div class="card-grid-2">
+          <div class="info-card">
+            <h4 style="color: var(--accent-rds-light); margin-bottom: 8px;">🛡️ Multi-AZ Deployments (High Availability)</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              AWS automatically provisions and maintains a synchronous standby replica in a different Availability Zone within the same VPC. If the master host fails, failover happens automatically in 60-120 seconds with <strong>zero data loss</strong> and no endpoint string change.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 8px;">📖 Read Replicas (Scalability)</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Provision up to 15 asynchronous read-only copies to handle read-heavy analytical dashboards and reporting workloads. Can be promoted to independent standalone databases in disaster recovery scenarios.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-emerald); margin-bottom: 8px;">💾 Automated Backups & PITR</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              AWS continuously archives transaction logs (WAL) to Amazon S3 every 5 minutes along with daily snapshots. Enables <strong>Point-in-Time Recovery (PITR)</strong> down to any exact second during your 1-35 day retention window.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-amber); margin-bottom: 8px;">📈 Storage Auto-Scaling</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Never get paged at 3:00 AM for out-of-disk crashes. When available free space falls below 10%, RDS dynamically expands your General Purpose SSD (gp3) volume up to your configured maximum threshold (up to 64 TiB).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 3: WHY RDS IS USED -->
+      <section id="module-3" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Why RDS is Used? (Self-Hosted EC2 vs Managed RDS)</h2>
+          </div>
+        </div>
+
+        <p>A classic DevOps interview question: <em>"Why choose Amazon RDS over installing PostgreSQL on an Amazon EC2 virtual machine?"</em></p>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature / Task</th>
+              <th>PostgreSQL on EC2 (Self-Managed)</th>
+              <th>Amazon RDS for PostgreSQL (Managed)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Setup Time</strong></td>
+              <td>Hours to days (OS setup, Postgres install, tune config)</td>
+              <td>5 to 8 minutes via AWS Console or CLI</td>
+            </tr>
+            <tr>
+              <td><strong>Operating System Patching</strong></td>
+              <td>You must patch security CVEs and manage reboots</td>
+              <td>Automated during defined maintenance windows</td>
+            </tr>
+            <tr>
+              <td><strong>High Availability Setup</strong></td>
+              <td>Complex setup with Patroni, etcd, Pacemaker, Corosync</td>
+              <td>1-click checkbox: Multi-AZ synchronous replication</td>
+            </tr>
+            <tr>
+              <td><strong>Automated Backups</strong></td>
+              <td>Custom cron scripts with WAL-G / pgBackRest to S3</td>
+              <td>Native continuous backup with Point-in-Time Recovery</td>
+            </tr>
+            <tr>
+              <td><strong>Storage Auto-Scale</strong></td>
+              <td>Manual volume expansion, LVM resize, xfs_growfs</td>
+              <td>Fully automated elastic expansion up to 64 TiB</td>
+            </tr>
+            <tr>
+              <td><strong>Root Operating System Access</strong></td>
+              <td>Full SSH root access (`sudo su`)</td>
+              <td>No root access (Prevents security tampering)</td>
+            </tr>
+            <tr>
+              <td><strong>Total Cost of Ownership (TCO)</strong></td>
+              <td>Lower infrastructure cost; massive DBA salary overhead</td>
+              <td>Slightly higher AWS compute cost; near-zero DBA overhead</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- MODULE 4: DEVOPS USE CASES -->
+      <section id="module-4" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">04</div>
+            <h2 class="section-title">DevOps Real-Time Production Use Cases</h2>
+          </div>
+        </div>
+
+        <div class="card-grid-2">
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">🚀</span>
+              <span class="info-card-title">1. CI/CD Database Schema Migration Pipeline</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;">
+              Never manually apply SQL alters in production. Pipelines run <strong>Flyway</strong> or <strong>Liquibase</strong> container steps during GitHub Actions/GitLab CI deployments to automatically apply versioned migration scripts (<code>V1__init.sql</code>, <code>V2__add_index.sql</code>).
+            </p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">🧱</span>
+              <span class="info-card-title">2. Infrastructure as Code (Terraform / CloudFormation)</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;">
+              Declarative provisioning of Subnet Groups, Security Groups, Parameter Groups, and RDS Instances across staging and production environments ensuring immutable infrastructure without configuration drift.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">🔑</span>
+              <span class="info-card-title">3. Secrets Rotation & Passwordless IAM Auth</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;">
+              Eliminate hardcoded database passwords. AWS Secrets Manager rotates credentials automatically every 30 days via Lambda, while application pods authenticate using short-lived 15-minute IAM STS tokens.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">📡</span>
+              <span class="info-card-title">4. Performance Insights & Automated Alerting</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;">
+              CloudWatch monitors FreeableMemory, DiskQueueDepth, and CPU. RDS Performance Insights breaks down database load by Average Active Sessions (AAS) against the Max vCPU line to identify slow queries in real-time.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 5: HANDS-ON LAB STEPS -->
+      <section id="module-5" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Hands-On Lab Walkthrough (Step-by-Step)</h2>
+          </div>
+        </div>
+
+        <!-- STEP 1 CARD -->
+        <div class="lab-step-card" id="stepCard-1">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 1: Provisioning the RDS PostgreSQL Instance</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-1" onclick="toggleStepCheckbox(1)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Follow these parameters to launch an RDS PostgreSQL instance in your AWS Management Console (or run the AWS CLI command).
+          </p>
+
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab(event, 'tab-s1-console')">Console Guide</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-s1-cli')">AWS CLI Command</button>
+          </div>
+
+          <div id="tab-s1-console" class="tab-pane active">
+            <ul style="font-size: 0.9rem; line-height: 1.8; margin-left: 1.2rem;">
+              <li>Navigate to <strong>AWS Management Console ➔ RDS ➔ Databases ➔ Create database</strong></li>
+              <li><strong>Choose a database creation method:</strong> Standard create</li>
+              <li><strong>Engine type:</strong> PostgreSQL ➔ <strong>Engine Version:</strong> PostgreSQL 16.x</li>
+              <li><strong>Templates:</strong> Free tier</li>
+              <li><strong>DB instance identifier:</strong> <code>demo-pgsql-shopflow</code></li>
+              <li><strong>Master username:</strong> <code>postgres</code></li>
+              <li><strong>Master password:</strong> <code>DevOpsAdmin2026!#</code></li>
+              <li><strong>DB instance class:</strong> <code>db.t4g.micro</code> (or <code>db.t3.micro</code>)</li>
+              <li><strong>Storage:</strong> General Purpose SSD (gp3), 20 GiB allocated</li>
+              <li><strong>Public access:</strong> Select <strong>Yes</strong> (for classroom laptop access)</li>
+              <li><strong>VPC Security Group:</strong> Choose or create a security group with <strong>Inbound Rule: TCP Port 5432</strong> from your IP</li>
+              <li><strong>Additional configuration:</strong> Initial database name: <code>shopflow_db</code></li>
+              <li>Click <strong>Create database</strong>. (Takes ~5-8 minutes).</li>
+            </ul>
+          </div>
+
+          <div id="tab-s1-cli" class="tab-pane">
+            <div class="code-container">
+              <div class="code-header"><span>AWS CLI Command</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+              <pre><code>aws rds create-db-instance \
+  --db-instance-identifier demo-pgsql-shopflow \
+  --db-instance-class db.t4g.micro \
+  --engine postgres \
+  --engine-version 16.3 \
+  --master-username postgres \
+  --master-user-password "DevOpsAdmin2026!#" \
+  --allocated-storage 20 \
+  --storage-type gp3 \
+  --db-name shopflow_db \
+  --publicly-accessible \
+  --backup-retention-period 7 \
+  --no-multi-az</code></pre>
+            </div>
+          </div>
+
+          <div class="callout-box warning">
+            <strong>Check your Endpoint:</strong> Once the DB status changes from <em>Creating</em> to <em>Available</em>, copy the <strong>Endpoint</strong> from the "Connectivity & security" tab. Example: <code>demo-pgsql-shopflow.c123456789.us-east-1.rds.amazonaws.com</code>.
+          </div>
+        </div>
+
+        <!-- STEP 2 CARD -->
+        <div class="lab-step-card" id="stepCard-2">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 2: Connecting & Login via Terminal (psql CLI)</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-2" onclick="toggleStepCheckbox(2)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Test network connectivity and verify server access using the native command line client.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header"><span>bash — Login with psql</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code># Replace with your actual RDS Endpoint string:
+psql -h YOUR-RDS-ENDPOINT.rds.amazonaws.com \
+     -p 5432 \
+     -U postgres \
+     -d shopflow_db
+
+# Password prompt: Enter DevOpsAdmin2026!#
+
+# In the psql prompt, test:
+shopflow_db=> SELECT version();
+shopflow_db=> \conninfo</code></pre>
+          </div>
+        </div>
+
+        <!-- STEP 3 CARD -->
+        <div class="lab-step-card" id="stepCard-3">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 3: Installing pgAdmin 4</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-3" onclick="toggleStepCheckbox(3)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Install pgAdmin 4 for your operating system or run it in Docker.
+          </p>
+
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab(event, 'tab-s3-mac')">macOS</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-s3-win')">Windows</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-s3-linux')">Linux (Ubuntu)</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-s3-docker')">Docker</button>
+          </div>
+
+          <div id="tab-s3-mac" class="tab-pane active">
+            <div class="code-container">
+              <div class="code-header"><span>Homebrew</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+              <pre><code>brew install --cask pgadmin4</code></pre>
+            </div>
+          </div>
+
+          <div id="tab-s3-win" class="tab-pane">
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Download the official Windows installer from: <a href="https://www.pgadmin.org/download/pgadmin-4-windows/" target="_blank" style="color: var(--accent-cyan-light);">https://www.pgadmin.org/download/pgadmin-4-windows/</a> and run the setup.
+            </p>
+          </div>
+
+          <div id="tab-s3-linux" class="tab-pane">
+            <div class="code-container">
+              <div class="code-header"><span>APT</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+              <pre><code>curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/pgadmin.gpg
+sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list'
+sudo apt update && sudo apt install -y pgadmin4-desktop</code></pre>
+            </div>
+          </div>
+
+          <div id="tab-s3-docker" class="tab-pane">
+            <div class="code-container">
+              <div class="code-header"><span>Docker</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+              <pre><code>docker run -p 5050:80 \
+  -e "PGADMIN_DEFAULT_EMAIL=student@devops.local" \
+  -e "PGADMIN_DEFAULT_PASSWORD=StudentPassword2026!" \
+  -d dpage/pgadmin4
+# Open browser at: http://localhost:5050</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4 CARD -->
+        <div class="lab-step-card" id="stepCard-4">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 4: Registering Your RDS Connection in pgAdmin 4</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-4" onclick="toggleStepCheckbox(4)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Open pgAdmin 4, create a master application password, and register your database server.
+          </p>
+
+          <ol style="font-size: 0.9rem; line-height: 1.8; margin-left: 1.2rem;">
+            <li>In the left Object Explorer panel, right-click on <strong>Servers ➔ Register ➔ Server...</strong></li>
+            <li><strong>General Tab:</strong> Name: <code>AWS-RDS-ShopFlow</code></li>
+            <li><strong>Connection Tab:</strong>
+              <ul>
+                <li><strong>Host name/address:</strong> Paste your RDS Endpoint</li>
+                <li><strong>Port:</strong> <code>5432</code></li>
+                <li><strong>Maintenance database:</strong> <code>shopflow_db</code></li>
+                <li><strong>Username:</strong> <code>postgres</code></li>
+                <li><strong>Password:</strong> <code>DevOpsAdmin2026!#</code> (Check "Save password")</li>
+              </ul>
+            </li>
+            <li><strong>Parameters Tab:</strong> SSL Mode: <code>Require</code></li>
+            <li>Click <strong>Save</strong>. You should see a green checkmark and your database hierarchy!</li>
+          </ol>
+        </div>
+
+        <!-- STEP 5 CARD -->
+        <div class="lab-step-card" id="stepCard-5">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 5: Creating the ShopFlow Relational Schema (DDL)</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-5" onclick="toggleStepCheckbox(5)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            In pgAdmin, click <strong>Tools ➔ Query Tool</strong> (or press Alt+Shift+Q). Paste and run the DDL script below:
+          </p>
+
+          <div class="code-container">
+            <div class="code-header"><span>sql — E-Commerce DDL Script</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code>CREATE SCHEMA IF NOT EXISTS ecommerce;
+SET search_path TO ecommerce, public;
+
+-- 1. Customers Table
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(20),
+    account_status VARCHAR(20) DEFAULT 'ACTIVE' CHECK (account_status IN ('ACTIVE', 'SUSPENDED', 'CLOSED')),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Products Table
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    sku VARCHAR(30) UNIQUE NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    price NUMERIC(10, 2) NOT NULL CHECK (price > 0),
+    stock_quantity INT NOT NULL DEFAULT 0 CHECK (stock_quantity >= 0),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 3. Orders Header Table
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INT NOT NULL REFERENCES customers(customer_id) ON DELETE RESTRICT,
+    order_status VARCHAR(30) DEFAULT 'PENDING' CHECK (order_status IN ('PENDING', 'PAID', 'SHIPPED', 'CANCELLED')),
+    order_total NUMERIC(10, 2) DEFAULT 0.00,
+    order_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 4. Order Items Table
+CREATE TABLE order_items (
+    item_id SERIAL PRIMARY KEY,
+    order_id INT NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
+    product_id INT NOT NULL REFERENCES products(product_id) ON DELETE RESTRICT,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    unit_price NUMERIC(10, 2) NOT NULL CHECK (unit_price > 0)
+);
+
+-- 5. Indexes
+CREATE INDEX idx_customers_email ON customers(email);
+CREATE INDEX idx_orders_customer_id ON orders(customer_id);
+CREATE INDEX idx_orders_order_date ON orders(order_date);
+CREATE INDEX idx_products_category ON products(category);</code></pre>
+          </div>
+        </div>
+
+        <!-- STEP 6 CARD -->
+        <div class="lab-step-card" id="stepCard-6">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 6: Seed Data Ingestion, Queries & Interactive Simulator</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-6" onclick="toggleStepCheckbox(6)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Insert test data, run JOINs, and execute an ACID transaction in pgAdmin.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header"><span>sql — Seed Data</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code>INSERT INTO customers (first_name, last_name, email, phone) VALUES
+('Sarah', 'Connor', 'sarah.connor@sky.net', '+1-555-0101'),
+('John', 'Doe', 'john.doe@example.com', '+1-555-0102'),
+('Elena', 'Rostova', 'elena.rostova@cloud.io', '+1-555-0103'),
+('Marcus', 'Vance', 'marcus.v@devops.org', '+1-555-0104');
+
+INSERT INTO products (sku, name, category, price, stock_quantity) VALUES
+('DEV-K8S-BOOK', 'Kubernetes Production Guide', 'Books', 49.99, 120),
+('DEV-TERRA-CR', 'Terraform Cloud Automation', 'Courses', 199.99, 500),
+('HW-YUBIKEY-5', 'YubiKey 5C NFC Security Key', 'Hardware', 55.00, 45),
+('HW-MONITOR-4K', 'Dell UltraSharp 32 4K Monitor', 'Hardware', 749.99, 15);
+
+INSERT INTO orders (customer_id, order_status, order_total) VALUES
+(1, 'PAID', 104.99),
+(2, 'PAID', 749.99),
+(3, 'PENDING', 199.99);
+
+INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
+(1, 1, 1, 49.99),
+(1, 3, 1, 55.00),
+(2, 4, 1, 749.99),
+(3, 2, 1, 199.99);</code></pre>
+          </div>
+
+          <!-- Interactive Simulator Box -->
+          <div class="sql-simulator">
+            <div class="sql-sim-header">
+              <span class="sql-sim-title">Interactive Query Output Viewer: Multi-Table JOIN</span>
+              <button class="run-query-btn" onclick="toggleSimOutput('sim-join')">▶ Run Query Simulator</button>
+            </div>
+            <div class="code-container" style="margin: 0; border: none; border-radius: 0;">
+              <pre style="margin: 0;"><code>SELECT 
+    c.first_name || ' ' || c.last_name AS customer_name,
+    o.order_id,
+    o.order_status,
+    p.name AS product_name,
+    oi.quantity,
+    oi.unit_price,
+    (oi.quantity * oi.unit_price) AS line_total
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+JOIN order_items oi ON o.order_id = oi.order_id
+JOIN products p ON oi.product_id = p.product_id;</code></pre>
+            </div>
+            <div class="sql-sim-output" id="sim-join">
+              <div style="color: var(--accent-emerald); font-weight: bold; margin-bottom: 6px;">Query Result (4 rows returned in 2.14 ms):</div>
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; color: #cbd5e1;">
+                <tr style="border-bottom: 1px solid #334155; color: var(--accent-cyan-light);">
+                  <th style="padding: 4px 8px; text-align: left;">customer_name</th>
+                  <th style="padding: 4px 8px; text-align: left;">order_id</th>
+                  <th style="padding: 4px 8px; text-align: left;">order_status</th>
+                  <th style="padding: 4px 8px; text-align: left;">product_name</th>
+                  <th style="padding: 4px 8px; text-align: right;">qty</th>
+                  <th style="padding: 4px 8px; text-align: right;">unit_price</th>
+                  <th style="padding: 4px 8px; text-align: right;">line_total</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #1e293b;">
+                  <td style="padding: 4px 8px;">Sarah Connor</td>
+                  <td style="padding: 4px 8px;">1</td>
+                  <td style="padding: 4px 8px;"><span style="color: #34d399;">PAID</span></td>
+                  <td style="padding: 4px 8px;">Kubernetes Production Guide</td>
+                  <td style="padding: 4px 8px; text-align: right;">1</td>
+                  <td style="padding: 4px 8px; text-align: right;">49.99</td>
+                  <td style="padding: 4px 8px; text-align: right;">$49.99</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #1e293b;">
+                  <td style="padding: 4px 8px;">Sarah Connor</td>
+                  <td style="padding: 4px 8px;">1</td>
+                  <td style="padding: 4px 8px;"><span style="color: #34d399;">PAID</span></td>
+                  <td style="padding: 4px 8px;">YubiKey 5C NFC Security Key</td>
+                  <td style="padding: 4px 8px; text-align: right;">1</td>
+                  <td style="padding: 4px 8px; text-align: right;">55.00</td>
+                  <td style="padding: 4px 8px; text-align: right;">$55.00</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #1e293b;">
+                  <td style="padding: 4px 8px;">John Doe</td>
+                  <td style="padding: 4px 8px;">2</td>
+                  <td style="padding: 4px 8px;"><span style="color: #34d399;">PAID</span></td>
+                  <td style="padding: 4px 8px;">Dell UltraSharp 32 4K Monitor</td>
+                  <td style="padding: 4px 8px; text-align: right;">1</td>
+                  <td style="padding: 4px 8px; text-align: right;">749.99</td>
+                  <td style="padding: 4px 8px; text-align: right;">$749.99</td>
+                </tr>
+                <tr>
+                  <td style="padding: 4px 8px;">Elena Rostova</td>
+                  <td style="padding: 4px 8px;">3</td>
+                  <td style="padding: 4px 8px;"><span style="color: #f59e0b;">PENDING</span></td>
+                  <td style="padding: 4px 8px;">Terraform Cloud Automation</td>
+                  <td style="padding: 4px 8px; text-align: right;">1</td>
+                  <td style="padding: 4px 8px; text-align: right;">199.99</td>
+                  <td style="padding: 4px 8px; text-align: right;">$199.99</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 7 CARD -->
+        <div class="lab-step-card" id="stepCard-7">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 7: Lab Teardown & Cost Guard</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-7" onclick="toggleStepCheckbox(7)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            To avoid unexpected charges against your AWS credit or credit card, clean up your resources once you finish the demonstration!
+          </p>
+
+          <div class="code-container">
+            <div class="code-header"><span>AWS CLI Teardown</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code>aws rds delete-db-instance \
+  --db-instance-identifier demo-pgsql-shopflow \
+  --skip-final-snapshot \
+  --delete-automated-backups</code></pre>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- MODULE 6: TROUBLESHOOTING -->
+      <section id="module-troubleshoot" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">06</div>
+            <h2 class="section-title">Can't Connect to RDS? 60-Second Quick Triage</h2>
+          </div>
+        </div>
+
+        <p>If you get connection timeout or authentication refused errors in pgAdmin or psql, verify these 5 checkpoints in order:</p>
+
+        <div class="card-grid-2">
+          <div class="info-card">
+            <h4 style="color: var(--accent-red); margin-bottom: 6px;">1. Security Group Inbound Rule</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Go to RDS ➔ Connectivity ➔ Click Security Group ➔ Inbound Rules. Must have Type: <code>PostgreSQL</code>, Port: <code>5432</code>, Source: <code>My IP</code> (or <code>0.0.0.0/0</code> for training labs).
+            </p>
+          </div>
+          <div class="info-card">
+            <h4 style="color: var(--accent-amber); margin-bottom: 6px;">2. Public Accessibility Flag</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Under Connectivity & Security ➔ <strong>Publicly Accessible</strong> must say <strong>Yes</strong>. If it says <em>No</em>, your laptop cannot reach it without a VPN or Bastion host.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">3. Strip Port from Host Endpoint</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              In pgAdmin "Host" field, paste ONLY <code>xxxx.rds.amazonaws.com</code>. Do NOT include <code>:5432</code> or <code>https://</code> in the hostname!
+            </p>
+          </div>
+          <div class="info-card">
+            <h4 style="color: var(--accent-emerald); margin-bottom: 6px;">4. SSL Mode Setting</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              In pgAdmin Connection Parameters, set <strong>SSL mode</strong> to <code>Require</code> or <code>Prefer</code>. AWS RDS requires encrypted TLS handshakes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 7: KNOWLEDGE CHECK QUIZ -->
+      <section id="module-quiz" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">07</div>
+            <h2 class="section-title">Knowledge Check: Interactive Quiz</h2>
+          </div>
+        </div>
+
+        <!-- Quiz 1 -->
+        <div class="quiz-card">
+          <div class="quiz-question">1. In an Amazon RDS Multi-AZ deployment, what is the role of the standby replica?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">A) Handles read-only analytics queries to reduce load on the primary</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, true, this)">B) Stays warm for synchronous automatic failover with zero data loss in case the primary fails</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">C) Compresses daily backups and uploads them to Amazon S3 Glacier</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">D) Acts as an SSH bastion host for database administrators</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-1"></div>
+        </div>
+
+        <!-- Quiz 2 -->
+        <div class="quiz-card">
+          <div class="quiz-question">2. Which ACID property guarantees that all operations inside a transaction complete or none of them do?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(2, true, this)">A) Atomicity</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">B) Consistency</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">C) Isolation</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">D) Durability</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-2"></div>
+        </div>
+
+        <!-- Quiz 3 -->
+        <div class="quiz-card">
+          <div class="quiz-question">3. What is the primary operational advantage of Amazon RDS Storage Auto-Scaling?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">A) It automatically deletes old table records when disk reaches 90%</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, true, this)">B) It dynamically increases EBS volume storage when free space falls below 10%, preventing database crashes</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">C) It converts row-oriented data into columnar Parquet format</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">D) It shrinks disk space during idle hours to save costs</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-3"></div>
+        </div>
+      </section>
+
+      <!-- MODULE 8: PSQL CHEAT SHEET -->
+      <section id="module-cheatsheet" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">08</div>
+            <h2 class="section-title">PostgreSQL Terminal (psql) Quick Command Cheat Sheet</h2>
+          </div>
+        </div>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>psql Meta-Command</th>
+              <th>Description / Purpose</th>
+              <th>SQL Equivalent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>\l</code> or <code>\l+</code></td>
+              <td>List all databases in the cluster</td>
+              <td><code>SELECT datname FROM pg_database;</code></td>
+            </tr>
+            <tr>
+              <td><code>\c dbname</code></td>
+              <td>Connect / switch to a specific database</td>
+              <td>N/A (Session switch)</td>
+            </tr>
+            <tr>
+              <td><code>\dt</code> or <code>\dt+</code></td>
+              <td>List all tables in the current schema</td>
+              <td><code>SELECT tablename FROM pg_tables;</code></td>
+            </tr>
+            <tr>
+              <td><code>\d table_name</code></td>
+              <td>Describe table columns, constraints, and indexes</td>
+              <td><code>SELECT * FROM information_schema.columns...</code></td>
+            </tr>
+            <tr>
+              <td><code>\dn</code></td>
+              <td>List all schemas</td>
+              <td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
+            </tr>
+            <tr>
+              <td><code>\conninfo</code></td>
+              <td>Display current connection info (Host, Port, User, SSL)</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td><code>\x</code></td>
+              <td>Toggle expanded table view (Useful for wide tables)</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td><code>\q</code></td>
+              <td>Quit / exit the psql shell</td>
+              <td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast element -->
+  <div id="toast">Code copied to clipboard!</div>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // Tab switcher
+    function switchTab(evt, tabId) {
+      const parent = evt.target.closest('.lab-step-card') || evt.target.parentElement.parentElement;
+      const tabBtns = parent.querySelectorAll('.tab-btn');
+      const tabPanes = parent.querySelectorAll('.tab-pane');
+
+      tabBtns.forEach(btn => btn.classList.remove('active'));
+      tabPanes.forEach(pane => pane.classList.remove('active'));
+
+      evt.target.classList.add('active');
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) targetPane.classList.add('active');
+    }
+
+    // Copy to clipboard
+    function copyCode(button) {
+      const container = button.closest('.code-container');
+      const code = container.querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        showToast("Copied to clipboard!");
+        button.innerText = "✓ Copied";
+        setTimeout(() => { button.innerText = "📋 Copy"; }, 2000);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 2500);
+    }
+
+    // Toggle Simulator Output
+    function toggleSimOutput(id) {
+      const out = document.getElementById(id);
+      if (out) {
+        out.classList.toggle('show');
+      }
+    }
+
+    // Interactive Lab Progress Tracker
+    const TOTAL_STEPS = 7;
+    let completedSteps = JSON.parse(localStorage.getItem('rds_pgsql_lab_progress') || '[]');
+
+    function updateProgressUI() {
+      const count = completedSteps.length;
+      const pct = Math.round((count / TOTAL_STEPS) * 100);
+
+      document.getElementById('headerProgressFill').style.width = pct + '%';
+      document.getElementById('headerProgressText').innerText = `${count}/${TOTAL_STEPS}`;
+
+      document.getElementById('bannerProgressFill').style.width = pct + '%';
+      document.getElementById('bannerProgressTitle').innerText = `${count} of ${TOTAL_STEPS} Lab Milestones Completed (${pct}%)`;
+
+      for (let i = 1; i <= TOTAL_STEPS; i++) {
+        const btn = document.getElementById(`check-${i}`);
+        const card = document.getElementById(`stepCard-${i}`);
+        if (btn && card) {
+          if (completedSteps.includes(i)) {
+            btn.classList.add('checked');
+            btn.innerHTML = '<span>✓ Completed</span>';
+            card.classList.add('completed');
+          } else {
+            btn.classList.remove('checked');
+            btn.innerHTML = '<span>Mark Completed</span>';
+            card.classList.remove('completed');
+          }
+        }
+      }
+    }
+
+    function toggleStepCheckbox(stepNum) {
+      if (completedSteps.includes(stepNum)) {
+        completedSteps = completedSteps.filter(s => s !== stepNum);
+      } else {
+        completedSteps.push(stepNum);
+      }
+      localStorage.setItem('rds_pgsql_lab_progress', JSON.stringify(completedSteps));
+      updateProgressUI();
+    }
+
+    function resetLabProgress() {
+      if (confirm('Reset your lab checklist back to 0%?')) {
+        completedSteps = [];
+        localStorage.removeItem('rds_pgsql_lab_progress');
+        updateProgressUI();
+      }
+    }
+
+    // Initialize progress on load
+    updateProgressUI();
+
+    // Quiz Checker
+    function checkQuiz(qNum, isCorrect, element) {
+      const parent = element.parentElement;
+      const opts = parent.querySelectorAll('.quiz-opt');
+      const feedback = document.getElementById(`feedback-${qNum}`);
+
+      opts.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+      });
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(16, 185, 129, 0.15)';
+        feedback.style.color = '#34d399';
+        feedback.style.border = '1px solid var(--accent-emerald)';
+        feedback.innerHTML = '<strong>Correct! 🎉</strong> Excellent understanding of AWS RDS and database fundamentals.';
+      } else {
+        element.classList.add('incorrect');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+        feedback.style.color = '#f87171';
+        feedback.style.border = '1px solid var(--accent-red)';
+        feedback.innerHTML = '<strong>Incorrect.</strong> Review the core module explanation above.';
+      }
+    }
+
+    // Theme Switcher (Dark / Light)
+    const themeToggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+
+    if (currentTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      if (activeTheme === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Active link highlighting on scroll
+    const navLinks = document.querySelectorAll('.nav-list a');
+    const sections = document.querySelectorAll('section.module-section, .hero-banner');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

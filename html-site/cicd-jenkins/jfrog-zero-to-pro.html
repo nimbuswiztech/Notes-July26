@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JFrog Zero to Pro &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html" >cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html" >Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="breadcrumb">
+          <ol>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="README.html">CICD / Jenkins</a></li>
+            <li class="current" aria-current="page">JFrog Artifactory - Zero to Pro Guide [Part 1]</li>
+          </ol>
+        </nav>
+
+        <!-- Document Header -->
+        <header class="document-header">
+          <h1 class="document-title">JFrog Artifactory - Zero to Pro Guide [Part 1]</h1>
+          <div class="document-meta">
+            <span class="meta-item">🕒 Last Updated: 2026-09-22</span>
+            <span class="meta-item">👨‍💻 Author: Cloud Engineer</span>
+          </div>
+        </header>
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+
+          <h2 id="jfrog-artifactory">JFrog Artifactory - Zero to Pro Guide [ Part 1 ]</h2>
+          <p>Hi Amigos! In this blog, we are going to discuss one of the important DevOps tools called <strong>JFrog Artifactory</strong>, it is useful for managing binaries and artifacts throughout the software development and delivery process.</p>
+          
+          <img src="../assets/images/jfrog_hero.png" alt="JFrog Artifactory Hero" style="max-width: 100%; border-radius: 8px; margin: 1rem 0;">
+
+          <p>It acts as a central hub for storing, managing, securing, and distributing all types of software artifacts, including:</p>
+          <ul>
+            <li><strong>Package types :</strong> Maven, Gradle, NuGet, npm, Python, RubyGems, Docker, Helm, Conan, Generic, and more</li>
+            <li><strong>File types :</strong> JARs, WARs, EARs, ZIPs, RPMs, DEBs, ISOs, DLLs, SOs, APKs, IPAs, and more</li>
+            <li><strong>Container images :</strong> Docker, Helm etc</li>
+          </ul>
+          <img src="../assets/images/jfrog_package_grid.png" alt="Package Types Grid" style="max-width: 100%; border-radius: 8px; margin: 1.5rem 0;">
+
+          <hr>
+
+          <h3 id="repo-types">Let’s see Repo types along with the process of creating it</h3>
+
+          <h4 id="local-repository">1. Local Repository :</h4>
+          <p>Local repositories are physical, locally managed repositories into which you can deploy artifacts.</p>
+          <p>These are the actual repos where we going to store our Artifacts. In IT standards, the repos was created based on the Region based Servers.</p>
+          <img src="../assets/images/jfrog_local_repo.png" alt="Local Repository Setup" style="max-width: 100%; border: 1px solid var(--border-color); border-radius: 8px; margin: 1.5rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+          <div class="stepper-container" style="margin-top:1.5rem;">
+            <div class="step-card">
+              <div class="step-badge">1</div>
+              <div class="step-content">
+                <h3>Steps to create it</h3>
+                <p>Login into the Jfrog Server &rarr; Go to the Admin Tab &rarr; Repositories &rarr; Local and Click ‘Create’ &rarr; Select Package type ( maven, Generic etc ) &rarr; Repo Key ( Name of the Repo ) &rarr; Layout &rarr; Description</p>
+              </div>
+            </div>
+          </div>
+
+          <p><strong>Repo Layout :</strong> A repository layout defines the structure of how artifacts are stored within a repository. It determines the hierarchical arrangement of files and folders, enabling tailored organization for different artifact types and access patterns.</p>
+          <p><strong>Eg : For maven layout ( pom.xml )</strong></p>
+
+          <div class="code-card">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <span class="code-title">xml</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre><code class="language-xml">&lt;groupId&gt;com.example&lt;/groupId&gt;
+&lt;artifactId&gt;my-artifact&lt;/artifactId&gt;
+&lt;version&gt;1.0.0&lt;/version&gt;
+&lt;packaging&gt;jar&lt;/packaging&gt;</code></pre>
+          </div>
+
+          <p><strong>Layout :</strong> <code>/com/example/my-artifact/1.0.0/my-artifact-1.0.0.jar</code></p>
+          <p>Had a question what if we upload artifact with same version again? You can avoid by using option like below <code>mvn deploy -DuniqueVersion=true</code> ( will create unique path ).</p>
+          <p><strong>Include / Exclude pattern :</strong> Helps to filter files or folders that should be included or excluded within the repository’s scope.</p>
+
+          <hr>
+
+          <h4 id="remote-repository">2. Remote Repository :</h4>
+          <p>A remote repository serves as a caching proxy for a repository managed at a remote URL. Artifacts are stored and updated in remote repositories according to various configuration parameters that control the caching and proxying behavior.</p>
+          <p>You can remove artifacts from a remote repository cache but you cannot actually deploy a new artifact into a remote repository.</p>
+
+          <h5>Example Scenario :</h5>
+          <img src="../assets/images/jfrog_remote_repo.png" alt="Remote Repository Setup" style="max-width: 100%; border: 1px solid var(--border-color); border-radius: 8px; margin: 1.5rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <p>Let say, you have a local repository on US location. So, when you try to access the repo directly from that Location. There might be latency, network related issue happens.</p>
+          <p>To avoid these situations, We can create a Remote repo on Indian region and add our Local repo ( which located on Remote loc ). So, the artifacts will be cached on this location.</p>
+          <img src="../assets/images/jfrog_local_repo.png" alt="Local Repository Setup" style="max-width: 100%; border: 1px solid var(--border-color); border-radius: 8px; margin: 1.5rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+          <div class="stepper-container" style="margin-top:1.5rem;">
+            <div class="step-card">
+              <div class="step-badge">2</div>
+              <div class="step-content">
+                <h3>Steps to create it</h3>
+                <p>Login into the Jfrog Server &rarr; Go to the Admin Tab &rarr; Repositories &rarr; Remote and Click ‘Create’ &rarr; Select Package type ( maven, Generic etc ) &rarr; Repo Key ( Name of the Repo ) &rarr; Paste the URL of the source repo or local repo &rarr; Then, give the Username and Password and test the connection &rarr; choose other options like repo layout, Public desc, etc</p>
+                <p>Also, you can use the Maven central URL as well if needed.</p>
+                <p>Now, Go to Advanced Tab &rarr; Choose proxy setting if needed &rarr; Then, provide Artifacts cleanup Actions accordingly.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <h4 id="virtual-repository">3. Virtual Repository :</h4>
+          <p>A virtual repository aggregates several repositories with the same package type under a common URL.</p>
+          <p>When an artifact is requested from a virtual repository, the order in which repositories are searched or resolved is local repositories first, then remote repository caches, and finally remote repositories themselves.</p>
+          <p>Within each of these, the order by which repositories are queried is determined by the order in which they are listed in the configuration as described in General Resolution Order below.</p>
+          <p>So, virtual repo is just a combination of Local and Remote Repo.</p>
+          <img src="../assets/images/jfrog_local_repo.png" alt="Local Repository Setup" style="max-width: 100%; border: 1px solid var(--border-color); border-radius: 8px; margin: 1.5rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+          <div class="stepper-container" style="margin-top:1.5rem;">
+            <div class="step-card">
+              <div class="step-badge">3</div>
+              <div class="step-content">
+                <h3>Steps to create it</h3>
+                <p>Login into the Jfrog Server &rarr; Go to the Admin Tab &rarr; Repositories &rarr; Virtual and Click ‘Create’ &rarr; Select Package type ( maven, Generic etc ) &rarr; Repo Key ( Name of the Repo ) &rarr; Layout &rarr; Description</p>
+                <p>Same process, only thing you have to do is selecting the Repos that you want to replicate under this virtual Repo.</p>
+                <img src="../assets/images/jfrog_virtual_repo.png" alt="Virtual Repository Setup" style="max-width: 100%; border: 1px solid var(--border-color); border-radius: 8px; margin: 1.5rem 0;">
+                <p>We can upload files directly to virtual Repo, but we must click “Default Deployment Repository” and choose a repo. So, whenever you upload files to virtual. It will go to the repo mentioned here.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <h4 id="federated-repository">4. Federated Repository :</h4>
+          <p>It is a collection of Federated repositories in up to 10 repos at different sites that are automatically configured for full bi-directional replication. Once you have set up the Federation, changes made to artifacts on one site will be automatically synchronized to the other JPDs in the Federation using bi-directional mirroring.</p>
+          <p>Any of the CRUD actions that you perform are automatically applied to the member Federated repositories. Users can perform actions according to their permission sets. The logic is applied according to the last action performed on the artifact by any of the users in the Federation.</p>
+          <p>Same Creation Process, just add the repo under Federation tab.</p>
+
+        </article>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

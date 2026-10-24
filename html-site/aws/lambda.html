@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Lambda & Serverless Reference Handbook — Student Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0d14;
+      --bg-secondary: #111622;
+      --bg-card: #161d2d;
+      --bg-card-hover: #1d263b;
+      --border-color: #242f46;
+      --border-highlight: #ff9900;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent-lambda: #ff9900;
+      --accent-lambda-light: #fbbf24;
+      --accent-lambda-glow: rgba(255, 153, 0, 0.28);
+      --accent-purple: #8b5cf6;
+      --accent-purple-light: #a78bfa;
+      --accent-purple-glow: rgba(139, 92, 246, 0.25);
+      --accent-cyan: #06b6d4;
+      --accent-cyan-glow: rgba(6, 182, 212, 0.2);
+      --accent-emerald: #10b981;
+      --accent-red: #ef4444;
+      
+      --student-badge: #8b5cf6;
+      --student-glow: rgba(139, 92, 246, 0.25);
+      
+      --code-bg: #0d1117;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.6);
+      
+      --sidebar-width: 290px;
+      --header-height: 70px;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-highlight: #d97706;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --code-bg: #1e293b;
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --accent-lambda-glow: rgba(245, 158, 11, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Top Navigation */
+    header.top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(10, 13, 20, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 1000;
+    }
+
+    [data-theme="light"] header.top-nav {
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #ff9900, #8b5cf6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 16px var(--accent-lambda-glow);
+    }
+
+    .brand-title {
+      font-size: 1.22rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #fff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .brand-title {
+      background: linear-gradient(90deg, #0f172a, #334155);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-badge {
+      background: var(--student-badge);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+      box-shadow: 0 0 10px var(--student-glow);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Progress Pill */
+    .progress-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 6px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent-lambda-light);
+    }
+
+    .progress-bar-wrap {
+      width: 80px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff9900, #10b981);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-lambda);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, #ff9900, #d97706);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--accent-lambda-glow);
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px var(--accent-lambda-glow);
+    }
+
+    /* Main Layout */
+    .layout-container {
+      display: flex;
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Sidebar Navigation */
+    aside.sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      position: fixed;
+      top: var(--header-height);
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-color) transparent;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 0 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item a:hover {
+      color: var(--text-main);
+      background: var(--bg-card);
+    }
+
+    .nav-item a.active {
+      color: #fff;
+      background: linear-gradient(90deg, rgba(255, 153, 0, 0.3), rgba(255, 153, 0, 0.06));
+      border-left: 3px solid var(--accent-lambda);
+      font-weight: 600;
+    }
+
+    /* Content Area */
+    main.content-area {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 2.5rem 3.5rem;
+      max-width: 1240px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(255, 153, 0, 0.16) 0%, rgba(139, 92, 246, 0.12) 50%, rgba(6, 182, 212, 0.08) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-muted);
+    }
+
+    .badge-pill.student {
+      border-color: var(--accent-purple);
+      color: var(--accent-purple-light);
+      background: rgba(139, 92, 246, 0.12);
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 880px;
+      margin-bottom: 1.8rem;
+    }
+
+    /* Progress Card in Banner */
+    .lab-progress-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.2rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Section Headers */
+    section.module-section {
+      margin-bottom: 4.5rem;
+      scroll-margin-top: calc(var(--header-height) + 1.5rem);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--accent-lambda-light);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Common Card Grid */
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .card-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-highlight);
+    }
+
+    .info-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-card-icon {
+      font-size: 1.5rem;
+    }
+
+    .info-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    /* Student Callout Alert */
+    .callout-box {
+      background: rgba(255, 153, 0, 0.08);
+      border: 1px solid rgba(255, 153, 0, 0.3);
+      border-left: 5px solid var(--accent-lambda);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin: 1.4rem 0;
+      font-size: 0.92rem;
+    }
+
+    .callout-box.tip {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.3);
+      border-left-color: var(--accent-emerald);
+    }
+
+    .callout-box.warning {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.3);
+      border-left-color: var(--accent-red);
+    }
+
+    /* Code Snippet Box */
+    .code-container {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      margin: 1.2rem 0;
+      overflow: hidden;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .copy-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 5px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      color: #fff;
+      border-color: var(--accent-lambda);
+      background: rgba(255, 153, 0, 0.15);
+    }
+
+    pre code {
+      display: block;
+      padding: 1.2rem 1.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      line-height: 1.55;
+    }
+
+    /* Tables */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: var(--bg-card);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .comparison-table th {
+      background: var(--bg-secondary);
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table td {
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:hover td {
+      background: var(--bg-card-hover);
+    }
+
+    /* Lab Step Cards */
+    .lab-step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .lab-step-card.completed {
+      border-color: var(--accent-emerald);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, var(--bg-card) 100%);
+    }
+
+    .lab-step-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .lab-step-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lab-checkbox-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .lab-checkbox-btn:hover {
+      border-color: var(--accent-emerald);
+      color: #fff;
+    }
+
+    .lab-checkbox-btn.checked {
+      background: var(--accent-emerald);
+      color: #fff;
+      border-color: var(--accent-emerald);
+    }
+
+    /* Tab switcher */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      color: var(--accent-lambda-light);
+      border-bottom-color: var(--accent-lambda);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* Interactive Simulator */
+    .lambda-simulator {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+
+    .lambda-sim-header {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lambda-sim-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-lambda-light);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .run-sim-btn {
+      background: linear-gradient(135deg, #ff9900, #d97706);
+      border: none;
+      color: #0a0d14;
+      padding: 6px 14px;
+      border-radius: 5px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .run-sim-btn:hover {
+      opacity: 0.9;
+    }
+
+    .lambda-sim-output {
+      padding: 1.2rem 1.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      background: #090c10;
+      border-top: 1px solid var(--border-color);
+      display: none;
+      overflow-x: auto;
+    }
+
+    .lambda-sim-output.show {
+      display: block;
+    }
+
+    /* Quiz Widget */
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-opt:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-lambda);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.15) !important;
+      border-color: var(--accent-emerald) !important;
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    .quiz-opt.incorrect {
+      background: rgba(239, 68, 68, 0.15) !important;
+      border-color: var(--accent-red) !important;
+      color: #f87171;
+    }
+
+    .quiz-feedback {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #ff9900;
+      color: #0a0d14;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2000;
+    }
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 1024px) {
+      aside.sidebar {
+        display: none;
+      }
+      main.content-area {
+        margin-left: 0;
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="brand">
+      <div class="brand-logo">λ</div>
+      <div>
+        <span class="brand-title">AWS Lambda & Serverless</span>
+        <span class="brand-badge">Student Edition</span>
+      </div>
+    </div>
+    
+    <div class="nav-actions">
+      <!-- Interactive Progress Pill -->
+      <div class="progress-pill">
+        <span>Lab Progress:</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="headerProgressFill"></div>
+        </div>
+        <span id="headerProgressText">0/7</span>
+      </div>
+
+      <!-- Theme Switcher -->
+      <button class="btn btn-secondary" id="themeToggle" title="Toggle Light/Dark Mode">
+        🌓 Mode
+      </button>
+
+      <!-- Instructor View Link -->
+      <a href="lambda-instructor-guide.html" class="btn btn-secondary" target="_blank">
+        👨‍🏫 Instructor View
+      </a>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-section-title">Reference Modules</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#hero" class="active"><span>Overview & Tracker</span></a></li>
+        <li class="nav-item"><a href="#module-1"><span>1. Serverless Architecture</span></a></li>
+        <li class="nav-item"><a href="#module-2"><span>2. What is AWS Lambda</span></a></li>
+        <li class="nav-item"><a href="#module-3"><span>3. Compute Decision Matrix</span></a></li>
+        <li class="nav-item"><a href="#module-4"><span>4. Real-time DevOps Cases</span></a></li>
+        <li class="nav-item"><a href="#module-5"><span>5. Hands-on Lab Steps</span></a></li>
+        <li class="nav-item"><a href="#module-troubleshoot"><span>6. 60s Troubleshooting</span></a></li>
+        <li class="nav-item"><a href="#module-quiz"><span>7. Knowledge Check Quiz</span></a></li>
+        <li class="nav-item"><a href="#module-cheatsheet"><span>8. Boto3 Cheat Sheet</span></a></li>
+      </ul>
+
+      <div class="sidebar-section-title" style="margin-top: 1rem;">Hands-On Lab Steps</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#step-1"><span>Step 1: Create IAM Role</span></a></li>
+        <li class="nav-item"><a href="#step-2"><span>Step 2: Create Lambda Function</span></a></li>
+        <li class="nav-item"><a href="#step-3"><span>Step 3: Deploy Boto3 Code</span></a></li>
+        <li class="nav-item"><a href="#step-4"><span>Step 4: Test with Mock Event</span></a></li>
+        <li class="nav-item"><a href="#step-5"><span>Step 5: EventBridge Rule</span></a></li>
+        <li class="nav-item"><a href="#step-6"><span>Step 6: Live EC2 Auto-Stop</span></a></li>
+        <li class="nav-item"><a href="#step-7"><span>Step 7: Clean-Up Teardown</span></a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- Hero Banner -->
+      <section id="hero" class="hero-banner">
+        <div class="hero-badge-row">
+          <span class="badge-pill student">🎓 Student Reference & Lab Handbook</span>
+          <span class="badge-pill">AWS Lambda</span>
+          <span class="badge-pill">Amazon EventBridge</span>
+          <span class="badge-pill">Python 3.12</span>
+        </div>
+
+        <h1 class="hero-title">AWS Lambda & Serverless Hands-On Reference Guide</h1>
+        <p class="hero-subtitle">
+          Your complete lab manual for mastering event-driven serverless computing on AWS. Follow the step-by-step instructions to build an automated FinOps EC2 auto-shutdown engine triggered by Amazon EventBridge.
+        </p>
+
+        <!-- Progress Box -->
+        <div class="lab-progress-box">
+          <div>
+            <div style="font-weight: 700; font-size: 1.05rem;" id="bannerProgressTitle">0 of 7 Lab Milestones Completed (0%)</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Check off each step below as you complete it during the live lab session.</div>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <div style="width: 140px; height: 10px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden;">
+              <div id="bannerProgressFill" style="height: 100%; width: 0%; background: linear-gradient(90deg, #ff9900, #10b981); transition: width 0.3s;"></div>
+            </div>
+            <button class="btn btn-secondary" onclick="resetLabProgress()" style="font-size: 0.78rem; padding: 5px 10px;">Reset</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 1: SERVERLESS ARCHITECTURE -->
+      <section id="module-1" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">01</div>
+            <h2 class="section-title">What is Serverless Architecture & Why It Matters</h2>
+          </div>
+        </div>
+
+        <p><strong>Serverless computing</strong> is a cloud-native development model that allows developers to build and run applications without having to manage servers. Servers still exist, but AWS abstracts them away completely.</p>
+
+        <div class="card-grid-4">
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">🛠️</span>
+              <span class="info-card-title" style="font-size: 0.95rem;">No Server Management</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Zero OS patching, kernel upgrades, or AMI baking. Developers write business logic code only.</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">⚡</span>
+              <span class="info-card-title" style="font-size: 0.95rem;">Elastic Auto-Scale</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Automatically scales from 0 to thousands of concurrent requests instantly in response to incoming events.</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">💵</span>
+              <span class="info-card-title" style="font-size: 0.95rem;">Pay-for-Value Billing</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Billed per millisecond of compute. You pay <strong>$0.00</strong> when your function is not executing.</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">
+              <span class="info-card-icon">🌐</span>
+              <span class="info-card-title" style="font-size: 0.95rem;">Built-in High Availability</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Fault tolerance across multiple Availability Zones without configuring load balancers or auto-scaling groups.</p>
+          </div>
+        </div>
+
+        <h3 style="margin: 2rem 0 0.8rem; font-size: 1.3rem;">1.1 The AWS Serverless Landscape Architecture</h3>
+        <p>A high-level view of how event sources, serverless compute, workflow orchestration, and serverless databases interconnect:</p>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.5rem; margin: 1.5rem 0; text-align: center;">
+          <img src="aws-serverless-landscape.jpg" alt="AWS Serverless Landscape Architecture" style="width: 100%; max-width: 1100px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 12px 36px rgba(0,0,0,0.55); display: block; margin: 0 auto;" />
+        </div>
+      </section>
+
+      <!-- MODULE 2: WHAT IS AWS LAMBDA -->
+      <section id="module-2" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">02</div>
+            <h2 class="section-title">What is AWS Lambda & Internal Execution Model</h2>
+          </div>
+        </div>
+
+        <p><strong>AWS Lambda</strong> is an event-driven, serverless computing service provided by Amazon Web Services. It executes your code in response to events from over 200 AWS services and SaaS applications.</p>
+
+        <div class="card-grid-3">
+          <div class="info-card">
+            <h4 style="color: var(--accent-lambda-light); margin-bottom: 6px;">1. Synchronous Invocation</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;">The caller waits for the function to execute and return a response.</p>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-cyan);">Examples: API Gateway, ALB</span>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-purple-light); margin-bottom: 6px;">2. Asynchronous Invocation</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;">Caller receives immediate 202 Accepted. Lambda queues the event and retries twice on failure.</p>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-purple-light);">Examples: Amazon EventBridge, S3, SNS</span>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-emerald); margin-bottom: 6px;">3. Event Source Mapping</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;">Lambda polls the stream or queue on your behalf and batches items to invoke your function.</p>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-emerald);">Examples: SQS, Kinesis, DynamoDB Streams</span>
+          </div>
+        </div>
+
+        <h3 style="margin: 2rem 0 0.8rem; font-size: 1.3rem;">2.1 Cold Starts vs Warm Starts: Quick Reference</h3>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Lifecycle Phase</th>
+              <th>Cold Start (First Request / Scale Out)</th>
+              <th>Warm Start (Subsequent Requests)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>MicroVM Initialization</strong></td>
+              <td>Downloads code & spins up Firecracker MicroVM (~100-300 ms)</td>
+              <td>Reuses running execution container (0 ms)</td>
+            </tr>
+            <tr>
+              <td><strong>Static Initialization</strong></td>
+              <td>Executes global imports, SDK clients, DB connection pools</td>
+              <td>Already initialized in memory; reuses existing connections</td>
+            </tr>
+            <tr>
+              <td><strong>Handler Execution</strong></td>
+              <td>Runs <code>lambda_handler(event, context)</code></td>
+              <td>Runs <code>lambda_handler(event, context)</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout-box tip">
+          <strong>Best Practice Tip:</strong> Always initialize your AWS SDK clients (e.g. <code>ec2 = boto3.client('ec2')</code>) <strong>outside</strong> the <code>lambda_handler</code> function. This ensures the connection is established only once during container initialization and reused across hundreds of warm requests!
+        </div>
+      </section>
+
+      <!-- MODULE 3: COMPUTE MATRIX -->
+      <section id="module-3" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Compute Decision Matrix: EC2 vs Containers vs Lambda</h2>
+          </div>
+        </div>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Amazon EC2</th>
+              <th>Amazon ECS / EKS (Containers)</th>
+              <th>AWS Lambda (Serverless)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Cost When Idle</strong></td>
+              <td>100% full hourly rate</td>
+              <td>Cluster base cost</td>
+              <td><strong>$0.00 (Zero idle cost)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Scale-Up Speed</strong></td>
+              <td>Minutes (Boot OS & AMI)</td>
+              <td>Seconds (Pull docker image)</td>
+              <td><strong>Milliseconds</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Max Duration</strong></td>
+              <td>Unlimited (Continuous)</td>
+              <td>Unlimited (Continuous)</td>
+              <td><strong>15 Minutes (900s)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>OS Maintenance</strong></td>
+              <td>You patch OS kernel</td>
+              <td>You patch container base image</td>
+              <td><strong>AWS patches 100%</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Best Used For</strong></td>
+              <td>Legacy monoliths, custom OS</td>
+              <td>Microservices, long background jobs</td>
+              <td><strong>Event-driven tasks, APIs, DevOps automation</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- MODULE 4: REAL-TIME DEVOPS CASES -->
+      <section id="module-4" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">04</div>
+            <h2 class="section-title">Real-Time DevOps Production Use Cases</h2>
+          </div>
+        </div>
+
+        <div class="card-grid-2">
+          <div class="info-card">
+            <h4 style="color: var(--accent-lambda-light); margin-bottom: 6px;">1. Cloud FinOps: Nightly EC2 & RDS Shutdown</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Automatically stops non-production development environments at 8 PM on weekdays. Saves companies 65% on cloud compute budgets.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-red); margin-bottom: 6px;">2. Security Compliance Auto-Remediation</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              When GuardDuty or AWS Config detects a public S3 bucket or open port 22 security group, an EventBridge rule triggers Lambda to immediately revoke the permissions.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">3. Unattached EBS Volume & Snapshot Pruner</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Runs every Sunday at midnight. Identifies orphaned EBS volumes in <code>available</code> status and purges snapshots older than 30 days.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-emerald); margin-bottom: 6px;">4. ChatOps & CI/CD Deployment Notifications</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Processes deployment status events from AWS CodePipeline or GitHub webhooks and posts rich interactive notification cards to Slack or Microsoft Teams.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 5: HANDS-ON LAB STEPS -->
+      <section id="module-5" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Hands-On Lab Walkthrough (Step-by-Step)</h2>
+          </div>
+        </div>
+
+        <!-- STEP 1 CARD -->
+        <div class="lab-step-card" id="stepCard-1">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 1: Create IAM Execution Role (Least-Privilege)</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-1" onclick="toggleStepCheckbox(1)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Create an IAM Role allowing your Lambda function to write logs to CloudWatch and describe/stop EC2 instances.
+          </p>
+
+          <ol style="font-size: 0.9rem; line-height: 1.8; margin-left: 1.2rem;">
+            <li>Go to <strong>IAM Console ➔ Roles ➔ Create role</strong>.</li>
+            <li>Trusted entity: <strong>AWS service</strong> ➔ Use case: <strong>Lambda</strong> ➔ Click <strong>Next</strong>.</li>
+            <li>Attach AWS managed policy: <code>AWSLambdaBasicExecutionRole</code>.</li>
+            <li>Click <strong>Next</strong> ➔ Role name: <code>lambda-finops-ec2-stopper-role</code> ➔ Click <strong>Create role</strong>.</li>
+            <li>Open the newly created role ➔ Under <strong>Permissions</strong>, click <strong>Add permissions ➔ Create inline policy</strong>.</li>
+            <li>Switch to the <strong>JSON</strong> tab, paste the policy below, name it <code>EC2DescribeAndStopPolicy</code>, and click <strong>Create policy</strong>:</li>
+          </ol>
+
+          <div class="code-container">
+            <div class="code-header"><span>json — Inline Policy</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code>{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeTags",
+        "ec2:StopInstances"
+      ],
+      "Resource": "*"
+    }
+  ]
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- STEP 2 CARD -->
+        <div class="lab-step-card" id="stepCard-2">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 2: Create the Lambda Function</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-2" onclick="toggleStepCheckbox(2)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Create the function in the AWS Lambda Console.
+          </p>
+
+          <ul style="font-size: 0.9rem; line-height: 1.8; margin-left: 1.2rem;">
+            <li>Navigate to <strong>Lambda ➔ Functions ➔ Create function</strong>.</li>
+            <li>Select <strong>Author from scratch</strong>.</li>
+            <li><strong>Function name:</strong> <code>FinOps-Nightly-EC2-Stopper</code></li>
+            <li><strong>Runtime:</strong> <code>Python 3.12</code></li>
+            <li><strong>Architecture:</strong> <code>arm64</code> (AWS Graviton)</li>
+            <li><strong>Execution role:</strong> Select <em>Use an existing role</em> ➔ Select <code>lambda-finops-ec2-stopper-role</code>.</li>
+            <li>Click <strong>Create function</strong>.</li>
+            <li>Under <strong>Configuration ➔ General configuration ➔ Edit</strong>: Set <strong>Timeout</strong> to <code>1 min 0 sec</code>.</li>
+          </ul>
+        </div>
+
+        <!-- STEP 3 CARD -->
+        <div class="lab-step-card" id="stepCard-3">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 3: Deploy the Production Boto3 Code</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-3" onclick="toggleStepCheckbox(3)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            In the <strong>Code</strong> tab, replace the contents of <code>lambda_function.py</code> with the script below and click <strong>Deploy</strong>:
+          </p>
+
+          <div class="code-container">
+            <div class="code-header"><span>python — lambda_function.py</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code>import json
+import logging
+import os
+import boto3
+from botocore.exceptions import ClientError
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+# Initialized outside handler for warm reuse
+ec2 = boto3.client('ec2')
+
+TARGET_TAG_KEY = os.environ.get('TARGET_TAG_KEY', 'Environment')
+TARGET_TAG_VALUE = os.environ.get('TARGET_TAG_VALUE', 'Development')
+DRY_RUN_MODE = os.environ.get('DRY_RUN_MODE', 'false').lower() == 'true'
+
+def lambda_handler(event, context):
+    logger.info("=== FinOps EC2 Auto-Shutdown Invocation Started ===")
+    logger.info(f"Targeting instances with Tag: {TARGET_TAG_KEY} = {TARGET_TAG_VALUE}")
+    logger.info(f"Dry Run Mode: {DRY_RUN_MODE}")
+
+    try:
+        filters = [
+            {'Name': 'instance-state-name', 'Values': ['running']},
+            {'Name': f'tag:{TARGET_TAG_KEY}', 'Values': [TARGET_TAG_VALUE]}
+        ]
+        
+        response = ec2.describe_instances(Filters=filters)
+        
+        instances_to_stop = []
+        instance_details = []
+
+        for reservation in response.get('Reservations', []):
+            for instance in reservation.get('Instances', []):
+                instance_id = instance['InstanceId']
+                instance_type = instance.get('InstanceType', 'unknown')
+                name_tag = next((tag['Value'] for tag in instance.get('Tags', []) if tag['Key'] == 'Name'), 'Unnamed')
+                
+                instances_to_stop.append(instance_id)
+                instance_details.append({
+                    "InstanceId": instance_id,
+                    "Name": name_tag,
+                    "Type": instance_type
+                })
+
+        if not instances_to_stop:
+            logger.info("✅ No running development instances found to stop. Zero cost action required.")
+            return {
+                "statusCode": 200,
+                "body": json.dumps({"message": "No instances to stop", "stopped_count": 0})
+            }
+
+        logger.info(f"Identified {len(instances_to_stop)} running instance(s) to shut down: {instances_to_stop}")
+
+        if DRY_RUN_MODE:
+            logger.info(f"[DRY RUN] Would have stopped instances: {instances_to_stop}")
+            action_status = "Simulated (Dry Run)"
+        else:
+            ec2.stop_instances(InstanceIds=instances_to_stop)
+            logger.info(f"Successfully initiated stop for {len(instances_to_stop)} instances.")
+            action_status = "Stopped"
+
+        return {
+            "statusCode": 200,
+            "body": json.dumps({
+                "action": action_status,
+                "stopped_count": len(instances_to_stop),
+                "instances": instance_details
+            })
+        }
+
+    except ClientError as e:
+        logger.error(f"AWS Boto3 ClientError: {str(e)}")
+        raise e
+    except Exception as e:
+        logger.error(f"Unexpected error during execution: {str(e)}")
+        raise e</code></pre>
+          </div>
+        </div>
+
+        <!-- STEP 4 CARD -->
+        <div class="lab-step-card" id="stepCard-4">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 4: Test in Lambda Console with Mock Event Payload</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-4" onclick="toggleStepCheckbox(4)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Click the <strong>Test</strong> tab, create an event named <code>EventBridgeScheduledMock</code>, paste the JSON below, and click <strong>Test</strong>:
+          </p>
+
+          <div class="code-container">
+            <div class="code-header"><span>json — Test Event Payload</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code>{
+  "version": "0",
+  "id": "53dc4d37-c244-4324-a5f4-80bb75da359f",
+  "detail-type": "Scheduled Event",
+  "source": "aws.events",
+  "account": "123456789012",
+  "time": "2026-09-08T20:00:00Z",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:events:us-east-1:123456789012:rule/Nightly-Shutdown-Rule"
+  ],
+  "detail": {}
+}</code></pre>
+          </div>
+
+          <!-- Interactive Simulator Widget -->
+          <div class="lambda-simulator">
+            <div class="lambda-sim-header">
+              <span class="lambda-sim-title">Interactive Console Execution Simulator</span>
+              <button class="run-sim-btn" onclick="toggleSimOutput('sim-output')">▶ Simulate Execution Result</button>
+            </div>
+            <div class="lambda-sim-output" id="sim-output">
+              <div style="color: var(--accent-emerald); font-weight: bold; margin-bottom: 6px;">Execution Result: Succeeded (HTTP 200)</div>
+              <div style="color: #cbd5e1; margin-bottom: 8px;">Response:</div>
+              <pre style="background: #040608; padding: 10px; border-radius: 6px; color: #a78bfa; margin-bottom: 10px;">{
+  "action": "Stopped",
+  "stopped_count": 1,
+  "instances": [
+    {
+      "InstanceId": "i-09f482d9a1c24e78b",
+      "Name": "Dev-Backend-API",
+      "Type": "t3.micro"
+    }
+  ]
+}</pre>
+              <div style="color: #cbd5e1; margin-bottom: 4px;">Log Output:</div>
+              <pre style="background: #040608; padding: 10px; border-radius: 6px; color: #94a3b8; font-size: 0.8rem;">START RequestId: 8a42b109-78c2-411a-85d1-6e84d4361ab0 Version: $LATEST
+[INFO] === FinOps EC2 Auto-Shutdown Invocation Started ===
+[INFO] Targeting instances with Tag: Environment = Development
+[INFO] Identified 1 running instance(s) to shut down: ['i-09f482d9a1c24e78b']
+[INFO] Successfully initiated stop for 1 instances.
+END RequestId: 8a42b109-78c2-411a-85d1-6e84d4361ab0
+REPORT RequestId: 8a42b109-78c2-411a-85d1-6e84d4361ab0
+  Duration: 342.15 ms  Billed Duration: 343 ms  Memory: 128 MB  Max Memory Used: 78 MB  Init Duration: 184.20 ms</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5 CARD -->
+        <div class="lab-step-card" id="stepCard-5">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 5: Connect Amazon EventBridge Scheduled Trigger</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-5" onclick="toggleStepCheckbox(5)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Add the scheduled trigger to execute automatically.
+          </p>
+
+          <ol style="font-size: 0.9rem; line-height: 1.8; margin-left: 1.2rem;">
+            <li>In the function overview diagram, click <strong>+ Add trigger</strong>.</li>
+            <li>Source: <strong>EventBridge (CloudWatch Events)</strong>.</li>
+            <li>Rule: <strong>Create a new rule</strong> ➔ Rule name: <code>NightlyShutdownSchedule</code>.</li>
+            <li>Rule type: <strong>Schedule expression</strong>.</li>
+            <li>Expression: <code>cron(0 20 ? * MON-FRI *)</code> (or <code>rate(2 minutes)</code> for classroom testing).</li>
+            <li>Click <strong>Add</strong>.</li>
+          </ol>
+        </div>
+
+        <!-- STEP 6 CARD -->
+        <div class="lab-step-card" id="stepCard-6">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 6: Live Verification with EC2 Instance & CloudWatch Logs</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-6" onclick="toggleStepCheckbox(6)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Launch a test <code>t2.micro</code> or <code>t3.micro</code> EC2 instance with the tag <code>Environment: Development</code>. Observe the instance transition from <em>running</em> to <em>stopping</em>, and view the live logs in CloudWatch Logs under <code>/aws/lambda/FinOps-Nightly-EC2-Stopper</code>.
+          </p>
+        </div>
+
+        <!-- STEP 7 CARD -->
+        <div class="lab-step-card" id="stepCard-7">
+          <div class="lab-step-top">
+            <div class="lab-step-title">
+              <span>Step 7: Lab Clean-Up & Teardown</span>
+            </div>
+            <button class="lab-checkbox-btn" id="check-7" onclick="toggleStepCheckbox(7)">
+              <span>Mark Completed</span>
+            </button>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+            Disable the EventBridge schedule rule, delete the test Lambda function, and terminate your test EC2 instances.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header"><span>AWS CLI Teardown</span><button class="copy-btn" onclick="copyCode(this)">📋 Copy</button></div>
+            <pre><code>aws events disable-rule --name NightlyShutdownSchedule
+aws lambda delete-function --function-name FinOps-Nightly-EC2-Stopper</code></pre>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- MODULE 6: TROUBLESHOOTING -->
+      <section id="module-troubleshoot" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">06</div>
+            <h2 class="section-title">Can't Run Lambda? 60-Second Troubleshooting Triage</h2>
+          </div>
+        </div>
+
+        <div class="card-grid-2">
+          <div class="info-card">
+            <h4 style="color: var(--accent-red); margin-bottom: 6px;">1. ClientError: UnauthorizedOperation</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              <strong>Root Cause:</strong> Missing IAM permissions. Check your Execution Role. Does it have <code>ec2:DescribeInstances</code> and <code>ec2:StopInstances</code>?
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-amber); margin-bottom: 6px;">2. Task timed out after 3.00 seconds</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              <strong>Root Cause:</strong> Default 3-second timeout was not increased. Go to Configuration ➔ General configuration ➔ Set timeout to 1 minute.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">3. EventBridge Not Firing</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              <strong>Root Cause:</strong> Check if the rule is in <strong>ENABLED</strong> state. Verify that UTC timezone was used for the cron expression.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--accent-emerald); margin-bottom: 6px;">4. Zero Instances Stopped</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              <strong>Root Cause:</strong> Case-sensitive tags! Ensure tag key is exactly <code>Environment</code> and value is <code>Development</code>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 7: KNOWLEDGE CHECK QUIZ -->
+      <section id="module-quiz" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">07</div>
+            <h2 class="section-title">Knowledge Check: Interactive Quiz</h2>
+          </div>
+        </div>
+
+        <!-- Quiz 1 -->
+        <div class="quiz-card">
+          <div class="quiz-question">1. What happens to your AWS bill when your Lambda function is idle and receives zero requests?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">A) You are billed an hourly standby fee per microVM</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, true, this)">B) You pay exactly $0.00 (Zero idle cost)</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">C) You are billed for EBS volume reservation</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">D) AWS charges a flat $5 monthly maintenance charge per function</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-1"></div>
+        </div>
+
+        <!-- Quiz 2 -->
+        <div class="quiz-card">
+          <div class="quiz-question">2. What is the maximum execution timeout duration supported by a single AWS Lambda invocation?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">A) 5 minutes</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, true, this)">B) 15 minutes (900 seconds)</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">C) 1 hour</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">D) Unlimited</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-2"></div>
+        </div>
+
+        <!-- Quiz 3 -->
+        <div class="quiz-card">
+          <div class="quiz-question">3. Where should database connection pools and AWS SDK clients be initialized in your Lambda code for optimal performance?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">A) Inside the lambda_handler function body</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, true, this)">B) Outside the lambda_handler function (global/static scope)</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">C) In an S3 bucket</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">D) In an external crontab script</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-3"></div>
+        </div>
+      </section>
+
+      <!-- MODULE 8: CHEAT SHEET -->
+      <section id="module-cheatsheet" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">08</div>
+            <h2 class="section-title">AWS Lambda & Boto3 Quick Command Cheat Sheet</h2>
+          </div>
+        </div>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Task / Command</th>
+              <th>Code / Snippet</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Read Environment Var</strong></td>
+              <td><code>os.environ.get('KEY', 'default')</code></td>
+              <td>Safely extracts config with fallback.</td>
+            </tr>
+            <tr>
+              <td><strong>Remaining Time</strong></td>
+              <td><code>context.get_remaining_time_in_millis()</code></td>
+              <td>Returns ms left before 15-minute timeout abort.</td>
+            </tr>
+            <tr>
+              <td><strong>Describe EC2 Instances</strong></td>
+              <td><code>ec2.describe_instances(Filters=[...])</code></td>
+              <td>Filter instances by state or tag.</td>
+            </tr>
+            <tr>
+              <td><strong>Stop EC2 Instances</strong></td>
+              <td><code>ec2.stop_instances(InstanceIds=['i-xxx'])</code></td>
+              <td>Gracefully initiates EC2 shutdown.</td>
+            </tr>
+            <tr>
+              <td><strong>Invoke CLI</strong></td>
+              <td><code>aws lambda invoke --function-name MyFunc out.json</code></td>
+              <td>Directly invokes function from terminal.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast element -->
+  <div id="toast">Code copied to clipboard!</div>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // Tab switcher
+    function switchTab(evt, tabId) {
+      const parent = evt.target.closest('.lab-step-card') || evt.target.parentElement.parentElement;
+      const tabBtns = parent.querySelectorAll('.tab-btn');
+      const tabPanes = parent.querySelectorAll('.tab-pane');
+
+      tabBtns.forEach(btn => btn.classList.remove('active'));
+      tabPanes.forEach(pane => pane.classList.remove('active'));
+
+      evt.target.classList.add('active');
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) targetPane.classList.add('active');
+    }
+
+    // Copy to clipboard
+    function copyCode(button) {
+      const container = button.closest('.code-container');
+      const code = container.querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        showToast("Copied to clipboard!");
+        button.innerText = "✓ Copied";
+        setTimeout(() => { button.innerText = "📋 Copy"; }, 2000);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 2500);
+    }
+
+    // Toggle Simulator Output
+    function toggleSimOutput(id) {
+      const out = document.getElementById(id);
+      if (out) {
+        out.classList.toggle('show');
+      }
+    }
+
+    // Interactive Lab Progress Tracker
+    const TOTAL_STEPS = 7;
+    let completedSteps = JSON.parse(localStorage.getItem('lambda_lab_progress') || '[]');
+
+    function updateProgressUI() {
+      const count = completedSteps.length;
+      const pct = Math.round((count / TOTAL_STEPS) * 100);
+
+      document.getElementById('headerProgressFill').style.width = pct + '%';
+      document.getElementById('headerProgressText').innerText = `${count}/${TOTAL_STEPS}`;
+
+      document.getElementById('bannerProgressFill').style.width = pct + '%';
+      document.getElementById('bannerProgressTitle').innerText = `${count} of ${TOTAL_STEPS} Lab Milestones Completed (${pct}%)`;
+
+      for (let i = 1; i <= TOTAL_STEPS; i++) {
+        const btn = document.getElementById(`check-${i}`);
+        const card = document.getElementById(`stepCard-${i}`);
+        if (btn && card) {
+          if (completedSteps.includes(i)) {
+            btn.classList.add('checked');
+            btn.innerHTML = '<span>✓ Completed</span>';
+            card.classList.add('completed');
+          } else {
+            btn.classList.remove('checked');
+            btn.innerHTML = '<span>Mark Completed</span>';
+            card.classList.remove('completed');
+          }
+        }
+      }
+    }
+
+    function toggleStepCheckbox(stepNum) {
+      if (completedSteps.includes(stepNum)) {
+        completedSteps = completedSteps.filter(s => s !== stepNum);
+      } else {
+        completedSteps.push(stepNum);
+      }
+      localStorage.setItem('lambda_lab_progress', JSON.stringify(completedSteps));
+      updateProgressUI();
+    }
+
+    function resetLabProgress() {
+      if (confirm('Reset your lab checklist back to 0%?')) {
+        completedSteps = [];
+        localStorage.removeItem('lambda_lab_progress');
+        updateProgressUI();
+      }
+    }
+
+    // Initialize progress on load
+    updateProgressUI();
+
+    // Quiz Checker
+    function checkQuiz(qNum, isCorrect, element) {
+      const parent = element.parentElement;
+      const opts = parent.querySelectorAll('.quiz-opt');
+      const feedback = document.getElementById(`feedback-${qNum}`);
+
+      opts.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+      });
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(16, 185, 129, 0.15)';
+        feedback.style.color = '#34d399';
+        feedback.style.border = '1px solid var(--accent-emerald)';
+        feedback.innerHTML = '<strong>Correct! 🎉</strong> Excellent understanding of AWS Lambda serverless concepts.';
+      } else {
+        element.classList.add('incorrect');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+        feedback.style.color = '#f87171';
+        feedback.style.border = '1px solid var(--accent-red)';
+        feedback.innerHTML = '<strong>Incorrect.</strong> Review the explanation in the module above.';
+      }
+    }
+
+    // Theme Switcher (Dark / Light)
+    const themeToggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+
+    if (currentTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      if (activeTheme === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Active link highlighting on scroll
+    const navLinks = document.querySelectorAll('.nav-list a');
+    const sections = document.querySelectorAll('section.module-section, .hero-banner');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

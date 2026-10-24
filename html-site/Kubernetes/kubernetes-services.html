@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Nimbuswiztech Kubernetes Services training guide: theory, service types, selectors, EndpointSlices, labs and interview practice.">
+<title>Kubernetes Services Training Guide | Nimbuswiztech</title>
+<style>
+:root{--ink:#1c2938;--muted:#5c6b7b;--line:#d7e0ea;--paper:#fff;--bg:#f3f6fa;--navy:#102b49;--blue:#1b65ad;--pale:#eaf3ff;--green:#eaf8ef;--amber:#fff4d8;--red:#fff0ef;--code:#101b2a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--blue);overflow-wrap:anywhere}header{background:var(--navy);color:white;padding:2.4rem max(1rem,calc((100% - 1180px)/2));border-bottom:5px solid #68aaff}header .brand{font-size:.82rem;letter-spacing:.14em;font-weight:800;color:#c9e2ff}header h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.12;margin:.55rem 0 1rem}header p{max-width:900px;color:#e0eaf6}.wrap{max-width:1180px;margin:auto;padding:1.1rem}section,nav#toc{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:1.3rem;margin:1rem 0;box-shadow:0 2px 8px #102b490a}h2{font-size:1.65rem;margin-top:0;border-bottom:1px solid var(--line);padding-bottom:.4rem}h3{font-size:1.2rem;margin-bottom:.35rem}p{margin:.55rem 0}ul,ol{padding-left:1.5rem}nav#toc ol{columns:2;column-gap:2rem}nav#toc li{break-inside:avoid;margin:.25rem 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem}.card{border:1px solid var(--line);border-radius:10px;padding:1rem}.callout{padding:.85rem 1rem;border-left:4px solid var(--blue);background:var(--pale);border-radius:5px;margin:.8rem 0}.warn{border-left-color:#b77900;background:var(--amber)}.danger{border-left-color:#bd3838;background:var(--red)}.good{border-left-color:#20804c;background:var(--green)}.muted{color:var(--muted)}.small{font-size:.9rem}.pill{display:inline-block;border:1px solid #c9d8e9;background:#f2f7fc;padding:.1rem .5rem;border-radius:999px;font-size:.82rem;margin:.1rem}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.94rem}th,td{border:1px solid var(--line);padding:.6rem;text-align:left;vertical-align:top}th{background:#edf2f8}pre{position:relative;overflow:auto;background:var(--code);color:#e9f1fb;padding:1rem;border-radius:9px;line-height:1.5;font-size:.9rem;white-space:pre;tab-size:2}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code,td code{background:#edf1f6;padding:.12rem .3rem;border-radius:4px;color:#20344b}.copy{position:absolute;right:.5rem;top:.5rem;background:#fff;color:#102b49;border:0;border-radius:5px;padding:.3rem .55rem;cursor:pointer;font-weight:700}.exercise{border:1px solid var(--line);border-radius:10px;padding:1rem;margin:1rem 0}.question{border-top:1px solid var(--line);padding:.65rem 0}.question summary{cursor:pointer;font-weight:700}.answer{background:#f7f9fc;padding:.7rem;border-radius:6px;margin-top:.45rem}.searchbox{width:100%;padding:.7rem;border:1px solid #aebdce;border-radius:7px;font:inherit;margin:.5rem 0 1rem}.diagram{width:100%;height:auto;display:block;background:#f8fbff;border:1px solid var(--line);border-radius:10px;margin:.7rem 0}.toplink{display:inline-block;margin:.8rem 0}footer{text-align:center;padding:2rem 1rem;color:var(--muted)}
+@media(max-width:650px){.wrap{padding:.65rem}nav#toc ol{columns:1}section,nav#toc{padding:1rem}table{font-size:.85rem}}
+@media print{body{background:#fff;font-size:10pt;color:#000}header{background:#fff;color:#000;border-bottom:2px solid #333;padding:1rem}header p,header .brand{color:#333}.wrap{max-width:none;padding:0}section,nav#toc{box-shadow:none;border:1px solid #aaa;break-inside:avoid;margin:.5rem 0;padding:.7rem}.copy,.searchbox,.toplink{display:none}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f4f4;color:#000;border:1px solid #aaa;padding:.5rem}details:not([open])>*:not(summary){display:block}h2,h3{break-after:avoid}footer{padding:.5rem}}
+</style>
+</head>
+<body id="top">
+<header><div class="brand">NIMBUSWIZTECH · STUDENT LEARNING REFERENCE</div><h1>Kubernetes Services</h1><p>A practical beginner guide to stable networking for Pods: ClusterIP, NodePort, LoadBalancer, ExternalName, selectors, ports, EndpointSlices, troubleshooting and interview preparation.</p><p><span class="pill">Theory + labs</span> <span class="pill">YAML</span> <span class="pill">Troubleshooting</span> <span class="pill">Interview prep</span></p></header>
+<main class="wrap">
+<nav id="toc"><h2>Contents</h2><ol>
+<li><a href="#intro">Introduction</a></li><li><a href="#concepts">Core concepts</a></li><li><a href="#architecture">Architecture and traffic flow</a></li><li><a href="#environment">Environment preparation</a></li><li><a href="#labs">Step-by-step hands-on practice</a></li><li><a href="#complete">End-to-end example</a></li><li><a href="#troubleshoot">Troubleshooting guide</a></li><li><a href="#best">Best practices</a></li><li><a href="#interview">Interview preparation</a></li><li><a href="#assignments">Practice assignments</a></li><li><a href="#revision">Quick revision</a></li><li><a href="#cleanup">Cleanup</a></li><li><a href="#refs">References</a></li></ol></nav>
+
+<section id="intro"><h2>1. Introduction</h2>
+<p>A Kubernetes <strong>Service</strong> is an API object that provides a stable way to reach a logical group of backend endpoints, commonly Pods. Pods are replaceable and their IP addresses can change. A Service gives clients a stable name and, for most Service types, a stable virtual IP while the selected endpoints change behind it.</p>
+<div class="grid"><div class="card"><h3>Why it exists</h3><p>Applications need to communicate without hard-coding individual Pod IPs. A Service separates clients from the changing set of replicas.</p></div><div class="card"><h3>Analogy</h3><p>A Service is like a company help-desk number. Employees (Pods) may change shifts, but callers keep using the same number and the desk routes calls to an available employee.</p></div><div class="card"><h3>DevOps example</h3><p>A frontend calls <code>catalog-api</code>. Kubernetes selects healthy matching backend Pods through a Service; scaling or replacing Pods does not require changing the frontend's destination.</p></div></div>
+<h3>Learning objectives</h3><ul><li>Explain why Services are needed when Pod IPs are ephemeral.</li><li>Understand selectors, labels, Service ports, target ports and EndpointSlices.</li><li>Compare ClusterIP, NodePort, LoadBalancer, ExternalName and headless Services.</li><li>Apply manifests and validate traffic using kubectl.</li><li>Diagnose empty endpoints, selector mismatches, port mistakes and external exposure problems.</li></ul>
+<div class="callout warn"><strong>Important:</strong> A Service is not the application process and does not create Pods. Workload controllers such as Deployments create and maintain Pods. A Service selects endpoints and provides a stable networking abstraction.</div>
+</section>
+
+<section id="concepts"><h2>2. Core concepts and terminology</h2>
+<h3>Service types</h3><div class="table-wrap"><table><tr><th>Type</th><th>Reachability</th><th>Typical use</th><th>Key caution</th></tr>
+<tr><td><code>ClusterIP</code></td><td>Inside the cluster; default type</td><td>Internal APIs, databases, service-to-service calls</td><td>Not directly reachable from outside the cluster by default.</td></tr>
+<tr><td><code>NodePort</code></td><td>Exposes a port on node IP addresses, subject to cluster networking and firewall rules</td><td>Learning labs or environments with an external load balancer of their own</td><td>Default NodePort range is commonly 30000–32767; access depends on node network reachability.</td></tr>
+<tr><td><code>LoadBalancer</code></td><td>Requests an external load balancer through a supported cloud/provider integration or installed implementation</td><td>Expose an application outside the cluster</td><td>May create billable infrastructure; local clusters may not provision one automatically.</td></tr>
+<tr><td><code>ExternalName</code></td><td>DNS alias to an external hostname</td><td>Give a Kubernetes DNS name for an external service</td><td>Returns a DNS CNAME; it does not proxy traffic or select Pods.</td></tr>
+<tr><td>Headless (<code>clusterIP: None</code>)</td><td>DNS publishes endpoint records rather than a Service virtual IP</td><td>Stateful discovery where clients need individual endpoints</td><td>No virtual-IP load balancing by the Service proxy.</td></tr></table></div>
+<h3>Important Service fields</h3><ul><li><code>metadata.name</code>: stable DNS name within a namespace.</li><li><code>spec.type</code>: exposure behavior.</li><li><code>spec.selector</code>: label map used to identify matching Pods for a selector-based Service. Keys and values must match Pod labels exactly.</li><li><code>spec.ports[].port</code>: port exposed by the Service.</li><li><code>spec.ports[].targetPort</code>: destination port on the backend Pod; can be a number or a named container port.</li><li><code>spec.ports[].protocol</code>: usually TCP for HTTP applications.</li><li><code>spec.ports[].nodePort</code>: allocated or specified node port for NodePort Services.</li><li><code>spec.clusterIP</code>: virtual IP assigned to most Services; setting it to <code>None</code> creates a headless Service.</li><li><code>spec.externalName</code>: target DNS hostname for ExternalName Services.</li></ul>
+<h3>Port vocabulary</h3><div class="table-wrap"><table><tr><th>Field</th><th>Example</th><th>Meaning</th></tr><tr><td>Container port</td><td><code>containerPort: 8080</code></td><td>Documents the port the container is expected to listen on; it does not itself publish the port.</td></tr><tr><td>Service port</td><td><code>port: 80</code></td><td>Port clients use when connecting to the Service.</td></tr><tr><td>Target port</td><td><code>targetPort: 8080</code></td><td>Port on the selected backend endpoint.</td></tr><tr><td>Node port</td><td><code>nodePort: 30080</code></td><td>Port exposed on nodes for NodePort Services, if allocated.</td></tr></table></div>
+<p>Example: a client calls <code>catalog-api:80</code>; the Service forwards to a ready endpoint's port 8080. The Service port and target port do not need to be identical.</p>
+<h3>Labels, selectors and endpoints</h3><p>Labels are key/value metadata on Pods. A Service selector matches labels to find backends. EndpointSlices represent sets of network endpoints for a Service and include readiness-related endpoint information. If a selector matches no Pods, the Service can exist normally but have no usable endpoints.</p>
+<h3>DNS and namespaces</h3><p>Within the same namespace, clients can typically call <code>http://catalog-api</code>. Across namespaces, use a qualified name such as <code>catalog-api.team-a</code>; the full DNS name commonly follows <code>catalog-api.team-a.svc.cluster.local</code>, though the cluster domain can differ.</p>
+<h3>Services without selectors</h3><p>A Service may omit a selector when an administrator intentionally manages EndpointSlices or connects to non-Pod endpoints. Kubernetes does not automatically create selector-derived endpoints for that Service. This is an advanced pattern; beginner labs should use selectors.</p>
+</section>
+
+<section id="architecture"><h2>3. Architecture and traffic flow</h2>
+<svg class="diagram" viewBox="0 0 960 470" role="img" aria-label="Client connects to Service stable name and port; Service selects ready Pod endpoints using labels and EndpointSlices">
+<defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3z" fill="#456789"/></marker></defs>
+<rect x="30" y="180" width="170" height="78" rx="12" fill="#eaf3ff" stroke="#4d80bd"/><text x="115" y="210" text-anchor="middle" font-size="17" font-weight="bold" fill="#183b62">Client Pod</text><text x="115" y="232" text-anchor="middle" font-size="13" fill="#183b62">catalog-api:80</text>
+<path d="M200 220 H285" stroke="#456789" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="290" y="165" width="205" height="108" rx="12" fill="#fff4d8" stroke="#c89b3c"/><text x="392" y="193" text-anchor="middle" font-size="17" font-weight="bold" fill="#704d00">Service</text><text x="392" y="216" text-anchor="middle" font-size="13" fill="#704d00">stable DNS / ClusterIP</text><text x="392" y="238" text-anchor="middle" font-size="13" fill="#704d00">port 80 → target 8080</text><text x="392" y="256" text-anchor="middle" font-size="12" fill="#704d00">selector: app=catalog</text>
+<path d="M495 220 H560" stroke="#456789" stroke-width="2.5" marker-end="url(#arr)"/><rect x="565" y="170" width="145" height="100" rx="10" fill="#f0eaff" stroke="#8d73c7"/><text x="637" y="200" text-anchor="middle" font-size="15" font-weight="bold" fill="#39256e">EndpointSlice</text><text x="637" y="221" text-anchor="middle" font-size="12" fill="#39256e">matching endpoints</text><text x="637" y="240" text-anchor="middle" font-size="12" fill="#39256e">readiness metadata</text>
+<path d="M710 220 H760 V105 H790" fill="none" stroke="#456789" stroke-width="2" marker-end="url(#arr)"/><path d="M710 220 H760 V220 H790" fill="none" stroke="#456789" stroke-width="2" marker-end="url(#arr)"/><path d="M710 220 H760 V335 H790" fill="none" stroke="#456789" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="795" y="70" width="140" height="70" rx="10" fill="#eaf8ef" stroke="#4c9a70"/><text x="865" y="98" text-anchor="middle" font-size="15" font-weight="bold" fill="#155d38">Pod A</text><text x="865" y="119" text-anchor="middle" font-size="12" fill="#155d38">port 8080</text>
+<rect x="795" y="185" width="140" height="70" rx="10" fill="#eaf8ef" stroke="#4c9a70"/><text x="865" y="213" text-anchor="middle" font-size="15" font-weight="bold" fill="#155d38">Pod B</text><text x="865" y="234" text-anchor="middle" font-size="12" fill="#155d38">port 8080</text>
+<rect x="795" y="300" width="140" height="70" rx="10" fill="#eaf8ef" stroke="#4c9a70"/><text x="865" y="328" text-anchor="middle" font-size="15" font-weight="bold" fill="#155d38">Pod C</text><text x="865" y="349" text-anchor="middle" font-size="12" fill="#155d38">port 8080</text>
+<text x="480" y="55" text-anchor="middle" font-size="14" fill="#536273">Conceptual diagram — routing implementation depends on cluster networking</text>
+<text x="480" y="420" text-anchor="middle" font-size="13" fill="#536273">Labels select backends; EndpointSlices track endpoints; traffic is directed to eligible endpoints.</text>
+</svg>
+<ol><li>A client resolves a Service name through cluster DNS.</li><li>For ClusterIP/NodePort/LoadBalancer Services, traffic is sent to the Service virtual IP or applicable external entry point and port.</li><li>Kubernetes networking components (commonly kube-proxy or a replacement implementation) direct traffic toward an eligible endpoint.</li><li>The Service selector matches Pod labels; EndpointSlices represent endpoint addresses and readiness information.</li><li>As Pods scale, become unready, or are replaced, endpoint information is updated without changing the client's Service name.</li></ol>
+<div class="callout">Kubernetes Service APIs define the desired abstraction. The exact packet-routing implementation depends on the cluster's networking implementation; do not assume every cluster uses kube-proxy in the same mode.</div>
+</section>
+
+<section id="environment"><h2>4. Environment preparation</h2><p>Use Minikube, kind, or an authorized existing cluster. This guide does not require EKS. Public images are used in labs; a cluster needs registry access. Cloud LoadBalancer examples may provision billable cloud infrastructure, so the default lab uses ClusterIP and port-forwarding instead.</p>
+<pre><code>kubectl version --client
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+kubectl config current-context</code></pre>
+<ul><li><code>kubectl version --client</code>: checks the local client.</li><li><code>kubectl cluster-info</code>: checks API connectivity.</li><li><code>kubectl get nodes</code>: verifies registered nodes and Ready state.</li><li><code>kubectl get namespaces</code>: lists namespaces.</li><li><code>kubectl config current-context</code>: shows the target cluster/context.</li></ul>
+<p>Optional local cluster start (requires Minikube installed):</p><pre><code>minikube start
+kubectl get nodes</code></pre>
+<pre><code>mkdir -p kubernetes-services-lab
+cd kubernetes-services-lab
+kubectl create namespace nimbus-services-lab</code></pre>
+<div class="callout warn">If the namespace already exists, inspect it and verify it is dedicated to your lab. On shared clusters, avoid deleting or changing resources outside your own namespace. If access is Forbidden, request the correct least-privilege RBAC permissions.</div>
+</section>
+
+<section id="labs"><h2>5. Step-by-step hands-on practice</h2>
+<div class="exercise"><h3>Exercise 1 — Create a Deployment as a Service backend</h3><p><strong>Objective:</strong> Create three repeatable Pods with a matching label. A Service routes to workload endpoints; it does not create the Pods.</p><p>Save as <code>web-deployment.yaml</code>:</p><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: nimbus-services-lab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi</code></pre>
+<pre><code>kubectl apply -f web-deployment.yaml
+kubectl rollout status deployment/web -n nimbus-services-lab
+kubectl get pods -n nimbus-services-lab -l app=web -o wide</code></pre><p><strong>Explanation:</strong> The Deployment's selector and Pod template labels must match. Three replicas help demonstrate multiple endpoints. Resource values are small lab examples, not universal production sizing.</p><p><strong>Expected result:</strong> Three Pods normally reach Running/Ready if scheduling and image pulls succeed.</p><p><strong>Troubleshooting:</strong> If not ready, describe the Pods and inspect Events. Check node capacity and image access.</p></div>
+
+<div class="exercise"><h3>Exercise 2 — Expose the Pods with ClusterIP</h3><p><strong>Objective:</strong> Create a stable internal name.</p><p>Save as <code>web-clusterip.yaml</code>:</p><pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: nimbus-services-lab
+spec:
+  type: ClusterIP
+  selector:
+    app: web
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: http</code></pre>
+<pre><code>kubectl apply -f web-clusterip.yaml
+kubectl get service web -n nimbus-services-lab
+kubectl get endpointslices -n nimbus-services-lab -l kubernetes.io/service-name=web
+kubectl describe service web -n nimbus-services-lab</code></pre><p><strong>Explanation:</strong> Service port 80 is mapped to the named container port <code>http</code> (80). The selector matches the Deployment's Pod labels. The Service receives a cluster-internal virtual IP.</p><p><strong>Expected result:</strong> ClusterIP is assigned and EndpointSlices list the matching ready Pod addresses. EndpointSlice output can vary by Kubernetes version.</p><p><strong>Troubleshooting:</strong> If no endpoints appear, compare <code>spec.selector</code> with actual Pod labels and check Pod readiness.</p></div>
+
+<div class="exercise"><h3>Exercise 3 — Test Service traffic safely using port-forward</h3><p><strong>Objective:</strong> Access a ClusterIP Service from the local machine without exposing it publicly.</p><pre><code>kubectl port-forward service/web 8080:80 -n nimbus-services-lab</code></pre><p>Keep that terminal running. In a second terminal:</p><pre><code>curl -I http://127.0.0.1:8080</code></pre><p><strong>Expected result:</strong> A typical NGINX response is an HTTP success response. Use Ctrl+C in the first terminal to stop port-forwarding.</p><p><strong>Explanation:</strong> Port-forwarding creates a temporary local tunnel through the Kubernetes API. It is useful for testing, but is not the same as publicly exposing the Service.</p></div>
+
+<div class="exercise"><h3>Exercise 4 — Demonstrate a selector mismatch</h3><p><strong>Objective:</strong> Understand why a Service can exist with zero endpoints.</p><pre><code>kubectl get pods -n nimbus-services-lab --show-labels
+kubectl patch service web -n nimbus-services-lab --type merge -p '{"spec":{"selector":{"app":"wrong-label"}}}'
+kubectl get endpointslices -n nimbus-services-lab -l kubernetes.io/service-name=web</code></pre><p><strong>Expected result:</strong> The Service remains, but it no longer matches the <code>app=web</code> Pods, so usable endpoints disappear.</p><p><strong>Restore the selector:</strong></p><pre><code>kubectl patch service web -n nimbus-services-lab --type merge -p '{"spec":{"selector":{"app":"web"}}}'
+kubectl get endpointslices -n nimbus-services-lab -l kubernetes.io/service-name=web</code></pre><p><strong>Safety:</strong> Perform this only on the Service created in this lab. On a shared namespace, do not patch an unknown Service.</p></div>
+
+<div class="exercise"><h3>Exercise 5 — Use NodePort in a lab</h3><p><strong>Objective:</strong> Understand the NodePort exposure mechanism without assuming the node is internet-accessible.</p><p>Save as <code>web-nodeport.yaml</code>:</p><pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: web-nodeport
+  namespace: nimbus-services-lab
+spec:
+  type: NodePort
+  selector:
+    app: web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    nodePort: 30080</code></pre><pre><code>kubectl apply -f web-nodeport.yaml
+kubectl get service web-nodeport -n nimbus-services-lab
+kubectl describe service web-nodeport -n nimbus-services-lab
+kubectl get nodes -o wide</code></pre><p><strong>Expected result:</strong> Service displays port mapping such as <code>80:30080/TCP</code>. Access via NodeIP:30080 depends on node routing, firewall rules and local-cluster networking.</p><p><strong>Minikube tip:</strong> <code>minikube service web-nodeport -n nimbus-services-lab --url</code> may provide a reachable URL depending on driver/platform.</p><p><strong>Troubleshooting:</strong> Check endpoints first, then node address reachability and firewall/security-group rules. Do not open a node port to the internet without a security review.</p></div>
+
+<div class="exercise"><h3>Exercise 6 — Understand LoadBalancer and ExternalName</h3><p><strong>Objective:</strong> Recognize how the types differ; do not create a public cloud load balancer in a cost-sensitive lab without approval.</p><p>Illustrative LoadBalancer manifest (apply only in an authorized environment where external load balancer provisioning is expected):</p><pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: web-public
+  namespace: nimbus-services-lab
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre><pre><code># Only if you intentionally choose to provision this:
+kubectl apply -f web-loadbalancer.yaml
+kubectl get service web-public -n nimbus-services-lab -w</code></pre><p>In a supported cloud environment, a controller may provision an external load balancer asynchronously. In local clusters, EXTERNAL-IP may remain pending unless an appropriate implementation is installed.</p><p>ExternalName example, which creates only a DNS alias and does not forward traffic:</p><pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: external-docs
+  namespace: nimbus-services-lab
+spec:
+  type: ExternalName
+  externalName: kubernetes.io</code></pre><pre><code>kubectl apply -f external-name.yaml
+kubectl get service external-docs -n nimbus-services-lab -o yaml</code></pre><p>DNS resolution can be tested from a Pod with DNS tools available. HTTP/TLS may be affected by hostname and certificate expectations when using ExternalName.</p></div>
+
+<div class="exercise"><h3>Exercise 7 — Create a headless Service</h3><p><strong>Objective:</strong> See a Service that publishes endpoint DNS without a virtual IP.</p><p>Save as <code>web-headless.yaml</code>:</p><pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: web-headless
+  namespace: nimbus-services-lab
+spec:
+  clusterIP: None
+  selector:
+    app: web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre><pre><code>kubectl apply -f web-headless.yaml
+kubectl get service web-headless -n nimbus-services-lab
+kubectl get endpointslices -n nimbus-services-lab -l kubernetes.io/service-name=web-headless</code></pre><p><strong>Expected result:</strong> The Service's ClusterIP field displays None. Endpoint addresses are still represented through EndpointSlices and DNS behavior, but no Service virtual-IP load balancing is provided.</p></div>
+</section>
+
+<section id="complete"><h2>6. End-to-end example: internal catalog web application</h2>
+<p><strong>Requirement:</strong> Run three NGINX replicas and give internal clients a stable DNS name. Validate that traffic continues through the Service abstraction when a Pod is replaced.</p>
+<h3>Complete manifest — save as <code>catalog-app.yaml</code></h3><pre><code>apiVersion: v1
+kind: Namespace
+metadata:
+  name: nimbus-services-lab
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog
+  namespace: nimbus-services-lab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: catalog
+  template:
+    metadata:
+      labels:
+        app: catalog
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 2
+          periodSeconds: 5
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog
+  namespace: nimbus-services-lab
+spec:
+  type: ClusterIP
+  selector:
+    app: catalog
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre>
+<p><strong>Execution:</strong></p><pre><code>kubectl apply -f catalog-app.yaml
+kubectl rollout status deployment/catalog -n nimbus-services-lab
+kubectl get deployment,replicaset,pods,service -n nimbus-services-lab
+kubectl get endpointslices -n nimbus-services-lab -l kubernetes.io/service-name=catalog</code></pre>
+<p>Test from the local machine:</p><pre><code>kubectl port-forward service/catalog 8080:80 -n nimbus-services-lab</code></pre><p>In another terminal, run:</p><pre><code>curl -I http://127.0.0.1:8080</code></pre>
+<p>Observe replacement:</p><pre><code>kubectl get pods -n nimbus-services-lab -l app=catalog
+# Replace POD_NAME with one actual catalog Pod name:
+kubectl delete pod POD_NAME -n nimbus-services-lab
+kubectl get pods -n nimbus-services-lab -l app=catalog -w</code></pre>
+<p><strong>What is happening?</strong> Deployment maintains three replicas; Service selects Pods labelled <code>app=catalog</code>; port 80 forwards to named port <code>http</code>; readiness affects endpoint eligibility; deleting one Pod causes its ReplicaSet to create a replacement. Clients continue to use the stable Service name.</p>
+<h3>Common failure paths</h3><ul><li>No endpoints: selector and Pod labels differ, or Pods are not ready.</li><li>Connection refused: app not listening on the target port, or incorrect targetPort.</li><li>Port-forward fails: verify Service exists, local port is free, and selected Pods are available.</li><li>LoadBalancer pending: verify provider integration and permissions; do not assume local clusters can provision external infrastructure.</li></ul>
+</section>
+
+<section id="troubleshoot"><h2>7. Troubleshooting guide</h2><div class="table-wrap"><table><tr><th>Symptom/error</th><th>Possible cause</th><th>Diagnostic command</th><th>Resolution</th></tr>
+<tr><td>Service has no endpoints</td><td>Selector mismatch, no matching Pods, Pods not Ready, or selector intentionally absent.</td><td><code>kubectl describe service SERVICE -n nimbus-services-lab</code><br><code>kubectl get pods --show-labels -n nimbus-services-lab</code><br><code>kubectl get endpointslices -n nimbus-services-lab</code></td><td>Compare selector with Pod labels; verify Pods and readiness. For selectorless Services, inspect the manually managed EndpointSlices.</td></tr>
+<tr><td>Connection refused</td><td>Wrong target port, application not listening, or Pod not accepting traffic.</td><td><code>kubectl describe pod POD -n nimbus-services-lab</code><br><code>kubectl logs POD -n nimbus-services-lab</code></td><td>Confirm actual listener and targetPort; inspect app startup and probe events.</td></tr>
+<tr><td>Service DNS name fails</td><td>Wrong Service/namespace, DNS issue, or client outside cluster.</td><td><code>kubectl get svc -n nimbus-services-lab</code><br><code>kubectl get pods -n kube-system</code></td><td>Check spelling and namespace; use namespace-qualified name cross-namespace; investigate cluster DNS if multiple names fail.</td></tr>
+<tr><td>Service exists but wrong app answers</td><td>Selector matches unexpected Pods or multiple workloads share labels.</td><td><code>kubectl get pods -n nimbus-services-lab --show-labels</code></td><td>Use precise, purpose-specific labels and selectors; verify EndpointSlice addresses.</td></tr>
+<tr><td>NodePort unreachable</td><td>Node IP unreachable, firewall/security group blocks port, no endpoints, local driver limitation.</td><td><code>kubectl get svc web-nodeport -n nimbus-services-lab</code><br><code>kubectl get nodes -o wide</code></td><td>Confirm endpoints, node address, routing and firewall rules. Use Minikube's service helper if appropriate.</td></tr>
+<tr><td>LoadBalancer EXTERNAL-IP pending</td><td>No compatible cloud/provider controller, insufficient permissions, subnet/network issue.</td><td><code>kubectl describe svc web-public -n nimbus-services-lab</code><br><code>kubectl get events -n nimbus-services-lab --sort-by=.metadata.creationTimestamp</code></td><td>Check platform integration and provider events; remove the resource if it was created accidentally and it is safe to do so.</td></tr>
+<tr><td>Wrong port mapping</td><td>Service port, targetPort, named port or application listener disagree.</td><td><code>kubectl get svc SERVICE -n nimbus-services-lab -o yaml</code></td><td>Trace client port → Service port → targetPort → actual application listener.</td></tr>
+<tr><td>Traffic fails only to one backend</td><td>One Pod is unhealthy, app behavior differs, or network policy differs.</td><td><code>kubectl get pods -o wide -n nimbus-services-lab</code><br><code>kubectl logs POD -n nimbus-services-lab</code></td><td>Inspect each endpoint, readiness and logs; compare image/config and policy.</td></tr>
+<tr><td>ExternalName does not work with HTTPS</td><td>Host header or TLS certificate expects the target hostname.</td><td>Inspect DNS result and application/TLS error from client.</td><td>Use an appropriate hostname/proxy design; ExternalName is DNS aliasing, not HTTP reverse proxying.</td></tr>
+<tr><td>Forbidden when applying Service</td><td>Current identity lacks create/update permission.</td><td><code>kubectl auth can-i create services -n nimbus-services-lab</code></td><td>Request least-privilege access from the cluster administrator.</td></tr></table></div>
+<p>General commands, replacing placeholders with actual names:</p><pre><code>kubectl get all -n nimbus-services-lab
+kubectl describe service SERVICE_NAME -n nimbus-services-lab
+kubectl get events -n nimbus-services-lab --sort-by=.metadata.creationTimestamp
+kubectl get pods -n nimbus-services-lab -o wide
+kubectl get service SERVICE_NAME -n nimbus-services-lab -o yaml
+kubectl get endpointslices -n nimbus-services-lab
+kubectl logs POD_NAME -n nimbus-services-lab</code></pre></section>
+
+<section id="best"><h2>8. Best practices</h2><ul>
+<li><strong>Use ClusterIP for internal traffic.</strong> Do not expose a service externally unless the requirement calls for it.</li>
+<li><strong>Make selectors specific.</strong> Reuse a consistent label convention such as <code>app.kubernetes.io/name</code> to avoid accidentally selecting unrelated Pods.</li>
+<li><strong>Understand the port chain.</strong> Document the relationship between client port, Service port, targetPort and the actual listener.</li>
+<li><strong>Use readiness checks for traffic eligibility.</strong> A process existing does not mean it is ready to serve requests.</li>
+<li><strong>Prefer DNS names over Pod IPs.</strong> Pod addresses change when Pods are replaced. Use Service DNS for stable discovery.</li>
+<li><strong>Be deliberate with NodePort and LoadBalancer.</strong> Check security groups, firewall rules, source ranges and cost before external exposure.</li>
+<li><strong>Keep namespaces and naming consistent.</strong> Namespace-qualified Service names reduce ambiguity across teams.</li>
+<li><strong>Do not use ExternalName as a reverse proxy.</strong> It returns a DNS alias; HTTP Host and TLS certificate behavior may still need attention.</li>
+<li><strong>Use headless Services for a clear discovery need.</strong> They do not provide a Service virtual IP or Service-proxy load balancing.</li>
+<li><strong>Inspect EndpointSlices when debugging.</strong> They show which endpoint addresses Kubernetes has recorded for the Service.</li>
+<li><strong>Do not hard-code ClusterIP addresses into application config.</strong> Prefer DNS names unless there is a compelling, managed reason otherwise.</li>
+<li><strong>Plan production exposure.</strong> Consider Ingress or Gateway API for HTTP routing, TLS and host/path rules where appropriate; these are separate resources and may require a controller.</li>
+</ul></section>
+
+<section id="interview"><h2>9. Interview preparation</h2><p>Search and expand the questions. Answers focus on reasoning and verification, not memorization.</p><input id="qsearch" class="searchbox" type="search" placeholder="Filter questions: ClusterIP, selector, ports, DNS…" aria-label="Search interview questions">
+<div id="questions">
+<h3>Level 1 — Basic questions</h3>
+<div class="question"><details><summary>1. What is a Kubernetes Service?</summary><div class="answer">An API object that provides a stable networking abstraction for a logical set of endpoints, commonly Pods, so clients do not need to track changing Pod IPs.</div></details></div>
+<div class="question"><details><summary>2. Why are Services needed?</summary><div class="answer">Pods are ephemeral and may be recreated with new IP addresses. A Service gives clients a stable name and stable virtual IP for supported types while backends change.</div></details></div>
+<div class="question"><details><summary>3. What are the four standard Service types?</summary><div class="answer">ClusterIP, NodePort, LoadBalancer and ExternalName. Headless is a ClusterIP Service configured with <code>clusterIP: None</code>.</div></details></div>
+<div class="question"><details><summary>4. What is ClusterIP?</summary><div class="answer">The default type, exposing a Service on an internal virtual IP for cluster-internal access.</div></details></div>
+<div class="question"><details><summary>5. What is NodePort?</summary><div class="answer">It exposes a Service on a port on each node, in addition to ClusterIP behavior. Actual reachability depends on routing and firewall rules.</div></details></div>
+<div class="question"><details><summary>6. What does LoadBalancer do?</summary><div class="answer">It requests an external load balancer from a supported provider or installed implementation. Kubernetes alone does not guarantee a load-balancing infrastructure is present.</div></details></div>
+<div class="question"><details><summary>7. What does ExternalName do?</summary><div class="answer">It maps a Service DNS name to an external DNS hostname using a CNAME. It does not proxy traffic or select Pod endpoints.</div></details></div>
+<div class="question"><details><summary>8. What is a Service selector?</summary><div class="answer">A set of label key/value requirements used to find matching Pods. If it matches no Pods, selector-derived endpoints are absent.</div></details></div>
+<div class="question"><details><summary>9. What is targetPort?</summary><div class="answer">The port on the backend endpoint to which Service traffic is directed. It can be a number or a named container port.</div></details></div>
+<div class="question"><details><summary>10. What is the difference between port and targetPort?</summary><div class="answer">Clients connect to Service <code>port</code>; traffic is forwarded to the endpoint's <code>targetPort</code>. They can be different.</div></details></div>
+<div class="question"><details><summary>11. What is an EndpointSlice?</summary><div class="answer">An API object that stores a subset of a Service's network endpoints and associated information, including endpoint readiness metadata.</div></details></div>
+<div class="question"><details><summary>12. What is a headless Service?</summary><div class="answer">A Service with <code>clusterIP: None</code>. It has no virtual IP; DNS can publish endpoint addresses for direct discovery.</div></details></div>
+<h3>Level 2 — Intermediate questions</h3>
+<div class="question"><details><summary>13. How does a Service discover backend Pods?</summary><div class="answer">For a selector-based Service, the control plane matches the selector against Pod labels and updates EndpointSlices as matching endpoints change. Readiness affects whether endpoints are considered ready for normal traffic.</div></details></div>
+<div class="question"><details><summary>14. Why can a Service exist but have no endpoints?</summary><div class="answer">The selector may not match Pod labels, no matching Pods may exist, Pods may not be ready, or the Service may be selectorless without manually managed endpoint data. Compare Service selector, Pod labels and EndpointSlices.</div></details></div>
+<div class="question"><details><summary>15. Does containerPort publish a port by itself?</summary><div class="answer">No. It documents a port in the Pod specification. Service, port-forwarding, host networking or other networking configuration determines how clients reach the application.</div></details></div>
+<div class="question"><details><summary>16. How does cross-namespace DNS work?</summary><div class="answer">Use a namespace-qualified name such as <code>web.team-a</code>, or a full service DNS name. The cluster domain may differ from <code>cluster.local</code>.</div></details></div>
+<div class="question"><details><summary>17. Does NodePort guarantee internet access?</summary><div class="answer">No. A node's IP must be reachable and network policies/firewalls/security groups must allow the traffic. Local cluster drivers may require a helper or tunnel.</div></details></div>
+<div class="question"><details><summary>18. Why might LoadBalancer remain pending?</summary><div class="answer">The cluster may lack a compatible provider controller, permissions, subnet configuration or a load balancer implementation. Inspect Service events and provider logs rather than assuming the manifest is wrong.</div></details></div>
+<div class="question"><details><summary>19. What happens if targetPort is incorrect?</summary><div class="answer">Traffic reaches the wrong port on the endpoint and may fail. Verify the actual application listener, named ports and Service port mapping.</div></details></div>
+<div class="question"><details><summary>20. Can a Service target endpoints outside the cluster?</summary><div class="answer">Yes, for specialized selectorless Service patterns with manually managed EndpointSlices, subject to API and networking constraints. ExternalName is another approach for DNS aliasing but does not proxy traffic.</div></details></div>
+<div class="question"><details><summary>21. How does readiness affect Service traffic?</summary><div class="answer">For typical selector-based Services, unready endpoints are not normally used for regular traffic. Investigate Pod readiness and EndpointSlice conditions when a running Pod is not receiving requests.</div></details></div>
+<div class="question"><details><summary>22. Does a Service load-balance equally across all Pods?</summary><div class="answer">A Service provides endpoint distribution through the cluster networking implementation, but it does not promise mathematically equal request counts. Connections, session behavior, topology and implementation affect distribution.</div></details></div>
+<div class="question"><details><summary>23. What is the difference between Service and Ingress?</summary><div class="answer">A Service gives stable access to a set of endpoints. Ingress defines HTTP/HTTPS routing rules and requires an Ingress controller; it commonly routes external traffic to Services.</div></details></div>
+<div class="question"><details><summary>24. When would you choose headless instead of ClusterIP?</summary><div class="answer">When clients need endpoint-level discovery, commonly for stateful systems or custom peer discovery, rather than a single virtual IP. Use ordinary ClusterIP when stable service-level access is sufficient.</div></details></div>
+<h3>Level 3 — Real-time scenario-based questions</h3>
+<div class="question"><details><summary>25. The Service exists but requests time out. How do you investigate?</summary><div class="answer"><strong>Approach:</strong> Run <code>kubectl describe svc SERVICE -n NS</code>, inspect selector and ports, then <code>kubectl get endpointslices -n NS -l kubernetes.io/service-name=SERVICE</code>. If endpoints are absent, check labels and readiness. If endpoints exist, test the backend port and inspect NetworkPolicies, application listener, routing and client DNS. Verify with a request from an in-cluster client or port-forward. Timeouts can have multiple causes.</div></details></div>
+<div class="question"><details><summary>26. A Service has zero endpoints after a deployment update.</summary><div class="answer">Compare <code>kubectl get svc SERVICE -o yaml</code> selector with <code>kubectl get pods --show-labels</code>. Confirm the Deployment template labels and readiness. A changed label or selector mismatch is common; if Pods match but are unready, inspect probe events. Fix only the actual mismatch, then verify EndpointSlices repopulate.</div></details></div>
+<div class="question"><details><summary>27. The Service sends traffic to the wrong application.</summary><div class="answer">Inspect selector and all matching Pod labels: <code>kubectl get pods -n NS --show-labels</code>. Check EndpointSlice target addresses. Broad selectors may match another workload. Apply unique labels/selectors and verify only intended Pods appear as endpoints.</div></details></div>
+<div class="question"><details><summary>28. Service port is 80 but app listens on 8080. Is this valid?</summary><div class="answer">Yes. Set Service <code>port: 80</code> and <code>targetPort: 8080</code> (or a named port whose container listener is 8080). Verify the application actually listens on 8080 and test the Service after applying the corrected manifest.</div></details></div>
+<div class="question"><details><summary>29. NodePort works inside a node but not from a laptop.</summary><div class="answer">Verify <code>kubectl get svc</code> shows the allocated nodePort, inspect node IPs, and test node reachability. Check routing, firewall/security groups and local cluster driver behavior. Do not assume NodePort is automatically public; use Minikube's service helper where applicable.</div></details></div>
+<div class="question"><details><summary>30. LoadBalancer EXTERNAL-IP stays pending in a local lab.</summary><div class="answer">This can be expected if the local cluster has no load balancer implementation. Check <code>kubectl describe svc</code> and events. Use ClusterIP plus port-forward for the basic lab, or install/configure an appropriate load-balancer implementation only when authorized.</div></details></div>
+<div class="question"><details><summary>31. One of three Pods is unhealthy and users report intermittent failures.</summary><div class="answer">Inspect Pods, readiness, logs and EndpointSlice endpoints. Determine whether the unhealthy Pod is still marked ready, has a probe misconfiguration, or returns application errors. Fix the root cause and confirm the endpoint is removed while unready and returns after recovery.</div></details></div>
+<div class="question"><details><summary>32. A frontend in another namespace cannot resolve backend Service name.</summary><div class="answer">A short name resolves relative to the caller's namespace. Try <code>backend.namespace-name</code> or the full service DNS name. If qualified DNS still fails, verify Service existence and cluster DNS health from a test Pod.</div></details></div>
+<div class="question"><details><summary>33. ExternalName resolves but HTTPS fails certificate validation.</summary><div class="answer">ExternalName creates a DNS alias, not a proxy that rewrites HTTP Host or TLS SNI. The target may expect a different hostname/certificate. Use an appropriate hostname or a proxy/gateway architecture that explicitly handles TLS and host routing.</div></details></div>
+<div class="question"><details><summary>34. After scaling the Deployment, traffic does not reach new Pods.</summary><div class="answer">Check new Pod readiness and labels, then inspect EndpointSlices. New Pods may be unready, use different labels, or fail startup. Confirm the Service selector matches the template labels and probe succeeds before expecting them to receive normal traffic.</div></details></div>
+</div></section>
+
+<section id="assignments"><h2>10. Practice assignments</h2><h3>Beginner exercises</h3><ol>
+<li>Create a Deployment with two NGINX replicas and a ClusterIP Service. <strong>Expected:</strong> two Ready Pods and EndpointSlice endpoints. Verify with <code>kubectl get pods</code> and <code>kubectl get endpointslices</code>. Hint: labels must match.</li>
+<li>Change Service port to 8081 while retaining targetPort 80. Verify with port-forward mapping 9090:8081. Hint: clients use Service port.</li>
+<li>Create a NodePort Service with an automatically allocated nodePort. Verify its port mapping. Hint: omit <code>nodePort</code> and inspect the allocated value.</li>
+<li>Create an ExternalName Service pointing to <code>kubernetes.io</code>. Inspect the Service object and explain that it is DNS aliasing only.</li>
+<li>Create a headless Service and compare its clusterIP field with an ordinary ClusterIP Service.</li></ol>
+<h3>Modification and troubleshooting exercises</h3><ol start="6">
+<li>Intentionally change a selector in your own lab Service; document how EndpointSlices change, then restore it.</li>
+<li>Use a wrong targetPort and observe the connection failure; restore the correct target port.</li>
+<li>Scale the Deployment from three replicas to five and verify endpoint changes.</li>
+<li>Delete one Deployment-managed Pod and observe the replacement; confirm the Service name remains unchanged.</li>
+<li>Investigate a NodePort that cannot be reached from outside the local cluster. Separate Service endpoint problems from node-network reachability.</li></ol>
+<h3>Scenario challenges</h3><ol start="11">
+<li>Users report intermittent 503s after a rollout. Determine whether Pods are unready, app instances fail, or selectors are too broad.</li>
+<li>A frontend cannot call a backend in another namespace. Implement and validate namespace-qualified DNS.</li>
+<li>The platform team requests public access for a demo. Compare NodePort, LoadBalancer and an HTTP routing option; recommend a safe design and identify any cost or firewall impact.</li></ol>
+<details><summary><strong>Expandable solution hints</strong></summary><pre><code># Check labels and Service selector
+kubectl get pods -n nimbus-services-lab --show-labels
+kubectl get service SERVICE_NAME -n nimbus-services-lab -o yaml
+
+# Check endpoint addresses
+kubectl get endpointslices -n nimbus-services-lab -l kubernetes.io/service-name=SERVICE_NAME
+
+# Scale a Deployment
+kubectl scale deployment/web --replicas=5 -n nimbus-services-lab
+kubectl rollout status deployment/web -n nimbus-services-lab
+
+# Check node port and endpoints
+kubectl get svc web-nodeport -n nimbus-services-lab
+kubectl describe svc web-nodeport -n nimbus-services-lab
+
+# Check app logs and readiness
+kubectl get pods -n nimbus-services-lab -o wide
+kubectl describe pod POD_NAME -n nimbus-services-lab
+kubectl logs POD_NAME -n nimbus-services-lab</code></pre><p>Replace SERVICE_NAME and POD_NAME with actual resource names. Write down the evidence, hypothesis, fix and verification for each challenge. Do not assume every connectivity issue is a selector problem.</p></details></section>
+
+<section id="revision"><h2>11. Quick revision and cheat sheet</h2>
+<h3>Must remember</h3><ul><li>ClusterIP is the default Service type and is internal to the cluster.</li><li>NodePort exposes a node port; firewall/routing still determines reachability.</li><li>LoadBalancer needs a supported provider/controller and may incur cost.</li><li>ExternalName returns a DNS CNAME; it does not proxy traffic.</li><li>Headless Service uses <code>clusterIP: None</code> and does not provide a virtual IP.</li><li>Selectors match Pod labels. Service creation alone does not create backend Pods.</li><li>Service <code>port</code> is the client-facing port; <code>targetPort</code> is the endpoint port.</li><li>EndpointSlices show endpoint addresses and readiness metadata.</li></ul>
+<h3>Useful commands</h3><pre><code>kubectl get services -n nimbus-services-lab
+kubectl describe service web -n nimbus-services-lab
+kubectl get pods -n nimbus-services-lab --show-labels
+kubectl get endpointslices -n nimbus-services-lab
+kubectl get endpointslices -n nimbus-services-lab -l kubernetes.io/service-name=web
+kubectl get service web -n nimbus-services-lab -o yaml
+kubectl port-forward service/web 8080:80 -n nimbus-services-lab
+kubectl get events -n nimbus-services-lab --sort-by=.metadata.creationTimestamp
+kubectl auth can-i create services -n nimbus-services-lab</code></pre>
+<h3>Pre-interview checklist</h3><ul><li>Can I explain all four Service types and headless Services?</li><li>Can I draw the client → Service port → targetPort → endpoint path?</li><li>Can I diagnose zero endpoints from selectors, labels and readiness?</li><li>Can I explain why NodePort does not automatically mean internet access?</li><li>Can I distinguish ExternalName from a reverse proxy?</li></ul></section>
+
+<section id="cleanup"><h2>12. Final lab cleanup</h2><p>First inspect the namespace to make sure it contains only resources you created:</p><pre><code>kubectl get all,configmap,secret -n nimbus-services-lab</code></pre><p>Delete the named lab resources:</p><pre><code>kubectl delete deployment web catalog -n nimbus-services-lab --ignore-not-found
+kubectl delete service web web-nodeport web-public web-headless catalog external-docs -n nimbus-services-lab --ignore-not-found</code></pre><p>After confirming the namespace is dedicated to this training lab and contains no shared resources, remove it:</p><pre><code>kubectl delete namespace nimbus-services-lab</code></pre><div class="callout danger"><strong>Shared-cluster warning:</strong> Namespace deletion removes all namespaced resources in it, including resources you did not create. Never delete shared namespaces, nodes, cluster roles or cluster-wide components for this lab. A LoadBalancer Service may create cloud infrastructure; verify the associated resource was removed and review provider billing if you created one.</div></section>
+
+<section id="refs"><h2>13. References</h2><h3>Supplied Nimbuswiztech resources</h3><ul><li><a href="https://github.com/nimbuswiztech/Kubernetes/tree/main/services" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes repository — services directory</a></li><li><a href="https://github.com/nimbuswiztech/kubernetes/wiki/Services" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes Wiki — Services</a></li></ul><p class="muted">The GitHub directory and wiki links are included as the supplied topic sources. Their individual contents could not be independently retrieved in this run; the manifests and exercises in this guide are supplementary examples and are not attributed to unverified repository files.</p>
+<h3>Official Kubernetes documentation</h3><ul><li><a href="https://kubernetes.io/docs/concepts/services-networking/service/" target="_blank" rel="noopener noreferrer">Services, Load Balancing, and Networking — Service concepts and types</a></li><li><a href="https://kubernetes.io/docs/concepts/services-networking/service/#endpoint-slices" target="_blank" rel="noopener noreferrer">EndpointSlices</a></li><li><a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/" target="_blank" rel="noopener noreferrer">Using a Service to Expose Your App</a></li><li><a href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/" target="_blank" rel="noopener noreferrer">DNS for Services and Pods</a></li><li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/" target="_blank" rel="noopener noreferrer">Ingress concepts</a></li><li><a href="https://kubernetes.io/docs/concepts/services-networking/gateway/" target="_blank" rel="noopener noreferrer">Gateway API concepts</a></li><li><a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener noreferrer">Kubernetes tools</a></li></ul></section>
+<a href="#top" class="toplink">↑ Back to top</a>
+</main>
+<footer>Nimbuswiztech student learning reference · Kubernetes Services · Verify environment-specific networking behavior against your cluster documentation.</footer>
+<script>
+(function(){
+ document.querySelectorAll('pre').forEach(function(pre){var code=pre.querySelector('code');if(!code)return;var b=document.createElement('button');b.type='button';b.className='copy';b.textContent='Copy';b.setAttribute('aria-label','Copy code block');b.addEventListener('click',function(){var t=code.innerText;function fallback(){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');b.textContent='Copied'}catch(e){b.textContent='Select manually'}a.remove();setTimeout(function(){b.textContent='Copy'},1400)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1400)}).catch(fallback)}else fallback()});pre.appendChild(b)});
+ var s=document.getElementById('qsearch');if(s)s.addEventListener('input',function(){var q=s.value.toLowerCase().trim();document.querySelectorAll('#questions .question').forEach(function(x){x.style.display=x.textContent.toLowerCase().includes(q)?'':'none'})});
+})();
+</script>
+</body></html>

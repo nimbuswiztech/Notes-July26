@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMI Amazon Machine Images &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html" class="active">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">AMI Amazon Machine Images</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">AMI Amazon Machine Images</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>What is an AMI?</h2>
+<p>An <strong>Amazon Machine Image (AMI)</strong> is a <strong>template</strong> that contains the software configuration (operating system, application server, applications) required to launch an EC2 instance.</p>
+<h3>Simple Analogy for Students</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">AMI  →  Like a &quot;Ghost Image&quot; or &quot;ISO file&quot; for a virtual machine
+         or
+AMI  →  Like a &quot;Docker Image&quot; but for entire virtual machines
+         or
+AMI  →  Like a &quot;Snapshot/Blueprint&quot; of a complete server
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>AMI = OS + Software + Configuration + Data → Ready to launch as an EC2 instance</strong></p>
+</div>
+</div>
+<h3>What an AMI Contains</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">AMI
+ │
+ ├── Root Volume Template
+ │    └── OS (Linux/Windows) + Installed Software
+ │
+ ├── Launch Permissions
+ │    └── Who can use this AMI (Public, Private, Shared)
+ │
+ └── Block Device Mapping
+      └── Which EBS volumes to attach when launched
+</code></pre>
+</div>
+<h2>Types of AMIs</h2>
+<h3>Based on Ownership</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AWS-Provided</strong></td>
+<td>Maintained by Amazon</td>
+<td>Amazon Linux 2023, Amazon Linux 2</td>
+</tr>
+<tr>
+<td><strong>Marketplace</strong></td>
+<td>Third-party vendor AMIs (free or paid)</td>
+<td>WordPress, Jenkins, Nginx pre-configured</td>
+</tr>
+<tr>
+<td><strong>Community</strong></td>
+<td>Created and shared by AWS users</td>
+<td>Various community-contributed AMIs</td>
+</tr>
+<tr>
+<td><strong>Custom (My AMIs)</strong></td>
+<td>Created by you from your instances</td>
+<td>Your application pre-installed</td>
+</tr>
+</tbody>
+</table>
+<h3>Based on Root Volume (Storage Type)</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Root Volume</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EBS-Backed AMI</strong></td>
+<td>EBS Volume</td>
+<td>Standard, recommended, data persists</td>
+</tr>
+<tr>
+<td><strong>Instance Store-Backed AMI</strong></td>
+<td>Instance Store (Ephemeral)</td>
+<td>Legacy, data lost on stop/terminate</td>
+</tr>
+</tbody>
+</table>
+<h2>EBS-Backed AMI vs Instance Store-Backed AMI</h2>
+<p>This is a very important concept for interviews and exams.</p>
+<h3>EBS-Backed AMI (Recommended)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">AMI Creation:
+  EC2 Instance
+       │
+       ▼
+  EBS Snapshot (stored in S3 – AWS managed)
+       │
+       ▼
+  AMI registered (points to the snapshot)
+
+Instance Launch:
+  AMI
+   │
+   ▼
+  New EBS Volume (created from snapshot)
+   │
+   ▼
+  EC2 Instance boots from EBS volume
+</code></pre>
+</div>
+<h3>Instance Store-Backed AMI (Legacy)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">AMI Creation:
+  EC2 Instance
+       │
+       ▼
+  Bundle Volume (compress + encrypt files)
+       │
+       ▼
+  Upload to YOUR S3 Bucket
+       │
+       ▼
+  Register AMI (points to S3 manifest)
+
+Instance Launch:
+  AMI
+   │
+   ▼
+  Files downloaded from S3 to Instance Store
+   │
+   ▼
+  EC2 Instance boots from Instance Store
+</code></pre>
+</div>
+<h3>Comparison Table</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>EBS-Backed AMI</th>
+<th>Instance Store-Backed AMI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Root Volume</strong></td>
+<td>EBS Volume</td>
+<td>Instance Store (Ephemeral)</td>
+</tr>
+<tr>
+<td><strong>Data Persistence</strong></td>
+<td>✅ Survives stop/start</td>
+<td>❌ Lost on stop/terminate</td>
+</tr>
+<tr>
+<td><strong>Boot Time</strong></td>
+<td>Fast (&lt; 1 minute)</td>
+<td>Slower (\~5 minutes)</td>
+</tr>
+<tr>
+<td><strong>Max Root Volume Size</strong></td>
+<td>64 TB</td>
+<td>10 GB</td>
+</tr>
+<tr>
+<td><strong>Stop/Start</strong></td>
+<td>✅ Supported</td>
+<td>❌ NOT supported (only reboot or terminate)</td>
+</tr>
+<tr>
+<td><strong>Instance Type Change</strong></td>
+<td>✅ Stop → change type → start</td>
+<td>❌ Not possible</td>
+</tr>
+<tr>
+<td><strong>Creation Method</strong></td>
+<td>Snapshot-based (automated)</td>
+<td>Manual bundling + S3 upload</td>
+</tr>
+<tr>
+<td><strong>AMI Storage</strong></td>
+<td>AWS-managed S3 (EBS Snapshots)</td>
+<td>Your S3 bucket</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>Pay for EBS snapshots</td>
+<td>Pay for S3 storage</td>
+</tr>
+<tr>
+<td><strong>Upgrade</strong></td>
+<td>Easy (stop, modify, start)</td>
+<td>Must create new instance</td>
+</tr>
+<tr>
+<td><strong>Recommended?</strong></td>
+<td>✅ YES – Modern standard</td>
+<td>❌ Legacy / specialized only</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>💡 <strong>Always use EBS-backed AMIs</strong> unless you have a very specific reason for instance store.</p>
+</div>
+</div>
+<h2>How AMI Creation Works – Behind the Scenes</h2>
+<h3>EBS-Backed AMI Creation Process</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Trigger "Create Image"</h2>
+<p>You trigger "Create Image" on a running EC2 instance.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>AWS briefly reboots the instance</h2>
+<p>AWS briefly reboots the instance for filesystem integrity.</p>
+<p>Optional: The "No Reboot" flag skips this but risks data inconsistency.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>AWS takes EBS snapshots</h2>
+<p>AWS takes EBS snapshots of <strong>ALL</strong> attached EBS volumes.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>Snapshots are stored</h2>
+<p>Snapshots are stored in AWS-managed S3, not your S3 bucket.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h2>Snapshots are incremental</h2>
+<p>Snapshots are incremental: only changed blocks since the last snapshot are stored.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h2>AMI is registered</h2>
+<p>The AMI is registered as metadata that points to these snapshots.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h2>Block Device Mapping is recorded</h2>
+<p>AWS records the Block Device Mapping.</p>
+<p>Which snapshot → which device: <code>/dev/xvda</code>, <code>/dev/xvdb</code>, etc.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h2>AMI becomes available</h2>
+<p>The AMI becomes "Available" and is ready to use.</p>
+</div>
+</div>
+</div>
+<h3>What the AMI Record Contains</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">json</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="json">{
+  &quot;ImageId&quot;: &quot;ami-0abcdef1234567890&quot;,
+  &quot;Name&quot;: &quot;my-web-server-v1&quot;,
+  &quot;Description&quot;: &quot;Web server with Apache + PHP&quot;,
+  &quot;State&quot;: &quot;available&quot;,
+  &quot;Architecture&quot;: &quot;x86_64&quot;,
+  &quot;RootDeviceType&quot;: &quot;ebs&quot;,
+  &quot;RootDeviceName&quot;: &quot;/dev/xvda&quot;,
+  &quot;BlockDeviceMappings&quot;: [
+    {
+      &quot;DeviceName&quot;: &quot;/dev/xvda&quot;,
+      &quot;Ebs&quot;: {
+        &quot;SnapshotId&quot;: &quot;snap-0123456789abcdef0&quot;,
+        &quot;VolumeSize&quot;: 8,
+        &quot;VolumeType&quot;: &quot;gp3&quot;,
+        &quot;DeleteOnTermination&quot;: true
+      }
+    },
+    {
+      &quot;DeviceName&quot;: &quot;/dev/xvdb&quot;,
+      &quot;Ebs&quot;: {
+        &quot;SnapshotId&quot;: &quot;snap-0fedcba9876543210&quot;,
+        &quot;VolumeSize&quot;: 50,
+        &quot;VolumeType&quot;: &quot;gp3&quot;
+      }
+    }
+  ],
+  &quot;OwnerId&quot;: &quot;123456789012&quot;,
+  &quot;Public&quot;: false
+}
+</code></pre>
+</div>
+<h2>AMI Lifecycle</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">┌────────────────┐
+│  EC2 Instance  │ ← Configure your server (install software, settings)
+└───────┬────────┘
+        │
+        ▼ Create Image
+┌────────────────┐
+│   AMI (with    │ ← Blueprint stored
+│   EBS Snapshots│
+│   registered)  │
+└───────┬────────┘
+        │
+        ├── Launch new instances from this AMI
+        ├── Copy AMI to another Region
+        ├── Share AMI with other AWS accounts
+        └── Deregister AMI (delete)
+</code></pre>
+</div>
+<h2>Creating a Custom AMI – Step by Step</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h2>Launch and Configure a Base Instance</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Launch an EC2 instance with Amazon Linux 2023
+# Connect via SSH
+ssh -i &quot;my-key.pem&quot; ec2-user@&lt;PUBLIC-IP&gt;
+
+# Install required software
+sudo yum update -y
+sudo yum install -y httpd php git docker
+sudo systemctl enable httpd docker
+
+# Configure application
+echo &quot;&lt;?php phpinfo(); ?&gt;&quot; | sudo tee /var/www/html/info.php
+
+# Clean up sensitive data
+history -c
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h2>Create AMI from Console</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">EC2 Dashboard
+  → Select Instance
+  → Actions
+  → Image and templates
+  → Create image
+
+Name:        my-webserver-ami-v1
+Description: Apache + PHP + Docker pre-installed
+No Reboot:   ☐ Unchecked (recommended – ensures consistency)
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h2>Create AMI from CLI</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create AMI
+aws ec2 create-image \
+  --instance-id i-0123456789abcdef0 \
+  --name &quot;my-webserver-ami-v1&quot; \
+  --description &quot;Apache + PHP + Docker pre-installed&quot; \
+  --no-reboot  # Optional: skip reboot (use with caution)
+
+# Check AMI status
+aws ec2 describe-images --image-ids ami-xxxxx
+
+# Wait until State = &quot;available&quot;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h2>Launch Instance from Custom AMI</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">aws ec2 run-instances \
+  --image-id ami-xxxxx \
+  --instance-type t2.micro \
+  --key-name my-key \
+  --security-group-ids sg-xxxxx \
+  --count 1
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h2>AMI Operations</h2>
+<h3>Copy AMI to Another Region</h3>
+<p>This is critical for <strong>Disaster Recovery (DR)</strong>.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Region: ap-south-1 (Mumbai)            Region: us-east-1 (Virginia)
+     │                                       │
+  AMI: ami-aaa111                          AMI: ami-bbb222
+  Snapshot: snap-xxx                       Snapshot: snap-yyy (copy)
+     │                                       │
+     └──── Copy AMI across Region ────→      └── Launch DR instances
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Copy AMI to another region
+aws ec2 copy-image \
+  --source-region ap-south-1 \
+  --source-image-id ami-aaa111 \
+  --name &quot;my-ami-dr-copy&quot; \
+  --region us-east-1
+</code></pre>
+</div>
+<h3>Share AMI with Another AWS Account</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Share with specific account
+aws ec2 modify-image-attribute \
+  --image-id ami-xxxxx \
+  --launch-permission &quot;Add=[{UserId=123456789012}]&quot;
+
+# Make AMI public (anyone can use)
+aws ec2 modify-image-attribute \
+  --image-id ami-xxxxx \
+  --launch-permission &quot;Add=[{Group=all}]&quot;
+
+# Check current permissions
+aws ec2 describe-image-attribute \
+  --image-id ami-xxxxx \
+  --attribute launchPermission
+</code></pre>
+</div>
+<h3>Deregister (Delete) an AMI</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Step 1: Deregister the AMI
+aws ec2 deregister-image --image-id ami-xxxxx
+
+# Step 2: Delete associated snapshots (not automatic!)
+aws ec2 delete-snapshot --snapshot-id snap-xxxxx
+</code></pre>
+</div>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p>⚠️ <strong>Deregistering an AMI does NOT delete the underlying EBS snapshots!</strong> You must delete them separately.</p>
+</div>
+</div>
+<h2>AMI Best Practices</h2>
+<h3>Naming Convention</h3>
+<p>Use a consistent naming convention:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Format: &lt;team&gt;-&lt;application&gt;-&lt;os&gt;-&lt;version&gt;-&lt;date&gt;
+
+Examples:
+  devops-jenkins-amazonlinux2023-v1-20260818
+  webapp-frontend-ubuntu2204-v3-20260818
+  database-mysql-amazonlinux2023-v2-20260818
+</code></pre>
+</div>
+<h3>General Best Practices</h3>
+<table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ <strong>Golden AMI</strong></td>
+<td>Create a pre-configured base AMI with common tools</td>
+</tr>
+<tr>
+<td>✅ <strong>Version your AMIs</strong></td>
+<td>Use clear naming with version numbers</td>
+</tr>
+<tr>
+<td>✅ <strong>Regular updates</strong></td>
+<td>Rebuild AMIs regularly with security patches</td>
+</tr>
+<tr>
+<td>✅ <strong>Remove secrets</strong></td>
+<td>Clean up SSH keys, passwords, history before creating AMI</td>
+</tr>
+<tr>
+<td>✅ <strong>Test AMIs</strong></td>
+<td>Always launch and test a new AMI before using in production</td>
+</tr>
+<tr>
+<td>✅ <strong>Document AMIs</strong></td>
+<td>Maintain a record of what each AMI contains</td>
+</tr>
+<tr>
+<td>✅ <strong>Copy to DR region</strong></td>
+<td>Keep a copy in your DR Region</td>
+</tr>
+<tr>
+<td>✅ <strong>Delete old AMIs</strong></td>
+<td>Clean up unused AMIs and their snapshots</td>
+</tr>
+<tr>
+<td>❌ <strong>Don't hardcode IPs</strong></td>
+<td>Use configuration management instead</td>
+</tr>
+<tr>
+<td>❌ <strong>Don't store credentials</strong></td>
+<td>Use IAM Roles and Secrets Manager</td>
+</tr>
+</tbody>
+</table>
+<h3>Golden AMI Pattern</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Base AMI (Amazon Linux 2023)
+     │
+     ▼
+Golden AMI (Base + Common Tools)
+ ├── OS patches applied
+ ├── Monitoring agent (CloudWatch)
+ ├── Security agent
+ ├── Docker installed
+ ├── AWS CLI configured
+ └── Common packages installed
+     │
+     ├── Web Server AMI (Golden + Apache/Nginx)
+     ├── App Server AMI (Golden + Java/Tomcat)
+     └── CI/CD AMI (Golden + Jenkins/Git)
+</code></pre>
+</div>
+<h2>AMI and Auto Scaling – Real-World Use</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Custom AMI (with application pre-installed)
+     │
+     ▼
+Launch Template (uses this AMI)
+     │
+     ▼
+Auto Scaling Group
+     │
+     ├── Scale Out → New instances from AMI
+     ├── Scale In → Terminate instances
+     └── Replace unhealthy → New instance from AMI
+</code></pre>
+</div>
+<p>This is why <strong>AMIs are critical</strong> in production:</p>
+<ul>
+<li>Auto Scaling launches new instances from your AMI.</li>
+<li>Every new instance is <strong>identical</strong> to your configured server.</li>
+<li>No need to install software on every new instance.</li>
+</ul>
+<h2>Classroom Quiz Questions ❓</h2>
+<details>
+
+<summary><strong>Q1: "What is an AMI?"</strong></summary>
+
+An AMI is a template/blueprint that contains the OS, software, and configuration needed to launch an EC2 instance.
+
+</details>
+
+<details>
+
+<summary><strong>Q2: "What is the difference between an EBS-backed AMI and an Instance Store-backed AMI?"</strong></summary>
+
+**EBS-backed:** Root volume is EBS, data persists, can stop/start, fast boot.
+
+**Instance Store-backed:** Root volume is ephemeral, data lost on stop, cannot stop (only terminate), slower boot.
+
+</details>
+
+<details>
+
+<summary><strong>Q3: "When you create an AMI, where is the data stored?"</strong></summary>
+
+For EBS-backed AMIs, AWS takes EBS snapshots and stores them in an AWS-managed S3 bucket. The AMI metadata points to these snapshots.
+
+</details>
+
+<details>
+
+<summary><strong>Q4: "Does deregistering an AMI delete the snapshots?"</strong></summary>
+
+**No!** You must manually delete the associated EBS snapshots separately.
+
+</details>
+
+<details>
+
+<summary><strong>Q5: "Can you copy an AMI to another Region?"</strong></summary>
+
+**Yes!** This is commonly used for disaster recovery. AWS copies the underlying snapshots to the target Region.
+
+</details>
+
+<details>
+
+<summary><strong>Q6: "What is a Golden AMI?"</strong></summary>
+
+A pre-configured base AMI with all common tools, security patches, and agents installed. Other specialized AMIs are built on top of it.
+
+</details>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../aws/regions-and-availability-zones.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">Regions and Availability Zones</span>
+  </a>
+  <a href="../aws/ec2-elastic-compute-cloud.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">EC2 Elastic Compute Cloud</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

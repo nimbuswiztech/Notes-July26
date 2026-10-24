@@ -1,0 +1,136 @@
+pipeline {
+    agent any
+
+    environment {
+        PATH = "$PATH:/usr/share/maven/bin"
+
+        ARTIFACTORY_URL = 'http://13.218.210.102:8081/artifactory'
+        ARTIFACTORY_REPO = 'libs-release-local'
+
+        TOMCAT_HOST = '98.89.2.8'
+        TOMCAT_USER = 'ubuntu'
+        TOMCAT_WEBAPPS = '/opt/tomcat/webapps'
+    }
+
+    stages {
+        stage('GetCode') {
+            steps {
+                git(
+                    branch: 'main',
+                    changelog: false,
+                    poll: false,
+                    url: 'https://github.com/nimbuswiztech/Petclinic.git'
+                )
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh '''
+                    set -e
+                    mvn clean package
+                    ls -lh target/*.war
+                '''
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube-Server') {
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
+                }
+            }
+        }
+        
+        stage('Test Artifactory') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'Jfrog-Server',
+                        usernameVariable: 'JFROG_USER',
+                        passwordVariable: 'JFROG_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        set -e
+                        echo "Testing Artifactory connection..."
+                        curl --fail --silent --show-error \
+                            -u "$JFROG_USER:$JFROG_PASSWORD" \
+                            "$ARTIFACTORY_URL/"
+                        echo ""
+                        echo "Artifactory connection successful."
+                    '''
+                }
+            }
+        }
+
+        stage('Upload to Artifactory') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'Jfrog-Server',
+                        usernameVariable: 'JFROG_USER',
+                        passwordVariable: 'JFROG_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        set -e
+
+                        WAR_FILE=$(ls target/*.war | head -n 1)
+                        ARTIFACT_URL="$ARTIFACTORY_URL/$ARTIFACTORY_REPO/com/dme/app/my-app/3.0/my-app-3.0.war"
+
+                        echo "Uploading .war to Artifactory..."
+                        curl --fail --silent --show-error \
+                            -u "$JFROG_USER:$JFROG_PASSWORD" \
+                            --upload-file "$WAR_FILE" \
+                            "$ARTIFACT_URL"
+
+                        echo ""
+                        echo "Artifact uploaded successfully."
+                        echo "$ARTIFACT_URL"
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy to Tomcat') {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'Tomcat-Server',
+                            verbose: true,
+                            transfers: [
+                                sshTransfer(
+                                    sourceFiles: 'target/*.war',
+                                    removePrefix: 'target',
+                                    remoteDirectory: 'webapps'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            }
+        }
+
+        stage('Docker Build & Push') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker') {
+                        sh 'docker build -t nimbuswiztech/july26:petclinic .'
+                        sh 'docker push nimbuswiztech/july26:petclinic'
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build → Artifactory → Tomcat deployment completed successfully.'
+        }
+
+        failure {
+            echo 'Pipeline failed. Check the failed stage above.'
+        }
+    }
+}

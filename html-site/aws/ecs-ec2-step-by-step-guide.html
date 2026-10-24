@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS ECS with EC2 Launch Type — Step-by-Step Console Teaching Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0d17;
+      --bg-secondary: #121829;
+      --bg-card: #182038;
+      --bg-card-hover: #1f2b4a;
+      --border-color: #273559;
+      --border-highlight: #3b82f6;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent-ec2: #3b82f6;
+      --accent-ec2-light: #60a5fa;
+      --accent-ec2-glow: rgba(59, 130, 246, 0.25);
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      
+      --instructor-badge: #ec4899;
+      --instructor-glow: rgba(236, 72, 153, 0.25);
+      
+      --code-bg: #0b1122;
+      --sidebar-width: 310px;
+      --header-height: 70px;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-highlight: #3b82f6;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --code-bg: #1e293b;
+      --accent-ec2-glow: rgba(59, 130, 246, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Outfit', sans-serif; background-color: var(--bg-primary); color: var(--text-main); line-height: 1.65; overflow-x: hidden; transition: all 0.3s ease; }
+
+    /* Header Nav */
+    header.top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--header-height);
+      background: rgba(10, 13, 23, 0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; z-index: 1000;
+    }
+    [data-theme="light"] header.top-nav { background: rgba(255, 255, 255, 0.94); }
+    
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-logo { width: 40px; height: 40px; background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 0 16px var(--accent-ec2-glow); }
+    .brand-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; background: linear-gradient(90deg, #ffffff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    [data-theme="light"] .brand-title { background: linear-gradient(90deg, #0f172a, #334155); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .badge-ec2 { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; letter-spacing: 0.05em; }
+
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .timer-widget { display: flex; align-items: center; gap: 8px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 30px; padding: 5px 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 600; color: var(--accent-ec2-light); }
+    .timer-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.85rem; padding: 2px 4px; border-radius: 4px; }
+    .timer-btn:hover { color: #fff; background: var(--border-color); }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; border: 1px solid transparent; text-decoration: none; transition: all 0.2s; }
+    .btn-secondary { background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-main); }
+    .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--accent-ec2-light); }
+    .btn-switch { background: linear-gradient(135deg, #f97316, #ea580c); color: #ffffff; border: 1px solid #fb923c; box-shadow: 0 0 12px rgba(249, 115, 22, 0.3); }
+    .btn-switch:hover { background: linear-gradient(135deg, #ea580c, #c2410c); transform: translateY(-1px); }
+
+    /* Layout */
+    .layout-container { display: flex; margin-top: var(--header-height); min-height: calc(100vh - var(--header-height)); }
+    aside.sidebar { width: var(--sidebar-width); background: var(--bg-secondary); border-right: 1px solid var(--border-color); position: fixed; top: var(--header-height); bottom: 0; left: 0; overflow-y: auto; padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    
+    .progress-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1rem; }
+    .progress-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between; }
+    .progress-bar-bg { height: 8px; background: var(--code-bg); border-radius: 999px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #3b82f6, #10b981); border-radius: 999px; transition: width 0.3s ease; }
+
+    .sidebar-section-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); padding: 0 0.75rem; margin-bottom: 0.4rem; }
+    .nav-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .nav-item a { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 8px; color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: all 0.2s; }
+    .nav-item a:hover { color: var(--text-main); background: var(--bg-card); }
+    .nav-item a.active { color: #fff; background: linear-gradient(90deg, rgba(59, 130, 246, 0.9), rgba(59, 130, 246, 0.4)); font-weight: 600; }
+    .time-badge { font-size: 0.7rem; background: rgba(255, 255, 255, 0.08); padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; color: var(--accent-ec2-light); }
+
+    main.content-area { margin-left: var(--sidebar-width); flex: 1; padding: 2.5rem 3.5rem; max-width: 1250px; }
+
+    /* Hero Banner */
+    .hero-banner { background: linear-gradient(135deg, rgba(59, 130, 246, 0.16) 0%, rgba(16, 185, 129, 0.1) 100%); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; }
+    .badge-pill { font-size: 0.78rem; font-weight: 600; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-muted); margin-right: 8px; }
+    .badge-pill.hot { border-color: var(--accent-ec2); color: var(--accent-ec2-light); background: rgba(59, 130, 246, 0.15); }
+    .hero-title { font-size: 2.4rem; font-weight: 800; line-height: 1.25; margin: 1rem 0; letter-spacing: -0.03em; }
+    .hero-subtitle { font-size: 1.12rem; color: var(--text-muted); max-width: 900px; margin-bottom: 2rem; }
+    
+    .session-meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
+    .meta-card { display: flex; flex-direction: column; }
+    .meta-label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+    .meta-value { font-size: 1.05rem; font-weight: 600; color: var(--text-main); }
+
+    /* Sections */
+    section.module-section { margin-bottom: 4rem; scroll-margin-top: calc(var(--header-height) + 1.5rem); }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border-color); }
+    .section-title-wrap { display: flex; align-items: center; gap: 12px; }
+    .section-number { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--accent-ec2-light); }
+    .section-title { font-size: 1.8rem; font-weight: 700; }
+    .section-time-pill { font-size: 0.82rem; font-family: 'JetBrains Mono', monospace; color: var(--accent-ec2-light); background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); padding: 4px 10px; border-radius: 999px; font-weight: 600; }
+
+    /* Step Boxes */
+    .step-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.75rem; margin-bottom: 2rem; position: relative; }
+    .step-box.completed { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.03); }
+    .step-box-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+    .step-title-group { display: flex; align-items: center; gap: 12px; }
+    .step-checkbox { width: 22px; height: 22px; cursor: pointer; accent-color: var(--accent-green); }
+    .step-tag { font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; padding: 3px 8px; border-radius: 4px; background: rgba(59, 130, 246, 0.15); color: var(--accent-ec2-light); font-weight: 600; }
+    .step-heading { font-size: 1.25rem; font-weight: 700; }
+
+    /* Console Breadcrumb */
+    .console-path { background: var(--code-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 14px; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; color: #60a5fa; display: flex; align-items: center; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .console-path .arrow { color: var(--text-dim); }
+
+    /* Tables */
+    .config-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.92rem; }
+    .config-table th { background: var(--code-bg); text-align: left; padding: 10px 14px; color: var(--text-dim); font-size: 0.78rem; text-transform: uppercase; border-bottom: 2px solid var(--border-color); }
+    .config-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+    .config-table tr:hover td { background: var(--bg-card-hover); }
+    .field-name { font-weight: 600; color: var(--text-main); white-space: nowrap; }
+    .field-val { font-family: 'JetBrains Mono', monospace; color: var(--accent-ec2-light); background: rgba(59, 130, 246, 0.08); padding: 3px 8px; border-radius: 4px; display: inline-block; }
+
+    /* Instructor Boxes */
+    .instructor-box { background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(59, 130, 246, 0.08) 100%); border: 1px solid rgba(236, 72, 153, 0.4); border-left: 5px solid var(--instructor-badge); border-radius: 12px; padding: 1.4rem 1.6rem; margin: 1.5rem 0; }
+    .instructor-box-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.92rem; text-transform: uppercase; color: #f472b6; margin-bottom: 0.75rem; }
+    .talk-track { background: rgba(0, 0, 0, 0.25); border-radius: 8px; padding: 0.9rem 1.1rem; margin-top: 0.75rem; border-left: 3px solid var(--accent-ec2-light); font-style: italic; color: #cbd5e1; }
+    .talk-track-label { display: block; font-style: normal; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-ec2-light); margin-bottom: 4px; }
+
+    /* Callouts */
+    .trap-box { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.4); border-left: 5px solid var(--accent-red); border-radius: 12px; padding: 1.4rem 1.6rem; margin: 1.5rem 0; }
+    .trap-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.92rem; text-transform: uppercase; color: #f87171; margin-bottom: 0.5rem; }
+    
+    .tip-box { background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.35); border-left: 5px solid var(--accent-green); border-radius: 12px; padding: 1.4rem 1.6rem; margin: 1.5rem 0; }
+    .tip-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.92rem; text-transform: uppercase; color: #34d399; margin-bottom: 0.5rem; }
+
+    /* Code Snippets */
+    .snippet-container { background: var(--code-bg); border: 1px solid var(--border-color); border-radius: 10px; margin: 1rem 0; overflow: hidden; }
+    .snippet-header { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-dim); }
+    .copy-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-muted); border-radius: 6px; padding: 3px 8px; font-size: 0.75rem; cursor: pointer; }
+    .copy-btn:hover { color: #fff; border-color: var(--accent-ec2-light); }
+    pre code { display: block; padding: 14px; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; color: #e2e8f0; overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation -->
+  <header class="top-nav">
+    <div class="brand">
+      <div class="brand-logo">⚡</div>
+      <div>
+        <div class="brand-title">AWS ECS Masterclass</div>
+      </div>
+      <span class="badge-ec2">EC2 Launch Type</span>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Live Session Stopwatch -->
+      <div class="timer-widget" title="Demonstration Timer">
+        <span>⏱️</span>
+        <span id="display-time">00:00:00</span>
+        <button class="timer-btn" id="btn-timer-toggle" title="Start/Pause">▶</button>
+        <button class="timer-btn" id="btn-timer-reset" title="Reset">↺</button>
+      </div>
+
+      <!-- Quick Switch to Fargate Guide -->
+      <a href="ecs-fargate-step-by-step-guide.html" class="btn btn-switch" title="Open the Serverless Fargate Guide">
+        <span>Go to Fargate Guide</span> ➔
+      </a>
+
+      <!-- Theme Toggle -->
+      <button class="btn btn-secondary" id="theme-toggle" title="Toggle Dark/Light Mode">🌓</button>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar Navigation & Checklist Tracker -->
+    <aside class="sidebar">
+      <div class="progress-box">
+        <div class="progress-title">
+          <span>Demo Progress</span>
+          <span id="progress-text">0/6 Done</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Classroom Modules</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#section-overview" class="active"><span>01. Mental Model & Architecture</span><span class="time-badge">8m</span></a></li>
+          <li class="nav-item"><a href="#step-1-cluster"><span>02. Step 1: Create Cluster & ASG</span><span class="time-badge">12m</span></a></li>
+          <li class="nav-item"><a href="#step-2-alb"><span>03. Step 2: Create Load Balancer</span><span class="time-badge">10m</span></a></li>
+          <li class="nav-item"><a href="#step-3-taskdef"><span>04. Step 3: Task Definition</span><span class="time-badge">8m</span></a></li>
+          <li class="nav-item"><a href="#step-4-service"><span>05. Step 4: Deploy Service</span><span class="time-badge">10m</span></a></li>
+          <li class="nav-item"><a href="#step-5-verify"><span>06. Step 5: Verify & ALB Test</span><span class="time-badge">7m</span></a></li>
+          <li class="nav-item"><a href="#step-6-cleanup"><span>07. Step 6: Teardown & Clean-up</span><span class="time-badge">5m</span></a></li>
+        </ul>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+        <div style="font-size: 0.75rem; color: var(--text-dim); text-align: center;">
+          Instructor Live Console Edition • 2026<br>
+          Amazon Web Services Containers
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <div class="hero-badge-row">
+          <span class="badge-pill hot">Hands-On Teaching Blueprint</span>
+          <span class="badge-pill">EC2 Launch Type</span>
+          <span class="badge-pill">Application Load Balancer</span>
+          <span class="badge-pill">Dynamic Port Mapping</span>
+        </div>
+        <h1 class="hero-title">Demonstrating Amazon ECS with EC2 Launch Type</h1>
+        <p class="hero-subtitle">
+          A definitive, step-by-step console demonstration guide for instructors. Teach your students how ECS manages Docker containers deployed on actual EC2 virtual machines, utilizing Auto Scaling Groups and Dynamic Port Mapping behind an Application Load Balancer.
+        </p>
+
+        <div class="session-meta-grid">
+          <div class="meta-card">
+            <span class="meta-label">Target Audience</span>
+            <span class="meta-value">Advanced DevOps Students</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Demo Duration</span>
+            <span class="meta-value">55 – 65 Minutes</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Architecture</span>
+            <span class="meta-value">Container Instances + ASG</span>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Networking</span>
+            <span class="meta-value">Bridge Mode &amp; Dynamic Ports</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 1: MENTAL MODEL & ARCHITECTURE -->
+      <section id="section-overview" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">01</div>
+            <h2 class="section-title">The Mental Model: ECS EC2 Launch Type</h2>
+          </div>
+          <span class="section-time-pill">Lecture: 8 mins</span>
+        </div>
+
+        <div class="instructor-box">
+          <div class="instructor-box-header">
+            <span>🎙️</span> Instructor Talk Track (Fargate vs EC2)
+          </div>
+          <p>
+            "Students, earlier we saw <strong>Fargate</strong>, where AWS managed the virtual machines for us. But what if we <em>want</em> control over the VMs? What if we have pre-purchased Reserved Instances, or want to use cheaper EC2 Spot Instances, or need direct access to the host OS for security agents?"
+            <br><br>
+            "With the <strong>EC2 Launch Type</strong>, <em>we</em> provide the EC2 instances (workers), and we install the <code>ecs-agent</code> on them. ECS acts as the 'brain' (Control Plane) telling our EC2 instances which Docker containers to run!"
+          </p>
+        </div>
+
+        <!-- Architecture Diagram SVG -->
+        <div class="snippet-container" style="background: var(--bg-card); padding: 1.5rem; text-align: center;">
+          <h4 style="margin-bottom: 1rem; color: var(--accent-ec2-light); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">
+            ECS EC2 Architecture & Dynamic Port Mapping
+          </h4>
+          <svg viewBox="0 0 900 380" style="width: 100%; max-width: 850px; height: auto;">
+            <!-- Outer VPC Box -->
+            <rect x="20" y="20" width="860" height="340" rx="16" fill="#0f172a" stroke="#334155" stroke-width="2" />
+            <text x="45" y="45" fill="#94a3b8" font-size="14" font-weight="700">AWS Cloud VPC</text>
+
+            <!-- Application Load Balancer -->
+            <rect x="350" y="30" width="200" height="60" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="2" />
+            <text x="450" y="55" fill="#c4b5fd" font-size="13" font-weight="700" text-anchor="middle">Application Load Balancer</text>
+            <text x="450" y="75" fill="#94a3b8" font-size="11" text-anchor="middle">Listens on Port 80 (HTTP)</text>
+
+            <!-- Traffic Lines from ALB to EC2 -->
+            <line x1="450" y1="90" x2="250" y2="130" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,4" />
+            <line x1="450" y1="90" x2="650" y2="130" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,4" />
+
+            <!-- EC2 Instance 1 (Host) -->
+            <rect x="80" y="130" width="340" height="210" rx="12" fill="#182038" stroke="#3b82f6" stroke-width="2" />
+            <text x="100" y="160" fill="#93c5fd" font-size="14" font-weight="700">🖥️ EC2 Container Instance A</text>
+            <text x="100" y="178" fill="#64748b" font-size="11">Amazon Linux 2023 (IP: 10.0.1.50)</text>
+
+            <!-- Docker Bridge A -->
+            <rect x="100" y="195" width="300" height="130" rx="8" fill="#0b1122" stroke="#475569" stroke-width="1" />
+            <text x="110" y="215" fill="#94a3b8" font-size="12">Docker Bridge (docker0)</text>
+            
+            <!-- Task 1 in EC2 1 -->
+            <rect x="115" y="230" width="125" height="80" rx="6" fill="#1e293b" stroke="#10b981" />
+            <text x="177" y="250" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">Task 1 (Web)</text>
+            <text x="177" y="270" fill="#34d399" font-size="11" text-anchor="middle">Port 80</text>
+            <text x="177" y="295" fill="#fb923c" font-size="10" font-weight="700" text-anchor="middle">Host: 32768</text>
+
+            <!-- Task 2 in EC2 1 -->
+            <rect x="260" y="230" width="125" height="80" rx="6" fill="#1e293b" stroke="#10b981" />
+            <text x="322" y="250" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">Task 2 (Web)</text>
+            <text x="322" y="270" fill="#34d399" font-size="11" text-anchor="middle">Port 80</text>
+            <text x="322" y="295" fill="#fb923c" font-size="10" font-weight="700" text-anchor="middle">Host: 32769</text>
+
+            <!-- EC2 Instance 2 (Host) -->
+            <rect x="480" y="130" width="340" height="210" rx="12" fill="#182038" stroke="#3b82f6" stroke-width="2" />
+            <text x="500" y="160" fill="#93c5fd" font-size="14" font-weight="700">🖥️ EC2 Container Instance B</text>
+            <text x="500" y="178" fill="#64748b" font-size="11">Amazon Linux 2023 (IP: 10.0.2.65)</text>
+
+            <!-- Docker Bridge B -->
+            <rect x="500" y="195" width="300" height="130" rx="8" fill="#0b1122" stroke="#475569" stroke-width="1" />
+            <text x="510" y="215" fill="#94a3b8" font-size="12">Docker Bridge (docker0)</text>
+
+            <!-- Task 3 in EC2 2 -->
+            <rect x="515" y="230" width="125" height="80" rx="6" fill="#1e293b" stroke="#10b981" />
+            <text x="577" y="250" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">Task 3 (Web)</text>
+            <text x="577" y="270" fill="#34d399" font-size="11" text-anchor="middle">Port 80</text>
+            <text x="577" y="295" fill="#fb923c" font-size="10" font-weight="700" text-anchor="middle">Host: 41050</text>
+          </svg>
+        </div>
+
+        <div class="instructor-box" style="margin-top: 1.5rem;">
+          <div class="instructor-box-header">
+            <span>🤯</span> The "Dynamic Port Mapping" Aha-Moment
+          </div>
+          <p>
+            This is the most critical concept to teach in this architecture!
+            <br><br>
+            "If we deploy a container running Nginx on Port 80 directly to an EC2 instance, it binds to the host's Port 80. <strong>What happens if we want to run a SECOND Nginx container on the same EC2 instance?</strong> Port conflict! It crashes."
+            <br><br>
+            "ECS solves this with <strong>Dynamic Port Mapping</strong>. The container still thinks it is listening on Port 80, but ECS asks Docker to map it to a random high-numbered port on the EC2 host (e.g., 32768, 32769). ECS then automatically registers these random ports with the Application Load Balancer Target Group. The ALB handles routing port 80 traffic to the random ports seamlessly!"
+          </p>
+        </div>
+      </section>
+
+      <!-- STEP 1: CREATE CLUSTER & ASG -->
+      <section id="step-1-cluster" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">02</div>
+            <h2 class="section-title">Step 1: Create ECS Cluster with Auto Scaling Group</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 12 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">STEP 1</span>
+              <h3 class="step-heading">Configure the Cluster & Infrastructure</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="console-path">
+            <span>ECS Console</span>
+            <span class="arrow">➔</span>
+            <span>Clusters</span>
+            <span class="arrow">➔</span>
+            <span>Create cluster</span>
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Unlike Fargate, creating an EC2-backed cluster means we must tell ECS how to provision the EC2 instances. ECS will automatically create an Auto Scaling Group (ASG) for us!
+          </p>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Configuration Field</th>
+                <th>Console Input Value</th>
+                <th>Why This Matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Cluster name</td>
+                <td><span class="field-val">ec2-demo-cluster</span></td>
+                <td>Namespace for our EC2 architecture.</td>
+              </tr>
+              <tr style="background: rgba(59, 130, 246, 0.08);">
+                <td class="field-name" style="color: #60a5fa; font-weight: 700;">Infrastructure</td>
+                <td><span class="field-val">Amazon EC2 instances (Check box)</span></td>
+                <td><strong>CRITICAL:</strong> Uncheck AWS Fargate!</td>
+              </tr>
+              <tr>
+                <td class="field-name">Auto Scaling group (ASG)</td>
+                <td><span class="field-val">Create new ASG</span></td>
+                <td>Let ECS build the underlying EC2 pool for us.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Operating system</td>
+                <td><span class="field-val">Amazon Linux 2023</span></td>
+                <td>Comes pre-installed with Docker & ecs-agent.</td>
+              </tr>
+              <tr>
+                <td class="field-name">EC2 instance type</td>
+                <td><span class="field-val">t3.micro (or t2.micro)</span></td>
+                <td>Free-tier eligible, enough to run a few small containers.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Desired capacity</td>
+                <td><span class="field-val">Minimum: 2, Maximum: 3</span></td>
+                <td>Provisions 2 EC2 instances immediately.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Network (VPC/Subnets)</td>
+                <td><span class="field-val">Default VPC / Any 2 Public Subnets</span></td>
+                <td>Where the EC2 instances will live.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="trap-box" style="margin-bottom: 0;">
+            <div class="trap-header">
+              <span>⚠️</span> Watch out for EC2 Provisioning Time
+            </div>
+            <p>
+              When you click <strong>Create</strong>, it will take <strong>2 to 4 minutes</strong>. ECS is launching a CloudFormation stack behind the scenes to create the ASG and boot up the EC2 instances. Wait until the cluster shows <code>2/2 Container instances registered</code> before proceeding.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: CREATE LOAD BALANCER -->
+      <section id="step-2-alb" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Step 2: Create the Application Load Balancer</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 10 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">STEP 2</span>
+              <h3 class="step-heading">Pre-provision the ALB & Target Group</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Because of Dynamic Port Mapping, we cannot just browse to the EC2 instance's IP address. We MUST use an ALB to handle the traffic routing! We must create the ALB <strong>before</strong> creating the ECS service.
+          </p>
+
+          <div class="console-path">
+            <span>EC2 Console</span>
+            <span class="arrow">➔</span>
+            <span>Target Groups</span>
+            <span class="arrow">➔</span>
+            <span>Create target group</span>
+          </div>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Target Group Configuration</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Target type</td>
+                <td><span class="field-val">Instances</span> (Because ECS will register the EC2 hosts)</td>
+              </tr>
+              <tr>
+                <td class="field-name">Target group name</td>
+                <td><span class="field-val">ecs-ec2-tg</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Protocol / Port</td>
+                <td><span class="field-val">HTTP / Port 80</span> (ECS will override this port dynamically later!)</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.85rem; color: var(--text-muted);"><em>Note: Click Next, DO NOT register any targets manually. Let ECS do that automatically! Click Create target group.</em></p>
+
+          <div class="console-path" style="margin-top: 1.5rem;">
+            <span>EC2 Console</span>
+            <span class="arrow">➔</span>
+            <span>Load Balancers</span>
+            <span class="arrow">➔</span>
+            <span>Create Load Balancer</span>
+            <span class="arrow">➔</span>
+            <span>ALB</span>
+          </div>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>ALB Configuration</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Load balancer name</td>
+                <td><span class="field-val">ecs-ec2-alb</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Scheme</td>
+                <td><span class="field-val">Internet-facing</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Network mapping</td>
+                <td><span class="field-val">Default VPC, Select at least 2 public subnets</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Security groups</td>
+                <td><span class="field-val">Select a SG that allows HTTP Port 80 from 0.0.0.0/0</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Listener / Routing</td>
+                <td><span class="field-val">Forward to: ecs-ec2-tg</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- STEP 3: TASK DEFINITION -->
+      <section id="step-3-taskdef" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">04</div>
+            <h2 class="section-title">Step 3: Create Task Definition (Bridge Mode)</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 8 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">STEP 3</span>
+              <h3 class="step-heading">Configure the Task with Dynamic Port Mapping</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="console-path">
+            <span>ECS Console</span>
+            <span class="arrow">➔</span>
+            <span>Task definitions</span>
+            <span class="arrow">➔</span>
+            <span>Create new task definition</span>
+          </div>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Configuration Field</th>
+                <th>Console Input Value</th>
+                <th>Why This Matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Task definition family</td>
+                <td><span class="field-val">ec2-web-task</span></td>
+                <td>Name of the blueprint.</td>
+              </tr>
+              <tr style="background: rgba(59, 130, 246, 0.08);">
+                <td class="field-name" style="color: #60a5fa; font-weight: 700;">Launch type</td>
+                <td><span class="field-val">Amazon EC2 instances</span></td>
+                <td>Required to deploy to our EC2 instances!</td>
+              </tr>
+              <tr style="background: rgba(16, 185, 129, 0.08);">
+                <td class="field-name" style="color: #34d399; font-weight: 700;">Network mode</td>
+                <td><span class="field-val">Bridge</span></td>
+                <td><strong>CRITICAL:</strong> Uses the EC2 host's Docker daemon bridge network (docker0).</td>
+              </tr>
+              <tr>
+                <td class="field-name">Task CPU / Memory</td>
+                <td><span class="field-val">Leave Blank!</span></td>
+                <td>Optional for EC2 launch type! We will define limits at the container level.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin: 1.5rem 0 0.5rem; color: var(--text-main);">Container Configuration</h4>
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Console Input Value</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Name</td>
+                <td><span class="field-val">web-app</span></td>
+                <td>Container identifier.</td>
+              </tr>
+              <tr>
+                <td class="field-name">Image URI</td>
+                <td><span class="field-val">public.ecr.aws/ecs-sample-image/amazon-ecs-sample:latest</span></td>
+                <td>The AWS sample web application.</td>
+              </tr>
+              <tr style="background: rgba(245, 158, 11, 0.08);">
+                <td class="field-name" style="color: #fbbf24; font-weight: 700;">Port Mappings</td>
+                <td><span class="field-val">Container Port: 80 | Host Port: 0 (Zero)</span></td>
+                <td><strong>THE MAGIC!</strong> Setting Host Port to 0 enables Dynamic Port Mapping!</td>
+              </tr>
+              <tr>
+                <td class="field-name">Memory Limit (Hard limit)</td>
+                <td><span class="field-val">256 MB</span></td>
+                <td>Prevents one container from eating all EC2 RAM.</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="tip-box" style="margin-bottom: 0;">
+            <div class="tip-header">💡 Why Host Port = 0?</div>
+            <p>
+              By explicitly setting the Host Port to <code>0</code>, you are instructing Docker and ECS to grab an available ephemeral port (between 32768 - 65535) on the EC2 instance and bind it to the container's port 80. This allows multiple containers to run on the exact same EC2 instance without port conflicts.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 4: DEPLOY SERVICE -->
+      <section id="step-4-service" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Step 4: Deploy the ECS Service</h2>
+          </div>
+          <span class="section-time-pill">Hands-on: 10 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag">STEP 4</span>
+              <h3 class="step-heading">Deploy 4 Tasks and Attach the ALB</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <div class="console-path">
+            <span>ECS Console</span>
+            <span class="arrow">➔</span>
+            <span>Clusters</span>
+            <span class="arrow">➔</span>
+            <span>ec2-demo-cluster</span>
+            <span class="arrow">➔</span>
+            <span>Services</span>
+            <span class="arrow">➔</span>
+            <span>Create</span>
+          </div>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Configuration Section</th>
+                <th>Console Setting</th>
+                <th>Exact Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Compute options</td>
+                <td>Launch type</td>
+                <td><span class="field-val">EC2</span> (Ensure Fargate is NOT selected)</td>
+              </tr>
+              <tr>
+                <td class="field-name">Task definition</td>
+                <td>Family / Revision</td>
+                <td><span class="field-val">ec2-web-task</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Service name</td>
+                <td>Text field</td>
+                <td><span class="field-val">ec2-web-service</span></td>
+              </tr>
+              <tr style="background: rgba(16, 185, 129, 0.08);">
+                <td class="field-name" style="color: #34d399; font-weight: 700;">Desired tasks</td>
+                <td>Number of instances</td>
+                <td><span class="field-val">4</span> (We only have 2 EC2s. Proves dynamic ports work!)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin: 1.5rem 0 0.5rem; color: var(--text-main);">Load Balancing Configuration</h4>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Expand the <strong>Load Balancing</strong> section to connect ECS to the ALB we created in Step 2.
+          </p>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>ALB Configuration Field</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="field-name">Load balancer type</td>
+                <td><span class="field-val">Application Load Balancer</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Container to load balance</td>
+                <td><span class="field-val">web-app:80:0</span> (Select from dropdown)</td>
+              </tr>
+              <tr>
+                <td class="field-name">Use an existing load balancer</td>
+                <td><span class="field-val">ecs-ec2-alb</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Listener</td>
+                <td><span class="field-val">Use an existing listener (80:HTTP)</span></td>
+              </tr>
+              <tr>
+                <td class="field-name">Target group</td>
+                <td><span class="field-val">Use an existing target group (ecs-ec2-tg)</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="margin-top: 1rem; color: var(--text-muted);">
+            Click <strong style="color: #fff;">Create</strong>.
+          </p>
+        </div>
+      </section>
+
+      <!-- STEP 5: VERIFY & ALB TEST -->
+      <section id="step-5-verify" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">06</div>
+            <h2 class="section-title">Step 5: Verify ALB & Dynamic Ports</h2>
+          </div>
+          <span class="section-time-pill">Demonstration: 7 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">DEMO</span>
+              <h3 class="step-heading">Show the Class How ECS Updated the Target Group</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            This is the climax of the demonstration. We want to prove to students that ECS took the 4 tasks and automatically registered their random ports with the Load Balancer!
+          </p>
+
+          <ol style="padding-left: 1.5rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
+            <li>Go to <strong>EC2 Console ➔ Target Groups</strong>.</li>
+            <li>Select <code>ecs-ec2-tg</code> and open the <strong>Targets</strong> tab.</li>
+            <li><strong>Show the students:</strong> You will see 4 targets registered. Notice the <strong>Port</strong> column! It won't be 80. It will be random high ports like <code>32768</code>, <code>41056</code>, etc.</li>
+            <li>Notice the <strong>Instance ID</strong> column: Two tasks will share Instance A, and two tasks will share Instance B.</li>
+          </ol>
+
+          <!-- Mockup of Target Group -->
+          <div class="console-mockup">
+            <div class="mockup-header">
+              <span>EC2 Console</span> • <span>Target Group: ecs-ec2-tg</span> • <span>Targets Tab</span>
+            </div>
+            <div class="mockup-row">
+              <div>
+                <strong>Instance ID:</strong> <code>i-0abcd1234efgh5678</code><br>
+                <span style="font-size: 0.78rem; color: var(--text-dim);">Zone: us-east-1a</span>
+              </div>
+              <div style="text-align: right;">
+                <span class="mockup-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24;">Port: 32768</span><br>
+                <span class="mockup-badge badge-running" style="margin-top: 4px;">HEALTHY</span>
+              </div>
+            </div>
+            <div class="mockup-row">
+              <div>
+                <strong>Instance ID:</strong> <code>i-0abcd1234efgh5678</code><br>
+                <span style="font-size: 0.78rem; color: var(--text-dim);">Zone: us-east-1a</span>
+              </div>
+              <div style="text-align: right;">
+                <span class="mockup-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24;">Port: 41052</span><br>
+                <span class="mockup-badge badge-running" style="margin-top: 4px;">HEALTHY</span>
+              </div>
+            </div>
+          </div>
+
+          <h4 style="margin: 1.5rem 0 0.5rem; color: var(--text-main);">The Final Test</h4>
+          <ol style="padding-left: 1.5rem; color: var(--text-muted); line-height: 1.8;">
+            <li>Go to <strong>Load Balancers</strong> in the EC2 Console.</li>
+            <li>Select <code>ecs-ec2-alb</code> and copy the <strong>DNS Name</strong> (e.g., <code>ecs-ec2-alb-12345.us-east-1.elb.amazonaws.com</code>).</li>
+            <li>Paste it into your browser.</li>
+            <li>You will see the Amazon ECS Sample App. Refresh the page rapidly—you will see the underlying container ID change as the ALB round-robins traffic across all 4 dynamically-mapped tasks!</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- STEP 6: CLEAN-UP & TEARDOWN -->
+      <section id="step-6-cleanup" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">07</div>
+            <h2 class="section-title">Step 6: Teardown & Clean-Up</h2>
+          </div>
+          <span class="section-time-pill">Clean-Up: 5 mins</span>
+        </div>
+
+        <div class="step-box">
+          <div class="step-box-header">
+            <div class="step-title-group">
+              <span class="step-tag" style="background: rgba(239, 68, 68, 0.2); color: #f87171;">TEARDOWN</span>
+              <h3 class="step-heading">Destroy Infrastructure (Prevent Billing!)</h3>
+            </div>
+            <input type="checkbox" class="step-checkbox" onchange="toggleStep(this)">
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            Because we are using actual EC2 instances and Load Balancers, failing to clean up this lab will result in hourly charges!
+          </p>
+
+          <ol style="padding-left: 1.5rem; color: var(--text-muted); line-height: 2;">
+            <li>
+              <strong>Delete the ECS Service:</strong> ECS Console ➔ Clusters ➔ <code>ec2-demo-cluster</code> ➔ Services tab ➔ Delete <code>ec2-web-service</code> (Force delete).
+            </li>
+            <li>
+              <strong>Delete the ECS Cluster:</strong> In the cluster view, click <strong>Delete Cluster</strong>. <br>
+              <em style="font-size: 0.85rem; color: var(--text-dim);">Note: Because ECS created the Auto Scaling Group for you, deleting the cluster will automatically trigger CloudFormation to terminate the EC2 instances!</em>
+            </li>
+            <li>
+              <strong>Delete the ALB:</strong> EC2 Console ➔ Load Balancers ➔ Delete <code>ecs-ec2-alb</code>.
+            </li>
+            <li>
+              <strong>Delete the Target Group:</strong> EC2 Console ➔ Target Groups ➔ Delete <code>ecs-ec2-tg</code>.
+            </li>
+          </ol>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast">
+    <span>📋</span> Copied to clipboard!
+  </div>
+
+  <script>
+    // Theme Toggle Logic
+    const themeBtn = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('ecs_ec2_theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const target = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', target);
+      localStorage.setItem('ecs_ec2_theme', target);
+    });
+
+    // Copy to Clipboard
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'flex';
+        setTimeout(() => toast.style.display = 'none', 2200);
+      });
+    }
+
+    // Step Checkbox Progress
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('.step-checkbox');
+      let checkedCount = 0;
+      checkboxes.forEach(cb => {
+        const stepBox = cb.closest('.step-box');
+        if (cb.checked) {
+          checkedCount++;
+          if (stepBox) stepBox.classList.add('completed');
+        } else {
+          if (stepBox) stepBox.classList.remove('completed');
+        }
+      });
+      const total = checkboxes.length;
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('progress-text').innerText = `${checkedCount}/${total} Done`;
+      document.getElementById('progress-fill').style.width = pct + '%';
+    }
+    function toggleStep(cb) { updateProgress(); }
+
+    // Live Classroom Stopwatch
+    let timerInterval = null;
+    let secondsElapsed = 0;
+    let isRunning = false;
+    const display = document.getElementById('display-time');
+    const toggleBtn = document.getElementById('btn-timer-toggle');
+    const resetBtn = document.getElementById('btn-timer-reset');
+
+    function formatTime(sec) {
+      const hrs = String(Math.floor(sec / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+      const secs = String(sec % 60).padStart(2, '0');
+      return `${hrs}:${mins}:${secs}`;
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (!isRunning) {
+        isRunning = true;
+        toggleBtn.innerText = '⏸';
+        timerInterval = setInterval(() => {
+          secondsElapsed++;
+          display.innerText = formatTime(secondsElapsed);
+        }, 1000);
+      } else {
+        isRunning = false;
+        toggleBtn.innerText = '▶';
+        clearInterval(timerInterval);
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      isRunning = false;
+      toggleBtn.innerText = '▶';
+      clearInterval(timerInterval);
+      secondsElapsed = 0;
+      display.innerText = '00:00:00';
+    });
+
+    // Active Navigation Scroll Spy
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section.module-section');
+      const navLinks = document.querySelectorAll('.nav-item a');
+      let currentSectionId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) currentSectionId = sec.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) link.classList.add('active');
+      });
+    });
+
+    // Initialize
+    updateProgress();
+  </script>
+</body>
+</html>

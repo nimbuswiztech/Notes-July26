@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>asg &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html" class="active">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">asg</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">asg</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Brief Introduction to AWS ASG</h2>
+<p>An <strong>Auto Scaling Group (ASG)</strong> in AWS automatically manages the number of EC2 instances according to demand, enabling applications to scale in and out based on set policies.</p>
+<h3>Components</h3>
+<ul>
+<li><strong>Launch Template/Configuration:</strong> Blueprint for EC2 instances, including AMI, instance type, security groups, and more.</li>
+<li><strong>Scaling Policies:</strong> Rules for adding or removing instances, such as target tracking, step scaling, and schedule-based scaling.</li>
+<li><strong>Health Checks:</strong> Mechanism to replace unhealthy instances.</li>
+<li><strong>Load Balancer (optional):</strong> Evenly distributes traffic among instances.</li>
+<li><strong>Desired, Minimum, Maximum Capacity:</strong> Controls the flexibility of scaling.</li>
+</ul>
+<h2>Real-Time Practical Scenario</h2>
+<p><strong>Scenario:</strong> You’re running a web application that experiences increased traffic during business hours and reduced load during nights and weekends.</p>
+<h2>Hands-on Lab Steps</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Set up a Launch Template</h3>
+<ul>
+<li>Choose an Amazon Machine Image (AMI), such as Amazon Linux.</li>
+<li>Define the instance type, such as <code>t2.micro</code> for a demo.</li>
+<li>Attach a key pair for SSH access.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Create a Target Group and an Application Load Balancer (ALB)</h3>
+<ul>
+<li>The target group will receive instances launched by the ASG.</li>
+<li>The ALB will route incoming HTTP/HTTPS traffic to those instances.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Create an Auto Scaling Group</h3>
+<ul>
+<li>Associate the group with the launch template and target group.</li>
+<li>Set:</li>
+<li>Minimum: 1</li>
+<li>Maximum: 4</li>
+<li>Desired capacity: 2</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Configure Scaling Policies</h3>
+<ul>
+<li><strong>Target Tracking:</strong> Maintain average CPU at 50%.</li>
+<li><strong>Step Scaling:</strong> Add 1 instance if CPU is above 70% for 5 minutes, and remove 1 instance if CPU is below 30%.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Simulate Traffic and Scaling</h3>
+<ul>
+<li>Use a tool such as Apache Benchmark or scripts to generate load.</li>
+<li>Observe scale-out when CPU spikes and scale-in when load drops.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Demonstrate Fault Tolerance</h3>
+<p>Manually stop an EC2 instance from the ASG and show that the ASG replaces it to maintain the desired capacity.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Bonus:</strong> Set up scheduled scaling to increase capacity during specific hours, such as scaling to 4 from 9 AM–6 PM and down to 1 otherwise.</p>
+</div>
+</div>
+<h2>Real-World Examples</h2>
+<ul>
+<li><strong>E-Commerce Sites:</strong> Scale up for seasonal sales and scale down after the sale to save cost.</li>
+<li><strong>News Portals:</strong> Quickly handle surges during breaking news.</li>
+<li><strong>SaaS Applications:</strong> Match user demand across global time zones.</li>
+</ul>
+<h2>Best Practices to Share</h2>
+<ul>
+<li>Always configure health checks, including EC2 and ELB health checks, for accurate recovery.</li>
+<li>Use launch templates for consistency and versioning.</li>
+<li>Test scaling policies periodically.</li>
+<li>Enable notifications using SNS for scaling events.</li>
+</ul>
+<h2>Capacity</h2>
+<ul>
+<li><strong>Desired Capacity:</strong> The ideal number of EC2 instances you want running in your ASG at any given time. The ASG tries to maintain this number under normal conditions. When scaling activities are triggered, such as a scheduled change or CloudWatch alarm, the desired capacity is adjusted up or down.</li>
+<li><strong>Minimum Capacity:</strong> The lowest number of EC2 instances that your ASG will maintain. Even if there is no demand, the ASG will not terminate instances below this number. It ensures you always have a minimum set of resources running, such as to guarantee application availability.</li>
+<li><strong>Maximum Capacity:</strong> The highest number of EC2 instances that your ASG can launch. No scaling policies or manual actions will increase the group beyond this limit, preventing unexpected surges that could cause high costs or stress downstream systems.</li>
+</ul>
+<h3>Example</h3>
+<p>If you set:</p>
+<ul>
+<li>Minimum: 2</li>
+<li>Desired: 3</li>
+<li>Maximum: 5</li>
+</ul>
+<p>Your ASG launches 3 instances by default, never allowing the count to fall below 2 or increase above 5, regardless of scaling events.</p>
+<p>This configuration helps you control availability, performance, and cost by automatically adjusting compute resources within safe boundaries.</p>
+<h2>Scaling</h2>
+<p>You can resize your Auto Scaling group manually or automatically to meet changes in demand.</p>
+<h3>Scaling Limits</h3>
+<ul>
+<li><strong>Minimum desired capacity:</strong> Equal to or less than desired capacity.</li>
+<li><strong>Maximum desired capacity:</strong> Equal to or greater than desired capacity.</li>
+</ul>
+<h3>Automatic Scaling</h3>
+<p>Choose whether to use a target tracking policy. You can configure other metric-based scaling policies and scheduled scaling after creating your Auto Scaling group.</p>
+<ul>
+<li><strong>No scaling policies:</strong> Your Auto Scaling group remains at its initial size and does not dynamically resize to meet demand.</li>
+<li><strong>Target tracking scaling policy:</strong> Choose a CloudWatch metric and target value, and let the scaling policy adjust the desired capacity in proportion to the metric’s value.</li>
+</ul>
+<h2>Understanding Scaling in AWS Auto Scaling Groups (ASG)</h2>
+<p>When configuring an <strong>Auto Scaling Group (ASG)</strong> in AWS, you control how compute resources automatically adjust to dynamic workloads using scaling parameters and policies.</p>
+<h3>Manual vs. Automatic Scaling</h3>
+<ul>
+<li><strong>Manual scaling:</strong> You adjust the number of instances yourself by changing desired capacity up or down. The ASG does not change automatically based on workload demand.</li>
+<li><strong>Automatic scaling:</strong> The ASG adjusts the number of instances in response to monitored metrics or schedules, keeping your application responsive and cost-efficient.</li>
+</ul>
+<h3>Scaling Limits: Minimum, Desired, and Maximum Capacities</h3>
+<ul>
+<li><strong>Minimum Desired Capacity:</strong> The lowest number of instances your ASG maintains. If demand drops, the group never scales below this value.</li>
+<li><strong>Maximum Desired Capacity:</strong> The highest number of instances your ASG can launch. Even if demand spikes sharply, it cannot exceed this upper limit.</li>
+<li><strong>Desired Capacity:</strong> The current, actively maintained number of instances that the ASG tries to match unless scaling events trigger a change.</li>
+</ul>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Rule:</strong></p>
+<ul>
+<li>The minimum desired capacity must be equal to or less than the current desired capacity.</li>
+<li>The maximum desired capacity must be equal to or greater than the current desired capacity.</li>
+<li>Desired capacity stays within the minimum and maximum range.</li>
+</ul>
+</div>
+</div>
+<h3>Key Concepts</h3>
+<ul>
+<li><strong>Desired Capacity:</strong> Number of instances the ASG tries to maintain.</li>
+<li><strong>Min/Max Size:</strong> Limits for instance count.</li>
+<li><strong>Warmup/Cooldown:</strong> Settings that manage how quickly scaling actions repeat.</li>
+<li><strong>Health Checks:</strong> The ASG replaces unreachable or unhealthy instances automatically.</li>
+</ul>
+<h3>Example</h3>
+<p>Suppose you want to keep CPU utilization close to 50%, but during promotions you expect large traffic spikes:</p>
+<ul>
+<li>Use <em>target tracking</em> to maintain 50% CPU normally.</li>
+<li>Add a <em>step scaling</em> policy to aggressively add instances if CPU exceeds 80% for quicker scaling during traffic spikes.</li>
+</ul>
+<h3>Automatic Scaling Policies</h3>
+<ul>
+<li><strong>No scaling policies:</strong> The ASG remains static at its initial size, regardless of load.</li>
+<li>
+<p><strong>Target Tracking Scaling Policy:</strong> Select a <strong>CloudWatch metric</strong>, such as average CPU utilization, and set a target value, such as 50%.</p>
+<p>The ASG automatically adds or removes instances to keep the metric close to the target.</p>
+<ul>
+<li>If the target is 50% CPU and CPU usage rises, the ASG increases capacity to reduce load.</li>
+<li>If CPU usage drops, the ASG scales in to save cost.</li>
+<li><strong>Other scaling options</strong> configured after creation:</li>
+<li><strong>Step scaling:</strong> Responds to metric thresholds with defined actions.</li>
+<li><strong>Scheduled scaling:</strong> Changes desired capacity at set times, such as scaling up at 9 AM and down at 9 PM.</li>
+</ul>
+</li>
+</ul>
+<h2>Scenario-Based Questions for Students</h2>
+<details>
+
+<summary>You have a web app that peaks between 6–10 PM daily. How would you configure an ASG to save costs outside peak hours?</summary>
+
+
+
+</details>
+
+<details>
+
+<summary>An ASG is scaling out, but traffic is not evenly distributed. What could be wrong?</summary>
+
+
+
+</details>
+
+<details>
+
+<summary>If the health check type is set to EC2, but the underlying web service fails, will ASG replace the instance? Why or why not?</summary>
+
+
+
+</details>
+
+<details>
+
+<summary>Your ASG doesn’t scale in after load decreases. What checks would you perform?</summary>
+
+
+
+</details>
+
+<details>
+
+<summary>How would you integrate a custom alarm, such as queue backlog, as a scaling trigger for an ASG?</summary>
+
+
+
+</details>
+
+<details>
+
+<summary>Describe how you’d recover quickly if AWS announces scheduled maintenance on your availability zone.</summary>
+
+
+
+</details>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../aws/iam/iam.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">IAM</span>
+  </a>
+  <a href="../aws/stress-test.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">stress test</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

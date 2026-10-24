@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Docker Fundamentals — Instructor Teaching Guide</title><!-- removed custom styles -->
+    <link rel="stylesheet" href="../assets/css/style.css?v=2">
+</head>
+<body>
+<header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html" class="active">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+    <main class="doc-content">
+
+<header class="hero"><h1>Docker Fundamentals — Instructor Teaching Guide</h1><p>A complete, interactive instructor guide for a 120-minute beginner Docker class.</p><div class="meta"><span>Beginner level</span><span>120 minutes</span><span>Nginx hands-on demo</span><span>Docker fundamentals</span></div></header><nav><a href="#agenda">Agenda</a><a href="#fundamentals">Fundamentals</a><a href="#concepts">Concepts</a><a href="#commands">Commands</a><a href="#demo">Live demo</a><a href="#exercise">Exercise</a><a href="#cheatsheet">Cheat sheet</a></nav><main class="wrap">
+<section id="agenda"><h2>120-minute agenda</h2><table><thead><tr><th>Time</th><th>Section</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>0–10</strong></td><td>Introduction</td><td>The deployment gap and the “works on my machine” problem</td></tr><tr><td><strong>10–25</strong></td><td>What is Docker?</td><td>Plain-language definition, technical definition, why it exists</td></tr><tr><td><strong>25–40</strong></td><td>Core concepts</td><td>Engine, images, containers, Dockerfile, registry, ports</td></tr><tr><td><strong>40–55</strong></td><td>Essential commands</td><td>Read, run, inspect, stop, remove and build</td></tr><tr><td><strong>55–60</strong></td><td>Knowledge checkpoint</td><td>Fast questions before the demo</td></tr><tr><td><strong>60–90</strong></td><td>Live hands-on demo</td><td>Nginx, browser, bind mount and a custom image</td></tr><tr><td><strong>90–105</strong></td><td>Lifecycle & troubleshooting</td><td>States, logs, ports, names and rebuilds</td></tr><tr><td><strong>105–115</strong></td><td>Docker in DevOps</td><td>CI/CD, onboarding, microservices and rollbacks</td></tr><tr><td><strong>115–120</strong></td><td>Exit quiz & recap</td><td>Confirm the mental model and next steps</td></tr></tbody></table></section>
+<section id="goals"><h2>Learning objectives</h2><div class="grid"><div class="card"><h3>Explain</h3><p>Describe what Docker packages and why it solves environment drift.</p></div><div class="card"><h3>Operate</h3><p>Pull, run, inspect, log, stop, start and remove a container.</p></div><div class="card"><h3>Build</h3><p>Write a Dockerfile, build an image and run it in a browser.</p></div><div class="card"><h3>Reason</h3><p>Choose ports, mounts, volumes and networks for a basic app.</p></div></div></section>
+<section id="fundamentals"><h2>Docker fundamentals</h2><p class="lead"><b>Simple explanation:</b> Docker packages an application with what it needs so it runs the same way on another computer. Think of an image as a recipe card and a container as the prepared meal.</p><p><b>Instructor explanation:</b> Docker uses operating-system-level isolation. The Docker Engine creates containers from layered images. Containers share the host kernel while keeping processes, filesystems and network settings separated. This produces a portable, reproducible application unit without a full guest operating system.</p><div class="callout">Docker addresses the “works on my machine” problem: different library versions, runtime versions, operating systems and setup steps. Teams standardize the app environment once, then reuse it in development, testing and delivery.</div><div class="grid"><div class="card"><h3>Consistency</h3><p>Same dependencies and configuration across developer laptops, CI and servers.</p></div><div class="card"><h3>Portability</h3><p>Move an image to another compatible Docker host.</p></div><div class="card"><h3>Isolation</h3><p>Apps receive separated processes, filesystem views and networks.</p></div><div class="card"><h3>Productivity</h3><p>New teammates start a known environment quickly.</p></div></div><h3>Docker containers and virtual machines</h3><table><thead><tr><th>Aspect</th><th>Container</th><th>Virtual machine</th></tr></thead><tbody><tr><td>Architecture</td><td>App + dependencies on a container runtime</td><td>App + guest OS on a hypervisor</td></tr><tr><td>Operating system</td><td>Shares host OS kernel</td><td>Includes a complete guest OS</td></tr><tr><td>Startup</td><td>Usually seconds or less</td><td>Usually slower because the OS boots</td></tr><tr><td>Resource use</td><td>Usually lighter</td><td>Usually heavier</td></tr><tr><td>Isolation</td><td>Process-level isolation</td><td>Stronger hardware-virtualized boundary</td></tr><tr><td>Typical use</td><td>Apps, services, repeatable tooling</td><td>Different OS needs, legacy systems, stronger separation</td></tr></tbody></table><div class="callout warn"><b>Important:</b> Docker is not a virtual machine. A container is still isolated, but it normally shares the host kernel. Treat that difference as a design and security consideration.</div></section>
+<section id="why"><h2>Why organizations use Docker</h2><div class="grid"><div class="card"><h3>Consistency</h3><p>A Node app uses the same Node version on every laptop.</p></div><div class="card"><h3>Portability</h3><p>A tested image moves from CI to staging without manual installs.</p></div><div class="card"><h3>Isolation</h3><p>A Python tool and a Java tool avoid conflicting libraries.</p></div><div class="card"><h3>Fast development</h3><p>A new developer starts a database with one command.</p></div><div class="card"><h3>Reproducibility</h3><p>A bug report includes the exact image tag.</p></div><div class="card"><h3>CI/CD</h3><p>The pipeline builds and tests an image before release.</p></div><div class="card"><h3>Testing</h3><p>A test suite starts a short-lived database container.</p></div><div class="card"><h3>Microservices</h3><p>Frontend, API and worker deploy independently.</p></div><div class="card"><h3>Deployment</h3><p>The platform runs an approved image on many hosts.</p></div><div class="card"><h3>Scaling</h3><p>A service runs several identical container instances.</p></div><div class="card"><h3>Rollback</h3><p>The team redeploys an earlier versioned image.</p></div><div class="card"><h3>Onboarding</h3><p>A README says `docker compose up` instead of ten installs.</p></div><div class="card"><h3>Standardization</h3><p>Teams use one base image and patch policy.</p></div></div></section>
+<section id="concepts"><h2>Docker core concepts</h2><div class="flow"><b>Dockerfile</b><i>↓ docker build ↓</i><b>Image</b><i>↓ docker run ↓</i><b>Container</b></div><p><b>Image vs container:</b> an image is a reusable blueprint or class handout; a container is one working copy. One image can create many containers. Removing a container normally does not remove its image. Because container writable layers are disposable, keep important data in a volume or an external service.</p><div class="grid"><div class="card"><h3>Docker Engine</h3><p>The service that builds, runs and manages containers.</p></div><div class="card"><h3>Docker Client</h3><p>The `docker` command-line tool that sends requests to the Engine.</p></div><div class="card"><h3>Image</h3><p>A read-only package: app, runtime, libraries and defaults.</p></div><div class="card"><h3>Container</h3><p>A running or stopped instance made from an image.</p></div><div class="card"><h3>Dockerfile</h3><p>A recipe that describes how to build an image.</p></div><div class="card"><h3>Registry</h3><p>A server that stores and distributes images.</p></div><div class="card"><h3>Docker Hub</h3><p>A popular public registry, used by default in many commands.</p></div><div class="card"><h3>Container port</h3><p>The port where the app listens inside the container.</p></div><div class="card"><h3>Host port</h3><p>The port exposed on your computer.</p></div><div class="card"><h3>Port mapping</h3><p>A bridge such as `8080:80` from host port to container port.</p></div><div class="card"><h3>Bind mount</h3><p>A host folder made available inside a container.</p></div><div class="card"><h3>Named volume</h3><p>Docker-managed persistent storage.</p></div><div class="card"><h3>Network</h3><p>A communication space that lets containers reach one another.</p></div><div class="card"><h3>Lifecycle</h3><p>Created, running, stopped, restarted, removed.</p></div></div></section>
+<section id="commands"><h2>Essential Docker commands</h2><p class="lead">Read the command, predict the result, then run it. The command reference doubles as your first troubleshooting checklist.</p><table><thead><tr><th>Command</th><th>Does</th><th>Example</th><th>Expected result</th><th>Watch for</th></tr></thead><tbody><tr><td><code>docker version</code></td><td>Shows client and server versions.</td><td><code>docker version</code></td><td>Confirms the CLI can reach Docker.</td><td>Run it before a class demo.</td></tr><tr><td><code>docker info</code></td><td>Shows Engine settings and resources.</td><td><code>docker info</code></td><td>Reports containers, images, storage driver and more.</td><td>Long output is normal.</td></tr><tr><td><code>docker pull</code></td><td>Downloads an image.</td><td><code>docker pull nginx:alpine</code></td><td>Image layers download.</td><td>Always name a tag when reproducibility matters.</td></tr><tr><td><code>docker images / docker image ls</code></td><td>Lists local images.</td><td><code>docker image ls</code></td><td>Shows repository, tag, image ID and size.</td><td>These commands are equivalent.</td></tr><tr><td><code>docker run</code></td><td>Creates and starts a container.</td><td><code>docker run -d --name demo-web -p 8080:80 nginx:alpine</code></td><td>A container starts and prints an ID.</td><td>Without `-d`, the terminal stays attached.</td></tr><tr><td><code>docker ps</code></td><td>Lists running containers.</td><td><code>docker ps</code></td><td>Shows names, status and port mappings.</td><td>Stopped containers do not appear here.</td></tr><tr><td><code>docker ps -a</code></td><td>Lists all containers.</td><td><code>docker ps -a</code></td><td>Shows running and stopped containers.</td><td>Use it when a name already exists.</td></tr><tr><td><code>docker logs</code></td><td>Reads a container’s standard output/error.</td><td><code>docker logs demo-web</code></td><td>Shows app startup and request logs.</td><td>Use `-f` to follow new logs.</td></tr><tr><td><code>docker exec</code></td><td>Runs a command in an existing running container.</td><td><code>docker exec -it demo-web sh</code></td><td>Opens an interactive shell.</td><td>The container must be running; Alpine commonly has `sh`, not `bash`.</td></tr><tr><td><code>docker inspect</code></td><td>Returns detailed JSON metadata.</td><td><code>docker inspect demo-web</code></td><td>Ports, mounts, network and state appear.</td><td>Large output is expected; search it rather than reading every line.</td></tr><tr><td><code>docker stop</code></td><td>Sends a graceful stop signal.</td><td><code>docker stop demo-web</code></td><td>Container moves to stopped state.</td><td>Stopping does not remove it.</td></tr><tr><td><code>docker start</code></td><td>Starts an existing stopped container.</td><td><code>docker start demo-web</code></td><td>Same container and settings return.</td><td>You cannot change ports on `start`.</td></tr><tr><td><code>docker restart</code></td><td>Stops then starts a container.</td><td><code>docker restart demo-web</code></td><td>Container restarts.</td><td>Use when the existing configuration is right.</td></tr><tr><td><code>docker rm</code></td><td>Removes a stopped container.</td><td><code>docker rm demo-web</code></td><td>Container disappears from `docker ps -a`.</td><td>Stop it first, or use `-f` deliberately.</td></tr><tr><td><code>docker rmi</code></td><td>Removes an unused image.</td><td><code>docker rmi my-demo-web:1.0</code></td><td>Image is removed.</td><td>Containers that use it must be removed first.</td></tr><tr><td><code>docker build</code></td><td>Builds an image from a Dockerfile.</td><td><code>docker build -t my-demo-web:1.0 .</code></td><td>A tagged local image appears.</td><td>The final `.` sends the build context.</td></tr><tr><td><code>docker tag</code></td><td>Adds another name/tag to an image.</td><td><code>docker tag my-demo-web:1.0 my-demo-web:latest</code></td><td>A second tag points to the same image.</td><td>Tags are labels, not copies.</td></tr><tr><td><code>docker volume</code></td><td>Manages Docker volumes.</td><td><code>docker volume create demo-data</code></td><td>A named persistent store is created.</td><td>Volumes outlive containers until removed.</td></tr><tr><td><code>docker network</code></td><td>Manages networks.</td><td><code>docker network create demo-network</code></td><td>A network is created.</td><td>Use custom networks for app stacks.</td></tr></tbody></table></section>
+<section id="demo"><h2>30-minute live demo: Nginx + HTML</h2><div class="callout teacher"><strong>Demo framing</strong><br><b>Explain:</b> A developer has a simple website. Instead of installing and configuring Nginx on every machine, Docker runs Nginx in a known environment.<br><b>Demonstrate:</b> Keep a browser and terminal side by side.<br><b>Ask:</b> Where does Nginx run in this demo?<br><b>Expected answer:</b> Inside a Docker container.<br><b>Key takeaway:</b> The host only needs Docker; Nginx lives in the container.</div><div class="code-label">Terminal</div><pre><code>docker version
+docker info</code></pre><p>Students should see a Client and Server version. <code>docker info</code> shows the Engine is running plus its container/image counts.</p><h3>1. Download the image</h3><div class="code-label">Terminal</div><pre><code>docker pull nginx:alpine
+docker images</code></pre><p><code>nginx</code> is the repository name. <code>alpine</code> is a small Linux-based tag. Docker pulls it from a registry, commonly Docker Hub.</p><h3>2. Run the website</h3><div class="code-label">Terminal</div><pre><code>docker run -d --name demo-web -p 8080:80 nginx:alpine
+docker ps</code></pre><div class="callout"><b>Command anatomy:</b> <code>docker</code> = client; <code>run</code> = create and start; <code>-d</code> = detached/background; <code>--name demo-web</code> = memorable container name; <code>-p</code> = publish a port; <code>nginx:alpine</code> = image and tag.</div><div class="flow"><b>HOST PORT<br>8080</b><i>maps to</i><b>CONTAINER PORT<br>80</b></div><p>Open <code>http://localhost:8080</code>. Your browser reaches port 8080 on the host; Docker forwards it to Nginx listening on port 80 in the container.</p><h3>3. Inspect and enter</h3><div class="code-label">Terminal</div><pre><code>docker ps
+docker ps -a
+docker logs demo-web
+docker inspect demo-web
+docker exec -it demo-web sh
+ls /usr/share/nginx/html
+exit</code></pre><p><code>docker ps</code> shows only running containers; <code>docker ps -a</code> also shows stopped ones. <code>inspect</code> contains state, IP/network, mounts, port mapping and configuration. <code>exec</code> runs a command in a running container. <code>-it</code> supplies interactive input and a terminal. Alpine uses <code>sh</code>. This is not SSH: Docker asks the Engine to create a process in the container. Do not manage containers like long-lived VMs.</p><h3>4. Customize with a bind mount</h3><div class="code-label">Terminal</div><pre><code>mkdir docker-demo-site
+# Create docker-demo-site/index.html with the content below
+docker stop demo-web
+docker rm demo-web
+docker run -d --name demo-web -p 8080:80 \
+  --mount type=bind,src="$PWD/docker-demo-site",dst=/usr/share/nginx/html,readonly \
+  nginx:alpine</code></pre><div class="code-label">docker-demo-site/index.html</div><pre><code>&lt;h1&gt;Hello from my Docker demo&lt;/h1&gt;
+&lt;p&gt;This page is being served by Nginx inside a Docker container.&lt;/p&gt;</code></pre><p>A bind mount connects a host path to a container path. Edit the host file, refresh the browser and Nginx immediately serves the new content. This is useful in development. On Windows PowerShell, path syntax may differ; use its current-directory path convention.</p><h3>5. Build an image you own</h3><div class="code-label">Dockerfile</div><pre><code>FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html</code></pre><div class="code-label">Terminal</div><pre><code>cd docker-demo-site
+docker build -t my-demo-web:1.0 .
+docker run -d --name custom-web -p 8081:80 my-demo-web:1.0
+docker ps</code></pre><p><code>FROM</code> selects a base image. <code>COPY</code> adds a file from the build context. In <code>docker build -t my-demo-web:1.0 .</code>, <code>-t</code> sets name and tag, and the final <code>.</code> means “send this current folder as the build context.” Open <code>http://localhost:8081</code>.</p><div class="flow"><b>index.html</b><i>↓</i><b>Dockerfile</b><i>↓ docker build ↓</i><b>Image</b><i>↓ docker run ↓</i><b>Container</b><i>↓</i><b>Browser</b></div></section>
+<section id="lifecycle"><h2>Container lifecycle and storage</h2><div class="flow"><b>Created</b><i>→</i><b>Running</b><i>→ docker stop →</i><b>Stopped</b><i>→ docker start →</i><b>Running</b><i>→ docker rm →</i><b>Removed</b></div><div class="code-label">Terminal</div><pre><code>docker stop custom-web
+docker ps
+docker ps -a
+docker start custom-web
+docker logs custom-web
+docker stop custom-web
+docker rm custom-web</code></pre><p>Containers have a writable layer that disappears with the container. A <b>bind mount</b> uses a chosen host directory. A <b>named volume</b> is managed by Docker and survives container removal.</p><div class="code-label">Terminal</div><pre><code>docker volume create demo-data
+docker volume ls
+docker volume inspect demo-data</code></pre><h3>Networks</h3><p>Containers need networks to communicate. Docker commonly uses a default bridge network. In a custom network, containers can normally resolve each other by container name.</p><div class="code-label">Terminal</div><pre><code>docker network ls
+docker network create demo-network
+docker network inspect demo-network</code></pre></section>
+<section id="troubleshooting"><h2>Common beginner problems</h2><div class="grid"><div class="card"><h3>Port already in use</h3><p>Error: <code>Bind for 0.0.0.0:8080 failed</code>. Pick another host port, such as <code>-p 8082:80</code>, or stop the program/container using 8080.</p></div><div class="card"><h3>Name already exists</h3><p>Run <code>docker ps -a</code>. Then remove or reuse the named stopped container: <code>docker rm CONTAINER</code>.</p></div><div class="card"><h3>Container exits immediately</h3><p>Run <code>docker ps -a</code>, then <code>docker logs CONTAINER</code>. The main process ended or failed.</p></div><div class="card"><h3>App cannot be reached</h3><p>Check <code>docker ps</code> for status and ports, then <code>docker logs</code> and <code>docker inspect</code>.</p></div><div class="card"><h3>Image changes do not appear</h3><p>A host edit appears only through a bind mount. For a copied image file, rebuild the image and recreate the container.</p></div><div class="card"><h3>Cleanup safely</h3><p>Stop then remove the specific demo container. Avoid broad cleanup commands during a shared classroom environment.</p></div></div></section>
+<section id="devops"><h2>Docker in real-world DevOps</h2><h3>CI/CD flow</h3><div class="flow"><b>Developer</b><i>↓ Git push ↓</i><b>CI pipeline</b><i>↓</i><b>Docker build</b><i>↓</i><b>Tests & scan</b><i>↓</i><b>Registry</b><i>↓</i><b>Staging / production</b></div><div class="grid"><div class="card"><h3>Build once, deploy the same image</h3><p>CI builds one versioned image, tests it, pushes it to a registry and deploys that exact tag.</p></div><div class="card"><h3>Microservices</h3><p>Frontend, backend API, worker and database can use separate images, release cycles and scale counts.</p></div><div class="card"><h3>Onboarding and tests</h3><p>Docker starts consistent local dependencies and short-lived test environments.</p></div><div class="card"><h3>Rollbacks and scaling</h3><p>Deploy a prior versioned image to roll back; run more identical containers to handle demand.</p></div></div></section>
+<section id="exercise"><h2>Student exercise: 10–15 minutes</h2><ol><li>Pull <code>nginx:alpine</code>.</li><li>Run it as <code>student-web</code> and map host port 8080 to container port 80.</li><li>Open the browser and see the Nginx welcome page.</li><li>Check status and logs.</li><li>Stop it, start it again, then remove it.</li></ol><div class="code-label">Terminal</div><pre><code>docker pull nginx:alpine
+docker run -d --name student-web -p 8080:80 nginx:alpine
+docker ps
+docker logs student-web
+docker stop student-web
+docker start student-web
+docker stop student-web
+docker rm student-web</code></pre><h3>Challenge: build your own page</h3><p>Create an <code>index.html</code> and the Dockerfile shown in the demo. Then:</p><div class="code-label">Terminal</div><pre><code>docker build -t student-site:1.0 .
+docker run -d --name student-site -p 8081:80 student-site:1.0</code></pre><div class="callout">Success check: <code>http://localhost:8081</code> displays your own HTML. If it does not, inspect the build output, then use <code>docker logs student-site</code> and <code>docker ps</code>.</div></section>
+<section id="cheatsheet"><h2>One-page command cheat sheet</h2><div class="grid"><div class="card"><h3>Discover</h3><p><code>docker version</code><br><code>docker info</code><br><code>docker image ls</code><br><code>docker ps -a</code></p></div><div class="card"><h3>Run and observe</h3><p><code>docker pull IMAGE</code><br><code>docker run -d --name NAME -p HOST:CONTAINER IMAGE</code><br><code>docker logs NAME</code><br><code>docker exec -it NAME sh</code></p></div><div class="card"><h3>Lifecycle</h3><p><code>docker stop NAME</code><br><code>docker start NAME</code><br><code>docker restart NAME</code><br><code>docker rm NAME</code></p></div><div class="card"><h3>Build and data</h3><p><code>docker build -t NAME:TAG .</code><br><code>docker tag SOURCE TARGET</code><br><code>docker volume ls</code><br><code>docker network ls</code></p></div></div><div class="callout"><b>Final mental model:</b> Pull an image. Run a container. Publish a port. Observe with <code>ps</code> and <code>logs</code>. Package your own app with a Dockerfile, build it, then run it.</div></section>
+<section id="instructor"><h2>Instructor notes and checkpoint</h2><div class="callout teacher"><strong>Works on my machine</strong><br><b>Explain:</b> Start with an app that works for one developer but fails for a teammate due to a different runtime or dependency.<br><b>Demonstrate:</b> Show a simple mismatch: Node 18 vs Node 22, or a missing Nginx install.<br><b>Ask:</b> What changed between machines?<br><b>Expected answer:</b> The environment, dependencies or configuration.<br><b>Key takeaway:</b> Docker packages the environment with the app.</div><div class="callout teacher"><strong>Image and container</strong><br><b>Explain:</b> Use blueprint/house or recipe/meal language, then state the technical distinction.<br><b>Demonstrate:</b> Run two containers from `nginx:alpine` using different names and host ports.<br><b>Ask:</b> Did Docker duplicate the image?<br><b>Expected answer:</b> No. Both containers reference the same image layers.<br><b>Key takeaway:</b> One image can create many independent containers.</div><div class="callout teacher"><strong>Ports</strong><br><b>Explain:</b> Make the host/container boundary explicit before students type the command.<br><b>Demonstrate:</b> Draw 8080 on the laptop side and 80 inside the container side.<br><b>Ask:</b> Which port does the browser use?<br><b>Expected answer:</b> 8080, the host port.<br><b>Key takeaway:</b> Left side of `HOST:CONTAINER` is the host.</div><div class="callout teacher"><strong>Persistent data</strong><br><b>Explain:</b> Ask what happens if a database container is removed.<br><b>Demonstrate:</b> Show `docker volume create` and inspect it.<br><b>Ask:</b> Where should important data live?<br><b>Expected answer:</b> A volume, bind mount, database service or another persistent store.<br><b>Key takeaway:</b> Containers are disposable; data needs deliberate persistence.</div><h3>Classroom questions with answers</h3><details><summary>What is a container?</summary><p><b>Instructor answer:</b> A runnable, isolated instance created from an image.</p></details><details><summary>What is an image?</summary><p><b>Instructor answer:</b> A read-only package or template for containers.</p></details><details><summary>Can one image create multiple containers?</summary><p><b>Instructor answer:</b> Yes. Each container is a separate instance.</p></details><details><summary>What happens when a container is deleted?</summary><p><b>Instructor answer:</b> Its writable layer is removed; separately stored volumes remain.</p></details><details><summary>What is a Dockerfile?</summary><p><b>Instructor answer:</b> A text recipe used to build an image.</p></details><details><summary>What is a registry?</summary><p><b>Instructor answer:</b> A place to store and distribute images.</p></details><details><summary>What does `-p 8080:80` mean?</summary><p><b>Instructor answer:</b> Host port 8080 forwards to container port 80.</p></details><details><summary>Image vs container?</summary><p><b>Instructor answer:</b> Blueprint versus the running or stopped instance.</p></details><details><summary>Container vs VM?</summary><p><b>Instructor answer:</b> Containers share the host kernel; VMs run full guest operating systems.</p></details><details><summary>Why use Docker in CI/CD?</summary><p><b>Instructor answer:</b> The pipeline builds and tests the same package that is deployed.</p></details><details><summary>What happens when a container exits?</summary><p><b>Instructor answer:</b> It stops; use `docker ps -a` and `docker logs` to investigate.</p></details><details><summary>Why use volumes?</summary><p><b>Instructor answer:</b> To keep important data outside the disposable container layer.</p></details><details><summary>Why use networks?</summary><p><b>Instructor answer:</b> To let containers find and talk to each other safely.</p></details><details><summary>Why did the site not change after editing index.html?</summary><p><b>Instructor answer:</b> You may need a bind mount, or rebuild the image and recreate the container.</p></details><details><summary>Which command checks app output?</summary><p><b>Instructor answer:</b> `docker logs CONTAINER`.</p></details><h3>Exit quiz</h3><ol><li>In your own words, explain image versus container.</li><li>What does <code>-p 8080:80</code> do?</li><li>What must you do after editing a file copied into an image?</li><li>Which command shows why a stopped container failed?</li><li>Where should persistent data go?</li></ol><p><b>Answers:</b> blueprint vs instance; host 8080 forwards to container 80; rebuild image and recreate container; <code>docker logs</code>; a volume or other persistent storage.</p></section>
+    </main>
+  </div>
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS CloudTrail – Complete Teaching Guide</title>
+    <style>
+        :root{--primary:#FF9900;--primary-dark:#c77b00;--secondary:#232F3E;--accent:#1A9C3E;--info:#2563EB;--warning:#D97706;--danger:#DC2626;--light-bg:#F8FAFC;--card-bg:#FFFFFF;--border:#E2E8F0;--text-main:#1E293B;--text-muted:#64748B;--code-bg:#1e1e2e;--code-text:#cdd6f4}
+        *{box-sizing:border-box;margin:0;padding:0}
+        /* removed body styles for layout consistency */
+        .hero{background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2d1b69 100%);color:white;text-align:center;padding:60px 40px 50px;margin:0 -20px 40px}
+        .hero-badge{display:inline-block;background:rgba(255,153,0,.25);border:1px solid rgba(255,153,0,.5);color:var(--primary);padding:5px 16px;border-radius:50px;font-size:.8em;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px}
+        .hero h1{font-size:2.8em;font-weight:800;margin-bottom:12px}.hero h1 span{color:var(--primary)}
+        .hero p{font-size:1.1em;opacity:.85;max-width:650px;margin:0 auto 24px}
+        .hero-meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+        .hero-meta span{background:rgba(255,255,255,.12);padding:6px 18px;border-radius:6px;font-size:.88em;font-weight:600}
+        .container{max-width:1100px;margin:0 auto}
+        .section-heading{display:flex;align-items:center;gap:14px;margin:50px 0 24px}
+        .section-icon{width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,#7C3AED,#5b21b6);display:flex;align-items:center;justify-content:center;font-size:1.4em;flex-shrink:0;box-shadow:0 4px 12px rgba(124,58,237,.35)}
+        .section-heading h2{font-size:1.7em;font-weight:800;color:var(--secondary)}
+        .card{background:var(--card-bg);border-radius:12px;padding:28px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid var(--border)}
+        .card h3{font-size:1.15em;font-weight:700;color:var(--secondary);margin-bottom:14px}
+        .card h4{font-size:1em;font-weight:700;color:var(--info);margin:18px 0 8px}
+        .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        @media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr}.hero h1{font-size:1.9em}}
+        .concept-card{background:var(--card-bg);border-radius:10px;padding:22px;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s}
+        .concept-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+        .concept-card .icon{font-size:2em;margin-bottom:10px}
+        .concept-card h3{font-size:1.05em;font-weight:700;color:var(--secondary);margin-bottom:8px}
+        .concept-card p{font-size:.9em;color:var(--text-muted);line-height:1.6}
+        .code-block{background:var(--code-bg);color:var(--code-text);padding:20px 24px;border-radius:10px;overflow-x:auto;font-family:'Consolas','Courier New',monospace;font-size:.88em;line-height:1.7;margin:14px 0;white-space:pre}
+        .code-label{background:#313244;color:#cba6f7;font-size:.72em;font-weight:700;padding:4px 12px;border-radius:6px 6px 0 0;display:inline-block;letter-spacing:.5px}
+        .callout{padding:16px 20px;border-radius:8px;margin:16px 0;font-size:.93em;display:flex;gap:12px;align-items:flex-start}
+        .callout .icon{font-size:1.2em;flex-shrink:0;margin-top:1px}
+        .callout-info{background:#DBEAFE;border-left:4px solid var(--info)}
+        .callout-warning{background:#FEF3C7;border-left:4px solid var(--warning)}
+        .callout-success{background:#DCFCE7;border-left:4px solid var(--accent)}
+        .callout-danger{background:#FEE2E2;border-left:4px solid var(--danger)}
+        .callout-purple{background:#F3E8FF;border-left:4px solid #7C3AED}
+        .analogy{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:10px;padding:20px 24px;margin:16px 0}
+        .analogy .analogy-title{font-weight:800;color:var(--accent);font-size:.85em;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+        .compare-table{width:100%;border-collapse:collapse;font-size:.9em;margin:16px 0}
+        .compare-table th{background:var(--secondary);color:white;padding:12px 16px;text-align:left}
+        .compare-table td{padding:11px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+        .compare-table tr:nth-child(even) td{background:#f8fafc}
+        .compare-table td:first-child{font-weight:700;color:var(--secondary)}
+        .step-item{display:flex;gap:16px;margin-bottom:16px;align-items:flex-start}
+        .step-num{background:#7C3AED;color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85em;flex-shrink:0}
+        .step-content{padding-top:4px}
+        .step-content strong{display:block;margin-bottom:3px}
+        .flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0}
+        .flow-box{background:var(--secondary);color:white;padding:8px 16px;border-radius:8px;font-size:.85em;font-weight:600}
+        .flow-box.purple{background:#7C3AED}
+        .flow-box.blue{background:var(--info)}
+        .flow-box.orange{background:var(--primary-dark)}
+        .flow-box.green{background:var(--accent)}
+        .flow-arrow{color:var(--text-muted);font-size:1.2em;font-weight:700}
+        .lab{background:linear-gradient(135deg,#1e1e2e,#181825);border-radius:12px;padding:28px;margin-bottom:24px;color:#cdd6f4}
+        .lab-title{color:#cba6f7;font-weight:800;font-size:1.05em;margin-bottom:6px}
+        .lab-desc{color:#a6adc8;font-size:.88em;margin-bottom:16px}
+        .lab ol{padding-left:20px;color:#cdd6f4;font-size:.9em;line-height:1.9}
+        .lab code{background:#313244;color:#f9e2af;padding:1px 6px;border-radius:4px;font-family:monospace}
+        .divider{border:none;height:2px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:40px 0}
+        .arch-diagram{background:#1e1e2e;color:#89b4fa;border-radius:10px;padding:24px;font-family:monospace;font-size:.85em;line-height:1.8;overflow-x:auto;white-space:pre}
+        ul li,ol li{margin-bottom:6px}
+        ul,ol{padding-left:20px}
+        .tag{display:inline-block;font-size:.75em;font-weight:700;padding:2px 10px;border-radius:20px;margin:2px}
+        .tag-purple{background:#F3E8FF;color:#6B21A8}
+        .tag-blue{background:#DBEAFE;color:#1E40AF}
+        .tag-green{background:#DCFCE7;color:#166534}
+        .tag-orange{background:#FEF3C7;color:#92400E}
+        .tag-red{background:#FEE2E2;color:#991B1B}
+        .summary-card{background:linear-gradient(135deg,var(--secondary),#2d1b69);color:white;border-radius:12px;padding:32px;margin-bottom:24px}
+        .summary-card h2{color:var(--primary);margin-bottom:16px;font-size:1.4em}
+        .checklist{list-style:none;padding:0}
+        .checklist li{padding:5px 0;display:flex;gap:8px;align-items:flex-start}
+        .checklist li::before{content:"✅";flex-shrink:0}
+    </style>
+
+    <link rel="stylesheet" href="../assets/css/style.css?v=2">
+</head>
+<body>
+<header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html" class="active">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+    <main class="doc-content">
+
+<div class="hero">
+  <div class="hero-badge">📘 AWS Teaching Guide – Day Session</div>
+  <h1>AWS <span>CloudTrail</span></h1>
+  <p>Complete audit logging and governance for every API call in your AWS account. Who did what, when, and from where.</p>
+  <div class="hero-meta">
+    <span>🕐 45–60 Minutes</span>
+    <span>🎯 Intermediate</span>
+    <span>🔍 Audit & Compliance</span>
+    <span>🔗 Integrates with CloudWatch, S3, SNS</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1: WHAT IS CLOUDTRAIL -->
+  <div class="section-heading">
+    <div class="section-icon">🔍</div>
+    <h2>What is AWS CloudTrail?</h2>
+  </div>
+
+  <div class="card">
+    <div class="analogy">
+      <div class="analogy-title">🏛️ Real-World Analogy — CCTV for Your AWS Account</div>
+      <p>Imagine your AWS account is a secure office building. <strong>Every door has a badge reader</strong> — every time someone enters a room (makes an API call), it logs: who entered, which room, what time, and from which entry point. CloudTrail is that badge reader system — recording every single AWS action.</p>
+    </div>
+    <h3>Core Definition</h3>
+    <p>AWS CloudTrail is a service that <strong>records all API calls</strong> made in your AWS account — through the Console, CLI, SDK, or other AWS services. Every action creates an <em>event</em> stored as a JSON log file.</p>
+    <br>
+    <div class="grid-3">
+      <div class="concept-card">
+        <div class="icon">📋</div>
+        <h3>What it records</h3>
+        <p>Every API call: who called, which service, what action, what resource, when, from which IP/region.</p>
+      </div>
+      <div class="concept-card">
+        <div class="icon">📦</div>
+        <h3>Where logs go</h3>
+        <p>Delivered as compressed JSON files to an S3 bucket. Optionally streamed to CloudWatch Logs.</p>
+      </div>
+      <div class="concept-card">
+        <div class="icon">🌍</div>
+        <h3>Scope</h3>
+        <p>Can be per-region or multi-region (Organisation trail covers all accounts in an AWS Org).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Key Terminology</h3>
+    <table class="compare-table">
+      <tr><th>Term</th><th>Definition</th><th>Example</th></tr>
+      <tr><td>Trail</td><td>Configuration that captures events and delivers them to S3</td><td>"MyCompanyAuditTrail"</td></tr>
+      <tr><td>Event</td><td>A single API call record (JSON object)</td><td>ec2:RunInstances by user@company.com</td></tr>
+      <tr><td>Management Events</td><td>Control-plane operations (create, delete, modify resources)</td><td>CreateBucket, StopInstances</td></tr>
+      <tr><td>Data Events</td><td>Data-plane operations within a resource</td><td>S3:GetObject, Lambda:Invoke</td></tr>
+      <tr><td>Insights Events</td><td>AI-detected unusual API activity patterns</td><td>Spike in TerminateInstances calls</td></tr>
+      <tr><td>Event History</td><td>Free 90-day rolling history — no trail needed</td><td>View in Console → CloudTrail → Event History</td></tr>
+    </table>
+  </div>
+
+  <!-- SECTION 2: HOW IT WORKS -->
+  <hr class="divider">
+  <div class="section-heading">
+    <div class="section-icon">⚙️</div>
+    <h2>How CloudTrail Works — Architecture</h2>
+  </div>
+
+  <div class="card">
+    <h3>End-to-End Flow</h3>
+    <div class="flow">
+      <div class="flow-box purple">User / Service makes API Call</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box blue">AWS API Endpoint receives call</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box orange">CloudTrail intercepts &amp; records event</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box green">JSON log → S3 Bucket</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box purple">Optional: CloudWatch Logs / SNS Alert</div>
+    </div>
+
+    <div class="arch-diagram">
+AWS Account
+├── IAM User "alice" runs: aws s3 mb s3://my-new-bucket (CLI)
+│
+└── CloudTrail captures event:
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "alice",
+        "arn": "arn:aws:iam::123456789012:user/alice"
+      },
+      "eventTime": "2024-09-02T09:15:32Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "CreateBucket",
+      "sourceIPAddress": "203.0.113.45",
+      "requestParameters": {
+        "bucketName": "my-new-bucket"
+      },
+      "responseElements": { "location": "/my-new-bucket" },
+      "awsRegion": "ap-south-1"
+    }
+    │
+    ├── Delivered to → s3://my-audit-trail-bucket/AWSLogs/123456789012/CloudTrail/ap-south-1/2024/09/02/
+    └── Streamed to  → CloudWatch Log Group: /aws/cloudtrail/audit</div>
+  </div>
+
+  <div class="card">
+    <h3>Event Categories — Teach with Examples</h3>
+    <div class="grid-2">
+      <div>
+        <h4>Management Events (Default ON — Free)</h4>
+        <ul>
+          <li>✅ <code>ec2:RunInstances</code> — Launch an EC2 instance</li>
+          <li>✅ <code>ec2:TerminateInstances</code> — Terminate EC2</li>
+          <li>✅ <code>s3:CreateBucket</code> — Create S3 bucket</li>
+          <li>✅ <code>iam:CreateUser</code> — New IAM user</li>
+          <li>✅ <code>iam:AttachRolePolicy</code> — Attach policy to role</li>
+          <li>✅ <code>rds:CreateDBInstance</code> — Create RDS</li>
+          <li>✅ <code>cloudformation:CreateStack</code> — Deploy stack</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Data Events (Optional — Charged per 100K events)</h4>
+        <ul>
+          <li>📂 <code>s3:GetObject</code> — Download a file from S3</li>
+          <li>📂 <code>s3:PutObject</code> — Upload a file to S3</li>
+          <li>📂 <code>s3:DeleteObject</code> — Delete a file from S3</li>
+          <li>λ <code>lambda:InvokeFunction</code> — Lambda execution</li>
+          <li>🗄️ <code>dynamodb:PutItem</code> — Write to DynamoDB</li>
+        </ul>
+        <div class="callout callout-warning">
+          <span class="icon">⚠️</span>
+          <div><strong>Cost Alert:</strong> Enable Data Events only on specific critical buckets/functions — not account-wide — to avoid large bills.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: HANDS-ON -->
+  <hr class="divider">
+  <div class="section-heading">
+    <div class="section-icon">🛠️</div>
+    <h2>Hands-On: Creating a Trail (Step-by-Step)</h2>
+  </div>
+
+  <div class="card">
+    <h3>Lab 1: Create Your First Multi-Region Trail</h3>
+    <div class="callout callout-info">
+      <span class="icon">ℹ️</span>
+      <div><strong>Goal:</strong> Create a trail that logs all management events across all regions and delivers them to an S3 bucket. This is the standard production setup.</div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Open CloudTrail Console</strong>
+        Go to AWS Console → Services → CloudTrail. Click <strong>"Create trail"</strong>.
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Configure Trail Name &amp; Scope</strong>
+        <ul>
+          <li>Trail name: <code>my-company-audit-trail</code></li>
+          <li>✅ <strong>Enable for all regions</strong> — Check "Apply trail to all regions" → catches events even if someone switches to us-west-2</li>
+          <li>✅ <strong>Enable for all accounts in organization</strong> — If using AWS Org (optional)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>Configure S3 Bucket for Log Storage</strong>
+        <ul>
+          <li>Select "Create a new S3 bucket"</li>
+          <li>Bucket name: <code>my-cloudtrail-logs-2024</code> (must be globally unique)</li>
+          <li>✅ Enable <strong>SSE-S3 encryption</strong> (or SSE-KMS for compliance)</li>
+          <li>✅ Enable <strong>Log file validation</strong> — generates SHA-256 digest to detect tampering</li>
+        </ul>
+        <div class="callout callout-success">
+          <span class="icon">✅</span>
+          <div>CloudTrail automatically attaches a bucket policy to the S3 bucket allowing CloudTrail to write to it. You don't need to configure this manually.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <strong>Configure CloudWatch Logs (Optional but Recommended)</strong>
+        <ul>
+          <li>✅ Enable "CloudWatch Logs" toggle</li>
+          <li>Log group name: <code>/aws/cloudtrail/audit</code></li>
+          <li>Create new IAM role (CloudTrail will create it automatically)</li>
+          <li>This allows real-time alerting via CloudWatch Alarms + SNS</li>
+        </ul>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <strong>Choose Events to Log</strong>
+        <ul>
+          <li>✅ Management Events → Read + Write (default)</li>
+          <li>⬜ Data Events → Leave unchecked (enable only if needed for specific S3 buckets)</li>
+          <li>⬜ Insights Events → Enable if you want anomaly detection (extra charge)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <strong>Review &amp; Create</strong>
+        Review the summary. Click <strong>"Create trail"</strong>. The trail becomes active immediately.
+        <div class="callout callout-warning">
+          <span class="icon">⚠️</span>
+          <div>CloudTrail delivers log files within ~15 minutes of the API call being made — there is a short delay.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lab">
+    <div class="lab-title">🔬 Lab 2: Verify Trail is Working — Query Event History</div>
+    <div class="lab-desc">After creating the trail, trigger some events and find them in Event History</div>
+    <ol>
+      <li>In the AWS Console, go to <code>CloudTrail → Event History</code></li>
+      <li>Filter by <code>Event name: CreateTrail</code> — you should see the trail creation you just did</li>
+      <li>Click the event → View the full JSON — point out: userName, sourceIPAddress, eventTime, requestParameters</li>
+      <li>Now do something: Create an S3 bucket from Console → come back to Event History → Filter by <code>CreateBucket</code> — appears within 1-2 minutes</li>
+      <li>Show students: Event History only goes back <strong>90 days</strong> and only shows Management Events</li>
+    </ol>
+  </div>
+
+  <div class="lab">
+    <div class="lab-title">🔬 Lab 3: Look Up Logs in S3</div>
+    <div class="lab-desc">Find the actual CloudTrail log files in S3 and inspect the JSON</div>
+    <ol>
+      <li>Go to S3 → find bucket <code>my-cloudtrail-logs-2024</code></li>
+      <li>Navigate to prefix: <code>AWSLogs/&lt;ACCOUNT-ID&gt;/CloudTrail/&lt;REGION&gt;/&lt;YEAR&gt;/&lt;MONTH&gt;/&lt;DAY&gt;/</code></li>
+      <li>Download a <code>.json.gz</code> file and inspect it (or use S3 Select to query inline)</li>
+      <li>Show the structure: each file contains an array of <code>Records[]</code> — each record is one API call</li>
+      <li>Use AWS CLI to query: <code>aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=CreateBucket</code></li>
+    </ol>
+  </div>
+
+  <!-- SECTION 4: REAL USE CASES -->
+  <hr class="divider">
+  <div class="section-heading">
+    <div class="section-icon">🚨</div>
+    <h2>Real-World Use Cases — Teach with Scenarios</h2>
+  </div>
+
+  <div class="card">
+    <h3>Scenario 1: Security Incident — Who Deleted the S3 Bucket?</h3>
+    <div class="callout callout-danger">
+      <span class="icon">🚨</span>
+      <div><strong>Incident:</strong> Production S3 bucket "company-prod-data" was deleted at 2 AM. Your team needs to find who did it.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">→</div>
+      <div class="step-content">
+        <strong>Query CloudTrail Event History:</strong><br>
+        Filter by Event Name: <code>DeleteBucket</code>, Time range: last 24 hours.<br>
+        The event shows: <em>IAM user "john.doe" deleted the bucket from IP 185.x.x.x at 02:14:32 UTC</em>
+      </div>
+    </div>
+    <div class="callout callout-info">
+      <span class="icon">💡</span>
+      <div><strong>Teaching Point:</strong> Without CloudTrail, this is impossible to investigate. With CloudTrail, the full audit trail is always available.</div>
+    </div>
+    <div class="code-block">aws cloudtrail lookup-events \
+  --lookup-attributes AttributeKey=EventName,AttributeValue=DeleteBucket \
+  --start-time 2024-09-01T00:00:00Z \
+  --end-time 2024-09-02T00:00:00Z \
+  --query 'Events[*].{User:Username,Time:EventTime,Event:EventName}'</div>
+  </div>
+
+  <div class="card">
+    <h3>Scenario 2: Compliance Audit — Prove No Unauthorized IAM Changes</h3>
+    <p>Your security team must prove that no new IAM users were created in the past 30 days without approval.</p>
+    <div class="code-block">aws cloudtrail lookup-events \
+  --lookup-attributes AttributeKey=EventName,AttributeValue=CreateUser \
+  --start-time 2024-08-01T00:00:00Z \
+  --query 'Events[*].{User:Username,NewUser:CloudTrailEvent}' \
+  --output table</div>
+    <div class="callout callout-success">
+      <span class="icon">✅</span>
+      <div>CloudTrail logs are admissible evidence for SOC 2, PCI-DSS, HIPAA, and ISO 27001 compliance audits because log file validation ensures they haven't been tampered with.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Scenario 3: Real-Time Alert — Root Account Login</h3>
+    <p>You want an immediate email alert whenever the AWS root account logs in (a critical security event).</p>
+    <div class="flow">
+      <div class="flow-box purple">CloudTrail logs ConsoleLogin by root</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box blue">CloudWatch Logs (stream from trail)</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box orange">CloudWatch Metric Filter</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box green">CloudWatch Alarm → SNS → Email</div>
+    </div>
+    <br>
+    <div class="code-label">CLOUDWATCH METRIC FILTER PATTERN</div>
+    <div class="code-block">{$.userIdentity.type = "Root" && $.eventName = "ConsoleLogin"}</div>
+    <p style="margin-top:10px;">Set alarm: if count >= 1 → Send SNS alert to security@company.com immediately.</p>
+  </div>
+
+  <!-- SECTION 5: CLOUDTRAIL INSIGHTS -->
+  <hr class="divider">
+  <div class="section-heading">
+    <div class="section-icon">🧠</div>
+    <h2>CloudTrail Insights — Anomaly Detection</h2>
+  </div>
+  <div class="card">
+    <h3>What is CloudTrail Insights?</h3>
+    <p>CloudTrail Insights uses machine learning to detect <strong>unusual API activity patterns</strong> — automatically, without you writing any rules.</p>
+    <br>
+    <div class="grid-2">
+      <div>
+        <h4>Examples of Insights it detects:</h4>
+        <ul>
+          <li>🚨 Sudden spike in <code>TerminateInstances</code> calls (crypto-miner cleaning up)</li>
+          <li>🚨 Unusual volume of <code>CreateAccessKey</code> calls (attacker creating backdoors)</li>
+          <li>🚨 Spike in <code>DeleteSnapshot</code> calls (ransomware attack)</li>
+          <li>🚨 Abnormal <code>GetSecretValue</code> call volume (credential harvesting)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="callout callout-purple">
+          <span class="icon">💡</span>
+          <div><strong>How it works:</strong> CloudTrail baselines normal API call rates over 7 days. If call volume deviates significantly, it creates an Insights event. Cost: $0.35 per 100K management events analyzed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: LOG FILE INTEGRITY -->
+  <hr class="divider">
+  <div class="section-heading">
+    <div class="section-icon">🔒</div>
+    <h2>Log File Integrity Validation</h2>
+  </div>
+  <div class="card">
+    <h3>Why it matters</h3>
+    <p>An attacker who gains access to your S3 bucket might try to delete or modify CloudTrail logs to cover their tracks. Log file validation detects this tampering.</p>
+    <div class="callout callout-info">
+      <span class="icon">🔐</span>
+      <div><strong>How it works:</strong> Every hour, CloudTrail creates a <em>digest file</em> containing SHA-256 hashes of all log files delivered in that period. The digest itself is signed with CloudTrail's private key. You can validate that no files have been deleted or modified using:</div>
+    </div>
+    <div class="code-block">aws cloudtrail validate-logs \
+  --trail-arn arn:aws:cloudtrail:ap-south-1:123456789012:trail/my-company-audit-trail \
+  --start-time 2024-09-01T00:00:00Z</div>
+    <p style="margin-top:10px;">Output: <code>Logs validated. No log files were modified, deleted, or forged.</code></p>
+  </div>
+
+  <!-- SECTION 7: PRICING -->
+  <hr class="divider">
+  <div class="section-heading">
+    <div class="section-icon">💰</div>
+    <h2>CloudTrail Pricing — Key Points to Remember</h2>
+  </div>
+  <div class="card">
+    <table class="compare-table">
+      <tr><th>Feature</th><th>Cost</th><th>Note</th></tr>
+      <tr><td>Event History (90 days)</td><td>FREE</td><td>No trail needed. Management events only.</td></tr>
+      <tr><td>First trail (Management Events)</td><td>FREE per region</td><td>First trail in each region is free</td></tr>
+      <tr><td>Additional trails</td><td>$2.00 per 100K events</td><td>Second trail onwards</td></tr>
+      <tr><td>Data Events</td><td>$0.10 per 100K events</td><td>S3, Lambda, DynamoDB activity</td></tr>
+      <tr><td>Insights Events</td><td>$0.35 per 100K management events analyzed</td><td>ML-based anomaly detection</td></tr>
+      <tr><td>S3 Storage</td><td>Standard S3 rates</td><td>~$0.023/GB per month</td></tr>
+    </table>
+    <div class="callout callout-success">
+      <span class="icon">💡</span>
+      <div><strong>Best Practice:</strong> For most companies, the first trail covering all regions with management events only is completely FREE (excluding S3 storage). Enable it immediately on every new AWS account.</div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary-card">
+    <h2>📚 Session Summary — CloudTrail Key Takeaways</h2>
+    <ul class="checklist" style="color:white">
+      <li>CloudTrail records EVERY API call — Console, CLI, SDK, AWS services</li>
+      <li>Event History = free 90-day lookup, no configuration needed</li>
+      <li>Trails = persistent, delivered to S3, can stream to CloudWatch</li>
+      <li>Management Events = who created/deleted/modified resources (free on first trail)</li>
+      <li>Data Events = inside-resource operations (S3 GetObject etc.) — charged</li>
+      <li>Log File Validation = detects if logs are tampered with (SHA-256 digest)</li>
+      <li>CloudTrail Insights = ML-based anomaly detection on API call patterns</li>
+      <li>Key use cases: Security investigation, compliance audits, real-time alerts</li>
+      <li>Always enable a multi-region trail on every AWS account from Day 1</li>
+    </ul>
+  </div>
+
+</div>
+
+    </main>
+  </div>
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

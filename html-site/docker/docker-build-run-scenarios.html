@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker Build & Run Scenarios — Masterclass & Teaching Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- removed custom styles -->
+
+    <link rel="stylesheet" href="../assets/css/style.css?v=2">
+</head>
+<body>
+<header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html" class="active">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+    <main class="doc-content">
+
+
+      <!-- Hero Banner -->
+      <section id="hero" class="hero-banner">
+        <div class="hero-pill">Hands-On DevOps Training — Instructor & Student Edition</div>
+        <h1 class="hero-title">Docker Build & Run Scenarios</h1>
+        <p class="hero-desc">
+          Mastering containerization requires moving beyond <code>docker run hello-world</code>. Explore every essential real-world combination of <strong>build</strong> and <strong>run</strong> flags—including port mapping, bind mounts, resource throttling, restart resilience, BuildKit secrets, and security sandboxing.
+        </p>
+
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-num">20+</div>
+            <div class="metric-label">Production Scenarios</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num">Dual</div>
+            <div class="metric-label">Interactive Builders</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num">5</div>
+            <div class="metric-label">Debug Laboratories</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">Kernel-Level Accuracy</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Interactive Command Studio -->
+      <section id="studio">
+        <div class="section-header">
+          <div class="section-tag">⚡ Live Terminal Playground</div>
+          <h2 class="section-title">Interactive Command Studio</h2>
+          <p class="section-subtitle">
+            Toggle switches and adjust configuration parameters below to generate production-ready <code>docker run</code> and <code>docker build</code> commands in real time. Watch how each flag instructs the Linux kernel and Docker Engine.
+          </p>
+        </div>
+
+        <div class="studio-wrapper">
+          <!-- Studio Tabs -->
+          <div class="studio-tabs">
+            <button class="studio-tab-btn active" data-tab="studio-run">🚀 docker run Generator</button>
+            <button class="studio-tab-btn" data-tab="studio-build">🏗️ docker build Generator</button>
+          </div>
+
+          <!-- Tab 1: docker run Studio -->
+          <div class="studio-panel active" id="studio-run">
+            <div class="studio-grid">
+              <!-- Controls -->
+              <div class="controls-card">
+                <div class="control-group-title">1. Execution Mode & Identity</div>
+                <div class="toggle-switch-grid" style="margin-bottom: 1.25rem;">
+                  <label class="toggle-box">
+                    <input type="checkbox" id="runDetached" checked>
+                    <span class="toggle-label">-d (Background Detached)</span>
+                  </label>
+                  <label class="toggle-box">
+                    <input type="checkbox" id="runInteractive">
+                    <span class="toggle-label">-it (Interactive TTY)</span>
+                  </label>
+                  <label class="toggle-box">
+                    <input type="checkbox" id="runAutoRm">
+                    <span class="toggle-label">--rm (Auto-Remove on Exit)</span>
+                  </label>
+                  <label class="toggle-box">
+                    <input type="checkbox" id="runReadOnly">
+                    <span class="toggle-label">--read-only (Immutable Root)</span>
+                  </label>
+                </div>
+
+                <div class="form-row">
+                  <label>Container Name <span class="label-hint">(--name)</span></label>
+                  <input type="text" class="form-input" id="runName" value="web-api" placeholder="e.g. web-api">
+                </div>
+
+                <div class="control-group-title">2. Networking & Ports</div>
+                <div class="form-row">
+                  <label>Port Publishing <span class="label-hint">(-p host:container)</span></label>
+                  <select class="form-select" id="runPort">
+                    <option value="8080:80">-p 8080:80 (Publish 8080 to container 80)</option>
+                    <option value="127.0.0.1:8080:80">-p 127.0.0.1:8080:80 (Localhost only)</option>
+                    <option value="publish-all">-P (Publish all EXPOSE ports randomly)</option>
+                    <option value="none">None (Internal container port only)</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <label>Network Driver <span class="label-hint">(--network)</span></label>
+                  <select class="form-select" id="runNetwork">
+                    <option value="bridge">bridge (Default Docker Bridge)</option>
+                    <option value="app-net">app-net (Custom User Bridge with DNS)</option>
+                    <option value="host">host (Share Host Network Stack)</option>
+                    <option value="none">none (Air-Gapped Isolation)</option>
+                  </select>
+                </div>
+
+                <div class="control-group-title">3. Storage, State & Resources</div>
+                <div class="form-row">
+                  <label>Volume / Mount <span class="label-hint">(-v)</span></label>
+                  <select class="form-select" id="runVolume">
+                    <option value="named">-v db_data:/var/lib/postgresql/data (Named Volume)</option>
+                    <option value="bind">-v $(pwd)/src:/app/src:ro (Host Bind Mount Read-Only)</option>
+                    <option value="tmpfs">--tmpfs /tmp (Ultra-Fast RAM Storage)</option>
+                    <option value="none">None (Ephemeral Container Layer)</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <label>Restart Policy <span class="label-hint">(--restart)</span></label>
+                  <select class="form-select" id="runRestart">
+                    <option value="unless-stopped">unless-stopped (Server standard)</option>
+                    <option value="always">always (Reboot persistence)</option>
+                    <option value="on-failure">on-failure:5 (Crash resilience)</option>
+                    <option value="no">no (Default: never restart)</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <label>Resource Hard Limit <span class="label-hint">(-m, --cpus)</span></label>
+                  <select class="form-select" id="runResources">
+                    <option value="512m-1cpu">-m 512m --cpus 1.5 (Production QoS)</option>
+                    <option value="2g-2cpu">-m 2g --cpus 2.0 (High Compute)</option>
+                    <option value="none">No Limits (Uncapped Host Access)</option>
+                  </select>
+                </div>
+
+                <div class="control-group-title">4. Target Image & Override</div>
+                <div class="form-row">
+                  <label>Base Image Tag</label>
+                  <input type="text" class="form-input" id="runImage" value="nginx:1.25-alpine">
+                </div>
+              </div>
+
+              <!-- Live Output Terminal -->
+              <div class="studio-terminal-pane">
+                <div class="term-window">
+                  <div class="term-topbar">
+                    <div class="term-dots">
+                      <div class="term-dot red"></div>
+                      <div class="term-dot yellow"></div>
+                      <div class="term-dot green"></div>
+                    </div>
+                    <span style="font-size: 0.75rem; color: #64748b; font-family: 'JetBrains Mono', monospace;">LIVE SHELL PREVIEW</span>
+                  </div>
+                  <div class="term-body">
+                    <button class="copy-term-btn" onclick="copyTermText('liveRunPrompt')">📋 Copy Command</button>
+                    <div class="term-prompt" id="liveRunPrompt">
+                      <!-- Dynamically generated -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Live Anatomy Breakdown -->
+                <div class="card" style="padding: 1.5rem; margin-bottom: 0;">
+                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--docker-blue-light); margin-bottom: 0.75rem;">
+                    🧠 Kernel & Docker Engine Flag Anatomy
+                  </h4>
+                  <div class="flag-inspector-list" id="runFlagBreakdown">
+                    <!-- Populated by JS -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: docker build Studio -->
+          <div class="studio-panel" id="studio-build">
+            <div class="studio-grid">
+              <!-- Controls -->
+              <div class="controls-card">
+                <div class="control-group-title">1. Image Identification</div>
+                <div class="form-row">
+                  <label>Primary Image Tag <span class="label-hint">(-t)</span></label>
+                  <input type="text" class="form-input" id="buildTag" value="mycompany/api:v1.2.0">
+                </div>
+
+                <div class="form-row">
+                  <label>Secondary / Latest Tag <span class="label-hint">(-t)</span></label>
+                  <input type="text" class="form-input" id="buildSecondaryTag" value="mycompany/api:latest" placeholder="Optional latest tag">
+                </div>
+
+                <div class="control-group-title">2. Path & Multi-Stage Target</div>
+                <div class="form-row">
+                  <label>Dockerfile Path <span class="label-hint">(-f)</span></label>
+                  <select class="form-select" id="buildFile">
+                    <option value="Dockerfile">Default (./Dockerfile)</option>
+                    <option value="Dockerfile.prod">-f Dockerfile.prod</option>
+                    <option value="deploy/Dockerfile">-f deploy/Dockerfile</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <label>Multi-Stage Target <span class="label-hint">(--target)</span></label>
+                  <select class="form-select" id="buildTarget">
+                    <option value="none">Complete Build (All stages)</option>
+                    <option value="test-runner">--target test-runner (Run unit tests only)</option>
+                    <option value="builder">--target builder (Stop at build compilation)</option>
+                    <option value="production">--target production (Explicit prod stage)</option>
+                  </select>
+                </div>
+
+                <div class="control-group-title">3. Cache, Variables & Cross-Compilation</div>
+                <div class="toggle-switch-grid" style="margin-bottom: 1.25rem;">
+                  <label class="toggle-box">
+                    <input type="checkbox" id="buildNoCache">
+                    <span class="toggle-label">--no-cache (Force Clean Build)</span>
+                  </label>
+                  <label class="toggle-box">
+                    <input type="checkbox" id="buildPull">
+                    <span class="toggle-label">--pull (Always check upstream)</span>
+                  </label>
+                </div>
+
+                <div class="form-row">
+                  <label>Build Arguments <span class="label-hint">(--build-arg)</span></label>
+                  <select class="form-select" id="buildArg">
+                    <option value="none">None</option>
+                    <option value="NODE_ENV=production">--build-arg NODE_ENV=production</option>
+                    <option value="VERSION=2.4.1">--build-arg VERSION=2.4.1</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <label>Architecture Platform <span class="label-hint">(--platform)</span></label>
+                  <select class="form-select" id="buildPlatform">
+                    <option value="host">Current Host Architecture</option>
+                    <option value="linux/amd64">--platform linux/amd64 (Intel/AMD)</option>
+                    <option value="linux/arm64">--platform linux/arm64 (Apple Silicon/Graviton)</option>
+                    <option value="multi">--platform linux/amd64,linux/arm64 (Buildx Multi-Arch)</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <label>Build Context Path</label>
+                  <input type="text" class="form-input" id="buildContext" value=".">
+                </div>
+              </div>
+
+              <!-- Live Output Terminal -->
+              <div class="studio-terminal-pane">
+                <div class="term-window">
+                  <div class="term-topbar">
+                    <div class="term-dots">
+                      <div class="term-dot red"></div>
+                      <div class="term-dot yellow"></div>
+                      <div class="term-dot green"></div>
+                    </div>
+                    <span style="font-size: 0.75rem; color: #64748b; font-family: 'JetBrains Mono', monospace;">LIVE BUILD PREVIEW</span>
+                  </div>
+                  <div class="term-body">
+                    <button class="copy-term-btn" onclick="copyTermText('liveBuildPrompt')">📋 Copy Command</button>
+                    <div class="term-prompt" id="liveBuildPrompt">
+                      <!-- Dynamically generated -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Live Anatomy Breakdown -->
+                <div class="card" style="padding: 1.5rem; margin-bottom: 0;">
+                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--docker-blue-light); margin-bottom: 0.75rem;">
+                    🧠 BuildKit & Engine Mechanics
+                  </h4>
+                  <div class="flag-inspector-list" id="buildFlagBreakdown">
+                    <!-- Populated by JS -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: docker build Scenarios -->
+      <section id="build-scenarios">
+        <div class="section-header">
+          <div class="section-tag">🏗️ Image Construction</div>
+          <h2 class="section-title">Essential `docker build` Scenarios</h2>
+          <p class="section-subtitle">
+            From basic local directory compiles to BuildKit secrets and multi-architecture publishing.
+          </p>
+        </div>
+
+        <div class="scenario-grid">
+
+          <!-- B1: Pinned Tags -->
+          <article class="scenario-card" id="b1">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-build">Scenario B1</span>
+                <h3 class="scenario-title">Dual Tagging: Semantic Versioning & Latest</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: -t, -t</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Challenge:</strong> You need to release version <code>1.4.2</code> of your service. If you only tag it as <code>1.4.2</code>, users pulling without a tag won't receive it. If you only tag it as <code>latest</code>, you lose rollback history!
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Apply both specific semver tag and mutable latest tag in a single build pass</span>
+docker build \
+  -t mycompany/payment-service:1.4.2 \
+  -t mycompany/payment-service:latest \
+  .</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker creates the physical image layers once. Both tags simply point their digest pointer to the exact same SHA-256 image ID (zero disk overhead).</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Student Gotcha</div>
+                <div>Never forget the dot (<code>.</code>) at the end! The dot specifies the <strong>build context directory</strong> sent to the daemon.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- B2: Custom Path -->
+          <article class="scenario-card" id="b2">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-build">Scenario B2</span>
+                <h3 class="scenario-title">Non-Standard Dockerfile in Subdirectory (-f)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: -f</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Challenge:</strong> Real enterprise repositories maintain multiple Dockerfiles (e.g., <code>Dockerfile.dev</code>, <code>Dockerfile.prod</code>, or placed in a <code>deploy/</code> directory) while needing access to root source files.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Point to Dockerfile inside deploy/ but keep root folder as build context</span>
+docker build \
+  -f deploy/docker/Dockerfile.production \
+  -t mycompany/web:prod \
+  .</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>The <code>-f</code> flag tells Docker where the recipe lives, but the final argument (<code>.</code>) tells Docker what files can be referenced by <code>COPY</code> instructions.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Student Gotcha</div>
+                <div>If you run <code>cd deploy/docker && docker build .</code>, your <code>COPY package.json .</code> will fail because parent source files are outside that context! Always run from project root.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- B3: Git Remote -->
+          <article class="scenario-card" id="b3">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-build">Scenario B3</span>
+                <h3 class="scenario-title">Building Directly from Remote Git Repo</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: Git Context</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Challenge:</strong> Build an image on a remote server or CI runner without cloning the Git repository locally beforehand.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Docker clones the repo in memory, checks out branch 'main', and builds the root Dockerfile</span>
+docker build \
+  -t student-app:v1 \
+  https://github.com/docker/getting-started.git#master</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker Engine executes a shallow <code>git clone</code> into a temporary directory on the host, uses it as the context tarball, and cleans it up after the build.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Student Gotcha</div>
+                <div>Private repos require configuring SSH forwarding via <code>--ssh default</code> or personal access tokens in the URL.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- B4: Build Args -->
+          <article class="scenario-card" id="b4">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-build">Scenario B4</span>
+                <h3 class="scenario-title">Dynamic Build Arguments (--build-arg)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --build-arg</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Challenge:</strong> Build images with differing base versions or compile flags without modifying your committed Dockerfile.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Pass dynamic values matching ARG instructions in Dockerfile</span>
+docker build \
+  --build-arg NODE_VERSION=20 \
+  --build-arg COMMIT_SHA=$(git rev-parse --short HEAD) \
+  -t mycompany/frontend:latest \
+  .</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker substitutes the ARG variables at compile time. If the build argument changes between builds, any layer using that ARG is cache-busted!</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Security Alert</div>
+                <div>Never pass passwords or API keys via <code>--build-arg</code>! Build arguments are permanently recorded in the image metadata history visible via <code>docker history</code>.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- B5: No Cache -->
+          <article class="scenario-card" id="b5">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-build">Scenario B5</span>
+                <h3 class="scenario-title">Guaranteed Clean Rebuild (--no-cache)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --no-cache, --pull</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Challenge:</strong> You need to pull the newest Linux security patches in <code>RUN apt-get update</code>, but Docker keeps reusing yesterday's cached layer.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Force Docker to check upstream base images (--pull) and rebuild every layer from scratch</span>
+docker build \
+  --pull \
+  --no-cache \
+  -t mycompany/secure-app:latest \
+  .</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker bypasses the local layer cache hash lookup and unconditionally executes every instruction anew, pulling fresh dependencies.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Student Gotcha</div>
+                <div>Use sparingly in local development! A full no-cache rebuild takes minutes instead of seconds. Use it in nightly CI security builds.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- B6: Target Stage -->
+          <article class="scenario-card" id="b6">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-build">Scenario B6</span>
+                <h3 class="scenario-title">Targeting Multi-Stage Builds (--target)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --target</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Challenge:</strong> You want to run unit tests inside your Docker environment during a PR check without generating the final bloated production artifact.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Stops compilation at the 'test-runner' stage defined in Dockerfile</span>
+docker build \
+  --target test-runner \
+  -t myapp:test \
+  .
+
+<span class="cmt"># Run the unit tests immediately!</span>
+docker run --rm myapp:test npm test</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>BuildKit analyzes the dependency tree of stages and only compiles up to the targeted stage, completely skipping downstream stages.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Teacher's CI Tip</div>
+                <div>This is the industry standard pattern for CI pipelines: target the test stage first; only if tests pass do you run the final build.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- B7: Local Export -->
+          <article class="scenario-card" id="b7">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-build">Scenario B7</span>
+                <h3 class="scenario-title">Extracting Artifacts to Host (-o / --output)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: -o type=local</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Challenge:</strong> You want to compile a Go binary or React frontend bundle using Docker's isolated toolchain, but output the compiled files directly onto your host laptop without leaving a container behind!
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># In Dockerfile: 'FROM scratch' copying compiled binary</span>
+<span class="cmt"># Export output directly to host folder './dist'</span>
+DOCKER_BUILDKIT=1 docker build \
+  --output type=local,dest=./dist \
+  .</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>BuildKit streams files from the final stage directly onto the host filesystem. No container image is saved into the Docker daemon store.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Student Gotcha</div>
+                <div>Requires Docker BuildKit enabled. The final stage in the Dockerfile should typically be <code>FROM scratch</code> containing only the files to export.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- B8: Build Secrets -->
+          <article class="scenario-card" id="b8">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-sec">Scenario B8</span>
+                <h3 class="scenario-title">Secure Build-Time Secrets (--secret)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --secret</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Challenge:</strong> You need private GitHub tokens or an AWS secret during <code>docker build</code> to fetch internal packages, but the secret must NEVER be baked into any image layer.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># 1. Mount the host secret securely during build</span>
+docker build \
+  --secret id=npmtoken,src=$HOME/.npmrc \
+  -t private-app:latest \
+  .
+
+<span class="cmt"># 2. In Dockerfile, consume it without persisting:</span>
+<span class="cmt"># RUN --mount=type=secret,id=npmtoken npm install</span></code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>BuildKit mounts the secret into a temporary in-memory tmpfs mount during that single <code>RUN</code> instruction. It is impossible to extract the secret from the resulting image!</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Core Security Principle</div>
+                <div>Always teach this over <code>--build-arg</code>. <code>--build-arg</code> leaks credentials; <code>--secret</code> keeps them in memory only.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- B9: Multi-Arch -->
+          <article class="scenario-card" id="b9">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-build">Scenario B9</span>
+                <h3 class="scenario-title">Cross-Compilation for Multi-Arch (--platform)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --platform, buildx</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Challenge:</strong> Developers build on Apple Silicon Macbooks (ARM64), but production servers run on AWS EC2 x86 Intel/AMD (AMD64).
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Create a multi-platform manifest and push to Docker Hub</span>
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t mycompany/global-service:2.0.0 \
+  --push \
+  .</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker uses QEMU virtualization to emulate target CPU architectures, building two separate layer trees and joining them under a single multi-arch manifest.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Student Gotcha</div>
+                <div>Multi-arch images cannot be loaded directly into local Docker daemon images store without <code>--load</code> for a single platform; use <code>--push</code> to registry.</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Section: docker run Scenarios -->
+      <section id="run-scenarios">
+        <div class="section-header">
+          <div class="section-tag">🚀 Container Execution</div>
+          <h2 class="section-title">Essential `docker run` Scenarios</h2>
+          <p class="section-subtitle">
+            How to run containers like a seasoned DevOps engineer: background daemons, storage mounts, network topologies, resource throttling, and security controls.
+          </p>
+        </div>
+
+        <div class="scenario-grid">
+
+          <!-- R1: Detached Svc -->
+          <article class="scenario-card" id="r1">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-run">Scenario R1</span>
+                <h3 class="scenario-title">Background Web Service with Explicit Port Mapping</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: -d, -p, --name</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> Launch an NGINX web server in the background, named <code>prod-web</code>, accessible on host port 8080.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code>docker run -d \
+  --name prod-web \
+  -p 8080:80 \
+  nginx:1.25-alpine</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker creates a bridge iptables rule: any traffic arriving at the host machine's port 8080 is forwarded through the Docker proxy to container IP port 80.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Student Confusion</div>
+                <div>Format is always <code>-p &lt;HOST_PORT&gt;:&lt;CONTAINER_PORT&gt;</code> (Left is Host, Right is Container). If you flip them, your browser won't connect!</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R2: Debug Shell -->
+          <article class="scenario-card" id="r2">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-run">Scenario R2</span>
+                <h3 class="scenario-title">Interactive Ephemeral Debugging Shell</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: -it, --rm</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> Jump into a fresh Ubuntu container to test network connectivity with <code>ping</code> or <code>curl</code>, ensuring no leftover garbage container remains after exit.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code>docker run -it --rm \
+  ubuntu:22.04 \
+  /bin/bash</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div><code>-i</code> keeps STDIN open; <code>-t</code> allocates a pseudo-TTY terminal. <code>--rm</code> signals the daemon to completely delete the container and its writeable layer upon process termination.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ The Disk Exhaustion Trap</div>
+                <div>Students who omit <code>--rm</code> will accumulate hundreds of stopped containers in <code>docker ps -a</code>, quietly consuming gigabytes of disk space!</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R3: Database Volume -->
+          <article class="scenario-card" id="r3">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-run">Scenario R3</span>
+                <h3 class="scenario-title">Database with Persistent Named Volume & Env Variables</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: -v, -e, --restart</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> Run a PostgreSQL database where data survives container deletion, with environment passwords and automatic recovery if it crashes.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code>docker run -d \
+  --name pg-production \
+  --restart unless-stopped \
+  -v pgdata_volume:/var/lib/postgresql/data \
+  -e POSTGRES_DB=school_db \
+  -e POSTGRES_USER=admin \
+  -e POSTGRES_PASSWORD=supersecret \
+  -p 5432:5432 \
+  postgres:16-alpine</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker creates a managed named volume under <code>/var/lib/docker/volumes/pgdata_volume</code>. If the container is stopped, updated, or removed, the volume remains intact.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Crucial Teaching Point</div>
+                <div>Containers are disposable; data is permanent. Always teach students to never store database tables inside the container's default filesystem!</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R4: Dev Hot Reload -->
+          <article class="scenario-card" id="r4">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-run">Scenario R4</span>
+                <h3 class="scenario-title">Developer Live Hot-Reloading with Host Bind Mount</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: -v host:container:ro</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> Mount your local source code folder into the container so that editing code in VS Code immediately reloads inside the running Node.js / Python container without rebuilding!
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code>docker run -d \
+  --name dev-frontend \
+  -p 3000:3000 \
+  -v "$(pwd)":/app \
+  -v /app/node_modules \
+  -e NODE_ENV=development \
+  node:20-alpine \
+  npm run dev</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ The node_modules Shield Trick</div>
+                <div>Notice <code>-v /app/node_modules</code>? This creates an anonymous volume that prevents your host laptop's <code>node_modules</code> from overriding the Linux-compiled modules inside the container!</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Performance Note on Mac/Windows</div>
+                <div>Bind mounts on macOS pass through osxfs/VirtioFS. Heavy file watchers (like Webpack) can experience CPU overhead unless configured carefully.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R5: Localhost Only -->
+          <article class="scenario-card" id="r5">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-sec">Scenario R5</span>
+                <h3 class="scenario-title">Restricting Port to Localhost Only (127.0.0.1)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: -p 127.0.0.1:port:port</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> You are running a Redis cache or administrative database on an AWS server. You need to access it via SSH tunnel, but it must NEVER be exposed to the public internet!
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Bind exclusively to the loopback interface</span>
+docker run -d \
+  --name internal-redis \
+  -p 127.0.0.1:6379:6379 \
+  redis:7-alpine</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>By default, <code>-p 6379:6379</code> binds to <code>0.0.0.0</code> (all network interfaces, including public IP). Specifying <code>127.0.0.1</code> instructs iptables to only accept local traffic.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Severe Security Flaw</div>
+                <div>Many developers accidentally expose private databases to the entire internet because they don't realize Docker bypasses standard UFW firewalls on Linux!</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R6: Bridge Network -->
+          <article class="scenario-card" id="r6">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-run">Scenario R6</span>
+                <h3 class="scenario-title">Microservices with User-Defined Bridge Networks</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --network, DNS</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> An API service needs to communicate with a PostgreSQL database using its container name as a hostname (e.g. <code>db:5432</code>), without hardcoding unstable IP addresses.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># 1. Create a dedicated bridge network</span>
+docker network create my-app-net
+
+<span class="cmt"># 2. Run database on the network (no host port publishing required!)</span>
+docker run -d --name db-service --network my-app-net -e POSTGRES_PASSWORD=pass postgres:alpine
+
+<span class="cmt"># 3. Run API web service on the same network</span>
+docker run -d --name web-api --network my-app-net -p 8080:8080 -e DB_HOST=db-service my-api</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>User-defined bridge networks enable Docker's built-in DNS server (at <code>127.0.0.11</code>). The container name <code>db-service</code> automatically resolves to its private container IP!</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Default Bridge Gotcha</div>
+                <div>Containers on the default bridge network CANNOT resolve each other by name! You must create a user-defined network with <code>docker network create</code>.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R7: In-Memory RAM -->
+          <article class="scenario-card" id="r7">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-sec">Scenario R7</span>
+                <h3 class="scenario-title">Ultra-Fast & Secure In-Memory RAM Storage (--tmpfs)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --tmpfs</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> You are processing sensitive banking decrypts or high-frequency temporary cache files that must never touch the physical hard drive.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code>docker run -d \
+  --name secure-crypto-worker \
+  --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+  mycompany/crypto-service</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Mounts directly into host RAM. Data is never written to disk or container layers, and files vanish permanently the millisecond the container terminates.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Student Gotcha</div>
+                <div><code>--tmpfs</code> only works on Linux hosts. Always specify <code>size=...</code> to prevent a container from consuming all host RAM and crashing the server!</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R8: QoS Limits -->
+          <article class="scenario-card" id="r8">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-run">Scenario R8</span>
+                <h3 class="scenario-title">Production Resource Throttling & Quality of Service</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: -m, --cpus, --memory-swap</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> Prevent a rogue container with a memory leak or infinite loop from starving other critical services on your server.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code>docker run -d \
+  --name constrained-worker \
+  -m 512m \
+  --memory-swap 1g \
+  --cpus 1.5 \
+  --pids-limit 100 \
+  my-app:prod</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker applies Linux <strong>cgroups (control groups)</strong>. If the container consumes more than 512MB RAM plus swap, the kernel terminates it with an OOMKilled signal.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ The Fork Bomb Shield</div>
+                <div>Notice <code>--pids-limit 100</code>? This prevents recursive thread attacks or fork-bombs from crashing the host kernel.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R9: Restart Policy -->
+          <article class="scenario-card" id="r9">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-run">Scenario R9</span>
+                <h3 class="scenario-title">Automated Production Resilience (--restart)</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --restart</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> Your server restarts automatically for system updates at 3:00 AM. Ensure your production containers reboot immediately with the host.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code>docker run -d \
+  --name resilient-api \
+  --restart unless-stopped \
+  -p 80:80 \
+  my-web-api</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ The 4 Restart Policies Compared</div>
+                <div><code>no</code>: Never restart. <code>on-failure:5</code>: Restart only on non-zero exit codes. <code>always</code>: Reboot even if explicitly stopped. <code>unless-stopped</code>: Gold standard for production.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ The CrashLoop Trap</div>
+                <div>If your container has a syntax error, <code>always</code> will reboot it thousands of times per minute, filling log disks. Use <code>on-failure:5</code> during testing.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R10: Security Hardening -->
+          <article class="scenario-card" id="r10">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-sec">Scenario R10</span>
+                <h3 class="scenario-title">Maximum Security: Non-Root, Read-Only & Dropped Capabilities</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --user, --read-only, --cap-drop</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> Run an untrusted third-party image in an impenetrable container sandbox where even a zero-day exploit cannot tamper with files.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code>docker run -d \
+  --name hardened-sandbox \
+  --user 10001:10001 \
+  --read-only \
+  --cap-drop ALL \
+  --cap-add NET_BIND_SERVICE \
+  --security-opt no-new-privileges:true \
+  --tmpfs /tmp \
+  my-untrusted-app</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Drops all Linux kernel capabilities (like raw socket creation or rebooting). The root filesystem is 100% read-only, preventing attackers from downloading malware.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Teacher's Security Rule</div>
+                <div>Teach students: <em>"Never run as root, never make filesystems writable unless needed, and drop all Linux capabilities."</em></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R11: Log Rotation -->
+          <article class="scenario-card" id="r11">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-run">Scenario R11</span>
+                <h3 class="scenario-title">Enterprise Log Rotation to Prevent Disk Outages</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --log-driver, --log-opt</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> A chatty application outputs millions of lines to STDOUT. Stop it from creating a 50GB log file that crashes the host hard drive.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code>docker run -d \
+  --name log-safe-app \
+  --log-driver json-file \
+  --log-opt max-size=10m \
+  --log-opt max-file=3 \
+  chatty-service:latest</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker Engine rotates logs once they reach 10 Megabytes and retains a maximum of 3 historical rotated files (capping disk consumption at 30MB total).</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Silent Server Killer</div>
+                <div>By default, Docker's json-file driver has UNLIMITED log sizes! Unmonitored production servers frequently crash because of this single missing flag.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- R12: Override Entry -->
+          <article class="scenario-card" id="r12">
+            <div class="scenario-header">
+              <div class="scenario-title-group">
+                <span class="scenario-badge badge-run">Scenario R12</span>
+                <h3 class="scenario-title">Overriding ENTRYPOINT & CMD for Emergency Troubleshooting</h3>
+              </div>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">Flags: --entrypoint</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+              <strong>The Scenario:</strong> A container keeps crashing on startup. Its Dockerfile defines <code>ENTRYPOINT ["node", "app.js"]</code>, but you need to inspect its internal files with a shell.
+            </p>
+
+            <div class="code-box-wrapper">
+              <button class="copy-btn" onclick="copySnippet(this)">📋 Copy</button>
+              <pre><code><span class="cmt"># Forcefully override the baked ENTRYPOINT with a shell</span>
+docker run -it --rm \
+  --entrypoint /bin/sh \
+  broken-app:v1</code></pre>
+            </div>
+
+            <div class="scenario-breakdown-grid">
+              <div class="breakdown-box breakdown-engine">
+                <div class="breakdown-title">⚙️ Engine Mechanics</div>
+                <div>Docker discards the immutable <code>ENTRYPOINT</code> instruction from the image metadata and executes <code>/bin/sh</code> as PID 1.</div>
+              </div>
+              <div class="breakdown-box breakdown-warning">
+                <div class="breakdown-title">⚠️ Syntax Requirement</div>
+                <div><code>--entrypoint</code> only takes a single executable (no flags)! Any flags or parameters must be appended after the image name as arguments.</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Section: Storage & Network Matrix -->
+      <section id="storage-net">
+        <div class="section-header">
+          <div class="section-tag">📊 Architectural Matrices</div>
+          <h2 class="section-title">Storage & Networking Deep Dive</h2>
+          <p class="section-subtitle">
+            Visual comparisons to help students master where data lives and how packets flow.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; color: var(--docker-blue-light);">
+            The 3 Docker Storage Strategies
+          </h3>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Mount Type</th>
+                <th>Syntax Example</th>
+                <th>Where Data Lives</th>
+                <th>Best For...</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Named Volume</strong></td>
+                <td><code>-v dbdata:/data</code></td>
+                <td>Docker-managed host directory (<code>/var/lib/docker/volumes/</code>)</td>
+                <td>Databases, production data persistence, sharing data between containers</td>
+              </tr>
+              <tr>
+                <td><strong>Bind Mount</strong></td>
+                <td><code>-v $(pwd)/src:/app/src</code></td>
+                <td>Any arbitrary folder on host laptop/server</td>
+                <td>Local development hot-reloading, mounting host configs (e.g. <code>nginx.conf</code>)</td>
+              </tr>
+              <tr>
+                <td><strong>Tmpfs Mount</strong></td>
+                <td><code>--tmpfs /tmp</code></td>
+                <td>Host RAM memory (never touches hard disk)</td>
+                <td>Sensitive decryption keys, session tokens, ultra-fast temporary caches</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 style="font-size: 1.35rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: var(--accent-cyan-light);">
+            The 4 Docker Network Drivers
+          </h3>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Network Mode</th>
+                <th>Syntax Flag</th>
+                <th>Isolation Level</th>
+                <th>DNS Resolution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Custom Bridge</strong></td>
+                <td><code>--network app-net</code></td>
+                <td>High (Private virtual subnet with NAT)</td>
+                <td>✅ Automatic container-name DNS resolution</td>
+              </tr>
+              <tr>
+                <td><strong>Default Bridge</strong></td>
+                <td><code>--network bridge</code></td>
+                <td>High (Default 172.17.0.0/16 subnet)</td>
+                <td>❌ IP only (no name resolution without <code>--link</code>)</td>
+              </tr>
+              <tr>
+                <td><strong>Host Network</strong></td>
+                <td><code>--network host</code></td>
+                <td>None (Shares host network stack directly)</td>
+                <td>Host DNS (Maximum packet throughput, no port mapping)</td>
+              </tr>
+              <tr>
+                <td><strong>None (Airgap)</strong></td>
+                <td><code>--network none</code></td>
+                <td>Total (Loopback interface only, zero network)</td>
+                <td>❌ None (Batch processing, sensitive cryptography)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section: Troubleshooting Lab -->
+      <section id="troubleshooting">
+        <div class="section-header">
+          <div class="section-tag">🩺 Diagnostic Clinic</div>
+          <h2 class="section-title">The Student Error Troubleshooting Lab</h2>
+          <p class="section-subtitle">
+            The 5 most common error messages students encounter when running Docker commands, and the exact steps to fix them.
+          </p>
+        </div>
+
+        <!-- Error 1: Port Allocated -->
+        <div class="trouble-card">
+          <div class="trouble-error-header">
+            <span class="trouble-error-tag">ERROR 1</span>
+            <span class="trouble-error-msg">Error response from daemon: Bind for 0.0.0.0:80 failed: port is already allocated</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem;">
+            <strong>Root Cause:</strong> Another container or a host process (like Apache, local NGINX, or Skype) is already listening on port 80.
+          </p>
+          <div class="code-box-wrapper" style="margin-bottom: 0;">
+            <pre><code><span class="cmt"># Step 1: Identify which process or container owns the port</span>
+docker ps | grep 80
+<span class="cmt"># OR on macOS/Linux:</span>
+sudo lsof -i :80
+
+<span class="cmt"># Step 2: Solution A - Map to a different host port (e.g. 8080)</span>
+docker run -d -p 8080:80 nginx
+
+<span class="cmt"># Step 2: Solution B - Stop the competing container</span>
+docker stop &lt;old-container-id&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Error 2: Exit Code 0 -->
+        <div class="trouble-card">
+          <div class="trouble-error-header">
+            <span class="trouble-error-tag">ERROR 2</span>
+            <span class="trouble-error-msg">Container starts and immediately stops with Exit Code 0</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem;">
+            <strong>Root Cause:</strong> A container only stays alive as long as its <strong>PID 1 process is running in the foreground</strong>. If your program forks into the background (e.g. <code>service nginx start</code>) or is an interactive shell without <code>-it</code>, the container exits immediately!
+          </p>
+          <div class="code-box-wrapper" style="margin-bottom: 0;">
+            <pre><code><span class="cmt"># Bad: Shell terminates immediately</span>
+docker run -d ubuntu bash  <-- Dies immediately!
+
+<span class="cmt"># Fix for web servers: Run in FOREGROUND</span>
+CMD ["nginx", "-g", "daemon off;"]
+
+<span class="cmt"># Fix for interactive containers: Keep STDIN open</span>
+docker run -it ubuntu bash</code></pre>
+          </div>
+        </div>
+
+        <!-- Error 3: Permission Denied -->
+        <div class="trouble-card">
+          <div class="trouble-error-header">
+            <span class="trouble-error-tag">ERROR 3</span>
+            <span class="trouble-error-msg">touch: cannot touch '/app/log.txt': Permission denied</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem;">
+            <strong>Root Cause:</strong> The container was configured with <code>USER node (UID 1000)</code>, but the host bind mounted folder is owned by <code>root (UID 0)</code> or another user ID.
+          </p>
+          <div class="code-box-wrapper" style="margin-bottom: 0;">
+            <pre><code><span class="cmt"># Fix: Match host user UID/GID when running the container</span>
+docker run -d \
+  --user "$(id -u):$(id -g)" \
+  -v "$(pwd)":/app \
+  my-app</code></pre>
+          </div>
+        </div>
+
+        <!-- Error 4: OOMKilled 137 -->
+        <div class="trouble-card">
+          <div class="trouble-error-header">
+            <span class="trouble-error-tag">ERROR 4</span>
+            <span class="trouble-error-msg">Container died with Exit Code 137 (OOMKilled: true)</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem;">
+            <strong>Root Cause:</strong> Exit code <code>137 = 128 + 9 (SIGKILL)</code>. The Linux kernel forcefully killed the container process because it exceeded its <code>-m</code> memory limit!
+          </p>
+          <div class="code-box-wrapper" style="margin-bottom: 0;">
+            <pre><code><span class="cmt"># Step 1: Verify OOMKilled status</span>
+docker inspect &lt;container_id&gt; --format='{{.State.OOMKilled}}'  # Returns: true
+
+<span class="cmt"># Step 2: Increase memory quota or profile memory leaks</span>
+docker run -d -m 1g --memory-swap 2g my-app</code></pre>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Section: Student Quiz -->
+      <section id="quiz">
+        <div class="section-header">
+          <div class="section-tag">📝 Knowledge Certification</div>
+          <h2 class="section-title">Student Practice Quiz: Flags & Scenarios</h2>
+          <p class="section-subtitle">
+            Test your students' mastery of Docker command line options with instant feedback.
+          </p>
+        </div>
+
+        <div class="quiz-container">
+
+          <!-- Q1 -->
+          <div class="quiz-question-card" data-correct="1">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q1</span>
+              <span>In the command <code>docker run -d -p 8080:80 nginx</code>, which port is opened on your host computer's browser?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) Port 80</div>
+              <div class="quiz-option" data-idx="1">B) Port 8080</div>
+              <div class="quiz-option" data-idx="2">C) Both ports 80 and 8080</div>
+              <div class="quiz-option" data-idx="3">D) Neither; port publishing requires <code>-P</code></div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="quiz-question-card" data-correct="2">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q2</span>
+              <span>Why is <code>--rm</code> considered a critical best practice when running temporary interactive debugging containers?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) It bypasses image signature verification</div>
+              <div class="quiz-option" data-idx="1">B) It runs the container in root privileges</div>
+              <div class="quiz-option" data-idx="2">C) It automatically deletes the container filesystem upon exit, preventing stopped container disk bloat</div>
+              <div class="quiz-option" data-idx="3">D) It forces Docker to download a new image tag</div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="quiz-question-card" data-correct="0">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q3</span>
+              <span>What is the main advantage of creating a user-defined bridge network (<code>docker network create my-net</code>) over using the default bridge network?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) Containers can automatically resolve and communicate with each other using their container names as hostnames</div>
+              <div class="quiz-option" data-idx="1">B) User-defined bridge networks encrypt all traffic with TLS 1.3 by default</div>
+              <div class="quiz-option" data-idx="2">C) It allows containers to run without any CPU limits</div>
+              <div class="quiz-option" data-idx="3">D) It automatically exposes all ports to the internet</div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="quiz-question-card" data-correct="3">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q4</span>
+              <span>A developer needs to build an image while guaranteeing that fresh security patches in <code>RUN apt-get update</code> are downloaded. Which flag should they add to <code>docker build</code>?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) <code>--force-clean</code></div>
+              <div class="quiz-option" data-idx="1">B) <code>--restart always</code></div>
+              <div class="quiz-option" data-idx="2">C) <code>--output type=local</code></div>
+              <div class="quiz-option" data-idx="3">D) <code>--no-cache</code></div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="quiz-question-card" data-correct="2">
+            <div class="quiz-q-title">
+              <span class="quiz-q-num">Q5</span>
+              <span>What happens when you execute <code>docker run -d --restart unless-stopped my-app</code> and then manually stop it using <code>docker stop my-app</code>?</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-idx="0">A) Docker immediately restarts it in a loop</div>
+              <div class="quiz-option" data-idx="1">B) The container image is deleted</div>
+              <div class="quiz-option" data-idx="2">C) The container remains stopped and will NOT restart even when the host daemon or server reboots</div>
+              <div class="quiz-option" data-idx="3">D) It falls back to <code>--restart always</code></div>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+        </div>
+      </section>
+
+    
+    </main>
+  </div>
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

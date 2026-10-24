@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>linux commands all &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html" class="active">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🐧 Linux</span>
+          <span class="separator">/</span>
+          <span class="current">linux commands all</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🐧 Linux Module</div>
+          <h1 class="hero-title">linux commands all</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+<div class="diagram-figure" style="margin-top: 1.5rem; margin-bottom: 2.5rem; border: 2px solid var(--border-highlight); box-shadow: 0 0 35px var(--accent-cyan-glow);">
+  <div class="diagram-badge" style="background: linear-gradient(90deg, rgba(6,182,212,0.25), rgba(59,130,246,0.25)); font-size: 0.85rem;">
+    ⭐ FEATURED ARCHITECTURAL BLUEPRINT &bull; Command Execution Architecture
+  </div>
+  <img src="../assets/images/linux-system-architecture.jpg" alt="Command Execution Architecture" class="diagram-img" loading="eager">
+  <div class="diagram-caption" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+    Linux Command Execution Flow Through Shell and Kernel Subsystems
+  </div>
+</div>
+
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Linux Command Table with Real-Time Scenarios</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Command</th>
+<th>Description</th>
+<th>Real-Time Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>pwd</code></td>
+<td>Print current working directory</td>
+<td>Useful when you log into a remote machine and want to know your location in the file system</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>ls</code></td>
+<td>List contents of a directory</td>
+<td>To view files and folders in the current location</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>ls -l</code></td>
+<td>List contents with detailed info</td>
+<td>Check file permissions, size, and last modification time</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>ls -lt</code></td>
+<td>Sort files by modification time (newest first)</td>
+<td>See the most recently modified files</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>ls -lrt</code></td>
+<td>Sort files by modification time (oldest first)</td>
+<td>See the oldest modified files at the top</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>cd ..</code></td>
+<td>Move up one directory</td>
+<td>Navigate up in the folder structure</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>cd ../..</code></td>
+<td>Move up two directories</td>
+<td>Quickly return to a higher-level directory</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>cd /home/user/path</code></td>
+<td>Change to a specific absolute path</td>
+<td>Navigate directly to a known location</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>mkdir &lt;directory_name&gt;</code></td>
+<td>Create a new directory</td>
+<td>Create a folder to organize files</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>mkdir dir1 dir2 dir3</code></td>
+<td>Create multiple directories</td>
+<td>Efficient for setting up initial folder structure</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>mkdir -p d3/dir1/dir2</code></td>
+<td>Create nested directories</td>
+<td>Avoid errors when creating directories deep in hierarchy</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>touch &lt;file_name&gt;</code></td>
+<td>Create a new empty file</td>
+<td>Used to quickly create a placeholder file</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>touch f1 f2 f3</code></td>
+<td>Create multiple empty files</td>
+<td>Batch file creation for testing or setup</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>touch directory_name/filename</code></td>
+<td>Create file in specific directory</td>
+<td>Prepare config or input files in target location</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>vi file_name</code></td>
+<td>Open a file in vi editor</td>
+<td>Edit server-side files without GUI</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>cat filename</code></td>
+<td>Display file content</td>
+<td>Quick preview of log or config files</td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>more filename</code></td>
+<td>View file content page by page</td>
+<td>Read long files in chunks without editing</td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>less filename</code></td>
+<td>View file with navigation support</td>
+<td>Read and search within files efficiently</td>
+</tr>
+<tr>
+<td>19</td>
+<td><code>du -sh filename</code></td>
+<td>Show file size in human-readable format</td>
+<td>Monitor space used by individual files</td>
+</tr>
+<tr>
+<td>20</td>
+<td><code>du -sh &lt;directory&gt;</code></td>
+<td>Show directory size</td>
+<td>Identify heavy directories consuming disk space</td>
+</tr>
+<tr>
+<td>21</td>
+<td><code>du -sh *</code></td>
+<td>Show size of all items in directory</td>
+<td>Overview of space used by each item</td>
+</tr>
+<tr>
+<td>22</td>
+<td><code>df -h</code></td>
+<td>Show disk usage in human-readable format</td>
+<td>Check available space on mounted partitions</td>
+</tr>
+<tr>
+<td>23</td>
+<td><code>head filename</code></td>
+<td>Display first 10 lines of a file</td>
+<td>Preview top of logs or config files</td>
+</tr>
+<tr>
+<td>24</td>
+<td><code>head -5 filename</code></td>
+<td>Display first 5 lines of file</td>
+<td>Focused inspection of small file segments</td>
+</tr>
+<tr>
+<td>25</td>
+<td><code>tail filename</code></td>
+<td>Display last 10 lines of file</td>
+<td>Check recent log entries</td>
+</tr>
+<tr>
+<td>26</td>
+<td><code>tail -3 filename</code></td>
+<td>Show last 3 lines</td>
+<td>Quickly view latest changes</td>
+</tr>
+<tr>
+<td>28</td>
+<td><code>head -6 filename \| tail -1</code></td>
+<td>Show specific line in file</td>
+<td>Show specific line in file</td>
+</tr>
+<tr>
+<td>29</td>
+<td><code>ls -ltr \| wc -l</code></td>
+<td>Count number of files</td>
+<td>Count number of files</td>
+</tr>
+<tr>
+<td>30</td>
+<td><code>grep -i "devops" file</code></td>
+<td>Case-insensitive search</td>
+<td>Find all mentions of 'DevOps' in a file</td>
+</tr>
+</tbody>
+</table>
+<h4>✅ Linux Commands Table (Entries 31–60)</h4>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Command</th>
+<th>Description</th>
+<th>Real-Time Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>31</td>
+<td><code>grep -in "devops" file</code></td>
+<td>Case-insensitive search with line numbers</td>
+<td>Quickly locate where “DevOps” appears in a config file</td>
+</tr>
+<tr>
+<td>32</td>
+<td><code>grep -ic "devops" file</code></td>
+<td>Count case-insensitive matches</td>
+<td>Know how many times “DevOps” appears</td>
+</tr>
+<tr>
+<td>33</td>
+<td><code>grep -iw "devops" file</code></td>
+<td>Match whole word (case-insensitive)</td>
+<td>Avoid matching substrings like “devopsing”</td>
+</tr>
+<tr>
+<td>34</td>
+<td><code>grep -il "devops" *</code></td>
+<td>List files that contain “DevOps”</td>
+<td>Search across multiple files for relevant content</td>
+</tr>
+<tr>
+<td>35</td>
+<td><code>grep -ilR "devops" *</code></td>
+<td>Recursively list files with “DevOps”</td>
+<td>Find where a setting exists in nested config directories</td>
+</tr>
+<tr>
+<td>36</td>
+<td><code>grep -ie "pattern1" -ie "pattern2"</code></td>
+<td>Search for multiple patterns</td>
+<td>Search for multiple keywords in logs</td>
+</tr>
+<tr>
+<td>37</td>
+<td><code>ls -a</code></td>
+<td>Show all files including hidden</td>
+<td>View <code>.git</code>, <code>.bashrc</code>, etc.</td>
+</tr>
+<tr>
+<td>38</td>
+<td><code>df -h .</code></td>
+<td>Disk space of current directory in human-readable format</td>
+<td>Check available space before backups</td>
+</tr>
+<tr>
+<td>39</td>
+<td><code>free -g</code> or <code>free -m</code></td>
+<td>Check memory usage in GB or MB</td>
+<td>Monitor memory usage on a server</td>
+</tr>
+<tr>
+<td>40</td>
+<td><code>uniq file</code></td>
+<td>Remove duplicate lines</td>
+<td>Clean a sorted log or config file</td>
+</tr>
+</tbody>
+</table>
+<h4>✅ Linux Commands Table (Entries 61–90)</h4>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Command</th>
+<th>Description</th>
+<th>Real-Time Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>61</td>
+<td><code>sort file \| uniq</code></td>
+<td>Sort and remove duplicates</td>
+<td>Sort and remove duplicates</td>
+</tr>
+<tr>
+<td>62</td>
+<td><code>sort -r file \| uniq</code></td>
+<td>Reverse sort and remove duplicates</td>
+<td>Reverse sort and remove duplicates</td>
+</tr>
+<tr>
+<td>63</td>
+<td><code>chmod 777 filename</code></td>
+<td>Give all permissions to everyone</td>
+<td>For testing access (not secure in prod)</td>
+</tr>
+<tr>
+<td>64</td>
+<td><code>chmod 777 directory</code></td>
+<td>Same as above for a directory</td>
+<td>Grant temp access to all users</td>
+</tr>
+<tr>
+<td>65</td>
+<td><code>chmod 644 file1</code></td>
+<td>Owner can write, others read</td>
+<td>Default permission for config files</td>
+</tr>
+<tr>
+<td>66</td>
+<td><code>chmod 755 file1</code></td>
+<td>Owner all, others read/execute</td>
+<td>For scripts or binaries</td>
+</tr>
+<tr>
+<td>67</td>
+<td><code>chmod -R 777 folder1</code></td>
+<td>Recursive permission change</td>
+<td>Fix access issues in nested folders</td>
+</tr>
+<tr>
+<td>68</td>
+<td><code>chmod a+w file</code></td>
+<td>Give write permission to all</td>
+<td>Allow multi-user write access</td>
+</tr>
+<tr>
+<td>69</td>
+<td><code>chmod a+rwx folder</code></td>
+<td>Full access to everyone</td>
+<td>Temporary full access for troubleshooting</td>
+</tr>
+<tr>
+<td>70</td>
+<td><code>chmod u+rw file</code></td>
+<td>Add read/write to user</td>
+<td>Allow owner to edit</td>
+</tr>
+<tr>
+<td>71</td>
+<td><code>chmod g+w directory</code></td>
+<td>Group write permission</td>
+<td>Shared team folder access</td>
+</tr>
+<tr>
+<td>72</td>
+<td><code>chmod o+r file</code></td>
+<td>Others read access</td>
+<td>Share logs with read-only access</td>
+</tr>
+<tr>
+<td>73</td>
+<td><code>umask 641</code></td>
+<td>Default file permissions mask</td>
+<td>Control default permissions for security</td>
+</tr>
+<tr>
+<td>74</td>
+<td><code>umask 777</code></td>
+<td>No permissions by default</td>
+<td>Testing how apps behave on no access</td>
+</tr>
+<tr>
+<td>75</td>
+<td><code>umask 000</code></td>
+<td>Full permissions by default</td>
+<td>Used in insecure/dev environments</td>
+</tr>
+<tr>
+<td>76</td>
+<td><code>rm filename</code></td>
+<td>Remove file</td>
+<td>Delete temporary or unused files</td>
+</tr>
+<tr>
+<td>77</td>
+<td><code>rm -rf directory</code></td>
+<td>Force delete directory recursively</td>
+<td>Clean up unneeded directory trees</td>
+</tr>
+<tr>
+<td>78</td>
+<td><code>rm f1 f2 f3</code></td>
+<td>Delete multiple files</td>
+<td>Bulk deletion of test files</td>
+</tr>
+<tr>
+<td>79</td>
+<td><code>rm -rf folder1 folder2</code></td>
+<td>Delete multiple directories</td>
+<td>Clean multiple old backups</td>
+</tr>
+<tr>
+<td>80</td>
+<td><code>rm dir/dir1/file</code></td>
+<td>Delete specific file in path</td>
+<td>Remove wrong files placed in nested paths</td>
+</tr>
+<tr>
+<td>81</td>
+<td><code>rm -rf /dir1/dir2/dir3</code></td>
+<td>Deep folder deletion</td>
+<td>Remove obsolete build or cache directories</td>
+</tr>
+<tr>
+<td>82</td>
+<td><code>mv old_name new_name</code></td>
+<td>Rename a file or directory</td>
+<td>Rename configs or scripts</td>
+</tr>
+<tr>
+<td>83</td>
+<td><code>mv file dir1/file</code></td>
+<td>Move file to directory</td>
+<td>Organize files into folders</td>
+</tr>
+<tr>
+<td>84</td>
+<td><code>mv dir2/f1 .</code></td>
+<td>Move file to current directory</td>
+<td>Pull a file out from nested folder</td>
+</tr>
+<tr>
+<td>85</td>
+<td><code>cp file file2</code></td>
+<td>Copy file to new file</td>
+<td>Create a backup or duplicate</td>
+</tr>
+<tr>
+<td>86</td>
+<td><code>cp file dir1/dir2/file</code></td>
+<td>Copy to nested path</td>
+<td>Deploy config to target folder</td>
+</tr>
+<tr>
+<td>87</td>
+<td><code>cp -i file file2</code></td>
+<td>Interactive copy (asks before overwrite)</td>
+<td>Avoid accidental overwrites</td>
+</tr>
+<tr>
+<td>88</td>
+<td><code>cp -i test dir1/test</code></td>
+<td>Interactive copy to directory</td>
+<td>Safe file deployment</td>
+</tr>
+<tr>
+<td>89</td>
+<td><code>cp -r dir2 dir3</code></td>
+<td>Copy folder recursively</td>
+<td>Backup or duplicate folder</td>
+</tr>
+<tr>
+<td>90</td>
+<td><code>cp -r dir1 dir2/dir3/dir4</code></td>
+<td>Deep folder copy</td>
+<td>Create structured backup copies</td>
+</tr>
+</tbody>
+</table>
+<h4>✅ Linux Commands Table (Entries 91–120)</h4>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Command</th>
+<th>Description</th>
+<th>Real-Time Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>91</td>
+<td><code>cp -i dir1/file dir2/dir3/dir4/</code></td>
+<td>Interactive file copy to deep path</td>
+<td>Controlled deployment of config or script</td>
+</tr>
+<tr>
+<td>92</td>
+<td><code>ls Devops*</code></td>
+<td>List files starting with “Devops”</td>
+<td>View all DevOps-related files</td>
+</tr>
+<tr>
+<td>93</td>
+<td><code>ls test*</code></td>
+<td>List files starting with “test”</td>
+<td>List test files before deletion</td>
+</tr>
+<tr>
+<td>94</td>
+<td><code>ls *</code></td>
+<td>List all files in current directory</td>
+<td>Check full directory contents</td>
+</tr>
+<tr>
+<td>95</td>
+<td><code>grep -i "^Devops" file</code></td>
+<td>Find lines starting with “Devops”</td>
+<td>Identify log or config entries</td>
+</tr>
+<tr>
+<td>96</td>
+<td><code>grep -i "^t" file</code></td>
+<td>Find lines starting with “t”</td>
+<td>Useful in parsing data</td>
+</tr>
+<tr>
+<td>97</td>
+<td><code>grep -i "dev$" file</code></td>
+<td>Find lines ending with “dev”</td>
+<td>Validate naming conventions</td>
+</tr>
+<tr>
+<td>98</td>
+<td><code>chown new_name file</code></td>
+<td>Change file ownership</td>
+<td>Assign correct owner to logs/scripts</td>
+</tr>
+<tr>
+<td>99</td>
+<td><code>chown new_name:new_grp file</code></td>
+<td>Change owner and group</td>
+<td>Fix ownership issues in shared dirs</td>
+</tr>
+<tr>
+<td>100</td>
+<td><code>sed</code></td>
+<td>Stream editor for filtering/modifying text</td>
+<td>Used in log parsing or automation</td>
+</tr>
+<tr>
+<td>101</td>
+<td><code>sed 's/old/new/g' file</code></td>
+<td>Replace all old with new in file</td>
+<td>Update variables in config files</td>
+</tr>
+<tr>
+<td>102</td>
+<td><code>sed 's/samsung/sony/g' file</code></td>
+<td>Replace brand names</td>
+<td>Product migration in data</td>
+</tr>
+<tr>
+<td>103</td>
+<td><code>sed -i 's/old/new/g' file</code></td>
+<td>In-place replacement</td>
+<td>Auto-update multiple config files</td>
+</tr>
+<tr>
+<td>104</td>
+<td><code>sed 's/text/replacement/gi'</code></td>
+<td>Case-insensitive global replace</td>
+<td>Change all variants of a keyword</td>
+</tr>
+<tr>
+<td>105</td>
+<td><code>sed '2s/text/new/gi'</code></td>
+<td>Replace on specific line</td>
+<td>Fix specific line in script or config</td>
+</tr>
+<tr>
+<td>106</td>
+<td><code>sed '10,30s/a/b/g'</code></td>
+<td>Replace in line range</td>
+<td>Modify a specific block in a file</td>
+</tr>
+<tr>
+<td>107</td>
+<td><code>sed '30,$s/a/b/g'</code></td>
+<td>Replace from line 30 to end</td>
+<td>Useful in appending or tail-end configs</td>
+</tr>
+<tr>
+<td>108</td>
+<td><code>sed -n '98p' file</code></td>
+<td>Print only line 98</td>
+<td>Extract specific config or log line</td>
+</tr>
+<tr>
+<td>109</td>
+<td><code>sed -n '2p' file</code></td>
+<td>Print only second line</td>
+<td>Verify headers in CSV/TSV</td>
+</tr>
+<tr>
+<td>110</td>
+<td><code>sed -n '10,20p' file</code></td>
+<td>Print line range</td>
+<td>Extract partial config</td>
+</tr>
+<tr>
+<td>111</td>
+<td><code>sed '2d' file</code></td>
+<td>Delete second line</td>
+<td>Remove unwanted config header</td>
+</tr>
+<tr>
+<td>112</td>
+<td><code>sed '100d' file</code></td>
+<td>Delete line 100</td>
+<td>Remove old cronjob/script</td>
+</tr>
+<tr>
+<td>113</td>
+<td><code>cut -d " " -f1 file</code></td>
+<td>Cut first column by space</td>
+<td>Extract usernames or IDs</td>
+</tr>
+<tr>
+<td>114</td>
+<td><code>cut -d " " -f3 file</code></td>
+<td>Extract third column</td>
+<td>Pull email/port/date etc. from logs</td>
+</tr>
+<tr>
+<td>115</td>
+<td><code>cut -d " " -f1,2 file</code></td>
+<td>Extract multiple fields</td>
+<td>Combine name + ID, etc.</td>
+</tr>
+<tr>
+<td>116</td>
+<td><code>awk -F " " '{print $2}' file</code></td>
+<td>Print second field</td>
+<td>Filter by column like CPU usage</td>
+</tr>
+<tr>
+<td>117</td>
+<td><code>awk -F " " '{print $3}' file</code></td>
+<td>Print third field</td>
+<td>Extract IP, status, values</td>
+</tr>
+<tr>
+<td>118</td>
+<td><code>awk -F " " '{print $NF}' file</code></td>
+<td>Print last field</td>
+<td>Get final status in logs</td>
+</tr>
+<tr>
+<td>119</td>
+<td><code>awk -F " " '{print $(NF-1)}' file</code></td>
+<td>Print second-last field</td>
+<td>Pull second-last value from log</td>
+</tr>
+<tr>
+<td>120</td>
+<td><code>awk -F " " '{print $1,$3}' file</code></td>
+<td>Print selected fields</td>
+<td>Custom field combination for analysis</td>
+</tr>
+</tbody>
+</table>
+<h4>✅ Linux Commands Table (Entries 121–150)</h4>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Command</th>
+<th>Description</th>
+<th>Real-Time Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>121</td>
+<td><code>ps -ef</code></td>
+<td>Show all running processes</td>
+<td>Monitor system activity</td>
+</tr>
+<tr>
+<td>122</td>
+<td><code>ps -ef \| grep -i "service"</code></td>
+<td>Find specific process</td>
+<td>Find specific process</td>
+</tr>
+<tr>
+<td>123</td>
+<td><code>ps -ef \| grep -ie "p1" -ie "p2"</code></td>
+<td>Search for multiple processes</td>
+<td>Search for multiple processes</td>
+</tr>
+<tr>
+<td>124</td>
+<td><code>kill -9 &lt;pid&gt;</code></td>
+<td>Forcefully kill a process</td>
+<td>Stop a hung or runaway process</td>
+</tr>
+<tr>
+<td>125</td>
+<td><code>service &lt;name&gt; stop</code></td>
+<td>Stop a service</td>
+<td>Stop Apache, MySQL, etc.</td>
+</tr>
+<tr>
+<td>126</td>
+<td><code>service &lt;name&gt; start</code></td>
+<td>Start a service</td>
+<td>Start server processes</td>
+</tr>
+<tr>
+<td>127</td>
+<td><code>service &lt;name&gt; restart</code></td>
+<td>Restart a service</td>
+<td>Apply config changes with restart</td>
+</tr>
+<tr>
+<td>128</td>
+<td><code>ps -u username</code></td>
+<td>Show processes by user</td>
+<td>Monitor specific user activity</td>
+</tr>
+<tr>
+<td>129</td>
+<td><code>ps -u ubuntu</code></td>
+<td>Same as above for ubuntu user</td>
+<td>Check default user usage</td>
+</tr>
+<tr>
+<td>130</td>
+<td><code>adduser username</code></td>
+<td>Add a new user</td>
+<td>Create new system accounts</td>
+</tr>
+<tr>
+<td>131</td>
+<td><code>find . -iname "test"</code></td>
+<td>Case-insensitive search for file/dir</td>
+<td>Locate files regardless of case</td>
+</tr>
+<tr>
+<td>132</td>
+<td><code>find . -iname "dir"</code></td>
+<td>Search for directories by name</td>
+<td>Locate folders in dev environments</td>
+</tr>
+<tr>
+<td>133</td>
+<td><code>find /path -iname "dir2"</code></td>
+<td>Search absolute path</td>
+<td>Find folder in entire workspace</td>
+</tr>
+<tr>
+<td>134</td>
+<td><code>find . -type f -iname "test"</code></td>
+<td>Search only files by name</td>
+<td>Filter only files, not directories</td>
+</tr>
+<tr>
+<td>135</td>
+<td><code>find . -type d -iname "test"</code></td>
+<td>Search only directories</td>
+<td>Used in organizing/migrating projects</td>
+</tr>
+<tr>
+<td>136</td>
+<td><code>find . -type f -mtime -10</code></td>
+<td>Files modified in last 10 days</td>
+<td>Check for recent updates</td>
+</tr>
+<tr>
+<td>137</td>
+<td><code>find . -type d -mtime -10</code></td>
+<td>Directories modified recently</td>
+<td>Detect recent deployments</td>
+</tr>
+<tr>
+<td>138</td>
+<td><code>find . -type d -mtime +5</code></td>
+<td>Directories older than 5 days</td>
+<td>Archive old logs or backups</td>
+</tr>
+<tr>
+<td>139</td>
+<td><code>find . -type f -mtime +20</code></td>
+<td>Files older than 20 days</td>
+<td>Identify cleanup candidates</td>
+</tr>
+<tr>
+<td>140</td>
+<td><code>find . -type f -mmin -5</code></td>
+<td>Files modified in last 5 mins</td>
+<td>Spot real-time log or file updates</td>
+</tr>
+<tr>
+<td>141</td>
+<td><code>find . -type d -mmin -15</code></td>
+<td>Recent directory changes</td>
+<td>Track deployments</td>
+</tr>
+<tr>
+<td>142</td>
+<td><code>find . -type f -mmin -15</code></td>
+<td>Recent file changes</td>
+<td>Audit fresh activity in logs</td>
+</tr>
+<tr>
+<td>143</td>
+<td><code>find . -type f -perm 777</code></td>
+<td>World-writable files</td>
+<td>Find insecure files</td>
+</tr>
+<tr>
+<td>144</td>
+<td><code>find . -type d -perm 644</code></td>
+<td>Directories with wrong perms</td>
+<td>Detect permission issues</td>
+</tr>
+<tr>
+<td>145</td>
+<td><code>find . -perm 755</code></td>
+<td>Standard permission check</td>
+<td>Audit executable paths</td>
+</tr>
+<tr>
+<td>146</td>
+<td><code>find . -type f -empty</code></td>
+<td>Empty files</td>
+<td>Identify unused config/test files</td>
+</tr>
+<tr>
+<td>147</td>
+<td><code>find . -type f -not -empty</code></td>
+<td>Non-empty files</td>
+<td>Locate real/active files</td>
+</tr>
+<tr>
+<td>148</td>
+<td><code>xargs</code></td>
+<td>Build and execute command lines from input</td>
+<td>Used with <code>find</code> to delete/search efficiently</td>
+</tr>
+<tr>
+<td>149</td>
+<td><code>find . -type f -mtime +2 \| xargs rm</code></td>
+<td>Delete files older than 2 days</td>
+<td>Delete files older than 2 days</td>
+</tr>
+<tr>
+<td>150</td>
+<td><code>find . -type f -mtime +365 \| xargs rm</code></td>
+<td>Delete files older than 1 year</td>
+<td>Delete files older than 1 year</td>
+</tr>
+</tbody>
+</table>
+<h4>✅ Linux Commands (151–174)</h4>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Command</th>
+<th>Description</th>
+<th>Real-Time Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>151</td>
+<td><code>find . -type f -iname "test" -maxdepth 1</code></td>
+<td>Find matching files in current directory only</td>
+<td>Avoid deep search and improve speed</td>
+</tr>
+<tr>
+<td>152</td>
+<td><code>find . -type d -iname "test" -maxdepth 2</code></td>
+<td>Find matching directories with limited depth</td>
+<td>Used in controlled structure searches</td>
+</tr>
+<tr>
+<td>153</td>
+<td><code>find . -iname "test" -maxdepth 1</code></td>
+<td>Find files or dirs by name in current level</td>
+<td>Quick validation of naming convention</td>
+</tr>
+<tr>
+<td>154</td>
+<td><code>ln -s test1 softlink</code></td>
+<td>Create symbolic (soft) link</td>
+<td>Shortcut to config/log/scripts</td>
+</tr>
+<tr>
+<td>155</td>
+<td><code>ln -s /home/test/test1 softlink</code></td>
+<td>Softlink to absolute path</td>
+<td>Share file across directories</td>
+</tr>
+<tr>
+<td>156</td>
+<td><code>ln /home/test/test1 hardlink</code></td>
+<td>Create hard link</td>
+<td>Duplicate a file with shared inode</td>
+</tr>
+<tr>
+<td>157</td>
+<td><code>uname -a</code></td>
+<td>Show kernel and OS info</td>
+<td>Check system version and architecture</td>
+</tr>
+<tr>
+<td>158</td>
+<td><code>cat /etc/os-release</code></td>
+<td>Show OS release info</td>
+<td>Confirm Linux distribution (Ubuntu, CentOS, etc.)</td>
+</tr>
+<tr>
+<td>159</td>
+<td><code>hostname</code></td>
+<td>Display system hostname</td>
+<td>Check system identity</td>
+</tr>
+<tr>
+<td>160</td>
+<td><code>who \| wc -l</code></td>
+<td>Count logged-in users</td>
+<td>Count logged-in users</td>
+</tr>
+<tr>
+<td>161</td>
+<td><code>whoami</code></td>
+<td>Show current user</td>
+<td>Identify running user context</td>
+</tr>
+<tr>
+<td>162</td>
+<td><code>nohup ./script.sh &amp;</code></td>
+<td>Run script in background with no hangup</td>
+<td>Keep processes running after logout</td>
+</tr>
+<tr>
+<td>163</td>
+<td><code>top</code></td>
+<td>Display running processes dynamically</td>
+<td>Real-time monitoring of CPU/memory usage</td>
+</tr>
+<tr>
+<td>164</td>
+<td><code>ssh username@server</code></td>
+<td>Connect to remote server via SSH</td>
+<td>Administer or deploy on remote Linux server</td>
+</tr>
+<tr>
+<td>165</td>
+<td><code>ssh -i demo.pem user@server</code></td>
+<td>Connect to EC2 using key pair</td>
+<td>Login securely to AWS instance</td>
+</tr>
+<tr>
+<td>166</td>
+<td><code>ssh -i demo.pem ubuntu@&lt;ip&gt;</code></td>
+<td>SSH login with Ubuntu user</td>
+<td>Standard AWS EC2 login for Ubuntu</td>
+</tr>
+<tr>
+<td>167</td>
+<td><code>scp file user@server:/tmp</code></td>
+<td>Copy file to remote server</td>
+<td>Transfer logs/configs</td>
+</tr>
+<tr>
+<td>168</td>
+<td><code>scp file user@server:/home/ubuntu</code></td>
+<td>Copy file to user's home directory</td>
+<td>Deploy scripts</td>
+</tr>
+<tr>
+<td>169</td>
+<td><code>scp -r dir user@server:/path</code></td>
+<td>Recursively copy directory</td>
+<td>Full folder backup or deployment</td>
+</tr>
+<tr>
+<td>170</td>
+<td><code>rsync file user@server:/path</code></td>
+<td>Efficient file synchronization</td>
+<td>Backup with delta transfer</td>
+</tr>
+<tr>
+<td>171</td>
+<td><code>ping google.com</code></td>
+<td>Check connectivity</td>
+<td>Test internet or DNS resolution</td>
+</tr>
+<tr>
+<td>172</td>
+<td><code>ping IP_ADDRESS</code></td>
+<td>Ping by IP</td>
+<td>Check server or service status</td>
+</tr>
+<tr>
+<td>173</td>
+<td><code>telnet IP</code> or <code>telnet hostname</code></td>
+<td>Test TCP connection to a host</td>
+<td>Validate port access/firewall</td>
+</tr>
+<tr>
+<td>174</td>
+<td><code>netstat -na \| grep 8080</code></td>
+<td>Check if port 8080 is listening</td>
+<td>Check if port 8080 is listening</td>
+</tr>
+</tbody>
+</table>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../linux/kill-signal.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">kill signal</span>
+  </a>
+  <a href="../linux/linux-interview-questions-1.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">linux interview questions 1</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

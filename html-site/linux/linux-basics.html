@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>linux basics &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html" class="active">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🐧 Linux</span>
+          <span class="separator">/</span>
+          <span class="current">linux basics</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🐧 Linux Module</div>
+          <h1 class="hero-title">linux basics</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+<div class="diagram-figure" style="margin-top: 1.5rem; margin-bottom: 2.5rem; border: 2px solid var(--border-highlight); box-shadow: 0 0 35px var(--accent-cyan-glow);">
+  <div class="diagram-badge" style="background: linear-gradient(90deg, rgba(6,182,212,0.25), rgba(59,130,246,0.25)); font-size: 0.85rem;">
+    ⭐ FEATURED ARCHITECTURAL BLUEPRINT &bull; Linux Kernel & Architecture Overview
+  </div>
+  <img src="../assets/images/linux-system-architecture.jpg" alt="Linux Kernel & Architecture Overview" class="diagram-img" loading="eager">
+  <div class="diagram-caption" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+    Linux Operating System Layers: User Space, System Calls, Kernel Subsystems, and Hardware
+  </div>
+</div>
+
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <div class="diagram-figure">
+  <div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/0%20326MtB8ciLLPUUy.jpg" alt="Visual Diagram" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">0 326MtB8ciLLPUUy.jpg</div>
+</div>
+
+<p>To begin with we will see what is an <em><strong>operating system,</strong></em></p>
+<h3>Operating System</h3>
+<p>It is a type of software that interface between <em><strong>user and computer hardware devices</strong>.</em> It allows user to communicate with devices and to perform desired functions. It performs all the basic tasks like file management, memory management, process management, handling input and output, and controlling peripheral devices such as disk drives and printers.</p>
+<p>The primary purposes of an <strong>Operating System</strong> are to enable applications (Software’s) to interact with a computer’s hardware and to manage a system’s hardware and software resources.</p>
+<p>Some popular Operating Systems include <strong>Linux , Windows , macOS, iOS, Android</strong>, etc. In the modern days, when speaking about <strong>servers</strong>, around <strong>80% run GNU/Linux</strong> and 20% run Windows. And talking about mobile devices, around 75% run Android (which uses the Linux kernel) and 25% run IOs (which is Apple’s mobile OS).</p>
+<p>We can see here Linux is on top when we talk about servers, but regarding <strong>desktop</strong> segment Window (with 73.72% market share) has more market share than Linux (with 3% market share)</p>
+<h3>Why do we need OS?</h3>
+<p>Nowadays, it is difficult to imagine everyday life without the use of computers. Every computer needs an operating system (OS) to work. An operating system is a set of basic system programs that manage computer hardware to perform basic computer functions, that is, it enables a connection between hardware and user programs.</p>
+<p>here we will talk about Linux operating system, Linux overview and what benefits it offers over other OS choices.</p>
+<h3>What is Linux?</h3>
+<p>Linux is an open source Operating System was first published on 17 September 1991 by <em><strong>Linus Torvalds</strong></em>. It’s like window, macOS, android . It also like Unix operating system, most of the Linux and Unix commands are similar in nature. It is freely available for commercial as well as for non-commercial purposes. As it is available for commercial purposes that means any programmer can do some changes in the Linux kernel by doing some code and finally make it as the new distribution.</p>
+<p>Recently, Linux has undergone a significant progress and since it provides many helpful features to companies and home users, it has become one of the most commonly used operating systems in IT industry and also available free-of-cost on the Internet.</p>
+<h3>Linux distribution</h3>
+<p>A Linux distribution (also called as <em><strong>Linux distro</strong></em>) is a collection of software that is based upon the <strong>Linux kernel</strong>. It includes GNU tools, kernel, software modules, X-server, shell utilities, an installer, and it often as a package management system. It is an Open-source project where all the programmers are combined together and make some changes in the Linux kernel by compiling the codes and make it as a new Distros.</p>
+<p>Over the Internet, there are more than 600 Linux distros available. But, Within 600 distros maximum are not too much useful but there is some of the distro are very powerful and useful distros.</p>
+<p>Famous Linux distribution are: <em><strong>ubuntu, fedora, RedHat Enterprise Linux (RHEL), Arch Linux, Chrome OS and Debian</strong></em></p>
+<p><em><strong>ubuntu</strong></em> is one of the most popular distros in the Linux industry with 31.8% market share. It is a lightweight Linux distribution and works very smoothly and fast.</p>
+<h3>Linux Architecture</h3>
+<p>The Linux operating system’s architecture contains some of the components: <strong>the Kernel, System Library, Hardware layer, System,</strong> and <strong>Shell utility</strong>.</p>
+<div class="diagram-figure">
+  <div class="diagram-badge">🖼️ Architectural Visual / Reference</div>
+  <img src="../assets/images/0lSKB1_SHFqIZgOQc.png" alt="Visual Diagram" class="diagram-img" loading="lazy">
+  <div class="diagram-caption">0lSKB1_SHFqIZgOQc.png</div>
+</div>
+
+<p>Linux Architecture</p>
+<ol>
+<li><strong>Kernel:-</strong> The kernel is one of the core component of an operating system. It is responsible for all major activities of this operating system. It consists of various modules and it interacts directly with the underlying hardware. The kernel facilitates required abstraction for hiding details of low-level hardware or application programs to the system. Some important kernel types are noted below:
+   * Monolithic Kernel
+   * Micro kernels
+   * Exo kernels
+   * Hybrid kernels</li>
+</ol>
+<p><strong>2. System Libraries:-</strong> These libraries can be specified as some special functions. These libraries implement most of the functionalities of the operating system and don’t need code access rights of the modules of kernel.</p>
+<p><strong>3. System Utility</strong> :- System Utility programs are responsible to do specialized, individual level tasks</p>
+<p><strong>4. Hardware layer:-</strong> This operating system contains a hardware layer that consists of several peripheral devices like CPU, HDD, and RAM.</p>
+<p><strong>5. Shell:-</strong> It is an interface among the kernel and user. It can afford the services of kernel. It can take commands through the user and runs the functions of the kernel. The shell is available in distinct types of operating system’s. These operating systems are categorized into two different types of shells, which are the <strong>graphical shells</strong> and <strong>command-line shells</strong>.</p>
+<p>The graphical line shells facilitate the graphical user interface, while the command line shells facilitate the command line interface. Thus, both of these shells implement operations. However, the graphical user interface shells work slower as compared to the command-line interface shells. There are a few types of these shells are mentioned below:</p>
+<ul>
+<li>Korn shell</li>
+<li>Bourne shell</li>
+<li>C shell</li>
+<li>POSIX shell</li>
+</ul>
+<h3>Benefits of Linux</h3>
+<p>Linux Operating System is a famous among programmers as well as regular computer users around the world.</p>
+<p>It’s main benefits are :-</p>
+<ol>
+<li>It offers a free operating system on the internet. You do not have to shell hundreds of dollars to get the OS like Windows</li>
+<li>It is easy to learn Linux for beginners</li>
+<li>Being open-source, anyone with programming knowledge can modify it.</li>
+<li>The Linux operating systems now offer millions of programs/applications and Linux software’s to choose from, most of them are free.</li>
+<li>Multitasking operating system: can run multiple job simultaneously without affecting the system speed</li>
+<li>Capable of handling large no. of users simultaneously</li>
+<li><strong>security</strong> : It’s not completely safe but less vulnerable than others, does not required any antivirus program</li>
+<li>Once you have Linux installed you no longer need an antivirus! Linux is a highly secure system. <strong>Virus</strong> is not executed until the administrator send the Password</li>
+<li>Linux distribution have live cd/USB option provide large community support, always take care of user privacy</li>
+<li>Light weight-less requirement for running Linux</li>
+<li>More stable rarely hang-up and slow down</li>
+<li>Linux freeware is the OS of choice for Server environments due to its stability and reliability (Mega-companies like Amazon, Facebook, and Google use Linux for their Servers). A Linux based server could run non-stop without a reboot for years on end.</li>
+<li>Provide high performance over a different networks</li>
+<li>Flexible, can be used for desktop/server app ,embedded system</li>
+<li>Software updates are in user control: more faster updates, system update continuously without failing any issues</li>
+<li>programmers can design their own custom operating system</li>
+</ol>
+<h3>Linux use cases:</h3>
+<ol>
+<li>Used to manage various services such as process scheduling, application scheduling, basic peripheral devices, file system and more.</li>
+<li>Used to run webserver, laptops and desktops, mobile devices, servers and embedded system etc.</li>
+<li>Amazon also use Linux to protect server.</li>
+</ol>
+<h3>Why the Linux is better than other OS?</h3>
+<p>There are many features of Linux that demonstrate that it is better than other operating system</p>
+<p><em><strong>Free to Use:-</strong></em> Linux is accessible to the public for free. However, that is not the case with Windows. You will not have to pay 100–250 USD to get your hands on a genuine copy of a Linux distributions (such as Ubuntu, Fedora). So, it is entirely free.</p>
+<p><em><strong>Variety Of Distributions:-</strong></em> You will find tons of Linux distributions catered for a different set of needs. So, you can choose to install any of the available Linux distros according to your requirements. For example, there are Linux distributions for hackers, there are Linux distributions for Programmers, Linux distributions for extremely old computer’s, and the list goes on. There is a Linux for everyone.</p>
+<p><em><strong>customization :-</strong></em> One major advantages of Linux instead of Windows is customization. If you like tweaking your system’s looks, Linux is just perfect for you. Apart from installing themes , you have tons of beautiful icon themes. You can also do a lot around wallpapers in Linux.</p>
+<p><em><strong>software update:-</strong></em> If you have a Windows-powered system for a long time, you may have encountered issues with every update. However, with Linux, you would observe software updates to address every little bug and most of which isn’t system-breaking if you’re using an LTS(Long time support) version of a distribution. So, with Linux, you will notice more effective and faster updates to fix the problems you might be facing. That’s not the case with Windows.</p>
+<p><em><strong>Open Source Nature :-</strong></em> However, Linux is completely an open source project. You can have a look at the source code of a Linux OS, which is a plus.</p>
+<p><em><strong>Secure :-</strong></em> It is just the way Linux works that makes it a secure operating system. Overall, the process of package management, the concept of repositories, and a couple more features makes it possible for Linux to be more secure than Windows. When you have Windows installed, you need to download/purchase an antivirus program to keep your computer safe from hackers and malware. However, Linux does not require the use of such Anti-Virus programs. Being secure by nature would make things easier for you and save money as well because you will not have to get a premium Antivirus software.</p>
+<p><em><strong>Reliability :-</strong></em> Windows, as we know it, you will want to re-install Windows after a while when you encounter crashes and slowdowns on your system. If you are using Linux, you will not have to worry about re-installing it just to experience a faster and a smoother system. Linux helps your system run smooth for a longer period (in fact, much longer!).</p>
+<p><em><strong>perfect for programmers :-</strong></em> Linux supports almost all of the major programming languages (<em>Python, C/C++, Java, Perl, Ruby, etc</em>.). Moreover, it offers a vast range of applications useful for programming purposes.</p>
+<p>The Linux terminal is superior to use over Window’s command line for developers. You would find many libraries developed natively for Linux. Also, a lot of programmers point out that the package manager on Linux helps them get things done easily. Linux also brings in native support for SSH(secure shell), which would help you manage your servers quickly. You could include things like <em><strong>apt</strong></em> commands which further makes Linux one of the most popular choices of the programmers.</p>
+<h3>Disadvantages:</h3>
+<ol>
+<li>One of the main disadvantages of Linux is that it can have a steeper learning curve compared to other operating systems</li>
+<li><strong>Software compatibility:</strong> One more potential disadvantage of Linux is that some of the software and applications may not be readily available. This is because many software developers focus on developing software for Windows or macOS, which have larger user bases.</li>
+<li><strong>Hardware Compatibility:</strong> In Linux, certain hardware devices have limited or no support at all. This can be due to several reasons, such as the device not having an open-source driver or the manufacturer not providing Linux-compatible drivers.</li>
+<li><strong>Lack of Standardization:</strong> Another point that falls under the disadvantages of Linux is the lack of standardization in the ecosystem.</li>
+</ol>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../linux/README.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">Linux</span>
+  </a>
+  <a href="../linux/different-shells-in-linux.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">different shells in linux</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

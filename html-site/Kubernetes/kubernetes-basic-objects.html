@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Nimbuswiztech beginner-friendly Kubernetes basic objects hands-on training guide">
+<title>Kubernetes Basic Objects — Nimbuswiztech Training Guide</title>
+<style>
+:root{--ink:#182230;--muted:#536273;--line:#d9e1ea;--paper:#fff;--bg:#f3f6fa;--blue:#1458a6;--blue2:#eaf3ff;--green:#e8f7ef;--amber:#fff4d8;--red:#fff0ef;--code:#101b2a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:var(--blue);overflow-wrap:anywhere}header{background:#102b49;color:white;padding:2.2rem max(1rem,calc((100% - 1180px)/2));border-bottom:5px solid #5aa5ff}header .brand{font-weight:800;letter-spacing:.12em;font-size:.82rem;color:#bcdcff}header h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.12;margin:.45rem 0 1rem}header p{max-width:850px;color:#e0eaf6}.wrap{max-width:1180px;margin:0 auto;padding:1.2rem}nav#toc,.panel,section{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:1.25rem;margin:1rem 0;box-shadow:0 2px 8px #162a3d0a}nav#toc h2{margin-top:0}nav#toc ol{columns:2;column-gap:2rem;padding-left:1.4rem}nav#toc li{break-inside:avoid;margin:.28rem 0}h2{font-size:1.65rem;margin-top:0;border-bottom:1px solid var(--line);padding-bottom:.45rem}h3{font-size:1.2rem;margin-bottom:.35rem}h4{margin-bottom:.3rem}p{margin:.55rem 0}ul,ol{padding-left:1.5rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem}.card{border:1px solid var(--line);border-radius:10px;padding:1rem;background:#fff}.callout{padding:.85rem 1rem;border-left:4px solid var(--blue);background:var(--blue2);border-radius:5px;margin:.8rem 0}.warn{border-left-color:#bb7a00;background:var(--amber)}.success{border-left-color:#18834b;background:var(--green)}.danger{border-left-color:#c33;background:var(--red)}table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.94rem}th,td{border:1px solid var(--line);padding:.6rem;text-align:left;vertical-align:top}th{background:#edf2f8} .table-wrap{overflow-x:auto}pre{position:relative;overflow:auto;background:var(--code);color:#e9f1fb;padding:1rem;border-radius:9px;line-height:1.5;font-size:.9rem;white-space:pre;tab-size:2}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code,td code{background:#edf1f6;padding:.12rem .3rem;border-radius:4px;color:#20344b}.copy{position:absolute;right:.5rem;top:.5rem;background:#fff;color:#102b49;border:0;border-radius:5px;padding:.3rem .55rem;cursor:pointer;font-weight:700}.muted{color:var(--muted)}.pill{display:inline-block;border:1px solid #c9d8e9;background:#f2f7fc;padding:.1rem .5rem;border-radius:999px;font-size:.82rem;margin:.1rem}.diagram{width:100%;height:auto;display:block;background:#f8fbff;border:1px solid var(--line);border-radius:10px;margin:.7rem 0}.exercise{border:1px solid var(--line);border-radius:10px;padding:1rem;margin:1rem 0}.exercise h3{margin-top:0}.question{border-top:1px solid var(--line);padding:.7rem 0}.question summary{cursor:pointer;font-weight:700}.question .answer{padding:.4rem .6rem;background:#f7f9fc;border-radius:6px;margin-top:.5rem}.searchbox{width:100%;padding:.7rem;border:1px solid #aebdce;border-radius:7px;font:inherit;margin:.5rem 0 1rem}.toplink{display:inline-block;margin:.7rem 0}footer{text-align:center;padding:2rem 1rem;color:var(--muted)}.small{font-size:.9rem}.step{font-weight:700;color:var(--blue)}.no-js{display:block}
+@media(max-width:650px){.wrap{padding:.65rem}nav#toc ol{columns:1}section,.panel,nav#toc{padding:1rem}table{font-size:.85rem}}
+@media print{body{background:#fff;font-size:10pt;color:#000}header{background:#fff;color:#000;border-bottom:2px solid #333;padding:1rem}header p,header .brand{color:#333}.wrap{max-width:none;padding:0}nav#toc,section,.panel{box-shadow:none;border:1px solid #aaa;break-inside:avoid;margin:.5rem 0;padding:.7rem}a{color:#000;text-decoration:underline}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f4f4;color:#000;border:1px solid #aaa;padding:.5rem}.copy,.searchbox,.toplink{display:none}details:not([open])>*:not(summary){display:block}h2,h3{break-after:avoid}svg{max-height:260px}footer{padding:.5rem}}
+</style>
+</head>
+<body id="top">
+<header>
+  <div class="brand">NIMBUSWIZTECH · STUDENT LEARNING REFERENCE</div>
+  <h1>Kubernetes Basic Objects</h1>
+  <p>A beginner-friendly theory, command, YAML, hands-on practice and interview guide. Learn how Pods, Deployments, Services, Namespaces, labels, ConfigMaps and Secrets work together.</p>
+  <p><span class="pill">Beginner level</span> <span class="pill">Hands-on lab</span> <span class="pill">Interview prep</span> <span class="pill">Single-file HTML</span></p>
+</header>
+<main class="wrap">
+<nav id="toc" aria-label="Table of contents">
+<h2>Contents</h2>
+<ol>
+<li><a href="#intro">Introduction and objectives</a></li><li><a href="#concepts">Core concepts</a></li><li><a href="#architecture">Architecture and workflow</a></li><li><a href="#environment">Environment preparation</a></li><li><a href="#lab">Step-by-step hands-on lab</a></li><li><a href="#endtoend">Complete practical example</a></li><li><a href="#troubleshoot">Troubleshooting guide</a></li><li><a href="#best">Best practices</a></li><li><a href="#interview">Interview preparation</a></li><li><a href="#assignments">Practice assignments</a></li><li><a href="#revision">Quick revision cheat sheet</a></li><li><a href="#cleanup">Final lab cleanup</a></li><li><a href="#references">References</a></li>
+</ol>
+</nav>
+
+<section id="intro">
+<h2>1. Introduction</h2>
+<p>Kubernetes is a platform for deploying and operating containerized applications. A <strong>Kubernetes object</strong> is a persistent record of the desired state of part of a cluster. You declare what you want, and Kubernetes controllers continually work to make the observed state match that intent.</p>
+<div class="grid">
+<div class="card"><h3>Why objects?</h3><p>They provide a consistent API for describing workloads, networking, configuration, and isolation rather than relying on manual server-by-server operations.</p></div>
+<div class="card"><h3>Real-world analogy</h3><p>A Deployment is like a manager requesting three identical shop employees; Pods are the workers, and a Service is the stable reception desk directing customers to available workers.</p></div>
+<div class="card"><h3>DevOps example</h3><p>Deploy a web app with three replicas, expose it internally with a Service, place it in a dedicated namespace, and keep environment-specific settings in a ConfigMap.</p></div>
+</div>
+<h3>Learning objectives</h3>
+<ul><li>Read Kubernetes YAML manifests and understand <code>apiVersion</code>, <code>kind</code>, <code>metadata</code>, and <code>spec</code>.</li><li>Explain Pods, Deployments, ReplicaSets, Services, Namespaces, labels/selectors, ConfigMaps, and Secrets.</li><li>Apply, inspect, update, scale, debug, and safely delete lab resources.</li><li>Reason through common workload and connectivity failures.</li></ul>
+<h3>Prerequisites</h3>
+<p>Basic command-line use, YAML indentation, container image concepts, and a terminal. You do not need a cloud account for the core lab.</p>
+<div class="callout warn"><strong>Lab safety:</strong> Run commands against a cluster you are authorized to use. The lab creates resources only in the <code>nimbus-basic-lab</code> namespace. Do not delete namespaces or resources belonging to other students or teams.</div>
+</section>
+
+<section id="concepts">
+<h2>2. Core concepts and terminology</h2>
+<h3>Object manifest anatomy</h3>
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: nimbus-basic-lab
+  labels:
+    app: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27</code></pre>
+<ul><li><code>apiVersion</code>: API group and version accepted by the cluster.</li><li><code>kind</code>: resource type.</li><li><code>metadata</code>: identity and descriptive metadata such as name, namespace, labels, and annotations.</li><li><code>spec</code>: desired configuration.</li><li><code>status</code>: observed state reported by Kubernetes; normally do not write it in a manifest.</li></ul>
+<h3>Basic objects at a glance</h3>
+<div class="table-wrap"><table><thead><tr><th>Object</th><th>Purpose</th><th>Key point</th><th>Common relationship</th></tr></thead><tbody>
+<tr><td>Pod</td><td>Runs one or more closely related containers.</td><td>Smallest deployable unit; disposable and replaceable.</td><td>Usually created by a Deployment/ReplicaSet.</td></tr>
+<tr><td>Deployment</td><td>Manages stateless application replicas and rollouts.</td><td>Declares replica count and Pod template.</td><td>Creates/owns a ReplicaSet, which creates Pods.</td></tr>
+<tr><td>ReplicaSet</td><td>Keeps a matching number of Pods running.</td><td>Usually managed indirectly by a Deployment.</td><td>Matches Pods using labels/selectors.</td></tr>
+<tr><td>Service</td><td>Provides stable networking for a changing set of Pods.</td><td>Uses a selector to identify backend Pods in typical cases.</td><td>Routes to selected ready endpoints.</td></tr>
+<tr><td>Namespace</td><td>Groups namespaced resources.</td><td>Not a strong security boundary by itself.</td><td>Pods, Deployments and Services can live inside it.</td></tr>
+<tr><td>ConfigMap</td><td>Stores non-confidential configuration.</td><td>Not intended for passwords or tokens.</td><td>Mounted as files or exposed as environment variables.</td></tr>
+<tr><td>Secret</td><td>Stores confidential configuration data.</td><td>Base64 encoding is not encryption; configure access and encryption controls.</td><td>Consumed by authorized workloads.</td></tr>
+<tr><td>Labels / selectors</td><td>Organize and select resources.</td><td>Label matching must be consistent.</td><td>Deployment selectors and Service selectors target Pods.</td></tr>
+</tbody></table></div>
+<h3>Pod versus Deployment</h3>
+<table><tr><th>Direct Pod</th><th>Deployment</th></tr><tr><td>Useful for short-lived debugging or learning fundamentals.</td><td>Recommended for most stateless application workloads.</td></tr><tr><td>No higher-level controller replaces the Pod if it is deleted.</td><td>Controller manages replicas, replacement and rolling updates.</td></tr><tr><td>Changing many Pod fields in place is restricted.</td><td>Change the Pod template to trigger a rollout.</td></tr></table>
+<h3>Service types</h3>
+<table><tr><th>Type</th><th>Use</th><th>Notes</th></tr><tr><td>ClusterIP</td><td>Internal cluster access.</td><td>Default type; accessible through cluster networking.</td></tr><tr><td>NodePort</td><td>Expose a port on each node.</td><td>Useful in some labs; not automatically a production ingress solution.</td></tr><tr><td>LoadBalancer</td><td>Ask a supported environment/provider to provision a load balancer.</td><td>Behavior and cost depend on the platform.</td></tr><tr><td>ExternalName</td><td>Map a Service name to a DNS name.</td><td>DNS alias behavior; does not proxy traffic to Pods.</td></tr></table>
+<h3>Imperative versus declarative management</h3>
+<p><strong>Imperative</strong> commands directly request an action, such as <code>kubectl create deployment web --image=nginx</code>. <strong>Declarative</strong> management describes the desired state in YAML and applies it with <code>kubectl apply -f file.yaml</code>. Declarative manifests are easier to review, version-control, repeat, and share with a team.</p>
+<div class="callout"><strong>Common misunderstanding:</strong> <code>containerPort: 80</code> documents a port in the Pod specification; it does not by itself publish the app externally. A Service or another networking mechanism is typically needed.</div>
+</section>
+
+<section id="architecture">
+<h2>3. Architecture and workflow</h2>
+<p>This diagram is a conceptual view, not a screenshot of a live cluster.</p>
+<svg class="diagram" viewBox="0 0 900 430" role="img" aria-label="Diagram showing user manifest to API server, Deployment to ReplicaSet to Pods, and Service selecting Pods">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#42658a"/></marker></defs>
+<rect x="25" y="25" width="230" height="75" rx="12" fill="#eaf3ff" stroke="#4d80bd"/><text x="140" y="54" text-anchor="middle" font-size="17" font-weight="bold" fill="#183b62">YAML manifest</text><text x="140" y="77" text-anchor="middle" font-size="13" fill="#183b62">kubectl apply</text>
+<rect x="335" y="25" width="230" height="75" rx="12" fill="#eaf3ff" stroke="#4d80bd"/><text x="450" y="54" text-anchor="middle" font-size="17" font-weight="bold" fill="#183b62">API server</text><text x="450" y="77" text-anchor="middle" font-size="13" fill="#183b62">validates and stores objects</text>
+<path d="M255 62 L330 62" stroke="#42658a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="335" y="145" width="230" height="65" rx="12" fill="#e8f7ef" stroke="#4c9a70"/><text x="450" y="173" text-anchor="middle" font-size="17" font-weight="bold" fill="#155d38">Deployment</text><text x="450" y="194" text-anchor="middle" font-size="13" fill="#155d38">desired replicas + template</text>
+<path d="M450 100 L450 140" stroke="#42658a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="335" y="250" width="230" height="60" rx="12" fill="#fff4d8" stroke="#c89b3c"/><text x="450" y="275" text-anchor="middle" font-size="16" font-weight="bold" fill="#704d00">ReplicaSet</text><text x="450" y="294" text-anchor="middle" font-size="13" fill="#704d00">maintains matching Pods</text>
+<path d="M450 210 L450 245" stroke="#42658a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="300" y="350" width="105" height="52" rx="10" fill="#f0eaff" stroke="#8d73c7"/><text x="352" y="380" text-anchor="middle" font-size="15" fill="#39256e">Pod 1</text>
+<rect x="398" y="350" width="105" height="52" rx="10" fill="#f0eaff" stroke="#8d73c7"/><text x="450" y="380" text-anchor="middle" font-size="15" fill="#39256e">Pod 2</text>
+<rect x="496" y="350" width="105" height="52" rx="10" fill="#f0eaff" stroke="#8d73c7"/><text x="548" y="380" text-anchor="middle" font-size="15" fill="#39256e">Pod 3</text>
+<path d="M450 310 L450 330 L352 330 L352 345 M450 330 L450 345 M450 330 L548 330 L548 345" stroke="#42658a" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<rect x="660" y="245" width="205" height="75" rx="12" fill="#eaf3ff" stroke="#4d80bd"/><text x="762" y="274" text-anchor="middle" font-size="17" font-weight="bold" fill="#183b62">Service</text><text x="762" y="295" text-anchor="middle" font-size="13" fill="#183b62">stable name and virtual IP</text>
+<path d="M660 285 L620 285 L620 325 L575 325 L575 345" stroke="#42658a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+<text x="450" y="423" text-anchor="middle" font-size="12" fill="#536273">Selectors and labels connect controllers and Services to Pods</text>
+</svg>
+<ol><li><code>kubectl</code> sends a request to the Kubernetes API server.</li><li>The API server validates the object and persists desired state.</li><li>The Deployment controller creates or updates a ReplicaSet.</li><li>The ReplicaSet controller creates Pods to meet the requested replica count.</li><li>The scheduler assigns unscheduled Pods to suitable nodes; node agents and the container runtime start containers.</li><li>A Service selector identifies matching Pods and provides stable access despite Pod replacement.</li></ol>
+<p class="muted small">A Service does not normally create Pods. A Deployment does not directly route client traffic. Each resource has a distinct responsibility.</p>
+</section>
+
+<section id="environment">
+<h2>4. Environment preparation</h2>
+<p>Use an existing authorized cluster, Minikube, or kind. The main lab uses standard Kubernetes APIs and does not require EKS. A cloud cluster can incur charges for nodes, load balancers, storage, or data transfer; this lab uses a ClusterIP Service to avoid requesting a cloud load balancer.</p>
+<h3>Verify tools and cluster context</h3>
+<pre><code>kubectl version --client
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+kubectl config current-context</code></pre>
+<ul><li><code>kubectl version --client</code>: confirms the client is installed.</li><li><code>kubectl cluster-info</code>: checks access to the API server and cluster endpoints.</li><li><code>kubectl get nodes</code>: lists registered nodes; nodes should be Ready for normal workloads.</li><li><code>kubectl get namespaces</code>: lists namespace scopes.</li><li><code>kubectl config current-context</code>: identifies the selected kubeconfig context. Confirm it before applying resources.</li></ul>
+<h3>Optional local cluster</h3>
+<p>If you do not have a cluster, install Minikube or kind using their official instructions, then start a cluster. Example for Minikube (requires Minikube and a supported container runtime or VM driver already installed):</p>
+<pre><code>minikube start
+kubectl config current-context
+kubectl get nodes</code></pre>
+<div class="callout warn">Do not paste cloud credentials into manifests or share kubeconfig files. If a command reports Forbidden, you may lack RBAC permissions; contact the cluster administrator instead of trying to bypass access controls.</div>
+<h3>Create a lab folder</h3>
+<pre><code>mkdir -p kubernetes-basic-objects
+cd kubernetes-basic-objects</code></pre>
+</section>
+
+<section id="lab">
+<h2>5. Step-by-step hands-on practice</h2>
+<p>All exercises use the namespace <code>nimbus-basic-lab</code> and the app label <code>app: web</code>. Create the namespace once before the exercises.</p>
+<div class="exercise">
+<h3>Exercise 1: Create a namespace</h3>
+<p><strong>Objective:</strong> Keep training resources grouped and easy to clean up.</p><p><strong>Concept:</strong> Namespaces scope namespaced objects. They do not automatically isolate network traffic or grant access restrictions by themselves.</p>
+<pre><code>kubectl create namespace nimbus-basic-lab
+kubectl get namespaces
+kubectl get pods -n nimbus-basic-lab</code></pre>
+<p><strong>Expected result:</strong> The namespace appears as <code>Active</code>; initially there may be no Pods.</p>
+<p><strong>Troubleshooting:</strong> If it already exists, continue after confirming it is your lab namespace. If Forbidden, request namespace creation permission or use a namespace assigned by your trainer.</p>
+<p><strong>Interview connection:</strong> Are Nodes namespaced? No. Pods, Deployments, and Services are namespaced; Nodes and PersistentVolumes are cluster-scoped.</p>
+</div>
+<div class="exercise">
+<h3>Exercise 2: Create a standalone Pod</h3>
+<p><strong>Objective:</strong> Understand the smallest deployable unit.</p>
+<p>Create <code>pod.yaml</code>:</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: web-pod
+  namespace: nimbus-basic-lab
+  labels:
+    app: web
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.27
+    ports:
+    - containerPort: 80</code></pre>
+<p><strong>Run and verify:</strong></p>
+<pre><code>kubectl apply -f pod.yaml
+kubectl get pods -n nimbus-basic-lab -o wide
+kubectl describe pod web-pod -n nimbus-basic-lab
+kubectl logs web-pod -n nimbus-basic-lab</code></pre>
+<p><strong>Explanation:</strong> <code>v1</code> is the core API group version. The Pod has a name, namespace, and <code>app=web</code> label. The container uses an NGINX image. <code>containerPort</code> documents the expected listening port but does not expose it outside the Pod.</p>
+<p><strong>Expected result:</strong> Pod phase becomes Running if the image can be pulled and the node can schedule it. Output and timing vary by cluster.</p>
+<p><strong>Troubleshooting:</strong> Use <code>kubectl describe pod</code> to inspect scheduling and image-pull events. Use <code>kubectl logs</code> for container output. A direct Pod is not automatically replaced if you delete the Pod object.</p>
+</div>
+<div class="exercise">
+<h3>Exercise 3: Replace manual Pod management with a Deployment</h3>
+<p><strong>Objective:</strong> Keep multiple replicas running and enable rolling updates.</p>
+<p>Create <code>deployment.yaml</code>:</p>
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: nimbus-basic-lab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-deploy
+  template:
+    metadata:
+      labels:
+        app: web-deploy
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi</code></pre>
+<pre><code>kubectl apply -f deployment.yaml
+kubectl get deployments,replicasets,pods -n nimbus-basic-lab
+kubectl rollout status deployment/web -n nimbus-basic-lab
+kubectl describe deployment web -n nimbus-basic-lab</code></pre>
+<p><strong>Explanation:</strong> The Deployment selector must match labels in the Pod template. <code>replicas: 3</code> asks for three Pods. Requests influence scheduling; limits constrain container resource use. These example values are for a small lab and should be tuned for real workloads.</p>
+<p><strong>Expected result:</strong> Deployment shows 3 desired/available replicas when the cluster has enough resources and the image starts successfully.</p>
+<div class="callout warn">The standalone Pod uses <code>app: web</code>; the Deployment Pods use <code>app: web-deploy</code>. This deliberate difference prevents the standalone Pod from being counted as a Deployment replica.</div>
+<p><strong>Useful actions:</strong></p><pre><code>kubectl scale deployment/web --replicas=2 -n nimbus-basic-lab
+kubectl scale deployment/web --replicas=3 -n nimbus-basic-lab
+kubectl set image deployment/web nginx=nginx:1.27 -n nimbus-basic-lab
+kubectl rollout history deployment/web -n nimbus-basic-lab
+kubectl rollout undo deployment/web -n nimbus-basic-lab</code></pre>
+<p><strong>Interview connection:</strong> A Deployment manages ReplicaSets; a ReplicaSet ensures the desired number of matching Pods exist.</p>
+</div>
+<div class="exercise">
+<h3>Exercise 4: Add a Service for stable access</h3>
+<p><strong>Objective:</strong> Reach a changing set of Deployment Pods through a stable name and virtual IP.</p>
+<p>Create <code>service.yaml</code>:</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: nimbus-basic-lab
+spec:
+  type: ClusterIP
+  selector:
+    app: web-deploy
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    protocol: TCP</code></pre>
+<pre><code>kubectl apply -f service.yaml
+kubectl get service web -n nimbus-basic-lab
+kubectl get endpointslices -n nimbus-basic-lab
+kubectl describe service web -n nimbus-basic-lab</code></pre>
+<p><strong>Explanation:</strong> <code>port</code> is the Service port; <code>targetPort</code> is the port on selected Pods. The selector must match the Deployment Pod labels. EndpointSlices show backend endpoints when available.</p>
+<p><strong>Verify from inside the cluster:</strong></p><pre><code>kubectl run curl-test --image=curlimages/curl:8.10.1 --restart=Never -n nimbus-basic-lab --command -- sh -c 'sleep 3600'
+kubectl wait --for=condition=Ready pod/curl-test -n nimbus-basic-lab --timeout=120s
+kubectl exec curl-test -n nimbus-basic-lab -- curl -I --max-time 5 http://web</code></pre>
+<p><strong>Expected result:</strong> An HTTP response such as <code>HTTP/1.1 200 OK</code>. This requires image registry access and cluster DNS/networking to work.</p>
+<p><strong>Troubleshooting:</strong> If the Service has no endpoints, compare Service selector labels with Pod labels and check Pod readiness. If curl times out, inspect DNS, network policy, Pod readiness, and application listening port.</p>
+</div>
+<div class="exercise">
+<h3>Exercise 5: Configure the application using a ConfigMap</h3>
+<p><strong>Objective:</strong> Separate non-sensitive configuration from an image.</p>
+<p>Create <code>configmap.yaml</code>:</p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-settings
+  namespace: nimbus-basic-lab
+data:
+  APP_ENV: training
+  WELCOME_MESSAGE: Hello-from-Nimbuswiztech</code></pre>
+<p>Add the following environment variables to the Deployment container under <code>image</code> (or apply the complete Deployment manifest again after editing):</p>
+<pre><code>        envFrom:
+        - configMapRef:
+            name: web-settings</code></pre>
+<pre><code>kubectl apply -f configmap.yaml
+kubectl apply -f deployment.yaml
+kubectl rollout status deployment/web -n nimbus-basic-lab
+kubectl exec deployment/web -n nimbus-basic-lab -- printenv APP_ENV</code></pre>
+<p><strong>Note:</strong> The supplied <code>deployment.yaml</code> in Exercise 3 does not yet contain <code>envFrom</code>. Add the shown snippet beneath the container's <code>image</code> line before reapplying. Existing Pods are recreated by the Deployment when its Pod template changes.</p>
+<p><strong>Expected result:</strong> <code>training</code> is printed. A ConfigMap environment variable update generally requires Pods to be restarted/recreated before the new environment value is present.</p>
+</div>
+<div class="exercise">
+<h3>Exercise 6: Understand Secret handling safely</h3>
+<p><strong>Objective:</strong> Learn the API shape for confidential values without committing credentials to source control.</p>
+<div class="callout danger"><strong>Security:</strong> Do not put real passwords, access tokens, or production credentials in a training file or Git repository. Kubernetes Secret data is base64-encoded in manifests, which is not encryption. Restrict RBAC and enable encryption at rest where supported.</div>
+<p>Create a disposable lab Secret imperatively so the literal value does not need to be committed to a file:</p>
+<pre><code>kubectl create secret generic demo-credentials --from-literal=demo-user=student -n nimbus-basic-lab
+kubectl describe secret demo-credentials -n nimbus-basic-lab
+kubectl get secret demo-credentials -n nimbus-basic-lab -o yaml</code></pre>
+<p><strong>Expected result:</strong> The Secret exists and shows key names. YAML output includes encoded data; do not share it if it contains sensitive values. For real workloads, use a suitable secret-management workflow and least-privilege access.</p>
+</div>
+<div class="exercise">
+<h3>Exercise 7: Inspect labels and selectors</h3>
+<p><strong>Objective:</strong> Prove which Pods are targeted by the Deployment and Service.</p>
+<pre><code>kubectl get pods -n nimbus-basic-lab --show-labels
+kubectl get pods -n nimbus-basic-lab -l app=web-deploy
+kubectl get pods -n nimbus-basic-lab -l app=web
+kubectl get service web -n nimbus-basic-lab -o yaml</code></pre>
+<p><strong>Expected result:</strong> <code>app=web-deploy</code> selects Deployment Pods; <code>app=web</code> selects the standalone Pod. Labels are metadata; selectors are queries or matching rules that use labels.</p>
+</div>
+</section>
+
+<section id="endtoend">
+<h2>6. Complete practical example: a small web application</h2>
+<h3>Requirement</h3><p>Run three NGINX replicas in a dedicated namespace, provide stable in-cluster access, add basic resource requests/limits, and keep a non-secret environment setting outside the image.</p>
+<h3>Target architecture</h3><p>Namespace → ConfigMap + Deployment → ReplicaSet → three Pods; Service selects those Pods. The example does not create an external load balancer.</p>
+<h3>Complete manifest</h3>
+<p>Save as <code>complete-lab.yaml</code>. Multiple resources are separated by <code>---</code>.</p>
+<pre><code>apiVersion: v1
+kind: Namespace
+metadata:
+  name: nimbus-basic-lab
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-settings
+  namespace: nimbus-basic-lab
+data:
+  APP_ENV: training
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: nimbus-basic-lab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-deploy
+  template:
+    metadata:
+      labels:
+        app: web-deploy
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: web-settings
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: nimbus-basic-lab
+spec:
+  type: ClusterIP
+  selector:
+    app: web-deploy
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP</code></pre>
+<h3>Apply in order and verify</h3>
+<pre><code>kubectl apply -f complete-lab.yaml
+kubectl rollout status deployment/web -n nimbus-basic-lab --timeout=180s
+kubectl get deployment,replicaset,pods,service -n nimbus-basic-lab
+kubectl get pods -n nimbus-basic-lab --show-labels
+kubectl get endpointslices -n nimbus-basic-lab
+kubectl exec deployment/web -n nimbus-basic-lab -- printenv APP_ENV</code></pre>
+<p>To test HTTP from a temporary in-cluster client:</p>
+<pre><code>kubectl run curl-test --image=curlimages/curl:8.10.1 --restart=Never -n nimbus-basic-lab --command -- sh -c 'sleep 3600'
+kubectl wait --for=condition=Ready pod/curl-test -n nimbus-basic-lab --timeout=120s
+kubectl exec curl-test -n nimbus-basic-lab -- curl -I --max-time 5 http://web</code></pre>
+<h3>What to inspect if it fails</h3>
+<ul><li><strong>Deployment not available:</strong> inspect <code>kubectl describe deployment web -n nimbus-basic-lab</code> and the Pods' events.</li><li><strong>ImagePullBackOff:</strong> check image spelling, registry reachability, rate limits, and any required image-pull credentials.</li><li><strong>No Service endpoints:</strong> confirm selector <code>app: web-deploy</code> matches Pod labels exactly and Pods are Ready.</li><li><strong>APP_ENV missing:</strong> verify ConfigMap name/namespace and that the Deployment Pod template includes <code>envFrom</code>.</li><li><strong>Pending Pods:</strong> inspect scheduling events and node capacity; requests may exceed available resources.</li></ul>
+<p><strong>Cleanup:</strong> <code>kubectl delete namespace nimbus-basic-lab</code> deletes every namespaced resource in that lab namespace, including any extra resources someone placed there. On a shared cluster, inspect the namespace first and coordinate with the trainer. The final cleanup section gives a resource-scoped alternative.</p>
+</section>
+
+<section id="troubleshoot">
+<h2>7. Troubleshooting guide</h2>
+<div class="table-wrap"><table><thead><tr><th>Symptom or error</th><th>Possible cause</th><th>Diagnostic command</th><th>Resolution</th></tr></thead><tbody>
+<tr><td>Pod stuck Pending</td><td>Insufficient CPU/memory, taints, node selector/affinity mismatch, PVC or scheduling constraint.</td><td><code>kubectl describe pod POD -n nimbus-basic-lab</code><br><code>kubectl get nodes</code></td><td>Read Events first; adjust realistic requests or placement constraints with the cluster owner.</td></tr>
+<tr><td>ImagePullBackOff / ErrImagePull</td><td>Invalid image/tag, registry unavailable, rate limit, missing credentials.</td><td><code>kubectl describe pod POD -n nimbus-basic-lab</code></td><td>Correct image reference; verify registry access and imagePullSecrets if required.</td></tr>
+<tr><td>CrashLoopBackOff</td><td>Application exits repeatedly, bad arguments/configuration, dependency unavailable, probe failures.</td><td><code>kubectl logs POD -n nimbus-basic-lab --previous</code><br><code>kubectl describe pod POD -n nimbus-basic-lab</code></td><td>Use previous-container logs and events to identify the failure; correct config or startup behavior.</td></tr>
+<tr><td>Service has no endpoints</td><td>Selector mismatch, no matching Pods, Pods not Ready, wrong namespace.</td><td><code>kubectl get pods --show-labels -n nimbus-basic-lab</code><br><code>kubectl get endpointslices -n nimbus-basic-lab</code></td><td>Align selector and Pod labels; inspect readiness and Service namespace.</td></tr>
+<tr><td>Connection refused</td><td>App not listening on target port, incorrect targetPort, container not ready.</td><td><code>kubectl describe svc web -n nimbus-basic-lab</code><br><code>kubectl logs POD -n nimbus-basic-lab</code></td><td>Confirm application listener and match Service targetPort to actual port.</td></tr>
+<tr><td>DNS name not resolving</td><td>Cluster DNS issue, wrong Service name/namespace, test client lacks network access.</td><td><code>kubectl exec curl-test -n nimbus-basic-lab -- nslookup web</code></td><td>Use correct name; for cross-namespace access use service.namespace.svc.cluster.local; investigate DNS only after confirming name and endpoints.</td></tr>
+<tr><td>Deployment rollout stuck</td><td>Pods cannot schedule/start, failed readiness, invalid template or insufficient resources.</td><td><code>kubectl rollout status deployment/web -n nimbus-basic-lab</code><br><code>kubectl get pods -n nimbus-basic-lab</code></td><td>Inspect new Pods and events; fix root cause or use <code>kubectl rollout undo</code> if a bad rollout must be reversed.</td></tr>
+<tr><td>Forbidden</td><td>Current identity lacks required RBAC permission.</td><td><code>kubectl auth can-i create deployments -n nimbus-basic-lab</code></td><td>Request least-privilege access from administrator; do not bypass RBAC.</td></tr>
+<tr><td>ConfigMap value not reflected</td><td>Environment variables are set when container starts; existing processes do not automatically reload them.</td><td><code>kubectl describe configmap web-settings -n nimbus-basic-lab</code><br><code>kubectl describe deployment web -n nimbus-basic-lab</code></td><td>Trigger a controlled Pod rollout/restart or use an app-supported reload mechanism for mounted config.</td></tr>
+<tr><td>OOMKilled</td><td>Container exceeded memory limit or host memory pressure contributed.</td><td><code>kubectl describe pod POD -n nimbus-basic-lab</code></td><td>Review memory usage and workload needs; tune requests/limits and application behavior.</td></tr>
+</tbody></table></div>
+<p>Useful general diagnostics (replace placeholders with actual resource names):</p>
+<pre><code>kubectl get all -n nimbus-basic-lab
+kubectl describe pod web-pod -n nimbus-basic-lab
+kubectl get events -n nimbus-basic-lab --sort-by=.metadata.creationTimestamp
+kubectl logs web-pod -n nimbus-basic-lab
+kubectl get pods -n nimbus-basic-lab -o wide
+kubectl get deployment web -n nimbus-basic-lab -o yaml</code></pre>
+</section>
+
+<section id="best">
+<h2>8. Best practices</h2>
+<ul>
+<li><strong>Use Deployments for most stateless services.</strong> They manage replica count and rollouts; avoid relying on hand-created Pods for long-running apps.</li>
+<li><strong>Use descriptive labels consistently.</strong> For example, <code>app: web</code> and <code>app.kubernetes.io/name: web</code>. Check that Deployment selectors and Pod template labels agree.</li>
+<li><strong>Use a dedicated namespace.</strong> It improves organization and supports quota/RBAC boundaries, but pair it with policies when security isolation is required.</li>
+<li><strong>Declare resource requests and limits thoughtfully.</strong> Requests influence scheduling; limits can prevent noisy neighbors but overly tight CPU limits can throttle workloads. Measure real usage.</li>
+<li><strong>Use health probes for real applications.</strong> Readiness controls whether a Pod should receive traffic; liveness can restart an unhealthy container; startup probes help slow-starting apps. Do not add probes with guessed paths.</li>
+<li><strong>Separate configuration from the image.</strong> Use ConfigMaps for non-secret settings and a Secret or external secret manager for credentials.</li>
+<li><strong>Protect Secrets.</strong> Limit RBAC, avoid committing secret values to Git, enable encryption at rest where supported, and rotate credentials.</li>
+<li><strong>Prefer declarative manifests in version control.</strong> Review changes before applying and use the right environment/context.</li>
+<li><strong>Pin images deliberately.</strong> For reproducible production releases, prefer controlled version tags or immutable digests and a vulnerability/update process. Avoid relying on floating tags for critical workloads.</li>
+<li><strong>Monitor rollouts and events.</strong> Use rollout status, logs, metrics, and events instead of assuming that a successful apply means the application is healthy.</li>
+<li><strong>Plan availability beyond replica count.</strong> Three replicas on one failure domain may still be vulnerable; consider topology spread, disruption budgets, and capacity for production.</li>
+<li><strong>Keep lab shortcuts out of production.</strong> Demo image tags, low resource values, no probes, and broad access may be acceptable for learning but require review before deployment.</li>
+</ul>
+</section>
+
+<section id="interview">
+<h2>9. Interview preparation</h2>
+<p>Use the filter to find questions. Answers are expandable so students can quiz themselves first.</p>
+<input class="searchbox" id="qsearch" type="search" placeholder="Filter interview questions, e.g. Service, selector, Pending…" aria-label="Filter interview questions">
+<div id="questions">
+<h3>Level 1 — Basic questions</h3>
+<div class="question"><details><summary>1. What is a Kubernetes object?</summary><div class="answer">A persistent API record describing desired or relevant cluster state, such as a Pod, Deployment, or Service. Controllers act to reconcile observed state with desired state.</div></details></div>
+<div class="question"><details><summary>2. What is a Pod?</summary><div class="answer">The smallest deployable Kubernetes unit. It contains one or more co-scheduled containers that share networking and can share volumes.</div></details></div>
+<div class="question"><details><summary>3. Why use a Deployment instead of a standalone Pod?</summary><div class="answer">A Deployment manages ReplicaSets, replicas, and rollout history. It helps replace failed Pods and supports controlled application updates.</div></details></div>
+<div class="question"><details><summary>4. What is a ReplicaSet?</summary><div class="answer">A controller-managed resource that maintains a desired number of Pods matching its selector. Deployments normally manage ReplicaSets for you.</div></details></div>
+<div class="question"><details><summary>5. What is a Service?</summary><div class="answer">A stable networking abstraction that directs traffic to a set of backend endpoints, commonly selected by Pod labels.</div></details></div>
+<div class="question"><details><summary>6. What is a Namespace?</summary><div class="answer">A logical scope for namespaced resources and a useful organization boundary. It does not by itself enforce network isolation or all security controls.</div></details></div>
+<div class="question"><details><summary>7. What are labels?</summary><div class="answer">Key-value metadata used to organize and select objects, for example <code>app=web</code>.</div></details></div>
+<div class="question"><details><summary>8. What is a selector?</summary><div class="answer">A rule that matches labels. Deployments use selectors to identify their Pods; Services use selectors to find backend Pods in common configurations.</div></details></div>
+<div class="question"><details><summary>9. What is a ConfigMap?</summary><div class="answer">An API object for non-confidential configuration, consumed as environment variables, command arguments, or mounted files.</div></details></div>
+<div class="question"><details><summary>10. What is a Secret and is base64 encryption?</summary><div class="answer">A Kubernetes object intended for confidential values such as tokens. Base64 is encoding, not encryption; access control and encryption-at-rest configuration matter.</div></details></div>
+<div class="question"><details><summary>11. What do apiVersion, kind, metadata, and spec mean?</summary><div class="answer"><code>apiVersion</code> identifies the API version, <code>kind</code> the resource type, <code>metadata</code> identifies/describes it, and <code>spec</code> states desired configuration.</div></details></div>
+<div class="question"><details><summary>12. What is the difference between ClusterIP and NodePort?</summary><div class="answer">ClusterIP provides a stable internal Service IP. NodePort additionally exposes a port on cluster nodes, subject to network/firewall reachability.</div></details></div>
+<h3>Level 2 — Intermediate questions</h3>
+<div class="question"><details><summary>13. How does a Deployment create Pods?</summary><div class="answer">The Deployment controller creates or updates a ReplicaSet from the Pod template. The ReplicaSet controller creates Pods to meet the desired count, and the scheduler assigns them to nodes.</div></details></div>
+<div class="question"><details><summary>14. Why must selector labels match?</summary><div class="answer">Controllers and Services rely on label matching to identify target Pods. A mismatch can mean no managed replicas or no Service endpoints. Compare <code>kubectl get pods --show-labels</code> with the selector.</div></details></div>
+<div class="question"><details><summary>15. What is the difference between port and targetPort in a Service?</summary><div class="answer"><code>port</code> is the port exposed by the Service; <code>targetPort</code> is the backend Pod port. They can differ if the application listens on a different port.</div></details></div>
+<div class="question"><details><summary>16. Does containerPort expose a Pod publicly?</summary><div class="answer">No. It describes a container port in the Pod spec. Reachability depends on Pod networking, Service or other exposure configuration, and cluster/network rules.</div></details></div>
+<div class="question"><details><summary>17. What happens if a Deployment Pod is deleted?</summary><div class="answer">The ReplicaSet controller normally creates a replacement to restore the desired count. A standalone Pod has no ReplicaSet to recreate its Pod object.</div></details></div>
+<div class="question"><details><summary>18. What happens when you change the Deployment image?</summary><div class="answer">The Pod template changes, so the Deployment creates a new ReplicaSet and rolls out replacement Pods according to its update strategy. Watch with <code>kubectl rollout status</code>.</div></details></div>
+<div class="question"><details><summary>19. How are ConfigMaps consumed?</summary><div class="answer">As environment variables, command arguments, or mounted volumes. Environment variables in running processes do not update automatically; mounted files may update eventually, depending on the volume and application reload behavior.</div></details></div>
+<div class="question"><details><summary>20. Are namespaces security boundaries?</summary><div class="answer">They provide resource scoping, but not complete isolation by default. Combine namespaces with RBAC, NetworkPolicies, quotas, and appropriate admission/security controls.</div></details></div>
+<div class="question"><details><summary>21. How do you check whether a Service has backend Pods?</summary><div class="answer">Inspect Service selector and Pod labels, then check EndpointSlices: <code>kubectl get svc web -n nimbus-basic-lab -o yaml</code> and <code>kubectl get endpointslices -n nimbus-basic-lab</code>.</div></details></div>
+<div class="question"><details><summary>22. What is the difference between requests and limits?</summary><div class="answer">Requests inform scheduling and resource reservation decisions. Limits cap resource use according to resource-specific enforcement; CPU may be throttled and memory over-limit can cause OOM termination.</div></details></div>
+<div class="question"><details><summary>23. How do you roll back a Deployment?</summary><div class="answer">Inspect history with <code>kubectl rollout history deployment/web -n nimbus-basic-lab</code>, then use <code>kubectl rollout undo deployment/web -n nimbus-basic-lab</code> if rollback is appropriate.</div></details></div>
+<div class="question"><details><summary>24. How do imperative and declarative management differ?</summary><div class="answer">Imperative commands specify an action. Declarative files describe the intended configuration and are applied repeatedly, making changes easier to review and version-control.</div></details></div>
+<h3>Level 3 — Real-time scenarios</h3>
+<div class="question"><details><summary>25. Deployment shows 3 desired replicas but 0 available. What do you do?</summary><div class="answer"><strong>Approach:</strong> Run <code>kubectl get pods -n nimbus-basic-lab</code>, <code>kubectl describe deployment web -n nimbus-basic-lab</code>, and describe a failing Pod. Check events for scheduling, image pulls, failed probes, and resource constraints. Use <code>kubectl logs POD -n nimbus-basic-lab --previous</code> if it restarts. Fix the evidenced cause, then watch <code>kubectl rollout status deployment/web -n nimbus-basic-lab</code>. Several causes are possible; do not assume the image is the problem without evidence.</div></details></div>
+<div class="question"><details><summary>26. Service DNS resolves, but requests fail. How do you isolate the cause?</summary><div class="answer">Check <code>kubectl get endpointslices -n nimbus-basic-lab</code>, Service selector and ports, Pod readiness, and whether the app listens on the target port. Test the Pod directly where permitted, then test through the Service. If endpoints exist, inspect network policy, app logs, and port mismatch. DNS success alone does not prove the backend is healthy.</div></details></div>
+<div class="question"><details><summary>27. A new image rollout is unhealthy. What is a safe response?</summary><div class="answer">Inspect rollout status, new Pod events, logs, readiness and image details. If the new version is impacting service and rollback is approved, run <code>kubectl rollout undo deployment/web -n nimbus-basic-lab</code>, verify availability, and investigate the failed release separately.</div></details></div>
+<div class="question"><details><summary>28. A Service has no endpoints although Pods are Running.</summary><div class="answer">Running does not necessarily mean Ready. Compare Service selector to labels, verify namespace, and inspect Pod readiness conditions. Commands: <code>kubectl get pods --show-labels -n nimbus-basic-lab</code>, <code>kubectl describe svc web -n nimbus-basic-lab</code>, <code>kubectl get endpointslices -n nimbus-basic-lab</code>.</div></details></div>
+<div class="question"><details><summary>29. An application cannot read APP_ENV from its ConfigMap.</summary><div class="answer">Check the ConfigMap exists in the same namespace, key spelling, and Pod template's <code>env</code>/<code>envFrom</code>. Confirm with <code>kubectl exec POD -n nimbus-basic-lab -- printenv APP_ENV</code>. Environment variables are set at container start, so update/recreate Pods after changing the ConfigMap.</div></details></div>
+<div class="question"><details><summary>30. Pods are Pending after adding memory requests.</summary><div class="answer">Inspect Pod events and node allocatable/capacity. Requests can make Pods unschedulable if no node has enough unallocated capacity or placement constraints exclude nodes. Review requests against measured needs; do not simply remove them in production without understanding capacity and safety trade-offs.</div></details></div>
+<div class="question"><details><summary>31. A Secret was accidentally committed to Git. What next?</summary><div class="answer">Treat the credential as exposed: revoke/rotate it immediately, investigate access, remove it from current files and repository history according to organizational process, and migrate to a safe secret-management method. Deleting the visible line alone does not invalidate the credential or erase history copies.</div></details></div>
+<div class="question"><details><summary>32. One student accidentally created resources in the default namespace. How do you find them?</summary><div class="answer">List likely resource types in the relevant namespace, for example <code>kubectl get deploy,pods,svc,configmap,secret -n default</code>, and inspect ownership/labels before cleanup. Do not delete resources based on names alone on a shared cluster.</div></details></div>
+<div class="question"><details><summary>33. A Pod is repeatedly OOMKilled. What evidence guides the fix?</summary><div class="answer">Check <code>kubectl describe pod POD -n nimbus-basic-lab</code> for termination reason, metrics if available, memory limits, workload load, and application logs. Determine whether to optimize memory use, increase a justified limit, or adjust workload sizing. Increasing the limit alone may hide a leak or exceed node capacity.</div></details></div>
+<div class="question"><details><summary>34. A rollout is stuck after a probe was added.</summary><div class="answer">Inspect Pod events and readiness/liveness probe configuration. Verify the endpoint/path, port, protocol, startup delay, and app startup time. A readiness failure removes a Pod from ready Service endpoints; repeated liveness failures can restart it. Use a probe that reflects actual app health rather than a guessed URL.</div></details></div>
+</div>
+</section>
+
+<section id="assignments">
+<h2>10. Practice assignments</h2>
+<p>Attempt the challenge before opening its solution. All commands assume an authorized lab namespace.</p>
+<h3>Beginner exercises</h3>
+<ol>
+<li>Create a namespace named <code>student-practice</code>. <strong>Expected state:</strong> namespace is Active. Verify with <code>kubectl get ns student-practice</code>. <em>Hint:</em> use <code>kubectl create namespace</code>.</li>
+<li>Create a standalone Pod named <code>hello-pod</code> using <code>nginx:1.27</code>. Verify its status and labels. <em>Hint:</em> use a Pod manifest and <code>kubectl get pod --show-labels</code>.</li>
+<li>Create a Deployment with two replicas. Verify desired and available counts. <em>Hint:</em> <code>kubectl create deployment</code> or <code>apps/v1</code> YAML.</li>
+<li>Create a ClusterIP Service for the Deployment. Verify that EndpointSlices contain backends. <em>Hint:</em> match the Service selector to Pod labels.</li>
+<li>Create a ConfigMap with <code>APP_ENV=practice</code> and consume it as an environment variable. Verify using <code>printenv</code>. <em>Hint:</em> use <code>envFrom.configMapRef</code>.</li>
+</ol>
+<h3>Modification and troubleshooting exercises</h3>
+<ol start="6">
+<li>Scale the Deployment from two to four replicas. Verify with <code>kubectl get deployment</code>. <em>Hint:</em> <code>kubectl scale</code>.</li>
+<li>Make the Service selector incorrect, observe the missing endpoints, then correct it. <em>Expected:</em> EndpointSlices populate again after the fix.</li>
+<li>Update the Deployment image to a valid new version and watch the rollout. <em>Hint:</em> <code>kubectl set image</code> and <code>kubectl rollout status</code>.</li>
+<li>Inspect Pod events for a deliberately misspelled image tag, then restore a valid image. Do this only in your isolated practice namespace. <em>Hint:</em> <code>kubectl describe pod</code>.</li>
+<li>Change a ConfigMap environment value and demonstrate why existing container environment values may require a Pod restart. <em>Hint:</em> compare ConfigMap content with <code>printenv</code> before and after rollout.</li>
+</ol>
+<h3>Scenario-based challenges</h3>
+<ol start="11">
+<li><strong>Traffic failure:</strong> Pods are Ready, but the Service has no endpoints. Identify and fix the cause. <strong>Expected:</strong> Service selects ready Pods. Verify EndpointSlices and an HTTP request.</li>
+<li><strong>Capacity issue:</strong> Pods stay Pending after increasing CPU/memory requests. Determine whether scheduling capacity or a placement rule is blocking them. <strong>Expected:</strong> explain the evidence from Pod Events before changing requests.</li>
+<li><strong>Bad release:</strong> A new image rollout fails. Collect evidence, roll back if appropriate, and verify the prior revision is available. <strong>Expected:</strong> stable Deployment and a short incident explanation.</li>
+</ol>
+<details><summary><strong>Solution hints and sample commands</strong></summary>
+<p>These are starting points; adapt names and namespaces to the assignment.</p>
+<pre><code># 1
+kubectl create namespace student-practice
+
+# 2 (imperative alternative)
+kubectl run hello-pod --image=nginx:1.27 -n student-practice
+
+# 3
+kubectl create deployment web-practice --image=nginx:1.27 --replicas=2 -n student-practice
+
+# 4 (first inspect labels, then create matching Service)
+kubectl get pods -n student-practice --show-labels
+kubectl expose deployment web-practice --port=80 --target-port=80 --type=ClusterIP -n student-practice
+kubectl get endpointslices -n student-practice
+
+# 5
+kubectl create configmap practice-config --from-literal=APP_ENV=practice -n student-practice
+# Add envFrom/configMapRef to a Deployment's container template, then apply it.
+
+# 6
+kubectl scale deployment/web-practice --replicas=4 -n student-practice
+
+# 7 / 11
+kubectl get pods -n student-practice --show-labels
+kubectl get svc -n student-practice -o yaml
+kubectl get endpointslices -n student-practice
+
+# 8 / 13
+kubectl rollout status deployment/web-practice -n student-practice
+kubectl rollout history deployment/web-practice -n student-practice
+kubectl rollout undo deployment/web-practice -n student-practice
+
+# 9 / 12
+kubectl describe pods -n student-practice
+kubectl get events -n student-practice --sort-by=.metadata.creationTimestamp</code></pre>
+<p>For scenario assignments, the correct fix depends on the observed Events, labels, ports, image status, and readiness state. State your evidence and verification, not just the command you tried.</p>
+</details>
+</section>
+
+<section id="revision">
+<h2>11. Quick revision and cheat sheet</h2>
+<h3>Core relationships</h3>
+<ul><li>Deployment → ReplicaSet → Pods.</li><li>Service selector → matching Pod labels → backend endpoints.</li><li>ConfigMap → non-secret configuration; Secret → confidential values requiring access controls.</li><li>Namespace scopes namespaced resources; it does not automatically create network isolation.</li><li><code>spec</code> is desired configuration; <code>status</code> is observed state.</li></ul>
+<h3>Frequently used commands</h3>
+<pre><code># Context and inventory
+kubectl config current-context
+kubectl get nodes
+kubectl get namespaces
+kubectl get all -n nimbus-basic-lab
+
+# Apply and inspect
+kubectl apply -f complete-lab.yaml
+kubectl get deploy,rs,pods,svc -n nimbus-basic-lab
+kubectl get pods -n nimbus-basic-lab --show-labels
+kubectl describe pod POD -n nimbus-basic-lab
+kubectl logs POD -n nimbus-basic-lab
+kubectl logs POD -n nimbus-basic-lab --previous
+
+# Scaling and rollout
+kubectl scale deployment/web --replicas=3 -n nimbus-basic-lab
+kubectl rollout status deployment/web -n nimbus-basic-lab
+kubectl rollout history deployment/web -n nimbus-basic-lab
+kubectl rollout undo deployment/web -n nimbus-basic-lab
+
+# Service diagnostics
+kubectl get svc -n nimbus-basic-lab
+kubectl get endpointslices -n nimbus-basic-lab
+kubectl get events -n nimbus-basic-lab --sort-by=.metadata.creationTimestamp
+
+# Permissions and cleanup
+kubectl auth can-i create deployments -n nimbus-basic-lab
+kubectl delete -f complete-lab.yaml</code></pre>
+<h3>Essential comparisons</h3>
+<table><tr><th>Compare</th><th>Remember</th></tr><tr><td>Pod vs Deployment</td><td>Pod runs containers; Deployment manages stateless replicas and rollouts.</td></tr><tr><td>Service port vs targetPort</td><td>Service-facing port vs backend port.</td></tr><tr><td>ConfigMap vs Secret</td><td>Non-sensitive settings vs confidential data; Secret still needs protection.</td></tr><tr><td>Labels vs annotations</td><td>Labels are for identification/selection; annotations store non-identifying metadata.</td></tr><tr><td>Requests vs limits</td><td>Scheduling reservation signal vs maximum resource usage.</td></tr></table>
+<h3>Pre-interview checklist</h3>
+<ul><li>Can I explain Deployment → ReplicaSet → Pod without mixing responsibilities?</li><li>Can I debug an empty Service endpoint set using labels, readiness, and EndpointSlices?</li><li>Can I explain the difference between <code>port</code>, <code>targetPort</code>, and <code>containerPort</code>?</li><li>Can I distinguish image-pull, scheduling, startup, readiness, and networking failures?</li><li>Can I explain why base64 is not encryption and how to handle leaked credentials?</li><li>Can I confirm my kubectl context before making changes?</li></ul>
+</section>
+
+<section id="cleanup">
+<h2>12. Final lab cleanup</h2>
+<p>First inspect the resources to confirm the namespace contains only your training objects.</p>
+<pre><code>kubectl get all,configmap,secret -n nimbus-basic-lab</code></pre>
+<p><strong>Resource-scoped cleanup:</strong> remove only named resources created by this guide. Missing-resource messages are harmless if a resource was not created.</p>
+<pre><code>kubectl delete pod web-pod -n nimbus-basic-lab --ignore-not-found
+kubectl delete pod curl-test -n nimbus-basic-lab --ignore-not-found
+kubectl delete deployment web -n nimbus-basic-lab --ignore-not-found
+kubectl delete service web -n nimbus-basic-lab --ignore-not-found
+kubectl delete configmap web-settings -n nimbus-basic-lab --ignore-not-found
+kubectl delete secret demo-credentials -n nimbus-basic-lab --ignore-not-found</code></pre>
+<p>If you applied the complete manifest, deleting the namespace is the simplest option only when the namespace is dedicated to you and contains no shared resources:</p>
+<pre><code>kubectl delete namespace nimbus-basic-lab</code></pre>
+<div class="callout danger"><strong>Shared-cluster warning:</strong> Deleting a namespace removes all namespaced resources inside it, including objects you did not create. Never delete a shared namespace, nodes, cluster roles, persistent volumes, or cluster-wide components as part of this beginner lab. Confirm with the trainer before broad cleanup.</div>
+</section>
+
+<section id="references">
+<h2>13. References</h2>
+<p><strong>Provided Nimbuswiztech resources</strong></p>
+<ul>
+<li><a href="https://github.com/nimbuswiztech/Kubernetes/tree/main/basic-objects" target="_blank" rel="noopener noreferrer">Kubernetes Basic Objects — GitHub directory</a></li>
+<li><a href="https://github.com/nimbuswiztech/kubernetes/wiki/Kubernetes-for-beginners" target="_blank" rel="noopener noreferrer">Kubernetes for Beginners — Nimbuswiztech wiki</a></li>
+</ul>
+<p class="muted">The GitHub directory and wiki are listed as the supplied primary references. Repository file contents could not be independently inspected through the available browser retrieval in this generation, so this guide does not attribute any specific manifest or example to an unverified repository file. The lab examples below are supplementary teaching examples.</p>
+<p><strong>Official Kubernetes documentation</strong></p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/" target="_blank" rel="noopener noreferrer">Objects in Kubernetes</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/" target="_blank" rel="noopener noreferrer">Pods</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/" target="_blank" rel="noopener noreferrer">Deployments</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/" target="_blank" rel="noopener noreferrer">Service networking</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/" target="_blank" rel="noopener noreferrer">Namespaces</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/configmap/" target="_blank" rel="noopener noreferrer">ConfigMaps</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/secret/" target="_blank" rel="noopener noreferrer">Secrets</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/" target="_blank" rel="noopener noreferrer">Labels and selectors</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener noreferrer">Install Tools: kubectl and cluster options</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/debug/debug-application/" target="_blank" rel="noopener noreferrer">Debugging applications</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/" target="_blank" rel="noopener noreferrer">Resource management for Pods and containers</a></li>
+</ul>
+</section>
+<a class="toplink" href="#top">↑ Back to top</a>
+</main>
+<footer>Nimbuswiztech student learning reference · Kubernetes Basic Objects · Use official documentation for cluster-version-specific behavior.</footer>
+<script>
+(function(){
+  document.querySelectorAll('pre').forEach(function(pre){
+    var code=pre.querySelector('code');
+    if(!code)return;
+    var button=document.createElement('button');
+    button.className='copy';button.type='button';button.textContent='Copy';
+    button.setAttribute('aria-label','Copy code block');
+    button.addEventListener('click',function(){
+      var text=code.innerText;
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){button.textContent='Copied';setTimeout(function(){button.textContent='Copy'},1300);}).catch(function(){fallback(text,button);});
+      }else{fallback(text,button);}
+    });
+    pre.appendChild(button);
+  });
+  function fallback(text,button){
+    var area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();
+    try{document.execCommand('copy');button.textContent='Copied';}catch(e){button.textContent='Select manually';}
+    area.remove();setTimeout(function(){button.textContent='Copy'},1500);
+  }
+  var search=document.getElementById('qsearch');
+  if(search){
+    search.addEventListener('input',function(){
+      var q=search.value.toLowerCase().trim();
+      document.querySelectorAll('#questions .question').forEach(function(item){
+        item.style.display=item.textContent.toLowerCase().includes(q)?'':'none';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

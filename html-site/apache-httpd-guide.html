@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>apache HTTPD guide &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="README.html">Infra Setup</a></li>
+    <li><a href="infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="linux/README.html">Linux</a></li>
+    <li><a href="linux/linux-basics.html">linux basics</a></li>
+    <li><a href="linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="linux/day1.html">day1</a></li>
+    <li><a href="linux/day-2.html">day 2</a></li>
+    <li><a href="linux/day-3.html">Day 3</a></li>
+    <li><a href="linux/day-4.html">Day 4</a></li>
+    <li><a href="linux/day-5.html">Day 5</a></li>
+    <li><a href="linux/kill-signal.html">kill signal</a></li>
+    <li><a href="linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="git/README.html">Git</a></li>
+    <li><a href="git/git.html">git</a></li>
+    <li><a href="git/version-control-systems.html">version control systems</a></li>
+    <li><a href="git/git-version-control.html">git version control</a></li>
+    <li><a href="git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="git/git-work-flow.html">git work flow</a></li>
+    <li><a href="git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="git/git-and-github.html">git and github</a></li>
+    <li><a href="git/git-reset.html">git reset</a></li>
+    <li><a href="git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="git/git-revert.html">git revert</a></li>
+    <li><a href="git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="git/git-rebase.html">git rebase</a></li>
+    <li><a href="git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="git/delete-branch.html">delete branch</a></li>
+    <li><a href="git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="git/git-squash.html">git squash</a></li>
+    <li><a href="git/git-stash.html">git stash</a></li>
+    <li><a href="git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="aws/README.html">AWS</a></li>
+    <li><a href="aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="aws/vpc/README.html">VPC</a></li>
+    <li><a href="aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="aws/s3/README.html">S3</a></li>
+    <li><a href="aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="aws/iam/README.html">IAM</a></li>
+    <li><a href="aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="aws/iam/iam.html">IAM</a></li>
+    <li><a href="aws/asg.html">ASG</a></li>
+    <li><a href="aws/stress-test.html">stress test</a></li>
+    <li><a href="aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="aws/kms.html">KMS</a></li>
+    <li><a href="aws/iac.html">IAC</a></li>
+    <li><a href="aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="docker/README.html">Docker</a></li>
+    <li><a href="docker/docker.html">docker</a></li>
+    <li><a href="docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="apache-httpd-guide.html" class="active">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🌐 Apache HTTPD guide</span>
+          <span class="separator">/</span>
+          <span class="current">apache HTTPD guide</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🌐 Apache HTTPD guide Module</div>
+          <h1 class="hero-title">apache HTTPD guide</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>Imagine the internet as a bustling city, full of websites acting as storefronts. Now, think of the <strong>Apache Web Server</strong> as the diligent shopkeeper, ensuring every visitor gets exactly what they need.</p>
+</div>
+</div>
+<p>Apache is one of the most widely used web servers in the world, powering over <strong>31% of websites globally</strong>. Known for its flexibility, reliability, and robust features, it’s a cornerstone of modern web hosting. Whether you’re a beginner building your first website or an IT professional managing high-traffic servers, Apache has something for everyone.</p>
+<p>In this guide, we’ll take you on a journey from the basics of Apache to advanced-level configurations and optimizations. By the end, you’ll not only understand how to set up and run Apache but also how to secure, optimize, and troubleshoot it like a pro.</p>
+<h2>1. Getting Started</h2>
+<h3>1.1 Installing Apache</h3>
+<p>The first step to mastering the web is putting the right tools in place. And installing Apache is as simple as it is powerful. Apache is open-source and available for almost every operating system. Here’s how to install it on major platforms:</p>
+<h4>Installing Apache on Ubuntu/Debian</h4>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Open your terminal</h2>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Update your package index</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo apt update
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>Install Apache</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo apt install apache2 -y
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>Start Apache and enable it to run on boot</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl start apache2
+sudo systemctl enable apache2
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h4>Installing Apache on CentOS/RHEL</h4>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h2>Open your terminal</h2>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h2>Install the Apache package (<code>httpd</code>)</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo yum install httpd -y
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h2>Start the Apache service and enable it</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl start httpd
+sudo systemctl enable httpd
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h4>Installing Apache on Windows</h4>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h2>Download the latest Windows binary</h2>
+<p>Download it from the official Apache Lounge website.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h2>Extract the zip file</h2>
+<p>Extract the zip file to <code>C:\Apache24</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h2>Start Apache</h2>
+<p>Open Command Prompt as Administrator and run:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">cmd</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="cmd">cd C:\Apache24\bin
+httpd.exe
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h4>Installing Apache on macOS</h4>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h2>Start Apache</h2>
+<p>macOS comes with Apache pre-installed. To start it, open the terminal and use:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo apachectl start
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h2>Verify the installation</h2>
+<p>Visit <code>http://localhost</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Verifying Your Installation:</strong> To confirm Apache is installed and running, open your web browser and go to <code>http://localhost</code>. You should see the default Apache welcome page.</p>
+</div>
+</div>
+<h3>1.2 Understanding Basic Concepts</h3>
+<p>To effectively work with Apache Web Server, it’s crucial to grasp some fundamental concepts that underpin how web servers operate.</p>
+<ul>
+<li><strong>What is a Web Server?</strong>\
+  A web server is a software or hardware that serves content to the web. It processes requests from clients (like web browsers) and delivers the requested web pages, images, and other resources. Apache listens for requests on specific ports (usually port 80 for HTTP and port 443 for HTTPS) and responds accordingly.</li>
+<li><strong>How Apache Processes Requests and Responses:</strong>
+  1. The browser sends an HTTP request to the server.
+  2. Apache receives the request and processes it.
+  3. If the requested resource is found, Apache sends back an HTTP response with the content; if not, it returns an error message (like 404 Not Found).</li>
+<li><strong>Apache vs Other Web Servers:</strong></li>
+<li><strong>Nginx</strong>: Known for its high performance and low resource consumption, Nginx is often used for serving static content and as a reverse proxy.</li>
+<li><strong>IIS (Internet Information Services)</strong>: A Microsoft product, IIS is tightly integrated with Windows Server and is often used in enterprise environments.</li>
+<li><strong>Key Terminologies:</strong></li>
+<li><strong>Virtual Hosts</strong>: Allow you to host multiple websites on a single server by directing requests to different directories based on the domain name.</li>
+<li><strong>Document Root</strong>: The directory where your website files are stored. By default, this is <code>/var/www/html</code> on Linux systems.</li>
+<li><strong>Modules</strong>: Apache’s functionality can be extended through modules, which can be loaded or unloaded as needed. Common modules include <code>mod_ssl</code> for HTTPS and <code>mod_rewrite</code> for URL rewriting.</li>
+<li><strong>Configuration Files</strong>: Apache’s behavior is controlled through configuration files, primarily <code>apache2.conf</code> (or <code>httpd.conf</code> on some systems) and <code>.htaccess</code> files for directory-specific settings.</li>
+</ul>
+<h3>1.3 Creating Your First Website</h3>
+<p>Now that you have Apache installed and understand the foundational concepts, it’s time to replace the default Apache page with your custom HTML page.</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">13</div>
+<div class="step-content">
+<h2>Navigate to the Document Root</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cd /var/www/html
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">14</div>
+<div class="step-content">
+<h2>Create a Simple HTML Page</h2>
+<p>Create a new HTML file using a text editor (e.g., <code>nano</code>):</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo nano index.html
+</code></pre>
+</div>
+<p>Add the following HTML structure:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">html</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;My First Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My First Website!&lt;/h1&gt;
+    &lt;p&gt;This is a simple web page served by Apache.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</div>
+<p>Save the file and exit the editor (<code>CTRL + X</code>, then <code>Y</code>, and <code>Enter</code>).</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">15</div>
+<div class="step-content">
+<h2>View Your Website</h2>
+<p>Open your web browser and navigate to <code>http://localhost</code>. You should see your custom HTML page!</p>
+</div>
+</div>
+</div>
+<h2>2. Core Apache Features</h2>
+<h3>2.1 Understanding Apache Configuration</h3>
+<p>Apache's power lies in its extensive configuration options. Understanding how to navigate and modify these settings is essential for optimizing behavior.</p>
+<h4>Main Configuration Files (on Debian/Ubuntu)</h4>
+<ul>
+<li><code>apache2.conf</code> (or <code>httpd.conf</code> on RHEL systems): Main configuration file where global settings are defined.</li>
+<li><code>ports.conf</code>: Specifies the ports Apache listens to for incoming requests.</li>
+<li><code>sites-available/</code>: Contains configuration templates for individual sites.</li>
+<li><code>sites-enabled/</code>: Contains symbolic links to configurations in <code>sites-available</code> that are active.</li>
+</ul>
+<h4>Overview of <code>.htaccess</code> Files</h4>
+<p><code>.htaccess</code> files allow for directory-level configuration overrides. Common uses include URL rewriting, access control, and redirects.</p>
+<p><strong>Implementing a Redirect in <code>.htaccess</code></strong></p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">16</div>
+<div class="step-content">
+<h2>Create or edit the <code>.htaccess</code> file</h2>
+<p>Create or edit the <code>.htaccess</code> file in your document root:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cd /var/www/html
+sudo nano .htaccess
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">17</div>
+<div class="step-content">
+<h2>Add a 301 Redirect rule</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">apache</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="apache">Redirect 301 /old-page http://example.com/new-page
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">18</div>
+<div class="step-content">
+<h2>Save and test the redirect</h2>
+<p>Visit <code>http://localhost/old-page</code>.</p>
+</div>
+</div>
+</div>
+<h3>2.2 Hosting Multiple Websites (Virtual Hosts)</h3>
+<p>Virtual hosting enables you to host multiple websites on a single physical server under one IP address.</p>
+<ul>
+<li><strong>Name-Based Virtual Hosts</strong>: Shares the same IP address across multiple domains. Apache checks the incoming <code>Host</code> header in the HTTP request to determine which directory to serve.</li>
+<li><strong>IP-Based Virtual Hosts</strong>: Allocates unique IP addresses to each hosted site.</li>
+</ul>
+<h4>Setting Up a Name-Based Virtual Host (e.g., <code>example.com</code>)</h4>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">19</div>
+<div class="step-content">
+<h2>Create Site Directories</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo mkdir -p /var/www/example.com/public_html
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">20</div>
+<div class="step-content">
+<h2>Set Ownership Permissions</h2>
+<p>Ensure the default Apache user (<code>www-data</code>) owns the directory:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo chown -R www-data:www-data /var/www/example.com/public_html
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">21</div>
+<div class="step-content">
+<h2>Create a Sample Home Page</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo nano /var/www/example.com/public_html/index.html
+</code></pre>
+</div>
+<p>Add simple HTML:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">html</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Welcome to Example.com&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello from Example.com!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">22</div>
+<div class="step-content">
+<h2>Create a Configuration File</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo nano /etc/apache2/sites-available/example.com.conf
+</code></pre>
+</div>
+<p>Add the configuration block:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">apache</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="apache">&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@example.com
+    ServerName example.com
+    ServerAlias www.example.com
+    DocumentRoot /var/www/example.com/public_html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">23</div>
+<div class="step-content">
+<h2>Enable the Site and Reload</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo a2ensite example.com.conf
+sudo systemctl reload apache2
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">24</div>
+<div class="step-content">
+<h2>Update Hosts File for Local Testing</h2>
+<p>Add this entry to your local <code>/etc/hosts</code> (Mac/Linux) or <code>C:\Windows\System32\drivers\etc\hosts</code> (Windows):</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">127.0.0.1 example.com
+</code></pre>
+</div>
+<p>Navigate to <code>http://example.com</code> in your browser.</p>
+</div>
+</div>
+</div>
+<h3>2.3 Essential Apache Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sudo systemctl start apache2</code></td>
+<td>Starts the Apache service</td>
+</tr>
+<tr>
+<td><code>sudo systemctl stop apache2</code></td>
+<td>Stops the Apache service</td>
+</tr>
+<tr>
+<td><code>sudo systemctl reload apache2</code></td>
+<td>Reloads configurations safely (does not drop connections)</td>
+</tr>
+<tr>
+<td><code>sudo systemctl restart apache2</code></td>
+<td>Stops and restarts the service</td>
+</tr>
+<tr>
+<td><code>sudo systemctl status apache2</code></td>
+<td>Checks runtime server status</td>
+</tr>
+<tr>
+<td><code>sudo a2ensite &lt;site&gt;.conf</code></td>
+<td>Enables a website configuration</td>
+</tr>
+<tr>
+<td><code>sudo a2dissite &lt;site&gt;.conf</code></td>
+<td>Disables a website configuration</td>
+</tr>
+<tr>
+<td><code>sudo a2enmod &lt;module&gt;</code></td>
+<td>Enables an Apache module (e.g., <code>rewrite</code>)</td>
+</tr>
+<tr>
+<td><code>sudo a2dismod &lt;module&gt;</code></td>
+<td>Disables an Apache module</td>
+</tr>
+</tbody>
+</table>
+<h2>3. Securing Apache Server</h2>
+<h3>3.1 Enabling HTTPS with Let’s Encrypt</h3>
+<p>HTTPS encrypts communication between the client and server. Let's Encrypt provides free automated SSL/TLS certificates via the <code>Certbot</code> tool.</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">25</div>
+<div class="step-content">
+<h2>Install Certbot</h2>
+<div class="tabs-container">
+<div class="tabs-nav"><button class="tab-btn active">Ubuntu/Debian</button><button class="tab-btn">CentOS/RHEL</button></div>
+<div class="tab-panel active">
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo apt update
+sudo apt install certbot python3-certbot-apache -y
+</code></pre>
+</div>
+</div>
+<div class="tab-panel">
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo yum install certbot python3-certbot-apache -y
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">26</div>
+<div class="step-content">
+<h2>Obtain and Configure SSL</h2>
+<p>Run the Certbot wizard to automatically detect virtual hosts and fetch certificates:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo certbot --apache
+</code></pre>
+</div>
+<p>Follow the interactive prompt instructions and elect to redirect all HTTP traffic to HTTPS.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">27</div>
+<div class="step-content">
+<h2>Set Up Auto-Renewal</h2>
+<p>Let's Encrypt certificates expire in <strong>90 days</strong>. Test the automatic cron renewal task with:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo certbot renew --dry-run
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h3>3.2 Basic Server Hardening</h3>
+<h4>Hiding Apache Version Details</h4>
+<p>By default, Apache displays its version and OS details on error signatures. To turn this off, edit <code>/etc/apache2/apache2.conf</code> (or <code>/etc/httpd/conf/httpd.conf</code>):</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">apache</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="apache">ServerSignature Off
+ServerTokens Prod
+</code></pre>
+</div>
+<p>Restart Apache to apply changes:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl restart apache2
+</code></pre>
+</div>
+<h4>Restricting File and Directory Permissions</h4>
+<p>Lock down default web directory access permissions:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo chown -R www-data:www-data /var/www/html
+sudo find /var/www/html -type d -exec chmod 755 {} \;
+sudo find /var/www/html -type f -exec chmod 644 {} \;
+</code></pre>
+</div>
+<h4>Protecting Directory Areas with Basic Auth</h4>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">28</div>
+<div class="step-content">
+<h2>Create an encrypted password file</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo apt install apache2-utils -y
+sudo htpasswd -c /etc/apache2/.htpasswd administrator
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">29</div>
+<div class="step-content">
+<h2>Configure authentication criteria</h2>
+<p>Add this to your site config file:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">apache</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="apache">&lt;Directory /var/www/html/secure-admin&gt;
+    AuthType Basic
+    AuthName &quot;Restricted Area&quot;
+    AuthUserFile /etc/apache2/.htpasswd
+    Require valid-user
+&lt;/Directory&gt;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">30</div>
+<div class="step-content">
+<h2>Restart Apache</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo systemctl restart apache2
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h2>4. Advanced Administration</h2>
+<h3>4.1 Performance Optimization</h3>
+<p>Tuning performance settings improves latency under heavy user concurrency.</p>
+<h4>Enabling GZIP Compression</h4>
+<p>Reduce transfer sizes of documents:</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">31</div>
+<div class="step-content">
+<h2>Enable the <code>deflate</code> module</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo a2enmod deflate
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">32</div>
+<div class="step-content">
+<h2>Configure targets in <code>apache2.conf</code></h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">apache</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="apache">&lt;IfModule mod_deflate.c&gt;
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+&lt;/IfModule&gt;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">33</div>
+<div class="step-content">
+<h2>Restart Apache</h2>
+</div>
+</div>
+</div>
+<h4>Tuning KeepAlive Settings</h4>
+<p>Persistent connections allow single TCP links to handle multiple request operations:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">apache</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="apache">KeepAlive On
+MaxKeepAliveRequests 100
+KeepAliveTimeout 5
+</code></pre>
+</div>
+<h4>Tuning MPM (Multi-Processing Modules)</h4>
+<p>Apache uses MPMs to scale requests:</p>
+<ul>
+<li><strong>Prefork</strong>: Allocates individual processes per request. Highly compatible with non-threaded modules (like mod_php).</li>
+<li><strong>Worker</strong>: Uses multiple processes, each running multiple threads for better scale.</li>
+<li><strong>Event</strong>: Similar to Worker but manages keep-alive connections on dedicated threads to save memory (Default in modern releases).</li>
+</ul>
+<h3>4.2 Apache as a Reverse Proxy</h3>
+<p>A reverse proxy routes client traffic from the web server directly to frontend/backend app instances (e.g. Node.js or Flask) running on separate private ports.</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">34</div>
+<div class="step-content">
+<h2>Enable Modules</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod proxy_balancer
+sudo a2enmod lbmethod_byrequests
+sudo systemctl restart apache2
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">35</div>
+<div class="step-content">
+<h2>Configure Virtual Host Routing</h2>
+<p>Forward public port 80/443 traffic directly to an app running on port <code>3000</code>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">apache</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="apache">&lt;VirtualHost *:80&gt;
+    ServerName myapp.example.com
+    ProxyRequests Off
+
+    ProxyPass / http://localhost:3000/
+    ProxyPassReverse / http://localhost:3000/
+
+    &lt;Proxy *&gt;
+        Order deny,allow
+        Allow from all
+    &lt;/Proxy&gt;
+
+    ErrorLog ${APACHE_LOG_DIR}/myapp_error.log
+    CustomLog ${APACHE_LOG_DIR}/myapp_access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+</div>
+<p>Enable the configuration file (<code>sudo a2ensite myapp.conf</code>) and reload Apache (<code>sudo systemctl reload apache2</code>).</p>
+</div>
+</div>
+</div>
+<h3>4.3 Monitoring and Logging</h3>
+<p>Apache outputs key usage profiles into distinct logs:</p>
+<ul>
+<li><strong>Access Log</strong> (<code>/var/log/apache2/access.log</code>): Records details of all visitor requests.</li>
+<li><strong>Error Log</strong> (<code>/var/log/apache2/error.log</code>): Tracks warnings and configuration startup issues.</li>
+</ul>
+<h4>Real-time Log Inspection</h4>
+<ul>
+<li>
+<p>View live incoming requests:</p>
+<p><code>bash
+tail -f /var/log/apache2/access.log</code>
+*   Search for 404 resource errors:</p>
+<p><code>bash
+grep "404" /var/log/apache2/error.log</code></p>
+</li>
+</ul>
+<h3>4.4 Backup and Recovery</h3>
+<p>Protect your web applications from crashes or misconfigurations.</p>
+<h4>Backing Up Configuration &amp; Web Files</h4>
+<ul>
+<li>
+<p>Save current configurations:</p>
+<p><code>bash
+sudo cp -r /etc/apache2 /backup/apache-config/</code>
+*   Compress and package html files:</p>
+<p><code>bash
+cd /var/www
+sudo tar -czvf /backup/website-backup.tar.gz html/</code></p>
+</li>
+</ul>
+<h4>Automation with Cron</h4>
+<p>Add a crontab entry (<code>sudo crontab -e</code>) to automate a configuration backup daily at 2:00 AM:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">0 2 * * * tar -czvf /backup/apache-config-$(date +\%F).tar.gz /etc/apache2
+</code></pre>
+</div>
+<h4>Restoring from Backup</h4>
+<ul>
+<li>
+<p>Recover files:</p>
+<p><code>bash
+sudo cp -r /backup/apache-config/apache2 /etc/
+sudo tar -xzvf /backup/website-backup.tar.gz -C /var/www/</code>
+*   Restart Apache to load restored configs:</p>
+<p><code>bash
+sudo systemctl restart apache2</code></p>
+</li>
+</ul>
+<h2>5. Conclusion &amp; Next Steps</h2>
+<p>We've covered everything from basic setup to securing and configuring Apache as a reverse proxy. To continue your learning path:</p>
+<ol>
+<li><strong>mod_security</strong>: Install and configure this web application firewall (WAF) to block web attacks.</li>
+<li><strong>Containerization</strong>: Deploy Apache inside a lightweight Docker container for uniform staging/production environments.</li>
+<li><strong>Load Balancing</strong>: Utilize <code>mod_proxy_balancer</code> to distribute requests across multiple backend application servers.</li>
+<li><strong>Performance Testing</strong>: Run benchmark testing using utility suites like ApacheBench (<code>ab</code>) or Siege.</li>
+</ol>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="ldap.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">LDAP</span>
+  </a>
+  <a href="stress-test.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">stress test</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js?v=2"></script>
+</body>
+</html>

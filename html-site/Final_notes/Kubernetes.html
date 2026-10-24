@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kubernetes — Clean Topic-Wise DevOps Notes</title>
+<style>
+:root{--bg:#080d18;--panel:#111a2c;--panel2:#18243c;--text:#edf3ff;--muted:#a9b6d0;--accent:#ff4f5e;--accent2:#ffb15c;--border:#293753;--code:#070b14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(135deg,#070b14,#101a2d 55%,#0b1220);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+header{padding:54px 7vw 42px;border-bottom:1px solid var(--border);background:radial-gradient(circle at 80% 15%,rgba(255,79,94,.2),transparent 34%),radial-gradient(circle at 60% 90%,rgba(255,177,92,.09),transparent 35%)}
+.badge{display:inline-block;padding:6px 12px;border:1px solid rgba(255,177,92,.4);border-radius:999px;color:#ffd39e;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:clamp(38px,5vw,66px);line-height:1.03;margin:18px 0 12px}header p{max-width:980px;color:var(--muted);font-size:17px}
+.layout{display:grid;grid-template-columns:300px 1fr;max-width:1500px;margin:auto}
+aside{position:sticky;top:0;height:100vh;overflow:auto;padding:24px 16px;border-right:1px solid var(--border);background:rgba(7,11,20,.82);backdrop-filter:blur(12px)}
+aside h3{margin:0 8px 14px;font-size:14px}.toc a{display:flex;gap:10px;padding:8px 10px;color:var(--muted);text-decoration:none;border-radius:8px;font-size:13px}.toc a:hover{background:var(--panel2);color:#fff}.toc span{color:var(--accent2);font-weight:800;min-width:25px}
+main{padding:30px 5vw 80px}.intro{background:linear-gradient(135deg,rgba(255,79,94,.12),rgba(255,177,92,.06));border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:24px}
+.topic{display:grid;grid-template-columns:56px 1fr;gap:18px;margin:24px 0;background:rgba(17,26,44,.86);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 12px 35px rgba(0,0,0,.16)}
+.topic-num{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
+h2{margin:0 0 12px;font-size:25px}p,li{color:#c9d3e7}ul{padding-left:22px}
+.note,.warning{padding:14px 16px;border-radius:12px;margin:15px 0;background:#10192c;border-left:4px solid var(--accent2)}.warning{border-left-color:var(--accent)}
+.commands{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px;margin-top:18px}
+.cmd-card{background:var(--code);border:1px solid #202d48;border-radius:12px;overflow:hidden}.cmd-title{padding:10px 13px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#ffc078;border-bottom:1px solid #202d48;font-weight:800}
+pre{margin:0;padding:15px;overflow:auto;color:#dce7ff;font-size:13px;line-height:1.55}code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:15px}.grid div{background:#111a2e;border:1px solid #273653;border-radius:12px;padding:13px;color:#cbd5e8}
+footer{text-align:center;color:#7886a5;padding:30px;border-top:1px solid var(--border);font-size:12px}
+@media(max-width:900px){.layout{display:block}aside{position:relative;height:auto;max-height:45vh;border-right:0;border-bottom:1px solid var(--border)}.topic{grid-template-columns:1fr}.topic-num{margin-bottom:-4px}main{padding:20px}}
+</style>
+</head>
+<body>
+<header><div style="margin-bottom: 15px;"><a href="../index.html" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: inherit; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 500;">&larr; Master Index</a></div><span class="badge">NimbusWizTech • DevOps Training</span>
+<h1>Kubernetes — Clean Topic-Wise Notes</h1>
+<p>Comprehensive, classroom-friendly Kubernetes notes reorganized from the supplied <b>Kubernetes_new_Notes.txt</b> and <b>NOTES KUBERNETES-V-2.docx</b>. Class timestamps and separators have been removed and related concepts have been grouped together.</p></header>
+<div class="layout"><aside><h3>Topics</h3><nav class="toc"><a href="#topic-01"><span>01</span>Kubernetes Fundamentals</a><a href="#topic-02"><span>02</span>Kubernetes Cluster &amp; Architecture</a><a href="#topic-03"><span>03</span>Control Plane Components</a><a href="#topic-04"><span>04</span>Worker Node Components</a><a href="#topic-05"><span>05</span>kubectl — Essential Operations</a><a href="#topic-06"><span>06</span>Manifest / YAML Structure</a><a href="#topic-07"><span>07</span>Pods</a><a href="#topic-08"><span>08</span>Labels &amp; Selectors</a><a href="#topic-09"><span>09</span>Services &amp; Service Discovery</a><a href="#topic-10"><span>10</span>Service Types</a><a href="#topic-11"><span>11</span>Ingress &amp; Ingress Controller</a><a href="#topic-12"><span>12</span>Volumes, PV, PVC &amp; StorageClass</a><a href="#topic-13"><span>13</span>Mounting Volumes into Pods</a><a href="#topic-14"><span>14</span>ConfigMaps</a><a href="#topic-15"><span>15</span>Secrets</a><a href="#topic-16"><span>16</span>Namespaces</a><a href="#topic-17"><span>17</span>ReplicaSet &amp; ReplicationController</a><a href="#topic-18"><span>18</span>Deployments</a><a href="#topic-19"><span>19</span>Deployment Strategies, Rollout &amp; Rollback</a><a href="#topic-20"><span>20</span>DaemonSet</a><a href="#topic-21"><span>21</span>StatefulSet &amp; Headless Service</a><a href="#topic-22"><span>22</span>Scheduling — nodeName &amp; nodeSelector</a><a href="#topic-23"><span>23</span>Node Affinity &amp; Pod Affinity</a><a href="#topic-24"><span>24</span>Taints &amp; Tolerations</a><a href="#topic-25"><span>25</span>Pod Probes — Liveness, Readiness &amp; Startup</a><a href="#topic-26"><span>26</span>Resource Requests, Limits &amp; ResourceQuota</a><a href="#topic-27"><span>27</span>RBAC — Role, ClusterRole &amp; Access Model</a><a href="#topic-28"><span>28</span>RoleBinding &amp; ClusterRoleBinding</a><a href="#topic-29"><span>29</span>Service Accounts &amp; Contexts</a><a href="#topic-30"><span>30</span>Kubernetes Security</a><a href="#topic-31"><span>31</span>Kubernetes High Availability</a><a href="#topic-32"><span>32</span>EKS Setup</a><a href="#topic-33"><span>33</span>Minikube &amp; Local Kubernetes</a><a href="#topic-34"><span>34</span>Helm — Kubernetes Package Manager</a><a href="#topic-35"><span>35</span>Helm Chart Files &amp; Templating</a><a href="#topic-36"><span>36</span>Helm Hooks &amp; Helm 2 vs Helm 3</a><a href="#topic-37"><span>37</span>Init Containers</a><a href="#topic-38"><span>38</span>Deployment Strategy Patterns</a><a href="#topic-39"><span>39</span>Service Mesh</a><a href="#topic-40"><span>40</span>Pod Failure Simulation &amp; Self-Healing</a><a href="#topic-41"><span>41</span>Cluster Failure &amp; Recovery Concepts</a><a href="#topic-42"><span>42</span>Troubleshooting &amp; Debugging Checklist</a><a href="#topic-43"><span>43</span>Interview Quick Answers</a><a href="#topic-44"><span>44</span>Practical DevOps Deployment Flow</a><a href="#topic-45"><span>45</span>Kubernetes Quick Revision Sheet</a></nav></aside>
+<main><div class="intro"><b>Source basis:</b> The uploaded material covers architecture, Pods, Services, Ingress, storage, ConfigMaps, Secrets, namespaces, controllers, scheduling, probes, resource quotas, RBAC, ServiceAccounts, EKS, Helm, deployment strategies, service mesh, HA and troubleshooting.
+<br><br><b>Important:</b> The organization is cleaned up, but the original terminology and examples are preserved. Some commands/examples in the source are version-specific or legacy; they have not been silently replaced with outside material.</div>
+<section class="topic" id="topic-01"><div class="topic-num">01</div><div class="topic-content"><h2>Kubernetes Fundamentals</h2><p>Kubernetes is described in the supplied notes as an open-source container orchestration platform for managing containerized or microservice applications across a distributed cluster. The notes emphasize deployment, scaling, rollback, high availability, self-healing and reducing the complexity of managing many containers.</p><div class="note"><b>Why orchestration?</b> The source connects Kubernetes with the move from monoliths to microservices and the need to manage many containers with less manual work.</div><div class="commands"><div class="cmd-card"><div class="cmd-title">Core idea</div><pre><code>Kubernetes
+├── Control Plane
+└── Worker Nodes
+    └── Pods
+        └── Containers</code></pre></div></div></div></section><section class="topic" id="topic-02"><div class="topic-num">02</div><div class="topic-content"><h2>Kubernetes Cluster &amp; Architecture</h2><p>The source describes the cluster in two major parts: <b>Control Plane / Master Node</b> and <b>Worker Node / Compute Machine</b>. Nodes may be physical or virtual machines and run workloads through Pods.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Control Plane</div><pre><code>API Server
+etcd
+Scheduler
+Controller Manager</code></pre></div><div class="cmd-card"><div class="cmd-title">Worker Node</div><pre><code>Container Runtime
+Kubelet
+kube-proxy
+Pods</code></pre></div></div></div></section><section class="topic" id="topic-03"><div class="topic-num">03</div><div class="topic-content"><h2>Control Plane Components</h2><ul><li><b>API Server:</b> central management point and frontend through which requests are made.</li><li><b>etcd:</b> distributed key-value store for cluster data and state.</li><li><b>Scheduler:</b> selects nodes for unscheduled Pods based on resources and scheduling requirements.</li><li><b>Controller Manager:</b> runs controllers that continuously work toward desired state.</li></ul><p>The source also lists node, replication, endpoint and service controllers, plus cloud-controller responsibilities.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Typical interaction</div><pre><code>kubectl
+   ↓
+API Server
+   ↓
+etcd / Controllers / Scheduler
+   ↓
+Worker Nodes</code></pre></div><div class="cmd-card"><div class="cmd-title">etcd backup example</div><pre><code>etcdctl snapshot save &lt;snapshot-file&gt;</code></pre></div></div></div></section><section class="topic" id="topic-04"><div class="topic-num">04</div><div class="topic-content"><h2>Worker Node Components</h2><p>The supplied notes identify the Pod, container runtime, kubelet and kube-proxy as the major worker-node components.</p><ul><li><b>Pod:</b> smallest/basic execution unit and can contain one or more containers.</li><li><b>kubelet:</b> node agent that keeps Pods and containers healthy and reports node status.</li><li><b>kube-proxy:</b> maintains network rules and forwards traffic toward appropriate Pods.</li><li><b>Container runtime:</b> underlying software used to run containers.</li></ul><div class="commands"><div class="cmd-card"><div class="cmd-title">Node inspection</div><pre><code>kubectl get nodes
+kubectl get nodes -o wide
+kubectl describe node &lt;node-name&gt;</code></pre></div></div></div></section><section class="topic" id="topic-05"><div class="topic-num">05</div><div class="topic-content"><h2>kubectl — Essential Operations</h2><p><code>kubectl</code> is the command-line client used throughout the notes to create, inspect, update and troubleshoot Kubernetes resources.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Everyday commands</div><pre><code>kubectl get nodes
+kubectl get pods
+kubectl get pods -o wide
+kubectl get all
+kubectl describe pod &lt;pod-name&gt;
+kubectl logs &lt;pod-name&gt;
+kubectl exec -it &lt;pod-name&gt; -- /bin/bash</code></pre></div><div class="cmd-card"><div class="cmd-title">Manifest operations</div><pre><code>kubectl apply -f &lt;file&gt;.yaml
+kubectl delete -f &lt;file&gt;.yaml
+kubectl apply -f &lt;file&gt;.yaml --dry-run</code></pre></div></div></div></section><section class="topic" id="topic-06"><div class="topic-num">06</div><div class="topic-content"><h2>Manifest / YAML Structure</h2><p>The source uses <code>apiVersion</code>, <code>kind</code>, <code>metadata</code> and <code>spec</code> as the main manifest building blocks. Labels and selectors connect related resources.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Basic structure</div><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest</code></pre></div><div class="cmd-card"><div class="cmd-title">API discovery</div><pre><code>kubectl api-versions
+kubectl api-resources</code></pre></div></div></div></section><section class="topic" id="topic-07"><div class="topic-num">07</div><div class="topic-content"><h2>Pods</h2><p>A Pod is the smallest and simplest basic unit in the supplied material. A Pod can contain one or more containers sharing network and storage resources. The notes cover single-container Pods and multi-container patterns such as <b>Sidecar, Adapter and Ambassador</b>.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Simple Pod</div><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80</code></pre></div><div class="cmd-card"><div class="cmd-title">Create / inspect</div><pre><code>kubectl apply -f simple-pod.yaml
+kubectl get pods
+kubectl get pod &lt;pod-name&gt; -o wide
+kubectl describe pod &lt;pod-name&gt;
+kubectl exec --stdin --tty &lt;pod-name&gt; -- /bin/bash</code></pre></div></div></div></section><section class="topic" id="topic-08"><div class="topic-num">08</div><div class="topic-content"><h2>Labels &amp; Selectors</h2><p>Labels are key-value metadata attached to Kubernetes objects. Selectors identify matching objects. The source covers equality-based selectors and set-based selectors.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Examples</div><pre><code>app = alpine
+os != windows
+
+environment in (production, qa)
+os notin (windows, linux)</code></pre></div><div class="cmd-card"><div class="cmd-title">Node labels</div><pre><code>kubectl label node &lt;node-name&gt; &lt;key&gt;=&lt;value&gt;
+kubectl get nodes --show-labels</code></pre></div></div></div></section><section class="topic" id="topic-09"><div class="topic-num">09</div><div class="topic-content"><h2>Services &amp; Service Discovery</h2><p>The source explains Services as stable networking for Pods. Pods are ephemeral and their IP addresses can change, so clients should normally use a Service. Services use selectors/labels to identify backend Pods and provide a stable IP/DNS endpoint.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Service</div><pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myapp
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080</code></pre></div><div class="cmd-card"><div class="cmd-title">Inspect / test</div><pre><code>kubectl get svc
+kubectl describe svc &lt;service-name&gt;
+curl &lt;service-ip&gt;:&lt;port&gt;</code></pre></div></div></div></section><section class="topic" id="topic-10"><div class="topic-num">10</div><div class="topic-content"><h2>Service Types</h2><p>The supplied notes cover <b>ClusterIP, NodePort, LoadBalancer and ExternalName</b>. ClusterIP is used for internal access, NodePort exposes a fixed port on nodes, and LoadBalancer integrates with a cloud-provider load balancer.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">ClusterIP</div><pre><code>type: ClusterIP
+# Default Service type
+# Internal cluster access</code></pre></div><div class="cmd-card"><div class="cmd-title">NodePort</div><pre><code>type: NodePort
+nodePort: 30000
+# Source notes: NodePort range 30000–32767</code></pre></div><div class="cmd-card"><div class="cmd-title">LoadBalancer</div><pre><code>type: LoadBalancer
+# Integrates with a cloud-provider load balancer</code></pre></div><div class="cmd-card"><div class="cmd-title">CLI examples</div><pre><code>kubectl create service clusterip my-cs --tcp=5678:8080
+kubectl create service nodeport my-ns --tcp=5678:8080
+kubectl create service loadbalancer my-lbs --tcp=5678:8080</code></pre></div></div></div></section><section class="topic" id="topic-11"><div class="topic-num">11</div><div class="topic-content"><h2>Ingress &amp; Ingress Controller</h2><p>Ingress is described as an API object for HTTP/HTTPS routing from outside the cluster to Services. Routing is controlled by Ingress rules, while an <b>Ingress Controller</b> acts as the inbound traffic handler. The source lists NGINX, AWS and GCE as examples.</p><div class="note"><b>Source distinction:</b> the notes describe an Application Load Balancer as connecting to multiple servers, while an Ingress Controller routes external traffic to multiple microservices.</div><div class="commands"><div class="cmd-card"><div class="cmd-title">Traffic flow</div><pre><code>Client
+  ↓
+Ingress Controller
+  ↓
+Ingress rules
+  ↓
+Service
+  ↓
+Pods</code></pre></div><div class="cmd-card"><div class="cmd-title">Deploy</div><pre><code>kubectl create -f ingress.yaml</code></pre></div><div class="cmd-card"><div class="cmd-title">Default backend</div><pre><code>If no host/path rule matches,
+traffic can be routed to the configured default backend.</code></pre></div></div></div></section><section class="topic" id="topic-12"><div class="topic-num">12</div><div class="topic-content"><h2>Volumes, PV, PVC &amp; StorageClass</h2><p>The source explains that container filesystem data is ephemeral. Kubernetes Volumes provide storage, while PersistentVolumes and PersistentVolumeClaims separate storage provisioning from application Pods. The notes describe both static and dynamic provisioning.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Storage flow</div><pre><code>Static:
+PV → PVC → Pod
+
+Dynamic:
+StorageClass → PVC → Pod</code></pre></div><div class="cmd-card"><div class="cmd-title">PV</div><pre><code>apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-vol
+spec:
+  storageClassName: staticpv
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: /tmp/static</code></pre></div><div class="cmd-card"><div class="cmd-title">PVC</div><pre><code>apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pv-vol-claim
+spec:
+  storageClassName: staticpv
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi</code></pre></div></div></div></section><section class="topic" id="topic-13"><div class="topic-num">13</div><div class="topic-content"><h2>Mounting Volumes into Pods</h2><p>The source shows the two-part pattern: declare a volume under <code>spec.volumes</code>, then mount it into a container using <code>volumeMounts</code>. It also demonstrates mounting a PVC into a Pod.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">PVC mount</div><pre><code>spec:
+  volumes:
+  - name: volume
+    persistentVolumeClaim:
+      claimName: pv-vol-claim
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    volumeMounts:
+    - mountPath: /home
+      name: volume</code></pre></div><div class="cmd-card"><div class="cmd-title">Useful commands</div><pre><code>kubectl get pv
+kubectl get pvc
+kubectl describe pv &lt;pv-name&gt;
+kubectl describe pvc &lt;pvc-name&gt;</code></pre></div></div></div></section><section class="topic" id="topic-14"><div class="topic-num">14</div><div class="topic-content"><h2>ConfigMaps</h2><p>ConfigMaps are used to keep non-secret application configuration separate from container images. The notes show key-value data, environment-variable injection and configuration data used by Pods.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Create</div><pre><code>kubectl create configmap &lt;name&gt; --from-literal &lt;key&gt;=&lt;value&gt;
+kubectl get configmap
+kubectl describe configmap &lt;name&gt;</code></pre></div><div class="cmd-card"><div class="cmd-title">YAML</div><pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: example-configmap
+data:
+  database: mongodb
+  database_uri: mongodb://localhost:27017</code></pre></div><div class="cmd-card"><div class="cmd-title">Inject as environment variables</div><pre><code>envFrom:
+- configMapRef:
+    name: example-configmap</code></pre></div></div></div></section><section class="topic" id="topic-15"><div class="topic-num">15</div><div class="topic-content"><h2>Secrets</h2><p>The supplied notes use Secrets for sensitive values such as passwords, tokens and keys. They demonstrate creating Secrets, referencing them from a Deployment/Pod and decoding stored values. The source describes the stored representation as base64.</p><div class="warning"><b>Source terminology preserved:</b> the original notes use the phrase “encrypted in base64”; this HTML keeps the source framing rather than silently replacing it with outside material.</div><div class="commands"><div class="cmd-card"><div class="cmd-title">Create</div><pre><code>kubectl create secret generic &lt;secret-name&gt; --from-literal &lt;key&gt;=&lt;value&gt;
+kubectl describe secret &lt;secret-name&gt;</code></pre></div><div class="cmd-card"><div class="cmd-title">Encode / decode</div><pre><code>echo -n &quot;&lt;string&gt;&quot; | base64
+echo &#x27;&lt;encoded-value&gt;&#x27; | base64 --decode</code></pre></div><div class="cmd-card"><div class="cmd-title">Reference</div><pre><code>env:
+- name: PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: password
+      key: pass</code></pre></div></div></div></section><section class="topic" id="topic-16"><div class="topic-num">16</div><div class="topic-content"><h2>Namespaces</h2><p>Namespaces partition one Kubernetes cluster into logical virtual subdivisions. The source discusses <code>default</code>, <code>kube-system</code>, <code>kube-public</code> and <code>kube-node-lease</code>, and shows how resources can be separated by teams, projects or environments.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Namespace commands</div><pre><code>kubectl get namespaces
+kubectl create ns my-namespace
+kubectl get pods -n my-namespace
+kubectl apply -f app.yaml -n my-namespace</code></pre></div><div class="cmd-card"><div class="cmd-title">Set namespace for current context</div><pre><code>kubectl config set-context --current --namespace=&lt;namespace&gt;
+kubectl config view --minify | grep namespace:</code></pre></div></div></div></section><section class="topic" id="topic-17"><div class="topic-num">17</div><div class="topic-content"><h2>ReplicaSet &amp; ReplicationController</h2><p>A ReplicaSet maintains a stable set of replica Pods. The source explains that it replaces failed Pods and maintains the desired count. ReplicationController is described as the older controller using equality-based selectors, while ReplicaSet supports equality-based and set-based selectors.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">ReplicaSet</div><pre><code>apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replicaset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-container
+        image: nginx</code></pre></div><div class="cmd-card"><div class="cmd-title">Scale</div><pre><code>kubectl scale --replicas=5 replicaset &lt;name&gt;
+kubectl get replicaset
+kubectl get pods</code></pre></div></div></div></section><section class="topic" id="topic-18"><div class="topic-num">18</div><div class="topic-content"><h2>Deployments</h2><p>Deployments are presented as the normal abstraction used to manage application Pods. A Deployment declares the desired state, manages ReplicaSets and supports scaling and update strategies.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Deployment</div><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-example
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14
+        ports:
+        - containerPort: 80</code></pre></div><div class="cmd-card"><div class="cmd-title">Inspect</div><pre><code>kubectl get deployment
+kubectl describe deployment &lt;deployment-name&gt;
+kubectl get pods
+kubectl get all</code></pre></div></div></div></section><section class="topic" id="topic-19"><div class="topic-num">19</div><div class="topic-content"><h2>Deployment Strategies, Rollout &amp; Rollback</h2><p>The source covers Recreate, Rolling Update, Rollback, Blue/Green, Canary and A/B testing. Rolling Update incrementally replaces old Pods. Blue/Green runs old and new versions together and switches the Service. Canary gradually exposes a new version to a subset of users.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Rollout commands</div><pre><code>kubectl apply -f deployment.yaml
+kubectl rollout status deployment/&lt;name&gt;
+kubectl rollout history deployment/&lt;name&gt;
+kubectl rollout undo deployment/&lt;name&gt;</code></pre></div><div class="cmd-card"><div class="cmd-title">Blue/Green</div><pre><code>Blue = current version
+Green = new version
+
+Test Green
+   ↓
+Change Service selector
+   ↓
+Traffic → Green
+
+Failure:
+Traffic → Blue</code></pre></div><div class="cmd-card"><div class="cmd-title">Canary</div><pre><code>Small subset of users
+        ↓
+Collect metrics
+        ↓
+Continue rollout OR rollback</code></pre></div></div></div></section><section class="topic" id="topic-20"><div class="topic-num">20</div><div class="topic-content"><h2>DaemonSet</h2><p>A DaemonSet ensures a Pod runs on eligible nodes. The source highlights node monitoring, log collection and node-level storage as common use cases. New eligible nodes receive the DaemonSet Pod.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Use cases</div><pre><code>Node monitoring → node exporter
+Log collection → Fluentd / Filebeat
+Node-level storage → Ceph / Gluster</code></pre></div><div class="cmd-card"><div class="cmd-title">Inspect</div><pre><code>kubectl get daemonset
+kubectl describe daemonset &lt;name&gt;
+kubectl get pods -o wide</code></pre></div></div></div></section><section class="topic" id="topic-21"><div class="topic-num">21</div><div class="topic-content"><h2>StatefulSet &amp; Headless Service</h2><p>StatefulSet is used in the source for stateful workloads. The notes emphasize stable Pod identity, persistent storage through <code>volumeClaimTemplates</code>, and a Headless Service for the network domain.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Headless Service</div><pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  clusterIP: None
+  selector:
+    app: nginx</code></pre></div><div class="cmd-card"><div class="cmd-title">StatefulSet</div><pre><code>apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  serviceName: &quot;nginx&quot;
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [&quot;ReadWriteOnce&quot;]
+      resources:
+        requests:
+          storage: 1Gi</code></pre></div></div></div></section><section class="topic" id="topic-22"><div class="topic-num">22</div><div class="topic-content"><h2>Scheduling — nodeName &amp; nodeSelector</h2><p>The source describes cases where a Pod should land on a particular node or node type, including special resources and co-location. Scheduling methods in the notes include nodeName, nodeSelector, affinity/anti-affinity and taints/tolerations.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">nodeName</div><pre><code>spec:
+  nodeName: worker-1</code></pre></div><div class="cmd-card"><div class="cmd-title">nodeSelector</div><pre><code>spec:
+  nodeSelector:
+    disktype: ssd</code></pre></div><div class="cmd-card"><div class="cmd-title">Label the node</div><pre><code>kubectl label node &lt;node-name&gt; disktype=ssd
+kubectl get nodes --show-labels</code></pre></div></div></div></section><section class="topic" id="topic-23"><div class="topic-num">23</div><div class="topic-content"><h2>Node Affinity &amp; Pod Affinity</h2><p>Affinity extends node selection with expressions and supports hard and soft scheduling rules. The source identifies <code>requiredDuringSchedulingIgnoredDuringExecution</code> as hard and <code>preferredDuringSchedulingIgnoredDuringExecution</code> as soft. Pod affinity/anti-affinity uses labels of other Pods and a topology key.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Node affinity</div><pre><code>affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: ec2
+          operator: In
+          values:
+          - worker2</code></pre></div><div class="cmd-card"><div class="cmd-title">Pod affinity</div><pre><code>affinity:
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key: app
+          operator: In
+          values:
+          - nginx
+      topologyKey: kubernetes.io/hostname</code></pre></div></div></div></section><section class="topic" id="topic-24"><div class="topic-num">24</div><div class="topic-content"><h2>Taints &amp; Tolerations</h2><p>Taints are a node property that repel Pods. Tolerations are applied to Pods so they are allowed to schedule onto nodes with matching taints. The source gives dedicated-hardware examples such as GPU/high-resource nodes.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Taint</div><pre><code>kubectl taint nodes &lt;node-name&gt; ec2=taint:NoSchedule</code></pre></div><div class="cmd-card"><div class="cmd-title">Remove taint</div><pre><code>kubectl taint nodes &lt;node-name&gt; ec2=taint:NoSchedule-</code></pre></div><div class="cmd-card"><div class="cmd-title">Effects</div><pre><code>NoSchedule
+PreferNoSchedule
+NoExecute</code></pre></div><div class="cmd-card"><div class="cmd-title">Toleration</div><pre><code>tolerations:
+- key: &quot;ec2&quot;
+  operator: &quot;Equal&quot;
+  value: &quot;taint&quot;
+  effect: &quot;NoSchedule&quot;</code></pre></div></div></div></section><section class="topic" id="topic-25"><div class="topic-num">25</div><div class="topic-content"><h2>Pod Probes — Liveness, Readiness &amp; Startup</h2><p>The notes describe three probe types. <b>Liveness</b> checks application health and a failed liveness probe causes the container to be restarted. <b>Readiness</b> controls whether the application receives traffic. <b>Startup</b> protects slow-starting applications by allowing initialization to complete before normal liveness/readiness behavior is applied.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Probe actions</div><pre><code>HTTP request
+Shell / exec command
+TCP port check</code></pre></div><div class="cmd-card"><div class="cmd-title">Probe fields</div><pre><code>initialDelaySeconds
+periodSeconds
+timeoutSeconds
+successThreshold
+failureThreshold</code></pre></div><div class="cmd-card"><div class="cmd-title">Difference</div><pre><code>Liveness failure → restart container
+Readiness failure → stop serving traffic
+Startup probe → protect slow startup</code></pre></div></div></div></section><section class="topic" id="topic-26"><div class="topic-num">26</div><div class="topic-content"><h2>Resource Requests, Limits &amp; ResourceQuota</h2><p>The source includes CPU/memory requests and limits and a ResourceQuota for a namespace. The quota example limits Pods/Secrets and aggregate CPU/memory usage.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Pod resources</div><pre><code>resources:
+  requests:
+    cpu: 0.25
+    memory: &quot;128Mi&quot;
+  limits:
+    cpu: 0.5
+    memory: &quot;256Mi</code></pre></div><div class="cmd-card"><div class="cmd-title">ResourceQuota</div><pre><code>apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: rq
+  namespace: dev
+spec:
+  hard:
+    pods: 2
+    secrets: 2
+    requests.cpu: 0.5
+    limits.cpu: 1
+    requests.memory: &quot;256Mi&quot;
+    limits.memory: &quot;512Mi</code></pre></div><div class="cmd-card"><div class="cmd-title">Inspect</div><pre><code>kubectl describe resourcequota/rq -n &lt;namespace&gt;</code></pre></div></div></div></section><section class="topic" id="topic-27"><div class="topic-num">27</div><div class="topic-content"><h2>RBAC — Role, ClusterRole &amp; Access Model</h2><p>RBAC is described as the Kubernetes mechanism for constraining access for users, groups and ServiceAccounts. The source organizes access around <b>Subject → Resource → Verb</b>. Role is namespace-scoped; ClusterRole can define cluster-wide permissions and rules for cluster-scoped resources.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Role</div><pre><code>apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: sa-role
+  namespace: dev
+rules:
+- apiGroups: [&quot;*&quot;]
+  resources: [&quot;pods&quot;, &quot;secrets&quot;]
+  verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;]</code></pre></div><div class="cmd-card"><div class="cmd-title">ClusterRole</div><pre><code>apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sa-cluster-role
+rules:
+- apiGroups: [&quot;*&quot;]
+  resources: [&quot;pods&quot;, &quot;secrets&quot;]
+  verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;]</code></pre></div><div class="cmd-card"><div class="cmd-title">Permission check</div><pre><code>kubectl auth can-i list pods</code></pre></div></div></div></section><section class="topic" id="topic-28"><div class="topic-num">28</div><div class="topic-content"><h2>RoleBinding &amp; ClusterRoleBinding</h2><p>A RoleBinding grants permissions within a namespace. A ClusterRoleBinding grants a ClusterRole cluster-wide. The source includes ServiceAccount-based bindings.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">ClusterRoleBinding</div><pre><code>apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sa-crb
+subjects:
+- kind: ServiceAccount
+  name: devops
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: sa-cluster-role
+  apiGroup: rbac.authorization.k8s.io</code></pre></div><div class="cmd-card"><div class="cmd-title">CLI</div><pre><code>kubectl create clusterrole sa-cluster-role \
+  --resource=pods --resource=secrets \
+  --verb=get --verb=list
+
+kubectl create clusterrolebinding sa-crb \
+  --serviceaccount=default:devops \
+  --clusterrole=sa-cluster-role</code></pre></div></div></div></section><section class="topic" id="topic-29"><div class="topic-num">29</div><div class="topic-content"><h2>Service Accounts &amp; Contexts</h2><p>The source distinguishes human User Accounts from ServiceAccounts used by applications/processes. Prometheus is given as an example of an application that may access the cluster through a ServiceAccount. The notes also demonstrate configuring a kubectl context.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Create</div><pre><code>kubectl create sa devops
+kubectl describe sa devops
+kubectl describe secret &lt;token-name&gt;</code></pre></div><div class="cmd-card"><div class="cmd-title">Context</div><pre><code>kubectl config set-credentials devops --token=$TOKEN
+kubectl config set-context &lt;context-name&gt; \
+  --cluster=kubernetes --user=devops
+kubectl config use-context &lt;context-name&gt;</code></pre></div></div></div></section><section class="topic" id="topic-30"><div class="topic-num">30</div><div class="topic-content"><h2>Kubernetes Security</h2><p>The source lists restricting access to etcd, enabling audit logging, rotating infrastructure credentials, reviewing third-party integrations, encrypting Secrets at rest, using RBAC, establishing namespace boundaries and admission controls to avoid privileged containers.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Checklist</div><pre><code>Restrict etcd access
+Enable audit logging
+Rotate credentials
+Encrypt Secrets at rest
+Use RBAC / least privilege
+Use namespaces as boundaries
+Review third-party integrations
+Apply admission controls</code></pre></div></div></div></section><section class="topic" id="topic-31"><div class="topic-num">31</div><div class="topic-content"><h2>Kubernetes High Availability</h2><p>The notes describe HA using multiple control-plane/master nodes so another control-plane node can continue operating if one fails. They also note that worker workloads may continue running during control-plane failure, while creating new deployments or recovering from node failures depends on available control-plane components.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">HA concept</div><pre><code>Control Plane
+ ├── Master / Control Plane 1
+ ├── Master / Control Plane 2
+ └── Master / Control Plane 3
+
+Worker Nodes
+ ├── Node 1
+ ├── Node 2
+ └── Node 3</code></pre></div></div></div></section><section class="topic" id="topic-32"><div class="topic-num">32</div><div class="topic-content"><h2>EKS Setup</h2><p>The supplied notes include an EKS setup flow using AWS CLI, Chocolatey, eksctl and kubectl, followed by an <code>eksctl create cluster</code> example. They also show updating kubeconfig to connect to an existing EKS cluster.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Create EKS cluster</div><pre><code>eksctl create cluster \
+  --name kube-cluster \
+  --version 1.21 \
+  --with-oidc \
+  --nodegroup-name worker \
+  --region us-east-2 \
+  --node-type t3.medium \
+  --managed \
+  --ssh-access \
+  --ssh-public-key eks</code></pre></div><div class="cmd-card"><div class="cmd-title">Connect</div><pre><code>aws eks --region us-east-2 update-kubeconfig \
+  --name my-cluster</code></pre></div><div class="cmd-card"><div class="cmd-title">Inspect</div><pre><code>kubectl get nodes
+kubectl config get-contexts
+kubectl config current-context</code></pre></div></div></div></section><section class="topic" id="topic-33"><div class="topic-num">33</div><div class="topic-content"><h2>Minikube &amp; Local Kubernetes</h2><p>The source mentions Minikube as a way to try Kubernetes locally and gives a small application flow involving MongoDB, a WebApp, ConfigMap, Secret and Services.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Demo flow</div><pre><code>mongo-config.yaml
+mongo-secret.yaml
+mongo.yaml
+webapp.yaml
+
+Create ConfigMap
+Create Secret
+Deploy MongoDB + Service
+Deploy WebApp + Service
+Configure external access
+Access WebApp in browser</code></pre></div></div></div></section><section class="topic" id="topic-34"><div class="topic-num">34</div><div class="topic-content"><h2>Helm — Kubernetes Package Manager</h2><p>The notes describe Helm as a package manager for Kubernetes. A Chart bundles Kubernetes manifests, supports reusable parameterized templates and keeps release history. The supplied material uses Helm 3 and explains that Tiller was removed in Helm 3.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Commands</div><pre><code>helm version
+helm create demo
+helm install &lt;release-name&gt; &lt;chart-folder&gt;
+helm upgrade &lt;release-name&gt; &lt;chart-folder&gt;
+helm list</code></pre></div><div class="cmd-card"><div class="cmd-title">Chart structure</div><pre><code>demo/
+├── Chart.yaml
+├── charts/
+├── templates/
+│   ├── deployment.yaml
+│   ├── hpa.yaml
+│   ├── ingress.yaml
+│   ├── service.yaml
+│   ├── serviceaccount.yaml
+│   ├── _helpers.tpl
+│   └── tests/
+└── values.yaml</code></pre></div></div></div></section><section class="topic" id="topic-35"><div class="topic-num">35</div><div class="topic-content"><h2>Helm Chart Files &amp; Templating</h2><p>The source explains <code>Chart.yaml</code> for chart metadata, <code>values.yaml</code> for injected values, <code>charts/</code> for dependencies, <code>templates/</code> for manifests, <code>_helpers.tpl</code> for reusable templates and <code>.helmignore</code> for ignored package files.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">values.yaml</div><pre><code>replicaCount: 3
+
+image:
+  repository: &quot;&quot;
+
+application:
+  name: webapp
+
+ports:
+  nodePort: 8080</code></pre></div><div class="cmd-card"><div class="cmd-title">Templated Deployment</div><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.application.name }}
+  name: webapp-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    spec:
+      containers:
+      - image: {{ .Values.image.repository }}
+        name: nodejs</code></pre></div><div class="cmd-card"><div class="cmd-title">Built-in objects</div><pre><code>{{ .Release.Name }}
+{{ .Chart.Name }}
+{{ .Chart.Version }}</code></pre></div></div></div></section><section class="topic" id="topic-36"><div class="topic-num">36</div><div class="topic-content"><h2>Helm Hooks &amp; Helm 2 vs Helm 3</h2><p>The source lists Helm hooks such as pre-install, post-install, pre-upgrade and post-delete. It contrasts Helm 2's client/Tiller architecture with Helm 3's client-only model where Helm communicates directly with the Kubernetes API server.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Hooks</div><pre><code>pre-install
+post-install
+pre-upgrade
+post-delete</code></pre></div><div class="cmd-card"><div class="cmd-title">Architecture</div><pre><code>Helm 2:
+helm CLI → Tiller → Kubernetes API
+
+Helm 3:
+helm CLI → Kubernetes API</code></pre></div></div></div></section><section class="topic" id="topic-37"><div class="topic-num">37</div><div class="topic-content"><h2>Init Containers</h2><p>Init containers are described as temporary containers that execute before application containers in a Pod. The notes give initialization examples such as checking readiness, creating accounts, performing database migrations and creating database schemas.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Concept</div><pre><code>Pod
+ ├── Init Container 1
+ ├── Init Container 2
+ └── Main Application Container</code></pre></div></div></div></section><section class="topic" id="topic-38"><div class="topic-num">38</div><div class="topic-content"><h2>Deployment Strategy Patterns</h2><p>The source lists Recreate, Ramped/Rolling, Blue/Green, Canary and A/B testing. It notes that A/B testing can require additional infrastructure such as Istio, Linkerd, Traefik or custom NGINX/HAProxy configuration.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Summary</div><pre><code>Recreate  → old version removed, new version released
+Ramped     → gradual rolling update
+Blue/Green → old + new, then switch traffic
+Canary     → subset of users first
+A/B        → controlled subset based on routing criteria</code></pre></div></div></div></section><section class="topic" id="topic-39"><div class="topic-num">39</div><div class="topic-content"><h2>Service Mesh</h2><p>The supplied notes define a service mesh as a dedicated infrastructure layer for facilitating service-to-service communication between services or microservices using a proxy.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Concept</div><pre><code>Service A
+   ↓
+Proxy / Service Mesh
+   ↓
+Proxy / Service Mesh
+   ↓
+Service B</code></pre></div></div></div></section><section class="topic" id="topic-40"><div class="topic-num">40</div><div class="topic-content"><h2>Pod Failure Simulation &amp; Self-Healing</h2><p>The source demonstrates deleting a Pod managed by a Deployment/ReplicaSet. The Service can continue sending traffic to healthy matching Pods while the controller recreates the missing replica.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Simulate failure</div><pre><code>kubectl scale deployment &lt;deployment-name&gt; --replicas=2
+kubectl get pods
+kubectl delete pod &lt;pod-name&gt;
+kubectl get pods -w</code></pre></div><div class="cmd-card"><div class="cmd-title">Expected flow</div><pre><code>Pod A deleted
+     ↓
+Service → healthy Pod B
+     ↓
+ReplicaSet creates replacement Pod A&#x27;
+     ↓
+New Pod becomes Ready</code></pre></div></div></div></section><section class="topic" id="topic-41"><div class="topic-num">41</div><div class="topic-content"><h2>Cluster Failure &amp; Recovery Concepts</h2><p>The source discusses HA behavior when a control-plane/master node fails. In an HA setup, other control-plane nodes can continue operating. Worker nodes may continue running workloads, while management operations depend on available control-plane components.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Failure thinking</div><pre><code>Control Plane failure
+→ Existing worker workloads may continue
+→ Management/reconciliation capabilities are affected
+→ HA control plane reduces the impact of one control-plane failure</code></pre></div></div></div></section><section class="topic" id="topic-42"><div class="topic-num">42</div><div class="topic-content"><h2>Troubleshooting &amp; Debugging Checklist</h2><p>The supplied notes repeatedly use a practical troubleshooting pattern: inspect status, describe resources, inspect logs, verify labels/selectors, inspect Services and namespaces, and check scheduling/resource configuration.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Pod troubleshooting</div><pre><code>kubectl get pods -o wide
+kubectl describe pod &lt;pod&gt;
+kubectl logs &lt;pod&gt;
+kubectl get events --sort-by=.metadata.creationTimestamp</code></pre></div><div class="cmd-card"><div class="cmd-title">Deployment troubleshooting</div><pre><code>kubectl get deployment
+kubectl describe deployment &lt;deployment&gt;
+kubectl rollout status deployment/&lt;deployment&gt;
+kubectl rollout history deployment/&lt;deployment&gt;</code></pre></div><div class="cmd-card"><div class="cmd-title">Networking checks</div><pre><code>kubectl get svc
+kubectl describe svc &lt;service&gt;
+kubectl get endpoints
+kubectl get pods --show-labels</code></pre></div></div></div></section><section class="topic" id="topic-43"><div class="topic-num">43</div><div class="topic-content"><h2>Interview Quick Answers</h2><div class="grid"><div><b>Pod?</b><br>Smallest Kubernetes execution unit; one or more containers.</div><div><b>Why Service?</b><br>Stable endpoint for changing/ephemeral Pods.</div><div><b>Deployment?</b><br>Declarative management of Pods and ReplicaSets.</div><div><b>DaemonSet?</b><br>Runs a Pod on eligible nodes.</div><div><b>StatefulSet?</b><br>Stateful workloads with stable identity/storage.</div><div><b>ConfigMap vs Secret?</b><br>Non-secret configuration vs sensitive data.</div><div><b>Role vs ClusterRole?</b><br>Namespace-scoped vs cluster-wide rules.</div><div><b>Readiness vs Liveness?</b><br>Traffic eligibility vs container health/restart behavior.</div></div><div class="commands"><div class="cmd-card"><div class="cmd-title">Core command sheet</div><pre><code>kubectl get nodes
+kubectl get pods -A
+kubectl get svc
+kubectl get deployment
+kubectl describe pod &lt;pod&gt;
+kubectl logs &lt;pod&gt;
+kubectl exec -it &lt;pod&gt; -- /bin/bash
+kubectl apply -f app.yaml
+kubectl delete -f app.yaml</code></pre></div></div></div></section><section class="topic" id="topic-44"><div class="topic-num">44</div><div class="topic-content"><h2>Practical DevOps Deployment Flow</h2><p>This combines the major objects demonstrated in the supplied material into a classroom-friendly application deployment sequence.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Application flow</div><pre><code>Container Image
+      ↓
+Deployment
+      ↓
+ReplicaSet
+      ↓
+Pods
+      ↓
+Service
+      ↓
+Ingress / LoadBalancer
+      ↓
+External Users</code></pre></div><div class="cmd-card"><div class="cmd-title">Supporting resources</div><pre><code>ConfigMap → application configuration
+Secret    → sensitive values
+PV/PVC    → persistent data
+ServiceAccount + RBAC → API access
+Helm      → reusable packaging</code></pre></div></div></div></section><section class="topic" id="topic-45"><div class="topic-num">45</div><div class="topic-content"><h2>Kubernetes Quick Revision Sheet</h2><p>A compact final revision section based on the supplied Kubernetes notes.</p><div class="commands"><div class="cmd-card"><div class="cmd-title">Must remember</div><pre><code>Control Plane:
+API Server | etcd | Scheduler | Controller Manager
+
+Worker:
+Kubelet | kube-proxy | Runtime | Pods
+
+Workloads:
+Pod | ReplicaSet | Deployment | DaemonSet | StatefulSet
+
+Networking:
+Service | Ingress | Headless Service
+
+Configuration:
+ConfigMap | Secret
+
+Storage:
+Volume | PV | PVC | StorageClass
+
+Security:
+ServiceAccount | RBAC | Role | ClusterRole
+RoleBinding | ClusterRoleBinding
+
+Scheduling:
+nodeName | nodeSelector | Affinity | Anti-Affinity
+Taints | Tolerations
+
+Packaging:
+Helm
+
+Cloud:
+EKS / eksctl</code></pre></div><div class="cmd-card"><div class="cmd-title">First troubleshooting commands</div><pre><code>kubectl get nodes
+kubectl get pods -A
+kubectl get events -A --sort-by=.metadata.creationTimestamp
+kubectl describe &lt;resource&gt; &lt;name&gt;
+kubectl logs &lt;pod&gt; -n &lt;namespace&gt;
+kubectl get svc -A
+kubectl get endpoints -A</code></pre></div></div></div></section></main></div>
+<footer>Kubernetes Clean Topic-Wise Notes • Based on user-provided Kubernetes sources • For training, demos and revision</footer>
+</body></html>

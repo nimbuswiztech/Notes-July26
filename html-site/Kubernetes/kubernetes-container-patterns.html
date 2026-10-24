@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Visual-first Kubernetes container patterns training: init, sidecar, adapter, and ambassador, with hands-on labs and troubleshooting.">
+<title>Kubernetes Container Patterns Training Guide | Nimbuswiztech</title>
+<style>
+:root{--navy:#132b49;--blue:#2468ad;--ink:#1e2b3b;--muted:#596a7b;--line:#d8e1eb;--paper:#fff;--bg:#f2f6fa;--code:#0d1928;--codeink:#e7eff9;--green:#176d43;--greenbg:#e9f8ef;--amber:#805600;--amberbg:#fff4d8;--red:#972d2d;--redbg:#fff0ef;--bluebg:#eaf3ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1rem}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--blue);overflow-wrap:anywhere}
+header{background:linear-gradient(125deg,#102641,#174d79);color:#fff;padding:2.4rem max(1rem,calc((100% - 1240px)/2));border-bottom:5px solid #7fc0ff}header .brand{color:#cee7ff;letter-spacing:.15em;font-size:.8rem;font-weight:850}header h1{font-size:clamp(2rem,4vw,3.35rem);line-height:1.12;margin:.55rem 0 .8rem;max-width:1000px}header p{max-width:950px;color:#e3eef9}.badges{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:1rem}.badge{font-size:.82rem;border:1px solid #93c3ee;border-radius:999px;background:#19476d;padding:.18rem .6rem}
+.layout{max-width:1360px;margin:auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:1rem;padding:1rem}.layout aside{align-self:start;position:sticky;top:1rem;max-height:calc(100vh - 2rem);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:1rem}.layout aside h2{font-size:1rem;border:0;padding:0;margin:.1rem 0 .5rem}.layout aside ol{padding-left:1.25rem;margin:.2rem 0}.layout aside li{font-size:.89rem;margin:.27rem 0}.layout aside a{text-decoration:none;color:#38536e}.layout aside a.active{font-weight:850;color:#145fa8}.layout main{min-width:0}
+section{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:clamp(1rem,2.4vw,1.6rem);margin:0 0 1rem;box-shadow:0 2px 9px #193a5808}
+h2{font-size:1.62rem;line-height:1.25;margin:.1rem 0 .9rem;border-bottom:1px solid var(--line);padding-bottom:.55rem}h3{font-size:1.18rem;line-height:1.3;margin:1.25rem 0 .4rem}h4{font-size:1rem;margin:.8rem 0 .3rem}p{margin:.55rem 0}ul,ol{padding-left:1.5rem}li{margin:.23rem 0}.kicker{color:var(--blue);text-transform:uppercase;font-weight:850;letter-spacing:.12em;font-size:.75rem}.muted{color:var(--muted)}.small{font-size:.89rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem}.card{border:1px solid var(--line);border-radius:10px;padding:.9rem;background:#fff}.card h3{margin:.1rem 0 .4rem}.callout{padding:.85rem 1rem;border-left:4px solid var(--blue);background:var(--bluebg);border-radius:5px;margin:.8rem 0}.callout.good{border-left-color:var(--green);background:var(--greenbg)}.callout.warn{border-left-color:#b17a0c;background:var(--amberbg)}.callout.danger{border-left-color:var(--red);background:var(--redbg)}
+figure{margin:1rem 0;padding:.55rem;border:1px solid var(--line);border-radius:10px;background:#fbfdff}figure svg{display:block;width:100%;height:auto;max-height:560px}figcaption{font-size:.88rem;color:var(--muted);padding:.55rem .2rem .05rem}figcaption strong{color:var(--ink)}.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;align-items:start}.split>*{min-width:0}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:.7rem 0}table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{border-bottom:1px solid var(--line);padding:.62rem;text-align:left;vertical-align:top}th{background:#eaf0f7;color:#203d5b}tr:last-child td{border-bottom:0}
+pre{position:relative;background:var(--code);color:var(--codeink);padding:1.1rem 1rem 1rem;border-radius:9px;overflow:auto;line-height:1.52;font-size:.88rem;white-space:pre;tab-size:2;margin:.65rem 0}pre code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:inherit;background:none;padding:0}p code,li code,td code{font-family:ui-monospace,monospace;background:#edf2f7;color:#1b3c5e;padding:.1rem .3rem;border-radius:4px;font-size:.92em}.copy{position:absolute;right:.4rem;top:.4rem;background:#fff;color:#193b5e;border:1px solid #c2d1df;border-radius:5px;padding:.25rem .55rem;font-size:.78rem;font-weight:800;cursor:pointer}
+details{border:1px solid var(--line);border-radius:8px;margin:.58rem 0;background:#fff}summary{cursor:pointer;font-weight:750;padding:.65rem .8rem}details[open]>summary{background:#f0f6fc}details .answer{padding:.25rem .8rem .85rem;border-top:1px solid var(--line);background:#f8fafc}
+.search{width:100%;padding:.75rem;border:1px solid #afbdcc;border-radius:8px;font:inherit;margin:.5rem 0 1rem}.pill{display:inline-block;font-size:.8rem;border:1px solid #cad7e4;background:#f3f7fb;border-radius:999px;padding:.12rem .5rem}.stepflow{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin:.8rem 0}.stepflow span{background:#edf5ff;border:1px solid #ccdeef;border-radius:7px;padding:.45rem .65rem;font-weight:700}.stepflow b{color:var(--blue)}.toplink{display:inline-block;margin:.5rem 0}footer{text-align:center;padding:2rem 1rem;color:var(--muted)}
+@media(max-width:980px){.layout{grid-template-columns:1fr}.layout aside{position:relative;top:auto;max-height:none}.layout aside ol{columns:2;column-gap:2rem}.layout aside li{break-inside:avoid}.split{grid-template-columns:1fr}}
+@media(max-width:600px){.layout{padding:.55rem;gap:.6rem}.layout aside ol{columns:1}section{padding:1rem}h2{font-size:1.42rem}pre{font-size:.8rem;padding-top:2rem}figure{padding:.25rem}}
+@media print{body{background:#fff;color:#000;font-size:10pt}header{background:#fff;color:#000;border-bottom:2px solid #222;padding:1rem}header .brand,header p{color:#333}.layout{display:block;max-width:none;padding:0}.layout aside,.copy,.search,.toplink{display:none!important}section{box-shadow:none;border:1px solid #aaa;break-inside:avoid;margin:.5rem 0;padding:.7rem}figure{break-inside:avoid}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f5f5;color:#000;border:1px solid #aaa;padding:.5rem}details:not([open])>.answer{display:block}a{color:#000;text-decoration:underline}footer{padding:.4rem}}
+</style>
+</head>
+<body id="top">
+<header>
+<div class="brand">NIMBUSWIZTECH · VISUAL-FIRST STUDENT GUIDE</div>
+<h1>Kubernetes Container Patterns</h1>
+<p>Understand how Init, Sidecar, Adapter and Ambassador patterns organize work between containers. Learn the lifecycle differences, shared volumes and networking, practical use cases, and the trade-offs of adding helper containers to a Pod.</p>
+<div class="badges"><span class="badge">4 structural patterns</span><span class="badge">Hands-on YAML</span><span class="badge">Embedded SVG diagrams</span><span class="badge">Interview preparation</span></div>
+</header>
+<div class="layout">
+<aside id="sidebar" aria-label="Guide navigation"><h2>Guide navigation</h2><ol>
+<li><a href="#roadmap">Roadmap & objectives</a></li><li><a href="#intro">Introduction</a></li><li><a href="#comparison">Compare the patterns</a></li><li><a href="#init">Init pattern</a></li><li><a href="#sidecar">Sidecar pattern</a></li><li><a href="#adapter">Adapter pattern</a></li><li><a href="#ambassador">Ambassador pattern</a></li><li><a href="#architecture">Architecture & lifecycle</a></li><li><a href="#environment">Prepare the lab</a></li><li><a href="#labs">Hands-on exercises</a></li><li><a href="#endtoend">End-to-end design</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#bestpractices">Best practices</a></li><li><a href="#interview">Interview questions</a></li><li><a href="#assignments">Practice assignments</a></li><li><a href="#revision">Cheat sheet</a></li><li><a href="#cleanup">Cleanup</a></li><li><a href="#references">References</a></li>
+</ol><p class="muted small">Code-copy buttons work in modern browsers. In print view, navigation and buttons are hidden.</p></aside>
+<main>
+<section id="roadmap">
+<div class="kicker">00 · Start here</div><h2>Learning objectives and visual roadmap</h2>
+<figure><svg viewBox="0 0 940 270" role="img" aria-labelledby="hero-title hero-desc"><title id="hero-title">Four patterns solve four different problems</title><desc id="hero-desc">Init prepares before the application starts. Sidecar adds a companion function while the application runs. Adapter normalizes the application's interface. Ambassador proxies access to an external dependency.</desc>
+<rect x="18" y="42" width="210" height="160" rx="12" fill="#eaf3ff" stroke="#75a2ce" stroke-width="2"/><text x="123" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#194a73">Init</text><text x="123" y="100" text-anchor="middle" font-size="12" fill="#42698b">Prepare / wait / generate</text><rect x="48" y="119" width="150" height="35" rx="7" fill="#fff" stroke="#b2c9e2"/><text x="123" y="141" text-anchor="middle" font-size="12" fill="#315a7e">runs before app</text><text x="123" y="177" text-anchor="middle" font-size="11" fill="#42698b">then exits successfully</text>
+<rect x="248" y="42" width="210" height="160" rx="12" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="353" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#165b38">Sidecar</text><text x="353" y="100" text-anchor="middle" font-size="12" fill="#326d4e">Support / collect / sync</text><rect x="270" y="119" width="166" height="35" rx="7" fill="#fff" stroke="#a6d4b5"/><text x="353" y="141" text-anchor="middle" font-size="12" fill="#326d4e">runs alongside app</text><text x="353" y="177" text-anchor="middle" font-size="11" fill="#326d4e">shared Pod boundaries</text>
+<rect x="478" y="42" width="210" height="160" rx="12" fill="#f0ecff" stroke="#a397d4" stroke-width="2"/><text x="583" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#514184">Adapter</text><text x="583" y="100" text-anchor="middle" font-size="12" fill="#695c99">Normalize / translate output</text><rect x="500" y="119" width="166" height="35" rx="7" fill="#fff" stroke="#c5bae8"/><text x="583" y="141" text-anchor="middle" font-size="12" fill="#695c99">custom → standard</text><text x="583" y="177" text-anchor="middle" font-size="11" fill="#695c99">consistent interface</text>
+<rect x="708" y="42" width="214" height="160" rx="12" fill="#fff4d8" stroke="#cfad5e" stroke-width="2"/><text x="815" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#765100">Ambassador</text><text x="815" y="100" text-anchor="middle" font-size="12" fill="#85641e">Proxy / route / retry</text><rect x="733" y="119" width="164" height="35" rx="7" fill="#fff" stroke="#dfc784"/><text x="815" y="141" text-anchor="middle" font-size="12" fill="#85641e">app → proxy → remote</text><text x="815" y="177" text-anchor="middle" font-size="11" fill="#85641e">network abstraction</text>
+<text x="470" y="235" text-anchor="middle" font-size="13" font-weight="bold" fill="#314e6c">These are design patterns, not four Kubernetes resource kinds.</text><text x="470" y="253" text-anchor="middle" font-size="11" fill="#597187">Kubernetes primitives implement them with Pods, initContainers, containers, volumes, and Services.</text>
+</svg><figcaption><strong>Visual 1 — The four patterns.</strong> Pick the pattern by its job: prepare, support, normalize, or proxy.</figcaption></figure>
+<div class="grid"><div class="card"><h3>Estimated duration</h3><p>120–180 minutes, depending on cluster speed and discussion; this is an estimate.</p></div><div class="card"><h3>Prerequisites</h3><p>Pods, YAML, containers, namespaces, shared volumes, and basic Service DNS.</p></div><div class="card"><h3>Outcome</h3><p>Deploy and inspect all four patterns, explain trade-offs, and reason through common container lifecycle failures.</p></div></div>
+<h3>Learning objectives</h3><ul><li>Distinguish initialization from continuously running helper containers.</li><li>Explain how containers in one Pod share a network namespace and can share volumes.</li><li>Implement Init, Sidecar, Adapter, and Ambassador examples.</li><li>Inspect container-specific logs and identify which helper is failing.</li><li>Choose a simpler design where a helper container would add unnecessary coupling.</li></ul>
+<div class="stepflow"><span>Concept</span><b>→</b><span>Diagram</span><b>→</b><span>Manifest</span><b>→</b><span>Run</span><b>→</b><span>Verify</span><b>→</b><span>Debug</span><b>→</b><span>Clean up</span></div>
+</section>
+
+<section id="intro">
+<div class="kicker">01 · The big picture</div><h2>What are container patterns?</h2>
+<p>Container patterns are reusable ways to compose containers so that related processes collaborate without turning every function into one large application image. Kubernetes Pods provide a shared network namespace and can provide shared volumes, making some close cooperation possible. The patterns here are often called structural patterns because they describe how containers are organized and interact inside or around a Pod. citeturn879401search3turn185217search7</p>
+<div class="split"><div><h3>Real-world analogy: a small operations team</h3><p>An Init container is the setup technician who prepares a workstation before an operator begins. A Sidecar is a teammate who works beside the operator throughout the shift. An Adapter translates the operator's specialized report into a standard format. An Ambassador is the communications desk that handles access to outside systems.</p>
+<h3>Why teams use them</h3><ul><li>Keep the primary app focused on its main responsibility.</li><li>Reuse a helper container with a separate image or release cycle.</li><li>Keep tools such as download utilities or template engines out of the application image.</li><li>Standardize metrics/logs or abstract a remote dependency.</li></ul></div>
+<figure><svg viewBox="0 0 520 250" role="img" aria-labelledby="analogy-title analogy-desc"><title id="analogy-title">Four roles in a small operations team</title><desc id="analogy-desc">A setup technician prepares first, a helper works alongside the main worker, a translator normalizes output, and a proxy handles communication with outside services.</desc>
+<rect x="15" y="12" width="235" height="98" rx="10" fill="#eaf3ff" stroke="#75a2ce"/><text x="132" y="36" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">Init · Setup technician</text><text x="132" y="58" text-anchor="middle" font-size="12" fill="#42698b">prepare files / check dependency</text><text x="132" y="78" text-anchor="middle" font-size="11" fill="#42698b">finishes before work begins</text>
+<rect x="270" y="12" width="235" height="98" rx="10" fill="#e5f7ec" stroke="#69ad83"/><text x="387" y="36" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Sidecar · Teammate</text><text x="387" y="58" text-anchor="middle" font-size="12" fill="#326d4e">logs / sync / monitoring</text><text x="387" y="78" text-anchor="middle" font-size="11" fill="#326d4e">works during the shift</text>
+<rect x="15" y="130" width="235" height="98" rx="10" fill="#f0ecff" stroke="#a397d4"/><text x="132" y="154" text-anchor="middle" font-size="14" font-weight="bold" fill="#514184">Adapter · Translator</text><text x="132" y="176" text-anchor="middle" font-size="12" fill="#695c99">turns custom output into a standard</text><text x="132" y="196" text-anchor="middle" font-size="11" fill="#695c99">format for shared monitoring</text>
+<rect x="270" y="130" width="235" height="98" rx="10" fill="#fff4d8" stroke="#cfad5e"/><text x="387" y="154" text-anchor="middle" font-size="14" font-weight="bold" fill="#765100">Ambassador · Proxy desk</text><text x="387" y="176" text-anchor="middle" font-size="12" fill="#85641e">handles access to remote services</text><text x="387" y="196" text-anchor="middle" font-size="11" fill="#85641e">app uses one local interface</text>
+</svg><figcaption><strong>Visual 2 — Analogy.</strong> These roles solve different problems; the app's real needs should determine which pattern, if any, is used.</figcaption></figure></div>
+<div class="callout warn"><strong>Pattern, not resource:</strong> Init, Sidecar, Adapter and Ambassador are not built-in resource kinds named <code>kind: Sidecar</code> or <code>kind: Ambassador</code>. They are designs implemented with Pod containers, volumes, network sharing and/or Services.</div>
+</section>
+
+<section id="comparison">
+<div class="kicker">02 · Choose deliberately</div><h2>Compare all four patterns</h2>
+<div class="table-wrap"><table><thead><tr><th>Pattern</th><th>Primary purpose</th><th>Typical lifetime</th><th>Cooperation mechanism</th><th>Common example</th></tr></thead><tbody>
+<tr><td><strong>Init</strong></td><td>Prepare state or satisfy a startup precondition.</td><td>Runs to completion before regular app containers start.</td><td>Shared volume or external dependency check.</td><td>Generate config file; wait for a prerequisite.</td></tr>
+<tr><td><strong>Sidecar</strong></td><td>Add supporting behavior without changing main app code.</td><td>Runs alongside the app for its lifetime.</td><td>Shared volume, localhost network, or both.</td><td>Collect logs; synchronize files; provide proxy support.</td></tr>
+<tr><td><strong>Adapter</strong></td><td>Normalize the app's interface/output into a common form.</td><td>Usually alongside the app as a specialized sidecar.</td><td>Read shared files or query a local app endpoint; emit normalized format.</td><td>Convert legacy metrics/logs for a common collector.</td></tr>
+<tr><td><strong>Ambassador</strong></td><td>Abstract access to external services behind a local proxy.</td><td>Usually alongside the app.</td><td>Shared Pod network; app calls local proxy.</td><td>Proxy requests to backend/cache with routing or connection policy.</td></tr>
+</tbody></table></div>
+<figure><svg viewBox="0 0 920 245" role="img" aria-labelledby="family-title family-desc"><title id="family-title">Pattern family relationship</title><desc id="family-desc">Init is a lifecycle pattern separate from live helper containers. Sidecar is a broad pattern. Adapter and Ambassador are specialized sidecar patterns, one normalizing a local interface and the other brokering external calls.</desc>
+<rect x="280" y="10" width="360" height="44" rx="9" fill="#eaf3ff" stroke="#75a2ce" stroke-width="2"/><text x="460" y="37" text-anchor="middle" font-size="15" font-weight="bold" fill="#194a73">Container composition patterns</text>
+<path d="M460 54 V74 H225 V91 M460 74 H690 V91" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="30" y="92" width="390" height="55" rx="9" fill="#fff4d8" stroke="#cfad5e" stroke-width="2"/><text x="225" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#765100">Init</text><text x="225" y="133" text-anchor="middle" font-size="11" fill="#85641e">separate startup lifecycle</text>
+<rect x="500" y="92" width="390" height="55" rx="9" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="695" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#165b38">Sidecar</text><text x="695" y="133" text-anchor="middle" font-size="11" fill="#326d4e">runs beside primary app</text>
+<path d="M695 147 V166 H535 V182 M695 166 H805 V182" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="435" y="183" width="205" height="47" rx="8" fill="#f0ecff" stroke="#a397d4"/><text x="537" y="203" text-anchor="middle" font-size="13" font-weight="bold" fill="#514184">Adapter</text><text x="537" y="218" text-anchor="middle" font-size="10" fill="#695c99">normalizes local interface</text>
+<rect x="675" y="183" width="215" height="47" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="782" y="203" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Ambassador</text><text x="782" y="218" text-anchor="middle" font-size="10" fill="#85641e">proxies external access</text>
+</svg><figcaption><strong>Visual 3 — Relationship map.</strong> Adapter and Ambassador are commonly described as specialized sidecar patterns. Init has a different lifecycle: it must complete before normal app containers start. citeturn185217search7turn185217search5</figcaption></figure>
+<h3>When to use each—and when not to</h3><div class="grid">
+<div class="card"><h3>Init</h3><p><strong>Use:</strong> bounded setup, generated files, migrations that are safe to retry, or startup dependency checks.</p><p><strong>Avoid:</strong> using an init container as an infinite background worker; it must finish.</p></div>
+<div class="card"><h3>Sidecar</h3><p><strong>Use:</strong> support tasks tightly coupled to the Pod (log forwarding, proxy, sync).</p><p><strong>Avoid:</strong> helper services that need independent scaling or independent availability when a separate Deployment/Service fits better.</p></div>
+<div class="card"><h3>Adapter</h3><p><strong>Use:</strong> translate a legacy app's metrics or output to a standard interface.</p><p><strong>Avoid:</strong> duplicating a simple function the app already implements consistently.</p></div>
+<div class="card"><h3>Ambassador</h3><p><strong>Use:</strong> make a local proxy handle routing, TLS, retries or connection policy to remote dependencies.</p><p><strong>Avoid:</strong> adding proxy complexity when normal Kubernetes Service DNS is sufficient.</p></div>
+</div>
+</section>
+
+<section id="init">
+<div class="kicker">03 · Pattern 1</div><h2>Init container pattern</h2>
+<p>An init container performs preparation that must finish before the regular application containers start. Multiple regular init containers run sequentially; each must succeed before the next starts. If an init container fails, kubelet retries it according to Pod restart behavior. Regular init containers do not support liveness, readiness or startup probes because their job is to finish, not stay running. citeturn187219search0</p>
+<figure><svg viewBox="0 0 900 225" role="img" aria-labelledby="init-flow-title init-flow-desc"><title id="init-flow-title">Init container lifecycle</title><desc id="init-flow-desc">Kubelet starts the first init container. Once it exits successfully, the next init container may run. Only after all init containers complete successfully do regular app containers start.</desc>
+<defs><marker id="init-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#527da2"/></marker></defs>
+<rect x="15" y="25" width="165" height="70" rx="9" fill="#eaf3ff" stroke="#75a2ce"/><text x="97" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">Pod scheduled</text><text x="97" y="68" text-anchor="middle" font-size="11" fill="#42698b">kubelet starts setup</text>
+<path d="M180 60 H205" stroke="#527da2" stroke-width="2" marker-end="url(#init-arr)"/>
+<rect x="210" y="25" width="165" height="70" rx="9" fill="#fff4d8" stroke="#cfad5e"/><text x="292" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Init 1</text><text x="292" y="68" text-anchor="middle" font-size="11" fill="#85641e">prepare files</text>
+<path d="M375 60 H400" stroke="#527da2" stroke-width="2" marker-end="url(#init-arr)"/>
+<rect x="405" y="25" width="165" height="70" rx="9" fill="#fff4d8" stroke="#cfad5e"/><text x="487" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Init 2</text><text x="487" y="68" text-anchor="middle" font-size="11" fill="#85641e">check precondition</text>
+<path d="M570 60 H595" stroke="#527da2" stroke-width="2" marker-end="url(#init-arr)"/>
+<rect x="600" y="25" width="280" height="70" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="740" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">Application containers start</text><text x="740" y="68" text-anchor="middle" font-size="11" fill="#326d4e">only after every init succeeds</text>
+<path d="M292 95 V130 H210 V151" fill="none" stroke="#b64a4a" stroke-width="2"/><rect x="35" y="152" width="350" height="54" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="210" y="174" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Init failure</text><text x="210" y="191" text-anchor="middle" font-size="11" fill="#9c4848">app waits; inspect logs and events; retry</text>
+<text x="635" y="146" text-anchor="middle" font-size="12" font-weight="bold" fill="#314e6c">Setup output may be shared via an emptyDir volume</text><text x="635" y="165" text-anchor="middle" font-size="11" fill="#5d7185">init writes files → app container reads them after initialization</text>
+</svg><figcaption><strong>Visual 4 — Init's defining trait is completion-before-start.</strong> The green app step does not start until all regular init containers exit successfully.</figcaption></figure>
+<h3>Typical use cases and trade-offs</h3><ul><li>Generate a configuration file into a shared <code>emptyDir</code>.</li><li>Wait for an API or dependency to become reachable, with retries and an appropriate timeout.</li><li>Fetch immutable startup assets into a volume.</li><li>Prepare permissions or directory structure, within appropriate security boundaries.</li></ul>
+<div class="callout warn"><strong>Production caution:</strong> Init containers can be retried. Any operation they perform should be safe to rerun, bounded where possible, and observable. Do not use an init container to perform an unguarded destructive database migration on every Pod creation.</div>
+</section>
+
+<section id="sidecar">
+<div class="kicker">04 · Pattern 2</div><h2>Sidecar container pattern</h2>
+<p>A sidecar is a supporting container that runs alongside the primary application container in the same Pod. The sidecar can add log collection, file synchronization, monitoring, security, or proxy behavior without requiring the main application image to implement that helper function. Containers in a Pod share a network namespace and can communicate via <code>localhost</code>; they can also share explicitly defined volumes. citeturn187219search2turn879401search3</p>
+<figure><svg viewBox="0 0 900 275" role="img" aria-labelledby="sidecar-title sidecar-desc"><title id="sidecar-title">Sidecar and app share a Pod</title><desc id="sidecar-desc">The main application writes logs to a shared emptyDir volume. A sidecar tails those logs and writes them to its own stdout so Kubernetes log collection can collect them. The two containers share the Pod network namespace.</desc>
+<rect x="20" y="18" width="860" height="235" rx="14" fill="#f8fafc" stroke="#9fb2c5" stroke-width="2"/><text x="450" y="43" text-anchor="middle" font-size="15" font-weight="bold" fill="#304f6c">One Pod · shared network namespace</text>
+<rect x="45" y="61" width="310" height="130" rx="10" fill="#eaf3ff" stroke="#75a2ce" stroke-width="2"/><text x="200" y="86" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">Main application</text><text x="200" y="108" text-anchor="middle" font-size="12" fill="#42698b">writes app.log</text><rect x="85" y="127" width="230" height="37" rx="6" fill="#fff" stroke="#b3cae0"/><text x="200" y="150" text-anchor="middle" font-size="12" fill="#315a7e">shared emptyDir volume</text>
+<rect x="545" y="61" width="310" height="130" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="700" y="86" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Sidecar log reader</text><text x="700" y="108" text-anchor="middle" font-size="12" fill="#326d4e">reads app.log</text><rect x="585" y="127" width="230" height="37" rx="6" fill="#fff" stroke="#a6d4b5"/><text x="700" y="150" text-anchor="middle" font-size="12" fill="#326d4e">sidecar stdout → log collector</text>
+<path d="M355 145 H540" stroke="#527da2" stroke-width="2.5"/><path d="M531 137 L541 145 L531 153" fill="none" stroke="#527da2" stroke-width="2.5"/><text x="448" y="133" text-anchor="middle" font-size="11" fill="#527da2">shared file</text>
+<text x="450" y="218" text-anchor="middle" font-size="12" fill="#536d84">Same Pod IP and port space; shared volume is optional but must be explicitly mounted.</text><text x="450" y="237" text-anchor="middle" font-size="11" fill="#536d84">Containers share a lifecycle boundary and resource budget.</text>
+</svg><figcaption><strong>Visual 5 — Collaboration within a Pod.</strong> Sharing a Pod does not merge containers into one filesystem. A volume must be defined and mounted into each container that needs it.</figcaption></figure>
+<h3>Regular sidecar vs native Kubernetes sidecar</h3><p>The <em>sidecar pattern</em> is a design idea. Kubernetes also supports a built-in native sidecar lifecycle: a restartable sidecar is declared under <code>initContainers</code> with <code>restartPolicy: Always</code>. This feature became stable in Kubernetes v1.33; it has been available in earlier versions with the relevant feature support. Native sidecars have ordered startup and shutdown semantics useful for lifecycle-sensitive helpers. citeturn187219search2turn187219search3</p>
+<div class="table-wrap"><table><tr><th>Style</th><th>Manifest location</th><th>Behavior</th><th>Use consideration</th></tr><tr><td>Regular companion container</td><td><code>spec.containers</code> beside app</td><td>Containers run concurrently; app and helper do not get a guaranteed start order from array order.</td><td>Simple pattern when no startup ordering semantics are needed.</td></tr><tr><td>Native restartable sidecar</td><td><code>spec.initContainers</code> with <code>restartPolicy: Always</code></td><td>Can start before app containers, remain running with them, and participate in native sidecar lifecycle ordering.</td><td>Check the cluster version and sidecar behavior before using in a production manifest.</td></tr><tr><td>Regular init container</td><td><code>spec.initContainers</code> without restartPolicy Always</td><td>Runs to completion before app containers start.</td><td>Not a long-running helper; do not confuse it with a sidecar.</td></tr></table></div>
+<pre><code># Native sidecar fragment — not a complete Pod manifest.
+# Verify the cluster supports the native sidecar feature.
+spec:
+  initContainers:
+  - name: telemetry-sidecar
+    image: busybox:1.36
+    restartPolicy: Always
+    command: ["sh", "-c", "while true; do echo telemetry-sidecar-running; sleep 30; done"]</code></pre>
+</section>
+
+<section id="adapter">
+<div class="kicker">05 · Pattern 3</div><h2>Adapter pattern</h2>
+<p>The Adapter pattern makes an application's output or interface conform to a common format that external systems can consume. It is commonly implemented as a specialized sidecar: the main application keeps its legacy behavior, while the adapter translates that behavior into a standard interface—such as normalized log lines or a metrics format. citeturn185217search0turn185217search5</p>
+<figure><svg viewBox="0 0 890 245" role="img" aria-labelledby="adapter-title adapter-desc"><title id="adapter-title">Adapter normalizes a legacy application interface</title><desc id="adapter-desc">A legacy application writes custom key-value metrics to a shared file. An adapter sidecar reads the file and converts it into a normalized metric name and numeric value suitable for a common downstream convention.</desc>
+<rect x="15" y="43" width="240" height="128" rx="10" fill="#eaf3ff" stroke="#75a2ce" stroke-width="2"/><text x="135" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">Legacy application</text><text x="135" y="94" text-anchor="middle" font-size="12" fill="#42698b">metric:requests:42</text><text x="135" y="115" text-anchor="middle" font-size="11" fill="#42698b">custom file format</text><text x="135" y="142" text-anchor="middle" font-size="11" fill="#42698b">no code change required</text>
+<path d="M255 107 H320" stroke="#527da2" stroke-width="2.5"/><path d="M311 99 L321 107 L311 115" fill="none" stroke="#527da2" stroke-width="2.5"/><text x="287" y="95" text-anchor="middle" font-size="11" fill="#527da2">shared file</text>
+<rect x="325" y="43" width="240" height="128" rx="10" fill="#f0ecff" stroke="#a397d4" stroke-width="2"/><text x="445" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#514184">Adapter sidecar</text><text x="445" y="94" text-anchor="middle" font-size="12" fill="#695c99">parse + validate</text><text x="445" y="115" text-anchor="middle" font-size="11" fill="#695c99">rename / normalize</text><text x="445" y="142" text-anchor="middle" font-size="11" fill="#695c99">emits standard form</text>
+<path d="M565 107 H630" stroke="#527da2" stroke-width="2.5"/><path d="M621 99 L631 107 L621 115" fill="none" stroke="#527da2" stroke-width="2.5"/>
+<rect x="635" y="43" width="240" height="128" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="755" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Common consumer</text><text x="755" y="94" text-anchor="middle" font-size="12" fill="#326d4e">app_requests_total 42</text><text x="755" y="115" text-anchor="middle" font-size="11" fill="#326d4e">consistent naming</text><text x="755" y="142" text-anchor="middle" font-size="11" fill="#326d4e">monitoring / parser</text>
+<text x="445" y="211" text-anchor="middle" font-size="13" font-weight="bold" fill="#314e6c">Adapter = interface normalization</text><text x="445" y="230" text-anchor="middle" font-size="11" fill="#5c7187">The lab emits normalized metric-like text to stdout; it is a teaching demo, not a complete metrics HTTP exporter.</text>
+</svg><figcaption><strong>Visual 6 — Adapter translation.</strong> The adapter changes the way information is presented, not the application's original business function.</figcaption></figure>
+<h3>Where adapters help</h3><ul><li>Normalize legacy application metrics for a shared monitoring convention.</li><li>Translate custom log lines into a standard structured format.</li><li>Expose a compatibility interface without modifying an old or vendor-owned image.</li></ul>
+<div class="callout warn"><strong>Design note:</strong> An Adapter is not automatically an HTTP proxy or a Kubernetes resource. It needs a clearly defined input contract, output contract, error handling, and resource limits. Do not claim that sample text is scrapeable by Prometheus unless an HTTP metrics endpoint is actually implemented.</div>
+</section>
+
+<section id="ambassador">
+<div class="kicker">06 · Pattern 4</div><h2>Ambassador pattern</h2>
+<p>An Ambassador is a proxy-oriented sidecar that hides complexity when an application accesses a service outside its Pod. The app talks to a predictable local endpoint; the Ambassador handles the upstream connection, routing, TLS, retries or other policy that the proxy is configured to provide. citeturn185217search1turn187219search9</p>
+<figure><svg viewBox="0 0 920 270" role="img" aria-labelledby="amb-title amb-desc"><title id="amb-title">Ambassador sidecar proxies an app request</title><desc id="amb-desc">The app in a Pod sends a request to localhost port 8080. The Ambassador proxy container receives it and connects to a backend Kubernetes Service using Service DNS, then returns the backend response to the app.</desc>
+<rect x="15" y="28" width="345" height="180" rx="13" fill="#f7f9fc" stroke="#9fb2c5" stroke-width="2"/><text x="187" y="51" text-anchor="middle" font-size="15" font-weight="bold" fill="#304f6c">One Pod · shared network</text>
+<rect x="37" y="69" width="142" height="91" rx="9" fill="#eaf3ff" stroke="#75a2ce"/><text x="108" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">Application</text><text x="108" y="115" text-anchor="middle" font-size="11" fill="#42698b">connects to</text><text x="108" y="134" text-anchor="middle" font-size="12" fill="#194a73">127.0.0.1:8080</text>
+<path d="M179 115 H203" stroke="#527da2" stroke-width="2.5"/><path d="M194 107 L204 115 L194 123" fill="none" stroke="#527da2" stroke-width="2.5"/>
+<rect x="208" y="69" width="130" height="91" rx="9" fill="#fff4d8" stroke="#cfad5e"/><text x="273" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Ambassador</text><text x="273" y="115" text-anchor="middle" font-size="11" fill="#85641e">proxy on 8080</text><text x="273" y="134" text-anchor="middle" font-size="11" fill="#85641e">route / policy</text>
+<path d="M360 115 H438" stroke="#527da2" stroke-width="2.5"/><path d="M429 107 L439 115 L429 123" fill="none" stroke="#527da2" stroke-width="2.5"/><text x="399" y="101" text-anchor="middle" font-size="11" fill="#527da2">Service DNS</text>
+<rect x="443" y="69" width="190" height="91" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="538" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">Backend Service</text><text x="538" y="115" text-anchor="middle" font-size="11" fill="#326d4e">stable address</text><text x="538" y="134" text-anchor="middle" font-size="11" fill="#326d4e">selects ready Pods</text>
+<path d="M633 115 H708" stroke="#527da2" stroke-width="2.5"/><path d="M699 107 L709 115 L699 123" fill="none" stroke="#527da2" stroke-width="2.5"/>
+<rect x="713" y="69" width="190" height="91" rx="9" fill="#f0ecff" stroke="#a397d4"/><text x="808" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#514184">Backend Pod</text><text x="808" y="115" text-anchor="middle" font-size="11" fill="#695c99">receives request</text><text x="808" y="134" text-anchor="middle" font-size="11" fill="#695c99">returns response</text>
+<path d="M808 160 V190 H273 V160" fill="none" stroke="#69ad83" stroke-width="2" stroke-dasharray="5 4"/><text x="540" y="210" text-anchor="middle" font-size="11" fill="#326d4e">Response returns through proxy to the client</text><text x="460" y="248" text-anchor="middle" font-size="12" font-weight="bold" fill="#314e6c">The app knows a local endpoint, not the remote connection details.</text>
+</svg><figcaption><strong>Visual 7 — Ambassador request path.</strong> The Ambassador pattern makes outbound access configurable. It does not magically add retry/TLS/circuit-breaker behavior; those functions must be configured and validated in the proxy.</figcaption></figure>
+<h3>Common responsibilities</h3><ul><li>Proxy to a changing upstream endpoint through a stable local interface.</li><li>Apply configured TLS, client certificate, authentication, or header policies.</li><li>Centralize connection pooling, timeouts, routing, or retries when the chosen proxy supports them.</li><li>Provide consistent local behavior without adding a new networking library to the main app.</li></ul>
+<div class="callout warn"><strong>Boundary:</strong> A Kubernetes Service can already provide stable discovery for many in-cluster services. Do not add an Ambassador just to duplicate basic Service DNS; use one when it provides a needed application-level proxy capability.</div>
+</section>
+
+<section id="architecture">
+<div class="kicker">07 · Pod mechanics</div><h2>Architecture, lifecycle and communication</h2>
+<figure><svg viewBox="0 0 900 255" role="img" aria-labelledby="podshare-title podshare-desc"><title id="podshare-title">Pod network and volume sharing</title><desc id="podshare-desc">Each Pod has a shared network namespace and unique Pod IP for all containers. Containers communicate via localhost on distinct ports. Shared files are not automatic; they require a volume, such as emptyDir, mounted in both containers.</desc>
+<rect x="15" y="15" width="870" height="225" rx="13" fill="#f7f9fc" stroke="#9eafc1" stroke-width="2"/><text x="450" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#304f6c">Pod boundary</text>
+<rect x="42" y="58" width="220" height="105" rx="9" fill="#eaf3ff" stroke="#75a2ce"/><text x="152" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">Container A</text><text x="152" y="104" text-anchor="middle" font-size="12" fill="#42698b">app process</text><text x="152" y="126" text-anchor="middle" font-size="11" fill="#42698b">mounts shared-volume</text><text x="152" y="144" text-anchor="middle" font-size="11" fill="#42698b">listens on its port</text>
+<rect x="638" y="58" width="220" height="105" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="748" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Container B</text><text x="748" y="104" text-anchor="middle" font-size="12" fill="#326d4e">sidecar / helper</text><text x="748" y="126" text-anchor="middle" font-size="11" fill="#326d4e">mounts shared-volume</text><text x="748" y="144" text-anchor="middle" font-size="11" fill="#326d4e">uses localhost or files</text>
+<path d="M262 91 H638" stroke="#527da2" stroke-width="2.2"/><path d="M629 83 L639 91 L629 99" fill="none" stroke="#527da2" stroke-width="2.2"/><text x="450" y="80" text-anchor="middle" font-size="11" fill="#527da2">localhost / shared network</text>
+<rect x="306" y="117" width="288" height="38" rx="7" fill="#fff4d8" stroke="#cfad5e"/><text x="450" y="141" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">explicit shared volume: emptyDir</text>
+<path d="M152 163 V185 H450 V155 M748 163 V185 H450" fill="none" stroke="#b58b2d" stroke-width="1.8"/>
+<text x="450" y="214" text-anchor="middle" font-size="12" fill="#536d84">Network is shared automatically inside the Pod; filesystem is shared only through configured volumes.</text>
+</svg><figcaption><strong>Visual 8 — What is actually shared?</strong> Every container in a Pod shares network namespace/Pod IP, but each has its own filesystem layers. Volumes are the explicit file-sharing bridge. citeturn879401search3</figcaption></figure>
+<h3>Control-plane and node workflow</h3>
+<figure><svg viewBox="0 0 900 245" role="img" aria-labelledby="control-title control-desc"><title id="control-title">How a Pod with patterns is launched</title><desc id="control-desc">The user submits a Pod or Deployment manifest to the API server. The scheduler assigns the Pod to a node. Kubelet asks the container runtime to run init containers, then regular containers according to Pod lifecycle. Shared volumes and networking allow helpers to cooperate.</desc>
+<rect x="15" y="20" width="170" height="66" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="100" y="44" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">kubectl apply</text><text x="100" y="64" text-anchor="middle" font-size="11" fill="#42698b">manifest</text>
+<path d="M185 53 H213" stroke="#527da2" stroke-width="2"/><path d="M205 45 L214 53 L205 61" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="218" y="20" width="170" height="66" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="303" y="44" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">API server</text><text x="303" y="64" text-anchor="middle" font-size="11" fill="#42698b">authenticate / store</text>
+<path d="M388 53 H416" stroke="#527da2" stroke-width="2"/><path d="M408 45 L417 53 L408 61" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="421" y="20" width="170" height="66" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="506" y="44" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Scheduler</text><text x="506" y="64" text-anchor="middle" font-size="11" fill="#85641e">selects node</text>
+<path d="M591 53 H619" stroke="#527da2" stroke-width="2"/><path d="M611 45 L620 53 L611 61" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="624" y="20" width="260" height="66" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="754" y="44" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">Kubelet + runtime</text><text x="754" y="64" text-anchor="middle" font-size="11" fill="#326d4e">runs the Pod on the node</text>
+<path d="M754 86 V111" stroke="#527da2" stroke-width="2"/><path d="M746 103 L754 112 L762 103" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="542" y="116" width="342" height="54" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="713" y="138" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Regular init containers</text><text x="713" y="155" text-anchor="middle" font-size="11" fill="#85641e">sequential · must complete successfully</text>
+<path d="M542 143 H510" stroke="#527da2" stroke-width="2"/><path d="M518 135 L509 143 L518 151" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="170" y="116" width="335" height="54" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="337" y="138" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">Application + long-running helpers</text><text x="337" y="155" text-anchor="middle" font-size="11" fill="#326d4e">start after regular init containers complete</text>
+<path d="M337 170 V193" stroke="#527da2" stroke-width="2"/><path d="M329 185 L337 194 L345 185" fill="none" stroke="#527da2" stroke-width="2"/><rect x="170" y="197" width="714" height="35" rx="8" fill="#f0ecff" stroke="#a397d4"/><text x="527" y="219" text-anchor="middle" font-size="12" font-weight="bold" fill="#514184">Verify container-specific status/logs, shared volume behavior, and application outcome</text>
+</svg><figcaption><strong>Visual 9 — Launch sequence.</strong> The scheduler schedules the Pod, while kubelet/runtime manage container startup. Init completion gates normal app startup; sidecars and the app then cooperate within the Pod.</figcaption></figure>
+<h3>Lifecycle comparison</h3><div class="table-wrap"><table><tr><th>Property</th><th>Regular init</th><th>Sidecar / adapter / ambassador</th></tr><tr><td>Starts before normal application containers?</td><td>Yes.</td><td>Regular container-style helpers start as application containers; native sidecars can start from initContainers with restartPolicy Always.</td></tr><tr><td>Must exit to allow application startup?</td><td>Yes, successfully.</td><td>No, typical helpers remain running alongside app.</td></tr><tr><td>Shared files possible?</td><td>Yes, with an explicit volume.</td><td>Yes, with an explicit volume.</td></tr><tr><td>Shares Pod IP / network namespace?</td><td>Yes, while in the Pod.</td><td>Yes.</td></tr><tr><td>Does it have a separate Pod lifecycle?</td><td>No, part of Pod.</td><td>No, part of same Pod; container process may restart independently.</td></tr></table></div>
+</section>
+
+<section id="environment">
+<div class="kicker">08 · Prerequisites</div><h2>Prepare your environment</h2>
+<figure><svg viewBox="0 0 900 128" role="img" aria-labelledby="prep-title prep-desc"><title id="prep-title">Container pattern lab preparation</title><desc id="prep-desc">Verify kubectl is installed, cluster is reachable, context is correct, the user has namespace permissions, then prepare the dedicated container-pattern lab namespace.</desc>
+<defs><marker id="prep-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#527da2"/></marker></defs>
+<rect x="8" y="24" width="165" height="74" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="90" y="47" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">1. kubectl</text><text x="90" y="66" text-anchor="middle" font-size="11" fill="#42698b">installed</text><text x="90" y="82" text-anchor="middle" font-size="11" fill="#42698b">and on PATH</text><path d="M173 61 H190" stroke="#527da2" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="195" y="24" width="165" height="74" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="277" y="47" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">2. Cluster</text><text x="277" y="66" text-anchor="middle" font-size="11" fill="#42698b">reachable</text><text x="277" y="82" text-anchor="middle" font-size="11" fill="#42698b">right context</text><path d="M360 61 H377" stroke="#527da2" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="382" y="24" width="165" height="74" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="464" y="47" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">3. Permissions</text><text x="464" y="66" text-anchor="middle" font-size="11" fill="#85641e">apply Pods</text><text x="464" y="82" text-anchor="middle" font-size="11" fill="#85641e">namespace access</text><path d="M547 61 H564" stroke="#527da2" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="569" y="24" width="155" height="74" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="646" y="47" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">4. Namespace</text><text x="646" y="66" text-anchor="middle" font-size="11" fill="#326d4e">isolated lab</text><text x="646" y="82" text-anchor="middle" font-size="11" fill="#326d4e">resource scope</text><path d="M724 61 H741" stroke="#527da2" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="746" y="24" width="146" height="74" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="819" y="47" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">5. Run labs</text><text x="819" y="66" text-anchor="middle" font-size="11" fill="#326d4e">apply & verify</text><text x="819" y="82" text-anchor="middle" font-size="11" fill="#326d4e">then clean</text></svg><figcaption><strong>Visual 10 — Prerequisite gates.</strong> A wrong context or insufficient permission is a reason to stop, not to work around cluster controls.</figcaption></figure>
+<pre><code>kubectl version --client
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+kubectl config current-context</code></pre>
+<p>Use Minikube, kind, or an authorized existing cluster. These examples need basic Pod creation, container image pulls, and standard volume/network support; no EKS or cloud LoadBalancer is required.</p>
+<pre><code>kubectl get namespace nimbus-container-patterns
+kubectl create namespace nimbus-container-patterns</code></pre>
+<p>If the namespace already exists, inspect it and verify it belongs to your lab. Run the second command only when it does not exist and you have permission to create it.</p>
+</section>
+
+<section id="labs">
+<div class="kicker">09 · Hands-on lab series</div><h2>Progressive implementation labs</h2>
+<p>All manifests below use the namespace <code>nimbus-container-patterns</code>. Create the files with the exact names shown. Images <code>busybox:1.36</code> and <code>nginx:stable-alpine</code> must be pullable from your environment.</p>
+<figure><svg viewBox="0 0 890 112" role="img" aria-labelledby="labseq-title labseq-desc"><title id="labseq-title">Common lab process</title><desc id="labseq-desc">Create the manifest, apply it, inspect Pod container status, verify output, diagnose the exact failure, and delete the dedicated lab resources.</desc>
+<defs><marker id="lab-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#527da2"/></marker></defs>
+<rect x="8" y="24" width="128" height="60" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="72" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">1. Write YAML</text><text x="72" y="66" text-anchor="middle" font-size="11" fill="#42698b">manifest</text><path d="M136 54 H153" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="158" y="24" width="128" height="60" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="222" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">2. Apply</text><text x="222" y="66" text-anchor="middle" font-size="11" fill="#42698b">kubectl apply</text><path d="M286 54 H303" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="308" y="24" width="128" height="60" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="372" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">3. Inspect</text><text x="372" y="66" text-anchor="middle" font-size="11" fill="#42698b">get / describe</text><path d="M436 54 H453" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="458" y="24" width="128" height="60" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="522" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">4. Verify</text><text x="522" y="66" text-anchor="middle" font-size="11" fill="#326d4e">logs / endpoint</text><path d="M586 54 H603" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="608" y="24" width="128" height="60" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="672" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">5. Debug</text><text x="672" y="66" text-anchor="middle" font-size="11" fill="#85641e">target failure</text><path d="M736 54 H753" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="758" y="24" width="124" height="60" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="820" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">6. Clean</text><text x="820" y="66" text-anchor="middle" font-size="11" fill="#9c4848">lab only</text></svg><figcaption><strong>Visual 11 — A repeatable method.</strong> A resource being created does not prove the pattern is functioning. Verify the intended output and container lifecycle.</figcaption></figure>
+
+<div class="card">
+<h3>Exercise 1 — Init container prepares a file</h3>
+<p><span class="pill">Objective</span> Generate a file in an <code>emptyDir</code> volume before NGINX starts, then serve it.</p>
+<p><strong>Step 1: Save as <code>01-init-pattern.yaml</code>.</strong></p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: init-pattern-demo
+  namespace: nimbus-container-patterns
+  labels:
+    app: init-pattern-demo
+spec:
+  initContainers:
+  - name: prepare-page
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args:
+    - mkdir -p /work && printf '%s\n' 'Generated by init container' > /work/index.html
+    volumeMounts:
+    - name: shared-page
+      mountPath: /work
+  containers:
+  - name: web
+    image: nginx:stable-alpine
+    ports:
+    - name: http
+      containerPort: 80
+    volumeMounts:
+    - name: shared-page
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: shared-page
+    emptyDir: {}</code></pre>
+<p><strong>Step 2: Apply and wait.</strong></p><pre><code>kubectl apply -f 01-init-pattern.yaml
+kubectl wait --for=condition=Ready pod/init-pattern-demo -n nimbus-container-patterns --timeout=120s
+kubectl get pod init-pattern-demo -n nimbus-container-patterns
+kubectl logs init-pattern-demo -n nimbus-container-patterns -c prepare-page</code></pre>
+<p><strong>Step 3: Verify the file and HTTP response.</strong></p><pre><code>kubectl exec init-pattern-demo -n nimbus-container-patterns -c web -- cat /usr/share/nginx/html/index.html
+kubectl port-forward pod/init-pattern-demo 18080:80 -n nimbus-container-patterns</code></pre>
+<p>Leave port-forward running in that terminal and run in another:</p><pre><code>curl -s http://127.0.0.1:18080</code></pre>
+<p><strong>Expected output (illustrative):</strong> <code>Generated by init container</code>.</p>
+<p><strong>Why it works:</strong> <code>initContainers</code> must complete successfully before the regular NGINX container starts. The init and app containers mount the same <code>emptyDir</code>, so the page written by the init container is visible to NGINX.</p>
+<p><strong>What to notice:</strong> The volume is mounted over NGINX's document root, so image-provided files in that directory are hidden. This is intentional for the simple demo; a production design should choose the mount path carefully.</p>
+<p><strong>Interview takeaway:</strong> Init containers run to completion in order. They are for initialization, not for an infinite service loop.</p>
+</div>
+
+<div class="card">
+<h3>Exercise 2 — Sidecar tails a shared application log</h3>
+<p><span class="pill">Objective</span> Keep the app process simple and let a sidecar read its log file from a shared volume.</p>
+<p><strong>Step 1: Save as <code>02-sidecar-logs.yaml</code>.</strong></p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-log-demo
+  namespace: nimbus-container-patterns
+  labels:
+    app: sidecar-log-demo
+spec:
+  containers:
+  - name: app
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args:
+    - touch /var/log/app/app.log; i=0; while true; do i=$((i+1)); printf 'event=%s level=INFO\n' "$i" >> /var/log/app/app.log; sleep 5; done
+    volumeMounts:
+    - name: app-logs
+      mountPath: /var/log/app
+  - name: log-sidecar
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args:
+    - until [ -f /var/log/app/app.log ]; do sleep 1; done; tail -n +1 -f /var/log/app/app.log
+    volumeMounts:
+    - name: app-logs
+      mountPath: /var/log/app
+      readOnly: true
+  volumes:
+  - name: app-logs
+    emptyDir: {}</code></pre>
+<p><strong>Step 2: Apply and verify.</strong></p><pre><code>kubectl apply -f 02-sidecar-logs.yaml
+kubectl wait --for=condition=Ready pod/sidecar-log-demo -n nimbus-container-patterns --timeout=120s
+kubectl logs sidecar-log-demo -c app -n nimbus-container-patterns --tail=5
+kubectl logs sidecar-log-demo -c log-sidecar -n nimbus-container-patterns --tail=10</code></pre>
+<p><strong>Expected behavior:</strong> the app writes incrementing event lines; the sidecar can read those same lines and emits them to its own stdout. The Kubernetes logging agent can collect the sidecar's stdout independently of the app's.</p>
+<p><strong>Important:</strong> both containers share Pod network and any explicitly shared volumes; they do not automatically share their root filesystems. The Pod as a whole remains unready if a required regular container is not running/ready.</p>
+<p><strong>Troubleshooting:</strong> use <code>kubectl logs sidecar-log-demo -c log-sidecar</code> to inspect the helper and <code>kubectl exec ... -c app -- ls -l /var/log/app</code> to verify the file path. If both containers do not mount the same volume name at the expected path, sharing will fail.</p>
+</div>
+
+<div class="card">
+<h3>Exercise 3 — Adapter normalizes a legacy metrics file</h3>
+<p><span class="pill">Objective</span> Show how a sidecar translates app-specific output into a normalized output format without changing the app container.</p>
+<p><strong>Step 1: Save as <code>03-adapter-pattern.yaml</code>.</strong></p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: adapter-pattern-demo
+  namespace: nimbus-container-patterns
+  labels:
+    app: adapter-pattern-demo
+spec:
+  containers:
+  - name: legacy-app
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args:
+    - i=0; while true; do i=$((i+1)); printf 'legacy_requests:%s\n' "$i" > /shared/legacy.metrics; sleep 5; done
+    volumeMounts:
+    - name: exchange
+      mountPath: /shared
+  - name: adapter
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args:
+    - while true; do if [ -f /shared/legacy.metrics ]; then value="$(sed 's/^legacy_requests://' /shared/legacy.metrics)"; case "$value" in ''|*[!0-9]*) echo "adapter: invalid input" ;; *) printf 'app_requests_total %s\n' "$value" ;; esac; fi; sleep 5; done
+    volumeMounts:
+    - name: exchange
+      mountPath: /shared
+      readOnly: true
+  volumes:
+  - name: exchange
+    emptyDir: {}</code></pre>
+<p><strong>Step 2: Apply and inspect each container.</strong></p><pre><code>kubectl apply -f 03-adapter-pattern.yaml
+kubectl wait --for=condition=Ready pod/adapter-pattern-demo -n nimbus-container-patterns --timeout=120s
+kubectl logs adapter-pattern-demo -c legacy-app -n nimbus-container-patterns --tail=5
+kubectl logs adapter-pattern-demo -c adapter -n nimbus-container-patterns --tail=10</code></pre>
+<p><strong>Expected output (illustrative):</strong> adapter log lines like <code>app_requests_total 7</code>. Numbers vary because the loop increments continuously.</p>
+<p><strong>What this teaches:</strong> the adapter reads the legacy app's custom <code>legacy_requests:NUMBER</code> file format and translates it to a normalized metric name/value. This demonstrates the interface idea; it is not a complete Prometheus exporter because it does not expose an HTTP scrape endpoint.</p>
+<p><strong>Troubleshooting:</strong> if output says “invalid input,” inspect the shared file and the exact legacy format. If there are no lines, inspect the app and adapter containers separately and confirm the shared volume is mounted in both.</p>
+</div>
+
+<div class="card">
+<h3>Exercise 4 — Ambassador proxies requests to a backend Service</h3>
+<p><span class="pill">Objective</span> Make the application call a local proxy at <code>127.0.0.1:8080</code>; let the Ambassador forward to a Kubernetes Service.</p>
+<figure><svg viewBox="0 0 850 190" role="img" aria-labelledby="amb-lab-title amb-lab-desc"><title id="amb-lab-title">Ambassador lab execution flow</title><desc id="amb-lab-desc">Deploy a backend web Pod and Service first. Then run an app client and NGINX Ambassador in one Pod. The app requests localhost port 8080; the proxy forwards the request to the backend Service DNS name.</desc>
+<rect x="15" y="33" width="200" height="105" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="115" y="57" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">1. Backend</text><text x="115" y="79" text-anchor="middle" font-size="12" fill="#326d4e">Deployment + Service</text><text x="115" y="98" text-anchor="middle" font-size="11" fill="#326d4e">pattern-backend:80</text><text x="115" y="116" text-anchor="middle" font-size="11" fill="#326d4e">serve a text page</text>
+<path d="M215 85 H285" stroke="#527da2" stroke-width="2.5"/><path d="M276 77 L286 85 L276 93" fill="none" stroke="#527da2" stroke-width="2.5"/>
+<rect x="290" y="33" width="255" height="105" rx="10" fill="#eaf3ff" stroke="#75a2ce" stroke-width="2"/><text x="417" y="57" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">2. App Pod</text><text x="417" y="79" text-anchor="middle" font-size="12" fill="#42698b">application → localhost:8080</text><text x="417" y="98" text-anchor="middle" font-size="11" fill="#42698b">shared Pod network</text><text x="417" y="116" text-anchor="middle" font-size="11" fill="#42698b">Ambassador container listens</text>
+<path d="M545 85 H615" stroke="#527da2" stroke-width="2.5"/><path d="M606 77 L616 85 L606 93" fill="none" stroke="#527da2" stroke-width="2.5"/>
+<rect x="620" y="33" width="215" height="105" rx="10" fill="#fff4d8" stroke="#cfad5e" stroke-width="2"/><text x="727" y="57" text-anchor="middle" font-size="14" font-weight="bold" fill="#765100">3. Proxy result</text><text x="727" y="79" text-anchor="middle" font-size="12" fill="#85641e">forwards to Service</text><text x="727" y="98" text-anchor="middle" font-size="11" fill="#85641e">returns backend body</text><text x="727" y="116" text-anchor="middle" font-size="11" fill="#85641e">inspect app logs</text>
+<text x="425" y="169" text-anchor="middle" font-size="12" fill="#556f86">Apply backend first, wait until it is ready, then apply the Ambassador Pod.</text></svg><figcaption><strong>Visual 12 — Execution order matters.</strong> Create the backend Service before starting a proxy configuration that resolves the upstream hostname.</figcaption></figure>
+<p><strong>Step 1: Save as <code>04-ambassador-backend.yaml</code>.</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-page
+  namespace: nimbus-container-patterns
+data:
+  index.html: |
+    Nimbuswiztech Ambassador demo: response from backend Service.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pattern-backend
+  namespace: nimbus-container-patterns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pattern-backend
+  template:
+    metadata:
+      labels:
+        app: pattern-backend
+    spec:
+      containers:
+      - name: web
+        image: nginx:stable-alpine
+        ports:
+        - name: http
+          containerPort: 80
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+          readOnly: true
+      volumes:
+      - name: page
+        configMap:
+          name: backend-page
+          items:
+          - key: index.html
+            path: index.html
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pattern-backend
+  namespace: nimbus-container-patterns
+spec:
+  selector:
+    app: pattern-backend
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre>
+<p><strong>Step 2: Apply backend and wait.</strong></p><pre><code>kubectl apply -f 04-ambassador-backend.yaml
+kubectl rollout status deployment/pattern-backend -n nimbus-container-patterns --timeout=180s
+kubectl get service pattern-backend -n nimbus-container-patterns</code></pre>
+<p><strong>Step 3: Save as <code>04-ambassador-pod.yaml</code>.</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ambassador-nginx-config
+  namespace: nimbus-container-patterns
+data:
+  default.conf: |
+    server {
+      listen 8080;
+      location / {
+        proxy_pass http://pattern-backend:80;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+      }
+    }
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ambassador-demo
+  namespace: nimbus-container-patterns
+  labels:
+    app: ambassador-demo
+spec:
+  containers:
+  - name: app-client
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args:
+    - while true; do echo "request via localhost Ambassador"; wget -qO- http://127.0.0.1:8080/ || echo "upstream request failed"; sleep 10; done
+  - name: ambassador-proxy
+    image: nginx:stable-alpine
+    ports:
+    - name: proxy
+      containerPort: 8080
+    volumeMounts:
+    - name: proxy-config
+      mountPath: /etc/nginx/conf.d/default.conf
+      subPath: default.conf
+      readOnly: true
+  volumes:
+  - name: proxy-config
+    configMap:
+      name: ambassador-nginx-config
+      items:
+      - key: default.conf
+        path: default.conf</code></pre>
+<p><strong>Step 4: Apply and verify request flow.</strong></p><pre><code>kubectl apply -f 04-ambassador-pod.yaml
+kubectl wait --for=condition=Ready pod/ambassador-demo -n nimbus-container-patterns --timeout=120s
+kubectl logs ambassador-demo -c app-client -n nimbus-container-patterns --tail=12
+kubectl logs ambassador-demo -c ambassador-proxy -n nimbus-container-patterns --tail=12</code></pre>
+<p><strong>Expected behavior:</strong> app-client log lines show <code>request via localhost Ambassador</code> followed by the backend's text. NGINX access logs in the Ambassador container should show requests. Exact order of the two containers' startup logs varies; the backend is deployed first to reduce initial DNS/startup confusion.</p>
+<p><strong>Troubleshooting:</strong> check the backend Service and endpoints, NGINX config mount, proxy logs, and app-client logs. Containers in the same Pod share the network namespace, so <code>127.0.0.1:8080</code> reaches the proxy inside that Pod.</p>
+</div>
+</section>
+
+<section id="endtoend">
+<div class="kicker">10 · Put it together</div><h2>End-to-end pattern selection and design</h2>
+<h3>Scenario</h3><p>A web application needs a generated file at startup, writes legacy log events, and calls an internal backend. An observability platform requires normalized metrics, and the application should not need its own proxy library.</p>
+<figure><svg viewBox="0 0 920 290" role="img" aria-labelledby="e2e-title e2e-desc"><title id="e2e-title">One application could use several patterns</title><desc id="e2e-desc">An init container prepares data before app start. The app then runs with an adapter sidecar that transforms its metrics and an Ambassador sidecar that proxies outbound requests. The log sidecar optionally ships logs from a shared volume. These patterns can be combined but increase Pod complexity.</desc>
+<rect x="15" y="25" width="210" height="64" rx="9" fill="#fff4d8" stroke="#cfad5e"/><text x="120" y="48" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Init</text><text x="120" y="68" text-anchor="middle" font-size="11" fill="#85641e">prepare data first</text>
+<path d="M225 57 H260" stroke="#527da2" stroke-width="2.3"/><path d="M251 49 L261 57 L251 65" fill="none" stroke="#527da2" stroke-width="2.3"/>
+<rect x="265" y="25" width="180" height="64" rx="9" fill="#eaf3ff" stroke="#75a2ce"/><text x="355" y="48" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">Main application</text><text x="355" y="68" text-anchor="middle" font-size="11" fill="#42698b">business logic</text>
+<path d="M355 89 V118 H150 V136 M355 118 H450 V136 M355 118 H750 V136" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="20" y="137" width="260" height="78" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="150" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">Sidecar log reader</text><text x="150" y="181" text-anchor="middle" font-size="11" fill="#326d4e">collects shared log file</text><text x="150" y="198" text-anchor="middle" font-size="11" fill="#326d4e">for centralized logging</text>
+<rect x="320" y="137" width="260" height="78" rx="9" fill="#f0ecff" stroke="#a397d4"/><text x="450" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#514184">Adapter</text><text x="450" y="181" text-anchor="middle" font-size="11" fill="#695c99">normalizes legacy metrics</text><text x="450" y="198" text-anchor="middle" font-size="11" fill="#695c99">to shared convention</text>
+<rect x="620" y="137" width="280" height="78" rx="9" fill="#fff4d8" stroke="#cfad5e"/><text x="760" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">Ambassador</text><text x="760" y="181" text-anchor="middle" font-size="11" fill="#85641e">proxies to backend Service</text><text x="760" y="198" text-anchor="middle" font-size="11" fill="#85641e">stable local endpoint</text>
+<text x="460" y="251" text-anchor="middle" font-size="12" font-weight="bold" fill="#314e6c">Use patterns only where each helper gives a clear benefit.</text><text x="460" y="271" text-anchor="middle" font-size="11" fill="#596f85">More containers mean more resource requests, lifecycle coupling, logs, configs and failure modes.</text>
+</svg><figcaption><strong>Visual 13 — Combined pattern design.</strong> This is a conceptual architecture; do not automatically add all four patterns to every workload. Simplicity is a design goal.</figcaption></figure>
+<h3>Deployment and verification sequence</h3><ol><li>Check current context and the dedicated lab namespace.</li><li>Apply the init example; prove the file exists and is served.</li><li>Apply the sidecar example; inspect logs using the container name.</li><li>Apply the adapter example; compare source format to normalized output.</li><li>Apply the Ambassador backend Deployment and Service first and wait until they are ready.</li><li>Apply the Ambassador Pod; check client output and proxy access logs.</li><li>Run the troubleshooting flows if behavior differs from the expected state.</li><li>Clean up only these training resources.</li></ol>
+<h3>Checklist for a design review</h3><ul><li>Does the helper need to run before the app, alongside it, or only on outbound calls?</li><li>Is the shared volume required, and what happens if it fills up?</li><li>Can helper failure block application readiness? Is that intentional?</li><li>Do all containers have resource requests/limits and sensible security contexts?</li><li>Could a normal Service, application feature, or external component solve this more simply?</li></ul>
+</section>
+
+<section id="troubleshooting">
+<div class="kicker">11 · Diagnostic patterns</div><h2>Troubleshooting flows</h2>
+<h3>Flow A — Init container keeps restarting or completing unsuccessfully</h3>
+<figure><svg viewBox="0 0 870 290" role="img" aria-labelledby="init-diag-title init-diag-desc"><title id="init-diag-title">Init container troubleshooting decision tree</title><desc id="init-diag-desc">Check init container status, read its logs and events. Distinguish image pull failure, command or permission failure, missing dependency, and shared-volume path issues. Fix the specific cause, then confirm init completion and app startup.</desc>
+<rect x="260" y="10" width="350" height="42" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="435" y="36" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">App container has not started?</text><path d="M435 52 V68" stroke="#527da2" stroke-width="2"/>
+<rect x="235" y="69" width="400" height="47" rx="8" fill="#fff" stroke="#a9bdcf"/><text x="435" y="88" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d4d6a">kubectl describe pod POD_NAME</text><text x="435" y="104" text-anchor="middle" font-size="11" fill="#536d84">Check initContainerStatuses and Events</text>
+<path d="M235 92 H140 V125 M635 92 H730 V125" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="15" y="126" width="250" height="65" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="140" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Image / startup issue</text><text x="140" y="167" text-anchor="middle" font-size="11" fill="#9c4848">ImagePullBackOff / command error</text><text x="140" y="181" text-anchor="middle" font-size="11" fill="#9c4848">inspect events + init logs</text>
+<rect x="310" y="126" width="250" height="65" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="435" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Init command fails</text><text x="435" y="167" text-anchor="middle" font-size="11" fill="#85641e">exit code / syntax / permission</text><text x="435" y="181" text-anchor="middle" font-size="11" fill="#85641e">read logs from that init container</text>
+<rect x="605" y="126" width="250" height="65" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="730" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Dependency / volume issue</text><text x="730" y="167" text-anchor="middle" font-size="11" fill="#326d4e">precondition never succeeds</text><text x="730" y="181" text-anchor="middle" font-size="11" fill="#326d4e">check path, DNS, timeout</text>
+<path d="M140 191 V215 H435 V232 M435 191 V232 M730 191 V215 H435" fill="none" stroke="#527da2" stroke-width="2"/><rect x="235" y="233" width="400" height="43" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="435" y="251" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Fix one cause → init must complete → verify app starts</text><text x="435" y="266" text-anchor="middle" font-size="10" fill="#42698b">kubectl logs POD -c INIT_NAME · kubectl get pod</text>
+</svg><figcaption><strong>Visual 14 — Init diagnostic path.</strong> Read logs for the specific init container, not only the application container, which may not have started yet.</figcaption></figure>
+<h3>Flow B — Sidecar or Adapter output is empty</h3>
+<figure><svg viewBox="0 0 870 280" role="img" aria-labelledby="side-diag-title side-diag-desc"><title id="side-diag-title">Sidecar and Adapter troubleshooting</title><desc id="side-diag-desc">Check that both containers are running and inspect the correct container logs. Confirm producer writes its file, both containers mount the same shared volume, path and permissions match, and adapter parsing matches input format.</desc>
+<rect x="260" y="10" width="350" height="42" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="435" y="36" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">No sidecar / adapter output?</text><path d="M435 52 V68" stroke="#527da2" stroke-width="2"/>
+<rect x="235" y="69" width="400" height="45" rx="8" fill="#fff" stroke="#a9bdcf"/><text x="435" y="87" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d4d6a">kubectl get pod POD -o wide + describe</text><text x="435" y="102" text-anchor="middle" font-size="11" fill="#536d84">Are both containers running?</text>
+<path d="M235 92 H142 V123 M635 92 H728 V123" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="15" y="124" width="255" height="68" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="142" y="147" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">No → container error</text><text x="142" y="166" text-anchor="middle" font-size="11" fill="#9c4848">check image, exit code, command</text><text x="142" y="181" text-anchor="middle" font-size="11" fill="#9c4848">logs for that container</text>
+<rect x="300" y="124" width="270" height="68" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="435" y="147" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Yes → inspect producer</text><text x="435" y="166" text-anchor="middle" font-size="11" fill="#85641e">is the source file populated?</text><text x="435" y="181" text-anchor="middle" font-size="11" fill="#85641e">same volume name/path?</text>
+<rect x="600" y="124" width="255" height="68" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="728" y="147" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Adapter-specific checks</text><text x="728" y="166" text-anchor="middle" font-size="11" fill="#326d4e">input pattern / parser / output</text><text x="728" y="181" text-anchor="middle" font-size="11" fill="#326d4e">validate format with fake data</text>
+<path d="M142 192 V214 H435 V231 M435 192 V231 M728 192 V214 H435" fill="none" stroke="#527da2" stroke-width="2"/><rect x="235" y="232" width="400" height="37" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="435" y="255" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Correct path / format → check output again</text>
+</svg><figcaption><strong>Visual 15 — Empty output path.</strong> Verify the producer and shared volume before editing the adapter parser.</figcaption></figure>
+<h3>Flow C — Ambassador cannot reach backend</h3>
+<figure><svg viewBox="0 0 870 290" role="img" aria-labelledby="amb-diag-title amb-diag-desc"><title id="amb-diag-title">Ambassador proxy troubleshooting</title><desc id="amb-diag-desc">Check the app request and proxy logs, verify NGINX starts with the intended config, verify the backend Service exists and has endpoints, and verify Service DNS and port. Apply a targeted fix and repeat the localhost request.</desc>
+<rect x="260" y="10" width="350" height="42" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="435" y="36" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">Request via localhost fails?</text><path d="M435 52 V68" stroke="#527da2" stroke-width="2"/>
+<rect x="240" y="69" width="390" height="47" rx="8" fill="#fff" stroke="#a9bdcf"/><text x="435" y="88" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d4d6a">Check app and proxy container logs</text><text x="435" y="104" text-anchor="middle" font-size="11" fill="#536d84">Is proxy listening/config valid?</text>
+<path d="M240 92 H142 V126 M630 92 H728 V126" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="15" y="127" width="255" height="68" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="142" y="150" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Proxy startup/config issue</text><text x="142" y="169" text-anchor="middle" font-size="11" fill="#9c4848">nginx -t / proxy logs</text><text x="142" y="184" text-anchor="middle" font-size="11" fill="#9c4848">verify listen port + config mount</text>
+<rect x="300" y="127" width="270" height="68" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="435" y="150" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Proxy is running</text><text x="435" y="169" text-anchor="middle" font-size="11" fill="#85641e">check Service + EndpointSlices</text><text x="435" y="184" text-anchor="middle" font-size="11" fill="#85641e">is backend ready?</text>
+<rect x="600" y="127" width="255" height="68" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="728" y="150" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Backend ready</text><text x="728" y="169" text-anchor="middle" font-size="11" fill="#326d4e">check DNS, port, route</text><text x="728" y="184" text-anchor="middle" font-size="11" fill="#326d4e">and backend response</text>
+<path d="M142 195 V216 H435 V232 M435 195 V232 M728 195 V216 H435" fill="none" stroke="#527da2" stroke-width="2"/><rect x="235" y="233" width="400" height="37" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="435" y="256" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Fix one proven issue → retest localhost request</text>
+</svg><figcaption><strong>Visual 16 — Proxy troubleshooting.</strong> A running app does not prove the proxy or upstream route is healthy. Check each hop independently.</figcaption></figure>
+</section>
+
+<section id="bestpractices">
+<div class="kicker">12 · Design quality</div><h2>Best practices and common mistakes</h2>
+<div class="table-wrap"><table><tr><th>Practice</th><th>Why</th><th>Example</th></tr><tr><td>Keep containers single-purpose.</td><td>Separate images, ownership and responsibilities are easier to reason about.</td><td>Application writes logs; sidecar handles log collection.</td></tr><tr><td>Declare resource requests/limits.</td><td>All containers share the Pod's scheduling and resource budget.</td><td>Set suitable CPU/memory on both application and helper after measuring.</td></tr><tr><td>Use shared volumes intentionally.</td><td>File sharing must be explicitly defined; writable shared paths can create concurrency and tampering risks.</td><td>Mount app log volume read-write in app and read-only in log sidecar.</td></tr><tr><td>Make init operations safe to retry.</td><td>Init containers may be restarted and startup may repeat.</td><td>Use idempotent file generation; avoid one-time unguarded destructive operations.</td></tr><tr><td>Handle upstream unavailability.</td><td>Proxy or helper may start before remote endpoints are ready, and DNS/network may be temporarily unavailable.</td><td>Use meaningful retries/timeouts and observable failure messages.</td></tr><tr><td>Avoid unnecessary proxies.</td><td>Each helper adds memory, config, logs and failure modes.</td><td>Use Service DNS unless a proxy provides specific needed behavior.</td></tr><tr><td>Protect local ports and shared paths.</td><td>Containers share port space and can affect each other's local endpoints/files.</td><td>Assign distinct listeners; mount only required volumes and use readOnly where possible.</td></tr><tr><td>Version helper images.</td><td>A helper can be a production dependency.</td><td>Use approved immutable/tagged images and scan them like application images.</td></tr><tr><td>Expose health signals thoughtfully.</td><td>Pod readiness and helper readiness can influence whether the Pod is useful.</td><td>Add probes to long-running helper containers; do not add regular probes to normal init containers.</td></tr></table></div>
+<h3>Native sidecar: optional current-Kubernetes feature</h3><p>For cluster versions that support native sidecars, an init-container entry with <code>restartPolicy: Always</code> can be a restartable sidecar. Native sidecars became stable in Kubernetes v1.33; the feature was introduced in earlier versions and behavior depends on cluster support. Check the versioned official documentation before using it. The labs above use regular companion containers for broad compatibility. citeturn187219search2turn187219search3</p>
+</section>
+
+<section id="interview">
+<div class="kicker">13 · Interview preparation</div><h2>36 interview questions and answers</h2>
+<p>Try answering first, then expand. Search by pattern name, lifecycle, volume, or proxy concept.</p>
+<input id="qsearch" class="search" type="search" placeholder="Search questions: init, adapter, ambassador, localhost…" aria-label="Search interview questions">
+<div id="questions">
+<h3>Level 1 — Basic questions</h3>
+<div class="qa"><details><summary>1. What is a container pattern?</summary><div class="answer">A reusable design for organizing containers so that a workload can perform a focused function while collaborating with other containers through Pod lifecycle, network, or volume primitives.</div></details></div>
+<div class="qa"><details><summary>2. Are Init, Sidecar, Adapter and Ambassador Kubernetes resource kinds?</summary><div class="answer">No. They are design patterns. Kubernetes implements them using ordinary Pod fields such as <code>initContainers</code>, <code>containers</code>, volumes and Services.</div></details></div>
+<div class="qa"><details><summary>3. What is an Init container?</summary><div class="answer">A container in <code>spec.initContainers</code> that runs before normal application containers and must complete successfully before those app containers can start.</div></details></div>
+<div class="qa"><details><summary>4. What is a Sidecar?</summary><div class="answer">A supporting container that runs alongside the main application to add functionality without changing its core code or image.</div></details></div>
+<div class="qa"><details><summary>5. What is an Adapter?</summary><div class="answer">A specialized sidecar pattern that normalizes the application's interface or output into a consistent format expected by another system, such as a common metrics/logging consumer.</div></details></div>
+<div class="qa"><details><summary>6. What is an Ambassador?</summary><div class="answer">A proxy-oriented sidecar that gives the application a stable local interface for accessing external services and can apply configured routing or connection behavior.</div></details></div>
+<div class="qa"><details><summary>7. What is emptyDir?</summary><div class="answer">A Pod volume whose data starts empty and persists for the lifetime of the Pod. Containers can share it when it is mounted in each container.</div></details></div>
+<div class="qa"><details><summary>8. How can containers communicate in the same Pod?</summary><div class="answer">They share the Pod's network namespace and IP, so they can connect using <code>localhost</code> and the relevant port. They do not automatically share a filesystem.</div></details></div>
+<div class="qa"><details><summary>9. When should an Init container be used?</summary><div class="answer">When setup, a bounded precondition check, or file generation must complete before app startup. An init container should not be used as a background daemon.</div></details></div>
+<div class="qa"><details><summary>10. What can a Sidecar do?</summary><div class="answer">It may collect logs, synchronize data, provide a proxy, or deliver support services. The helper's lifecycle and failure behavior are coupled to the Pod.</div></details></div>
+<div class="qa"><details><summary>11. What is the main difference between Adapter and Ambassador?</summary><div class="answer">Adapter normalizes how the app is presented to a consumer; Ambassador abstracts how the app communicates with an external service.</div></details></div>
+<div class="qa"><details><summary>12. How do you see logs from one container in a multi-container Pod?</summary><div class="answer">Use <code>kubectl logs POD_NAME -c CONTAINER_NAME -n NAMESPACE</code>. Name the container so you do not inspect the wrong process.</div></details></div>
+
+<h3>Level 2 — Intermediate questions</h3>
+<div class="qa"><details><summary>13. Do multiple regular Init containers run concurrently?</summary><div class="answer">No. Kubernetes runs regular init containers sequentially in the order specified, and each must succeed before the next starts.</div></details></div>
+<div class="qa"><details><summary>14. Can an Init container and app container share generated files?</summary><div class="answer">Yes. Define a volume such as <code>emptyDir</code> and mount it in both containers. The Init container writes data before exiting; the app can read the same data after it starts.</div></details></div>
+<div class="qa"><details><summary>15. Does array order guarantee regular sidecar startup order?</summary><div class="answer">No. Regular containers in <code>spec.containers</code> can start concurrently. If you need native sidecar startup/shutdown semantics, evaluate the native sidecar feature supported by the cluster version.</div></details></div>
+<div class="qa"><details><summary>16. What is a native sidecar container?</summary><div class="answer">A restartable sidecar declared under <code>initContainers</code> with <code>restartPolicy: Always</code> in supported Kubernetes versions. It can start ahead of normal app containers and participates in native sidecar lifecycle ordering.</div></details></div>
+<div class="qa"><details><summary>17. How do all containers in a Pod share networking?</summary><div class="answer">They share one Pod network namespace/IP and port space, so they may use localhost to connect. Their listening ports must not conflict.</div></details></div>
+<div class="qa"><details><summary>18. Do containers in one Pod share their root filesystems?</summary><div class="answer">No. Each container has its own image/container filesystem. To exchange files, define a volume and mount it in the necessary containers.</div></details></div>
+<div class="qa"><details><summary>19. Why use an Adapter rather than change the legacy app?</summary><div class="answer">A separate adapter can normalize formats without modifying or rebuilding a vendor-owned or legacy image. The trade-off is another component and an explicit input/output contract.</div></details></div>
+<div class="qa"><details><summary>20. Why use an Ambassador rather than call the upstream directly?</summary><div class="answer">A proxy can centralize supported connection policy, routing, retries, TLS, or discovery so the application uses a stable local interface. If Service DNS is enough, the extra proxy may not be justified.</div></details></div>
+<div class="qa"><details><summary>21. How does an init failure affect a Pod?</summary><div class="answer">Normal app containers do not start until init containers succeed. Inspect the specific init container's status, logs and Pod Events.</div></details></div>
+<div class="qa"><details><summary>22. What resource issue can a sidecar introduce?</summary><div class="answer">It adds CPU/memory requests and limits to the Pod's effective resource needs, consumes node capacity, and can add log volume, port conflicts and failure modes.</div></details></div>
+<div class="qa"><details><summary>23. How can a sidecar consume application logs without changing the app image?</summary><div class="answer">Configure the app to write to a file on an explicitly shared volume, mount that same volume into a sidecar, and have the helper tail/forward it. Ensure log rotation and disk usage are managed.</div></details></div>
+<div class="qa"><details><summary>24. Is every Ambassador a service mesh?</summary><div class="answer">No. Ambassador is a pattern that can be implemented with a local proxy. Service meshes may inject or manage proxies at scale, but a pattern and a full mesh platform are not the same thing.</div></details></div>
+
+<h3>Level 3 — Real-world scenarios</h3>
+<div class="qa"><details><summary>25. Pod is stuck in Init:CrashLoopBackOff. What is your process?</summary><div class="answer">Get the Pod and Events; use <code>kubectl logs POD -c INIT_NAME</code>, including <code>--previous</code> when a previous attempt is relevant. Identify whether the init command, permissions, image, dependency or volume path failed. Fix the evidenced cause and verify init completes before the app starts.</div></details></div>
+<div class="qa"><details><summary>26. Application starts before a helper is ready and fails intermittently.</summary><div class="answer">If the helper is defined as a regular container, array order does not guarantee startup sequence. Use app-side retry/readiness logic or consider supported native sidecar semantics if it is truly a sidecar. A dependency check in a regular init container is appropriate only if the condition should block startup and the check is bounded/retry-safe.</div></details></div>
+<div class="qa"><details><summary>27. Sidecar logs are empty, but the app is writing a log file.</summary><div class="answer">Inspect each container separately. Confirm both mount the same named volume, the paths match, the sidecar process is running and has read access, and the file format matches the reader. Use <code>kubectl exec POD -c app -- ls -l /var/log/app</code> and <code>kubectl logs POD -c log-sidecar</code>.</div></details></div>
+<div class="qa"><details><summary>28. Adapter logs report invalid input.</summary><div class="answer">The source format may differ from what the adapter parser expects, the file could be empty/partially written, or the value may not be numeric. Inspect only the demo/source payload needed, validate the contract, and change parsing/atomic writing with appropriate error handling. Verify normalized output after the correction.</div></details></div>
+<div class="qa"><details><summary>29. Ambassador returns 502 or logs upstream resolution errors.</summary><div class="answer">Check proxy config, startup logs, Service name/namespace, Service port and EndpointSlices. Confirm backend Pods are Ready. Ensure the proxy was not started before the upstream DNS name existed or use proxy features/configuration that support dynamic resolution if upstream endpoints change.</div></details></div>
+<div class="qa"><details><summary>30. Two containers fail because both bind port 8080.</summary><div class="answer">Containers in a Pod share one network namespace and port space. Choose distinct listening ports or move one listener to a separate Pod/service where appropriate. Container port declarations alone do not isolate the port namespace.</div></details></div>
+<div class="qa"><details><summary>31. An Init container waits forever for a database.</summary><div class="answer">Inspect the init logs and validate DNS, Service endpoints, port, credentials and network policy. Use a reasonable retry/backoff and useful log message; design startup timeout behavior deliberately. Do not rely on a vague infinite loop that hides a permanent misconfiguration.</div></details></div>
+<div class="qa"><details><summary>32. A helper sidecar uses more resources than the main app.</summary><div class="answer">Measure CPU/memory and log volume, set requests/limits for both containers, and decide whether the helper belongs in each app Pod or should be a separate scalable workload. Avoid automatically duplicating an expensive helper for every replica.</div></details></div>
+<div class="qa"><details><summary>33. A sidecar needs to read an app file but the app file is inside the container layer.</summary><div class="answer">The containers do not share the image filesystem. Change the application to write to a shared volume or use a supported endpoint/API; mount the volume in both containers. Do not assume a sidecar can see arbitrary paths inside another container.</div></details></div>
+<div class="qa"><details><summary>34. When would you avoid an Ambassador?</summary><div class="answer">If the application can use normal Service DNS and does not need proxy policy, the ambassador adds avoidable complexity. Weigh the needed routing/TLS/retry behavior against resource cost, config management and additional failure modes.</div></details></div>
+<div class="qa"><details><summary>35. Can an Adapter transform metrics and expose them for scraping?</summary><div class="answer">Yes, if implemented with an actual exporter or HTTP endpoint that presents the agreed metrics protocol. A helper that only prints normalized-looking text to stdout is an educational demonstration, not automatically a scrape endpoint.</div></details></div>
+<div class="qa"><details><summary>36. How would you deploy these patterns safely in production?</summary><div class="answer">Keep the Pod as simple as possible, use reviewed manifests, resource requests/limits and security contexts, health checks for long-running helpers, bounded retries for init tasks, clear logs, versioned helper images, and monitoring for each container. Test termination and failure behavior and document each helper's owner and purpose.</div></details></div>
+</div>
+</section>
+
+<section id="assignments">
+<div class="kicker">14 · Practice assignments</div><h2>13 assignments with solution hints</h2>
+<p>Attempt each exercise first. Use the hints after trying. Keep work inside the dedicated namespace.</p>
+<h3>Beginner exercises</h3><ol><li><strong>Init file preparation.</strong> Write a Pod where an init container creates two files in an emptyDir and the app reads them. Verify init completion and file contents. Hint: mount the same volume into both containers.</li><li><strong>Dependency check.</strong> Create an init container that retries a harmless DNS lookup up to a fixed attempt count. Expected: it exits successfully if the lookup works and fails with a useful message after timeout. Hint: use a counter and sleep interval.</li><li><strong>Sidecar logger.</strong> Extend the log sidecar example with a timestamp. Verify app and sidecar logs independently. Hint: write to a shared file, not the container root alone.</li><li><strong>Adapter format.</strong> Change the legacy input to <code>legacy_latency_ms:42</code> and adapt it to <code>app_latency_milliseconds 42</code>. Verify output. Hint: define and validate the input contract.</li><li><strong>Ambassador upstream.</strong> Change the proxy destination to a second lab Service and confirm the app still calls localhost. Verify proxy and backend logs. Hint: deploy the backend Service before the proxy.</li></ol>
+<h3>Modification / troubleshooting exercises</h3><ol start="6"><li>Change the init command to write to the wrong path. Diagnose why the app response is incorrect and repair it.</li><li>Remove the sidecar's volumeMount. Inspect what changes and explain why it can no longer see the app log.</li><li>Give the adapter an unexpected input line. Add explicit validation and a useful error log.</li><li>Change the Ambassador proxy upstream port to an invalid value. Diagnose it using app logs, proxy logs and Service configuration, then restore the valid port.</li><li>Add requests and limits to every long-running container. Explain how Pod-level scheduling requirements change.</li></ol>
+<h3>Real-world scenario challenges</h3><ol start="11"><li><strong>Startup chain:</strong> design a bounded init dependency check for a service that may start later than the application Pod.</li><li><strong>Legacy metrics:</strong> introduce an adapter for two services whose metrics use different names/formats. Define one normalized output contract.</li><li><strong>External service access:</strong> propose an Ambassador proxy design with timeout and TLS policy requirements, identify failure modes, and explain when a Kubernetes Service alone is sufficient.</li></ol>
+<details><summary>Solution hint commands</summary><div class="answer"><pre><code># List / inspect containers and events
+kubectl get pods -n nimbus-container-patterns -o wide
+kubectl describe pod POD_NAME -n nimbus-container-patterns
+kubectl get events -n nimbus-container-patterns --sort-by=.metadata.creationTimestamp
+
+# Ask for logs from a specific container
+kubectl logs POD_NAME -c CONTAINER_NAME -n nimbus-container-patterns
+kubectl logs POD_NAME -c CONTAINER_NAME -n nimbus-container-patterns --previous
+
+# Inspect shared paths
+kubectl exec POD_NAME -c CONTAINER_NAME -n nimbus-container-patterns -- ls -la /SHARED_PATH
+kubectl exec POD_NAME -c CONTAINER_NAME -n nimbus-container-patterns -- cat /SHARED_PATH/FILE_NAME
+
+# Inspect Services / endpoints for Ambassador backend
+kubectl get service pattern-backend -n nimbus-container-patterns
+kubectl get endpointslices -n nimbus-container-patterns -l kubernetes.io/service-name=pattern-backend</code></pre><p>Replace placeholders with actual names. Check the relevant container and event before changing YAML.</p></div></details>
+</section>
+
+<section id="revision">
+<div class="kicker">15 · Rapid review</div><h2>Cheat sheet</h2>
+<div class="table-wrap"><table><tr><th>Pattern</th><th>Remember</th><th>Typical diagnostic</th></tr><tr><td>Init</td><td>Runs to completion before normal app containers; multiple regular init containers run in sequence.</td><td><code>kubectl logs POD -c INIT_NAME</code> and <code>describe pod</code>.</td></tr><tr><td>Sidecar</td><td>Supports app while running alongside it; shared volume/network must be intentional.</td><td><code>kubectl logs POD -c SIDECAR_NAME</code>.</td></tr><tr><td>Adapter</td><td>Normalizes application interface/output.</td><td>Compare raw input, shared path and transformed output.</td></tr><tr><td>Ambassador</td><td>Proxies application calls to external/remote services.</td><td>Check local listener, proxy config, Service DNS, endpoints and upstream logs.</td></tr></table></div>
+<h3>Important commands</h3><pre><code>kubectl get pods -n nimbus-container-patterns
+kubectl get pods -n nimbus-container-patterns -o wide
+kubectl describe pod POD_NAME -n nimbus-container-patterns
+kubectl logs POD_NAME -c CONTAINER_NAME -n nimbus-container-patterns
+kubectl logs POD_NAME -c CONTAINER_NAME -n nimbus-container-patterns --previous
+kubectl exec POD_NAME -c CONTAINER_NAME -n nimbus-container-patterns -- ls -la /PATH
+kubectl get events -n nimbus-container-patterns --sort-by=.metadata.creationTimestamp
+kubectl get service,endpointslices -n nimbus-container-patterns
+kubectl auth can-i create pods -n nimbus-container-patterns</code></pre>
+<h3>Quick self-check</h3><ul><li>Can I draw init-before-app lifecycle?</li><li>Can I explain shared network versus explicit shared volumes?</li><li>Can I tell Sidecar, Adapter and Ambassador apart without using only the container name?</li><li>Can I explain native sidecar versus regular container sidecar?</li><li>Can I troubleshoot by checking the exact container, file path and dependency hop?</li></ul>
+</section>
+
+<section id="cleanup">
+<div class="kicker">16 · Finish safely</div><h2>Cleanup and resource lifecycle</h2>
+<figure><svg viewBox="0 0 900 120" role="img" aria-labelledby="cleanup-title cleanup-desc"><title id="cleanup-title">Container pattern lab lifecycle</title><desc id="cleanup-desc">Create the namespace, apply manifests, verify patterns, make modifications, diagnose, then delete only the resources created for the lab.</desc>
+<defs><marker id="cl-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#527da2"/></marker></defs>
+<rect x="8" y="25" width="126" height="62" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="71" y="49" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Create</text><text x="71" y="67" text-anchor="middle" font-size="11" fill="#42698b">namespace</text><path d="M134 56 H151" stroke="#527da2" stroke-width="2" marker-end="url(#cl-arr)"/>
+<rect x="156" y="25" width="126" height="62" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="219" y="49" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Apply</text><text x="219" y="67" text-anchor="middle" font-size="11" fill="#42698b">manifests</text><path d="M282 56 H299" stroke="#527da2" stroke-width="2" marker-end="url(#cl-arr)"/>
+<rect x="304" y="25" width="126" height="62" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="367" y="49" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Verify</text><text x="367" y="67" text-anchor="middle" font-size="11" fill="#326d4e">behavior</text><path d="M430 56 H447" stroke="#527da2" stroke-width="2" marker-end="url(#cl-arr)"/>
+<rect x="452" y="25" width="126" height="62" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="515" y="49" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Modify</text><text x="515" y="67" text-anchor="middle" font-size="11" fill="#85641e">test failure</text><path d="M578 56 H595" stroke="#527da2" stroke-width="2" marker-end="url(#cl-arr)"/>
+<rect x="600" y="25" width="126" height="62" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="663" y="49" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Diagnose</text><text x="663" y="67" text-anchor="middle" font-size="11" fill="#9c4848">confirm fix</text><path d="M726 56 H743" stroke="#527da2" stroke-width="2" marker-end="url(#cl-arr)"/>
+<rect x="748" y="25" width="142" height="62" rx="8" fill="#fcebea" stroke="#cf7d7d"/><text x="819" y="49" text-anchor="middle" font-size="12" font-weight="bold" fill="#922f2f">Delete lab</text><text x="819" y="67" text-anchor="middle" font-size="11" fill="#9c4848">scope carefully</text></svg><figcaption><strong>Visual 17 — Resource lifecycle.</strong> Cleanup should be the final verified step, not an unreviewed cluster-wide deletion.</figcaption></figure>
+<p>First inspect the dedicated namespace:</p><pre><code>kubectl get all -n nimbus-container-patterns</code></pre>
+<p>If this namespace contains only the objects created for this lesson, remove the namespace:</p><pre><code>kubectl delete namespace nimbus-container-patterns</code></pre>
+<p>If a shared namespace is being used, do not delete it. Delete only the exact Pods, Deployments, Services and ConfigMaps created in the exercise after inspecting names. Stop any running port-forward session with Ctrl+C.</p>
+<div class="callout danger"><strong>Shared-cluster warning:</strong> Deleting a namespace removes all namespaced resources inside, including other students' work. Do not remove shared resources, cluster-wide components, or the cluster itself.</div>
+</section>
+
+<section id="references">
+<div class="kicker">17 · References</div><h2>Source links and technical references</h2>
+<h3>Supplied Nimbuswiztech links</h3><ul>
+<li><a href="https://github.com/nimbuswiztech/kubernetes/wiki/Container-patterns-(-init,-sidecar,-Adapter,-Ambassador)" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes Wiki — Container patterns (Init, Sidecar, Adapter, Ambassador)</a></li>
+<li><a href="https://github.com/nimbuswiztech/Kubernetes/tree/main/kubernetes-conatiner-patterns" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes repository — kubernetes-conatiner-patterns directory</a></li>
+</ul>
+<p><strong>Source transparency:</strong> The supplied wiki URL redirected to the repository Wiki home rather than exposing the named article. The supplied repository directory could not be independently fetched in this session. This guide therefore does not claim its YAML came from those repository files. Pattern explanations and technical details are supplemented using the official Kubernetes docs and the referenced Kubernetes/architecture pattern publications below.</p>
+<h3>Official Kubernetes documentation</h3><ul>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" target="_blank" rel="noopener noreferrer">Init Containers — lifecycle, ordering and use cases</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/" target="_blank" rel="noopener noreferrer">Sidecar Containers — native sidecar behavior and lifecycle</a></li>
+<li><a href="https://kubernetes.io/docs/tutorials/configuration/pod-sidecar-containers/" target="_blank" rel="noopener noreferrer">Adopting Sidecar Containers — native sidecar considerations</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/" target="_blank" rel="noopener noreferrer">Pods — shared network namespace, volumes, and container relationships</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/" target="_blank" rel="noopener noreferrer">Services — stable networking and service discovery</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener noreferrer">Install Tools — kubectl and local cluster tools</a></li>
+</ul>
+<h3>Container pattern references</h3><ul>
+<li><a href="https://www.oreilly.com/library/view/kubernetes-patterns/9781492050278/ch15.html" target="_blank" rel="noopener noreferrer">Kubernetes Patterns — Sidecar (O’Reilly)</a></li>
+<li><a href="https://www.oreilly.com/library/view/kubernetes-patterns/9781492050278/ch16.html" target="_blank" rel="noopener noreferrer">Kubernetes Patterns — Adapter (O’Reilly)</a></li>
+<li><a href="https://www.oreilly.com/library/view/kubernetes-patterns/9781492050278/ch17.html" target="_blank" rel="noopener noreferrer">Kubernetes Patterns — Ambassador (O’Reilly)</a></li>
+<li><a href="https://www.oreilly.com/library/view/kubernetes-patterns/9781492050278/" target="_blank" rel="noopener noreferrer">Kubernetes Patterns — book overview (structural patterns section)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/ambassador" target="_blank" rel="noopener noreferrer">Microsoft Azure Architecture Center — Ambassador pattern</a></li>
+</ul>
+<p class="muted small">This is a standalone HTML file with inline CSS, JavaScript and embedded SVG diagrams. Its visual content does not require a CDN or external image service; reference links require internet access.</p>
+</section>
+<a class="toplink" href="#top">↑ Back to top</a>
+</main>
+</div>
+<footer>Nimbuswiztech student learning reference · Kubernetes Container Patterns · Validate version-sensitive behavior against the Kubernetes version running in your cluster.</footer>
+<script>
+(function(){
+document.querySelectorAll('pre').forEach(function(pre){var code=pre.querySelector('code');if(!code)return;var b=document.createElement('button');b.type='button';b.className='copy';b.textContent='Copy';b.setAttribute('aria-label','Copy code');b.addEventListener('click',function(){var s=code.innerText;function fb(){var t=document.createElement('textarea');t.value=s;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');b.textContent='Copied'}catch(e){b.textContent='Select manually'}t.remove();setTimeout(function(){b.textContent='Copy'},1400)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1400)}).catch(fb)}else fb()});pre.appendChild(b)});
+var q=document.getElementById('qsearch');if(q)q.addEventListener('input',function(){var s=q.value.toLowerCase().trim();document.querySelectorAll('#questions .qa').forEach(function(n){n.style.display=n.textContent.toLowerCase().includes(s)?'':'none'})});
+var nav=[].slice.call(document.querySelectorAll('#sidebar a'));var secs=nav.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);if('IntersectionObserver'in window){var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)nav.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-14% 0px -72% 0px'});secs.forEach(function(s){ob.observe(s)})}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VPC demo &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../README.html">Infra Setup</a></li>
+    <li><a href="../../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../linux/README.html">Linux</a></li>
+    <li><a href="../../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../../linux/day1.html">day1</a></li>
+    <li><a href="../../linux/day-2.html">day 2</a></li>
+    <li><a href="../../linux/day-3.html">Day 3</a></li>
+    <li><a href="../../linux/day-4.html">Day 4</a></li>
+    <li><a href="../../linux/day-5.html">Day 5</a></li>
+    <li><a href="../../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../git/README.html">Git</a></li>
+    <li><a href="../../git/git.html">git</a></li>
+    <li><a href="../../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../../git/git-version-control.html">git version control</a></li>
+    <li><a href="../../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../../git/git-and-github.html">git and github</a></li>
+    <li><a href="../../git/git-reset.html">git reset</a></li>
+    <li><a href="../../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../../git/git-revert.html">git revert</a></li>
+    <li><a href="../../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../../git/git-squash.html">git squash</a></li>
+    <li><a href="../../git/git-stash.html">git stash</a></li>
+    <li><a href="../../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../aws/README.html">AWS</a></li>
+    <li><a href="../../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../../aws/vpc/vpc-demo.html" class="active">VPC demo</a></li>
+    <li><a href="../../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../../aws/s3/README.html">S3</a></li>
+    <li><a href="../../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../../aws/iam/README.html">IAM</a></li>
+    <li><a href="../../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../../aws/asg.html">ASG</a></li>
+    <li><a href="../../aws/stress-test.html">stress test</a></li>
+    <li><a href="../../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../../aws/kms.html">KMS</a></li>
+    <li><a href="../../aws/iac.html">IAC</a></li>
+    <li><a href="../../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../../aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../docker/README.html">Docker</a></li>
+    <li><a href="../../docker/docker.html">docker</a></li>
+    <li><a href="../../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">VPC demo</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">VPC demo</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+<div class="diagram-figure" style="margin-top: 1.5rem; margin-bottom: 2.5rem; border: 2px solid var(--border-highlight); box-shadow: 0 0 35px var(--accent-cyan-glow);">
+  <div class="diagram-badge" style="background: linear-gradient(90deg, rgba(6,182,212,0.25), rgba(59,130,246,0.25)); font-size: 0.85rem;">
+    ⭐ FEATURED ARCHITECTURAL BLUEPRINT &bull; VPC Lab Architecture
+  </div>
+  <img src="../../assets/images/aws-cloud-vpc.jpg" alt="VPC Lab Architecture" class="diagram-img" loading="eager">
+  <div class="diagram-caption" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+    End-to-End VPC Network Topology Implementation
+  </div>
+</div>
+
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Overview</h2>
+<p>This demonstration teaches a production-grade 2-tier VPC architecture across multiple Availability Zones. Students will understand network isolation, traffic routing, internet connectivity, and high-availability patterns through hands-on lab work.</p>
+<p><strong>Architecture Goal:</strong> Deploy a VPC with public subnets for web servers and private subnets for databases, enabling secure inter-subnet communication and controlled internet access.</p>
+<p><strong>Estimated Duration:</strong> 90–120 minutes with hands-on exercises</p>
+<h2>Phase 1: Conceptual Foundation (15 minutes)</h2>
+<h3>1.1 Explain VPC Architecture with Diagram</h3>
+<p>Start with a visual representation showing:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">┌─────────────────────────────────── VPC (10.0.0.0/16) ──────────────────────────────┐
+│                                                                                      │
+│  ┌─────────────────────────────────┐      ┌──────────────────────────────────┐    │
+│  │  Availability Zone A (us-east-1a)│      │ Availability Zone B (us-east-1b) │    │
+│  │                                  │      │                                  │    │
+│  │  ┌──────────────────────────────┐│      │ ┌──────────────────────────────┐ │    │
+│  │  │ Public Subnet A               ││      │ │ Public Subnet B              │ │    │
+│  │  │ (10.0.1.0/24)                 ││      │ │ (10.0.3.0/24)               │ │    │
+│  │  │ • EC2 Web Server 1            ││      │ │ • EC2 Web Server 2          │ │    │
+│  │  │ • Route: 0.0.0.0/0 → IGW     ││      │ │ • Route: 0.0.0.0/0 → IGW   │ │    │
+│  │  └──────────────────────────────┘│      │ └──────────────────────────────┘ │    │
+│  │                                  │      │                                  │    │
+│  │  ┌──────────────────────────────┐│      │ ┌──────────────────────────────┐ │    │
+│  │  │ Private Subnet A              ││      │ │ Private Subnet B             │ │    │
+│  │  │ (10.0.2.0/24)                 ││      │ │ (10.0.4.0/24)               │ │    │
+│  │  │ • EC2 App Server              ││      │ │ • EC2 App Server            │ │    │
+│  │  │ • RDS Database                ││      │ │ • RDS Database              │ │    │
+│  │  │ • Route: 0.0.0.0/0 → NAT-GW │ │      │ │ • Route: 0.0.0.0/0 → NAT-GW│ │    │
+│  │  └──────────────────────────────┘│      │ └──────────────────────────────┘ │    │
+│  │                                  │      │                                  │    │
+│  │  NAT Gateway A                   │      │  NAT Gateway B                   │    │
+│  │  + Elastic IP: 54.123.45.67     │      │  + Elastic IP: 54.234.56.78     │    │
+│  └──────────────────────────────────┘      │                                  │    │
+│                                            └──────────────────────────────────┘    │
+│                                                                                      │
+│  ┌────────────────────────────────────────────────────────────────────────────┐    │
+│  │ Internet Gateway (IGW)                                                     │    │
+│  │ • Enables communication between VPC and Internet                          │    │
+│  └────────────────────────────────────────────────────────────────────────────┘    │
+│                                                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+         │
+         │ Internet (0.0.0.0/0)
+         │
+    ┌────▼────┐
+    │ Internet │
+    └──────────┘
+</code></pre>
+</div>
+<p><strong>Key Concepts to Explain:</strong></p>
+<ul>
+<li><strong>VPC:</strong> Isolated network environment within AWS Region</li>
+<li><strong>CIDR Block:</strong> IP address range (<code>10.0.0.0/16</code> provides 65,536 addresses)</li>
+<li><strong>Availability Zones:</strong> Independent data centers for high availability</li>
+<li><strong>Subnets:</strong> Smaller CIDR blocks within VPC for resource grouping</li>
+<li><strong>Public vs. Private:</strong> Connectivity to internet vs. internal-only</li>
+</ul>
+<h3>1.2 Component Overview Table</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+<th>Example Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VPC</strong></td>
+<td>Container for all resources</td>
+<td>10.0.0.0/16 (65,536 IPs)</td>
+</tr>
+<tr>
+<td><strong>Public Subnet</strong></td>
+<td>Internet-facing resources</td>
+<td>10.0.1.0/24 in AZ-A</td>
+</tr>
+<tr>
+<td><strong>Private Subnet</strong></td>
+<td>Internal resources (no direct internet)</td>
+<td>10.0.2.0/24 in AZ-A</td>
+</tr>
+<tr>
+<td><strong>Internet Gateway (IGW)</strong></td>
+<td>Enables VPC ↔ Internet communication</td>
+<td>Attached to VPC, routes traffic</td>
+</tr>
+<tr>
+<td><strong>NAT Gateway</strong></td>
+<td>Allows private → internet (not vice versa)</td>
+<td>1 per AZ for HA</td>
+</tr>
+<tr>
+<td><strong>Elastic IP (EIP)</strong></td>
+<td>Static public IPv4 address</td>
+<td>Assigned to NAT Gateway</td>
+</tr>
+<tr>
+<td><strong>Route Table</strong></td>
+<td>Traffic routing rules</td>
+<td>Public RTB routes via IGW</td>
+</tr>
+<tr>
+<td><strong>Network ACL</strong></td>
+<td>Subnet-level firewall</td>
+<td>Stateless, numbered rules</td>
+</tr>
+<tr>
+<td><strong>Security Group</strong></td>
+<td>Instance-level firewall</td>
+<td>Stateful, allow rules only</td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 Traffic Flow Walkthrough</h3>
+<h4>Scenario A: Web Server → Internet (Public Subnet)</h4>
+<ol>
+<li>EC2 instance sends packet to internet (e.g., AWS API).</li>
+<li>IGW translates instance's private IP to public IP.</li>
+<li>Packet exits to internet.</li>
+<li>Response packet returns, IGW translates back.</li>
+<li>Instance receives response.</li>
+</ol>
+<h4>Scenario B: Database Server → Internet (Private Subnet)</h4>
+<ol>
+<li>RDS database initiates software update request.</li>
+<li>Packet reaches NAT Gateway in same AZ.</li>
+<li>NAT Gateway translates source IP to Elastic IP.</li>
+<li>Packet exits VPC via IGW using Elastic IP.</li>
+<li>Response returns to NAT Gateway, then to RDS.</li>
+</ol>
+<h2>Phase 2: Step-by-Step Implementation (75 minutes)</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Create the VPC (5 minutes)</h2>
+<p><strong>Console Steps:</strong></p>
+<ul>
+<li>Navigate to VPC Dashboard → VPCs → Create VPC.</li>
+<li>Configure:</li>
+<li>Name: <code>Production-VPC</code></li>
+<li>CIDR Block: <code>10.0.0.0/16</code></li>
+<li>IPv6 CIDR Block: Leave empty (unless teaching IPv6)</li>
+<li>Tenancy: Default</li>
+<li>Click Create VPC.</li>
+</ul>
+<p><strong>CLI Alternative:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Create VPC (CLI)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">aws ec2 create-vpc --cidr-block 10.0.0.0/16 --tag-specifications 'ResourceType=vpc,Tags=[{Key=Name,Value=Production-VPC}]'
+</code></pre>
+</div>
+</div>
+<p><strong>Teaching Point:</strong></p>
+<ul>
+<li>Explain CIDR notation: <code>10.0.0.0/16</code> = 65,536 usable IPs.</li>
+<li>Avoid overlapping with on-premises networks (common mistake).</li>
+<li>Note the Main Route Table auto-created.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Create Internet Gateway (5 minutes)</h2>
+<p><strong>Console Steps:</strong></p>
+<ul>
+<li>VPC Dashboard → Internet Gateways → Create Internet Gateway.</li>
+<li>Configure:</li>
+<li>Name: <code>Production-IGW</code></li>
+<li>Click Create.</li>
+<li>Select created IGW → Attach to VPC → Select <code>Production-VPC</code>.</li>
+</ul>
+<p><strong>CLI Alternative:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Create and Attach IGW (CLI)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create IGW
+aws ec2 create-internet-gateway --tag-specifications 'ResourceType=internet-gateway,Tags=[{Key=Name,Value=Production-IGW}]'
+
+# Attach to VPC
+aws ec2 attach-internet-gateway --internet-gateway-id igw-xxxxx --vpc-id vpc-xxxxx
+</code></pre>
+</div>
+</div>
+<p><strong>Teaching Point:</strong></p>
+<ul>
+<li>One IGW per VPC (1:1 relationship).</li>
+<li>Must be explicitly attached to VPC.</li>
+<li>Without IGW, public subnets can't reach internet.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>Create Subnets Across Availability Zones (10 minutes)</h2>
+<h3>Create Public Subnet A</h3>
+<ul>
+<li>VPC Dashboard → Subnets → Create Subnet.</li>
+<li>Configure:</li>
+<li>VPC: <code>Production-VPC</code></li>
+<li>Subnet Name: <code>Public-Subnet-A</code></li>
+<li>Availability Zone: <code>us-east-1a</code> (or your region's first AZ)</li>
+<li>IPv4 CIDR Block: <code>10.0.1.0/24</code> (256 IPs, usable range: 10.0.1.1 - 10.0.1.254)</li>
+<li>Click Create Subnet.</li>
+</ul>
+<h3>Create Public Subnet B</h3>
+<p>Repeat above with:</p>
+<ul>
+<li>Name: <code>Public-Subnet-B</code></li>
+<li>AZ: <code>us-east-1b</code></li>
+<li>CIDR: <code>10.0.3.0/24</code></li>
+</ul>
+<h3>Create Private Subnet A</h3>
+<ul>
+<li>Name: <code>Private-Subnet-A</code></li>
+<li>AZ: <code>us-east-1a</code></li>
+<li>CIDR: <code>10.0.2.0/24</code></li>
+</ul>
+<h3>Create Private Subnet B</h3>
+<ul>
+<li>Name: <code>Private-Subnet-B</code></li>
+<li>AZ: <code>us-east-1b</code></li>
+<li>CIDR: <code>10.0.4.0/24</code></li>
+</ul>
+<p><strong>CLI Alternative (example for two subnets):</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Create Subnets (CLI)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Public Subnet A
+aws ec2 create-subnet --vpc-id vpc-xxxxx --cidr-block 10.0.1.0/24 \
+  --availability-zone us-east-1a --tag-specifications 'ResourceType=subnet,Tags=[{Key=Name,Value=Public-Subnet-A}]'
+
+# Private Subnet A
+aws ec2 create-subnet --vpc-id vpc-xxxxx --cidr-block 10.0.2.0/24 \
+  --availability-zone us-east-1a --tag-specifications 'ResourceType=subnet,Tags=[{Key=Name,Value=Private-Subnet-A}]'
+</code></pre>
+</div>
+</div>
+<p><strong>Teaching Points:</strong></p>
+<ul>
+<li><code>/24</code> = 256 IPs per subnet (253 usable: .1-.254, exclude .0 and .255).</li>
+<li>Always create subnets in at least 2 AZs for HA.</li>
+<li>Subnet CIDR blocks must not overlap.</li>
+<li>Document the IP allocation plan (subnet map).</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>Allocate Elastic IPs for NAT Gateways (5 minutes)</h2>
+<p><strong>Console Steps:</strong></p>
+<ul>
+<li>EC2 Dashboard → Elastic IPs → Allocate Elastic IP Address.</li>
+<li>Configure:</li>
+<li>Network Border Group: Leave as default.</li>
+<li>Public IPv4 Address Pool: Amazon's pool of IPv4 addresses.</li>
+<li>Click Allocate.</li>
+<li>Note the Allocation ID (format: <code>eipalloc-xxxxx</code>).</li>
+<li>Repeat to allocate a second Elastic IP for NAT Gateway B.</li>
+</ul>
+<p><strong>CLI Alternative:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Allocate Elastic IPs (CLI)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Allocate first Elastic IP
+aws ec2 allocate-address --domain vpc --tag-specifications 'ResourceType=elastic-ip,Tags=[{Key=Name,Value=NAT-GW-A-EIP}]'
+
+# Allocate second Elastic IP
+aws ec2 allocate-address --domain vpc --tag-specifications 'ResourceType=elastic-ip,Tags=[{Key=Name,Value=NAT-GW-B-EIP}]'
+</code></pre>
+</div>
+</div>
+<p><strong>Teaching Points:</strong></p>
+<ul>
+<li>EIPs are static (don't change when instance restarts).</li>
+<li>EIPs are regional (can't move between regions).</li>
+<li>AWS charges for unassociated EIPs (\~$3.65/month).</li>
+<li>Essential for NAT Gateway to function.</li>
+<li>Show students the Allocation ID (used to reference EIP).</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h2>Create NAT Gateways (10 minutes)</h2>
+<h3>Create NAT Gateway A (in Public Subnet A)</h3>
+<ul>
+<li>VPC Dashboard → NAT Gateways → Create NAT Gateway.</li>
+<li>Configure:</li>
+<li>Subnet: <code>Public-Subnet-A</code></li>
+<li>Elastic IP Allocation ID: Select the first EIP you allocated.</li>
+<li>Click Create NAT Gateway.</li>
+<li>Wait for status to become "Available" (\~1–2 minutes).</li>
+</ul>
+<h3>Create NAT Gateway B (in Public Subnet B)</h3>
+<p>Repeat above with:</p>
+<ul>
+<li>Subnet: <code>Public-Subnet-B</code></li>
+<li>Elastic IP Allocation ID: Second EIP</li>
+</ul>
+<p><strong>CLI Alternative:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Create NAT Gateways (CLI)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create NAT Gateway A
+aws ec2 create-nat-gateway --subnet-id subnet-xxxxx --allocation-id eipalloc-xxxxx \
+  --tag-specifications 'ResourceType=nat-gateway,Tags=[{Key=Name,Value=NAT-GW-A}]'
+
+# Create NAT Gateway B
+aws ec2 create-nat-gateway --subnet-id subnet-xxxxx --allocation-id eipalloc-xxxxx \
+  --tag-specifications 'ResourceType=nat-gateway,Tags=[{Key=Name,Value=NAT-GW-B}]'
+</code></pre>
+</div>
+</div>
+<p><strong>Teaching Points:</strong></p>
+<ul>
+<li>NAT Gateway must be in a <strong>public</strong> subnet (to reach IGW).</li>
+<li>One NAT Gateway per AZ is AWS best practice (HA).</li>
+<li>NAT only allows outbound connections (instances can't receive from internet).</li>
+<li>Use NAT Instances if you need inbound access or packet filtering.</li>
+<li>Show the NAT Gateway state transitions: Pending → Available.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h2>Create and Configure Route Tables (15 minutes)</h2>
+<h3>Create Public Route Table</h3>
+<ul>
+<li>VPC Dashboard → Route Tables → Create Route Table.</li>
+<li>Configure:</li>
+<li>VPC: <code>Production-VPC</code></li>
+<li>Name: <code>Public-RTB</code></li>
+<li>Click Create Route Table.</li>
+<li>Select created route table → Routes tab → Edit Routes.</li>
+<li>Add Route:</li>
+<li>Destination: <code>0.0.0.0/0</code> (all internet traffic)</li>
+<li>Target: Select Internet Gateway → <code>Production-IGW</code></li>
+<li>Click Save Routes.</li>
+</ul>
+<h3>Create Private Route Table A</h3>
+<ul>
+<li>Create Route Table:</li>
+<li>VPC: <code>Production-VPC</code></li>
+<li>Name: <code>Private-RTB-A</code></li>
+<li>Add Route:</li>
+<li>Destination: <code>0.0.0.0/0</code></li>
+<li>Target: NAT Gateway → <code>NAT-GW-A</code> (in AZ-A)</li>
+<li>Save Routes.</li>
+</ul>
+<h3>Create Private Route Table B</h3>
+<ul>
+<li>Create Route Table:</li>
+<li>VPC: <code>Production-VPC</code></li>
+<li>Name: <code>Private-RTB-B</code></li>
+<li>Add Route:</li>
+<li>Destination: <code>0.0.0.0/0</code></li>
+<li>Target: NAT Gateway → <code>NAT-GW-B</code> (in AZ-B)</li>
+<li>Save Routes.</li>
+</ul>
+<p><strong>CLI Alternative (examples):</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Create Route Tables and Routes (CLI)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create Public Route Table
+aws ec2 create-route-table --vpc-id vpc-xxxxx --tag-specifications 'ResourceType=route-table,Tags=[{Key=Name,Value=Public-RTB}]'
+
+# Add IGW route
+aws ec2 create-route --route-table-id rtb-xxxxx --destination-cidr-block 0.0.0.0/0 --gateway-id igw-xxxxx
+
+# Create Private Route Table A
+aws ec2 create-route-table --vpc-id vpc-xxxxx --tag-specifications 'ResourceType=route-table,Tags=[{Key=Name,Value=Private-RTB-A}]'
+
+# Add NAT Gateway route
+aws ec2 create-route --route-table-id rtb-xxxxx --destination-cidr-block 0.0.0.0/0 --nat-gateway-id natgw-xxxxx
+</code></pre>
+</div>
+</div>
+<p><strong>Teaching Points:</strong></p>
+<ul>
+<li>Route tables contain rules that determine traffic direction.</li>
+<li>Default local route (<code>10.0.0.0/16</code> → local) is auto-created.</li>
+<li>Most specific route wins (longest prefix match).</li>
+<li>Example: If both <code>0.0.0.0/0</code> and <code>10.0.0.0/16</code> match, <code>10.0.0.0/16</code> wins.</li>
+<li><strong>Critical HA Pattern:</strong> Private subnets in different AZs use different NAT Gateways (avoids single AZ failure).</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h2>Associate Subnets with Route Tables (5 minutes)</h2>
+<h3>Associate Public Subnets</h3>
+<ul>
+<li>Select <code>Public-RTB</code> → Subnet Associations tab.</li>
+<li>Edit Subnet Associations.</li>
+<li>Select both <code>Public-Subnet-A</code> and <code>Public-Subnet-B</code>.</li>
+<li>Save Associations.</li>
+</ul>
+<h3>Associate Private Subnets with Respective Route Tables</h3>
+<ul>
+<li>Select <code>Private-RTB-A</code> → Subnet Associations tab.</li>
+<li>Edit Subnet Associations → Select <code>Private-Subnet-A</code> → Save.</li>
+<li>Select <code>Private-RTB-B</code> → Subnet Associations tab.</li>
+<li>Edit Subnet Associations → Select <code>Private-Subnet-B</code> → Save.</li>
+</ul>
+<p><strong>CLI Alternative:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Associate Route Tables (CLI)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Associate Public Subnet A with Public RTB
+aws ec2 associate-route-table --subnet-id subnet-xxxxx --route-table-id rtb-public
+
+# Associate Private Subnet A with Private RTB-A
+aws ec2 associate-route-table --subnet-id subnet-private-a --route-table-id rtb-private-a
+</code></pre>
+</div>
+</div>
+<p><strong>Teaching Points:</strong></p>
+<ul>
+<li>One subnet → One route table (but one route table → Many subnets).</li>
+<li>Unassociated subnets automatically use main route table.</li>
+<li>Association diagram: Show how traffic flows based on route table rules.</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h2>Enable Public IP Assignment (5 minutes)</h2>
+<p><strong>Console Steps:</strong></p>
+<ul>
+<li>VPC Dashboard → Subnets.</li>
+<li>Select <code>Public-Subnet-A</code> → Actions → Edit Subnet Settings.</li>
+<li>Check "Enable auto-assign public IPv4 address".</li>
+<li>Click Save.</li>
+<li>Repeat for <code>Public-Subnet-B</code>.</li>
+</ul>
+<p><strong>CLI Alternative:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Enable Auto-Assign Public IP (CLI)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">aws ec2 modify-subnet-attribute --subnet-id subnet-public-a --map-public-ip-on-launch
+</code></pre>
+</div>
+</div>
+<p><strong>Teaching Points:</strong></p>
+<ul>
+<li>Ensures EC2 instances in public subnets get public IPs automatically.</li>
+<li>Otherwise, instances have only private IPs.</li>
+<li>Can be overridden per instance during launch.</li>
+</ul>
+</div>
+</div>
+</div>
+<h2>Phase 3: Testing and Validation (20 minutes)</h2>
+<h3>Test 1: Launch EC2 Instances and Verify Connectivity</h3>
+<h4>Launch Public Instance (Web Server)</h4>
+<ul>
+<li>EC2 Dashboard → Instances → Launch Instances.</li>
+<li>Configure:</li>
+<li>AMI: Amazon Linux 2</li>
+<li>Instance Type: t2.micro (free tier eligible)</li>
+<li>Network: <code>Production-VPC</code></li>
+<li>Subnet: <code>Public-Subnet-A</code></li>
+<li>Auto-assign Public IP: Enable</li>
+<li>Security Group: Create new, allow SSH (port 22) and HTTP (port 80)</li>
+<li>Add user data script:</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Web server user-data</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+echo &quot;&lt;h1&gt;Web Server in Public Subnet A&lt;/h1&gt;&quot; &gt; /var/www/html/index.html
+</code></pre>
+</div>
+</div>
+
+<h4>Launch Private Instance (Database Server)</h4>
+<p>Repeat above with:</p>
+<ul>
+<li>Subnet: <code>Private-Subnet-A</code></li>
+<li>Auto-assign Public IP: Disable (don't check)</li>
+<li>User data:</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Private instance user-data</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+yum update -y
+# Install monitoring tools
+yum install -y net-tools wget curl
+</code></pre>
+</div>
+</div>
+
+<h3>Test 2: Verify Public Instance Internet Access</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h2>Get the public instance's public IP</h2>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h2>SSH into the instance</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">SSH into public instance</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ssh -i your-key.pem ec2-user@&lt;public-ip&gt;
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h2>Test outbound internet access</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Test outbound from public instance</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">curl https://aws.amazon.com
+ping google.com
+</code></pre>
+</div>
+</div>
+<p><strong>Expected:</strong> Successful responses (proves IGW is working).</p>
+</div>
+</div>
+</div>
+<h3>Test 3: Verify Private Instance Outbound Access</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h2>Create a temporary bastion host in the public subnet or use Systems Manager Session Manager</h2>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">13</div>
+<div class="step-content">
+<h2>SSH into the private instance via bastion or Session Manager</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">SSH to private via bastion</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># If using bastion
+ssh -i key.pem -J ec2-user@&lt;bastion-ip&gt; ec2-user@&lt;private-ip&gt;
+
+# If using Session Manager (easier)
+# Select instance → Connect → Session Manager → Connect
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">14</div>
+<div class="step-content">
+<h2>Test outbound internet access from the private instance</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Test outbound from private instance</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">curl https://aws.amazon.com
+</code></pre>
+</div>
+</div>
+<p><strong>Expected:</strong> Successful (proves NAT Gateway is working).</p>
+</div>
+</div>
+</div>
+<h3>Test 4: Verify Private Instance Has No Inbound Internet Access</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">15</div>
+<div class="step-content">
+<h2>Try to SSH directly to the private instance from your laptop</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Attempt SSH to private instance</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ssh -i key.pem ec2-user@&lt;private-ip&gt;
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">16</div>
+<div class="step-content">
+<h2>Confirm the expected result</h2>
+<p><strong>Expected:</strong> Connection timeout (proves NAT Gateway blocks inbound).</p>
+</div>
+</div>
+</div>
+<h3>Test 5: Verify Subnets in Same AZ Use Same NAT Gateway</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">17</div>
+<div class="step-content">
+<h2>Launch two instances in <code>Private-Subnet-A</code></h2>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">18</div>
+<div class="step-content">
+<h2>Check outbound traffic NAT translation</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Check NAT IP</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Inside private instance
+curl https://ifconfig.me
+# Should return NAT-GW-A's Elastic IP
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">19</div>
+<div class="step-content">
+<h2>Verify a cross-AZ private instance uses a different NAT Gateway</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Check NAT IP in other AZ</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Inside private instance in Private-Subnet-B
+curl https://ifconfig.me
+# Should return NAT-GW-B's different Elastic IP
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>Phase 4: Advanced Concepts (Optional, 10 minutes)</h2>
+<h3>4.1 Discuss Regional NAT Gateway (AWS New Feature)</h3>
+<p><strong>What it is:</strong></p>
+<ul>
+<li>Automatically spans multiple AZs.</li>
+<li>No need for public subnets.</li>
+<li>Simplifies architecture for simple use cases.</li>
+</ul>
+<p><strong>Trade-offs:</strong></p>
+<ul>
+<li>Newer feature (not available in all regions yet).</li>
+<li>Less control than per-AZ NAT Gateways.</li>
+<li>Recommended for: New applications starting fresh.</li>
+</ul>
+<p><strong>When to use traditional per-AZ:</strong></p>
+<ul>
+<li>Existing architectures.</li>
+<li>Compliance requirements for subnet isolation.</li>
+<li>Multi-tier architectures with complex routing.</li>
+</ul>
+<h3>4.2 Security Best Practices</h3>
+<h4>Network ACLs (Subnet-level)</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Public Subnet NACL Rules:
+Rule 100: Inbound  0.0.0.0/0 80 (HTTP)
+Rule 110: Inbound  0.0.0.0/0 443 (HTTPS)
+Rule 120: Inbound  0.0.0.0/0 22 (SSH, admin only)
+Rule 130: Inbound  0.0.0.0/0 1024-65535 (ephemeral ports for return traffic)
+
+Private Subnet NACL Rules:
+Rule 100: Inbound  10.0.0.0/16 (all internal traffic)
+Rule 110: Inbound  0.0.0.0/0 1024-65535 (return traffic from internet)
+</code></pre>
+</div>
+<h4>Security Groups (Instance-level)</h4>
+<ul>
+<li>Web Server SG: Allow 22, 80, 443 from specific IPs.</li>
+<li>App Server SG: Allow 3306 (MySQL) from Web Server SG only.</li>
+<li>Database SG: Allow 3306 from App Server SG only.</li>
+</ul>
+<h3>4.3 Cost Optimization</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Cost</th>
+<th>Monthly Estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VPC</td>
+<td>Free</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>IGW</td>
+<td>Free</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>NAT Gateway</td>
+<td>$32/month + data transfer</td>
+<td>$32 (per GW)</td>
+</tr>
+<tr>
+<td>Elastic IP (unassociated)</td>
+<td>$3.65/month</td>
+<td>$3.65</td>
+</tr>
+<tr>
+<td>Data Transfer (NAT)</td>
+<td>$0.045/GB</td>
+<td>$0.045/GB (egress)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cost Optimization Strategies:</strong></p>
+<ul>
+<li>Delete unused Elastic IPs.</li>
+<li>Consider NAT Instance for low-traffic environments.</li>
+<li>Use VPC Endpoints for AWS services (avoids NAT costs).</li>
+<li>Monitor NAT Gateway data transfer via CloudWatch.</li>
+</ul>
+<h2>Phase 5: Troubleshooting Guide</h2>
+<details>
+
+<summary>Symptom: Public instance can't reach internet</summary>
+
+**Checklist:**
+
+1. ✓ Instance has public IP (check EC2 console).
+2. ✓ Security Group allows outbound (usually default allows all).
+3. ✓ Route table has route to IGW (`0.0.0.0/0` → `igw-xxx`).
+4. ✓ IGW is attached to VPC.
+5. ✓ Subnet's route table is properly associated.
+
+**Debugging commands:**
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Debugging commands (public instance)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># From instance, test connectivity
+ping 8.8.8.8  # Google DNS
+curl https://aws.amazon.com
+
+# Check route table
+aws ec2 describe-route-tables --filters Name=vpc-id,Values=vpc-xxxxx
+
+# Check IGW attachment
+aws ec2 describe-internet-gateways --internet-gateway-ids igw-xxxxx
+</code></pre>
+</div>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Symptom: Private instance can't reach internet</summary>
+
+**Checklist:**
+
+1. ✓ Route table has route to NAT Gateway (`0.0.0.0/0` → `natgw-xxx`).
+2. ✓ NAT Gateway is in AVAILABLE state.
+3. ✓ NAT Gateway has Elastic IP associated.
+4. ✓ NAT Gateway's public subnet has route to IGW.
+5. ✓ NACL and Security Group allow outbound traffic.
+6. ✓ NAT Gateway is in SAME AZ as private subnet (for HA).
+
+**Debugging commands:**
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Debugging commands (private instance)</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># From private instance (via bastion/Session Manager)
+traceroute 8.8.8.8
+curl https://aws.amazon.com
+
+# Check NAT Gateway status
+aws ec2 describe-nat-gateways --nat-gateway-ids natgw-xxxxx
+
+# Verify subnet's route table
+aws ec2 describe-route-tables --subnet-ids subnet-xxxxx
+</code></pre>
+</div>
+</div>
+
+
+</details>
+
+<details>
+
+<summary>Symptom: Cross-subnet communication not working</summary>
+
+**Checklist:**
+
+1. ✓ Security Groups allow traffic between instance IPs.
+2. ✓ NACLs allow bidirectional traffic.
+3. ✓ Both subnets in same VPC.
+4. ✓ Route tables have local route (`10.0.0.0/16`).
+
+**Test connectivity between instances:**
+
+
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">Test connectivity between instances</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># From instance A to instance B (private IP)
+ping 10.0.2.5
+ssh ec2-user@10.0.2.5
+</code></pre>
+</div>
+</div>
+
+
+</details>
+
+<h2>Lab Exercises for Students</h2>
+<h3>Exercise 1: Network Segmentation</h3>
+<ul>
+<li><strong>Task:</strong> Create a third tier for database in private subnet with restricted access.</li>
+<li>Modify app tier's security group to allow only MySQL (3306) from app servers.</li>
+<li>Create database security group allowing 3306 only from app SG.</li>
+<li>Verify web server cannot directly access database.</li>
+</ul>
+<h3>Exercise 2: Multi-Region Connectivity</h3>
+<ul>
+<li><strong>Task:</strong> Explore VPC Peering or Transit Gateway (advanced).</li>
+<li>Create second VPC in different region.</li>
+<li>Establish connectivity between VPCs.</li>
+<li>Test cross-VPC communication.</li>
+</ul>
+<h3>Exercise 3: Cost Analysis</h3>
+<ul>
+<li><strong>Task:</strong> Calculate monthly costs for the architecture.</li>
+<li>2 NAT Gateways × $32 = $64.</li>
+<li>Estimated data transfer.</li>
+<li>Document cost optimization opportunities.</li>
+</ul>
+<h3>Exercise 4: Disaster Recovery</h3>
+<ul>
+<li><strong>Task:</strong> Simulate AZ failure.</li>
+<li>Disable NAT Gateway A.</li>
+<li>Verify private instances in AZ-B still have internet (via NAT-GW-B).</li>
+<li>Document RTO/RPO for this architecture.</li>
+</ul>
+<h2>Key Takeaways for Students</h2>
+<ol>
+<li><strong>VPC Fundamentals</strong>
+   * VPC isolates your network from other AWS customers.
+   * Design subnets carefully using CIDR planning.
+   * Document your IP allocation strategy.</li>
+<li><strong>High Availability Pattern</strong>
+   * Always use multiple AZs.
+   * One NAT Gateway per AZ prevents single AZ failure.
+   * Private subnets in different AZs use different NAT Gateways.</li>
+<li><strong>Security Layering</strong>
+   * IGW controls VPC ↔ Internet.
+   * NAT Gateway controls private subnet → Internet (one-way).
+   * NACLs and Security Groups add defense in depth.</li>
+<li><strong>Routing Logic</strong>
+   * Route tables are the "traffic directors".
+   * Most specific route wins (longest prefix match).
+   * Always verify route table associations.</li>
+<li><strong>Cost Management</strong>
+   * NAT Gateways are major VPC cost ($32-64/month per environment).
+   * Monitor data transfer charges.
+   * Use VPC Endpoints for AWS services to avoid NAT costs.</li>
+</ol>
+<h2>Resources for Students</h2>
+<ul>
+<li>AWS VPC Documentation: https://docs.aws.amazon.com/vpc/</li>
+<li>VPC Pricing: https://aws.amazon.com/vpc/pricing/</li>
+<li>VPC Flow Logs: For troubleshooting connectivity issues</li>
+<li>IP Calculator: https://www.subnet-calculator.com/ (for CIDR planning)</li>
+<li>AWS Well-Architected Framework: Network foundation guidance</li>
+</ul>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../../aws/vpc/cidr-calculation-guide.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">CIDR calculation guide</span>
+  </a>
+  <a href="../../aws/vpc/vpc-components.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">vpc components</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/main.js?v=2"></script>
+</body>
+</html>

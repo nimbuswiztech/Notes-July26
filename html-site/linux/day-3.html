@@ -1,0 +1,3117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 3 &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html" class="active">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🐧 Linux</span>
+          <span class="separator">/</span>
+          <span class="current">Day 3</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🐧 Linux Module</div>
+          <h1 class="hero-title">Day 3</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>How to use this document:</strong>\
+Each section covers one command or concept with syntax, examples, DevOps use cases, common questions, and interview tips. Try every example in your Linux terminal.</p>
+</div>
+</div>
+<hr />
+<h2>1. File Ownership – chown</h2>
+<h3>What is it?</h3>
+<p><code>chown</code> = <strong>ch</strong>ange <strong>own</strong>er. Every file in Linux has an owner (user) and a group. <code>chown</code> lets you change either or both.</p>
+<p><strong>Why it matters in DevOps:</strong> Files created by <code>root</code> often need to be handed over to application users like <code>jenkins</code>, <code>ubuntu</code>, or <code>deploy</code>.</p>
+<hr />
+<h3><code>chown user file</code> — Change owner only</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">chown username filename
+</code></pre>
+</div>
+<p><strong>Examples:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Hand over a file to the ubuntu user
+chown ubuntu report.txt
+
+# Hand over a config file to the jenkins user
+chown jenkins config.xml
+
+# Verify the change
+ls -l report.txt
+# -rw-r--r-- 1 ubuntu ubuntu 1024 Jul 16 10:00 report.txt
+</code></pre>
+</div>
+<hr />
+<h3><code>chown user:group file</code> — Change owner and group</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">chown user:group filename
+</code></pre>
+</div>
+<p><strong>Examples:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Change owner to ubuntu, group to devops
+chown ubuntu:devops report.txt
+
+# Change both for a Jenkins config file
+chown jenkins:jenkins /var/lib/jenkins/config.xml
+
+# Change recursively for an entire directory
+chown -R ubuntu:ubuntu /opt/myapp
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># After deploying files as root, fix ownership for jenkins
+chown jenkins:jenkins /var/lib/jenkins/workspace/deploy.sh
+
+# Fix ownership in a shared team directory
+chown -R deploy:devteam /opt/releases/
+</code></pre>
+</div>
+<p><strong>Practice Exercises:</strong></p>
+<ol>
+<li>Create a file: <code>touch myfile.txt</code>. Check ownership: <code>ls -l myfile.txt</code>. Run <code>sudo chown root myfile.txt</code>. Check again. Then change it back: <code>sudo chown $(whoami) myfile.txt</code>.</li>
+<li>Create <code>sudo touch /tmp/rootfile.txt</code>. Then: <code>sudo chown ubuntu:ubuntu /tmp/rootfile.txt</code>. Verify with <code>ls -l /tmp/rootfile.txt</code>.</li>
+</ol>
+<details>
+
+<summary>Do I need sudo for chown?</summary>
+
+Usually yes — only root can change file ownership.
+
+</details>
+
+<details>
+
+<summary>Can I chown a directory?</summary>
+
+Yes. Use \`-R\` to apply recursively to all files inside.
+
+</details>
+
+<details>
+
+<summary>What if I chown to the wrong user?</summary>
+
+Run chown again to fix it.
+
+</details>
+
+<details>
+
+<summary>Does chown change permissions?</summary>
+
+No — only ownership. Use \`chmod\` for permissions.
+
+</details>
+
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"When a file is created by root but needs to be accessed by jenkins, I use <code>chown jenkins:jenkins filename</code> to transfer both the owner and group. I use <code>chown -R</code> for directories to fix ownership recursively."</p>
+</blockquote>
+<hr />
+<h2>2. Stream Editor – sed</h2>
+<h3>What is it?</h3>
+<p><code>sed</code> = <strong>S</strong>tream <strong>Ed</strong>itor. It reads a file line by line and can <strong>replace text</strong>, <strong>delete lines</strong>, <strong>print specific lines</strong>, and more — without opening an editor.</p>
+<p><strong>Why it matters in DevOps:</strong> Automating config file changes, updating environment variables in <code>.env</code> files, or modifying scripts before deployment.</p>
+<hr />
+<h3>sed Syntax Overview</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sed 'address command' filename
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Example</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No address</td>
+<td><code>sed 's/old/new/g'</code></td>
+<td>Apply to all lines</td>
+</tr>
+<tr>
+<td>Line number</td>
+<td><code>sed '2s/old/new/'</code></td>
+<td>Apply to line 2 only</td>
+</tr>
+<tr>
+<td>Range</td>
+<td><code>sed '10,30s/old/new/'</code></td>
+<td>Apply to lines 10–30</td>
+</tr>
+<tr>
+<td>From line to end</td>
+<td><code>sed '5,$s/old/new/'</code></td>
+<td>Apply from line 5 to end</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Replace Text — <code>sed 's/pattern/replacement/g'</code></h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Replace all occurrences of &quot;error&quot; with &quot;ok&quot; (output to terminal)
+sed 's/error/ok/g' logs.txt
+
+# Replace all &quot;samsung&quot; with &quot;sony&quot;
+sed 's/samsung/sony/g' newfile
+
+# Replace http with https in a URL file
+sed 's/http/https/g' urls.txt
+</code></pre>
+</div>
+<p><strong>Flags:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>g</code></td>
+<td>Replace ALL occurrences per line (not just first)</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>Case-insensitive match</td>
+</tr>
+<tr>
+<td><code>gi</code></td>
+<td>Both: all occurrences, case-insensitive</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Edit File In-Place — <code>sed -i</code></h3>
+<p>Without <code>-i</code>, <code>sed</code> prints to the terminal and the file is unchanged.\
+With <code>-i</code>, <code>sed</code> modifies the file directly.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Update the file (no terminal output)
+sed -i 's/Testing/development/g' file2
+
+# Case-insensitive in-place replace
+sed -i 's/testing/development/gi' file2
+</code></pre>
+</div>
+<blockquote>
+<p><strong>Warning:</strong> Always verify the output first without <code>-i</code> before using it to change the actual file.</p>
+</blockquote>
+<hr />
+<h3>Replace on Specific Lines</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Replace only on line 2
+sed '2s/unix/linux/g' filename
+
+# Replace only on line 2, case-insensitive
+sed '2s/testing/development/gi' file2
+
+# Replace from line 10 to line 30
+sed '10,30s/testing/development/gi' file2
+
+# Replace from line 30 to end of file ($)
+sed '30,$s/testing/development/gi' file2
+
+# Replace the 2nd occurrence on line 2 only
+sed '2s/development/devops/2' file2
+</code></pre>
+</div>
+<hr />
+<h3>Print Specific Lines — <code>sed -n 'Np'</code></h3>
+<p><code>-n</code> suppresses the default output. <code>p</code> prints the matched line.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Print only line 4
+sed -n '4p' file2
+
+# Print only line 98 (useful for large log files)
+sed -n '98p' file
+
+# Print only line 2
+sed -n '2p' file2
+
+# Print lines 10 to 20
+sed -n '10,20p' file
+
+# Print lines 10 and 25 (non-contiguous)
+sed -n -e '10p' -e '25p' filename
+</code></pre>
+</div>
+<p><strong>DevOps Use Case:</strong> Someone says "the error is on line 144 of the log file." Jump straight to it:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sed -n '144p' application.log
+</code></pre>
+</div>
+<hr />
+<h3>Delete Lines — <code>sed 'Nd'</code></h3>
+<p>By default, this prints to terminal. Add <code>-i</code> to modify the file.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Delete line 3 (output to terminal)
+sed '3d' file2
+
+# Delete line 30 (output to terminal)
+sed '30d' file2
+
+# Delete line 100 (output to terminal)
+sed '100d' file
+
+# Delete line 2 and save in-place
+sed -i '2d' file
+</code></pre>
+</div>
+<hr />
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Update staging URLs to production before deployment
+sed -i 's/staging.company.com/prod.company.com/g' config/.env
+
+# Patch a config file on multiple servers (in a script)
+sed -i 's/port=8080/port=9090/g' /etc/myapp/settings.conf
+</code></pre>
+</div>
+<p><strong>Practice Exercises:</strong></p>
+<ol>
+<li>Create a file with <code>echo -e "apple\nbanana\napple\ncherry" &gt; fruits.txt</code>. Run <code>sed 's/apple/mango/g' fruits.txt</code>. Notice the original file is unchanged. Now run <code>sed -i 's/apple/mango/g' fruits.txt</code>. Check with <code>cat fruits.txt</code>.</li>
+<li>Create <code>echo -e "line1\nline2\nline3\nline4\nline5" &gt; lines.txt</code>. Print only line 3: <code>sed -n '3p' lines.txt</code>. Delete line 2: <code>sed '2d' lines.txt</code>.</li>
+</ol>
+<details>
+
+<summary>Does sed modify the original file?</summary>
+
+No — unless you use \`-i\`.
+
+</details>
+
+<details>
+
+<summary>What does `$` mean in `30,$`?</summary>
+
+Last line of the file.
+
+</details>
+
+<details>
+
+<summary>What if I forget `g`?</summary>
+
+Only the first match per line is replaced.
+
+</details>
+
+<details>
+
+<summary>Can I use regex in sed?</summary>
+
+Yes — sed supports basic and extended regex.
+
+</details>
+
+<details>
+
+<summary>How is sed different from grep?</summary>
+
+\`grep\` finds lines; \`sed\` also transforms them.
+
+</details>
+
+<p><strong>Quick Quiz:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Which flag edits the file in-place?</td>
+<td><code>-i</code></td>
+</tr>
+<tr>
+<td>What does <code>g</code> do in <code>s/old/new/g</code>?</td>
+<td>Replaces all occurrences per line</td>
+</tr>
+<tr>
+<td>How do you print only line 5?</td>
+<td><code>sed -n '5p' filename</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. File Copy – cp</h2>
+<h3>What is it?</h3>
+<p><code>cp</code> = <strong>c</strong>o<strong>p</strong>y. Copies files or directories.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cp source destination
+</code></pre>
+</div>
+<p><strong>Examples:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Copy file to another file (basic backup)
+cp file file2
+
+# Copy file to a nested directory
+cp file dir1/dir2/file
+
+# Copy with prompt before overwriting (safe mode)
+cp -i file file2
+cp -i file2 f4
+cp -i test dir1/test
+
+# Copy file to deeply nested path with prompt
+cp -i dir1/file dir2/dir3/dir4/
+
+# Copy an entire directory recursively
+cp -r dir2 dir3
+cp -r dir1 dir2/dir3/dir4
+
+# Real-world: backup Nginx config before changes
+cp -r /etc/nginx /tmp/backup_nginx
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Backup config before editing
+cp /etc/nginx/nginx.conf /tmp/nginx.conf.bak
+
+# Copy a deployment artifact to the server directory
+cp -r build/ /var/www/html/
+</code></pre>
+</div>
+<details>
+
+<summary>What does <code>-i</code> do?</summary>
+
+Asks for confirmation before overwriting an existing file.
+
+</details>
+
+<details>
+
+<summary>What does <code>-r</code> do?</summary>
+
+Copies directories recursively (all contents included).
+
+</details>
+
+<details>
+
+<summary>Does cp preserve permissions?</summary>
+
+By default, partially. Use \`cp -p\` to preserve all attributes.
+
+</details>
+
+<details>
+
+<summary>What if destination directory doesn't exist?</summary>
+
+Without \`-r\`, it fails. You may need to \`mkdir\` first.
+
+</details>
+
+<hr />
+<h2>4. Field Extraction – cut</h2>
+<h3>What is it?</h3>
+<p><code>cut</code> extracts specific columns (fields) from each line of a file or output. It's ideal for structured text like logs, CSVs, or space-separated data.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cut -d &quot;delimiter&quot; -f field_number filename
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-d " "</code></td>
+<td>Use space as the delimiter (separator)</td>
+</tr>
+<tr>
+<td><code>-f 1</code></td>
+<td>Extract field 1 (first column)</td>
+</tr>
+<tr>
+<td><code>-f 2,4</code></td>
+<td>Extract fields 2 and 4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample file <code>checklist</code>:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">2024-07-16 SUCCESS ubuntu deploy.sh
+2024-07-16 FAILED jenkins build.sh
+2024-07-15 SUCCESS deploy app.py
+</code></pre>
+</div>
+<p><strong>Examples:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Extract the 1st column (dates)
+cut -d &quot; &quot; -f1 checklist
+# 2024-07-16
+# 2024-07-16
+# 2024-07-15
+
+# Extract the 4th column (command names)
+cut -d &quot; &quot; -f4 checklist
+# deploy.sh
+# build.sh
+# app.py
+
+# Extract 2nd and 4th columns (status and command)
+cut -d &quot; &quot; -f2,4 checklist
+# SUCCESS deploy.sh
+# FAILED build.sh
+# SUCCESS app.py
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Extract usernames from an access log
+cut -d ' ' -f3 access.log
+
+# Get status codes from a CI/CD checklist
+cut -d ' ' -f2 checklist | sort | uniq
+</code></pre>
+</div>
+<details>
+
+<summary>What if fields are tab-separated?</summary>
+
+Use \`-d $'\t'\` or just \`-d "\t"\`.
+
+</details>
+
+<details>
+
+<summary>Can I cut by character position?</summary>
+
+Yes — use \`-c 1-5\` for characters 1 through 5.
+
+</details>
+
+<details>
+
+<summary>How is cut different from awk?</summary>
+
+\`cut\` is simpler; \`awk\` can do conditionals, math, and more.
+
+</details>
+
+<hr />
+<h2>5. Text Processing – awk</h2>
+<h3>What is it?</h3>
+<p><code>awk</code> is a powerful text processing tool. It processes files line by line, splitting each line into fields. It can print columns, filter rows, and even do arithmetic.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">awk -F &quot;delimiter&quot; '{print $field_number}' filename
+</code></pre>
+</div>
+<p><strong>Examples using the same <code>checklist</code> file:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Print 2nd column (status)
+awk -F &quot; &quot; '{print $2}' checklist
+# SUCCESS
+# FAILED
+# SUCCESS
+
+# Print 4th column (command)
+awk -F &quot; &quot; '{print $4}' checklist
+# deploy.sh
+# build.sh
+# app.py
+
+# Print 2nd and 4th columns together
+awk -F &quot; &quot; '{print $2,$4}' checklist
+# SUCCESS deploy.sh
+# FAILED build.sh
+# SUCCESS app.py
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Extract username and command for audit
+awk -F ' ' '{print $3,$4}' checklist
+
+# From a log file, print lines where status is FAILED
+awk -F ' ' '$2 == &quot;FAILED&quot; {print $0}' checklist
+</code></pre>
+</div>
+<p><strong><code>cut</code> vs <code>awk</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>cut</code></th>
+<th><code>awk</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple column extraction</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multiple delimiters</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Conditional logic</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Arithmetic</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Process Management – ps &amp; kill</h2>
+<h3><code>ps -ef</code> — List All Processes</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ps -ef
+</code></pre>
+</div>
+<p><strong>Output columns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UID</td>
+<td>User who owns the process</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>Process ID (unique)</td>
+</tr>
+<tr>
+<td>PPID</td>
+<td>Parent Process ID</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>Command being run</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Searching for specific processes:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Search for a process by name (case-insensitive)
+ps -ef | grep -i &quot;tomcat&quot;
+ps -ef | grep -i &quot;jenkins&quot;
+
+# Search for multiple services at once
+ps -ef | grep -ie &quot;jenkins&quot; -e &quot;tomcat&quot;
+
+# List all processes for a specific user
+ps -u jenkins
+ps -u ubuntu
+ps -u $(whoami)
+</code></pre>
+</div>
+<hr />
+<h3><code>kill</code> and <code>kill -9</code> — Stop Processes</h3>
+<p>Linux signals:</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Number</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIGTERM</td>
+<td>15</td>
+<td>Politely ask the process to stop (default)</td>
+</tr>
+<tr>
+<td>SIGKILL</td>
+<td>9</td>
+<td>Forcefully kill immediately</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Workflow:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Step 1: Find the PID
+ps -ef | grep &quot;deploy.sh&quot;
+# ubuntu  6421  6100  0 10:15 pts/0  ./deploy.sh
+
+# Step 2: Try graceful stop first
+kill 6421
+
+# Step 3: If still running, force kill
+kill -9 6421
+
+# Step 4: Verify it's gone
+ps -ef | grep &quot;deploy.sh&quot;
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Check if Jenkins and Tomcat are running
+ps -ef | grep -ie &quot;jenkins&quot; -e &quot;tomcat&quot;
+
+# Kill a hung deployment process
+ps -ef | grep deploy.sh
+kill -9 &lt;PID&gt;
+</code></pre>
+</div>
+<details>
+
+<summary>Why not always use <code>kill -9</code>?</summary>
+
+It gives the process no time to clean up (close files, connections, write logs). Always try \`kill\` first.
+
+</details>
+
+<details>
+
+<summary>Can kill delete files?</summary>
+
+No — it only terminates the running process.
+
+</details>
+
+<details>
+
+<summary>What if I kill the wrong PID?</summary>
+
+You could crash an important service. Always verify the PID before killing.
+
+</details>
+
+<details>
+
+<summary>How do I find a PID quickly?</summary>
+
+\`ps -ef | grep process\_name\` or \`pgrep process\_name\`.
+
+</details>
+
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"I always try <code>kill PID</code> (SIGTERM) first to allow the process to shut down gracefully. I only use <code>kill -9</code> if the process doesn't respond, because SIGKILL doesn't allow cleanup of open files or database connections."</p>
+</blockquote>
+<hr />
+<h2>7. File Search – find &amp; xargs</h2>
+<h3><code>xargs</code> — Pass Results as Arguments</h3>
+<p><code>find</code> lists files. <code>xargs</code> takes that list and passes it to another command like <code>rm</code>, <code>chmod</code>, or <code>cp</code>.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">find --&gt; list of files --&gt; xargs --&gt; rm / chmod / etc.
+</code></pre>
+</div>
+<hr />
+<h3><code>find</code> — Search for Files and Directories</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">find location -options
+</code></pre>
+</div>
+<p><strong>Search by age:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Files modified more than 2 days ago
+find . -type f -mtime +2
+
+# Files modified more than 365 days ago (one year)
+find . -type f -mtime +365
+
+# Delete old files (always list first!)
+find . -type f -mtime +2 | xargs rm
+find /var/log/myapp -type f -mtime +7 | xargs rm
+find . -type f -mtime +365 | xargs rm
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-mtime +N</code></td>
+<td>Modified more than N days ago</td>
+</tr>
+<tr>
+<td><code>-mtime -N</code></td>
+<td>Modified within last N days</td>
+</tr>
+<tr>
+<td><code>-mtime N</code></td>
+<td>Modified exactly N days ago</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Rule:</strong> Always run <code>find</code> first to see the list. Add <code>| xargs rm</code> only after confirming.</p>
+</blockquote>
+<p><strong>Search by name:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Case-insensitive file named &quot;test&quot; in current dir only
+find . -type f -iname &quot;test&quot; -maxdepth 1
+
+# Case-insensitive directory named &quot;test&quot; up to 2 levels deep
+find . -type d -iname &quot;test&quot; -maxdepth 2
+
+# Files OR directories named &quot;test&quot; in current dir
+find . -iname &quot;test&quot; -maxdepth 1
+
+# Find all shell scripts
+find . -iname &quot;*.sh&quot;
+
+# Find all YAML files
+find . -iname &quot;*.yaml&quot;
+
+# Find Dockerfile
+find . -type f -iname &quot;dockerfile&quot;
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-type f</code></td>
+<td>Files only</td>
+</tr>
+<tr>
+<td><code>-type d</code></td>
+<td>Directories only</td>
+</tr>
+<tr>
+<td><code>-iname</code></td>
+<td>Case-insensitive name match</td>
+</tr>
+<tr>
+<td><code>-name</code></td>
+<td>Case-sensitive name match</td>
+</tr>
+<tr>
+<td><code>-maxdepth N</code></td>
+<td>Limit search to N directory levels</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Clean old Jenkins workspace files (&gt;30 days)
+find /var/lib/jenkins/workspace -type f -mtime +30 | xargs rm
+
+# Find all deployment scripts in a project
+find /opt/app -iname &quot;deploy*.sh&quot;
+
+# Find and delete log files older than 1 year
+find /var/log -type f -mtime +365 | xargs rm
+</code></pre>
+</div>
+<details>
+
+<summary>Is <code>-iname</code> case-insensitive?</summary>
+
+Yes — matches \`test\`, \`Test\`, \`TEST\`.
+
+</details>
+
+<details>
+
+<summary>What does <code>-maxdepth 1</code> do?</summary>
+
+Searches only the current directory, not subdirectories.
+
+</details>
+
+<details>
+
+<summary>Can I use wildcards with <code>-iname</code>?</summary>
+
+Yes: \`find . -iname "\*.log"\`.
+
+</details>
+
+<details>
+
+<summary>What's the difference between find and grep?</summary>
+
+\`find\` searches for file names/attributes; \`grep\` searches inside file contents.
+
+</details>
+
+<hr />
+<h2>8. Links – Soft &amp; Hard</h2>
+<h3>What is an Inode?</h3>
+<p>Every file in Linux has a <strong>filename</strong> (label) and an <strong>inode</strong> (unique internal ID that holds the actual data location).</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ls -li      # Shows inode numbers
+# 12345 test1
+# 67890 softlink   (different inode)
+# 12345 hardlink   (same inode as test1)
+</code></pre>
+</div>
+<hr />
+<h3>Soft Link (Symbolic Link) — <code>ln -s</code></h3>
+<p>A soft link is like a Windows shortcut. It stores the <em>path</em> to the original file.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ln -s original_file link_name
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create a soft link
+ln -s test1 softlink
+
+# Create with absolute path (works across filesystems)
+ln -s /home/test/test1 softlink
+
+# Verify (look for -&gt; arrow)
+ls -l
+# lrwxrwxrwx softlink -&gt; test1
+</code></pre>
+</div>
+<p><strong>What happens if the original is deleted?</strong></p>
+<p>The soft link still exists but becomes <strong>broken (dangling)</strong> — it points to nothing.</p>
+<hr />
+<h3>Hard Link — <code>ln</code></h3>
+<p>A hard link creates another name for the <strong>same inode</strong> (same data on disk). Both names are equal — neither is the "original."</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ln /home/test/test1 hardlink
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Both files share the same inode
+ls -li
+# 45678 test1
+# 45678 hardlink
+
+# Delete test1 — data still accessible via hardlink!
+rm test1
+cat hardlink   # Still works
+</code></pre>
+</div>
+<p><strong>Hard link limitations:</strong></p>
+<ul>
+<li>Cannot cross filesystems (both files must be on same partition)</li>
+<li>Cannot link to directories</li>
+</ul>
+<hr />
+<h3>Soft vs Hard Link Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Soft Link (<code>ln -s</code>)</th>
+<th>Hard Link (<code>ln</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Same inode as original</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Works across filesystems</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Can link directories</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Breaks if original deleted</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Common in DevOps</td>
+<td>Very common</td>
+<td>Rare</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Nginx: enable a site config via symlink
+ln -s /etc/nginx/sites-available/myapp.conf \
+      /etc/nginx/sites-enabled/myapp.conf
+
+# Point 'current' to the latest deployment release
+ln -s /opt/app/releases/v2 /opt/app/current
+
+# Quick access to a deeply nested log
+ln -s /var/log/myapp/application.log ~/app.log
+</code></pre>
+</div>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"A soft link stores the path to the original file and breaks if the original is deleted. It can cross filesystems and can link directories. A hard link shares the same inode as the original — deleting the original doesn't affect the hard link. Soft links are far more common in DevOps, especially for deployment version management and Nginx config enabling."</p>
+</blockquote>
+<hr />
+<h2>9. System Information</h2>
+<p><strong>First thing to do after SSH-ing into any server:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cat /etc/os-release   # Which Linux distro?
+uname -a              # Which kernel version?
+hostname              # Which server am I on?
+whoami                # Which user am I?
+who | wc -l           # How many users are logged in?
+</code></pre>
+</div>
+<hr />
+<h3><code>uname -a</code> — Kernel &amp; System Info</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">uname -a
+# Linux ip-172-31-20-45 6.8.0-1029-aws #31-Ubuntu SMP x86_64 GNU/Linux
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uname</code></td>
+<td>Just "Linux"</td>
+</tr>
+<tr>
+<td><code>uname -r</code></td>
+<td>Kernel version only: <code>6.8.0-1029-aws</code></td>
+</tr>
+<tr>
+<td><code>uname -m</code></td>
+<td>Architecture: <code>x86_64</code></td>
+</tr>
+<tr>
+<td><code>uname -a</code></td>
+<td>Everything</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3><code>cat /etc/os-release</code> — Linux Distribution Info</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cat /etc/os-release
+# NAME=&quot;Ubuntu&quot;
+# VERSION=&quot;24.04.2 LTS&quot;
+
+# Get just the name
+grep &quot;^NAME=&quot; /etc/os-release
+grep &quot;^VERSION=&quot; /etc/os-release
+</code></pre>
+</div>
+<p><strong>Why it matters:</strong> Ubuntu uses <code>apt</code>; Amazon Linux / CentOS use <code>yum</code>/<code>dnf</code>. You need to know the distro before installing packages.</p>
+<hr />
+<h3><code>hostname</code> — Server Name</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">hostname        # ip-172-31-20-45
+hostname -I     # IP address
+hostname -f     # Fully qualified domain name
+</code></pre>
+</div>
+<hr />
+<h3><code>who | wc -l</code> — Count Logged-in Users</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">who         # List all sessions
+who | wc -l # Count them
+</code></pre>
+</div>
+<blockquote>
+<p>One user connected from two terminals = two sessions.</p>
+</blockquote>
+<hr />
+<h3><code>whoami</code> — Current User</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">whoami          # ubuntu
+sudo whoami     # root
+echo &quot;Running as: $(whoami)&quot;
+ps -u $(whoami) # See your own processes
+</code></pre>
+</div>
+<hr />
+<h2>10. Background Jobs &amp; Monitoring</h2>
+<h3>The Problem</h3>
+<p>If you run a 2-hour deployment script over SSH and your connection drops, the script dies. Solution: <code>nohup</code>.</p>
+<hr />
+<h3><code>nohup ./script.sh &amp;</code> — Run in Background, Persist After Logout</h3>
+<ul>
+<li><strong><code>nohup</code></strong> = "No Hang Up" — survives SSH disconnection</li>
+<li><strong><code>&amp;</code></strong> = runs in background (terminal stays free)</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">nohup ./script.sh &amp;
+# [1] 2536
+# nohup: ignoring input and appending output to 'nohup.out'
+
+# Check output
+cat nohup.out
+
+# Custom log file
+nohup ./script.sh &gt; deploy.log 2&gt;&amp;1 &amp;
+
+# Common uses
+nohup ./deploy.sh &amp;
+nohup python3 app.py &amp;
+nohup java -jar app.jar &amp;
+
+# Find and stop it later
+ps -ef | grep script.sh
+kill PID
+</code></pre>
+</div>
+<p><strong>Comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Runs in Background</th>
+<th>Survives Logout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>./script.sh</code></td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>./script.sh &amp;</code></td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>nohup ./script.sh &amp;</code></td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3><code>top</code> — Real-Time Process Monitor</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">top
+</code></pre>
+</div>
+<p>Like Windows Task Manager — shows live CPU, memory, and process list.</p>
+<p><strong>Key fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%Cpu(s)</code></td>
+<td>CPU usage</td>
+</tr>
+<tr>
+<td><code>MiB Mem</code></td>
+<td>Total / used / free RAM</td>
+</tr>
+<tr>
+<td><code>PID</code></td>
+<td>Process ID</td>
+</tr>
+<tr>
+<td><code>%CPU</code></td>
+<td>CPU used by that process</td>
+</tr>
+<tr>
+<td><code>%MEM</code></td>
+<td>Memory used by that process</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Keys inside top:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>q</code></td>
+<td>Quit</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Kill a process (enter PID)</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>Sort by memory</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>Sort by CPU</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DevOps Use Case:</strong> "Server is slow" → run <code>top</code> → find the process using 95% CPU → kill it.</p>
+<hr />
+<h2>11. SSH &amp; File Transfer</h2>
+<h3><code>ssh username@server</code> — Connect to Remote Server</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ssh ubuntu@192.168.1.10
+ssh ubuntu@dev.company.com
+ssh -p 2222 ubuntu@192.168.1.10   # Custom port
+</code></pre>
+</div>
+<h3><code>ssh -i demo.pem ubuntu@IP</code> — Key-Based Auth (AWS EC2)</h3>
+<p>AWS EC2 uses <code>.pem</code> key files instead of passwords.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ssh -i demo.pem ubuntu@54.26.118.12
+ssh -i demo.pem ec2-user@18.212.10.20   # Amazon Linux
+</code></pre>
+</div>
+<blockquote>
+<p><strong>Always set correct permissions on <code>.pem</code> files:</strong></p>
+<p><code>bash
+chmod 400 demo.pem</code></p>
+<p>SSH will refuse to use the key if it's too open (e.g., 644).</p>
+</blockquote>
+<hr />
+<h3><code>scp</code> — Secure Copy (One-Time File Transfer)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Upload file to /tmp on remote server
+scp file_name ubuntu@server:/tmp
+
+# Upload to home directory
+scp file_name ubuntu@server:/home/ubuntu
+
+# Upload with key file
+scp -i demo.pem report.txt ubuntu@54.26.118.12:/tmp
+
+# Copy directory recursively
+scp -r directory ubuntu@server:/path
+
+# Download from server to local
+scp ubuntu@server:/tmp/file.txt .
+</code></pre>
+</div>
+<hr />
+<h3><code>rsync</code> — Efficient Sync (Only Transfers Changes)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Sync a file
+rsync file ubuntu@server:/home/temp
+
+# Sync a directory (archive mode + verbose)
+rsync -av project/ ubuntu@server:/opt/project
+
+# With SSH key
+rsync -av -e &quot;ssh -i demo.pem&quot; project/ ubuntu@IP:/opt/project
+
+# Sync back from remote to local
+rsync -av ubuntu@server:/var/log/ ./logs
+</code></pre>
+</div>
+<p><strong><code>scp</code> vs <code>rsync</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>scp</code></th>
+<th><code>rsync</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transfers</td>
+<td>Everything always</td>
+<td>Only changed parts</td>
+</tr>
+<tr>
+<td>Speed (repeat)</td>
+<td>Same</td>
+<td>Much faster</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>One-time copy</td>
+<td>Deployments, backups</td>
+</tr>
+</tbody>
+</table>
+<details>
+
+<summary>Default SSH port?</summary>
+
+22\.
+
+</details>
+
+<details>
+
+<summary>Why <code>chmod 400</code> on <code>.pem</code>?</summary>
+
+SSH rejects keys that are readable by others.
+
+</details>
+
+<details>
+
+<summary><code>Permission denied (publickey)</code>?</summary>
+
+Wrong user, wrong key, wrong IP, or wrong permissions.
+
+</details>
+
+<details>
+
+<summary>Can Windows use SSH?</summary>
+
+Yes — via PowerShell, Windows Terminal, or PuTTY.
+
+</details>
+
+<hr />
+<h2>12. Networking Commands</h2>
+<h3>The DevOps Troubleshooting Flow</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Can I reach the server?            --&gt; ping host
+Can I reach the application port?  --&gt; telnet host port
+Is the application listening?      --&gt; netstat -na | grep PORT
+Check application logs
+</code></pre>
+</div>
+<hr />
+<h3><code>ping</code> — Test Network Reachability (ICMP)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ping google.com
+ping 192.168.1.10
+ping 127.0.0.1            # Loopback (your own machine)
+ping -c 4 google.com      # Send exactly 4 packets
+</code></pre>
+</div>
+<p><strong>Output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">64 bytes from 142.250.182.14: icmp_seq=1 ttl=118 time=22 ms
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>icmp_seq</code></td>
+<td>Packet number</td>
+</tr>
+<tr>
+<td><code>ttl</code></td>
+<td>Time To Live</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>Round-trip time (ms) — lower is better</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> Linux <code>ping</code> runs forever. Use <code>-c 4</code> to stop automatically.\
+<strong>Note:</strong> Ping can fail even when a server is running — many servers block ICMP for security.</p>
+</blockquote>
+<hr />
+<h3><code>telnet ip port</code> — Test TCP Port Connectivity</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">telnet localhost 8080      # Check Tomcat / Jenkins
+telnet 192.168.1.20 22    # Check SSH
+telnet db.company.com 3306 # Check MySQL
+telnet db.company.com 5432 # Check PostgreSQL
+telnet redis.company.com 6379 # Check Redis
+</code></pre>
+</div>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Connected</code></td>
+<td>Application is listening on that port</td>
+</tr>
+<tr>
+<td><code>Connection refused</code></td>
+<td>Application is NOT listening</td>
+</tr>
+<tr>
+<td><code>Connection timed out</code></td>
+<td>Firewall or network issue</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Modern alternative:</strong> <code>nc -zv host port</code></p>
+</blockquote>
+<p><strong><code>ping</code> vs <code>telnet</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>ping</code></th>
+<th><code>telnet</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol</td>
+<td>ICMP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td>Network reachability</td>
+<td>Application port</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3><code>netstat -na | grep PORT</code> — Check What's Listening Locally</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">netstat -na | grep 8080   # Is Tomcat/Jenkins listening?
+netstat -na | grep 22     # Is SSH listening?
+netstat -na | grep 3306   # Is MySQL listening?
+netstat -na | grep 443    # Is HTTPS listening?
+sudo netstat -tulpn       # Show PID and program name too
+</code></pre>
+</div>
+<p><code>LISTEN</code> in output = application is up and accepting connections.</p>
+<blockquote>
+<p><strong>Modern alternative:</strong> <code>ss -tuln</code></p>
+</blockquote>
+<hr />
+<p><strong>Complete Troubleshooting Scenario:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Step 1: Is the server reachable?
+ping app-server
+
+# Step 2: Is the application accepting connections?
+telnet app-server 8080
+
+# Step 3: SSH into the server
+ssh ubuntu@app-server
+
+# Step 4: Is the application actually listening?
+netstat -na | grep 8080
+
+# Step 5: Nothing listening? Restart the app
+sudo systemctl restart myapp
+</code></pre>
+</div>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"If an application isn't accessible on port 8080, I use <code>ping</code> to check network connectivity, then <code>telnet app-server 8080</code> to test the port. If that fails, I SSH in and run <code>netstat -na | grep 8080</code> to verify whether the app is actually listening. Based on the result, I check logs or restart the service."</p>
+</blockquote>
+<hr />
+<h2>13. Disk &amp; Memory</h2>
+<h3><code>df -h</code> — Disk Space Usage</h3>
+<p><code>df</code> = Disk Filesystem. <code>-h</code> = Human-readable (GB instead of raw bytes).</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">df -h        # All filesystems
+df -h .      # Current directory's filesystem
+df -h /var   # Specific path
+df -h /tmp
+</code></pre>
+</div>
+<p><strong>Sample output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Filesystem    Size  Used  Avail  Use%  Mounted on
+/dev/xvda1    20G   12G    8G    60%   /
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Size</code></td>
+<td>Total disk</td>
+</tr>
+<tr>
+<td><code>Used</code></td>
+<td>Space used</td>
+</tr>
+<tr>
+<td><code>Avail</code></td>
+<td>Free space</td>
+</tr>
+<tr>
+<td><code>Use%</code></td>
+<td>Percentage used</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>df</code> vs <code>du</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>df -h</code></td>
+<td>Disk usage of whole filesystems/partitions</td>
+</tr>
+<tr>
+<td><code>du -sh /folder</code></td>
+<td>Size of a specific directory</td>
+</tr>
+</tbody>
+</table>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">df -h            # /dev/xvda1 20G 18G 2G 90%
+du -sh /var/log  # 1.8G  /var/log
+</code></pre>
+</div>
+<hr />
+<h3><code>free -m</code> and <code>free -g</code> — Memory Usage</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">free -m    # In Megabytes
+free -g    # In Gigabytes
+watch free -m  # Live view (refreshes every 2s)
+</code></pre>
+</div>
+<p><strong>Sample output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">              total   used   free  shared  buff/cache  available
+Mem:           4096   1200   1500    200        1396       2500
+Swap:          2048      0   2048
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>total</code></td>
+<td>Total RAM</td>
+</tr>
+<tr>
+<td><code>used</code></td>
+<td>RAM in use</td>
+</tr>
+<tr>
+<td><code>available</code></td>
+<td>RAM that can be given to applications</td>
+</tr>
+<tr>
+<td><code>Swap</code></td>
+<td>Disk used as backup when RAM is full</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Why <code>free</code> ≠ <code>total - used</code>:</strong> Linux uses spare RAM for disk caching. The <code>available</code> column shows what applications can actually use.\
+<strong>Swap is much slower than RAM</strong> — high swap usage means the server is under memory pressure.</p>
+</blockquote>
+<p><strong>DevOps Scenario:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Jenkins fails: &quot;No space left on device&quot;
+df -h              # Find full partition
+du -sh /var/log    # Find what's consuming space
+free -m            # Also check memory
+</code></pre>
+</div>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"When a server reports 'No space left on device', I run <code>df -h</code> to find which filesystem is full, then <code>du -sh</code> on directories like <code>/var/log</code> and <code>/tmp</code> to find what's consuming space. I also check <code>free -m</code> for memory pressure."</p>
+</blockquote>
+<hr />
+<h2>14. Sorting &amp; Deduplication</h2>
+<h3>Sample file <code>employees.txt</code></h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cat &gt; employees.txt &lt;&lt; EOF
+Rahul
+Anita
+Vijay
+Rahul
+Kiran
+Anita
+Dev
+EOF
+</code></pre>
+</div>
+<hr />
+<h3><code>sort file</code> — Sort Alphabetically</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sort employees.txt
+# Anita
+# Anita
+# Dev
+# Kiran
+# Rahul
+# Rahul
+# Vijay
+
+sort -r employees.txt   # Reverse alphabetical
+sort -n numbers.txt     # Numeric sort
+</code></pre>
+</div>
+<hr />
+<h3><code>uniq file</code> — Remove Adjacent Duplicate Lines</h3>
+<blockquote>
+<p><strong>Critical:</strong> <code>uniq</code> only removes duplicates that are <strong>next to each other</strong>. Use <code>sort</code> first.</p>
+</blockquote>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">uniq employees.txt
+# No change — duplicates are not adjacent!
+</code></pre>
+</div>
+<hr />
+<h3><code>sort file | uniq</code> — The Correct Way to Remove All Duplicates</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sort employees.txt | uniq
+# Anita
+# Dev
+# Kiran
+# Rahul
+# Vijay
+</code></pre>
+</div>
+<hr />
+<h3><code>sort -r file | uniq</code> — Reverse Sorted Unique List</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">sort -r employees.txt | uniq
+# Vijay
+# Rahul
+# Kiran
+# Dev
+# Anita
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Unique list of users who accessed the system
+cut -d' ' -f3 access.log | sort | uniq
+
+# Reverse-sorted unique service names for audit
+cut -d' ' -f2 app.log | sort -r | uniq
+</code></pre>
+</div>
+<hr />
+<h2>15. File Permissions – chmod &amp; umask</h2>
+<h3>Understanding Permission Strings</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ls -l
+# -rwxr-xr--  1 ubuntu ubuntu 4096 Jul 16 deploy.sh
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Position</th>
+<th>Example</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1st char</td>
+<td><code>-</code></td>
+<td>File (<code>d</code> = directory)</td>
+</tr>
+<tr>
+<td>Chars 2–4</td>
+<td><code>rwx</code></td>
+<td>Owner permissions</td>
+</tr>
+<tr>
+<td>Chars 5–7</td>
+<td><code>r-x</code></td>
+<td>Group permissions</td>
+</tr>
+<tr>
+<td>Chars 8–10</td>
+<td><code>r--</code></td>
+<td>Others permissions</td>
+</tr>
+</tbody>
+</table>
+<p><strong>r, w, x values:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Permission</th>
+<th>Numeric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>r</code></td>
+<td>Read</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Write</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Execute</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>None</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Numeric Permissions Table</h3>
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Permission</th>
+<th>Common Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td><code>rwx</code></td>
+<td>Owner of script/dir</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>rw-</code></td>
+<td>Owner of config file</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>r-x</code></td>
+<td>Group execute access</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>r--</code></td>
+<td>Read-only</td>
+</tr>
+<tr>
+<td>0</td>
+<td><code>---</code></td>
+<td>No access</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Decoding <code>754</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Position</th>
+<th>Number</th>
+<th>Calculation</th>
+<th>Permission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>7</td>
+<td>4+2+1</td>
+<td><code>rwx</code></td>
+</tr>
+<tr>
+<td>Group</td>
+<td>5</td>
+<td>4+1</td>
+<td><code>r-x</code></td>
+</tr>
+<tr>
+<td>Others</td>
+<td>4</td>
+<td>4</td>
+<td><code>r--</code></td>
+</tr>
+</tbody>
+</table>
+<p>Result: <code>rwxr-xr--</code></p>
+<p><strong>Common permission values:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Permission</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>777</code></td>
+<td><code>rwxrwxrwx</code></td>
+<td>Never in production</td>
+</tr>
+<tr>
+<td><code>755</code></td>
+<td><code>rwxr-xr-x</code></td>
+<td>Scripts, directories</td>
+</tr>
+<tr>
+<td><code>744</code></td>
+<td><code>rwxr--r--</code></td>
+<td>Personal scripts</td>
+</tr>
+<tr>
+<td><code>700</code></td>
+<td><code>rwx------</code></td>
+<td>Private keys</td>
+</tr>
+<tr>
+<td><code>644</code></td>
+<td><code>rw-r--r--</code></td>
+<td>Config files</td>
+</tr>
+<tr>
+<td><code>600</code></td>
+<td><code>rw-------</code></td>
+<td>Passwords, secrets</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td><code>r--------</code></td>
+<td>AWS <code>.pem</code> keys</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3><code>chmod</code> — Change Permissions</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">chmod permission file
+
+# Add execute permission (symbolic mode)
+chmod +x deploy.sh
+
+# Set exact permissions (numeric mode)
+chmod 755 deploy.sh
+chmod 600 secrets.txt
+chmod 400 demo.pem
+chmod 444 notes.txt      # Read-only for everyone
+chmod 777 test.sh        # Never do this in production
+
+# Remove execute permission
+chmod -x file
+
+# Apply recursively to a directory
+chmod -R 755 /opt/myapp
+</code></pre>
+</div>
+<p><strong><code>+x</code> vs <code>755</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>chmod +x</code></th>
+<th><code>chmod 755</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it does</td>
+<td>Adds execute only</td>
+<td>Sets all permissions exactly</td>
+</tr>
+<tr>
+<td>Existing perms</td>
+<td>Preserved</td>
+<td>Replaced</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Directory permissions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>On a directory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>r</code></td>
+<td>List files inside</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Create/delete files inside</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Enter with <code>cd</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Without <code>x</code> on a directory, you cannot <code>cd</code> into it, even as root viewing it.</p>
+</blockquote>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Fix &quot;Permission denied&quot; when Jenkins runs a script
+chmod +x deploy.sh
+
+# Fix AWS SSH key too-open error
+chmod 400 demo.pem
+ssh -i demo.pem ubuntu@server
+</code></pre>
+</div>
+<hr />
+<h3><code>umask</code> — Default Permission for New Files</h3>
+<p><code>umask</code> subtracts permissions from the default, controlling what new files get.</p>
+<p><strong>Formula:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">New file permission = Default - umask
+New dir permission  = Default - umask
+</code></pre>
+</div>
+<p><strong>Defaults before umask:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File</td>
+<td><code>666</code></td>
+</tr>
+<tr>
+<td>Directory</td>
+<td><code>777</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Files don't default to executable — that's a security feature.</p>
+</blockquote>
+<p><strong>With default <code>umask 0022</code>:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">umask
+# 0022
+
+# New file:      666 - 022 = 644  (rw-r--r--)
+# New directory: 777 - 022 = 755  (rwxr-xr-x)
+</code></pre>
+</div>
+<p><strong>Other umask values:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">umask 027    # File: 640, Dir: 750  (group can read, others nothing)
+umask 077    # File: 600, Dir: 700  (owner only — maximum privacy)
+</code></pre>
+</div>
+<p><strong><code>chmod</code> vs <code>umask</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>chmod</code></th>
+<th><code>umask</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Affects</td>
+<td>Existing files/dirs</td>
+<td>Newly created files/dirs</td>
+</tr>
+<tr>
+<td>Use case</td>
+<td>Fix specific file</td>
+<td>Set default security policy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common Mistakes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Why Wrong</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Using <code>chmod 777</code> everywhere</td>
+<td>Security risk — anyone can modify</td>
+<td>Grant only needed permissions</td>
+</tr>
+<tr>
+<td>Forgetting <code>+x</code> on scripts</td>
+<td>Script won't run</td>
+<td><code>chmod +x script.sh</code></td>
+</tr>
+<tr>
+<td>Expecting umask to fix existing files</td>
+<td>umask only affects new files</td>
+<td>Use <code>chmod</code> for existing files</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"<code>chmod</code> changes permissions on an existing file. <code>umask</code> sets the default permissions for newly created files. I use <code>chmod +x</code> to make deployment scripts executable, <code>chmod 400</code> for AWS keys, and <code>umask 077</code> in pipelines that generate secret files."</p>
+</blockquote>
+<hr />
+<h2>16. File Movement – mv</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Rename a file
+mv old_name new_name
+mv report.txt report_backup.txt
+
+# Move file to another directory
+mv file dir1/file
+mv app.log /var/logs/app.log
+
+# Move file from another directory to current dir
+mv dir2/f1 .
+
+# Rename a directory
+mv old_dir new_dir
+</code></pre>
+</div>
+<blockquote>
+<p><strong>Note:</strong> <code>mv</code> replaces the destination if it already exists. Use <code>cp</code> + verify before overwriting important files.</p>
+</blockquote>
+<hr />
+<h2>17. ls Wildcards</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># List files/dirs starting with &quot;Devops&quot;
+ls Devops*
+
+# List files/dirs starting with &quot;test&quot;
+ls test*
+
+# List all files and directories
+ls *
+
+# List all .log files
+ls *.log
+
+# List all .sh files
+ls *.sh
+</code></pre>
+</div>
+<blockquote>
+<p>Wildcards work in most commands: <code>rm *.log</code>, <code>cp *.conf /backup/</code>, <code>chmod +x *.sh</code></p>
+</blockquote>
+<hr />
+<h2>18. grep with Regex Anchors</h2>
+<h3>Anchors in grep</h3>
+<table>
+<thead>
+<tr>
+<th>Anchor</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>^</code></td>
+<td>Start of line</td>
+<td><code>^Devops</code> matches lines beginning with "Devops"</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>End of line</td>
+<td><code>dev$</code> matches lines ending with "dev"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Lines starting with &quot;Devops&quot; (case-insensitive)
+grep -i &quot;^Devops&quot; file_name
+
+# Lines starting with &quot;t&quot; or &quot;T&quot;
+grep -i &quot;^t&quot; file_name
+
+# Lines ending with &quot;dev&quot; (case-insensitive)
+grep -i &quot;dev$&quot; file_name
+
+# Lines starting with a digit
+grep &quot;^[0-9]&quot; file_name
+
+# Lines that are exactly &quot;ERROR&quot;
+grep &quot;^ERROR$&quot; file_name
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Find all lines in nginx.conf that start with &quot;server&quot;
+grep &quot;^server&quot; /etc/nginx/nginx.conf
+
+# Find all ERROR lines in a log
+grep &quot;^ERROR&quot; application.log
+
+# Find config lines that end with a semicolon
+grep &quot;;$&quot; config.txt
+</code></pre>
+</div>
+<details>
+
+<summary>What does <code>^</code> mean?</summary>
+
+Matches the beginning of a line.
+
+</details>
+
+<details>
+
+<summary>What does <code>$</code> mean?</summary>
+
+Matches the end of a line.
+
+</details>
+
+<details>
+
+<summary>How do I use both?</summary>
+
+\`grep "^pattern$"\` — exact full-line match.
+
+</details>
+
+<details>
+
+<summary>Can I combine with <code>-i</code>?</summary>
+
+Yes: \`grep -i "^error"\` is case-insensitive.
+
+</details>
+
+<hr />
+<h2>Quick Reference Table</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chown user file</code></td>
+<td>Change file owner</td>
+</tr>
+<tr>
+<td><code>chown user:group file</code></td>
+<td>Change owner and group</td>
+</tr>
+<tr>
+<td><code>sed 's/old/new/g' file</code></td>
+<td>Replace text (print to terminal)</td>
+</tr>
+<tr>
+<td><code>sed -i 's/old/new/g' file</code></td>
+<td>Replace text in-place</td>
+</tr>
+<tr>
+<td><code>sed -n '5p' file</code></td>
+<td>Print only line 5</td>
+</tr>
+<tr>
+<td><code>sed '5d' file</code></td>
+<td>Delete line 5 (output to terminal)</td>
+</tr>
+<tr>
+<td><code>sed '10,20p' file</code></td>
+<td>Print lines 10 to 20</td>
+</tr>
+<tr>
+<td><code>cp file file2</code></td>
+<td>Copy file</td>
+</tr>
+<tr>
+<td><code>cp -i file file2</code></td>
+<td>Copy with overwrite prompt</td>
+</tr>
+<tr>
+<td><code>cp -r dir1 dir2</code></td>
+<td>Copy directory recursively</td>
+</tr>
+<tr>
+<td><code>cut -d ' ' -f2 file</code></td>
+<td>Extract column 2 (space-delimited)</td>
+</tr>
+<tr>
+<td><code>awk -F ' ' '{print $2}' file</code></td>
+<td>Print column 2 (more powerful)</td>
+</tr>
+<tr>
+<td>`ps -ef</td>
+<td>grep name`</td>
+</tr>
+<tr>
+<td><code>ps -u username</code></td>
+<td>List user's processes</td>
+</tr>
+<tr>
+<td><code>kill PID</code></td>
+<td>Graceful stop (SIGTERM)</td>
+</tr>
+<tr>
+<td><code>kill -9 PID</code></td>
+<td>Force kill (SIGKILL)</td>
+</tr>
+<tr>
+<td><code>find . -type f -mtime +7</code></td>
+<td>Files older than 7 days</td>
+</tr>
+<tr>
+<td><code>find . -iname "*.sh"</code></td>
+<td>Find files by name</td>
+</tr>
+<tr>
+<td>`find . -type f -mtime +7</td>
+<td>xargs rm`</td>
+</tr>
+<tr>
+<td><code>ln -s original link</code></td>
+<td>Create soft/symbolic link</td>
+</tr>
+<tr>
+<td><code>ln original hardlink</code></td>
+<td>Create hard link</td>
+</tr>
+<tr>
+<td><code>uname -a</code></td>
+<td>OS and kernel info</td>
+</tr>
+<tr>
+<td><code>cat /etc/os-release</code></td>
+<td>Linux distro details</td>
+</tr>
+<tr>
+<td><code>hostname</code></td>
+<td>Server hostname</td>
+</tr>
+<tr>
+<td><code>whoami</code></td>
+<td>Current username</td>
+</tr>
+<tr>
+<td>`who</td>
+<td>wc -l`</td>
+</tr>
+<tr>
+<td><code>nohup ./script.sh &amp;</code></td>
+<td>Run in background, persist after logout</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>Real-time process/CPU/memory monitor</td>
+</tr>
+<tr>
+<td><code>ssh user@server</code></td>
+<td>Connect to remote server</td>
+</tr>
+<tr>
+<td><code>ssh -i key.pem user@ip</code></td>
+<td>Connect with AWS key</td>
+</tr>
+<tr>
+<td><code>scp file user@server:/path</code></td>
+<td>Copy file to remote</td>
+</tr>
+<tr>
+<td><code>rsync -av src/ user@server:/path</code></td>
+<td>Sync (changes only)</td>
+</tr>
+<tr>
+<td><code>ping host</code></td>
+<td>Test network reachability</td>
+</tr>
+<tr>
+<td><code>telnet host port</code></td>
+<td>Test TCP port</td>
+</tr>
+<tr>
+<td>`netstat -na</td>
+<td>grep PORT`</td>
+</tr>
+<tr>
+<td><code>df -h</code></td>
+<td>Disk space usage</td>
+</tr>
+<tr>
+<td><code>free -m</code></td>
+<td>Memory usage (MB)</td>
+</tr>
+<tr>
+<td><code>free -g</code></td>
+<td>Memory usage (GB)</td>
+</tr>
+<tr>
+<td><code>sort file</code></td>
+<td>Sort alphabetically</td>
+</tr>
+<tr>
+<td><code>sort -r file</code></td>
+<td>Sort in reverse</td>
+</tr>
+<tr>
+<td><code>uniq file</code></td>
+<td>Remove adjacent duplicates</td>
+</tr>
+<tr>
+<td>`sort file</td>
+<td>uniq`</td>
+</tr>
+<tr>
+<td><code>chmod +x file</code></td>
+<td>Add execute permission</td>
+</tr>
+<tr>
+<td><code>chmod 755 file</code></td>
+<td>Set exact permissions</td>
+</tr>
+<tr>
+<td><code>umask</code></td>
+<td>Show/set default permissions</td>
+</tr>
+<tr>
+<td><code>mv old new</code></td>
+<td>Rename or move file</td>
+</tr>
+<tr>
+<td><code>ls test*</code></td>
+<td>List files starting with "test"</td>
+</tr>
+<tr>
+<td><code>grep -i "^t" file</code></td>
+<td>Lines starting with "t"</td>
+</tr>
+<tr>
+<td><code>grep -i "dev$" file</code></td>
+<td>Lines ending with "dev"</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Day 3 – End-of-Day Practice Lab</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Create <code>deploy.sh</code> and make it executable</h2>
+<p>Create a file <code>deploy.sh</code> with <code>echo "#!/bin/bash" &gt; deploy.sh</code> and make it executable: <code>chmod +x deploy.sh</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Create a symbolic link</h2>
+<p>Create a symbolic link: <code>ln -s deploy.sh deploy_link</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>Find all <code>.sh</code> files</h2>
+<p>Find all <code>.sh</code> files: <code>find . -iname "*.sh"</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>Check disk space and memory</h2>
+<p>Check disk space: <code>df -h</code>. Check memory: <code>free -m</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h2>Run in background</h2>
+<p>Run in background: <code>nohup ./deploy.sh &gt; deploy.log 2&gt;&amp;1 &amp;</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h2>Find the PID</h2>
+<p>Find the PID: <code>ps -ef | grep deploy.sh</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h2>Stop it</h2>
+<p>Stop it: <code>kill PID</code>. Verify: <code>ps -ef | grep deploy.sh</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h2>Check if SSH is running</h2>
+<p>Check if SSH is running: <code>netstat -na | grep 22</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h2>Use sed to replace text in a file</h2>
+<p>Use sed to replace text in a file: <code>echo "hello world" &gt; test.txt &amp;&amp; sed -i 's/world/devops/g' test.txt &amp;&amp; cat test.txt</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h2>Sort and deduplicate</h2>
+<p>Sort and deduplicate: create <code>employees.txt</code>, then run <code>sort employees.txt | uniq</code>.</p>
+</div>
+</div>
+</div>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../linux/day-2.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">day 2</span>
+  </a>
+  <a href="../linux/day-4.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Day 4</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

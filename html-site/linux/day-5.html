@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 5 &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html" class="active">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🐧 Linux</span>
+          <span class="separator">/</span>
+          <span class="current">Day 5</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🐧 Linux Module</div>
+          <h1 class="hero-title">Day 5</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2><code>xargs</code></h2>
+<p><strong>What it does:</strong> Reads output from a pipe and converts it into arguments for another command.</p>
+<p>Many commands (like <code>rm</code>) cannot receive input from a pipe directly — they expect arguments. <code>xargs</code> bridges this gap.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">find / ls  --&gt;  list of filenames  --&gt;  xargs  --&gt;  rm / wc -l / gzip
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Syntax
+command1 | xargs command2
+
+# Example 1: Delete files listed by ls
+ls | xargs rm
+# Equivalent to: rm f1 f2 f3
+
+# Example 2: Delete all .log files found by find
+find . -name &quot;*.log&quot; | xargs rm
+
+# Example 3: Count lines in all .txt files
+find . -name &quot;*.txt&quot; | xargs wc -l
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Clean up old application logs
+find /var/log/myapp -name &quot;*.log&quot; | xargs rm
+
+# Compress multiple log files at once
+find . -name &quot;*.log&quot; | xargs gzip
+</code></pre>
+</div>
+<blockquote>
+<p><strong>Why not just use <code>rm</code> directly with <code>find</code>?</strong> <code>find</code> outputs filenames to stdout. <code>rm</code> expects them as arguments. <code>xargs</code> performs that conversion.</p>
+</blockquote>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"<code>xargs</code> reads output from a previous command (via pipe) and passes it as arguments to another command. I commonly use it with <code>find</code> to act on files — for example, <code>find . -type f -mtime +7 | xargs rm</code> to delete old files."</p>
+</blockquote>
+<hr />
+<h2>Command 154: <code>find . -type f -mtime +2 | xargs rm</code></h2>
+<p><strong>What it does:</strong> Finds all files modified <strong>more than 2 days ago</strong> and deletes them.</p>
+<p><strong>Breaking it down:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>find</code></td>
+<td>Search command</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Start from current directory</td>
+</tr>
+<tr>
+<td><code>-type f</code></td>
+<td>Match files only (not directories)</td>
+</tr>
+<tr>
+<td><code>-mtime +2</code></td>
+<td>Modified more than 2 days ago</td>
+</tr>
+<tr>
+<td><code>\| xargs rm</code></td>
+<td>Delete each file found</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Understanding <code>-mtime</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-mtime 2</code></td>
+<td>Modified exactly 2 days ago</td>
+</tr>
+<tr>
+<td><code>-mtime +2</code></td>
+<td>Modified <strong>more than</strong> 2 days ago (older)</td>
+</tr>
+<tr>
+<td><code>-mtime -2</code></td>
+<td>Modified <strong>within</strong> the last 2 days (newer)</td>
+</tr>
+</tbody>
+</table>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># ALWAYS search first before deleting
+find . -type f -mtime +2
+
+# Then delete
+find . -type f -mtime +2 | xargs rm
+
+# Clean /tmp files older than 2 days
+find /tmp -type f -mtime +2 | xargs rm
+
+# Delete log files older than 7 days
+find /var/log/myapp -type f -mtime +7 | xargs rm
+
+# Delete backup files older than 30 days
+find /backup -type f -mtime +30 | xargs rm
+</code></pre>
+</div>
+<blockquote>
+<p><strong>Best Practice: Search first. Delete later.</strong> Run the <code>find</code> command first and review what will be deleted. Only add <code>| xargs rm</code> after confirming the list is correct.</p>
+</blockquote>
+<p><strong>Safer Alternatives:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Built-in -delete flag (safer with spaces in filenames)
+find . -type f -mtime +2 -delete
+
+# Using -exec
+find . -type f -mtime +2 -exec rm {} \;
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<ul>
+<li>Disk usage at 95%: <code>find /var/log -type f -mtime +7 | xargs rm</code></li>
+<li>Jenkins workspace cleanup: <code>find /var/lib/jenkins/workspace -type f -mtime +30 | xargs rm</code></li>
+</ul>
+<hr />
+<h2>Command 155: <code>find . -type f -mtime +365 | xargs rm</code></h2>
+<p><strong>What it does:</strong> Finds and deletes files modified <strong>more than one year ago</strong>.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Search first
+find . -type f -mtime +365
+
+# Then delete
+find . -type f -mtime +365 | xargs rm
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Annual archive cleanup
+find /backup -type f -mtime +365 | xargs rm
+
+# Jenkins old job artifacts
+find /var/lib/jenkins/jobs -type f -mtime +365 | xargs rm
+</code></pre>
+</div>
+<hr />
+<h2>Command 156: <code>find . -type f -iname "test" -maxdepth 1</code></h2>
+<p><strong>What it does:</strong> Searches for <strong>files</strong> named <code>test</code> (case-insensitive) <strong>only in the current directory</strong>.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">find . -type f -iname &quot;test&quot; -maxdepth 1
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-type f</code></td>
+<td>Files only</td>
+</tr>
+<tr>
+<td><code>-iname</code></td>
+<td>Case-insensitive name match</td>
+</tr>
+<tr>
+<td><code>"test"</code></td>
+<td>Name pattern to match</td>
+</tr>
+<tr>
+<td><code>-maxdepth 1</code></td>
+<td>Search only the current directory, not subdirectories</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>-name</code> vs <code>-iname</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th><code>-name "test"</code></th>
+<th><code>-iname "test"</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Case-sensitive</td>
+<td>Case-insensitive</td>
+</tr>
+<tr>
+<td>Matches <code>test</code> only</td>
+<td>Matches <code>test</code>, <code>Test</code>, <code>TEST</code>, <code>tEsT</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Memory Tip:</strong> The <code>i</code> in <code>-iname</code> stands for <strong>Insensitive</strong>.</p>
+</blockquote>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Find README regardless of case
+find . -type f -iname &quot;readme&quot;
+
+# Find any PDF file
+find . -iname &quot;*.pdf&quot;
+
+# Find Jenkinsfile (matches Jenkinsfile, jenkinsfile, JENKINSFILE)
+find . -iname &quot;jenkinsfile&quot;
+
+# Find Kubernetes manifests
+find . -iname &quot;*.yaml&quot;
+</code></pre>
+</div>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"<code>-name</code> is case-sensitive — <code>test</code> and <code>Test</code> are different. <code>-iname</code> is case-insensitive and matches all case variants. In DevOps, I prefer <code>-iname</code> because filenames can vary in case across environments."</p>
+</blockquote>
+<hr />
+<h2>Command 157: <code>find . -type d -iname "test" -maxdepth 2</code></h2>
+<p><strong>What it does:</strong> Searches for <strong>directories</strong> named <code>test</code> (case-insensitive) up to <strong>2 levels deep</strong>.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">find . -type d -iname &quot;test&quot; -maxdepth 2
+
+# Example structure:
+# ./test/           -- depth 1: FOUND
+# ./abc/test/       -- depth 2: FOUND
+# ./abc/xyz/test/   -- depth 3: IGNORED (exceeds maxdepth 2)
+
+# Other useful examples
+find . -type d -iname &quot;logs&quot;
+find . -type d -iname &quot;config&quot;
+find . -type d -iname &quot;k8s&quot;     # Locate Kubernetes manifest directory
+</code></pre>
+</div>
+<hr />
+<h2>Command 158: <code>find . -iname "test" -maxdepth 1</code></h2>
+<p><strong>What it does:</strong> Searches for <strong>both files and directories</strong> named <code>test</code> — no <code>-type</code> filter applied.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">find . -iname &quot;test&quot; -maxdepth 1
+# Matches: ./test (file), ./test/ (directory), ./TEST, ./Test
+
+# Wildcard patterns
+find . -iname &quot;*.yaml&quot;   # All YAML files
+find . -iname &quot;*.sh&quot;     # All shell scripts
+find . -iname &quot;*.log&quot;    # All log files
+</code></pre>
+</div>
+<p><strong>Quick Reference – <code>find</code> Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>What you want</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Files only</td>
+<td><code>-type f</code></td>
+</tr>
+<tr>
+<td>Directories only</td>
+<td><code>-type d</code></td>
+</tr>
+<tr>
+<td>Both files &amp; dirs</td>
+<td><em>(omit <code>-type</code>)</em></td>
+</tr>
+<tr>
+<td>Case-insensitive name</td>
+<td><code>-iname "pattern"</code></td>
+</tr>
+<tr>
+<td>Case-sensitive name</td>
+<td><code>-name "pattern"</code></td>
+</tr>
+<tr>
+<td>Limit depth</td>
+<td><code>-maxdepth N</code></td>
+</tr>
+<tr>
+<td>Older than N days</td>
+<td><code>-mtime +N</code></td>
+</tr>
+<tr>
+<td>Newer than N days</td>
+<td><code>-mtime -N</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Command 159: Links – Soft Link &amp; Hard Link</h2>
+<h3>What is a Link?</h3>
+<p>A link is a way to reference a file from a different location without copying it. Linux has two types:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Like...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Soft Link (Symbolic Link / Symlink)</strong></td>
+<td>A Windows shortcut — points to the <em>path</em> of the original file</td>
+</tr>
+<tr>
+<td><strong>Hard Link</strong></td>
+<td>Another name for the exact same file data (same inode)</td>
+</tr>
+</tbody>
+</table>
+<h3>What is an Inode?</h3>
+<p>Every file in Linux has:</p>
+<ul>
+<li>A <strong>filename</strong> (a human-readable label stored in the directory)</li>
+<li>An <strong>inode number</strong> (the actual unique ID Linux uses to locate file data and metadata)</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ls -li          # View inode numbers alongside file details
+</code></pre>
+</div>
+<blockquote>
+<p>Think of the inode as the file's internal ID. The filename is just a label attached to that ID.</p>
+</blockquote>
+<hr />
+<h3>Soft Link vs Hard Link Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Soft Link</th>
+<th>Hard Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command</td>
+<td><code>ln -s</code></td>
+<td><code>ln</code></td>
+</tr>
+<tr>
+<td>Like a Windows shortcut</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Has its own inode</td>
+<td>Yes</td>
+<td>No (shares original's inode)</td>
+</tr>
+<tr>
+<td>Works across filesystems</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Can link directories</td>
+<td>Yes</td>
+<td>Normally no</td>
+</tr>
+<tr>
+<td>Breaks if original deleted</td>
+<td>Yes (becomes dangling)</td>
+<td>No (data survives)</td>
+</tr>
+<tr>
+<td>Common in DevOps</td>
+<td>Very common</td>
+<td>Less common</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Soft Link: <code>ln -s test1 softlink</code></h3>
+<p><strong>What it does:</strong> Creates a symbolic link — a shortcut pointing to the original file.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Syntax
+ln -s original_file link_name
+
+# Relative path
+ln -s test1 softlink
+
+# Absolute path (more reliable)
+ln -s /home/ubuntu/test1 softlink
+</code></pre>
+</div>
+<p><strong>Step-by-step example:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create a file
+echo &quot;Welcome to Linux&quot; &gt; test1
+
+# Create a soft link
+ln -s test1 softlink
+
+# Verify -- notice the -&gt; arrow
+ls -l
+# lrwxrwxrwx softlink -&gt; test1
+# -rw-r--r-- test1
+
+# Reading through the link reads the original
+cat softlink
+# Welcome to Linux
+
+# Editing through the link changes the original
+echo &quot;DevOps&quot; &gt;&gt; softlink
+cat test1
+# Welcome to Linux
+# DevOps
+
+# Delete the original -- link becomes broken (dangling)
+rm test1
+cat softlink
+# cat: softlink: No such file or directory
+
+# Check inodes -- they will be DIFFERENT
+ls -li
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Nginx: enable a site by creating a symlink
+ln -s /etc/nginx/sites-available/myapp.conf /etc/nginx/sites-enabled/myapp.conf
+
+# Deployment: point 'current' to the latest release
+ln -s /opt/app/releases/v2 /opt/app/current
+# When v3 arrives, just update the symlink -- no code change needed
+
+# Shortcut to frequently accessed logs
+ln -s /var/log/myapp/application.log app.log
+tail -f app.log
+</code></pre>
+</div>
+<hr />
+<h3>Hard Link: <code>ln test1 hardlink</code></h3>
+<p><strong>What it does:</strong> Creates a hard link — another directory entry pointing to the <strong>same inode</strong> (same file data).</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Syntax (note: NO -s flag)
+ln original_file hardlink_name
+</code></pre>
+</div>
+<p><strong>Step-by-step example:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create a file
+echo &quot;Linux&quot; &gt; test1
+
+# Create a hard link
+ln test1 hardlink
+
+# Both have the SAME inode number
+ls -li
+# 45678 test1
+# 45678 hardlink
+
+# Delete the original -- data still accessible through the hard link!
+rm test1
+cat hardlink
+# Linux   &lt;-- still works!
+</code></pre>
+</div>
+<p><strong>Hard Link Restrictions:</strong></p>
+<ul>
+<li>Cannot link to a <strong>directory</strong> (prevents directory loops)</li>
+<li>Cannot cross <strong>file systems</strong> (inodes are unique only within one filesystem)</li>
+</ul>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"A soft link is a symbolic reference to another file — it has its own inode, can cross filesystems and link directories, but becomes broken if the original is deleted. A hard link points directly to the same inode as the original — both names share the same data. It cannot cross filesystems and cannot link directories, but it continues to work even if the original filename is deleted."</p>
+</blockquote>
+<hr />
+<h2>Command 160: <code>uname -a</code></h2>
+<p><strong>What it does:</strong> Displays all information about the OS and kernel.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">uname -a
+# Linux ip-172-31-20-45 6.8.0-1029-aws #31-Ubuntu SMP x86_64 GNU/Linux
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Linux</code></td>
+<td>Kernel type</td>
+</tr>
+<tr>
+<td><code>ip-172-31-20-45</code></td>
+<td>Hostname</td>
+</tr>
+<tr>
+<td><code>6.8.0-1029-aws</code></td>
+<td>Kernel version</td>
+</tr>
+<tr>
+<td><code>x86_64</code></td>
+<td>CPU architecture (64-bit)</td>
+</tr>
+<tr>
+<td><code>GNU/Linux</code></td>
+<td>OS family</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Useful variations:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">uname        # Just the OS name (Linux)
+uname -r     # Kernel version only
+uname -m     # Architecture (x86_64)
+uname -o     # Operating system (GNU/Linux)
+</code></pre>
+</div>
+<hr />
+<h2>Command 161: <code>cat /etc/os-release</code></h2>
+<p><strong>What it does:</strong> Shows which Linux <em>distribution</em> is installed (Ubuntu, CentOS, Amazon Linux, etc.).</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">cat /etc/os-release
+# NAME=&quot;Ubuntu&quot;
+# VERSION=&quot;24.04.2 LTS&quot;
+
+# Filter specific fields
+grep &quot;^NAME=&quot; /etc/os-release
+grep &quot;^VERSION=&quot; /etc/os-release
+</code></pre>
+</div>
+<blockquote>
+<p><strong>Why this matters:</strong> Package managers differ by distro. Ubuntu uses <code>apt</code>; CentOS/RHEL uses <code>yum</code>/<code>dnf</code>. Deployment scripts often check this file before installing software.</p>
+</blockquote>
+<hr />
+<h2>Command 162: <code>hostname</code></h2>
+<p><strong>What it does:</strong> Displays the server's hostname.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">hostname        # Server name (e.g., server01)
+hostname -I     # IP address(es)
+hostname -f     # Fully Qualified Domain Name (FQDN)
+hostname -s     # Short hostname
+</code></pre>
+</div>
+<blockquote>
+<p>Always run <code>hostname</code> first when you SSH into a server to confirm you are on the correct machine.</p>
+</blockquote>
+<hr />
+<h2>Command 163: <code>who | wc -l</code></h2>
+<p><strong>What it does:</strong> Counts the number of active login sessions on the server.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">who         # List all logged-in users/sessions
+who | wc -l # Count total login sessions
+</code></pre>
+</div>
+<blockquote>
+<p><strong>Note:</strong> One user connected via two terminals counts as <strong>two</strong> sessions.</p>
+</blockquote>
+<hr />
+<h2>Command 164: <code>whoami</code></h2>
+<p><strong>What it does:</strong> Shows the username of the currently logged-in user.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">whoami
+# ubuntu
+
+echo &quot;Current user: $(whoami)&quot;
+ps -u $(whoami)
+</code></pre>
+</div>
+<p><strong><code>who</code> vs <code>whoami</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>who</code></td>
+<td>All logged-in sessions (all users)</td>
+</tr>
+<tr>
+<td><code>whoami</code></td>
+<td>Only your current username</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When you first SSH into a server — always verify:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Which OS?       --&gt;  cat /etc/os-release
+Which kernel?   --&gt;  uname -a
+Which server?   --&gt;  hostname
+Who am I?       --&gt;  whoami
+Who else here?  --&gt;  who
+</code></pre>
+</div>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"When I SSH into a production server, I first run <code>hostname</code> to confirm I'm on the correct server, <code>whoami</code> to verify my account, <code>cat /etc/os-release</code> to identify the Linux distribution, and <code>uname -r</code> to check the kernel version."</p>
+</blockquote>
+<hr />
+<h2>Command 165: <code>nohup ./script.sh &amp;</code></h2>
+<p><strong>What it does:</strong> Runs a script in the background and keeps it running even after you <strong>log out</strong>.</p>
+<ul>
+<li><strong><code>nohup</code></strong> = "No Hang Up" — ignores the SIGHUP signal sent when a session closes.</li>
+<li><strong><code>&amp;</code></strong> = runs in the background immediately, freeing your terminal.</li>
+</ul>
+<h3>The Problem Without <code>nohup</code></h3>
+<p>If you start a 2-hour deployment script over SSH and your laptop loses internet, Linux terminates the script along with your SSH session.</p>
+<p><strong>Comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Runs in Background</th>
+<th>Continues After Logout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>./script.sh</code></td>
+<td>No — terminal locked</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>./script.sh &amp;</code></td>
+<td>Yes</td>
+<td>No — stops on logout</td>
+</tr>
+<tr>
+<td><code>nohup ./script.sh &amp;</code></td>
+<td>Yes</td>
+<td><strong>Yes</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">nohup ./deploy.sh &amp;           # Long deployment script
+nohup ./db_backup.sh &amp;        # 3-hour database backup
+nohup python3 app.py &amp;        # Python application
+nohup java -jar app.jar &amp;     # Java application
+
+# Output goes to nohup.out by default
+cat nohup.out
+
+# Custom output file
+nohup ./script.sh &gt; output.log 2&gt;&amp;1 &amp;
+
+# To stop a nohup process later
+ps -ef | grep script.sh
+kill PID
+</code></pre>
+</div>
+<p><strong>DevOps Use Cases:</strong></p>
+<ul>
+<li>Running long CI/CD deployment scripts over SSH</li>
+<li>Database exports and backups</li>
+<li>Log collection agents</li>
+<li>Starting applications that must persist after SSH logout</li>
+</ul>
+<hr />
+<h2>Command 166: <code>top</code></h2>
+<p><strong>What it does:</strong> Provides a <strong>real-time</strong>, auto-refreshing view of system resource usage — Linux's built-in Task Manager.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">top
+</code></pre>
+</div>
+<p><strong>Key fields in the output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%Cpu(s)</code></td>
+<td>Overall CPU utilization</td>
+</tr>
+<tr>
+<td><code>MiB Mem</code></td>
+<td>Total / used / free RAM</td>
+</tr>
+<tr>
+<td><code>PID</code></td>
+<td>Process ID</td>
+</tr>
+<tr>
+<td><code>USER</code></td>
+<td>Process owner</td>
+</tr>
+<tr>
+<td><code>COMMAND</code></td>
+<td>Application name</td>
+</tr>
+<tr>
+<td><code>%CPU</code></td>
+<td>CPU usage by that process</td>
+</tr>
+<tr>
+<td><code>%MEM</code></td>
+<td>Memory usage by that process</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interactive keys while <code>top</code> is running:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>q</code></td>
+<td>Quit</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Kill a process (enter PID when prompted)</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>Sort by memory usage</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>Sort by CPU usage</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>top</code> vs <code>ps</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th><code>top</code></th>
+<th><code>ps</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Live, auto-refreshing</td>
+<td>One-time snapshot</td>
+</tr>
+<tr>
+<td>Interactive</td>
+<td>Non-interactive (scriptable)</td>
+</tr>
+<tr>
+<td>Real-time monitoring</td>
+<td>Scripting and automation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DevOps Use Cases:</strong></p>
+<ul>
+<li>Identify which process is consuming high CPU</li>
+<li>Detect memory leaks in a Java or Python application</li>
+<li>Monitor resource usage during a deployment</li>
+<li>Troubleshoot slow application performance</li>
+</ul>
+<hr />
+<h2>Command 167: <code>ssh</code></h2>
+<p><strong>What it does:</strong> Securely connects to a remote Linux server over an encrypted channel.</p>
+<ul>
+<li><strong>Default port:</strong> 22</li>
+<li><strong>Protocol:</strong> SSH (Secure Shell) — encrypts all data including passwords</li>
+</ul>
+<h3>Password Authentication</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ssh username@server
+
+# Examples
+ssh ubuntu@192.168.1.10
+ssh ubuntu@dev.company.com
+ssh -p 2222 ubuntu@192.168.1.10    # Custom port
+</code></pre>
+</div>
+<h3>Key-Based Authentication (AWS EC2)</h3>
+<p>AWS EC2 instances use <code>.pem</code> key files instead of passwords.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ssh -i demo.pem ubuntu@54.26.118.12       # Ubuntu AMI
+ssh -i demo.pem ec2-user@18.212.10.20     # Amazon Linux AMI
+</code></pre>
+</div>
+<blockquote>
+<p><strong>Always fix key permissions before use — SSH refuses overly open keys.</strong></p>
+</blockquote>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">chmod 400 demo.pem    # Owner can read only
+</code></pre>
+</div>
+<p><strong>Common SSH Errors:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Permission denied (publickey)</code></td>
+<td>Wrong key / username / IP / permissions</td>
+<td>Verify all four</td>
+</tr>
+<tr>
+<td><code>UNPROTECTED PRIVATE KEY FILE!</code></td>
+<td>Key permissions too open</td>
+<td><code>chmod 400 demo.pem</code></td>
+</tr>
+<tr>
+<td><code>Connection refused</code></td>
+<td>SSH not running or port 22 blocked</td>
+<td>Check service/firewall</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why SSH over Telnet?</strong> SSH encrypts all communication. Telnet sends passwords and data in <strong>plain text</strong> — a serious security risk on any network.</p>
+<hr />
+<h2>Commands 168–170: <code>scp</code></h2>
+<p><strong>What it does:</strong> Securely copies files between machines <strong>over SSH</strong>.</p>
+<h3>Command 168: Upload a file to <code>/tmp</code></h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">scp file_name user@server:/tmp
+
+# Examples
+scp report.txt ubuntu@192.168.1.10:/tmp
+scp -i demo.pem app.jar ubuntu@54.26.118.12:/tmp    # With key file
+</code></pre>
+</div>
+<h3>Command 169: Upload a file to the home directory</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">scp file_name user@server:/home/ubuntu
+
+# Example
+scp config.yaml ubuntu@54.26.118.12:/home/ubuntu
+</code></pre>
+</div>
+<h3>Command 170: Copy an entire directory</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">scp -r directory user@server:/path
+
+# Example
+scp -r project ubuntu@54.26.118.12:/home/ubuntu
+</code></pre>
+</div>
+<p><strong>Other useful <code>scp</code> patterns:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Download a file from a remote server
+scp ubuntu@192.168.1.10:/tmp/report.txt .
+
+# Upload with key file
+scp -i demo.pem report.txt ubuntu@54.26.118.12:/tmp
+</code></pre>
+</div>
+<hr />
+<h2>Command 171: <code>rsync</code></h2>
+<p><strong>What it does:</strong> Synchronizes files between locations, transferring <strong>only the changed portions</strong> — much faster than <code>scp</code> for repeated transfers.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Basic file sync
+rsync file user@server:/home/temp
+
+# Archive mode with progress (most common usage)
+rsync -avh --progress project/ ubuntu@54.26.118.12:/home/project/
+</code></pre>
+</div>
+<p><strong>Option breakdown:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-a</code></td>
+<td>Archive (preserves permissions, timestamps, symlinks, etc.)</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td>Verbose output</td>
+</tr>
+<tr>
+<td><code>-h</code></td>
+<td>Human-readable file sizes</td>
+</tr>
+<tr>
+<td><code>-z</code></td>
+<td>Compress during transfer</td>
+</tr>
+<tr>
+<td><code>--progress</code></td>
+<td>Show transfer progress</td>
+</tr>
+<tr>
+<td><code>--delete</code></td>
+<td>Remove destination files not present in source</td>
+</tr>
+</tbody>
+</table>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Sync a directory using SSH key
+rsync -avz -e &quot;ssh -i demo.pem&quot; project/ ubuntu@54.26.118.12:/opt/project
+
+# Download logs from server
+rsync -av ubuntu@server:/var/log/ ./logs
+</code></pre>
+</div>
+<p><strong><code>scp</code> vs <code>rsync</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>scp</code></th>
+<th><code>rsync</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it transfers</td>
+<td>Everything, every time</td>
+<td>Only changed parts</td>
+</tr>
+<tr>
+<td>Speed on repeat runs</td>
+<td>Same</td>
+<td>Much faster</td>
+</tr>
+<tr>
+<td>Preserves metadata</td>
+<td>Basic</td>
+<td>Full (with <code>-a</code>)</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Simple one-time transfers</td>
+<td>Deployments, backups, repeated syncs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"I use <code>scp</code> for simple one-time file transfers. I prefer <code>rsync</code> for deployments and backups because it only transfers changed portions and is much more efficient when syncing repeatedly. <code>rsync</code> also preserves full metadata with the <code>-a</code> flag."</p>
+</blockquote>
+<hr />
+<h2>Command 172: <code>ping</code></h2>
+<p><strong>What it does:</strong> Tests <strong>network reachability</strong> between your machine and another host using ICMP Echo Requests.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ping ip_address
+ping hostname
+ping google.com
+
+# Examples
+ping 8.8.8.8
+ping google.com
+ping 127.0.0.1          # Loopback -- tests your own machine
+ping 192.168.1.1        # Gateway
+ping -c 4 google.com    # Send only 4 packets (important on Linux -- otherwise runs forever until Ctrl+C)
+</code></pre>
+</div>
+<p><strong>Output fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>icmp_seq</code></td>
+<td>Packet sequence number</td>
+</tr>
+<tr>
+<td><code>ttl</code></td>
+<td>Time To Live — limits packet lifetime</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>Round-trip response time (ms)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Important:</strong> <code>ping</code> tests <strong>network connectivity only</strong> — not application health. Many servers block ICMP for security. A failed <code>ping</code> does not always mean the server is down.</p>
+</blockquote>
+<p><strong>DevOps Use Cases:</strong></p>
+<ul>
+<li>Check if a Kubernetes worker node is reachable: <code>ping worker-node</code></li>
+<li>Verify database server is on the network: <code>ping db.company.com</code></li>
+<li>Test DNS resolution: <code>ping google.com</code></li>
+</ul>
+<p><strong>Common <code>ping</code> Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Replies received</td>
+<td>Server is reachable</td>
+</tr>
+<tr>
+<td><code>Request timeout</code></td>
+<td>Server down, ICMP blocked, or network issue</td>
+</tr>
+<tr>
+<td><code>Unknown host</code></td>
+<td>DNS resolution failed</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Command 173: <code>telnet</code></h2>
+<p><strong>What it does:</strong> Tests whether a <strong>TCP port is reachable</strong> — verifies application-level connectivity, not just network.</p>
+<ul>
+<li><strong>Default Telnet service port:</strong> 23</li>
+<li><strong>Used in DevOps:</strong> Almost always for <strong>port testing</strong>, not as a remote login tool</li>
+</ul>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">telnet ip_address port
+
+# Examples
+telnet localhost 8080        # Check Tomcat/Jenkins
+telnet 192.168.1.20 22      # Check SSH
+telnet db.company.com 3306  # Check MySQL
+telnet db.company.com 5432  # Check PostgreSQL
+telnet redis.company.com 6379 # Check Redis
+</code></pre>
+</div>
+<p><strong>Understanding Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Connected</code></td>
+<td>Port is open — application is listening</td>
+</tr>
+<tr>
+<td><code>Connection refused</code></td>
+<td>Application is NOT listening on that port</td>
+</tr>
+<tr>
+<td><code>Connection timed out</code></td>
+<td>Firewall or network problem</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>ping</code> vs <code>telnet</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>ping</code></th>
+<th><code>telnet</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol</td>
+<td>ICMP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td>Network reachability</td>
+<td>Application port connectivity</td>
+</tr>
+<tr>
+<td>Can <code>ping</code> succeed while <code>telnet</code> fails?</td>
+<td>Yes — network OK but app not running</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Can <code>telnet</code> succeed while <code>ping</code> fails?</td>
+<td>—</td>
+<td>Yes — if ICMP is blocked</td>
+</tr>
+</tbody>
+</table>
+<p><strong>If <code>telnet</code> is not installed:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Install on Amazon Linux 2
+sudo yum install -y telnet
+
+# Install on Amazon Linux 2023
+sudo dnf install -y telnet
+
+# Alternative: nc (netcat) -- preferred by most DevOps engineers
+nc -zv 192.168.1.10 8080
+
+# Alternative: Bash TCP (no installation needed)
+timeout 5 bash -c '&lt;/dev/tcp/192.168.1.10/8080' &amp;&amp; echo &quot;Port Open&quot; || echo &quot;Port Closed&quot;
+
+# Alternative: curl (for HTTP services)
+curl -I http://192.168.1.10:8080
+</code></pre>
+</div>
+<hr />
+<h2>Command 174: <code>netstat -na | grep 8080</code></h2>
+<p><strong>What it does:</strong> Checks whether an application on the <strong>local machine</strong> is listening on port 8080.</p>
+<p>This is one of the most commonly used troubleshooting commands in DevOps.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">netstat -na | grep 8080
+</code></pre>
+</div>
+<p><strong>Breaking it down:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>netstat</code></td>
+<td>Network statistics tool</td>
+</tr>
+<tr>
+<td><code>-n</code></td>
+<td>Show numeric IPs and ports (not hostnames)</td>
+</tr>
+<tr>
+<td><code>-a</code></td>
+<td>Show all sockets (listening + established)</td>
+</tr>
+<tr>
+<td><code>\| grep 8080</code></td>
+<td>Filter for port 8080 only</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example output:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">tcp    0    0 0.0.0.0:8080    0.0.0.0:*    LISTEN
+</code></pre>
+</div>
+<p><code>LISTEN</code> = application is waiting for incoming connections</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">netstat -na | grep 8080   # Check Tomcat/Jenkins
+netstat -na | grep 22     # Check SSH
+netstat -na | grep 3306   # Check MySQL
+netstat -na | grep 80     # Check Nginx/Apache
+
+# Shows PID and program name (requires sudo)
+sudo netstat -tulpn
+</code></pre>
+</div>
+<p><strong>Modern alternative:</strong> <code>ss -tuln</code> (faster, preferred on modern Linux distributions)</p>
+<p><strong><code>netstat</code> vs <code>telnet</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>netstat</code></th>
+<th><code>telnet</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Where it runs</td>
+<td>On the <strong>local</strong> machine</td>
+<td>Tests from your machine to <strong>remote</strong></td>
+</tr>
+<tr>
+<td>What it shows</td>
+<td>Local listeners</td>
+<td>Remote port connectivity</td>
+</tr>
+</tbody>
+</table>
+<p><strong>If nothing appears in the output:</strong> The application is not listening on that port. Possible causes:</p>
+<ul>
+<li>Application never started</li>
+<li>Application started on a different port</li>
+<li>A startup error occurred</li>
+</ul>
+<p><strong>If it shows LISTEN but users still cannot connect:</strong></p>
+<ul>
+<li>Check firewall rules</li>
+<li>Verify cloud security group (AWS, Azure, GCP)</li>
+<li>Confirm load balancer is forwarding to port 8080</li>
+</ul>
+<hr />
+<h2>The DevOps Network Troubleshooting Flow</h2>
+<p>When users report "the application isn't accessible":</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Step 1: Test basic network connectivity
+        ping app-server
+        If successful --&gt;
+
+Step 2: Test the application port from remote
+        telnet app-server 8080
+        If connection fails --&gt;
+
+Step 3: Log into the server
+        ssh ubuntu@app-server
+
+Step 4: Verify if the application is listening locally
+        netstat -na | grep 8080
+
+Step 5: If nothing is listening --&gt; restart the application
+</code></pre>
+</div>
+<p><strong>Interview Answer:</strong></p>
+<blockquote>
+<p>"If an application isn't accessible on port 8080, I'd first use <code>ping</code> to verify network connectivity to the server. If reachable, I'd test port 8080 using <code>telnet</code> (or <code>nc</code>) to see if the application is accepting connections. Then I'd SSH into the server and run <code>netstat -na | grep 8080</code> or <code>ss -tuln</code> to confirm whether the application is listening. Based on findings, I'd inspect application logs and restart the service if necessary."</p>
+</blockquote>
+<hr />
+<h2>Bonus: Inode In Depth</h2>
+<h3>What is an Inode?</h3>
+<p>An <strong>inode</strong> (Index Node) is a data structure in the Linux filesystem that stores <strong>metadata about a file or directory</strong> — but <strong>not</strong> the filename or the actual file content.</p>
+<p>Think of an inode as the <strong>identity card</strong> of a file.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Filename  --------&gt;  Inode  --------&gt;  Actual Data Blocks
+report.txt            123456           File Content
+</code></pre>
+</div>
+<p><strong>Real-life analogy:</strong></p>
+<p>A library maintains a card catalog:</p>
+<ul>
+<li><strong>Book Name</strong> → Filename (stored in the directory)</li>
+<li><strong>Card Catalog Record</strong> → Inode (stores metadata)</li>
+<li><strong>Shelf Location</strong> → Disk blocks (stores actual content)</li>
+</ul>
+<hr />
+<h3>What Does an Inode Store?</h3>
+<table>
+<thead>
+<tr>
+<th>Information</th>
+<th>Stored in Inode?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File size</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Owner (UID)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Group (GID)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Last modified time</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Last accessed time</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Number of hard links</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Disk block locations</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>File type</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Filename</strong></td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td><strong>Actual file data</strong></td>
+<td><strong>No</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>The filename is stored in the <strong>directory entry</strong>, which maps the name to an inode number.</p>
+</blockquote>
+<hr />
+<h3>How Linux Finds a File</h3>
+<p>When you run <code>cat notes.txt</code>:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Step 1: Search directory for &quot;notes.txt&quot; --&gt; find inode 14582
+Step 2: Open inode 14582 --&gt; read permissions, owner, disk block locations
+Step 3: Go to disk blocks --&gt; read the actual content
+Step 4: Display content on screen
+</code></pre>
+</div>
+<hr />
+<h3>Viewing Inode Numbers</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create files
+touch f1 f2 f3
+
+# Show inode numbers
+ls -i
+# 1001 f1
+# 1002 f2
+# 1003 f3
+
+# Detailed listing with inode
+ls -li
+# 1001 -rw-r--r-- 1 ubuntu ubuntu 0 Jul 20 f1
+
+# Show full inode metadata
+stat f1
+# File: f1
+# Inode: 1001
+# Access: (0644/-rw-r--r--)
+# Owner: ubuntu
+</code></pre>
+</div>
+<hr />
+<h3>Inode and Links</h3>
+<p><strong>Hard link -- same inode:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">echo &quot;Hello Linux&quot; &gt; file1
+ln file1 file2          # Create hard link
+
+ls -li
+# 15876 file1
+# 15876 file2            &lt;-- SAME inode!
+</code></pre>
+</div>
+<p><strong>Soft link -- different inode:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">ln -s file1 file3       # Create soft link
+
+ls -li
+# 15876 file1
+# 15876 file2            &lt;-- same inode (hard link)
+# 16010 file3            &lt;-- different inode (soft link)
+</code></pre>
+</div>
+<hr />
+<h3>Inode Exhaustion -- A Critical DevOps Scenario</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Check inode usage
+df -i
+
+# Example output:
+# Filesystem     Inodes  IUsed   IFree IUse%
+# /dev/xvda1     655360  655360      0  100% /
+</code></pre>
+</div>
+<p>Even if <code>df -h</code> shows only 50% disk used, you <strong>cannot create new files</strong> if inodes are 100% used.</p>
+<p><strong>This commonly happens with:</strong></p>
+<ul>
+<li>Millions of tiny log files (e.g., 1 KB each x 5 million = inodes exhausted)</li>
+<li>Container log files under <code>/var/log/containers</code></li>
+<li>Jenkins build artifacts creating thousands of small files</li>
+</ul>
+<p><strong>Solution:</strong> Delete old log files or configure log rotation.</p>
+<hr />
+<h3>Find Files by Inode</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Find all files with a specific inode number
+find . -inum 14582
+
+# Very useful when removing one of multiple hard links
+</code></pre>
+</div>
+<hr />
+<h3>Inode Summary Table</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ls -i</code></td>
+<td>Show inode numbers</td>
+</tr>
+<tr>
+<td><code>ls -li</code></td>
+<td>Inode numbers with full file details</td>
+</tr>
+<tr>
+<td><code>stat file</code></td>
+<td>Show detailed inode metadata</td>
+</tr>
+<tr>
+<td><code>find . -inum &lt;inode&gt;</code></td>
+<td>Find files by inode number</td>
+</tr>
+<tr>
+<td><code>df -i</code></td>
+<td>Check inode usage per filesystem</td>
+</tr>
+<tr>
+<td><code>ln file hardlink</code></td>
+<td>Create hard link (same inode)</td>
+</tr>
+<tr>
+<td><code>ln -s file softlink</code></td>
+<td>Create symbolic link (new inode)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Memory Trick:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Hard Link  =  Same House, Two Nameplates
+              Nameplate 1 --&gt; House
+              Nameplate 2 --&gt; Same House
+              Removing one nameplate does not remove the house.
+
+Soft Link  =  A sticky note saying &quot;Go to House #25&quot;
+              If House #25 is demolished, the sticky note still exists
+              but points to nowhere -- a broken symlink.
+</code></pre>
+</div>
+<hr />
+<h3>Interview Questions on Inodes</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What is an inode?</td>
+<td>A data structure storing file metadata (not the filename or content)</td>
+</tr>
+<tr>
+<td>Does an inode store the filename?</td>
+<td>No — the filename is stored in the directory entry</td>
+</tr>
+<tr>
+<td>How do you display inode numbers?</td>
+<td><code>ls -i</code> or <code>ls -li</code></td>
+</tr>
+<tr>
+<td>Which command shows complete inode info?</td>
+<td><code>stat filename</code></td>
+</tr>
+<tr>
+<td>Can two filenames share one inode?</td>
+<td>Yes — through hard links</td>
+</tr>
+<tr>
+<td>Why can Linux say "No space" when disk shows free space?</td>
+<td>Inodes may be exhausted — check with <code>df -i</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>End-of-Day Practice Lab</h2>
+<p>Try these tasks on your Linux VM — they combine everything from today:</p>
+<ol>
+<li>Create three files with different modification times. Use <code>find -mtime</code> to identify which ones would be deleted by <code>xargs rm</code>.</li>
+<li>Create both a soft link and a hard link. Compare their inode numbers with <code>ls -li</code>. Delete the original and observe the behavior difference.</li>
+<li>Run <code>nohup sleep 600 &amp;</code>. Log out (or close the terminal). Reconnect and verify it is still running with <code>ps -ef | grep sleep</code>.</li>
+<li>Use <code>ssh</code> to connect to another Linux machine. Transfer a file using both <code>scp</code> and <code>rsync</code>. Compare the experience.</li>
+<li>Start a simple web server: <code>python3 -m http.server 8080</code>. Verify it using <code>netstat -na | grep 8080</code>, then test from another terminal with <code>telnet localhost 8080</code>.</li>
+<li>Use <code>find . -iname "*.sh"</code> to locate all shell scripts in your home directory.</li>
+<li>Check inode usage on your system with <code>df -i</code>. Note the percentage used on each filesystem.</li>
+<li>Create a hard link and a soft link to the same file. Delete the original. Observe which link still works and which breaks.</li>
+</ol>
+<hr />
+<h2>Quick Command Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>command \| xargs rm</code></td>
+<td>Pass piped output as arguments to rm</td>
+</tr>
+<tr>
+<td><code>find . -type f -mtime +2 \| xargs rm</code></td>
+<td>Delete files older than 2 days</td>
+</tr>
+<tr>
+<td><code>find . -type f -mtime +365 \| xargs rm</code></td>
+<td>Delete files older than 1 year</td>
+</tr>
+<tr>
+<td><code>find . -type f -iname "*.sh"</code></td>
+<td>Find files by name (case-insensitive)</td>
+</tr>
+<tr>
+<td><code>find . -type d -iname "logs" -maxdepth 2</code></td>
+<td>Find directories, max 2 levels deep</td>
+</tr>
+<tr>
+<td><code>ln -s original link</code></td>
+<td>Create a soft/symbolic link</td>
+</tr>
+<tr>
+<td><code>ln original hardlink</code></td>
+<td>Create a hard link (same inode)</td>
+</tr>
+<tr>
+<td><code>ls -li</code></td>
+<td>View inode numbers with file details</td>
+</tr>
+<tr>
+<td><code>stat file</code></td>
+<td>Show full inode metadata</td>
+</tr>
+<tr>
+<td><code>find . -inum &lt;inode&gt;</code></td>
+<td>Find all files sharing an inode</td>
+</tr>
+<tr>
+<td><code>df -i</code></td>
+<td>Check inode usage per filesystem</td>
+</tr>
+<tr>
+<td><code>uname -a</code></td>
+<td>Show OS and kernel info</td>
+</tr>
+<tr>
+<td><code>cat /etc/os-release</code></td>
+<td>Show Linux distribution details</td>
+</tr>
+<tr>
+<td><code>hostname</code></td>
+<td>Show server hostname</td>
+</tr>
+<tr>
+<td><code>whoami</code></td>
+<td>Show current username</td>
+</tr>
+<tr>
+<td><code>who \| wc -l</code></td>
+<td>Count active login sessions</td>
+</tr>
+<tr>
+<td><code>nohup ./script.sh &amp;</code></td>
+<td>Run script in background, persist after logout</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>Real-time process/CPU/memory monitoring</td>
+</tr>
+<tr>
+<td><code>ssh user@server</code></td>
+<td>Connect to remote server</td>
+</tr>
+<tr>
+<td><code>ssh -i key.pem user@ip</code></td>
+<td>Connect with AWS .pem key file</td>
+</tr>
+<tr>
+<td><code>scp file user@server:/path</code></td>
+<td>Securely copy a file to remote server</td>
+</tr>
+<tr>
+<td><code>scp -r dir user@server:/path</code></td>
+<td>Copy an entire directory to remote server</td>
+</tr>
+<tr>
+<td><code>rsync -avz -e "ssh -i key.pem" src/ user@ip:/dest/</code></td>
+<td>Sync files using SSH key</td>
+</tr>
+<tr>
+<td><code>ping -c 4 host</code></td>
+<td>Test network reachability (4 packets)</td>
+</tr>
+<tr>
+<td><code>telnet host port</code></td>
+<td>Test if a TCP port is open</td>
+</tr>
+<tr>
+<td><code>nc -zv host port</code></td>
+<td>Test TCP port (modern alternative to telnet)</td>
+</tr>
+<tr>
+<td><code>netstat -na \| grep PORT</code></td>
+<td>Check if an app is listening locally</td>
+</tr>
+<tr>
+<td><code>ss -tuln</code></td>
+<td>Modern replacement for netstat</td>
+</tr>
+</tbody>
+</table>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../linux/day-4.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">Day 4</span>
+  </a>
+  <a href="../linux/kill-signal.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">kill signal</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

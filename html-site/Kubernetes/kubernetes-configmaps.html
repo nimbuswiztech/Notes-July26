@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Visual-first Kubernetes ConfigMaps and subPath hands-on training guide for Nimbuswiztech students.">
+<title>Kubernetes ConfigMaps and subPath — Nimbuswiztech Training Guide</title>
+<style>
+:root{--navy:#142b49;--blue:#2467ad;--blue2:#eaf3ff;--ink:#1e2b3a;--muted:#5a6a7b;--line:#d8e1eb;--paper:#fff;--bg:#f2f6fa;--green:#146c43;--greenbg:#eaf8ef;--amber:#875800;--amberbg:#fff4d8;--red:#9f2929;--redbg:#fff0ef;--code:#0e1a29;--codeink:#e8f0fa}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:1rem}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--blue);overflow-wrap:anywhere}a:hover{text-decoration-thickness:2px}
+header{background:linear-gradient(125deg,#112947,#194e7c);color:#fff;padding:2.3rem max(1rem,calc((100% - 1240px)/2));border-bottom:5px solid #76b9ff}header .brand{color:#cce5ff;letter-spacing:.16em;font-size:.8rem;font-weight:800}header h1{font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.12;margin:.55rem 0 .85rem;max-width:1000px}header p{max-width:950px;color:#e1edf9}header .meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}.badge{font-size:.82rem;border:1px solid #9bc9f3;border-radius:999px;padding:.18rem .62rem;color:#f3f9ff;background:#1e456a}
+.layout{max-width:1320px;margin:auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:1rem;padding:1rem}
+aside{align-self:start;position:sticky;top:1rem;max-height:calc(100vh - 2rem);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:1rem}
+aside h2{font-size:1rem;margin:.1rem 0 .6rem;border:0;padding:0}aside ol{padding-left:1.3rem;margin:.3rem 0}aside li{margin:.3rem 0;font-size:.9rem}aside a{color:#344f6c;text-decoration:none}aside a.active{font-weight:800;color:#135eaa}main{min-width:0}
+section{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:clamp(1rem,2.5vw,1.6rem);margin:0 0 1rem;box-shadow:0 2px 9px #18385808}
+h2{font-size:1.65rem;line-height:1.25;margin:.1rem 0 1rem;border-bottom:1px solid var(--line);padding-bottom:.55rem}h3{font-size:1.18rem;line-height:1.3;margin:1.25rem 0 .4rem}h4{font-size:1rem;margin:1rem 0 .3rem}p{margin:.55rem 0}ul,ol{padding-left:1.5rem}li{margin:.25rem 0}
+.kicker{color:var(--blue);text-transform:uppercase;font-size:.75rem;letter-spacing:.12em;font-weight:800}.small{font-size:.9rem}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem}.card{border:1px solid var(--line);border-radius:10px;padding:.9rem;background:#fff}.card h3{margin:.1rem 0 .3rem}.callout{border-left:4px solid var(--blue);background:var(--blue2);border-radius:5px;padding:.8rem 1rem;margin:.9rem 0}.callout.good{border-left-color:var(--green);background:var(--greenbg)}.callout.warn{border-left-color:#b47b0b;background:var(--amberbg)}.callout.danger{border-left-color:var(--red);background:var(--redbg)}
+figure{margin:1rem 0;padding:.6rem;border:1px solid var(--line);border-radius:10px;background:#fbfdff}figure svg{width:100%;height:auto;display:block;max-height:520px}figcaption{font-size:.88rem;color:var(--muted);padding:.6rem .25rem .1rem}figcaption strong{color:var(--ink)}.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}.split>*{min-width:0}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:.7rem 0}table{border-collapse:collapse;width:100%;font-size:.94rem}th,td{border-bottom:1px solid var(--line);padding:.65rem;text-align:left;vertical-align:top}th{background:#eaf0f7;color:#203d5b}tr:last-child td{border-bottom:0}
+pre{position:relative;background:var(--code);color:var(--codeink);border-radius:9px;padding:1.1rem 1rem 1rem;overflow:auto;line-height:1.52;font-size:.88rem;white-space:pre;tab-size:2;margin:.65rem 0}pre code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:inherit;background:none;padding:0}.copy{position:absolute;top:.4rem;right:.4rem;border:1px solid #b7c9dc;border-radius:5px;background:#fff;color:#193b5e;padding:.25rem .55rem;font-size:.78rem;font-weight:800;cursor:pointer}p code,li code,td code{font-family:ui-monospace,monospace;background:#edf2f7;color:#1b3c5e;padding:.1rem .3rem;border-radius:4px;font-size:.92em}
+details{border:1px solid var(--line);border-radius:8px;margin:.6rem 0;background:#fff}summary{cursor:pointer;padding:.65rem .8rem;font-weight:750}details .answer{padding:.2rem .8rem .85rem;background:#f8fafc;border-top:1px solid var(--line)}details[open]>summary{background:#f0f6fc}
+.pill{display:inline-block;border-radius:999px;border:1px solid #c8d7e6;background:#f2f7fb;padding:.1rem .5rem;font-size:.8rem}.search{width:100%;padding:.75rem;border:1px solid #aebccc;border-radius:8px;font:inherit;margin:.5rem 0 1rem}.stepflow{display:flex;align-items:stretch;gap:.45rem;flex-wrap:wrap;margin:.8rem 0}.stepflow span{background:#edf5ff;border:1px solid #c8ddf3;border-radius:7px;padding:.45rem .7rem;font-weight:650}.stepflow b{align-self:center;color:var(--blue)}
+footer{text-align:center;color:var(--muted);padding:2rem 1rem}.toplink{display:inline-block;margin:.5rem 0}.section-number{color:#7292b1;font-size:.85rem;font-weight:800;margin-right:.25rem}
+@media(max-width:980px){.layout{grid-template-columns:1fr}aside{position:relative;top:auto;max-height:none}aside ol{columns:2;column-gap:2rem}aside li{break-inside:avoid}.split{grid-template-columns:1fr}}
+@media(max-width:600px){.layout{padding:.55rem;gap:.6rem}aside ol{columns:1}section{padding:1rem}h2{font-size:1.42rem}pre{font-size:.8rem;padding-top:2rem}figure{padding:.25rem}}
+@media print{body{background:#fff;color:#000;font-size:10pt}header{background:#fff;color:#000;border-bottom:2px solid #222;padding:1rem}header .brand,header p{color:#333}.layout{display:block;padding:0;max-width:none}aside,.copy,.search,.toplink{display:none!important}section{box-shadow:none;border:1px solid #aaa;break-inside:avoid;margin:.5rem 0;padding:.7rem}figure{break-inside:avoid}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f5f5;color:#000;border:1px solid #aaa;padding:.5rem}details:not([open])>.answer{display:block}a{color:#000;text-decoration:underline}footer{padding:.5rem}}
+</style>
+</head>
+<body id="top">
+<header>
+<div class="brand">NIMBUSWIZTECH · VISUAL-FIRST STUDENT GUIDE</div>
+<h1>Kubernetes ConfigMaps &amp; <code style="color:#d5e9ff;background:transparent">subPath</code></h1>
+<p>A hands-on visual guide to separating application configuration from container images, projecting ConfigMap keys into containers, mounting one file without hiding a directory, and understanding why <code style="color:#d5e9ff">subPath</code> mounts do not receive live ConfigMap updates.</p>
+<div class="meta"><span class="badge">Beginner-friendly</span><span class="badge">Offline-friendly SVG diagrams</span><span class="badge">Hands-on labs</span><span class="badge">Troubleshooting &amp; interviews</span></div>
+</header>
+
+<div class="layout">
+<aside aria-label="Guide navigation" id="sidebar">
+<h2>Guide navigation</h2><ol>
+<li><a href="#cover">Roadmap &amp; objectives</a></li><li><a href="#intro">Introduction</a></li><li><a href="#concepts">ConfigMap fundamentals</a></li><li><a href="#consumption">Ways to consume ConfigMaps</a></li><li><a href="#subpath">How subPath works</a></li><li><a href="#architecture">Architecture &amp; update workflow</a></li><li><a href="#environment">Prepare your lab</a></li><li><a href="#labs">Hands-on exercises</a></li><li><a href="#endtoend">End-to-end demo</a></li><li><a href="#troubleshooting">Troubleshooting decision trees</a></li><li><a href="#bestpractices">Best practices</a></li><li><a href="#interview">Interview preparation</a></li><li><a href="#assignments">Practice assignments</a></li><li><a href="#revision">Cheat sheet</a></li><li><a href="#cleanup">Cleanup</a></li><li><a href="#references">References</a></li>
+</ol><p class="muted small">Tip: use the copy buttons on command blocks. In print mode, code blocks wrap and navigation is hidden.</p></aside>
+
+<main>
+<section id="cover">
+<div class="kicker">00 · Start here</div><h2>Learning roadmap</h2>
+<figure>
+<svg viewBox="0 0 960 270" role="img" aria-labelledby="hero-title hero-desc">
+<title id="hero-title">ConfigMap separates application configuration from image</title><desc id="hero-desc">A developer creates a ConfigMap holding key-value configuration. Kubernetes projects selected values into a Pod as environment variables or files, while the container image remains independent.</desc>
+<defs><marker id="hero-arrow" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3z" fill="#46749e"/></marker></defs>
+<rect x="20" y="52" width="170" height="130" rx="12" fill="#eaf3ff" stroke="#5d92c9" stroke-width="2"/>
+<text x="105" y="79" text-anchor="middle" font-size="16" font-weight="bold" fill="#163e65">Developer</text><rect x="42" y="93" width="126" height="66" rx="7" fill="#fff" stroke="#b2c9e2"/><text x="105" y="115" text-anchor="middle" font-size="12" fill="#203d5b">config.yaml</text><text x="105" y="134" text-anchor="middle" font-size="11" fill="#52708d">LOG_LEVEL=info</text><text x="105" y="149" text-anchor="middle" font-size="11" fill="#52708d">FEATURE_X=true</text>
+<path d="M190 117 H260" stroke="#46749e" stroke-width="2.5" marker-end="url(#hero-arrow)"/><text x="225" y="105" text-anchor="middle" font-size="11" fill="#52708d">apply</text>
+<rect x="265" y="52" width="190" height="130" rx="12" fill="#dff5e8" stroke="#54a879" stroke-width="2"/><text x="360" y="79" text-anchor="middle" font-size="16" font-weight="bold" fill="#145b36">ConfigMap</text><text x="360" y="100" text-anchor="middle" font-size="11" fill="#276c49">API object · key/value</text><rect x="284" y="112" width="152" height="50" rx="5" fill="#fff" stroke="#9fceb1"/><text x="360" y="132" text-anchor="middle" font-size="12" fill="#145b36">Non-secret settings</text><text x="360" y="148" text-anchor="middle" font-size="11" fill="#276c49">namespace-scoped</text>
+<path d="M455 117 H530" stroke="#46749e" stroke-width="2.5" marker-end="url(#hero-arrow)"/><text x="492" y="105" text-anchor="middle" font-size="11" fill="#52708d">reference</text>
+<rect x="535" y="34" width="400" height="166" rx="14" fill="#f4f7fb" stroke="#829bb4" stroke-width="2"/><text x="735" y="59" text-anchor="middle" font-size="17" font-weight="bold" fill="#203d5b">Pod / Container</text>
+<rect x="557" y="76" width="165" height="94" rx="8" fill="#fff" stroke="#9bb1c7"/><text x="639" y="97" text-anchor="middle" font-size="13" font-weight="bold" fill="#203d5b">Environment</text><text x="639" y="119" text-anchor="middle" font-size="11" fill="#52708d">LOG_LEVEL=info</text><text x="639" y="139" text-anchor="middle" font-size="11" fill="#52708d">FEATURE_X=true</text><text x="639" y="157" text-anchor="middle" font-size="10" fill="#52708d">at container start</text>
+<rect x="742" y="76" width="170" height="94" rx="8" fill="#fff" stroke="#9bb1c7"/><text x="827" y="97" text-anchor="middle" font-size="13" font-weight="bold" fill="#203d5b">Mounted file</text><text x="827" y="119" text-anchor="middle" font-size="11" fill="#52708d">/etc/app/app.yaml</text><text x="827" y="139" text-anchor="middle" font-size="11" fill="#52708d">whole volume or</text><text x="827" y="157" text-anchor="middle" font-size="11" fill="#52708d">single-file subPath</text>
+<text x="480" y="238" text-anchor="middle" font-size="14" font-weight="bold" fill="#173a5c">Configuration changes without rebuilding the application image</text>
+</svg>
+<figcaption><strong>Visual 1 — The main idea.</strong> A ConfigMap stores non-confidential settings separately from the application image. A Pod references it to receive values as environment variables, arguments, or files.</figcaption>
+</figure>
+<div class="grid">
+<div class="card"><h3>Estimated duration</h3><p>90–150 minutes including the hands-on exercises and discussion. This is an estimate; image pulls and cluster speed can change lab time.</p></div>
+<div class="card"><h3>Prerequisites</h3><p>Basic YAML, Pods, containers, namespaces, and working <code>kubectl</code> access.</p></div>
+<div class="card"><h3>Final skills</h3><p>Create ConfigMaps, inject environment values, mount a whole directory or one file, test update behavior, and diagnose stale configuration.</p></div>
+</div>
+<h3>Lesson path</h3>
+<div class="stepflow"><span>Learn</span><b>→</b><span>Visualize</span><b>→</b><span>Apply YAML</span><b>→</b><span>Inspect</span><b>→</b><span>Modify</span><b>→</b><span>Troubleshoot</span><b>→</b><span>Clean up</span></div>
+<div class="callout warn"><strong>Safety rule:</strong> ConfigMaps are for non-confidential configuration, not passwords, private keys, or access tokens. Use Kubernetes Secrets and suitable access/encryption controls for sensitive values.</div>
+</section>
+
+<section id="intro">
+<div class="kicker">01 · Why this exists</div><h2>Introduction and real-world purpose</h2>
+<p>A <strong>ConfigMap</strong> is a Kubernetes API object for storing non-confidential configuration as key-value pairs. It lets teams change settings—such as log level, feature toggles, application properties, or web content—without baking those values into a container image. A Pod can consume a ConfigMap as environment variables, command-line arguments, or files in a volume. citeturn605144search1turn508162search3</p>
+<div class="split">
+<div><h3>Analogy: recipe card versus kitchen appliance</h3><p>The container image is the appliance; a ConfigMap is the recipe card or settings sheet. The same appliance image can be used in test, staging, and production with different non-secret settings. The application must still read or reload the supplied configuration correctly.</p>
+<p><strong>When it is useful:</strong> application properties, server configuration files, feature flags, log verbosity, simple web-page files, or command arguments.</p></div>
+<figure>
+<svg viewBox="0 0 520 230" role="img" aria-labelledby="analogy-title analogy-desc"><title id="analogy-title">One image with environment-specific settings</title><desc id="analogy-desc">The same container image connects to separate development, staging, and production ConfigMaps, each supplying distinct configuration.</desc>
+<defs><marker id="analogy-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#52799e"/></marker></defs>
+<rect x="155" y="12" width="210" height="55" rx="9" fill="#eaf3ff" stroke="#6395c3"/><text x="260" y="35" text-anchor="middle" font-size="14" font-weight="bold" fill="#1c456a">Same application image</text><text x="260" y="52" text-anchor="middle" font-size="11" fill="#42698b">app:v1</text>
+<path d="M260 67 V92 H88 V115" fill="none" stroke="#52799e" stroke-width="2" marker-end="url(#analogy-arr)"/><path d="M260 92 V115" fill="none" stroke="#52799e" stroke-width="2" marker-end="url(#analogy-arr)"/><path d="M260 92 H432 V115" fill="none" stroke="#52799e" stroke-width="2" marker-end="url(#analogy-arr)"/>
+<rect x="13" y="120" width="150" height="78" rx="9" fill="#e4f6e9" stroke="#59a779"/><text x="88" y="141" text-anchor="middle" font-size="13" font-weight="bold" fill="#165a36">Development</text><text x="88" y="161" text-anchor="middle" font-size="11" fill="#2d6a49">LOG_LEVEL=debug</text><text x="88" y="178" text-anchor="middle" font-size="11" fill="#2d6a49">FEATURE_X=true</text>
+<rect x="185" y="120" width="150" height="78" rx="9" fill="#fff4d8" stroke="#c8a24e"/><text x="260" y="141" text-anchor="middle" font-size="13" font-weight="bold" fill="#785000">Staging</text><text x="260" y="161" text-anchor="middle" font-size="11" fill="#785000">LOG_LEVEL=info</text><text x="260" y="178" text-anchor="middle" font-size="11" fill="#785000">FEATURE_X=true</text>
+<rect x="357" y="120" width="150" height="78" rx="9" fill="#fcebea" stroke="#cf7d7d"/><text x="432" y="141" text-anchor="middle" font-size="13" font-weight="bold" fill="#8d2828">Production</text><text x="432" y="161" text-anchor="middle" font-size="11" fill="#8d2828">LOG_LEVEL=warn</text><text x="432" y="178" text-anchor="middle" font-size="11" fill="#8d2828">FEATURE_X=false</text>
+</svg><figcaption><strong>Visual 2 — Reuse the image.</strong> Configuration changes by environment; the image need not be rebuilt for every non-secret setting.</figcaption>
+</figure>
+</div>
+<h3>Advantages and limitations</h3>
+<div class="table-wrap"><table><thead><tr><th>Advantages</th><th>Limitations</th></tr></thead><tbody><tr><td>Decouples settings from image; supports declarative YAML; reusable between Pods; good for simple text files and key-value settings.</td><td>Not secret storage; a ConfigMap is limited to 1 MiB; consumers differ in how they see updates; applications may need their own reload or restart workflow.</td></tr><tr><td>Versioned ConfigMap names can make rollouts explicit and rollback easier.</td><td>ConfigMaps are namespace-scoped; Pod and ConfigMap must be in the same namespace. A normal ConfigMap mount does not automatically make the app reread a file.</td></tr></tbody></table></div>
+<figure><svg viewBox="0 0 860 190" role="img" aria-labelledby="purpose-title purpose-desc"><title id="purpose-title">Configuration belongs outside image layers</title><desc id="purpose-desc">An image contains application code, while a ConfigMap supplies environment-specific settings at runtime.</desc>
+<rect x="25" y="26" width="350" height="135" rx="12" fill="#eaf3ff" stroke="#6c9bc8" stroke-width="2"/><text x="200" y="52" text-anchor="middle" font-size="16" font-weight="bold" fill="#19476f">Container image</text><rect x="55" y="70" width="290" height="35" rx="6" fill="#fff" stroke="#b8cee4"/><text x="200" y="92" text-anchor="middle" font-size="13" fill="#315a7e">Application code + runtime</text><rect x="55" y="115" width="290" height="28" rx="6" fill="#fff" stroke="#b8cee4"/><text x="200" y="134" text-anchor="middle" font-size="12" fill="#315a7e">Built/published artifact</text>
+<path d="M375 94 H485" stroke="#52799e" stroke-width="2.5"/><path d="M476 86 L487 94 L476 102" fill="none" stroke="#52799e" stroke-width="2.5"/><text x="430" y="82" text-anchor="middle" font-size="11" fill="#52799e">runtime</text>
+<rect x="490" y="26" width="345" height="135" rx="12" fill="#e6f7eb" stroke="#5aa477" stroke-width="2"/><text x="662" y="52" text-anchor="middle" font-size="16" font-weight="bold" fill="#165a36">ConfigMap</text><rect x="515" y="70" width="295" height="35" rx="6" fill="#fff" stroke="#a7d4b5"/><text x="662" y="92" text-anchor="middle" font-size="13" fill="#276447">Settings and text configuration</text><rect x="515" y="115" width="295" height="28" rx="6" fill="#fff" stroke="#a7d4b5"/><text x="662" y="134" text-anchor="middle" font-size="12" fill="#276447">Per-environment values</text>
+</svg><figcaption><strong>Visual 3 — Separation of concerns.</strong> Keep code in the image and routine non-secret settings in a ConfigMap; keep secrets in an appropriate secret-management mechanism.</figcaption></figure>
+</section>
+
+<section id="concepts">
+<div class="kicker">02 · Fundamentals</div><h2>ConfigMap object and its fields</h2>
+<h3>What does a ConfigMap contain?</h3>
+<p>A ConfigMap does not have a normal workload-style <code>spec</code>. Its <code>data</code> field stores UTF-8 strings, including multi-line configuration text. <code>binaryData</code> supports binary values represented as base64-encoded data. The total object data is limited to 1 MiB. Keys can contain letters, digits, <code>-</code>, <code>_</code>, and <code>.</code>, and a key may not appear in both <code>data</code> and <code>binaryData</code>. citeturn605144search1</p>
+<figure><svg viewBox="0 0 900 290" role="img" aria-labelledby="object-title object-desc"><title id="object-title">Anatomy of a ConfigMap manifest</title><desc id="object-desc">Metadata names the object and namespace; data stores text key-values or full file contents; binaryData stores binary content; immutable optionally prevents data changes.</desc>
+<rect x="35" y="18" width="830" height="250" rx="12" fill="#f7faff" stroke="#b9cce0" stroke-width="2"/><rect x="35" y="18" width="830" height="42" rx="12" fill="#dcecff"/><text x="60" y="45" font-size="17" font-weight="bold" fill="#163f66">ConfigMap YAML</text>
+<rect x="62" y="76" width="220" height="67" rx="8" fill="#fff" stroke="#8ab1d7"/><text x="172" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#244e73">metadata</text><text x="172" y="122" text-anchor="middle" font-size="12" fill="#456985">name · namespace · labels</text>
+<rect x="305" y="76" width="250" height="67" rx="8" fill="#e5f7ec" stroke="#69af85"/><text x="430" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#185d39">data</text><text x="430" y="122" text-anchor="middle" font-size="12" fill="#397251">UTF-8 string values</text>
+<rect x="578" y="76" width="250" height="67" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="703" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#765100">binaryData</text><text x="703" y="122" text-anchor="middle" font-size="12" fill="#85641e">Base64-encoded binary values</text>
+<path d="M430 143 V163 H305 V178" fill="none" stroke="#6889a8" stroke-width="1.8"/><path d="M703 143 V163 H590 V178" fill="none" stroke="#6889a8" stroke-width="1.8"/>
+<rect x="62" y="180" width="375" height="57" rx="8" fill="#fff" stroke="#a9bdcf"/><text x="249" y="202" text-anchor="middle" font-size="13" font-weight="bold" fill="#244e73">Optional immutable: true</text><text x="249" y="220" text-anchor="middle" font-size="11" fill="#526b83">data cannot be edited in place</text>
+<rect x="460" y="180" width="368" height="57" rx="8" fill="#fff0ef" stroke="#d49a9a"/><text x="644" y="202" text-anchor="middle" font-size="13" font-weight="bold" fill="#8c3030">Do not store secrets here</text><text x="644" y="220" text-anchor="middle" font-size="11" fill="#9a4c4c">passwords, tokens, private keys</text>
+</svg><figcaption><strong>Visual 4 — Read the manifest top to bottom.</strong> Metadata identifies the object; data fields contain values; immutability and secret handling are separate design decisions.</figcaption></figure>
+<h3>Annotated example: a multi-line configuration file</h3>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-settings
+  namespace: nimbus-config-lab
+data:
+  LOG_LEVEL: "info"
+  FEATURE_BANNER: "true"
+  application.properties: |
+    server.port=8080
+    logging.level.root=INFO
+    feature.banner=true</code></pre>
+<div class="table-wrap"><table><tr><th>Field</th><th>Meaning</th><th>Common mistake</th></tr>
+<tr><td><code>apiVersion: v1</code></td><td>Core Kubernetes API version for ConfigMap.</td><td>Using a made-up API group/version.</td></tr>
+<tr><td><code>kind: ConfigMap</code></td><td>Declares the resource type.</td><td>Confusing ConfigMap with Secret.</td></tr>
+<tr><td><code>metadata.name</code></td><td>Name referenced by Pods.</td><td>Pod references a different or misspelled name.</td></tr>
+<tr><td><code>metadata.namespace</code></td><td>Namespace containing the ConfigMap.</td><td>Assuming Pods can reference ConfigMaps across namespaces.</td></tr>
+<tr><td><code>data</code></td><td>Text settings and file-like string content.</td><td>Forgetting that a mounted file's content comes from the selected data key.</td></tr>
+<tr><td><code>|</code> YAML block scalar</td><td>Preserves multi-line text with line breaks.</td><td>Incorrect indentation changes or invalidates the content.</td></tr></table></div>
+<h3>Two simple creation paths</h3>
+<p>Imperative creation is useful for a quick experiment; declarative manifests are easier to review, version-control, and reuse.</p>
+<pre><code># Imperative: key=value
+kubectl create configmap app-flags \
+  --from-literal=LOG_LEVEL=debug \
+  --from-literal=FEATURE_BANNER=true \
+  -n nimbus-config-lab
+
+# Inspect the object
+kubectl get configmap app-flags -n nimbus-config-lab -o yaml</code></pre>
+<div class="callout warn"><strong>Data size and confidentiality:</strong> Do not put passwords or API tokens in ConfigMaps. Avoid using ConfigMaps for large artifacts; the documented size limit is 1 MiB. Use a suitable Secret management process or external configuration store where appropriate. citeturn605144search1</div>
+</section>
+
+<section id="consumption">
+<div class="kicker">03 · Consumption patterns</div><h2>Ways a Pod can consume a ConfigMap</h2>
+<p>The consumption method determines when the value is read and how updates become visible. Choose it based on how the application expects to receive configuration.</p>
+<figure><svg viewBox="0 0 940 315" role="img" aria-labelledby="ways-title ways-desc"><title id="ways-title">Four ConfigMap consumption methods</title><desc id="ways-desc">A ConfigMap supplies settings by environment variable, command or argument, a mounted volume, or direct API access by application code.</desc>
+<rect x="330" y="12" width="280" height="52" rx="10" fill="#dff5e8" stroke="#63aa80" stroke-width="2"/><text x="470" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#165a37">ConfigMap</text><text x="470" y="50" text-anchor="middle" font-size="11" fill="#316e4d">data / binaryData</text>
+<path d="M470 64 V92 H120 V120 M470 92 H350 V120 M470 92 H590 V120 M470 92 H820 V120" fill="none" stroke="#5c83a7" stroke-width="2"/>
+<rect x="20" y="120" width="200" height="138" rx="10" fill="#eaf3ff" stroke="#76a2cf"/><text x="120" y="146" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b4a73">Environment</text><text x="120" y="169" text-anchor="middle" font-size="12" fill="#446888">env / envFrom</text><text x="120" y="190" text-anchor="middle" font-size="11" fill="#446888">Read at container start</text><text x="120" y="209" text-anchor="middle" font-size="11" fill="#446888">Existing process values</text><text x="120" y="228" text-anchor="middle" font-size="11" fill="#446888">do not live-update</text>
+<rect x="250" y="120" width="200" height="138" rx="10" fill="#f4f0ff" stroke="#9b8cce"/><text x="350" y="146" text-anchor="middle" font-size="14" font-weight="bold" fill="#4d4383">Command / args</text><text x="350" y="169" text-anchor="middle" font-size="12" fill="#665e99">$(VARIABLE)</text><text x="350" y="190" text-anchor="middle" font-size="11" fill="#665e99">Substituted into</text><text x="350" y="209" text-anchor="middle" font-size="11" fill="#665e99">container command</text><text x="350" y="228" text-anchor="middle" font-size="11" fill="#665e99">when launched</text>
+<rect x="480" y="120" width="220" height="138" rx="10" fill="#e8f7ed" stroke="#69ac83"/><text x="590" y="146" text-anchor="middle" font-size="14" font-weight="bold" fill="#175a37">Volume files</text><text x="590" y="169" text-anchor="middle" font-size="12" fill="#326d4d">Whole dir or items</text><text x="590" y="190" text-anchor="middle" font-size="11" fill="#326d4d">Normal volume can</text><text x="590" y="209" text-anchor="middle" font-size="11" fill="#326d4d">eventually update</text><text x="590" y="228" text-anchor="middle" font-size="11" fill="#326d4d">subPath will not</text>
+<rect x="730" y="120" width="190" height="138" rx="10" fill="#fff4d8" stroke="#cfad5e"/><text x="825" y="146" text-anchor="middle" font-size="14" font-weight="bold" fill="#765100">Kubernetes API</text><text x="825" y="169" text-anchor="middle" font-size="12" fill="#85641e">Application reads</text><text x="825" y="190" text-anchor="middle" font-size="11" fill="#85641e">using credentials</text><text x="825" y="209" text-anchor="middle" font-size="11" fill="#85641e">requires RBAC and</text><text x="825" y="228" text-anchor="middle" font-size="11" fill="#85641e">client logic</text>
+<text x="470" y="292" text-anchor="middle" font-size="13" font-weight="bold" fill="#314e6c">Choose by application contract and update requirements</text>
+</svg><figcaption><strong>Visual 5 — One object, different consumption behavior.</strong> Environment variables are snapshots at process start. A regular volume has eventual file projection updates; a subPath-mounted file does not receive ConfigMap updates. citeturn605144search0turn605144search1</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th>Method</th><th>Good fit</th><th>Update behavior</th><th>Gotcha</th></tr></thead><tbody>
+<tr><td><code>env</code> / <code>envFrom</code></td><td>Applications expecting settings as process environment values.</td><td>Running container's environment does not change when ConfigMap changes; recreate/restart Pods.</td><td>Key names imported through <code>envFrom</code> must be valid environment variable names; invalid ones may be skipped and recorded in events.</td></tr>
+<tr><td>Volume mounted as a directory</td><td>Applications read configuration files from a directory.</td><td>Projected file content updates eventually after kubelet/cache propagation delay.</td><td>Application must reread the file or reload config; mounting on an existing directory hides image files at that mount path.</td></tr>
+<tr><td>Volume + <code>items</code></td><td>Project selected keys with chosen file names.</td><td>Same as a normal volume if it is not subPath-mounted.</td><td>Only listed keys appear in the projected volume.</td></tr>
+<tr><td>Volume + <code>subPath</code></td><td>Mount one ConfigMap key onto one file path while preserving sibling files in the image directory.</td><td><strong>Does not receive ConfigMap updates.</strong> Restart/recreate Pod to pick up changed data.</td><td>Stale content may be mistaken for an application/cache issue.</td></tr>
+<tr><td>Direct API access</td><td>Controllers or apps that must watch configuration changes across resources.</td><td>Depends on client/watch implementation.</td><td>Requires appropriate credentials, RBAC, network access, error handling, and code.</td></tr>
+</tbody></table></div>
+<figure><svg viewBox="0 0 860 220" role="img" aria-labelledby="env-file-title env-file-desc"><title id="env-file-title">Environment variable versus mounted file</title><desc id="env-file-desc">Environment values are copied into the container process at startup, while a regular ConfigMap volume is a mounted directory whose projected file content can be refreshed later.</desc>
+<rect x="25" y="22" width="385" height="170" rx="12" fill="#eaf3ff" stroke="#78a5d2" stroke-width="2"/><text x="218" y="48" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a4972">Environment variable</text><rect x="52" y="68" width="330" height="38" rx="7" fill="#fff" stroke="#b9d1e8"/><text x="217" y="92" text-anchor="middle" font-size="13" fill="#315b7e">ConfigMap key → process environment</text><path d="M217 106 V124" stroke="#52799e" stroke-width="2"/><rect x="72" y="127" width="290" height="43" rx="7" fill="#fff4d8" stroke="#cfad5e"/><text x="217" y="145" text-anchor="middle" font-size="12" fill="#7a5600">Value is fixed for this process</text><text x="217" y="160" text-anchor="middle" font-size="11" fill="#7a5600">restart to load new value</text>
+<rect x="450" y="22" width="385" height="170" rx="12" fill="#e8f7ed" stroke="#69ac83" stroke-width="2"/><text x="642" y="48" text-anchor="middle" font-size="16" font-weight="bold" fill="#175a37">Whole-directory volume</text><rect x="476" y="68" width="332" height="38" rx="7" fill="#fff" stroke="#a9d7b8"/><text x="642" y="92" text-anchor="middle" font-size="13" fill="#326d4d">ConfigMap key → projected file</text><path d="M642 106 V124" stroke="#508c68" stroke-width="2"/><rect x="496" y="127" width="292" height="43" rx="7" fill="#fff" stroke="#a9d7b8"/><text x="642" y="145" text-anchor="middle" font-size="12" fill="#326d4d">Content eventually refreshes</text><text x="642" y="160" text-anchor="middle" font-size="11" fill="#326d4d">app may still need reload</text>
+</svg><figcaption><strong>Visual 6 — Update behavior.</strong> “Kubernetes updates the file” and “the application uses the new setting” are separate events. Confirm both.</figcaption></figure>
+</section>
+
+<section id="subpath">
+<div class="kicker">04 · The key topic</div><h2>How ConfigMap <code>subPath</code> works</h2>
+<p><code>volumeMounts.subPath</code> mounts a specific file or subdirectory from a volume at a specific location inside the container. For ConfigMaps, a common use is to replace one application configuration file while leaving other files under the container image's directory visible. The critical limitation: a ConfigMap mounted using <code>subPath</code> does not receive updates when the ConfigMap changes. citeturn605144search0turn508162search2</p>
+<figure><svg viewBox="0 0 950 325" role="img" aria-labelledby="subpath-title subpath-desc"><title id="subpath-title">Whole-directory mount compared with a subPath file mount</title><desc id="subpath-desc">A whole-directory ConfigMap mount over a web directory masks files from the image in that directory. A subPath mount replaces only index.html and leaves other image files visible, but the mounted file does not update live.</desc>
+<text x="230" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e4c75">Whole-directory mount</text><text x="715" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e4c75">Single-file subPath mount</text>
+<rect x="28" y="50" width="404" height="238" rx="12" fill="#f4f7fb" stroke="#9db3c8" stroke-width="2"/><text x="230" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#324f6e">Image directory: /usr/share/nginx/html</text>
+<rect x="52" y="91" width="354" height="66" rx="7" fill="#fff" stroke="#c4d1dd"/><text x="229" y="113" text-anchor="middle" font-size="12" fill="#526b82">Image originally contains</text><text x="229" y="132" text-anchor="middle" font-size="12" fill="#526b82">index.html · 404.html · assets/</text>
+<path d="M230 157 V174" stroke="#b63b3b" stroke-width="2"/><path d="M222 167 L230 175 L238 167" fill="none" stroke="#b63b3b" stroke-width="2"/>
+<rect x="52" y="180" width="354" height="82" rx="7" fill="#fff0ef" stroke="#d99a9a"/><text x="229" y="202" text-anchor="middle" font-size="13" font-weight="bold" fill="#9b2d2d">Mount hides existing directory view</text><text x="229" y="222" text-anchor="middle" font-size="12" fill="#9b4444">Only ConfigMap-projected files show</text><text x="229" y="241" text-anchor="middle" font-size="11" fill="#9b4444">image siblings may be hidden</text>
+<rect x="516" y="50" width="404" height="238" rx="12" fill="#f4f7fb" stroke="#9db3c8" stroke-width="2"/><text x="718" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#324f6e">Image directory: /usr/share/nginx/html</text>
+<rect x="540" y="91" width="354" height="66" rx="7" fill="#fff" stroke="#c4d1dd"/><text x="717" y="113" text-anchor="middle" font-size="12" fill="#526b82">Image still provides</text><text x="717" y="132" text-anchor="middle" font-size="12" fill="#526b82">404.html · assets/ · other files</text>
+<path d="M717 157 V174" stroke="#258352" stroke-width="2"/><path d="M709 167 L717 175 L725 167" fill="none" stroke="#258352" stroke-width="2"/>
+<rect x="540" y="180" width="354" height="82" rx="7" fill="#e8f7ed" stroke="#8cc8a2"/><text x="717" y="202" text-anchor="middle" font-size="13" font-weight="bold" fill="#17613b">Only index.html is overlaid</text><text x="717" y="222" text-anchor="middle" font-size="12" fill="#326f4e">other image files remain visible</text><text x="717" y="241" text-anchor="middle" font-size="11" fill="#9b2d2d">but file does not live-update</text>
+<text x="475" y="313" text-anchor="middle" font-size="12" fill="#5b6f82">Conceptual illustration — exact directory contents depend on image and mount configuration.</text>
+</svg><figcaption><strong>Visual 7 — Why subPath exists.</strong> Mounting one file can avoid hiding sibling files from the container image. The trade-off is that the file mount will not receive ConfigMap data updates.</figcaption></figure>
+<h3>Manifest fields that form the relationship</h3>
+<figure><svg viewBox="0 0 900 235" role="img" aria-labelledby="fields-title fields-desc"><title id="fields-title">ConfigMap key maps to a subPath mount</title><desc id="fields-desc">A key named index.html in the ConfigMap is projected as a file in a volume, then subPath index.html mounts that file at the nginx html index path.</desc>
+<rect x="20" y="45" width="230" height="145" rx="10" fill="#e5f7ec" stroke="#63ab81" stroke-width="2"/><text x="135" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#185b39">ConfigMap</text><rect x="43" y="86" width="184" height="73" rx="6" fill="#fff" stroke="#a6d5b7"/><text x="135" y="108" text-anchor="middle" font-size="12" fill="#326e4e">data:</text><text x="135" y="128" text-anchor="middle" font-size="13" font-weight="bold" fill="#185b39">index.html</text><text x="135" y="145" text-anchor="middle" font-size="11" fill="#326e4e">HTML content</text>
+<path d="M250 118 H330" stroke="#577da0" stroke-width="2.5"/><path d="M321 110 L331 118 L321 126" fill="none" stroke="#577da0" stroke-width="2.5"/>
+<rect x="335" y="45" width="225" height="145" rx="10" fill="#eaf3ff" stroke="#75a1cd" stroke-width="2"/><text x="447" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#1c4973">Volume</text><text x="447" y="98" text-anchor="middle" font-size="12" fill="#43698b">name: page</text><text x="447" y="122" text-anchor="middle" font-size="12" fill="#43698b">configMap.name:</text><text x="447" y="142" text-anchor="middle" font-size="13" font-weight="bold" fill="#1c4973">web-page</text><text x="447" y="163" text-anchor="middle" font-size="11" fill="#43698b">items.key → items.path</text>
+<path d="M560 118 H640" stroke="#577da0" stroke-width="2.5"/><path d="M631 110 L641 118 L631 126" fill="none" stroke="#577da0" stroke-width="2.5"/>
+<rect x="645" y="45" width="235" height="145" rx="10" fill="#fff4d8" stroke="#c7a455" stroke-width="2"/><text x="762" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#785300">volumeMount</text><text x="762" y="98" text-anchor="middle" font-size="12" fill="#896720">mountPath:</text><text x="762" y="118" text-anchor="middle" font-size="11" fill="#896720">.../html/index.html</text><text x="762" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#785300">subPath: index.html</text><text x="762" y="164" text-anchor="middle" font-size="11" fill="#896720">mount one selected file</text>
+<text x="450" y="218" text-anchor="middle" font-size="12" fill="#596e83">Name in volumes must match name in volumeMounts; key and subPath must map to the intended file.</text>
+</svg><figcaption><strong>Visual 8 — Follow the file.</strong> Check the key, optional <code>items.path</code>, volume name, mount path, and <code>subPath</code> together when troubleshooting.</figcaption></figure>
+<pre><code>volumes:
+- name: page
+  configMap:
+    name: web-page
+    items:
+    - key: index.html
+      path: index.html
+
+containers:
+- name: nginx
+  volumeMounts:
+  - name: page
+    mountPath: /usr/share/nginx/html/index.html
+    subPath: index.html
+    readOnly: true</code></pre>
+<h3>When should I use subPath?</h3><div class="grid">
+<div class="card"><h4>Use it when</h4><ul><li>You need to mount one file into an existing application directory.</li><li>You want to keep image-provided sibling files visible.</li><li>The operational plan includes an explicit Pod restart/rollout when configuration changes.</li></ul></div>
+<div class="card"><h4>Avoid it when</h4><ul><li>You expect file contents to refresh automatically after a ConfigMap edit.</li><li>You want the entire configuration directory projected and can tolerate the directory mount behavior.</li><li>The app requires reload-on-change but you have no reload or restart mechanism.</li></ul></div>
+</div>
+<div class="callout danger"><strong>Most important interview fact:</strong> Updating a ConfigMap does not refresh a file that was mounted through <code>subPath</code>. To consume the new content, recreate the Pod (for example, with <code>kubectl rollout restart deployment/NAME</code>) or use a different design. citeturn605144search0turn508162search2</div>
+</section>
+
+<section id="architecture">
+<div class="kicker">05 · Under the hood</div><h2>Architecture and lifecycle</h2>
+<figure><svg viewBox="0 0 930 320" role="img" aria-labelledby="arch-title arch-desc"><title id="arch-title">Kubernetes ConfigMap architecture</title><desc id="arch-desc">kubectl sends a ConfigMap to the API server, which persists the object. A Pod specification references the ConfigMap. The kubelet on the worker node obtains configuration and exposes projected files or environment variables to containers.</desc>
+<defs><marker id="arch-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#50799e"/></marker></defs>
+<rect x="22" y="25" width="175" height="76" rx="10" fill="#eaf3ff" stroke="#72a0cd" stroke-width="2"/><text x="109" y="49" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b4b74">Developer terminal</text><text x="109" y="70" text-anchor="middle" font-size="12" fill="#42698a">kubectl apply</text><text x="109" y="85" text-anchor="middle" font-size="11" fill="#42698a">manifest</text>
+<path d="M197 63 H270" stroke="#50799e" stroke-width="2" marker-end="url(#arch-arr)"/>
+<rect x="275" y="25" width="205" height="76" rx="10" fill="#eaf3ff" stroke="#72a0cd" stroke-width="2"/><text x="377" y="49" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b4b74">API server</text><text x="377" y="70" text-anchor="middle" font-size="12" fill="#42698a">validate / authorize</text><text x="377" y="85" text-anchor="middle" font-size="11" fill="#42698a">store object</text>
+<path d="M480 63 H550" stroke="#50799e" stroke-width="2" marker-end="url(#arch-arr)"/>
+<rect x="555" y="25" width="170" height="76" rx="10" fill="#e5f7ec" stroke="#63ab81" stroke-width="2"/><text x="640" y="49" text-anchor="middle" font-size="14" font-weight="bold" fill="#185b39">etcd</text><text x="640" y="70" text-anchor="middle" font-size="12" fill="#326f4e">cluster data store</text><text x="640" y="85" text-anchor="middle" font-size="11" fill="#326f4e">conceptual</text>
+<rect x="22" y="145" width="880" height="150" rx="12" fill="#f7f9fc" stroke="#9eafc1" stroke-width="2"/><text x="462" y="168" text-anchor="middle" font-size="15" font-weight="bold" fill="#324e6a">Worker node</text>
+<rect x="50" y="188" width="190" height="82" rx="8" fill="#fff" stroke="#b8c8d6"/><text x="145" y="211" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c4e6b">kubelet</text><text x="145" y="232" text-anchor="middle" font-size="12" fill="#536d84">syncs Pod config</text><text x="145" y="249" text-anchor="middle" font-size="11" fill="#536d84">projects volume data</text>
+<path d="M725 63 V123 H145 V188" fill="none" stroke="#50799e" stroke-width="2" marker-end="url(#arch-arr)"/><text x="475" y="116" text-anchor="middle" font-size="11" fill="#52799e">kubelet obtains referenced config</text>
+<path d="M240 229 H300" stroke="#50799e" stroke-width="2" marker-end="url(#arch-arr)"/>
+<rect x="305" y="188" width="220" height="82" rx="8" fill="#e5f7ec" stroke="#63ab81"/><text x="415" y="211" text-anchor="middle" font-size="14" font-weight="bold" fill="#185b39">Projected configuration</text><text x="415" y="232" text-anchor="middle" font-size="12" fill="#326f4e">read-only volume files</text><text x="415" y="249" text-anchor="middle" font-size="11" fill="#326f4e">or environment at launch</text>
+<path d="M525 229 H585" stroke="#50799e" stroke-width="2" marker-end="url(#arch-arr)"/>
+<rect x="590" y="188" width="280" height="82" rx="8" fill="#fff4d8" stroke="#c8a455"/><text x="730" y="211" text-anchor="middle" font-size="14" font-weight="bold" fill="#765000">Container process</text><text x="730" y="232" text-anchor="middle" font-size="12" fill="#87631e">reads settings / file</text><text x="730" y="249" text-anchor="middle" font-size="11" fill="#87631e">subPath content is static for that Pod mount</text>
+</svg><figcaption><strong>Visual 9 — What happens across Kubernetes.</strong> The API server stores the object. The kubelet on a node makes the referenced values available to the Pod. ConfigMap is not itself an application restart controller; it does not automatically restart Pods after every data edit.</figcaption></figure>
+<h3>Update lifecycle: full volume versus subPath</h3>
+<figure><svg viewBox="0 0 900 280" role="img" aria-labelledby="seq-title seq-desc"><title id="seq-title">ConfigMap update sequence comparison</title><desc id="seq-desc">After ConfigMap data changes, a normal ConfigMap volume eventually refreshes projected content after propagation delay, while a subPath-mounted file keeps the original content until the Pod is recreated.</desc>
+<rect x="20" y="22" width="860" height="50" rx="8" fill="#eaf3ff" stroke="#76a5d1"/><text x="450" y="43" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">1 · Operator updates ConfigMap data</text><text x="450" y="59" text-anchor="middle" font-size="11" fill="#42698b">API object now contains new value</text>
+<path d="M450 72 V91 H225 V111" fill="none" stroke="#50799e" stroke-width="2"/><path d="M450 91 H675 V111" fill="none" stroke="#50799e" stroke-width="2"/>
+<rect x="20" y="111" width="410" height="65" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="225" y="135" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">2A · Whole-volume mount</text><text x="225" y="154" text-anchor="middle" font-size="12" fill="#326d4e">Projected file updates eventually</text>
+<rect x="470" y="111" width="410" height="65" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="675" y="135" text-anchor="middle" font-size="14" font-weight="bold" fill="#942d2d">2B · subPath mount</text><text x="675" y="154" text-anchor="middle" font-size="12" fill="#9e4747">Existing mounted file does not update</text>
+<path d="M225 176 V196" stroke="#50799e" stroke-width="2"/><path d="M675 176 V196" stroke="#50799e" stroke-width="2"/>
+<rect x="20" y="198" width="410" height="54" rx="8" fill="#f5fbf7" stroke="#a6d3b4"/><text x="225" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#235b3d">3A · App reloads/reopens file</text><text x="225" y="237" text-anchor="middle" font-size="11" fill="#326d4e">It can then use the new setting</text>
+<rect x="470" y="198" width="410" height="54" rx="8" fill="#fff8f7" stroke="#d9aaaa"/><text x="675" y="220" text-anchor="middle" font-size="12" font-weight="bold" fill="#8e3434">3B · Recreate/restart the Pod</text><text x="675" y="237" text-anchor="middle" font-size="11" fill="#9e4747">New mount sees the updated value</text>
+</svg><figcaption><strong>Visual 10 — Update sequence.</strong> Full-volume projection has a propagation delay and the app may need to reload. A subPath mount must be recreated to consume changed ConfigMap content. citeturn605144search0turn508162search8</figcaption></figure>
+<h3>Step-by-step workflow</h3><ol><li>Create or update the ConfigMap.</li><li>Reference it from a Pod template in the same namespace.</li><li>Kubernetes schedules/runs the Pod and the kubelet resolves the referenced configuration.</li><li>For environment variables, the process receives values as the container is launched.</li><li>For a ConfigMap volume, files are projected into a read-only mount.</li><li>If ConfigMap data changes, check how it is consumed. For <code>subPath</code>, roll out/recreate the Pod; for environment variables, restart the Pod; for full-volume mounts, wait for projection and verify the application reload behavior.</li></ol>
+</section>
+
+<section id="environment">
+<div class="kicker">06 · Get ready</div><h2>Prepare the lab environment</h2>
+<figure><svg viewBox="0 0 930 135" role="img" aria-labelledby="prep-title prep-desc"><title id="prep-title">Environment readiness flow</title><desc id="prep-desc">Check kubectl, confirm cluster connection, confirm namespace permissions, create the dedicated lab namespace, then run exercises.</desc>
+<defs><marker id="prep-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#50799e"/></marker></defs>
+<rect x="10" y="25" width="165" height="76" rx="9" fill="#eaf3ff" stroke="#76a5d1"/><text x="92" y="50" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">1. kubectl</text><text x="92" y="69" text-anchor="middle" font-size="11" fill="#42698b">installed</text><text x="92" y="84" text-anchor="middle" font-size="11" fill="#42698b">and on PATH</text>
+<path d="M175 63 H195" stroke="#50799e" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="200" y="25" width="165" height="76" rx="9" fill="#eaf3ff" stroke="#76a5d1"/><text x="282" y="50" text-anchor="middle" font-size="13" font-weight="bold" fill="#194a73">2. Cluster</text><text x="282" y="69" text-anchor="middle" font-size="11" fill="#42698b">API reachable</text><text x="282" y="84" text-anchor="middle" font-size="11" fill="#42698b">current context right</text>
+<path d="M365 63 H385" stroke="#50799e" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="390" y="25" width="165" height="76" rx="9" fill="#fff4d8" stroke="#cfad5e"/><text x="472" y="50" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">3. Permissions</text><text x="472" y="69" text-anchor="middle" font-size="11" fill="#85641e">read/write in</text><text x="472" y="84" text-anchor="middle" font-size="11" fill="#85641e">target namespace</text>
+<path d="M555 63 H575" stroke="#50799e" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="580" y="25" width="155" height="76" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="657" y="50" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">4. Namespace</text><text x="657" y="69" text-anchor="middle" font-size="11" fill="#326d4e">nimbus-config-lab</text><text x="657" y="84" text-anchor="middle" font-size="11" fill="#326d4e">ready</text>
+<path d="M735 63 H755" stroke="#50799e" stroke-width="2" marker-end="url(#prep-arr)"/>
+<rect x="760" y="25" width="160" height="76" rx="9" fill="#e5f7ec" stroke="#69ad83"/><text x="840" y="50" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">5. Run labs</text><text x="840" y="69" text-anchor="middle" font-size="11" fill="#326d4e">apply · inspect</text><text x="840" y="84" text-anchor="middle" font-size="11" fill="#326d4e">verify · cleanup</text>
+</svg><figcaption><strong>Visual 11 — Start only when each gate passes.</strong> Most lab failures at the first step are caused by a wrong kube context, missing permissions, or an unreachable cluster.</figcaption></figure>
+<h3>Verify cluster access</h3>
+<pre><code>kubectl version --client
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+kubectl config current-context</code></pre>
+<ul><li><code>kubectl version --client</code>: confirms the client binary exists.</li><li><code>kubectl cluster-info</code>: checks access to the Kubernetes API server.</li><li><code>kubectl get nodes</code>: lists nodes; nodes should be Ready for typical workload labs.</li><li><code>kubectl get namespaces</code>: lists namespaces in the connected cluster.</li><li><code>kubectl config current-context</code>: tells you which cluster/user context kubectl will use.</li></ul>
+<h3>Create the working namespace</h3>
+<pre><code># Inspect first so you do not reuse a namespace containing someone else's work
+kubectl get namespace nimbus-config-lab
+
+# Create if it is not already present
+kubectl create namespace nimbus-config-lab</code></pre>
+<p>If the namespace already exists, inspect it and use it only if it is dedicated to this guide. Do not create or delete cloud resources just for this lesson. A local cluster (Minikube or kind) is enough; examples only need the ability to pull container images from a registry.</p>
+<div class="callout warn"><strong>Environment warning:</strong> Before applying manifests, verify <code>kubectl config current-context</code>. Never run lab cleanup against a production/shared namespace.</div>
+<h3>If prerequisite checks fail</h3><div class="table-wrap"><table><tr><th>Symptom</th><th>Next diagnostic</th><th>Likely next action</th></tr><tr><td><code>kubectl: command not found</code></td><td><code>which kubectl</code> on macOS/Linux or inspect PATH.</td><td>Install kubectl using the official tool guide; restart terminal if PATH changed.</td></tr><tr><td>Cluster connection refused / timeout</td><td><code>kubectl config current-context</code> and <code>kubectl cluster-info</code>.</td><td>Start the local cluster or refresh the authorized kubeconfig/network access.</td></tr><tr><td>Forbidden</td><td><code>kubectl auth can-i create configmaps -n nimbus-config-lab</code></td><td>Ask cluster admin for minimal required permission; don't bypass RBAC.</td></tr><tr><td>Image pull failure</td><td><code>kubectl describe pod POD_NAME -n nimbus-config-lab</code></td><td>Inspect Events, registry reachability and image tag.</td></tr></table></div>
+</section>
+
+<section id="labs">
+<div class="kicker">07 · Practical implementation</div><h2>Step-by-step hands-on practice</h2>
+<p>Run the labs in order. All Kubernetes resources use <code>nimbus-config-lab</code>. The commands assume a Unix-like shell such as macOS Terminal, Linux, or WSL. Representative output is illustrative; Pod names, timing, and status can vary.</p>
+<figure><svg viewBox="0 0 910 120" role="img" aria-labelledby="labflow-title labflow-desc"><title id="labflow-title">Standard workflow for each exercise</title><desc id="labflow-desc">Save manifest, apply it, inspect the resource, verify behavior, modify the configuration, and clean up.</desc>
+<defs><marker id="lab-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#527da2"/></marker></defs>
+<rect x="8" y="25" width="132" height="65" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="74" y="51" text-anchor="middle" font-size="13" font-weight="bold" fill="#194b75">1. Manifest</text><text x="74" y="69" text-anchor="middle" font-size="11" fill="#42698b">save YAML</text>
+<path d="M140 57 H157" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="162" y="25" width="132" height="65" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="228" y="51" text-anchor="middle" font-size="13" font-weight="bold" fill="#194b75">2. Apply</text><text x="228" y="69" text-anchor="middle" font-size="11" fill="#42698b">kubectl apply</text>
+<path d="M294 57 H311" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="316" y="25" width="132" height="65" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="382" y="51" text-anchor="middle" font-size="13" font-weight="bold" fill="#194b75">3. Inspect</text><text x="382" y="69" text-anchor="middle" font-size="11" fill="#42698b">get / describe</text>
+<path d="M448 57 H465" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="470" y="25" width="132" height="65" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="536" y="51" text-anchor="middle" font-size="13" font-weight="bold" fill="#165b38">4. Verify</text><text x="536" y="69" text-anchor="middle" font-size="11" fill="#326d4e">exec / curl</text>
+<path d="M602 57 H619" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="624" y="25" width="132" height="65" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="690" y="51" text-anchor="middle" font-size="13" font-weight="bold" fill="#765100">5. Modify</text><text x="690" y="69" text-anchor="middle" font-size="11" fill="#85641e">observe updates</text>
+<path d="M756 57 H773" stroke="#527da2" stroke-width="2" marker-end="url(#lab-arr)"/>
+<rect x="778" y="25" width="124" height="65" rx="8" fill="#fcebea" stroke="#cf7d7d"/><text x="840" y="51" text-anchor="middle" font-size="13" font-weight="bold" fill="#8c2d2d">6. Clean</text><text x="840" y="69" text-anchor="middle" font-size="11" fill="#9a4747">delete lab only</text>
+</svg><figcaption><strong>Visual 12 — Repeatable lab habit.</strong> Do not stop at “apply succeeded”; prove that the Pod has the intended value at the actual consumer path.</figcaption></figure>
+
+<div class="card">
+<h3>Exercise 1 — ConfigMap as environment variables</h3>
+<p><span class="pill">Objective</span> Inject scalar settings into a container process and show that the process gets them at startup.</p>
+<p><strong>Step 1: Save as <code>01-env.yaml</code>.</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-demo
+  namespace: nimbus-config-lab
+data:
+  LOG_LEVEL: "debug"
+  FEATURE_BANNER: "true"
+  APP_REGION: "training"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-env-demo
+  namespace: nimbus-config-lab
+spec:
+  restartPolicy: Always
+  containers:
+  - name: shell
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args:
+    - echo "LOG_LEVEL=$LOG_LEVEL FEATURE_BANNER=$FEATURE_BANNER APP_REGION=$APP_REGION";
+      sleep 3600
+    envFrom:
+    - configMapRef:
+        name: env-demo
+    env:
+    - name: APP_REGION
+      valueFrom:
+        configMapKeyRef:
+          name: env-demo
+          key: APP_REGION</code></pre>
+<p><strong>Step 2: Apply and inspect.</strong></p><pre><code>kubectl apply -f 01-env.yaml
+kubectl get configmap env-demo -n nimbus-config-lab
+kubectl get pod config-env-demo -n nimbus-config-lab
+kubectl logs config-env-demo -n nimbus-config-lab</code></pre>
+<p><strong>Expected result (illustrative):</strong> the log line includes <code>LOG_LEVEL=debug FEATURE_BANNER=true APP_REGION=training</code>.</p>
+<p><strong>Explanation:</strong> <code>envFrom</code> imports valid ConfigMap keys as environment variables. The explicit <code>env</code> mapping illustrates <code>configMapKeyRef</code> for a single value. In this example, <code>APP_REGION</code> is explicitly set to the same ConfigMap value as the bulk import; avoid duplicate patterns in real manifests unless there is a clear reason.</p>
+<p><strong>Verify a running process:</strong></p><pre><code>kubectl exec config-env-demo -n nimbus-config-lab -- sh -c 'printf "%s\n" "$LOG_LEVEL" "$FEATURE_BANNER" "$APP_REGION"'</code></pre>
+<p><strong>Interview takeaway:</strong> Updating ConfigMap data does not mutate environment variables in an already running process. Restart/recreate the Pod or roll out its owning workload to consume a changed environment value.</p>
+</div>
+
+<div class="card">
+<h3>Exercise 2 — Mount a ConfigMap as a directory</h3>
+<p><span class="pill">Objective</span> Map ConfigMap keys to files, then inspect their content inside the container.</p>
+<p><strong>Step 1: Save as <code>02-volume.yaml</code>.</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: directory-config
+  namespace: nimbus-config-lab
+data:
+  application.properties: |
+    app.name=NimbusDemo
+    log.level=INFO
+    feature.banner=true
+  feature-flags.txt: |
+    search.enabled=true
+    reports.enabled=false
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-volume-demo
+  namespace: nimbus-config-lab
+spec:
+  containers:
+  - name: shell
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args: ["sleep 3600"]
+    volumeMounts:
+    - name: app-config
+      mountPath: /etc/app-config
+      readOnly: true
+  volumes:
+  - name: app-config
+    configMap:
+      name: directory-config</code></pre>
+<p><strong>Step 2: Apply and inspect.</strong></p><pre><code>kubectl apply -f 02-volume.yaml
+kubectl wait --for=condition=Ready pod/config-volume-demo -n nimbus-config-lab --timeout=120s
+kubectl exec config-volume-demo -n nimbus-config-lab -- ls -la /etc/app-config
+kubectl exec config-volume-demo -n nimbus-config-lab -- cat /etc/app-config/application.properties</code></pre>
+<p><strong>Expected result (illustrative):</strong> the directory contains files named <code>application.properties</code> and <code>feature-flags.txt</code>; <code>cat</code> shows the text in the corresponding ConfigMap keys.</p>
+<p><strong>Important:</strong> Mounting the entire ConfigMap directory at an existing directory path hides that directory's prior image contents at the mount point. This exercise uses an otherwise dedicated path, <code>/etc/app-config</code>.</p>
+</div>
+
+<div class="card">
+<h3>Exercise 3 — Mount one file using subPath</h3>
+<p><span class="pill">Focus exercise</span> Mount an HTML file into NGINX without replacing the entire web-root directory. Then change the ConfigMap and observe that the mounted file does not refresh until the Pod is recreated.</p>
+<p><strong>Step 1: Save as <code>03-subpath.yaml</code>.</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-page
+  namespace: nimbus-config-lab
+data:
+  index.html: |
+    <!doctype html>
+    <html>
+      <body><h1>Nimbuswiztech: VERSION 1</h1></body>
+    </html>
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subpath-web
+  namespace: nimbus-config-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subpath-web
+  template:
+    metadata:
+      labels:
+        app: subpath-web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable-alpine
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 2
+          periodSeconds: 5
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+          readOnly: true
+      volumes:
+      - name: page
+        configMap:
+          name: web-page
+          items:
+          - key: index.html
+            path: index.html
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subpath-web
+  namespace: nimbus-config-lab
+spec:
+  selector:
+    app: subpath-web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre>
+<p><strong>Step 2: Apply and verify VERSION 1.</strong></p><pre><code>kubectl apply -f 03-subpath.yaml
+kubectl rollout status deployment/subpath-web -n nimbus-config-lab --timeout=180s
+kubectl get pods -n nimbus-config-lab -l app=subpath-web
+kubectl port-forward service/subpath-web 18090:80 -n nimbus-config-lab</code></pre>
+<p>Keep port-forward running. In another terminal run:</p><pre><code>curl -s http://127.0.0.1:18090</code></pre>
+<p>The HTML response should contain <strong>VERSION 1</strong>.</p>
+<p><strong>Step 3: Update only the ConfigMap.</strong> Save as <code>03-subpath-v2-configmap.yaml</code>:</p><pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-page
+  namespace: nimbus-config-lab
+data:
+  index.html: |
+    <!doctype html>
+    <html>
+      <body><h1>Nimbuswiztech: VERSION 2</h1></body>
+    </html></code></pre>
+<pre><code>kubectl apply -f 03-subpath-v2-configmap.yaml
+curl -s http://127.0.0.1:18090</code></pre>
+<p><strong>Expected observation:</strong> the ConfigMap object contains VERSION 2, but the existing Pod's <code>subPath</code> mount still shows VERSION 1. This is expected, not a broken ConfigMap.</p>
+<p><strong>Step 4: Recreate the Pod via a Deployment rollout.</strong></p><pre><code>kubectl rollout restart deployment/subpath-web -n nimbus-config-lab
+kubectl rollout status deployment/subpath-web -n nimbus-config-lab --timeout=180s
+curl -s http://127.0.0.1:18090</code></pre>
+<p>Now the recreated Pod should serve VERSION 2. Stop port-forward using Ctrl+C after the lab.</p>
+<figure><svg viewBox="0 0 870 180" role="img" aria-labelledby="subflow-title subflow-desc"><title id="subflow-title">subPath experiment result</title><desc id="subflow-desc">Before Pod recreation, the ConfigMap says version two but the existing subPath-mounted file still serves version one. After rolling restart the new Pod mounts version two.</desc>
+<rect x="15" y="24" width="245" height="120" rx="10" fill="#fff4d8" stroke="#cfad5e"/><text x="137" y="49" text-anchor="middle" font-size="14" font-weight="bold" fill="#765100">After ConfigMap update</text><text x="137" y="74" text-anchor="middle" font-size="12" fill="#85641e">ConfigMap = VERSION 2</text><text x="137" y="99" text-anchor="middle" font-size="12" fill="#9b3434">Existing Pod = VERSION 1</text><text x="137" y="120" text-anchor="middle" font-size="11" fill="#85641e">subPath doesn't update</text>
+<path d="M260 84 H310" stroke="#527da2" stroke-width="2.5"/><path d="M301 76 L311 84 L301 92" fill="none" stroke="#527da2" stroke-width="2.5"/>
+<rect x="315" y="24" width="225" height="120" rx="10" fill="#eaf3ff" stroke="#75a2ce"/><text x="427" y="49" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">Rollout restart</text><text x="427" y="74" text-anchor="middle" font-size="12" fill="#42698b">Deployment replaces Pod</text><text x="427" y="98" text-anchor="middle" font-size="12" fill="#42698b">New subPath mount</text><text x="427" y="120" text-anchor="middle" font-size="11" fill="#42698b">reads latest ConfigMap</text>
+<path d="M540 84 H590" stroke="#527da2" stroke-width="2.5"/><path d="M581 76 L591 84 L581 92" fill="none" stroke="#527da2" stroke-width="2.5"/>
+<rect x="595" y="24" width="260" height="120" rx="10" fill="#e5f7ec" stroke="#69ad83"/><text x="725" y="49" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">After rollout</text><text x="725" y="74" text-anchor="middle" font-size="12" fill="#326d4e">ConfigMap = VERSION 2</text><text x="725" y="98" text-anchor="middle" font-size="12" fill="#326d4e">New Pod = VERSION 2</text><text x="725" y="120" text-anchor="middle" font-size="11" fill="#326d4e">verified with curl</text>
+</svg><figcaption><strong>Visual 13 — The core lab result.</strong> Change the ConfigMap, then recreate the Pod. Keep the distinction between API object state and content already mounted through subPath clear.</figcaption></figure>
+</div>
+
+<div class="card">
+<h3>Exercise 4 — Project one key under a different filename</h3>
+<p><span class="pill">Objective</span> Use <code>items</code> to select one key and map it to a chosen file path. This uses a normal directory mount, not subPath.</p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: selected-config
+  namespace: nimbus-config-lab
+data:
+  APP_SETTINGS: |
+    region=ap-south-1
+    log.level=INFO
+  UNUSED_NOTE: "This key is not projected"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-items-demo
+  namespace: nimbus-config-lab
+spec:
+  containers:
+  - name: shell
+    image: busybox:1.36
+    command: ["/bin/sh", "-c"]
+    args: ["sleep 3600"]
+    volumeMounts:
+    - name: config
+      mountPath: /etc/app
+      readOnly: true
+  volumes:
+  - name: config
+    configMap:
+      name: selected-config
+      items:
+      - key: APP_SETTINGS
+        path: settings/app.properties</code></pre>
+<p>Apply the manifest and verify:</p><pre><code>kubectl apply -f 04-items.yaml
+kubectl wait --for=condition=Ready pod/config-items-demo -n nimbus-config-lab --timeout=120s
+kubectl exec config-items-demo -n nimbus-config-lab -- cat /etc/app/settings/app.properties
+kubectl exec config-items-demo -n nimbus-config-lab -- find /etc/app -type f</code></pre>
+<p>Only <code>APP_SETTINGS</code> is projected, at <code>/etc/app/settings/app.properties</code>. The unused key is not projected because it is not listed in <code>items</code>. The specified file path is relative to the root of the volume.</p>
+</div>
+
+<div class="card">
+<h3>Exercise 5 — Compare whole-volume updates with subPath behavior</h3>
+<p><span class="pill">Objective</span> Prove the difference with a simple file-read test. This exercise focuses on the expected mechanics; kubelet propagation has a delay.</p>
+<p>Use the resources from Exercises 2 and 3. First change the directory-mounted ConfigMap:</p>
+<pre><code>kubectl patch configmap directory-config -n nimbus-config-lab --type=merge -p '{"data":{"application.properties":"app.name=NimbusDemoUpdated\nlog.level=DEBUG\nfeature.banner=false\n"}}'</code></pre>
+<p>Poll the mounted file while waiting for propagation:</p><pre><code>kubectl exec config-volume-demo -n nimbus-config-lab -- cat /etc/app-config/application.properties</code></pre>
+<p>The normal volume should eventually project the changed content. The application may need to reopen/reload the file before behavior changes. In contrast, after patching <code>web-page</code>, an existing <code>subpath-web</code> Pod will not get the new file content until it is recreated.</p>
+<div class="callout warn">Do not expect an immediate update at the exact moment a ConfigMap patch completes. Kubernetes documents a propagation delay for normal volume projection, which depends on kubelet sync and cache behavior. citeturn605144search0turn508162search8</div>
+</div>
+</section>
+
+<section id="endtoend">
+<div class="kicker">08 · Complete workflow</div><h2>End-to-end practical demonstration</h2>
+<h3>Requirement</h3><p>A small web application must use an HTML welcome page supplied by a ConfigMap. The image's other default web-root files should remain available, so the page is mounted at one path using <code>subPath</code>. A release operator must be able to change the page and understand why a Pod rollout is required.</p>
+<figure><svg viewBox="0 0 900 280" role="img" aria-labelledby="e2e-title e2e-desc"><title id="e2e-title">End-to-end ConfigMap subPath design</title><desc id="e2e-desc">A ConfigMap named web-page provides index.html. A Deployment named subpath-web references the ConfigMap volume and mounts its index.html key to the NGINX index file using subPath. A Service and port-forward expose the response for testing.</desc>
+<rect x="22" y="28" width="235" height="92" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="139" y="52" text-anchor="middle" font-size="15" font-weight="bold" fill="#165b38">ConfigMap</text><text x="139" y="73" text-anchor="middle" font-size="12" fill="#326d4e">web-page</text><text x="139" y="91" text-anchor="middle" font-size="12" fill="#326d4e">key: index.html</text><text x="139" y="107" text-anchor="middle" font-size="11" fill="#326d4e">HTML content</text>
+<path d="M257 74 H328" stroke="#527da2" stroke-width="2.5"/><path d="M319 66 L329 74 L319 82" fill="none" stroke="#527da2" stroke-width="2.5"/>
+<rect x="333" y="28" width="240" height="92" rx="10" fill="#eaf3ff" stroke="#75a2ce" stroke-width="2"/><text x="453" y="52" text-anchor="middle" font-size="15" font-weight="bold" fill="#194a73">Deployment / Pod</text><text x="453" y="73" text-anchor="middle" font-size="12" fill="#42698b">subpath-web → nginx</text><text x="453" y="91" text-anchor="middle" font-size="12" fill="#42698b">mountPath: .../index.html</text><text x="453" y="107" text-anchor="middle" font-size="11" fill="#42698b">subPath: index.html</text>
+<path d="M573 74 H644" stroke="#527da2" stroke-width="2.5"/><path d="M635 66 L645 74 L635 82" fill="none" stroke="#527da2" stroke-width="2.5"/>
+<rect x="649" y="28" width="230" height="92" rx="10" fill="#fff4d8" stroke="#cfad5e" stroke-width="2"/><text x="764" y="52" text-anchor="middle" font-size="15" font-weight="bold" fill="#765100">Service / test client</text><text x="764" y="73" text-anchor="middle" font-size="12" fill="#85641e">subpath-web:80</text><text x="764" y="91" text-anchor="middle" font-size="12" fill="#85641e">port-forward :18090</text><text x="764" y="107" text-anchor="middle" font-size="11" fill="#85641e">curl response</text>
+<rect x="96" y="166" width="708" height="80" rx="10" fill="#f8fafc" stroke="#b9c8d7"/><text x="450" y="188" text-anchor="middle" font-size="14" font-weight="bold" fill="#2b4e6e">Release/update path</text><text x="450" y="210" text-anchor="middle" font-size="12" fill="#536c83">Edit ConfigMap → existing subPath file remains unchanged → rollout restart → new Pod mounts updated file</text><text x="450" y="229" text-anchor="middle" font-size="11" fill="#536c83">Verify both Kubernetes object data and actual HTTP response</text>
+</svg><figcaption><strong>Visual 14 — Complete topology.</strong> Use the ConfigMap to supply the page; the Deployment mounts it; the Service provides a stable in-cluster endpoint; port-forward allows a local test.</figcaption></figure>
+<h3>Execution order</h3><ol><li>Create <code>03-subpath.yaml</code> from Exercise 3 in a dedicated namespace.</li><li>Apply it and wait for rollout completion.</li><li>Inspect the ConfigMap, Deployment, Pod and Service.</li><li>Port-forward the Service and confirm the returned HTML version.</li><li>Update the ConfigMap using the v2 file.</li><li>Confirm the existing response has not changed, because the file uses subPath.</li><li>Restart the Deployment and confirm the new response.</li><li>Review Events and logs if the response is not as expected.</li></ol>
+<pre><code>kubectl get configmap web-page -n nimbus-config-lab -o yaml
+kubectl get deployment subpath-web -n nimbus-config-lab
+kubectl get pods -n nimbus-config-lab -l app=subpath-web -o wide
+kubectl get service subpath-web -n nimbus-config-lab
+kubectl describe deployment subpath-web -n nimbus-config-lab
+kubectl rollout status deployment/subpath-web -n nimbus-config-lab --timeout=180s
+kubectl get events -n nimbus-config-lab --sort-by=.metadata.creationTimestamp</code></pre>
+<h3>What to verify and why</h3><div class="table-wrap"><table><tr><th>Check</th><th>What it proves</th><th>If it fails</th></tr><tr><td>ConfigMap YAML shows VERSION 2</td><td>The API object was updated.</td><td>Inspect the file passed to <code>kubectl apply</code> and the target namespace.</td></tr><tr><td>Deployment rollout succeeds</td><td>Replacement Pod became available.</td><td>Describe Deployment and Pod; inspect events, image pulls, mount errors and readiness.</td></tr><tr><td><code>curl</code> shows VERSION 2</td><td>New mounted content is actually served.</td><td>Check Pod template ConfigMap name, key/path mapping, rollout and port-forward target.</td></tr><tr><td>Sibling files still exist</td><td>Single-file subPath mount preserved directory view.</td><td>Inspect mountPath; mounting the whole directory can hide image content.</td></tr></table></div>
+<div class="callout good"><strong>Success criteria:</strong> The API object contains the new version, the restarted Pod mounts it, the HTTP response displays it, and students can explain why the ConfigMap update alone was insufficient.</div>
+</section>
+
+<section id="troubleshooting">
+<div class="kicker">09 · Diagnosis</div><h2>Troubleshooting with visual decision trees</h2>
+<h3>Flow A — ConfigMap change does not appear in application</h3>
+<figure><svg viewBox="0 0 880 355" role="img" aria-labelledby="diag-update-title diag-update-desc"><title id="diag-update-title">Decision tree for stale ConfigMap configuration</title><desc id="diag-update-desc">First check the ConfigMap data. Then identify how the Pod consumes it: environment variable needs restart; subPath needs Pod recreation; regular volume needs propagation time and the app may need reload.</desc>
+<rect x="270" y="12" width="340" height="42" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="440" y="38" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">New value not visible?</text><path d="M440 54 V72" stroke="#527da2" stroke-width="2"/>
+<rect x="270" y="73" width="340" height="43" rx="8" fill="#fff" stroke="#a9bdcf"/><text x="440" y="91" text-anchor="middle" font-size="12" font-weight="bold" fill="#2a4b6a">kubectl get cm NAME -o yaml</text><text x="440" y="106" text-anchor="middle" font-size="11" fill="#536d84">Does API data show new value?</text>
+<path d="M270 95 H132 V133" fill="none" stroke="#b34343" stroke-width="2"/><text x="195" y="87" text-anchor="middle" font-size="11" fill="#a23535">No</text><path d="M610 95 H750 V133" fill="none" stroke="#347d53" stroke-width="2"/><text x="682" y="87" text-anchor="middle" font-size="11" fill="#246943">Yes</text>
+<rect x="22" y="135" width="220" height="54" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="132" y="157" text-anchor="middle" font-size="12" font-weight="bold" fill="#942d2d">Fix wrong object / key</text><text x="132" y="174" text-anchor="middle" font-size="11" fill="#9d4a4a">namespace, name, apply file</text>
+<rect x="630" y="135" width="225" height="54" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="742" y="157" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Identify consumption path</text><text x="742" y="174" text-anchor="middle" font-size="11" fill="#42698b">env, full volume, or subPath?</text>
+<path d="M742 189 V209 H440 V228" fill="none" stroke="#527da2" stroke-width="2"/><path d="M742 209 H742 V228" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="22" y="229" width="250" height="93" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="147" y="251" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Environment variables</text><text x="147" y="272" text-anchor="middle" font-size="11" fill="#85641e">Restart/recreate Pod</text><text x="147" y="289" text-anchor="middle" font-size="11" fill="#85641e">then inspect process env</text><text x="147" y="306" text-anchor="middle" font-size="11" fill="#85641e">and application logs</text>
+<rect x="315" y="229" width="250" height="93" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="440" y="251" text-anchor="middle" font-size="12" font-weight="bold" fill="#942d2d">subPath mount</text><text x="440" y="272" text-anchor="middle" font-size="11" fill="#9d4a4a">Does not update</text><text x="440" y="289" text-anchor="middle" font-size="11" fill="#9d4a4a">rollout restart / recreate Pod</text><text x="440" y="306" text-anchor="middle" font-size="11" fill="#9d4a4a">then verify file and response</text>
+<rect x="608" y="229" width="250" height="93" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="733" y="251" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Normal volume mount</text><text x="733" y="272" text-anchor="middle" font-size="11" fill="#326d4e">Wait for propagation</text><text x="733" y="289" text-anchor="middle" font-size="11" fill="#326d4e">app may need file reload</text><text x="733" y="306" text-anchor="middle" font-size="11" fill="#326d4e">verify mounted file content</text>
+<text x="440" y="345" text-anchor="middle" font-size="11" fill="#5b7085">Always confirm the actual consumer state—not only the ConfigMap object.</text>
+</svg><figcaption><strong>Visual 15 — Stale configuration decision tree.</strong> Find out which layer is stale: the API object, projected volume, process environment, or application’s internal configuration.</figcaption></figure>
+<h3>Flow B — Pod cannot start because of a ConfigMap reference</h3>
+<figure><svg viewBox="0 0 850 280" role="img" aria-labelledby="diag-start-title diag-start-desc"><title id="diag-start-title">Decision tree for missing ConfigMap or key</title><desc id="diag-start-desc">Check Pod events and the referenced ConfigMap name and namespace. Confirm required keys exist and items paths match. Fix reference or use optional only if missing data is safely tolerated.</desc>
+<rect x="258" y="10" width="334" height="42" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="425" y="36" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">Pod stuck starting?</text><path d="M425 52 V72" stroke="#527da2" stroke-width="2"/>
+<rect x="245" y="73" width="360" height="46" rx="8" fill="#fff" stroke="#a9bdcf"/><text x="425" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#2b4d6c">kubectl describe pod POD</text><text x="425" y="108" text-anchor="middle" font-size="11" fill="#536d84">Read Events and mount errors</text>
+<path d="M425 119 V137 H140 V155 M425 137 V155 M425 137 H710 V155" fill="none" stroke="#527da2" stroke-width="2"/>
+<rect x="20" y="156" width="240" height="78" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="140" y="178" text-anchor="middle" font-size="12" font-weight="bold" fill="#942d2d">ConfigMap missing</text><text x="140" y="198" text-anchor="middle" font-size="11" fill="#9d4a4a">Check name + namespace</text><text x="140" y="215" text-anchor="middle" font-size="11" fill="#9d4a4a">create/apply required object</text>
+<rect x="305" y="156" width="240" height="78" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="425" y="178" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Key missing / typo</text><text x="425" y="198" text-anchor="middle" font-size="11" fill="#85641e">Check data and items.key</text><text x="425" y="215" text-anchor="middle" font-size="11" fill="#85641e">correct mapping</text>
+<rect x="590" y="156" width="240" height="78" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="710" y="178" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Mount path issue</text><text x="710" y="198" text-anchor="middle" font-size="11" fill="#326d4e">Check volume/mount name</text><text x="710" y="215" text-anchor="middle" font-size="11" fill="#326d4e">and path target</text>
+<text x="425" y="262" text-anchor="middle" font-size="12" fill="#596e83">Use optional: true only when an absent value is an intentional, safe application state.</text>
+</svg><figcaption><strong>Visual 16 — Startup troubleshooting.</strong> Kubernetes Events are often the quickest way to distinguish missing resources, missing keys, and invalid volume/mount configuration.</figcaption></figure>
+<h3>Symptom table</h3>
+<div class="table-wrap"><table><thead><tr><th>Symptom</th><th>Possible causes</th><th>Diagnostic command</th><th>Targeted resolution</th></tr></thead><tbody>
+<tr><td>ConfigMap not found</td><td>Wrong name, wrong namespace, object not applied, or non-optional missing reference.</td><td><code>kubectl get cm -n nimbus-config-lab</code><br><code>kubectl describe pod POD_NAME -n nimbus-config-lab</code></td><td>Apply the object first and ensure Pod and ConfigMap share a namespace.</td></tr>
+<tr><td>Missing key/file</td><td>Typo in <code>key</code>, omitted key in <code>items</code>, or wrong <code>subPath</code>.</td><td><code>kubectl get cm web-page -n nimbus-config-lab -o yaml</code></td><td>Align key, path and volumeMount; reapply and recreate Pod as required.</td></tr>
+<tr><td>ConfigMap updated but web page stays old</td><td>Mounted with subPath, Pod not recreated, or request hits another workload.</td><td><code>kubectl describe deployment subpath-web -n nimbus-config-lab</code><br><code>curl -s http://127.0.0.1:18090</code></td><td>Confirm ConfigMap content, restart Deployment and retest target endpoint.</td></tr>
+<tr><td>Whole-volume update not visible yet</td><td>Normal kubelet/cache propagation delay or app has not reloaded the file.</td><td><code>kubectl exec config-volume-demo -n nimbus-config-lab -- cat /etc/app-config/application.properties</code></td><td>Wait and verify mounted file; call application reload mechanism or restart if required.</td></tr>
+<tr><td>Image file disappeared</td><td>Whole ConfigMap directory mounted over an image directory.</td><td><code>kubectl exec POD_NAME -n nimbus-config-lab -- ls -la /mount/path</code></td><td>Mount a dedicated directory, or use subPath for selected file while planning its no-update behavior.</td></tr>
+<tr><td>Pod shows CreateContainerConfigError</td><td>Missing required ConfigMap/key, invalid env reference, or invalid Pod configuration.</td><td><code>kubectl describe pod POD_NAME -n nimbus-config-lab</code></td><td>Follow the exact event message; fix reference or mark optional only if safe.</td></tr>
+<tr><td>Invalid keys skipped through envFrom</td><td>ConfigMap key cannot be used as an environment variable name.</td><td><code>kubectl get events -n nimbus-config-lab --sort-by=.metadata.creationTimestamp</code></td><td>Use valid variable names or explicitly map the value with <code>configMapKeyRef</code>.</td></tr>
+<tr><td>Permission denied while applying</td><td>RBAC does not allow the requested API operation in the namespace.</td><td><code>kubectl auth can-i create configmaps -n nimbus-config-lab</code></td><td>Request scoped permission through the administrator.</td></tr>
+<tr><td>YAML parse error</td><td>Wrong indentation, missing colon, or unescaped special characters.</td><td><code>kubectl apply --dry-run=client -f FILE.yaml</code></td><td>Fix the syntax and run the client-side dry run again before applying.</td></tr>
+</tbody></table></div>
+<h3>Useful diagnostic commands</h3><pre><code>kubectl get all -n nimbus-config-lab
+kubectl get configmaps -n nimbus-config-lab
+kubectl describe pod POD_NAME -n nimbus-config-lab
+kubectl get events -n nimbus-config-lab --sort-by=.metadata.creationTimestamp
+kubectl logs POD_NAME -n nimbus-config-lab
+kubectl get pod POD_NAME -n nimbus-config-lab -o yaml
+kubectl auth can-i get configmaps -n nimbus-config-lab</code></pre>
+<p class="small muted">Replace <code>POD_NAME</code> with an actual Pod name. Use resource-specific diagnostics: logs help explain application behavior, whereas Events and <code>describe</code> usually help with missing references and mount/setup failures.</p>
+</section>
+
+<section id="bestpractices">
+<div class="kicker">10 · Reliable configuration</div><h2>Best practices and visual comparisons</h2>
+<h3>Before and after: mounting the right path</h3>
+<figure><svg viewBox="0 0 850 200" role="img" aria-labelledby="before-after-title before-after-desc"><title id="before-after-title">Avoid accidentally masking application files</title><desc id="before-after-desc">The incorrect pattern mounts an entire ConfigMap at the image's web root and hides image files. The improved pattern mounts only the ConfigMap file at index.html using subPath, preserving siblings, but documents that updates need Pod recreation.</desc>
+<rect x="20" y="20" width="390" height="150" rx="10" fill="#fff0ef" stroke="#d38d8d" stroke-width="2"/><text x="215" y="44" text-anchor="middle" font-size="15" font-weight="bold" fill="#922d2d">Before: whole directory over web root</text><text x="215" y="72" text-anchor="middle" font-size="12" fill="#9a4747">mountPath: /usr/share/nginx/html</text><text x="215" y="95" text-anchor="middle" font-size="12" fill="#9a4747">ConfigMap volume hides image siblings</text><rect x="72" y="115" width="286" height="33" rx="6" fill="#fff" stroke="#d9aaaa"/><text x="215" y="136" text-anchor="middle" font-size="12" fill="#922d2d">index.html only (other image files hidden)</text>
+<rect x="440" y="20" width="390" height="150" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="635" y="44" text-anchor="middle" font-size="15" font-weight="bold" fill="#165b38">After: one file via subPath</text><text x="635" y="72" text-anchor="middle" font-size="12" fill="#326d4e">mountPath: .../index.html</text><text x="635" y="95" text-anchor="middle" font-size="12" fill="#326d4e">subPath: index.html</text><rect x="492" y="115" width="286" height="33" rx="6" fill="#fff" stroke="#a6d4b5"/><text x="635" y="136" text-anchor="middle" font-size="12" fill="#165b38">Sibling files retained; restart to update</text>
+</svg><figcaption><strong>Visual 17 — A practical mount decision.</strong> SubPath is useful when only one file should override the image. If automatic projected-file updates matter more, consider a normal volume on a dedicated configuration path.</figcaption></figure>
+<h3>Practical recommendations</h3>
+<ul>
+<li><strong>Version config when releases matter.</strong> Names such as <code>app-config-v17</code> make changes explicit and help a rollout use known configuration. Pair with a manifest update, checksum annotation, or deployment automation so the Pod template changes when appropriate.</li>
+<li><strong>Document update behavior.</strong> Use a clear comment in YAML explaining that a subPath mount requires Pod recreation to pick up changes.</li>
+<li><strong>Prefer a dedicated directory for full-volume mounts.</strong> Mounting a volume over an image directory can hide files shipped with the image.</li>
+<li><strong>Use immutable ConfigMaps for stable release artifacts when suitable.</strong> <code>immutable: true</code> prevents data changes in place. For a new configuration version, create another ConfigMap and update the Pod template reference.</li>
+<li><strong>Keep values non-secret.</strong> A ConfigMap is not the right place for passwords or access tokens; restrict access through RBAC regardless.</li>
+<li><strong>Observe actual consumer behavior.</strong> Confirm the file or environment value in the running Pod, and confirm the application has loaded it. API object state alone is insufficient.</li>
+<li><strong>Plan reload/restart explicitly.</strong> Environment values require process recreation. subPath mounts require Pod recreation. Full-directory projected files update eventually, but the app may need to reread the file.</li>
+<li><strong>Keep the ConfigMap small and clear.</strong> Keep total data within 1 MiB and use files or external storage better suited for large content.</li>
+<li><strong>Use namespaces deliberately.</strong> ConfigMaps are namespace-scoped and Pods refer to ConfigMaps in the same namespace.</li>
+<li><strong>Keep source of truth in version control.</strong> Prefer reviewed manifest changes with <code>kubectl apply -f</code> over undocumented manual edits in production.</li>
+</ul>
+<h3>Declarative versus imperative operations</h3>
+<div class="table-wrap"><table><tr><th>Approach</th><th>Example</th><th>Best use</th><th>Trade-off</th></tr><tr><td>Imperative</td><td><code>kubectl create configmap feature-flags --from-literal=FEATURE_X=true</code></td><td>Quick demos, one-time exploration, simple troubleshooting.</td><td>Harder to review/reproduce unless command history is captured.</td></tr><tr><td>Declarative</td><td><code>kubectl apply -f configmap.yaml</code></td><td>Team environments, GitOps, change review, repeatable labs.</td><td>Requires maintaining manifests and avoiding drift between files and live objects.</td></tr></table></div>
+</section>
+
+<section id="interview">
+<div class="kicker">11 · Interview preparation</div><h2>Interview questions and answers</h2>
+<p>Try answering before expanding the answer. Use the search box to find a concept or command.</p>
+<input id="qsearch" class="search" type="search" placeholder="Search: subPath, namespace, envFrom, update…" aria-label="Search interview questions">
+<div id="questions">
+<h3>Level 1 — Basic questions</h3>
+<div class="qa"><details><summary>1. What is a ConfigMap?</summary><div class="answer">A ConfigMap is a Kubernetes API object that stores non-confidential configuration as key-value pairs. Pods can consume it as environment variables, command arguments, or files through a volume.</div></details></div>
+<div class="qa"><details><summary>2. Why should configuration be separated from an image?</summary><div class="answer">The same image can be promoted across development, staging and production while each environment supplies its own configuration. This avoids building a different image for every non-secret setting.</div></details></div>
+<div class="qa"><details><summary>3. Which API version and kind are used for a ConfigMap?</summary><div class="answer">The manifest begins with <code>apiVersion: v1</code> and <code>kind: ConfigMap</code>, because ConfigMap is a core API resource.</div></details></div>
+<div class="qa"><details><summary>4. What is stored in data?</summary><div class="answer">String values, including single-line values and multi-line text stored using YAML block scalars such as <code>|</code>. Use <code>binaryData</code> for binary values represented as base64-encoded content.</div></details></div>
+<div class="qa"><details><summary>5. What is the maximum ConfigMap size?</summary><div class="answer">The ConfigMap data size is limited to 1 MiB. Use a more suitable mechanism for large artifacts or datasets.</div></details></div>
+<div class="qa"><details><summary>6. Can a Pod reference a ConfigMap in another namespace?</summary><div class="answer">No. A Pod's ConfigMap reference is resolved in the same namespace as the Pod. Create or copy the relevant ConfigMap in the Pod's namespace if needed.</div></details></div>
+<div class="qa"><details><summary>7. How can a ConfigMap be consumed as environment variables?</summary><div class="answer">Use <code>env</code> with <code>valueFrom.configMapKeyRef</code> for a specific key, or <code>envFrom.configMapRef</code> to import valid key names from the ConfigMap.</div></details></div>
+<div class="qa"><details><summary>8. How can a ConfigMap be mounted as files?</summary><div class="answer">Add a ConfigMap volume under <code>spec.volumes</code> and reference the volume under the container's <code>volumeMounts</code>. The keys are projected as files; <code>items</code> can select keys and set relative file paths.</div></details></div>
+<div class="qa"><details><summary>9. What does subPath do?</summary><div class="answer">It mounts a specific file or subdirectory from a volume at a specified container path rather than mounting the entire volume at that path.</div></details></div>
+<div class="qa"><details><summary>10. Do ConfigMap subPath mounts receive updates?</summary><div class="answer"><strong>No.</strong> A container using a ConfigMap as a subPath volume mount does not receive ConfigMap updates. Recreate the Pod to mount the new value.</div></details></div>
+<div class="qa"><details><summary>11. Is a ConfigMap a secure place for passwords?</summary><div class="answer">No. ConfigMaps are intended for non-confidential data. Use Secrets or an external secret manager with suitable access controls for sensitive values.</div></details></div>
+<div class="qa"><details><summary>12. How do you inspect a ConfigMap?</summary><div class="answer">Use <code>kubectl get configmap NAME -n NAMESPACE -o yaml</code> to inspect its keys and values, then verify how the target Pod consumes them.</div></details></div>
+
+<h3>Level 2 — Intermediate questions</h3>
+<div class="qa"><details><summary>13. What is the difference between env and envFrom?</summary><div class="answer"><code>env</code> can map a named variable from one key using <code>configMapKeyRef</code>. <code>envFrom</code> imports all valid key names as environment variables. Explicit <code>env</code> gives more control over names and individual keys.</div></details></div>
+<div class="qa"><details><summary>14. Why does changing a ConfigMap not change environment variables in a running container?</summary><div class="answer">The container process receives its environment when it starts. Kubernetes does not rewrite the environment of the existing process. Restart/recreate the Pod or roll out its owning workload to load the new value.</div></details></div>
+<div class="qa"><details><summary>15. What is the difference between whole-volume mount and subPath mount?</summary><div class="answer">A whole-volume mount projects all keys (or selected <code>items</code>) into a directory and can update eventually. A subPath mount targets one path, preserving sibling image files, but it does not receive ConfigMap updates.</div></details></div>
+<div class="qa"><details><summary>16. Why can a whole-volume mount hide image files?</summary><div class="answer">The mount overlays the target directory in the container's filesystem view. Existing files under that directory from the image are hidden by the mounted volume. Use a dedicated configuration directory or mount only a needed file via subPath.</div></details></div>
+<div class="qa"><details><summary>17. What does items do in a ConfigMap volume?</summary><div class="answer">It selects which ConfigMap keys are projected and specifies their relative paths inside the volume. If only one key is listed, other keys are not projected in that volume.</div></details></div>
+<div class="qa"><details><summary>18. If a regular ConfigMap volume eventually updates, does the application immediately use the new settings?</summary><div class="answer">Not necessarily. Kubernetes refreshes the projected files after propagation delay, but the application might have read the file only once at startup. Confirm the file content and use an application reload mechanism or Pod restart as needed.</div></details></div>
+<div class="qa"><details><summary>19. Why might an envFrom key not appear in the process environment?</summary><div class="answer">The key might be invalid as an environment variable name, the Pod may reference a different ConfigMap or namespace, or the container may be running with older environment values. Check ConfigMap data, Pod YAML, events, and the actual process environment.</div></details></div>
+<div class="qa"><details><summary>20. What does immutable: true mean on a ConfigMap?</summary><div class="answer">It prevents the ConfigMap data from being changed in place. To publish different data, create a new ConfigMap object and update the Pod template to reference it. Use this for controlled release practices where appropriate.</div></details></div>
+<div class="qa"><details><summary>21. Does updating the ConfigMap automatically restart a Deployment?</summary><div class="answer">No. A Deployment rollout is normally triggered by a change to its Pod template. A ConfigMap's data changing by itself does not change the Deployment's Pod template. Update a versioned ConfigMap reference or use a deliberate rollout/reloader mechanism.</div></details></div>
+<div class="qa"><details><summary>22. Why should subPath mounts be documented in deployment manifests?</summary><div class="answer">Their update behavior differs from a normal volume. The team must know that a Pod rollout/recreation is required after configuration changes, otherwise stale configuration can be misdiagnosed as an application defect.</div></details></div>
+<div class="qa"><details><summary>23. Can a ConfigMap be used by a static Pod?</summary><div class="answer">The kubelet does not support ConfigMap references in static Pod specifications. Use supported configuration mechanisms for static Pods rather than assuming API object references work.</div></details></div>
+<div class="qa"><details><summary>24. What should be checked before using a ConfigMap for an application file?</summary><div class="answer">Check the key and target path, namespace, size, file permissions/readonly behavior, whether to mount a directory or subPath, whether update propagation is needed, and how the application reloads configuration.</div></details></div>
+
+<h3>Level 3 — Real-world scenarios</h3>
+<div class="qa"><details><summary>25. ConfigMap shows the new value, but the website serves old HTML. What do you do?</summary><div class="answer"><strong>Reasoning:</strong> First separate API state from the file currently served. Run <code>kubectl get cm web-page -n nimbus-config-lab -o yaml</code>, inspect the Pod's <code>volumeMounts</code> and <code>subPath</code>, then run <code>kubectl exec POD_NAME -n nimbus-config-lab -- cat /usr/share/nginx/html/index.html</code>. If it is a subPath mount, trigger <code>kubectl rollout restart deployment/subpath-web -n nimbus-config-lab</code>, wait for rollout and retest with curl. Other possibilities include testing the wrong Service/port-forward or an image/container that doesn't serve the mounted path.</div></details></div>
+<div class="qa"><details><summary>26. A Pod is stuck in CreateContainerConfigError after a ConfigMap deployment.</summary><div class="answer"><strong>Approach:</strong> Use <code>kubectl describe pod POD_NAME -n nimbus-config-lab</code> and read the Events. Confirm ConfigMap name and namespace with <code>kubectl get cm -n nimbus-config-lab</code>; check the referenced key and <code>items</code>. Fix the actual missing object/key or invalid mount. Mark references optional only if missing configuration is explicitly safe for that application.</div></details></div>
+<div class="qa"><details><summary>27. After mounting a ConfigMap, NGINX returns 404 for a file that was present in its image.</summary><div class="answer"><strong>Likely cause:</strong> A whole ConfigMap volume mounted over <code>/usr/share/nginx/html</code> hides image-provided sibling files. Check Pod volume mounts and list the directory inside the container. If only one file must be overridden, mount it to the file path with subPath; plan to restart Pods for ConfigMap changes.</div></details></div>
+<div class="qa"><details><summary>28. A normal volume mount has the new file, but the app still uses old log settings.</summary><div class="answer">The projected file may have updated, while the app cached the old configuration in memory. Read the file inside the container first. If it is current, check the app's documented reload signal/API and logs; otherwise wait for projection or inspect the ConfigMap reference. Restart only if the application lacks a safe reload path.</div></details></div>
+<div class="qa"><details><summary>29. Updating an environment-based feature flag didn't change application behavior.</summary><div class="answer">Environment variables in an existing process do not update. Verify the ConfigMap, inspect the Pod's env reference, then restart/recreate the Pod or perform a Deployment rollout. Also verify the application reads the expected variable name and that a feature flag isn't overridden elsewhere.</div></details></div>
+<div class="qa"><details><summary>30. The YAML applies, but a file is not found at the expected path.</summary><div class="answer">Trace the chain: ConfigMap <code>data</code> key → volume <code>configMap.name</code> → optional <code>items.key/path</code> → volume name in <code>volumeMounts</code> → <code>mountPath</code> and <code>subPath</code>. Inspect the actual container path with <code>find</code> and <code>ls -la</code>. Consider whether a whole-volume mount hid other files or the selected key was not projected.</div></details></div>
+<div class="qa"><details><summary>31. Two Pods need different settings but reference the same ConfigMap name.</summary><div class="answer">If they are in the same namespace and reference the same object, they receive the same object data through their consumption mechanism. Use distinct ConfigMaps or an explicit templating/release strategy for different settings, while keeping secrets separate and avoiding duplicate uncontrolled objects.</div></details></div>
+<div class="qa"><details><summary>32. A ConfigMap exceeds the allowed size.</summary><div class="answer">Kubernetes documents a 1 MiB limit for ConfigMap data. Identify whether the object contains a large artifact or excessive settings. Keep ConfigMaps for small configuration and use a suitable file/object store, volume, or application data service for larger content.</div></details></div>
+<div class="qa"><details><summary>33. A teammate proposes putting a database password in a ConfigMap because the YAML is easier to read.</summary><div class="answer">Reject the approach: ConfigMaps are for non-confidential data. Use a Secret or approved external secret manager and least-privilege access. Remember that a Secret also requires correct access controls and cluster security configuration; choosing the resource alone is not the whole security design.</div></details></div>
+<div class="qa"><details><summary>34. A rollout restart did not update the expected file.</summary><div class="answer">Inspect the new Pod and compare its mount to the ConfigMap data. Check whether the Deployment references the correct ConfigMap name and whether <code>items.key</code>, <code>items.path</code>, and <code>subPath</code> agree. Verify that the new Pod actually replaced the old one and that curl hits the correct endpoint. A file might also be coming from an image path or another volume mount.</div></details></div>
+<div class="qa"><details><summary>35. How would you reduce configuration drift between clusters?</summary><div class="answer">Keep manifests or templates in version control, review changes, use declarative apply/GitOps, separate environment values intentionally, and use versioned/immutable ConfigMaps for controlled releases when appropriate. Verify which configuration version each workload references.</div></details></div>
+<div class="qa"><details><summary>36. An app needs to watch config changes without restarting.</summary><div class="answer">Prefer a normal ConfigMap volume (not subPath) if the app can reopen/reload projected files. Document that projection is eventually consistent. If it must subscribe to updates across Kubernetes objects, an application/controller can use the Kubernetes API with appropriate RBAC and watch/retry logic. Never assume file projection automatically reloads the app's in-memory settings.</div></details></div>
+</div>
+</section>
+
+<section id="assignments">
+<div class="kicker">12 · Practice independently</div><h2>Assignments and visual challenges</h2>
+<p>Try each challenge first. Expand the solution hints only after you have a working hypothesis. All commands should remain scoped to <code>nimbus-config-lab</code>.</p>
+<h3>Beginner assignments</h3>
+<ol>
+<li><strong>Create a feature-flags ConfigMap.</strong> Requirements: three keys including a string-valued boolean. Expected state: object exists and keys appear in YAML. Verify with <code>kubectl get cm NAME -n nimbus-config-lab -o yaml</code>. Hint: use quoted strings for settings.</li>
+<li><strong>Inject one key as an environment variable.</strong> Expected state: the process sees it. Verify using <code>kubectl exec</code> and <code>printenv</code>. Hint: use <code>valueFrom.configMapKeyRef</code>.</li>
+<li><strong>Mount a multi-key ConfigMap as a directory.</strong> Expected state: each key appears as a file. Verify with <code>ls</code> and <code>cat</code> inside the Pod. Hint: volume name must match between <code>volumes</code> and <code>volumeMounts</code>.</li>
+<li><strong>Project one selected key to a custom relative path.</strong> Expected state: only the specified key is projected. Verify with <code>find /mount/path -type f</code>. Hint: use <code>items</code>.</li>
+<li><strong>Mount one ConfigMap file with subPath.</strong> Expected state: the chosen file is available, while sibling image files remain accessible. Verify by listing the target directory. Hint: use a file path for <code>mountPath</code> and a matching <code>subPath</code>.</li>
+</ol>
+<h3>Modification and troubleshooting assignments</h3>
+<ol start="6">
+<li>Update a value consumed through environment variables. Demonstrate that the running process is unchanged and that Pod recreation loads the new value.</li>
+<li>Update a ConfigMap mounted as a normal directory. Poll the file until the new value appears and explain the propagation delay.</li>
+<li>Update a ConfigMap mounted through subPath. Demonstrate stale content before restart and updated content after a Deployment rollout restart.</li>
+<li>Intentionally misspell a ConfigMap name in a lab Pod. Capture the event message and repair the reference.</li>
+<li>Mount a ConfigMap over an existing image directory in a disposable Pod. Prove that sibling files are hidden, then change the design to use a dedicated directory or subPath.</li>
+</ol>
+<h3>Real-world scenario challenges</h3>
+<ol start="11">
+<li><strong>Release-safe configuration update:</strong> Design a rollout process for a configuration file mounted with subPath. Specify validation, restart, rollback, and verification.</li>
+<li><strong>Shared config versus environment-specific config:</strong> Two application environments need different feature settings. Show how you would organize ConfigMaps and keep images identical.</li>
+<li><strong>Large or sensitive config:</strong> An application team stores an API token and a 2 MiB certificate bundle in one ConfigMap. Redesign the approach, explaining which values belong in a Secret manager and how to handle large files.</li>
+</ol>
+<details><summary>Solution hints and verification commands</summary><div class="answer">
+<pre><code># Inspect ConfigMap and actual Pod spec
+kubectl get configmaps -n nimbus-config-lab
+kubectl get configmap NAME -n nimbus-config-lab -o yaml
+kubectl get pod POD_NAME -n nimbus-config-lab -o yaml
+kubectl describe pod POD_NAME -n nimbus-config-lab
+
+# Verify environment
+kubectl exec POD_NAME -n nimbus-config-lab -- printenv
+kubectl exec POD_NAME -n nimbus-config-lab -- sh -c 'printf "%s\n" "$LOG_LEVEL"'
+
+# Verify mounted files
+kubectl exec POD_NAME -n nimbus-config-lab -- ls -la /MOUNT_PATH
+kubectl exec POD_NAME -n nimbus-config-lab -- cat /MOUNT_PATH/FILE_NAME
+
+# subPath update workflow
+kubectl apply -f UPDATED_CONFIGMAP.yaml
+kubectl rollout restart deployment/DEPLOYMENT_NAME -n nimbus-config-lab
+kubectl rollout status deployment/DEPLOYMENT_NAME -n nimbus-config-lab --timeout=180s
+
+# Read events
+kubectl get events -n nimbus-config-lab --sort-by=.metadata.creationTimestamp</code></pre>
+<p>Replace placeholders with the names and paths you created. Never paste a production secret into a ConfigMap or into a training manifest.</p></div></details>
+</section>
+
+<section id="revision">
+<div class="kicker">13 · Quick reference</div><h2>Cheat sheet and final revision</h2>
+<figure><svg viewBox="0 0 900 210" role="img" aria-labelledby="revision-title revision-desc"><title id="revision-title">ConfigMap update rules quick summary</title><desc id="revision-desc">Environment variables need a Pod restart, normal ConfigMap volume files update eventually and application reload may be needed, subPath file mounts do not update and need Pod recreation.</desc>
+<rect x="18" y="20" width="275" height="160" rx="10" fill="#eaf3ff" stroke="#75a2ce" stroke-width="2"/><text x="155" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#194a73">Environment variables</text><text x="155" y="75" text-anchor="middle" font-size="12" fill="#42698b">Read at process start</text><text x="155" y="98" text-anchor="middle" font-size="12" fill="#42698b">Existing value does not change</text><rect x="55" y="119" width="200" height="38" rx="7" fill="#fff4d8" stroke="#cfad5e"/><text x="155" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Restart Pod</text>
+<rect x="313" y="20" width="275" height="160" rx="10" fill="#e5f7ec" stroke="#69ad83" stroke-width="2"/><text x="450" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#165b38">Whole volume</text><text x="450" y="75" text-anchor="middle" font-size="12" fill="#326d4e">Projected file updates eventually</text><text x="450" y="98" text-anchor="middle" font-size="12" fill="#326d4e">App may need reload</text><rect x="350" y="119" width="200" height="38" rx="7" fill="#fff" stroke="#a6d4b5"/><text x="450" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Wait + reload/verify</text>
+<rect x="608" y="20" width="275" height="160" rx="10" fill="#fff0ef" stroke="#d38d8d" stroke-width="2"/><text x="745" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="#942d2d">subPath file</text><text x="745" y="75" text-anchor="middle" font-size="12" fill="#9d4a4a">Existing mount does not update</text><text x="745" y="98" text-anchor="middle" font-size="12" fill="#9d4a4a">new Pod sees latest data</text><rect x="645" y="119" width="200" height="38" rx="7" fill="#fff" stroke="#d9aaaa"/><text x="745" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#942d2d">Recreate Pod</text>
+</svg><figcaption><strong>Visual 18 — Remember this table for interviews.</strong> The required action depends on the way the value is supplied to the application.</figcaption></figure>
+<h3>Essential commands</h3><pre><code># Create and inspect
+kubectl create configmap sample --from-literal=LOG_LEVEL=debug -n nimbus-config-lab
+kubectl get configmap sample -n nimbus-config-lab -o yaml
+kubectl describe configmap sample -n nimbus-config-lab
+
+# Apply / validate
+kubectl apply --dry-run=client -f FILE.yaml
+kubectl apply -f FILE.yaml
+
+# Inspect a consumer
+kubectl get pods -n nimbus-config-lab -o wide
+kubectl describe pod POD_NAME -n nimbus-config-lab
+kubectl exec POD_NAME -n nimbus-config-lab -- cat /PATH/TO/FILE
+kubectl logs POD_NAME -n nimbus-config-lab
+
+# Refresh a workload using subPath
+kubectl rollout restart deployment/DEPLOYMENT_NAME -n nimbus-config-lab
+kubectl rollout status deployment/DEPLOYMENT_NAME -n nimbus-config-lab --timeout=180s
+
+# Events and access
+kubectl get events -n nimbus-config-lab --sort-by=.metadata.creationTimestamp
+kubectl auth can-i get configmaps -n nimbus-config-lab</code></pre>
+<h3>Quick comparison</h3><div class="table-wrap"><table><tr><th>Question</th><th>Answer to remember</th></tr><tr><td>ConfigMap or Secret?</td><td>ConfigMap for non-confidential configuration; Secret or external secret manager for sensitive data.</td></tr><tr><td>Env or volume?</td><td>Environment for process values; volume for file-based configuration.</td></tr><tr><td>Whole volume or subPath?</td><td>Whole volume can receive eventual updates; subPath targets one path and does not receive ConfigMap updates.</td></tr><tr><td>ConfigMap edit automatically restarts Deployment?</td><td>No. A Pod-template change or explicit restart/reloader is needed for environments and subPath consumption.</td></tr><tr><td>Can ConfigMap be huge?</td><td>No; the documented size limit is 1 MiB.</td></tr></table></div>
+<h3>Pre-interview checklist</h3><ul><li>I can explain why ConfigMaps exist and why secrets do not belong in them.</li><li>I can map a key to an environment variable and a file path.</li><li>I can explain the difference between normal volume and subPath update behavior.</li><li>I can trace the ConfigMap name, key, volume, mountPath and subPath.</li><li>I can diagnose a missing key or stale file with Events, <code>describe</code>, <code>get -o yaml</code>, and <code>exec</code>.</li><li>I can explain why a changed ConfigMap does not automatically restart an application.</li></ul>
+</section>
+
+<section id="cleanup">
+<div class="kicker">14 · Safe finish</div><h2>Cleanup and resource lifecycle</h2>
+<figure><svg viewBox="0 0 900 145" role="img" aria-labelledby="cleanup-title cleanup-desc"><title id="cleanup-title">Lab resource lifecycle</title><desc id="cleanup-desc">Create namespace and configuration, apply Pods and Deployments, verify the mounted data, modify it, troubleshoot, and delete only the lab namespace after confirming it contains no shared work.</desc>
+<defs><marker id="clean-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3z" fill="#50799e"/></marker></defs>
+<rect x="12" y="34" width="132" height="70" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="78" y="59" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Create</text><text x="78" y="77" text-anchor="middle" font-size="11" fill="#42698b">namespace / CM</text>
+<path d="M144 69 H158" stroke="#50799e" stroke-width="2" marker-end="url(#clean-arr)"/>
+<rect x="163" y="34" width="132" height="70" rx="8" fill="#eaf3ff" stroke="#75a2ce"/><text x="229" y="59" text-anchor="middle" font-size="12" font-weight="bold" fill="#194a73">Apply</text><text x="229" y="77" text-anchor="middle" font-size="11" fill="#42698b">Pods / Deployment</text>
+<path d="M295 69 H309" stroke="#50799e" stroke-width="2" marker-end="url(#clean-arr)"/>
+<rect x="314" y="34" width="132" height="70" rx="8" fill="#e5f7ec" stroke="#69ad83"/><text x="380" y="59" text-anchor="middle" font-size="12" font-weight="bold" fill="#165b38">Verify</text><text x="380" y="77" text-anchor="middle" font-size="11" fill="#326d4e">actual consumer</text>
+<path d="M446 69 H460" stroke="#50799e" stroke-width="2" marker-end="url(#clean-arr)"/>
+<rect x="465" y="34" width="132" height="70" rx="8" fill="#fff4d8" stroke="#cfad5e"/><text x="531" y="59" text-anchor="middle" font-size="12" font-weight="bold" fill="#765100">Modify</text><text x="531" y="77" text-anchor="middle" font-size="11" fill="#85641e">test update rules</text>
+<path d="M597 69 H611" stroke="#50799e" stroke-width="2" marker-end="url(#clean-arr)"/>
+<rect x="616" y="34" width="132" height="70" rx="8" fill="#fff0ef" stroke="#d38d8d"/><text x="682" y="59" text-anchor="middle" font-size="12" font-weight="bold" fill="#942d2d">Troubleshoot</text><text x="682" y="77" text-anchor="middle" font-size="11" fill="#9d4a4a">fix / verify</text>
+<path d="M748 69 H762" stroke="#50799e" stroke-width="2" marker-end="url(#clean-arr)"/>
+<rect x="767" y="34" width="120" height="70" rx="8" fill="#fcebea" stroke="#cf7d7d"/><text x="827" y="59" text-anchor="middle" font-size="12" font-weight="bold" fill="#8c2d2d">Delete</text><text x="827" y="77" text-anchor="middle" font-size="11" fill="#9a4747">lab only</text>
+</svg><figcaption><strong>Visual 19 — Close the loop.</strong> Delete only the resources created for the lab, and confirm the namespace is dedicated to this exercise before deleting it.</figcaption></figure>
+<h3>Ordered cleanup</h3>
+<p>Stop any running <code>kubectl port-forward</code> commands with Ctrl+C. Then inspect the namespace:</p><pre><code>kubectl get all,configmap -n nimbus-config-lab</code></pre>
+<p>If this is a dedicated namespace containing only the resources from this guide, you can remove it in one operation:</p><pre><code>kubectl delete namespace nimbus-config-lab</code></pre>
+<p>If this is a shared namespace, do <strong>not</strong> delete the namespace. Delete only the named objects that you created and verify the list first. Example targeted cleanup:</p><pre><code>kubectl delete pod config-env-demo config-volume-demo config-items-demo -n nimbus-config-lab --ignore-not-found
+kubectl delete deployment subpath-web -n nimbus-config-lab --ignore-not-found
+kubectl delete service subpath-web -n nimbus-config-lab --ignore-not-found
+kubectl delete configmap env-demo directory-config web-page selected-config -n nimbus-config-lab --ignore-not-found</code></pre>
+<div class="callout danger"><strong>Shared-cluster warning:</strong> Namespace deletion removes every namespaced object within it—not just this guide's resources. Do not delete shared namespaces, cluster-wide resources, or other students' work. Inspect before cleanup and get authorization when in doubt.</div>
+</section>
+
+<section id="references">
+<div class="kicker">15 · Continue learning</div><h2>References and source notes</h2>
+<h3>Supplied Nimbuswiztech sources</h3><ul>
+<li><a href="https://github.com/nimbuswiztech/Kubernetes/tree/main/config-map-subpath" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes repository — config-map-subpath directory</a></li>
+<li><a href="https://github.com/nimbuswiztech/kubernetes/wiki/configmaps" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes Wiki — configmaps</a></li>
+</ul>
+<p><strong>Source transparency:</strong> The supplied wiki page was accessible and states that a ConfigMap stores non-confidential key-value data and can be consumed through environment variables, command-line arguments, or configuration files in a volume. The repository page confirms the <code>config-map-subpath</code> directory exists, but GitHub would not expose its directory contents to this session. Therefore, the lab manifests in this guide are supplementary instructional examples, not claims of verbatim repository files.</p>
+<h3>Official Kubernetes documentation</h3><ul>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/configmap/" target="_blank" rel="noopener noreferrer">ConfigMaps — concept, object fields, limits, and consumption patterns</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/" target="_blank" rel="noopener noreferrer">Configure a Pod to Use a ConfigMap — environment, volumes, items, and subPath behavior</a></li>
+<li><a href="https://kubernetes.io/docs/tutorials/configuration/updating-configuration-via-a-configmap/" target="_blank" rel="noopener noreferrer">Updating Configuration via a ConfigMap — update and rollout behavior</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/" target="_blank" rel="noopener noreferrer">Volumes — volume mounts and subPath notes</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/secret/" target="_blank" rel="noopener noreferrer">Secrets — handling sensitive configuration</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener noreferrer">Install Tools — kubectl and local cluster tooling</a></li>
+</ul>
+<p class="muted small">The HTML, CSS, JavaScript, and essential diagrams are embedded in this file. No external image or Mermaid renderer is required for the diagrams. External reference links require internet access.</p>
+</section>
+<a class="toplink" href="#top">↑ Back to top</a>
+</main>
+</div>
+<footer>Nimbuswiztech student learning reference · Kubernetes ConfigMaps and subPath · Use the official documentation matching your cluster version for production decisions.</footer>
+<script>
+(function(){
+  // Copy only the code element's text, excluding the button.
+  document.querySelectorAll('pre').forEach(function(pre){
+    var code=pre.querySelector('code'); if(!code)return;
+    var btn=document.createElement('button'); btn.type='button'; btn.className='copy'; btn.textContent='Copy'; btn.setAttribute('aria-label','Copy code block');
+    btn.addEventListener('click',function(){
+      var text=code.innerText;
+      function fallback(){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');btn.textContent='Copied'}catch(e){btn.textContent='Select manually'}ta.remove();setTimeout(function(){btn.textContent='Copy'},1300)}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},1300)}).catch(fallback)}else fallback();
+    });
+    pre.appendChild(btn);
+  });
+  var search=document.getElementById('qsearch');
+  if(search)search.addEventListener('input',function(){
+    var q=search.value.toLowerCase().trim();
+    document.querySelectorAll('#questions .qa').forEach(function(item){item.style.display=item.textContent.toLowerCase().indexOf(q)>=0?'':'none'});
+  });
+  var links=Array.prototype.slice.call(document.querySelectorAll('#sidebar a'));
+  var sections=links.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
+  if('IntersectionObserver' in window){
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){if(entry.isIntersecting){links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id)})}});
+    },{rootMargin:'-15% 0px -72% 0px'});
+    sections.forEach(function(s){observer.observe(s)});
+  }
+})();
+</script>
+</body>
+</html>

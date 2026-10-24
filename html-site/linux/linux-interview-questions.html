@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>linux interview questions &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html" class="active">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🐧 Linux</span>
+          <span class="separator">/</span>
+          <span class="current">linux interview questions</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🐧 Linux Module</div>
+          <h1 class="hero-title">linux interview questions</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>When you login you get “$” prompt, what is the prompt for root?</h3>
+<p>Answer: <code>#</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Explain the difference between grep and egrep?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>What is the port # for DNS, NTP and NFS?</h3>
+<p>Answer: <code>53</code>, <code>123</code>, and <code>111/2049</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>What is the configuration file name of DNS and where is it located?</h3>
+<p>Answer: <code>/etc/named.conf</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>How many new directories will be created after running the following command: mkdir {a..c}{1..3}</h3>
+<p>Answer: <code>9</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Your PC is configured with a DNS server address but not the default gateway. Can the PC access internet?</h3>
+<p>Answer: No</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h3>What is the difference between IP and Gateway?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h3>Can you assign one static IP to 2 computers, if not then why?</h3>
+<p>Answer: No, because it will create an IP conflict</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h3>How to change IPs address to static?</h3>
+<p>Answer: <code>ifconfig x.x.x.x</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h3>You are trying to ping a server by hostname and you get an error message, “ping: unknown host …”. What could be the reason and how to solve the problem so you can ping it by hostname?</h3>
+<p>Answer: Check <code>/etc/hosts</code> or DNS to see if it has hostname-to-IP entry</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h3>Explain the difference between relative and absolute path?</h3>
+<p>Answer: Absolute path starts from <code>/</code> while relative path is from your current directory</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h3>List 3 different methods of adding user?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">13</div>
+<div class="step-content">
+<h3>What is the command to change file/directory ownership and group?</h3>
+<p>Answer: <code>chown</code> and <code>chgrp</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">14</div>
+<div class="step-content">
+<h3>List any 3 type of filesystem?</h3>
+<p>Answer: <code>ext4</code>, <code>NTFS</code>, and <code>FAT</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">15</div>
+<div class="step-content">
+<h3>When you login you get a message on the screen. What is the name of that file and where is it located?</h3>
+<p>Answer: <code>/etc/motd</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">16</div>
+<div class="step-content">
+<h3>What is /bin directory used for?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">17</div>
+<div class="step-content">
+<h3>What are the different types of DNS Server?</h3>
+<p>Answer: Master and secondary</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">18</div>
+<div class="step-content">
+<h3>How to change a user password?</h3>
+<p>Answer: <code>passwd username</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">19</div>
+<div class="step-content">
+<h3>What is the version of Redhat Linux you have experience with?</h3>
+<p>Answer: <code>7.4</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">20</div>
+<div class="step-content">
+<h3>List any 4 linux distributions?</h3>
+<p>Answer: Redhat, CentOS, Ubuntu and SUSE</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">21</div>
+<div class="step-content">
+<h3>How to logoff from the system?</h3>
+<p>Answer: <code>exit</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">22</div>
+<div class="step-content">
+<h3>Give any 3 examples of operating systems?</h3>
+<p>Answer: Windows, Linux and macOS</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">23</div>
+<div class="step-content">
+<h3>How to create a directory?</h3>
+<p>Answer: <code>mkdir</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">24</div>
+<div class="step-content">
+<h3>Where are the zone files located for DNS service?</h3>
+<p>Answer: <code>/var/named/zonefiles</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">25</div>
+<div class="step-content">
+<h3>How to check kernel version?</h3>
+<p>Answer: <code>uname -a</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">26</div>
+<div class="step-content">
+<h3>Which directory has all the configuration files?</h3>
+<p>Answer: <code>/etc</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">27</div>
+<div class="step-content">
+<h3>How to become root user from a regular user?</h3>
+<p>Answer: <code>su -</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">28</div>
+<div class="step-content">
+<h3>How many mega bytes in 1 giga bytes?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">29</div>
+<div class="step-content">
+<h3>What is the purpose of having different network ports?</h3>
+<p>Answer: So the communication of each application goes through a dedicated port</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">30</div>
+<div class="step-content">
+<h3>How to display first column of a file?</h3>
+<p>Answer: <code>cat filename | awk '{print $1}'</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">31</div>
+<div class="step-content">
+<h3>What is the name of DNS rpm package?</h3>
+<p>Answer: <code>bind</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">32</div>
+<div class="step-content">
+<h3>What is the difference between nslookup and dig commands?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">33</div>
+<div class="step-content">
+<h3>How to check your user id and group id?</h3>
+<p>Answer: <code>id</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">34</div>
+<div class="step-content">
+<h3>How to check a file’s permission?</h3>
+<p>Answer: <code>ls -l</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">35</div>
+<div class="step-content">
+<h3>What is the difference between “kill” and “kill -9” command?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">36</div>
+<div class="step-content">
+<h3>What is subnet?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">37</div>
+<div class="step-content">
+<h3>You are troubleshooting an issue with Redhat support and they have asked you to send the contents of /etc directory. How and which method you will use to transfer the contents?</h3>
+<p>Answer: Tar (compress) the entire <code>/etc</code> directory and FTP</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">38</div>
+<div class="step-content">
+<h3>What is root home directory?</h3>
+<p>Answer: <code>/root</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">39</div>
+<div class="step-content">
+<h3>What is rsyslogd daemon and its purpose?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">40</div>
+<div class="step-content">
+<h3>Your company has terminated a server administrator. What is first thing as an administrator you should do to enhance the security?</h3>
+<p>Answer: Change root password</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">41</div>
+<div class="step-content">
+<h3>How to check the computer name or host name in Linux?</h3>
+<p>Answer: <code>hostname</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">42</div>
+<div class="step-content">
+<h3>Which permission allows a user to run an executable with the permissions of the owner of that file?</h3>
+<p>Answer: Setuid/setgid (owner execute bit with special permission). Note in original: "First 3 bits should have x"</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">43</div>
+<div class="step-content">
+<h3>What is the command to untar a tarred file?</h3>
+<p>Answer: <code>untar</code> (commonly <code>tar -xvf filename.tar</code>)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">44</div>
+<div class="step-content">
+<h3>What is /proc directory used for?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">45</div>
+<div class="step-content">
+<h3>What is the purpose of nsswitch.conf file?</h3>
+<p>Answer: It tells the system where to go to resolve hostnames</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">46</div>
+<div class="step-content">
+<h3>List 3 basic commands to navigate the filesystem?</h3>
+<p>Answer: <code>cd</code>, <code>pwd</code>, and <code>ls</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">47</div>
+<div class="step-content">
+<h3>Which service/daemon should be running on the server that allows you to connect remotely?</h3>
+<p>Answer: <code>sshd</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">48</div>
+<div class="step-content">
+<h3>What is the purpose of firewall?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">49</div>
+<div class="step-content">
+<h3>List any 3 IT components?</h3>
+<p>Answer: Hardware, OS and Applications</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">50</div>
+<div class="step-content">
+<h3>Which directory has all the commands we use, e.g. ls, cd etc.?</h3>
+<p>Answer: <code>/usr/bin</code> or <code>/bin</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">51</div>
+<div class="step-content">
+<h3>What is the difference between memory, virtual memory and cache?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">52</div>
+<div class="step-content">
+<h3>Which of the following is correct?</h3>
+<p>a. Hardware -&gt; Operating System -&gt; Users\
+b. Operating System -&gt; Users -&gt; Hardware\
+c. Database -&gt; Hardware -&gt; Users</p>
+<p>Answer: (No explicit answer provided)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">53</div>
+<div class="step-content">
+<h3>Which of the following is a communication command?</h3>
+<p>Options: grep, mail, touch, cd</p>
+<p>Answer: mail</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">54</div>
+<div class="step-content">
+<h3>How to rename a file or directory?</h3>
+<p>Answer: <code>mv</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">55</div>
+<div class="step-content">
+<h3>How to change a hostname in Linux?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">56</div>
+<div class="step-content">
+<h3>How to check network interfaces in Linux?</h3>
+<p>Answer: <code>ifconfig</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">57</div>
+<div class="step-content">
+<h3>Why is “tail –f logfilename” command used most often and what does it do?</h3>
+<p>Answer: It outputs incoming logs in real time</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">58</div>
+<div class="step-content">
+<h3>What type of hardware have you worked on?</h3>
+<p>Answer: Get familiar with Dell, HP and UCS hardware (suggested to check vendor websites)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">59</div>
+<div class="step-content">
+<h3>How to sort a file in reverse order?</h3>
+<p>Answer: <code>cat filename | sort -r</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">60</div>
+<div class="step-content">
+<h3>What is the name of operating system that runs Unix?</h3>
+<p>Answer: Solaris, HP-UX etc.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">61</div>
+<div class="step-content">
+<h3>List all byte sizes from smallest to largest?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">62</div>
+<div class="step-content">
+<h3>How to check the total number of partition in Linux?</h3>
+<p>Answer: <code>fdisk -l</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">63</div>
+<div class="step-content">
+<h3>How to access a linux system from a linux system?</h3>
+<p>Answer: <code>ssh</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">64</div>
+<div class="step-content">
+<h3>Explain the procedure of bonding 2 NICs or interfaces together?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">65</div>
+<div class="step-content">
+<h3>What is the exact command syntax to list the 5th column of a file and cut the first 3 letters?</h3>
+<p>Answer: <code>cat filename | awk '{print $5}' | cut -c1-3</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">66</div>
+<div class="step-content">
+<h3>What is /etc/hosts file used for?</h3>
+<p>Answer: To resolve hostnames with IP address</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">67</div>
+<div class="step-content">
+<h3>List any 3 options of ‘df’ command and what they are used for?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">68</div>
+<div class="step-content">
+<h3>What is the command to change file/directory permissions?</h3>
+<p>Answer: <code>chmod</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">69</div>
+<div class="step-content">
+<h3>What is the purpose of pipe (|)?</h3>
+<p>Answer: To combine multiple commands</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">70</div>
+<div class="step-content">
+<h3>What is /etc directory used for?</h3>
+<p>Answer: For configuration files</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">71</div>
+<div class="step-content">
+<h3>Which command is used to list files in a directory?</h3>
+<p>Answer: <code>ls -l</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">72</div>
+<div class="step-content">
+<h3>There is a command which gives you information about other commands, please explain that command and what is it used for?</h3>
+<p>Answer: <code>man</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">73</div>
+<div class="step-content">
+<h3>How to delete a file and a directory?</h3>
+<p>Answer: <code>rm filename</code> and <code>rmdir dirname</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">74</div>
+<div class="step-content">
+<h3>What is the difference between “tail” and “tail -10”?</h3>
+<p>Answer: None (by default <code>tail</code> shows last 10 lines; <code>tail -10</code> explicitly requests 10 lines)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">75</div>
+<div class="step-content">
+<h3>List 4 commands to display or read a file contents?</h3>
+<p>Answer: <code>cat</code>, <code>more</code>, <code>less</code>, <code>vi</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">76</div>
+<div class="step-content">
+<h3>Which command is used to read the top 5 lines of a file?</h3>
+<p>Answer: <code>head -5 filename</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">77</div>
+<div class="step-content">
+<h3>What are the different commands or methods to write to a file?</h3>
+<p>Answer: <code>echo &gt; filename</code> and <code>vi filename</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">78</div>
+<div class="step-content">
+<h3>What is swap space and how to check swap space?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">79</div>
+<div class="step-content">
+<h3>What is inode and how to find an inode of a file?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">80</div>
+<div class="step-content">
+<h3>Which file to edit for kernel tuning?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">81</div>
+<div class="step-content">
+<h3>What is the latest version of Redhat?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">82</div>
+<div class="step-content">
+<h3>Name the command to find specific word from a file?</h3>
+<p>Answer: <code>grep word filename</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">83</div>
+<div class="step-content">
+<h3>You have scheduled a job using crontab but it does not run at the time you specified, what could be the reason and how would you troubleshoot?</h3>
+<p>Answer:</p>
+<ul>
+<li>Check your system time</li>
+<li>Check your crontab entry</li>
+<li>Check <code>/var/log/messages</code></li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">84</div>
+<div class="step-content">
+<h3>How to check system hardware information?</h3>
+<p>Answer: <code>dmidecode</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">85</div>
+<div class="step-content">
+<h3>How to check network interface MAC address?</h3>
+<p>Answer: <code>ifconfig</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">86</div>
+<div class="step-content">
+<h3>If I don’t want others to read my file1, how to do that?</h3>
+<p>Answer: Remove <code>r</code> from the last 3 bits of file permission (remove read permission for group/others)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">87</div>
+<div class="step-content">
+<h3>What is the purpose of “uniq” and “sed” command?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">88</div>
+<div class="step-content">
+<h3>Which command is used to list the contents of a directory in the most recent time and in reverse order, meaning the most updated file should be listed on the bottom?</h3>
+<p>Answer: <code>ls -ltr</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">89</div>
+<div class="step-content">
+<h3>What is the difference between tar, gzip and gunzip?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">90</div>
+<div class="step-content">
+<h3>What are the different ways to install an OS?</h3>
+<p>Answer: DVD, DVD ISO and network boot</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">91</div>
+<div class="step-content">
+<h3>How to view difference between two files?</h3>
+<p>Answer: <code>diff file1 file2</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">92</div>
+<div class="step-content">
+<h3>You noticed that one of the Linux servers has no disk space left, how would you troubleshoot that issue?</h3>
+<p>Answer:</p>
+<ul>
+<li>If running LVM then add more disk and extend LVM</li>
+<li>If not running LVM then add more disk, create a new partition and link the new partition to an existing filesystem</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">93</div>
+<div class="step-content">
+<h3>How to check Redhat version release?</h3>
+<p>Answer: <code>uname -a</code> or <code>/etc/redhat-release</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">94</div>
+<div class="step-content">
+<h3>What is the difference between TCP and UDP?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">95</div>
+<div class="step-content">
+<h3>What is a zombie process?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">96</div>
+<div class="step-content">
+<h3>How do you search for a pattern/word in a file and then replace it in an entire file?</h3>
+<p>Answer: <code>sed</code> command</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">97</div>
+<div class="step-content">
+<h3>Explain the purpose of “touch” command?</h3>
+<p>Answer: To create an empty file (or update a file's timestamp)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">98</div>
+<div class="step-content">
+<h3>If a command hangs, how to stop it and get the prompt back?</h3>
+<p>Answer: Ctrl+C</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">99</div>
+<div class="step-content">
+<h3>Which command is used to count words or lines?</h3>
+<p>Answer: <code>wc</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">100</div>
+<div class="step-content">
+<h3>How to check the number of users logged in?</h3>
+<p>Answer: <code>who</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">101</div>
+<div class="step-content">
+<h3>What is the command to view the calendar of 2011?</h3>
+<p>Answer: <code>cal 2011</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">102</div>
+<div class="step-content">
+<h3>Which command is used to view disk space?</h3>
+<p>Answer: <code>df -h</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">103</div>
+<div class="step-content">
+<h3>How to create a new group in Linux?</h3>
+<p>Answer: <code>groupadd</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">104</div>
+<div class="step-content">
+<h3>What is the command to send a message to everyone who is logged into the system?</h3>
+<p>Answer: <code>wall</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">105</div>
+<div class="step-content">
+<h3>Which command is used to check total number of disks?</h3>
+<p>Answer: <code>fdisk -l</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">106</div>
+<div class="step-content">
+<h3>What is a mail server record in DNS?</h3>
+<p>Answer: <code>MX</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">107</div>
+<div class="step-content">
+<h3>What does the following command line do? ps -ef | awk '{print $1}' | sort | uniq</h3>
+<p>Answer: Lists the first column (user) of all running processes, sorts them and removes duplicates</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">108</div>
+<div class="step-content">
+<h3>You get a call that when a user goes to www.yourwebsite.com it fails and gets an error, how do you troubleshoot?</h3>
+<p>Answer:</p>
+<ul>
+<li>Check user's internet connectivity</li>
+<li>Check if user's computer has DNS for hostname lookup</li>
+<li>Check if the server hosting the website is up</li>
+<li>Check if the web service on the server is running</li>
+<li>Check DNS availability resolving that website</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">109</div>
+<div class="step-content">
+<h3>List 4 different directories in /?</h3>
+<p>Answer: <code>/etc</code>, <code>/bin</code>, <code>/tmp</code>, <code>/home</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">110</div>
+<div class="step-content">
+<h3>What is the output of the following command: tail -10 filename | head -1</h3>
+<p>Answer: It shows the first line from the last 10 lines of a file</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">111</div>
+<div class="step-content">
+<h3>What are the different fields in /etc/passwd file?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">112</div>
+<div class="step-content">
+<h3>Which command is used to list the processes?</h3>
+<p>Answer: <code>ps -ef</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">113</div>
+<div class="step-content">
+<h3>What is the difference between “hostname” and “uname” commands?</h3>
+<p>Answer: <code>hostname</code> gives the system name and <code>uname</code> gives OS information</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">114</div>
+<div class="step-content">
+<h3>How to check system load?</h3>
+<p>Answer: <code>top</code> and <code>uptime</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">115</div>
+<div class="step-content">
+<h3>How to schedule jobs?</h3>
+<p>Answer: <code>crontab</code> and <code>at</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">116</div>
+<div class="step-content">
+<h3>What is the 3rd field when setting up crontab?</h3>
+<p>Answer: Day of the month</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">117</div>
+<div class="step-content">
+<h3>What is the command to create a new user?</h3>
+<p>Answer: <code>useradd</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">118</div>
+<div class="step-content">
+<h3>What is the “init #” for system reboot?</h3>
+<p>Answer: <code>6</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">119</div>
+<div class="step-content">
+<h3>How to restart a service?</h3>
+<p>Answer: <code>systemctl restart servicename</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">120</div>
+<div class="step-content">
+<h3>How to shutdown a system?</h3>
+<p>Answer: <code>shutdown</code> or <code>init 0</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">121</div>
+<div class="step-content">
+<h3>What is “ftp” command used for?</h3>
+<p>Answer: To transfer files from one computer to another</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">122</div>
+<div class="step-content">
+<h3>Explain cron job syntax? First is minute, second is..?</h3>
+<p>Answer: Minute, hour, day of the month, month, day of the week and command</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">123</div>
+<div class="step-content">
+<h3>How to delete a package in Linux?</h3>
+<p>Answer: <code>rpm -e packagename</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">124</div>
+<div class="step-content">
+<h3>What is the file name where user password information is saved?</h3>
+<p>Answer: <code>/etc/shadow</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">125</div>
+<div class="step-content">
+<h3>Which command you would use to find the location of chmod command?</h3>
+<p>Answer: <code>which chmod</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">126</div>
+<div class="step-content">
+<h3>Which command is used to check if the other computer is online?</h3>
+<p>Answer: <code>ping othercomputer</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">127</div>
+<div class="step-content">
+<h3>Please explain about LAN, MAN and WAN?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">128</div>
+<div class="step-content">
+<h3>How to list hidden files in a directory?</h3>
+<p>Answer: <code>ls -la</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">129</div>
+<div class="step-content">
+<h3>What is the difference between telnet and ssh?</h3>
+<p>Answer: <code>ssh</code> is secure whereas <code>telnet</code> is not</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">130</div>
+<div class="step-content">
+<h3>How to run a calculator on Linux and exit out of it?</h3>
+<p>Answer: <code>bc</code> and <code>quit</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">131</div>
+<div class="step-content">
+<h3>List any 4 commands to monitor system?</h3>
+<p>Answer: <code>top</code>, <code>df -h</code>, <code>iostat</code>, <code>dmesg</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">132</div>
+<div class="step-content">
+<h3>You are notified that your server is down, list the steps you will take to troubleshoot?</h3>
+<p>Answer:</p>
+<ul>
+<li>Check the system physically</li>
+<li>Login through system console</li>
+<li>Ping the system</li>
+<li>Reboot or boot if possible</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">133</div>
+<div class="step-content">
+<h3>What is difference between static and DHCP IP?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">134</div>
+<div class="step-content">
+<h3>How to write in vi editor mode?</h3>
+<p>Answer: <code>i = insert</code>, <code>a = insert in next space</code>, <code>o = insert in new line</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">135</div>
+<div class="step-content">
+<h3>What is the difference between “crontab” and “at” jobs?</h3>
+<p>Answer: <code>crontab</code> is for repetitive jobs while <code>at</code> is for one-time jobs</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">136</div>
+<div class="step-content">
+<h3>What is vCenter server in VMWare?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">137</div>
+<div class="step-content">
+<h3>What is “dmidecode” command used for?</h3>
+<p>Answer: To get system information</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">138</div>
+<div class="step-content">
+<h3>What is the difference between SAN and NAS?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">139</div>
+<div class="step-content">
+<h3>What is the location of system logs? E.g. messages</h3>
+<p>Answer: <code>/var/log</code> directory</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">140</div>
+<div class="step-content">
+<h3>How to setup an alias and what is it used for?</h3>
+<p>Answer: <code>alias aliasname="command"</code> — used to create shortcuts for long commands</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">141</div>
+<div class="step-content">
+<h3>What is the purpose of “netstat” command?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">142</div>
+<div class="step-content">
+<h3>What are terminal control keys, list any 3?</h3>
+<p>Answer: Ctrl+C, Ctrl+D and Ctrl+Z</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">143</div>
+<div class="step-content">
+<h3>Which command(s) you would run if you need to find out how many processes are running on your system?</h3>
+<p>Answer: <code>ps -ef | wc -l</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">144</div>
+<div class="step-content">
+<h3>What are the different types of shells?</h3>
+<p>Answer: <code>sh</code>, <code>bash</code>, <code>ksh</code>, <code>csh</code>, etc.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">145</div>
+<div class="step-content">
+<h3>How to delete a line when in vi editor mode?</h3>
+<p>Answer: <code>dd</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">146</div>
+<div class="step-content">
+<h3>Which is the core of the operating system?</h3>
+<p>Options: a) Shell b) Kernel c) Commands d) Script</p>
+<p>Answer: Kernel</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">147</div>
+<div class="step-content">
+<h3>Which among the following interacts directly with system hardware?</h3>
+<p>Options: a) Shell b) Commands c) Kernel d) Applications</p>
+<p>Answer: Kernel</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">148</div>
+<div class="step-content">
+<h3>How to save and quit from vi editor?</h3>
+<p>Answer: Shift+ZZ or <code>:wq!</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">149</div>
+<div class="step-content">
+<h3>What is the difference between a process and daemon?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">150</div>
+<div class="step-content">
+<h3>What is the process or daemon name for NTP?</h3>
+<p>Answer: <code>ntpd</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">151</div>
+<div class="step-content">
+<h3>What are a few commands you would run if your system is running slow?</h3>
+<p>Answer: <code>top</code>, <code>iostat</code>, <code>df -h</code>, <code>netstat</code>, etc.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">152</div>
+<div class="step-content">
+<h3>How to install a package in Redhat Linux?</h3>
+<p>Answer: <code>yum install packagename</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">153</div>
+<div class="step-content">
+<h3>What is the difference between “ifconfig” and “ipconfig” commands?</h3>
+<p>Answer: <code>ifconfig</code> for Linux and <code>ipconfig</code> for Windows</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">154</div>
+<div class="step-content">
+<h3>What is the first line written in a shell script?</h3>
+<p>Answer: Define shell, e.g. <code>#!/bin/bash</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">155</div>
+<div class="step-content">
+<h3>Where is the network (Ethernet) file located, please provide exact directory location and file name?</h3>
+<p>Answer: <code>/etc/sysconfig/network-scripts/ifcfg-nic</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">156</div>
+<div class="step-content">
+<h3>Why do we use “last” command?</h3>
+<p>Answer: To see who has logged into the system whether active or logged off</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">157</div>
+<div class="step-content">
+<h3>What does RHEL Linux stand for?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">158</div>
+<div class="step-content">
+<h3>To view your command history, which command is used and how to run a specific command?</h3>
+<p>Answer: <code>history</code> and <code>!#</code> (use history number to run a specific command)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">159</div>
+<div class="step-content">
+<h3>What is NTP and briefly explain how does it work and where is the config files and related commands of NTP?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">160</div>
+<div class="step-content">
+<h3>How to disable firewall in Linux?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">161</div>
+<div class="step-content">
+<h3>How to configure mail server relay for sendmail service?</h3>
+<p>Answer: Edit <code>/etc/mail/sendmail.mc</code> and add <code>SMART_HOST</code> entry</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">162</div>
+<div class="step-content">
+<h3>Where is samba log file located?</h3>
+<p>Answer: <code>/var/log/samba</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">163</div>
+<div class="step-content">
+<h3>What is mkfs command used for?</h3>
+<p>Answer: To create a new filesystem</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">164</div>
+<div class="step-content">
+<h3>If you create a new group, which file does it get created in?</h3>
+<p>Answer: <code>/etc/group</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">165</div>
+<div class="step-content">
+<h3>Which file has DNS server information (e.g. DNS resolution)?</h3>
+<p>Answer: <code>/etc/resolv.conf</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">166</div>
+<div class="step-content">
+<h3>What are the commands you would run if you need to find out the version and build date of a package (e.g. http)?</h3>
+<p>Answer: <code>rpm -qi http</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">167</div>
+<div class="step-content">
+<h3>On the file permissions? What are the first 3 bits for and who is it for?</h3>
+<p>Answer: Read, write and execute for the owner of the file</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">168</div>
+<div class="step-content">
+<h3>How to create a soft link?</h3>
+<p>Answer: <code>ln -s</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">169</div>
+<div class="step-content">
+<h3>How to write a script to delete messages in a log file older than 30 days automatically?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">170</div>
+<div class="step-content">
+<h3>How to quit out of “man” command?</h3>
+<p>Answer: <code>q</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">171</div>
+<div class="step-content">
+<h3>Which command is used to partition disk in Linux?</h3>
+<p>Answer: <code>fdisk</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">172</div>
+<div class="step-content">
+<h3>What is the difference between “shutdown” and “halt” command?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">173</div>
+<div class="step-content">
+<h3>What is the exact syntax of mounting NFS share on a client and also how to un-mount?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">174</div>
+<div class="step-content">
+<h3>What experience do you have with scripting, explain?</h3>
+<p>Answer: if-then, do-while, case, for loop scripts</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">175</div>
+<div class="step-content">
+<h3>How to get information on all the packages installed on the system?</h3>
+<p>Answer: <code>rpm -qa</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">176</div>
+<div class="step-content">
+<h3>Explain VMWare?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">177</div>
+<div class="step-content">
+<h3>You are tasked to examine a log file in order to find out why a particular application keep crashing. Log file is very lengthy, which command can you use to simplify the log search using a search string?</h3>
+<p>Answer: Use <code>grep</code> for error, warning, failure etc. in <code>/var/log/messages</code> file</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">178</div>
+<div class="step-content">
+<h3>What is /etc/fstab file and explain each column of this file?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">179</div>
+<div class="step-content">
+<h3>What the latest version of Windows server?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">180</div>
+<div class="step-content">
+<h3>What is the exact command to list only the first 2 lines of history output?</h3>
+<p>Answer: <code>history | head -2</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">181</div>
+<div class="step-content">
+<h3>How to upgrade Linux from 7.3 to 7.4?</h3>
+<p>Answer: <code>yum install update</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">182</div>
+<div class="step-content">
+<h3>How to tell which shell you are in or running?</h3>
+<p>Answer: <code>$0</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">183</div>
+<div class="step-content">
+<h3>You have tried to “cd” into a directory but you have been denied. You are not the owner of that directory, what permissions do you need and where?</h3>
+<p>Answer: Execute (x) permission on directory (and read if listing) — original mentions "r – x" for last bits</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">184</div>
+<div class="step-content">
+<h3>What is CNAME record in DNS?</h3>
+<p>Answer: Entry for hostname to hostname</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">185</div>
+<div class="step-content">
+<h3>What is the name of VMWare operating system?</h3>
+<p>Answer: ESXi</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">186</div>
+<div class="step-content">
+<h3>What is the client name used to connect to ESXi or vCenter server?</h3>
+<p>Answer: vSphere client</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">187</div>
+<div class="step-content">
+<h3>You get a call from a user saying that I cannot write to a file because it says, permission denied. The file is owned by that user, how do you troubleshoot?</h3>
+<p>Answer: Give write permission on the owner bits (first 3 bits)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">188</div>
+<div class="step-content">
+<h3>What is the latest version of VMWare?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">189</div>
+<div class="step-content">
+<h3>What is the name of firewall daemon in Linux?</h3>
+<p>Answer: <code>firewalld</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">190</div>
+<div class="step-content">
+<h3>Which command syntax you can use to list only the 20th line of a file?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">191</div>
+<div class="step-content">
+<h3>What is the difference between run level 3 and 5?</h3>
+<p>Answer: 3 = Boot system with networking, 5 = Boot system with networking and GUI</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">192</div>
+<div class="step-content">
+<h3>List a few commands that are used in troubleshooting network related issue?</h3>
+<p>Answer: <code>netstat</code>, <code>tcpdump</code>, etc.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">193</div>
+<div class="step-content">
+<h3>What is the difference between domain and nameserver?</h3>
+<p>Answer: Search online</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">194</div>
+<div class="step-content">
+<h3>You open up a file and it has 3000 lines and it scrolled up really fast, which command you will use to view it one page at a time?</h3>
+<p>Answer: <code>more</code> or <code>less</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">195</div>
+<div class="step-content">
+<h3>How to start a new shell. E.g. start a new ksh shell?</h3>
+<p>Answer: Type <code>ksh</code> or <code>bash</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">196</div>
+<div class="step-content">
+<h3>How to kill a process?</h3>
+<p>Answer: <code>kill processID</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">197</div>
+<div class="step-content">
+<h3>How to check scheduled jobs?</h3>
+<p>Answer: <code>crontab -l</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">198</div>
+<div class="step-content">
+<h3>How to check system memory and CPU usage?</h3>
+<p>Answer: <code>free</code> and <code>top</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">199</div>
+<div class="step-content">
+<h3>Which utility could you use to repair the corrupted file system?</h3>
+<p>Answer: <code>fsck</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">200</div>
+<div class="step-content">
+<h3>What is the command to make a service start at boot?</h3>
+<p>Answer: <code>systemctl enable servicename</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">201</div>
+<div class="step-content">
+<h3>How to combine 2 files into 1? E.g. you have 3 lines in file “A” and 5 lines in file “B”, which command syntax to use that will combine into one file of 3+5 = 8 lines</h3>
+<p>Answer: <code>cat fileA &gt;&gt; fileB</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">202</div>
+<div class="step-content">
+<h3>What is echo command used for?</h3>
+<p>Answer: To output to the screen</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">203</div>
+<div class="step-content">
+<h3>What does the following command do? echo This year the summer will be great &gt; file1</h3>
+<p>Answer: It creates a new file <code>file1</code> with the content "This year the summer will be great"</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">204</div>
+<div class="step-content">
+<h3>Which file to modify to allow users to run root commands?</h3>
+<p>Answer: <code>/etc/sudoers</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">205</div>
+<div class="step-content">
+<h3>You need to modify httpd.conf file but you cannot find it, Which command line tool you can use to find file?</h3>
+<p>Answer: <code>find / -name "httpd.conf"</code></p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">206</div>
+<div class="step-content">
+<h3>Your system crashed and being restarted, but a message appears, indicating that the operating system cannot be found. What is the most likely cause of the problem?</h3>
+<p>Answer: The <code>/boot</code> file is most likely corrupted</p>
+</div>
+</div>
+</div>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../linux/linux-interview-questions-1.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">linux interview questions 1</span>
+  </a>
+  <a href="../linux/linux-unix-tutorial.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">linux unix tutorial</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

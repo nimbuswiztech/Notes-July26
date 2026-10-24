@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Nimbuswiztech Pod Lifecycle training guide with hands-on labs, probes, troubleshooting and interview questions.">
+<title>Kubernetes Pod Lifecycle — Nimbuswiztech Training Guide</title>
+<style>
+:root{--ink:#192536;--muted:#586779;--line:#d9e1eb;--paper:#fff;--bg:#f3f6fa;--blue:#175da8;--bluebg:#eaf3ff;--green:#eaf8ef;--amber:#fff4d8;--red:#fff0ef;--code:#101b2a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--blue);overflow-wrap:anywhere}header{background:#102b49;color:#fff;padding:2.2rem max(1rem,calc((100% - 1180px)/2));border-bottom:5px solid #63a8ff}header .brand{font-size:.82rem;font-weight:800;letter-spacing:.13em;color:#c6e0ff}header h1{font-size:clamp(2rem,4vw,3.15rem);line-height:1.12;margin:.5rem 0 1rem}header p{max-width:900px;color:#e0eaf6}.wrap{max-width:1180px;margin:auto;padding:1.2rem}section,nav#toc,.panel{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:1.25rem;margin:1rem 0;box-shadow:0 2px 8px #162a3d0a}h2{font-size:1.65rem;margin-top:0;border-bottom:1px solid var(--line);padding-bottom:.45rem}h3{font-size:1.2rem;margin-bottom:.35rem}p{margin:.55rem 0}ul,ol{padding-left:1.5rem}nav#toc ol{columns:2;column-gap:2rem}nav#toc li{break-inside:avoid;margin:.25rem 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem}.card{border:1px solid var(--line);border-radius:10px;padding:1rem}.callout{padding:.85rem 1rem;border-left:4px solid var(--blue);background:var(--bluebg);border-radius:5px;margin:.8rem 0}.warn{border-left-color:#bb7a00;background:var(--amber)}.danger{border-left-color:#c33;background:var(--red)}.success{border-left-color:#18834b;background:var(--green)}table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.94rem}th,td{border:1px solid var(--line);padding:.6rem;text-align:left;vertical-align:top}th{background:#edf2f8}.table-wrap{overflow-x:auto}pre{position:relative;overflow:auto;background:var(--code);color:#e9f1fb;padding:1rem;border-radius:9px;line-height:1.5;font-size:.9rem;white-space:pre;tab-size:2}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code,td code{background:#edf1f6;padding:.12rem .3rem;border-radius:4px;color:#20344b}.copy{position:absolute;right:.5rem;top:.5rem;background:#fff;color:#102b49;border:0;border-radius:5px;padding:.3rem .55rem;cursor:pointer;font-weight:700}.pill{display:inline-block;border:1px solid #c9d8e9;background:#f2f7fc;padding:.1rem .5rem;border-radius:999px;font-size:.82rem;margin:.1rem}.muted{color:var(--muted)}.small{font-size:.9rem}.diagram{width:100%;height:auto;display:block;background:#f8fbff;border:1px solid var(--line);border-radius:10px;margin:.7rem 0}.exercise{border:1px solid var(--line);border-radius:10px;padding:1rem;margin:1rem 0}.question{border-top:1px solid var(--line);padding:.65rem 0}.question summary{cursor:pointer;font-weight:700}.answer{background:#f7f9fc;padding:.6rem;border-radius:6px;margin-top:.45rem}.searchbox{width:100%;padding:.7rem;border:1px solid #aebdce;border-radius:7px;font:inherit;margin:.5rem 0 1rem}.toplink{display:inline-block;margin:.7rem 0}footer{text-align:center;padding:2rem 1rem;color:var(--muted)}
+@media(max-width:650px){.wrap{padding:.65rem}nav#toc ol{columns:1}section,nav#toc{padding:1rem}table{font-size:.85rem}}
+@media print{body{background:#fff;font-size:10pt;color:#000}header{background:#fff;color:#000;border-bottom:2px solid #333;padding:1rem}header p,header .brand{color:#333}.wrap{max-width:none;padding:0}section,nav#toc{box-shadow:none;border:1px solid #aaa;break-inside:avoid;margin:.5rem 0;padding:.7rem}.copy,.searchbox,.toplink{display:none}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f4f4;color:#000;border:1px solid #aaa;padding:.5rem}details:not([open])>*:not(summary){display:block}h2,h3{break-after:avoid}footer{padding:.5rem}}
+</style>
+</head>
+<body id="top">
+<header><div class="brand">NIMBUSWIZTECH · STUDENT LEARNING REFERENCE</div>
+<h1>Kubernetes Pod Lifecycle</h1>
+<p>Understand how Pods are created, scheduled, initialized, run, become ready, restart, terminate, and reach terminal states. Includes practical labs, probes, lifecycle hooks, troubleshooting and interview preparation.</p>
+<p><span class="pill">Beginner-friendly</span> <span class="pill">Hands-on</span> <span class="pill">Troubleshooting</span> <span class="pill">Interview prep</span></p></header>
+<main class="wrap">
+<nav id="toc"><h2>Contents</h2><ol>
+<li><a href="#intro">Introduction</a></li><li><a href="#concepts">Core concepts</a></li><li><a href="#architecture">Lifecycle architecture and workflow</a></li><li><a href="#environment">Environment preparation</a></li><li><a href="#lab">Step-by-step hands-on lab</a></li><li><a href="#complete">Complete practical example</a></li><li><a href="#trouble">Troubleshooting</a></li><li><a href="#best">Best practices</a></li><li><a href="#interview">Interview preparation</a></li><li><a href="#assignments">Practice assignments</a></li><li><a href="#revision">Quick revision</a></li><li><a href="#cleanup">Cleanup</a></li><li><a href="#references">References</a></li></ol></nav>
+
+<section id="intro"><h2>1. Introduction</h2>
+<p>The <strong>Pod lifecycle</strong> describes the major stages a Kubernetes Pod passes through from creation until it finishes or is deleted. Kubernetes tracks a Pod's high-level <em>phase</em>, detailed <em>conditions</em>, and each container's state. The kubelet on the assigned node works with the container runtime to start and supervise containers and execute health probes.</p>
+<div class="grid"><div class="card"><h3>Why it matters</h3><p>Lifecycle knowledge helps engineers understand Pending Pods, image-pull failures, initialization delays, CrashLoopBackOff, readiness problems, graceful shutdown, and why a replacement Pod is not the same Pod instance.</p></div><div class="card"><h3>Analogy</h3><p>A Pod is like a temporary work assignment: it is requested, assigned to a workstation, prepared, starts work, becomes available, and eventually finishes or is retired. If the worker is replaced, it is a new assignment even if the label looks the same.</p></div><div class="card"><h3>DevOps example</h3><p>A web Deployment creates a Pod. The scheduler selects a node, the kubelet prepares networking and storage, the runtime starts the container, readiness determines whether it receives Service traffic, and termination hooks allow it to stop cleanly during a rollout.</p></div></div>
+<h3>Learning objectives</h3><ul><li>Differentiate Pod phase, Pod conditions, container states, and kubectl display status.</li><li>Explain Pending, Running, Succeeded, Failed, and Unknown.</li><li>Understand scheduling, init containers, probes, restart policies, lifecycle hooks, and graceful termination.</li><li>Use kubectl to inspect events, conditions, container restarts, and termination reasons.</li><li>Build and troubleshoot a small Pod and Deployment safely.</li></ul>
+<div class="callout warn"><strong>Important:</strong> A Pod phase is not a complete state machine. Values such as <code>CrashLoopBackOff</code> and <code>Terminating</code> often appear in the kubectl <code>STATUS</code> column, but they are not Pod phase values.</div></section>
+
+<section id="concepts"><h2>2. Core concepts and terminology</h2>
+<h3>Pod phase</h3><div class="table-wrap"><table><tr><th>Phase</th><th>Meaning</th><th>Typical investigation</th></tr>
+<tr><td><code>Pending</code></td><td>Pod is accepted, but one or more containers are not set up to run. Includes waiting for scheduling and image downloads.</td><td><code>kubectl describe pod</code>; inspect Events, scheduling, volumes and image pulls.</td></tr>
+<tr><td><code>Running</code></td><td>Pod is bound to a node and all containers have been created; at least one container is running or starting/restarting.</td><td>Check Ready condition, container state, probes and logs. Running does not guarantee traffic readiness.</td></tr>
+<tr><td><code>Succeeded</code></td><td>All containers terminated successfully and will not be restarted.</td><td>Normal for completed Jobs or one-shot tasks.</td></tr>
+<tr><td><code>Failed</code></td><td>All containers have terminated and at least one failed.</td><td>Inspect exit code, termination reason and logs.</td></tr>
+<tr><td><code>Unknown</code></td><td>Cluster cannot determine Pod state, often because communication with its node is unavailable.</td><td>Inspect node health and control-plane/node connectivity.</td></tr></table></div>
+<p><strong>Remember:</strong> Pod phase is a small, defined set. <code>CrashLoopBackOff</code>, <code>ImagePullBackOff</code>, and <code>Terminating</code> are commonly displayed status descriptions, not additional phases.</p>
+<h3>Container states</h3><table><tr><th>State</th><th>Meaning</th><th>Example</th></tr><tr><td><code>Waiting</code></td><td>Container is not yet running; it may be pulling an image or waiting after failure.</td><td><code>ImagePullBackOff</code>, <code>CrashLoopBackOff</code>.</td></tr><tr><td><code>Running</code></td><td>Container process is executing.</td><td>Long-running NGINX process.</td></tr><tr><td><code>Terminated</code></td><td>Container process has finished or was stopped; status includes exit code and reason.</td><td>Exit code 0 for success, non-zero often indicates failure.</td></tr></table>
+<h3>Pod conditions</h3><p>Conditions are Boolean-like checkpoints whose status is True, False, or Unknown. Common conditions include:</p>
+<ul><li><code>PodScheduled</code>: a node has been selected.</li><li><code>PodReadyToStartContainers</code>: where supported, the Pod sandbox/network setup is ready. Availability depends on Kubernetes version; do not require this condition on every older cluster.</li><li><code>Initialized</code>: init containers have completed successfully; Pods without init containers may satisfy this early.</li><li><code>ContainersReady</code>: all containers are ready.</li><li><code>Ready</code>: Pod can receive traffic from matching Services, subject to any readiness gates.</li></ul>
+<h3>Pod lifecycle versus container lifecycle</h3><table><tr><th>Pod lifecycle</th><th>Container lifecycle</th></tr><tr><td>Tracks the Pod object and high-level phase/conditions.</td><td>Tracks each container's Waiting, Running or Terminated state.</td></tr><tr><td>Pod is scheduled only once in its lifetime.</td><td>A container in the same Pod may be restarted depending on restart policy.</td></tr><tr><td>A replacement Pod has a new UID and may run on another node.</td><td>A container restart does not necessarily create a new Pod object.</td></tr></table>
+<h3>Restart policy</h3><p><code>spec.restartPolicy</code> supports <code>Always</code>, <code>OnFailure</code>, and <code>Never</code>. For Pods managed by a Deployment, restart policy must be <code>Always</code>. Jobs commonly use <code>OnFailure</code> or <code>Never</code>. Restart policy controls container restart behavior within the Pod; it does not make a standalone Pod durable or recreate a deleted Pod.</p>
+<h3>Init containers and sidecars</h3><p><strong>Init containers</strong> run to completion before application containers start and are useful for setup tasks or waiting for a prerequisite. A failing init container is retried according to the Pod restart policy. Regular sidecar containers run alongside application containers; specialized native sidecar behavior is version-dependent, so this guide uses ordinary init containers for the beginner lab.</p>
+<h3>Probes</h3><table><tr><th>Probe</th><th>Question it answers</th><th>Failure effect</th></tr><tr><td>Startup</td><td>Has the application completed startup?</td><td>After its failure threshold, container is killed and restarted according to policy; liveness/readiness checks are held until startup succeeds.</td></tr><tr><td>Liveness</td><td>Should this container be restarted?</td><td>Repeated failure causes kubelet to restart the container.</td></tr><tr><td>Readiness</td><td>Should this Pod receive traffic?</td><td>Pod becomes not Ready and is removed from matching Service endpoint traffic.</td></tr></table>
+<div class="callout"><strong>Probe rule:</strong> Readiness failure does not itself restart a container. Liveness failure can. Use startup probes for applications that legitimately take a long time to initialize.</div>
+<h3>Graceful termination and lifecycle hooks</h3><p>When a Pod is deleted, Kubernetes normally marks it for termination, runs applicable <code>preStop</code> hooks, sends the container's configured stop signal (commonly SIGTERM), waits for the grace period, then forcefully kills remaining processes if needed. The default termination grace period is 30 seconds. Hook execution consumes time from that grace period. Applications should stop accepting new work, finish or safely abandon in-flight requests, and exit promptly.</p>
+<h3>Controllers and Pod replacement</h3><p>Pods are ephemeral. A Deployment manages ReplicaSets, and a ReplicaSet creates replacement Pods to maintain the desired count. Kubernetes does not move the same Pod UID to another node. A replacement may have a similar name/labels but a new UID.</p>
+</section>
+
+<section id="architecture"><h2>3. Lifecycle architecture and workflow</h2>
+<svg class="diagram" viewBox="0 0 920 500" role="img" aria-label="Lifecycle flow from API acceptance and scheduling to node preparation, container start, readiness, running and termination">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3z" fill="#456789"/></marker></defs>
+<rect x="290" y="18" width="340" height="54" rx="10" fill="#eaf3ff" stroke="#4d80bd"/><text x="460" y="40" text-anchor="middle" font-size="16" font-weight="bold" fill="#183b62">Pod manifest submitted</text><text x="460" y="59" text-anchor="middle" font-size="12" fill="#183b62">API server validates and stores object</text>
+<path d="M460 72 V105" stroke="#456789" stroke-width="2" marker-end="url(#a)"/>
+<rect x="290" y="110" width="340" height="54" rx="10" fill="#fff4d8" stroke="#c89b3c"/><text x="460" y="132" text-anchor="middle" font-size="16" font-weight="bold" fill="#704d00">Pending</text><text x="460" y="151" text-anchor="middle" font-size="12" fill="#704d00">Scheduling, image pull, volume/network setup</text>
+<path d="M460 164 V197" stroke="#456789" stroke-width="2" marker-end="url(#a)"/>
+<rect x="290" y="202" width="340" height="54" rx="10" fill="#eaf8ef" stroke="#4c9a70"/><text x="460" y="224" text-anchor="middle" font-size="16" font-weight="bold" fill="#155d38">Init containers complete</text><text x="460" y="243" text-anchor="middle" font-size="12" fill="#155d38">Then application containers can start</text>
+<path d="M460 256 V289" stroke="#456789" stroke-width="2" marker-end="url(#a)"/>
+<rect x="290" y="294" width="340" height="54" rx="10" fill="#eaf3ff" stroke="#4d80bd"/><text x="460" y="316" text-anchor="middle" font-size="16" font-weight="bold" fill="#183b62">Running</text><text x="460" y="335" text-anchor="middle" font-size="12" fill="#183b62">Container process exists; probe/condition state varies</text>
+<path d="M460 348 V380" stroke="#456789" stroke-width="2" marker-end="url(#a)"/>
+<rect x="290" y="385" width="340" height="48" rx="10" fill="#e8f7ef" stroke="#4c9a70"/><text x="460" y="414" text-anchor="middle" font-size="16" font-weight="bold" fill="#155d38">Ready (if health checks pass)</text>
+<path d="M630 318 H735 V410 H640" stroke="#456789" stroke-width="2" fill="none" marker-end="url(#a)"/><text x="745" y="355" font-size="12" fill="#536273">Not ready /</text><text x="745" y="371" font-size="12" fill="#536273">probe fails</text>
+<rect x="28" y="294" width="205" height="74" rx="10" fill="#fff0ef" stroke="#c66"/><text x="130" y="318" text-anchor="middle" font-size="15" font-weight="bold" fill="#8c2525">Container failure</text><text x="130" y="338" text-anchor="middle" font-size="12" fill="#8c2525">Restart policy / backoff</text><text x="130" y="354" text-anchor="middle" font-size="12" fill="#8c2525">or Pod terminal state</text>
+<path d="M290 320 H238" stroke="#456789" stroke-width="2" marker-end="url(#a)"/><path d="M130 294 V135 H285" stroke="#456789" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="290" y="450" width="340" height="38" rx="10" fill="#f0eaff" stroke="#8d73c7"/><text x="460" y="474" text-anchor="middle" font-size="15" font-weight="bold" fill="#39256e">Deletion → graceful termination → removed</text>
+<path d="M460 433 V445" stroke="#456789" stroke-width="2" marker-end="url(#a)"/>
+</svg>
+<p class="muted small">Conceptual overview only. Actual status transitions are asynchronous, and not every Pod follows a single straight line. A Pod may never become Ready, may restart containers, or may terminate before readiness.</p>
+<ol><li>Client submits a Pod manifest to the API server.</li><li>The scheduler binds the Pod to a node; an unscheduled Pod may remain Pending.</li><li>The kubelet prepares the Pod sandbox, networking, volumes and init containers as applicable.</li><li>The container runtime pulls images as needed and starts containers.</li><li>Probes and conditions determine whether the Pod is Ready to receive traffic.</li><li>If a container exits, restart policy and probe behavior influence what happens next.</li><li>On deletion, Kubernetes attempts graceful shutdown within the termination grace period.</li></ol>
+</section>
+
+<section id="environment"><h2>4. Environment preparation</h2>
+<p>Use an authorized Kubernetes cluster, Minikube, or kind. This lab does not require EKS or a cloud load balancer. It does need a cluster that can pull the public <code>nginx</code> image. On cloud clusters, worker nodes and image/network traffic may incur cost.</p>
+<pre><code>kubectl version --client
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+kubectl config current-context</code></pre>
+<ul><li><code>kubectl version --client</code>: checks the client installation.</li><li><code>kubectl cluster-info</code>: checks API endpoint connectivity.</li><li><code>kubectl get nodes</code>: confirms nodes are registered; check for Ready status.</li><li><code>kubectl get namespaces</code>: shows available namespaces.</li><li><code>kubectl config current-context</code>: confirms which cluster/context receives commands.</li></ul>
+<p>Optional local cluster example, assuming Minikube and its required runtime/driver are installed:</p><pre><code>minikube start
+kubectl config current-context
+kubectl get nodes</code></pre>
+<pre><code>mkdir -p kubernetes-pod-lifecycle
+cd kubernetes-pod-lifecycle
+kubectl create namespace nimbus-pod-lifecycle</code></pre>
+<div class="callout warn">If the namespace already exists, inspect it and confirm it is yours before continuing. Do not use broad deletion commands on a shared cluster. If an operation is Forbidden, ask the cluster administrator for the appropriate least-privilege access.</div>
+</section>
+
+<section id="lab"><h2>5. Step-by-step hands-on practice</h2>
+<div class="exercise"><h3>Exercise 1: Observe a Pod's basic lifecycle</h3>
+<p><strong>Objective:</strong> Create a long-running Pod and inspect its phase and conditions.</p><p><strong>Manifest:</strong> save as <code>pod-basic.yaml</code>.</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-web
+  namespace: nimbus-pod-lifecycle
+  labels:
+    app: lifecycle-web
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.27
+    ports:
+    - name: http
+      containerPort: 80</code></pre>
+<p><strong>Execute and verify:</strong></p><pre><code>kubectl apply -f pod-basic.yaml
+kubectl get pod lifecycle-web -n nimbus-pod-lifecycle -w
+kubectl get pod lifecycle-web -n nimbus-pod-lifecycle -o wide
+kubectl describe pod lifecycle-web -n nimbus-pod-lifecycle
+kubectl get pod lifecycle-web -n nimbus-pod-lifecycle -o yaml</code></pre>
+<p><strong>Explanation:</strong> <code>apiVersion: v1</code> is the core Pod API. Metadata identifies the Pod and labels it. The container uses an NGINX image. <code>-w</code> watches updates; <code>-o yaml</code> reveals phase, conditions and container status.</p>
+<p><strong>Expected result:</strong> A typical healthy Pod eventually shows <code>Running</code> and <code>Ready=True</code>. The exact transition timing and condition fields depend on cluster version.</p>
+<p><strong>Troubleshooting:</strong> If Pending, inspect Events. If image pull fails, verify the image reference and registry access. If Running but not Ready, inspect readiness configuration and container status.</p><p><strong>Interview connection:</strong> Does Running mean Ready? No. A running process may still fail a readiness probe or readiness gate.</p></div>
+
+<div class="exercise"><h3>Exercise 2: Observe a Pod reach Succeeded</h3>
+<p><strong>Objective:</strong> Understand a finite task that exits successfully.</p><p>Save as <code>pod-success.yaml</code>:</p><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-success
+  namespace: nimbus-pod-lifecycle
+spec:
+  restartPolicy: Never
+  containers:
+  - name: task
+    image: busybox:1.36
+    command: ["sh", "-c", "echo Task started; sleep 2; echo Task completed; exit 0"]</code></pre>
+<pre><code>kubectl apply -f pod-success.yaml
+kubectl get pod lifecycle-success -n nimbus-pod-lifecycle -w
+kubectl logs lifecycle-success -n nimbus-pod-lifecycle
+kubectl get pod lifecycle-success -n nimbus-pod-lifecycle -o yaml</code></pre>
+<p><strong>Expected result:</strong> After the command exits with code 0, the Pod typically reaches <code>Succeeded</code>. The <code>Never</code> restart policy means the container is not restarted by kubelet.</p>
+<p><strong>Troubleshooting:</strong> If image pull fails, inspect Pod events. If the Pod is Failed, inspect logs and <code>status.containerStatuses[].state.terminated</code>.</p><p><strong>Interview connection:</strong> Succeeded is normal for one-shot tasks and Jobs; it is not the expected long-running state for a web server.</p></div>
+
+<div class="exercise"><h3>Exercise 3: Observe failure and restart behavior</h3>
+<p><strong>Objective:</strong> Learn how a container that exits repeatedly behaves under restart policy Always.</p><p>Save as <code>pod-restart.yaml</code>:</p><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-restart
+  namespace: nimbus-pod-lifecycle
+spec:
+  restartPolicy: Always
+  containers:
+  - name: loop
+    image: busybox:1.36
+    command: ["sh", "-c", "echo starting; exit 1"]</code></pre>
+<pre><code>kubectl apply -f pod-restart.yaml
+kubectl get pod lifecycle-restart -n nimbus-pod-lifecycle -w
+kubectl describe pod lifecycle-restart -n nimbus-pod-lifecycle
+kubectl logs lifecycle-restart -n nimbus-pod-lifecycle
+kubectl logs lifecycle-restart -n nimbus-pod-lifecycle --previous</code></pre>
+<p><strong>Expected result:</strong> The container exits non-zero and kubelet attempts to restart it. Repeated rapid failures commonly lead to a displayed <code>CrashLoopBackOff</code> while restart attempts are delayed with backoff. The Pod phase may still be Running because the container is being restarted.</p>
+<p><strong>Explanation:</strong> <code>--previous</code> reads logs from the previous terminated container instance. It is often more useful than current logs when a process exits immediately.</p>
+<p><strong>Troubleshooting:</strong> Inspect the command, exit code, previous logs, and Events. A restart loop is a symptom, not the root cause.</p></div>
+
+<div class="exercise"><h3>Exercise 4: Inspect init-container ordering</h3>
+<p><strong>Objective:</strong> See that application containers wait for successful init-container completion.</p><p>Save as <code>pod-init.yaml</code>:</p><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-init
+  namespace: nimbus-pod-lifecycle
+spec:
+  initContainers:
+  - name: setup
+    image: busybox:1.36
+    command: ["sh", "-c", "echo setup-start; sleep 3; echo setup-complete"]
+  containers:
+  - name: app
+    image: nginx:1.27
+    ports:
+    - containerPort: 80</code></pre>
+<pre><code>kubectl apply -f pod-init.yaml
+kubectl get pod lifecycle-init -n nimbus-pod-lifecycle -w
+kubectl describe pod lifecycle-init -n nimbus-pod-lifecycle
+kubectl logs lifecycle-init -n nimbus-pod-lifecycle -c setup
+kubectl logs lifecycle-init -n nimbus-pod-lifecycle -c app</code></pre>
+<p><strong>Expected result:</strong> The init container completes first; then the NGINX application container starts. <code>Initialized</code> becomes True after all init containers complete.</p><p><strong>Troubleshooting:</strong> If the app never starts, check init-container logs and events. An init container that never exits successfully blocks app container startup.</p></div>
+
+<div class="exercise"><h3>Exercise 5: Observe readiness and liveness probes</h3>
+<p><strong>Objective:</strong> Distinguish readiness from liveness in a running workload.</p><p>Save as <code>deployment-probes.yaml</code>:</p><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lifecycle-probes
+  namespace: nimbus-pod-lifecycle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lifecycle-probes
+  template:
+    metadata:
+      labels:
+        app: lifecycle-probes
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        startupProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 2
+          failureThreshold: 15
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 5
+          failureThreshold: 2
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 10
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi</code></pre>
+<pre><code>kubectl apply -f deployment-probes.yaml
+kubectl rollout status deployment/lifecycle-probes -n nimbus-pod-lifecycle
+kubectl get pods -n nimbus-pod-lifecycle
+kubectl describe pod -l app=lifecycle-probes -n nimbus-pod-lifecycle</code></pre>
+<p><strong>Explanation:</strong> HTTP GET checks path <code>/</code> on the named port <code>http</code>. Startup probe allows time for initialization; readiness decides traffic eligibility; liveness decides whether to restart an unhealthy container. The example endpoint suits NGINX; do not copy this path blindly for another application.</p>
+<p><strong>Expected result:</strong> Pod eventually becomes Ready if NGINX starts normally. Do not intentionally break liveness on a shared or production cluster.</p><p><strong>Troubleshooting:</strong> Probe failures appear in Events. Verify path, port, response code, startup delay and application startup time.</p></div>
+
+<div class="exercise"><h3>Exercise 6: Watch graceful termination</h3>
+<p><strong>Objective:</strong> Understand termination grace period and a preStop hook.</p><p>Save as <code>pod-termination.yaml</code>:</p><pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-termination
+  namespace: nimbus-pod-lifecycle
+spec:
+  terminationGracePeriodSeconds: 20
+  containers:
+  - name: web
+    image: nginx:1.27
+    lifecycle:
+      preStop:
+        exec:
+          command: ["/bin/sh", "-c", "echo preStop hook started; sleep 5"]
+    ports:
+    - containerPort: 80</code></pre>
+<pre><code>kubectl apply -f pod-termination.yaml
+kubectl wait --for=condition=Ready pod/lifecycle-termination -n nimbus-pod-lifecycle --timeout=120s
+kubectl delete pod lifecycle-termination -n nimbus-pod-lifecycle
+kubectl get pod lifecycle-termination -n nimbus-pod-lifecycle</code></pre>
+<p><strong>Expected result:</strong> Deletion is requested; the Pod normally disappears after the hook and shutdown sequence. Once deleted, the Pod cannot be inspected with describe; use events or a separate observation terminal if desired.</p><p><strong>Important:</strong> The preStop hook runs during termination and consumes part of the grace period. Do not rely on logs remaining available after the Pod object is removed.</p></div>
+
+<div class="exercise"><h3>Exercise 7: Compare a standalone Pod with a Deployment-managed Pod</h3>
+<p><strong>Objective:</strong> Prove that controllers replace Pods but a standalone Pod is not automatically recreated when deleted.</p>
+<pre><code>kubectl delete pod lifecycle-web -n nimbus-pod-lifecycle
+kubectl get pod lifecycle-web -n nimbus-pod-lifecycle
+
+kubectl get pods -n nimbus-pod-lifecycle -l app=lifecycle-probes
+kubectl delete pod -l app=lifecycle-probes -n nimbus-pod-lifecycle
+kubectl get pods -n nimbus-pod-lifecycle -l app=lifecycle-probes</code></pre>
+<p><strong>Expected result:</strong> The standalone Pod is not recreated by a controller. The Deployment's ReplicaSet should create a replacement Pod to maintain one replica.</p><p><strong>Troubleshooting:</strong> If the replacement does not become Ready, inspect Deployment, ReplicaSet and Pod events; controller replacement does not guarantee successful startup.</p></div>
+</section>
+
+<section id="complete"><h2>6. Complete practical example: lifecycle-aware web workload</h2>
+<h3>Requirement</h3><p>Run one NGINX replica with a startup probe, readiness probe, liveness probe and resource settings. Observe rollout readiness, inspect conditions, and observe how a Deployment replaces a deleted Pod.</p>
+<h3>Save as <code>pod-lifecycle-complete.yaml</code></h3>
+<pre><code>apiVersion: v1
+kind: Namespace
+metadata:
+  name: nimbus-pod-lifecycle
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lifecycle-web
+  namespace: nimbus-pod-lifecycle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lifecycle-web
+  template:
+    metadata:
+      labels:
+        app: lifecycle-web
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        startupProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 2
+          failureThreshold: 15
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 5
+          failureThreshold: 2
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 10
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lifecycle-web
+  namespace: nimbus-pod-lifecycle
+spec:
+  type: ClusterIP
+  selector:
+    app: lifecycle-web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre>
+<h3>Apply and validate</h3><pre><code>kubectl apply -f pod-lifecycle-complete.yaml
+kubectl rollout status deployment/lifecycle-web -n nimbus-pod-lifecycle --timeout=180s
+kubectl get deployment,replicaset,pods,service -n nimbus-pod-lifecycle
+kubectl get pods -n nimbus-pod-lifecycle -l app=lifecycle-web -o yaml
+kubectl get endpointslices -n nimbus-pod-lifecycle
+kubectl describe deployment lifecycle-web -n nimbus-pod-lifecycle</code></pre>
+<p>Test traffic from a temporary in-cluster client if registry access is available:</p><pre><code>kubectl run curl-check --image=curlimages/curl:8.10.1 --restart=Never -n nimbus-pod-lifecycle --command -- sh -c 'sleep 3600'
+kubectl wait --for=condition=Ready pod/curl-check -n nimbus-pod-lifecycle --timeout=120s
+kubectl exec curl-check -n nimbus-pod-lifecycle -- curl -I --max-time 5 http://lifecycle-web</code></pre>
+<h3>Observe replacement and rollout</h3><pre><code>kubectl get pods -n nimbus-pod-lifecycle -l app=lifecycle-web -w
+# In another terminal, list the Pod name:
+kubectl get pods -n nimbus-pod-lifecycle -l app=lifecycle-web
+# Replace POD_NAME with the actual Pod name shown above:
+kubectl delete pod POD_NAME -n nimbus-pod-lifecycle
+kubectl rollout status deployment/lifecycle-web -n nimbus-pod-lifecycle
+kubectl get pods -n nimbus-pod-lifecycle -l app=lifecycle-web -o wide</code></pre>
+<p><strong>Placeholder:</strong> Replace <code>POD_NAME</code> with the actual Pod name printed by the preceding command; do not type the placeholder literally.</p>
+<h3>How the components work together</h3><ol><li>The Deployment declares one desired replica and creates a ReplicaSet.</li><li>The ReplicaSet creates a Pod with the declared template.</li><li>The kubelet starts the NGINX container; startup probe gates the other probes until startup succeeds.</li><li>Readiness success makes the Pod eligible for Service traffic.</li><li>If the Pod is deleted, the ReplicaSet creates a new Pod with a different UID.</li><li>The Service keeps a stable in-cluster name while its endpoint set changes.</li></ol>
+<h3>Common failures</h3><ul><li>Pending: inspect scheduling events, resource requests, node taints and volume setup.</li><li>ImagePullBackOff: inspect image reference and registry access.</li><li>Probe failures: confirm NGINX actually responds on <code>/</code> at port 80.</li><li>No endpoints: compare Service selector with Pod labels and check Pod Ready condition.</li><li>Restart loop: inspect current and previous logs plus termination reason.</li></ul>
+<p><strong>Cleanup:</strong> after confirming the namespace contains only your lab resources, use the scoped cleanup in Section 12 or delete the dedicated lab namespace.</p>
+</section>
+
+<section id="trouble"><h2>7. Troubleshooting guide</h2>
+<div class="table-wrap"><table><tr><th>Symptom</th><th>Possible causes</th><th>Diagnostic command</th><th>Resolution approach</th></tr>
+<tr><td>Pending for a long time</td><td>No suitable node, insufficient resources, taints, PVC or scheduling constraints.</td><td><code>kubectl describe pod POD -n nimbus-pod-lifecycle</code></td><td>Read Events and scheduler messages; fix the evidenced constraint or capacity issue.</td></tr>
+<tr><td>ImagePullBackOff</td><td>Bad image/tag, registry outage/rate limit, missing credentials.</td><td><code>kubectl describe pod POD -n nimbus-pod-lifecycle</code></td><td>Correct image reference and verify registry access/credentials.</td></tr>
+<tr><td>CrashLoopBackOff</td><td>Application exits, bad command/config, missing dependency, liveness probe failures.</td><td><code>kubectl logs POD -n nimbus-pod-lifecycle --previous</code><br><code>kubectl describe pod POD -n nimbus-pod-lifecycle</code></td><td>Inspect exit code, previous logs and events; correct root cause instead of merely increasing delays.</td></tr>
+<tr><td>Running but 0/1 Ready</td><td>Readiness probe failure, container not ready, readiness gate false.</td><td><code>kubectl describe pod POD -n nimbus-pod-lifecycle</code></td><td>Inspect Ready/ContainersReady conditions and probe Events; verify app path and port.</td></tr>
+<tr><td>Init container not completing</td><td>Init command stuck/failing, dependency unavailable, image pull error.</td><td><code>kubectl logs POD -c INIT_NAME -n nimbus-pod-lifecycle</code></td><td>Replace INIT_NAME with actual init-container name; correct command or prerequisite.</td></tr>
+<tr><td>Unexpected restarts</td><td>Process exits, OOMKilled, liveness failures, node disruption.</td><td><code>kubectl get pod POD -n nimbus-pod-lifecycle -o yaml</code></td><td>Inspect restart count, lastState.terminated reason/exit code, events and metrics if available.</td></tr>
+<tr><td>Pod stays Terminating</td><td>Long preStop hook, app not exiting, finalizer, node unreachable.</td><td><code>kubectl describe pod POD -n nimbus-pod-lifecycle</code></td><td>Inspect grace period, hooks, finalizers and node health. Avoid force deletion unless the operational consequences are understood.</td></tr>
+<tr><td>Pod phase Unknown</td><td>API server cannot determine state, often node connectivity problem.</td><td><code>kubectl get nodes</code><br><code>kubectl describe node NODE_NAME</code></td><td>Investigate node and kubelet connectivity with the platform team.</td></tr>
+<tr><td>Pod succeeds but expected service is absent</td><td>Finite command exited; a one-shot Pod is not a long-running server.</td><td><code>kubectl logs POD -n nimbus-pod-lifecycle</code></td><td>Use a Deployment for a long-running app or a Job for finite work.</td></tr>
+<tr><td>Forbidden</td><td>Current identity lacks RBAC permission.</td><td><code>kubectl auth can-i get pods -n nimbus-pod-lifecycle</code></td><td>Request authorized least-privilege access; do not bypass controls.</td></tr></table></div>
+<p>Useful diagnostic commands (replace placeholders with actual names):</p><pre><code>kubectl get pods -n nimbus-pod-lifecycle -o wide
+kubectl describe pod POD_NAME -n nimbus-pod-lifecycle
+kubectl get events -n nimbus-pod-lifecycle --sort-by=.metadata.creationTimestamp
+kubectl logs POD_NAME -n nimbus-pod-lifecycle
+kubectl logs POD_NAME -n nimbus-pod-lifecycle --previous
+kubectl get pod POD_NAME -n nimbus-pod-lifecycle -o yaml
+kubectl get deployment,replicaset,pods -n nimbus-pod-lifecycle</code></pre>
+</section>
+
+<section id="best"><h2>8. Best practices</h2><ul>
+<li><strong>Use a controller for durable workloads.</strong> Deployments replace deleted or failed Pods; a standalone Pod does not have a controller to recreate it.</li>
+<li><strong>Set realistic resource requests and limits.</strong> Scheduling and OOM behavior depend on them. Avoid arbitrary production values without measurements.</li>
+<li><strong>Choose probes for the actual application.</strong> Readiness controls traffic eligibility, liveness detects conditions that warrant restart, and startup protects slow initialization.</li>
+<li><strong>Avoid overly aggressive liveness checks.</strong> A transient slowdown can cause restart loops. Tune initial delay, period, timeout and failure threshold from observed startup/response behavior.</li>
+<li><strong>Implement graceful shutdown.</strong> Ensure the process handles its stop signal, stops taking new work, and drains in-flight requests within the grace period.</li>
+<li><strong>Keep init containers finite and observable.</strong> Log progress, use bounded retry/backoff in scripts, and avoid waiting forever without a clear failure signal.</li>
+<li><strong>Use namespaces and labels consistently.</strong> They improve resource discovery and safe operational targeting; namespaces alone are not complete security boundaries.</li>
+<li><strong>Inspect evidence before changing settings.</strong> Use events, current/previous logs, termination reasons, conditions and metrics to distinguish image, scheduling, app, probe and node failures.</li>
+<li><strong>Plan rollout capacity.</strong> Rolling updates may temporarily require extra capacity. Check availability and rollout status before declaring success.</li>
+<li><strong>Protect sensitive data.</strong> Do not put credentials in command history, logs, images or manifests committed to source control.</li>
+<li><strong>Test termination behavior.</strong> Validate preStop hooks, signal handling, and grace-period assumptions in a non-production environment before relying on them.</li>
+</ul></section>
+
+<section id="interview"><h2>9. Interview preparation</h2><p>Search the questions and expand each answer to self-test.</p><input class="searchbox" id="qsearch" type="search" placeholder="Filter questions: phase, probe, restart, termination…" aria-label="Filter interview questions">
+<div id="questions"><h3>Level 1 — Basic questions</h3>
+<div class="question"><details><summary>1. What is the Pod lifecycle?</summary><div class="answer">The stages and state changes a Pod experiences from creation through running, completion, failure or deletion, tracked through phase, conditions and container states.</div></details></div>
+<div class="question"><details><summary>2. What are the official Pod phases?</summary><div class="answer">Pending, Running, Succeeded, Failed and Unknown. Do not treat CrashLoopBackOff or Terminating as phases.</div></details></div>
+<div class="question"><details><summary>3. What does Pending mean?</summary><div class="answer">The Pod has been accepted but one or more containers are not set up to run. It can include scheduling, image downloads, or preparation work. Inspect Pod Events to distinguish causes.</div></details></div>
+<div class="question"><details><summary>4. Does Running mean Ready?</summary><div class="answer">No. Running describes container creation and execution state at a high level. Readiness probes and readiness gates determine whether the Pod is considered ready to serve traffic.</div></details></div>
+<div class="question"><details><summary>5. What is Succeeded?</summary><div class="answer">All containers terminated successfully and will not be restarted. It is expected for finite tasks such as Jobs.</div></details></div>
+<div class="question"><details><summary>6. What is CrashLoopBackOff?</summary><div class="answer">A displayed status indicating repeated container start/failure cycles with backoff between restart attempts. It is not a Pod phase. Inspect previous logs, exit reason and events.</div></details></div>
+<div class="question"><details><summary>7. What is the difference between Pod and container state?</summary><div class="answer">Pod phase summarizes the Pod at a high level; each container separately has Waiting, Running or Terminated state and associated details.</div></details></div>
+<div class="question"><details><summary>8. What does a readiness probe do?</summary><div class="answer">It determines whether a container/Pod should receive traffic. Failure makes the Pod not Ready; it does not directly restart the container.</div></details></div>
+<div class="question"><details><summary>9. What does a liveness probe do?</summary><div class="answer">It detects when a container should be restarted. Repeated liveness probe failures cause kubelet to restart the container.</div></details></div>
+<div class="question"><details><summary>10. What is a startup probe?</summary><div class="answer">It checks whether an application has completed startup and delays liveness/readiness checks until it succeeds, helping slow-starting applications.</div></details></div>
+<div class="question"><details><summary>11. What are init containers?</summary><div class="answer">Containers that run to completion before application containers start. They are useful for setup and prerequisite checks.</div></details></div>
+<div class="question"><details><summary>12. What is the default termination grace period?</summary><div class="answer">Normally 30 seconds unless configured otherwise. Kubernetes uses this time for graceful shutdown before forcefully killing remaining processes.</div></details></div>
+<h3>Level 2 — Intermediate questions</h3>
+<div class="question"><details><summary>13. Why is Pod phase not a complete state machine?</summary><div class="answer">It is a high-level summary only. Conditions, container states, restart counts, events and reasons provide more detail; do not infer all behavior from phase alone.</div></details></div>
+<div class="question"><details><summary>14. What is the difference between restartPolicy Always and a Deployment?</summary><div class="answer">Restart policy controls restarting containers inside a Pod. A Deployment/ReplicaSet controls Pod replicas and replacement of Pod objects. Restart policy alone does not recreate a deleted standalone Pod.</div></details></div>
+<div class="question"><details><summary>15. What happens when a Deployment-managed Pod is deleted?</summary><div class="answer">Its ReplicaSet normally creates a replacement to meet desired replicas. The replacement has a new UID and may be scheduled on a different node.</div></details></div>
+<div class="question"><details><summary>16. How do you investigate a restart loop?</summary><div class="answer">Run describe for Events and termination reason, check current and previous logs, inspect exit code and lastState, and verify probes/configuration. Then fix the evidenced cause.</div></details></div>
+<div class="question"><details><summary>17. What is the difference between readiness and liveness failure?</summary><div class="answer">Readiness failure removes the Pod from ready Service endpoints. Liveness failure can restart the container after the failure threshold is exceeded.</div></details></div>
+<div class="question"><details><summary>18. Why use a startup probe?</summary><div class="answer">It prevents liveness checks from restarting a slow-starting application before it has had enough time to initialize. After startup succeeds, liveness and readiness checks proceed.</div></details></div>
+<div class="question"><details><summary>19. Does a preStop hook replace signal handling?</summary><div class="answer">No. It is an action invoked before container termination, and its duration counts against the grace period. The application should still handle its stop signal and exit cleanly.</div></details></div>
+<div class="question"><details><summary>20. How can you inspect Pod conditions?</summary><div class="answer">Use <code>kubectl get pod POD -n NS -o yaml</code> and inspect <code>status.conditions</code>, <code>containerStatuses</code>, restart count and last termination state.</div></details></div>
+<div class="question"><details><summary>21. What does Unknown usually suggest?</summary><div class="answer">The control plane cannot determine the Pod state, commonly because it cannot communicate with the node. Inspect node readiness and node/kubelet connectivity.</div></details></div>
+<div class="question"><details><summary>22. What is the difference between a Pod replacement and a container restart?</summary><div class="answer">A container restart occurs inside the same Pod object and UID. A replacement is a new Pod object with a new UID, commonly created by a controller.</div></details></div>
+<div class="question"><details><summary>23. Why can an init container block an application container?</summary><div class="answer">Application containers do not start until all init containers complete successfully. A stuck command, unavailable dependency or image-pull failure can prevent initialization.</div></details></div>
+<div class="question"><details><summary>24. What happens if a readiness gate condition is absent?</summary><div class="answer">The custom condition is treated as False, so the Pod does not become Ready until the required readiness gate conditions are True and all containers are ready.</div></details></div>
+<h3>Level 3 — Real-time scenario questions</h3>
+<div class="question"><details><summary>25. Pod is Pending for five minutes. What is your investigation?</summary><div class="answer"><strong>Commands:</strong> <code>kubectl describe pod POD -n nimbus-pod-lifecycle</code>, <code>kubectl get nodes</code>, and <code>kubectl get events -n nimbus-pod-lifecycle --sort-by=.metadata.creationTimestamp</code>. Read Events for insufficient resources, taints, node selectors, image pulls or volume setup. Pending does not identify one cause; use the event message to choose the next check. Verify after correcting the specific issue.</div></details></div>
+<div class="question"><details><summary>26. Pod is Running but Service traffic fails. Why?</summary><div class="answer">Inspect Ready condition and readiness probe Events, then check Service endpoints. Use <code>kubectl describe pod POD -n nimbus-pod-lifecycle</code> and <code>kubectl get endpointslices -n nimbus-pod-lifecycle</code>. Possible causes include readiness failure, wrong Service selector, wrong target port, application listener failure or network policy. Verify with a request through the Service after fixing the evidenced cause.</div></details></div>
+<div class="question"><details><summary>27. Container enters CrashLoopBackOff immediately after deployment.</summary><div class="answer">Run <code>kubectl logs POD -n nimbus-pod-lifecycle --previous</code> and <code>kubectl describe pod POD -n nimbus-pod-lifecycle</code>. Inspect exit code, command/arguments, missing configuration, permissions, OOMKilled and probe events. Correct the root cause, then watch restart count and readiness. Do not assume every loop is a liveness problem.</div></details></div>
+<div class="question"><details><summary>28. Init container keeps restarting and app container never starts.</summary><div class="answer">Use <code>kubectl describe pod POD -n nimbus-pod-lifecycle</code> and <code>kubectl logs POD -c INIT_CONTAINER -n nimbus-pod-lifecycle --previous</code>. Check whether the command exits, dependencies resolve, credentials exist and image pulls succeed. Init containers must complete successfully before app containers start.</div></details></div>
+<div class="question"><details><summary>29. A liveness probe causes repeated restarts during startup.</summary><div class="answer">Check probe failure Events and application startup duration. If the app legitimately starts slowly, add/tune a startup probe and ensure the liveness endpoint tests a condition that warrants restart. Avoid simply weakening readiness, since readiness protects traffic routing.</div></details></div>
+<div class="question"><details><summary>30. Pods remain Terminating beyond the grace period.</summary><div class="answer">Inspect describe output, preStop hooks, finalizers, node connectivity and application shutdown behavior. Hooks consume grace-period time. If a node is unreachable or a finalizer blocks deletion, coordinate with the platform owner. Force deletion can leave processes running on an unreachable node and should not be a reflexive first step.</div></details></div>
+<div class="question"><details><summary>31. A Pod shows OOMKilled. What evidence is needed?</summary><div class="answer">Inspect <code>kubectl describe pod POD -n nimbus-pod-lifecycle</code>, termination state, memory limit and available metrics. Consider memory leak, workload spike or undersized limit. Tune resources based on evidence and node capacity; raising limits blindly can affect other workloads.</div></details></div>
+<div class="question"><details><summary>32. A standalone Pod disappears after node failure. How do you prevent this?</summary><div class="answer">For a long-running stateless application, use a Deployment with an appropriate replica count. The controller creates replacement Pods when needed. Validate scheduling capacity, topology and application readiness; no controller guarantees immediate recovery if the cluster lacks capacity.</div></details></div>
+<div class="question"><details><summary>33. A completed task Pod is Succeeded. Is it broken?</summary><div class="answer">Not necessarily. If the process is designed to finish, Succeeded is the expected terminal phase. Use a Job for managed finite tasks and inspect logs/exit code to confirm expected completion.</div></details></div>
+<div class="question"><details><summary>34. Pod phase is Unknown and its node is NotReady.</summary><div class="answer">Check <code>kubectl get nodes</code>, <code>kubectl describe node NODE_NAME</code>, and recent cluster events. The control plane may have lost contact with the node. Investigate kubelet/network/node health with the platform team; avoid assuming the container itself caused the problem.</div></details></div>
+</div></section>
+
+<section id="assignments"><h2>10. Practice assignments</h2>
+<h3>Beginner exercises</h3><ol>
+<li>Create a Pod running NGINX and record phase, Ready condition and node. <strong>Verify:</strong> <code>kubectl get pod -o wide</code> and <code>kubectl get pod -o yaml</code>. <em>Hint:</em> inspect <code>status.conditions</code>.</li>
+<li>Create a finite BusyBox Pod that exits 0. <strong>Expected:</strong> Succeeded. <em>Hint:</em> use <code>restartPolicy: Never</code> and an explicit command.</li>
+<li>Create a finite Pod that exits 1. Compare its phase and termination details with the successful Pod. <em>Hint:</em> inspect logs and exit code.</li>
+<li>Add an init container that sleeps briefly before the app starts. <strong>Verify:</strong> init logs and Initialized condition.</li>
+<li>Explain the difference between Waiting, Running and Terminated by examining containerStatuses.</li></ol>
+<h3>Modification and troubleshooting exercises</h3><ol start="6">
+<li>Deploy NGINX with readiness and liveness probes; verify readiness and inspect probe Events.</li>
+<li>Change the readiness path to a path that returns 404 in your isolated lab. Observe readiness change and Service endpoint impact; then restore <code>/</code>.</li>
+<li>Run a container that exits repeatedly and capture current and previous logs.</li>
+<li>Delete a Deployment-managed Pod and record the old/new Pod UIDs. <strong>Expected:</strong> replacement has a different UID.</li>
+<li>Set a longer termination grace period and observe how a preStop hook affects deletion duration.</li></ol>
+<h3>Scenario challenges</h3><ol start="11">
+<li><strong>Startup failure:</strong> A new application Pod stays Pending. Identify the actual cause from Events and propose a fix.</li>
+<li><strong>Readiness failure:</strong> The Pod is Running but absent from Service endpoints. Determine whether the cause is readiness, selector, or port configuration.</li>
+<li><strong>Unclean shutdown:</strong> Requests are dropped during a rollout. Propose and test a graceful shutdown strategy using readiness, signal handling and termination grace period.</li></ol>
+<details><summary><strong>Expandable solution hints</strong></summary>
+<pre><code># Inspect Pod phase, conditions, node and container state
+kubectl get pod POD_NAME -n nimbus-pod-lifecycle -o wide
+kubectl get pod POD_NAME -n nimbus-pod-lifecycle -o yaml
+kubectl describe pod POD_NAME -n nimbus-pod-lifecycle
+
+# Current and previous logs
+kubectl logs POD_NAME -n nimbus-pod-lifecycle
+kubectl logs POD_NAME -n nimbus-pod-lifecycle --previous
+
+# Controller-managed replacement
+kubectl get pods -n nimbus-pod-lifecycle -l app=lifecycle-probes -o wide
+kubectl delete pod POD_NAME -n nimbus-pod-lifecycle
+kubectl get pods -n nimbus-pod-lifecycle -l app=lifecycle-probes -o wide
+
+# Probe / endpoint troubleshooting
+kubectl describe pod -l app=lifecycle-probes -n nimbus-pod-lifecycle
+kubectl get endpointslices -n nimbus-pod-lifecycle
+kubectl get events -n nimbus-pod-lifecycle --sort-by=.metadata.creationTimestamp</code></pre>
+<p>Replace POD_NAME with an actual Pod name. For each scenario, write down the observed evidence, the hypothesis it supports, the change made, and the verification result. Do not assume a single cause before examining Events and status.</p></details>
+</section>
+
+<section id="revision"><h2>11. Quick revision and cheat sheet</h2>
+<h3>Essential facts</h3><ul><li>Official Pod phases: Pending, Running, Succeeded, Failed, Unknown.</li><li>CrashLoopBackOff and ImagePullBackOff are displayed status descriptions, not phases.</li><li>Running does not guarantee Ready.</li><li>Readiness controls traffic eligibility; liveness can trigger a restart; startup gates the other probes during initialization.</li><li>Init containers complete before application containers start.</li><li>Pod restart policy controls container restart behavior; controllers replace Pod objects.</li><li>Replacement Pods have new UIDs; a Pod is not rescheduled to another node as the same Pod instance.</li><li>Graceful termination uses hooks/signals and a grace period; default is normally 30 seconds.</li></ul>
+<h3>Common commands</h3><pre><code>kubectl get pods -n nimbus-pod-lifecycle -o wide
+kubectl get pod POD_NAME -n nimbus-pod-lifecycle -o yaml
+kubectl describe pod POD_NAME -n nimbus-pod-lifecycle
+kubectl logs POD_NAME -n nimbus-pod-lifecycle
+kubectl logs POD_NAME -n nimbus-pod-lifecycle --previous
+kubectl logs POD_NAME -c CONTAINER_NAME -n nimbus-pod-lifecycle
+kubectl get events -n nimbus-pod-lifecycle --sort-by=.metadata.creationTimestamp
+kubectl get deployment,replicaset,pods -n nimbus-pod-lifecycle
+kubectl rollout status deployment/lifecycle-web -n nimbus-pod-lifecycle
+kubectl get endpointslices -n nimbus-pod-lifecycle</code></pre>
+<p><strong>Placeholders:</strong> Replace POD_NAME and CONTAINER_NAME with the actual names shown by <code>kubectl get pods</code> and <code>kubectl describe pod</code>.</p>
+<h3>Pre-interview checklist</h3><ul><li>Can I explain Pod phase versus container state and conditions?</li><li>Can I investigate Pending, CrashLoopBackOff, ImagePullBackOff and OOMKilled using evidence?</li><li>Can I explain readiness versus liveness versus startup probes?</li><li>Can I explain init-container ordering and restart policy?</li><li>Can I explain graceful termination and why a replacement Pod has a new UID?</li></ul></section>
+
+<section id="cleanup"><h2>12. Final lab cleanup</h2>
+<p>First inspect what exists in the dedicated namespace:</p><pre><code>kubectl get all,configmap,secret -n nimbus-pod-lifecycle</code></pre>
+<p>To delete only the named resources used in the exercises:</p><pre><code>kubectl delete pod lifecycle-web lifecycle-success lifecycle-restart lifecycle-init lifecycle-termination curl-check -n nimbus-pod-lifecycle --ignore-not-found
+kubectl delete deployment lifecycle-probes lifecycle-web -n nimbus-pod-lifecycle --ignore-not-found</code></pre>
+<p>After confirming the namespace is dedicated to this lab and contains no shared resources, you may delete the namespace:</p><pre><code>kubectl delete namespace nimbus-pod-lifecycle</code></pre>
+<div class="callout danger"><strong>Shared-cluster warning:</strong> Namespace deletion removes every namespaced resource inside it, including resources you did not create. Never delete shared namespaces, nodes, cluster roles, or cluster-wide components as part of this lab. Ask the trainer before broad cleanup.</div></section>
+
+<section id="references"><h2>13. References</h2>
+<h3>Provided Nimbuswiztech source</h3><ul><li><a href="https://github.com/nimbuswiztech/kubernetes/wiki/pod-life-cycle" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes Wiki — Pod Life Cycle</a></li></ul>
+<p class="muted">The supplied wiki URL is linked as the primary topic reference. Its page contents could not be independently verified through the available retrieval, so this guide does not attribute individual examples or wording to that page. The hands-on manifests are supplementary examples based on Kubernetes documentation.</p>
+<h3>Official Kubernetes documentation</h3><ul>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/" target="_blank" rel="noopener noreferrer">Pod Lifecycle</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-condition/" target="_blank" rel="noopener noreferrer">Pod Conditions</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/probes/" target="_blank" rel="noopener noreferrer">Liveness, Readiness and Startup Probes</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" target="_blank" rel="noopener noreferrer">Init Containers</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/" target="_blank" rel="noopener noreferrer">Container Lifecycle Hooks</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/" target="_blank" rel="noopener noreferrer">Deployments</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/debug/debug-application/" target="_blank" rel="noopener noreferrer">Debugging Applications</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener noreferrer">Install Tools: kubectl and local cluster options</a></li>
+</ul></section>
+<a class="toplink" href="#top">↑ Back to top</a>
+</main>
+<footer>Nimbuswiztech student learning reference · Kubernetes Pod Lifecycle · Verify version-sensitive behavior against the documentation for your cluster.</footer>
+<script>
+(function(){
+ document.querySelectorAll('pre').forEach(function(pre){
+  var code=pre.querySelector('code');if(!code)return;
+  var b=document.createElement('button');b.type='button';b.className='copy';b.textContent='Copy';b.setAttribute('aria-label','Copy code block');
+  b.addEventListener('click',function(){var t=code.innerText;
+   function fallback(){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');b.textContent='Copied'}catch(e){b.textContent='Select manually'}a.remove();setTimeout(function(){b.textContent='Copy'},1400)}
+   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1400)}).catch(fallback)}else fallback();
+  });pre.appendChild(b);
+ });
+ var s=document.getElementById('qsearch');if(s)s.addEventListener('input',function(){var q=s.value.toLowerCase().trim();document.querySelectorAll('#questions .question').forEach(function(x){x.style.display=x.textContent.toLowerCase().includes(q)?'':'none'})});
+})();
+</script>
+</body></html>

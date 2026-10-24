@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker Hands-On Lab Handbook & Reference Guide — Student Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- removed custom styles -->
+
+    <link rel="stylesheet" href="../assets/css/style.css?v=2">
+</head>
+<body>
+<header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html" class="active">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+    <main class="doc-content">
+
+
+      <!-- Hero Banner -->
+      <section id="hero" class="hero-banner">
+        <div class="hero-badge-row">
+          <span class="badge-pill hot">🚀 Student Hands-on Handbook</span>
+          <span class="badge-pill">Step-by-Step Terminal Commands</span>
+          <span class="badge-pill">Self-Paced Learning</span>
+        </div>
+        <h1 class="hero-title">Docker Mastery Lab Guide</h1>
+        <p class="hero-subtitle">
+          Your complete practical companion for containerization. Follow along with the live classroom demonstration, copy exact commands, track your milestones, and build your first custom production-ready Docker container.
+        </p>
+      </section>
+
+      <!-- Mental Model Anchor -->
+      <div id="concepts" class="mental-model-box">
+        <div class="model-title">The Foundation to Always Remember</div>
+        <div class="model-flow">
+          <div class="model-node">1. Dockerfile<br><small style="color:var(--text-dim);font-weight:400;">(Your Code Recipe)</small></div>
+          <div class="model-arrow">➔ <code>docker build</code> ➔</div>
+          <div class="model-node">2. Docker Image<br><small style="color:var(--text-dim);font-weight:400;">(Frozen Snapshot / Class)</small></div>
+          <div class="model-arrow">➔ <code>docker run</code> ➔</div>
+          <div class="model-node">3. Container<br><small style="color:var(--text-dim);font-weight:400;">(Live Process / Object)</small></div>
+        </div>
+      </div>
+
+      <div style="margin: 2rem 0; text-align: center;">
+        <img src="docker-lifecycle-workflow.jpg" alt="Docker Lifecycle and Mental Model" style="width:100%; border-radius:12px; border:1px solid var(--border-color); box-shadow:var(--shadow-md);">
+        <p style="font-size:0.85rem; color:var(--text-dim); margin-top:8px;">Figure 1: The Golden Mental Model — Dockerfile (Blueprint) ➔ Image (Immutable Snapshot) ➔ Running Container with Port Forwarding & Bind Mount</p>
+      </div>
+
+      <!-- Hands-on Checklist -->
+      <section id="checklist" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">✓</div>
+            <h2 class="section-title">Hands-On Lab Milestones Checklist</h2>
+          </div>
+        </div>
+
+        <p>Check off each milestone as you execute the demonstration in your terminal:</p>
+
+        <div class="checklist-card">
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 1:</strong> Verify Docker engine is running on your machine (<code>docker version</code>).</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 2:</strong> Download the official Nginx Alpine image from Docker Hub (<code>docker pull nginx:alpine</code>).</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 3:</strong> Start the Nginx container in background mode with port forwarding on 8080 (<code>docker run -d --name my-nginx -p 8080:80 nginx:alpine</code>).</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 4:</strong> Open browser to <a href="http://localhost:8080" target="_blank" style="color:var(--accent-cyan);">http://localhost:8080</a> and verify <em>"Welcome to nginx!"</em> appears.</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 5:</strong> Inspect live HTTP requests using log streaming (<code>docker logs -f my-nginx</code>).</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 6:</strong> Open an interactive shell inside the running container (<code>docker exec -it my-nginx sh</code>).</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 7:</strong> Test local hot-reloading using a Bind Mount (<code>-v $(pwd)/html:/usr/share/nginx/html:ro</code>).</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 8:</strong> Write a <code>Dockerfile</code> and custom <code>index.html</code> file on host disk.</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 9:</strong> Build your custom image using <code>docker build -t devops-portal:v1 .</code> and launch it on port 8082.</div>
+          </div>
+          <div class="checklist-item" onclick="toggleCheck(this)">
+            <input type="checkbox" class="checklist-checkbox">
+            <div class="checklist-label"><strong>Task 10:</strong> Clean up stopped containers and understand container lifecycle (<code>docker stop</code>, <code>docker rm</code>).</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step-by-Step Lab Walkthrough -->
+      <section id="lab-walkthrough" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">01</div>
+            <h2 class="section-title">Step-by-Step Demonstration Walkthrough</h2>
+          </div>
+        </div>
+
+        <!-- Architectural Visual Guides -->
+        <div style="margin: 1.5rem 0; text-align: center;">
+          <img src="docker-vm-vs-container.jpg" alt="Virtual Machines vs Docker Containers" style="width:100%; border-radius:12px; border:1px solid var(--border-color); box-shadow:var(--shadow-md);">
+          <p style="font-size:0.85rem; color:var(--text-dim); margin-top:8px;">Figure 2: Virtual Machines vs. Docker Containers — OS-Level Virtualization sharing the Host Kernel</p>
+        </div>
+
+        <div style="margin: 1.5rem 0 2.5rem 0; text-align: center;">
+          <img src="docker-engine-architecture.jpg" alt="Docker Engine Architecture" style="width:100%; border-radius:12px; border:1px solid var(--border-color); box-shadow:var(--shadow-md);">
+          <p style="font-size:0.85rem; color:var(--text-dim); margin-top:8px;">Figure 3: Docker Engine Architecture — CLI Client, REST Unix Socket, dockerd Daemon, containerd, runc, and Linux Kernel</p>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-title">Phase 1: Downloading the Nginx Base Image</span>
+            <span class="step-badge">Lab Step 1</span>
+          </div>
+          <div class="step-body">
+            <p>Run the following command in your terminal. Docker will query Docker Hub, download the read-only layer digests, and cache them locally:</p>
+            <div class="terminal-block">
+              <div class="terminal-header">
+                <span class="terminal-title">terminal</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre class="code-content"><span class="cmd-prompt">$</span> docker pull nginx:alpine
+<span class="cmd-prompt">$</span> docker images</pre>
+            </div>
+            <div class="pro-tip">
+              💡 <strong>Why Alpine?</strong> Alpine Linux is an ultra-minimal distribution designed for security and speed. The entire base image is only ~5 MB, making total download and container startup lightning-fast compared to standard Ubuntu or Debian images (~150 MB+).
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-title">Phase 2: Launching the Nginx Container & Port Mapping</span>
+            <span class="step-badge">Lab Step 2</span>
+          </div>
+          <div class="step-body">
+            <p>Now launch the container in the background with port forwarding:</p>
+            <div class="terminal-block">
+              <div class="terminal-header">
+                <span class="terminal-title">terminal</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre class="code-content"><span class="cmd-prompt">$</span> docker run <span class="cmd-flag">-d</span> <span class="cmd-flag">--name</span> my-nginx <span class="cmd-flag">-p</span> 8080:80 nginx:alpine
+<span class="cmd-prompt">$</span> docker ps</pre>
+            </div>
+            <p><strong>Flag Breakdown:</strong></p>
+            <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:1.2rem; line-height:1.7;">
+              <li><code>-d</code>: Detached mode. Container runs in the background.</li>
+              <li><code>--name my-nginx</code>: Sets container name to <code>my-nginx</code> instead of a random string.</li>
+              <li><code>-p 8080:80</code>: Maps <strong>Host Port 8080</strong> to <strong>Container Port 80</strong>.</li>
+            </ul>
+            <p style="margin-top:1rem;">👉 <strong>Test:</strong> Visit <a href="http://localhost:8080" target="_blank" style="color:var(--accent-cyan-light);">http://localhost:8080</a> in your web browser. You should see <em>Welcome to nginx!</em></p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-title">Phase 3: Watching Real-Time Access Logs</span>
+            <span class="step-badge">Lab Step 3</span>
+          </div>
+          <div class="step-body">
+            <p>Streams standard output from the web server. Refresh your browser to see requests appear:</p>
+            <div class="terminal-block">
+              <div class="terminal-header">
+                <span class="terminal-title">terminal</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre class="code-content"><span class="cmd-comment"># Stream logs live (press Ctrl + C to exit)</span>
+<span class="cmd-prompt">$</span> docker logs -f my-nginx</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-title">Phase 4: Entering the Container Filesystem (`docker exec`)</span>
+            <span class="step-badge">Lab Step 4</span>
+          </div>
+          <div class="step-body">
+            <p>Open an interactive shell session inside the container's isolated Linux environment:</p>
+            <div class="terminal-block">
+              <div class="terminal-header">
+                <span class="terminal-title">terminal</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre class="code-content"><span class="cmd-comment"># Jump inside the container</span>
+<span class="cmd-prompt">$</span> docker exec <span class="cmd-flag">-it</span> my-nginx sh
+
+<span class="cmd-comment"># Look at the web root and active processes</span>
+<span class="cmd-prompt">/ #</span> ls -la /usr/share/nginx/html
+<span class="cmd-prompt">/ #</span> ps aux
+<span class="cmd-prompt">/ #</span> exit</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-title">Phase 5: Local Hot-Reloading with Bind Mounts</span>
+            <span class="step-badge">Lab Step 5</span>
+          </div>
+          <div class="step-body">
+            <p>Link a folder from your laptop directly into the container's Nginx document root:</p>
+            <div class="terminal-block">
+              <div class="terminal-header">
+                <span class="terminal-title">terminal</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre class="code-content"><span class="cmd-comment"># Create local folder & test page</span>
+<span class="cmd-prompt">$</span> mkdir -p ~/docker-demo/html
+<span class="cmd-prompt">$</span> cd ~/docker-demo
+<span class="cmd-prompt">$</span> echo "&lt;h1 style='color:#06b6d4;'&gt;⚡ Live Local Host Mount&lt;/h1&gt;" > html/index.html
+
+<span class="cmd-comment"># Launch container with bind mount</span>
+<span class="cmd-prompt">$</span> docker run -d --name dev-nginx -p 8081:80 -v $(pwd)/html:/usr/share/nginx/html:ro nginx:alpine
+
+<span class="cmd-comment"># Open http://localhost:8081, edit html/index.html on your laptop, and refresh!</span>
+<span class="cmd-prompt">$</span> echo "&lt;h1 style='color:#10b981;'&gt;🎉 Updated without rebuilding!&lt;/h1&gt;" > html/index.html</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Image Section -->
+      <section id="custom-image" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">02</div>
+            <h2 class="section-title">Building a Custom Production Image (`Dockerfile`)</h2>
+          </div>
+        </div>
+
+        <p>
+          Bind mounts are great for local hacking, but production deployments require an immutable image containing your actual code.
+        </p>
+
+        <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+          <div>
+            <h4 style="margin-bottom:0.5rem;">File 1: `index.html`</h4>
+            <div class="terminal-block" style="margin:0;">
+              <div class="terminal-header">
+                <span class="terminal-title">index.html</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre class="code-content">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;DevOps Production App&lt;/title&gt;
+  &lt;style&gt;
+    /* removed body styles for layout consistency */
+    .badge {
+      background: #06b6d4;
+      color: #04252e;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;span class="badge"&gt;CONTAINER READY&lt;/span&gt;
+  &lt;h1&gt;Welcome to My Custom Docker Image&lt;/h1&gt;
+  &lt;p&gt;Built via Dockerfile and deployed in isolated container.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+            </div>
+          </div>
+
+          <div>
+            <h4 style="margin-bottom:0.5rem;">File 2: `Dockerfile`</h4>
+            <div class="terminal-block" style="margin:0;">
+              <div class="terminal-header">
+                <span class="terminal-title">Dockerfile</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre class="code-content"><span class="cmd-comment"># 1. Base image</span>
+FROM nginx:alpine
+
+<span class="cmd-comment"># 2. Metadata</span>
+LABEL author="Student Engineer"
+
+<span class="cmd-comment"># 3. Copy application code into container</span>
+COPY index.html /usr/share/nginx/html/index.html
+
+<span class="cmd-comment"># 4. Expose documentation port</span>
+EXPOSE 80
+
+<span class="cmd-comment"># 5. Runtime command</span>
+CMD ["nginx", "-g", "daemon off;"]</pre>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin: 2rem 0 0.8rem;">Build and Run Your Image</h3>
+        <div class="terminal-block">
+          <div class="terminal-header">
+            <span class="terminal-title">terminal</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre class="code-content"><span class="cmd-comment"># 1. Build image with tag 'devops-portal:v1' (don't forget the trailing dot!)</span>
+<span class="cmd-prompt">$</span> docker build -t devops-portal:v1 .
+
+<span class="cmd-comment"># 2. Run your custom image on port 8082</span>
+<span class="cmd-prompt">$</span> docker run -d --name my-portal -p 8082:80 devops-portal:v1
+
+<span class="cmd-comment"># 3. Open browser: http://localhost:8082</span></pre>
+        </div>
+      </section>
+
+      <!-- Command Cheat Sheet -->
+      <section id="cheatsheet" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Essential Command Cheat Sheet</h2>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>docker pull</code></td>
+                <td>Download image from registry</td>
+                <td><code>docker pull redis:alpine</code></td>
+              </tr>
+              <tr>
+                <td><code>docker images</code></td>
+                <td>List local images</td>
+                <td><code>docker images</code></td>
+              </tr>
+              <tr>
+                <td><code>docker run</code></td>
+                <td>Create and start container</td>
+                <td><code>docker run -d -p 8080:80 --name web nginx</code></td>
+              </tr>
+              <tr>
+                <td><code>docker ps</code></td>
+                <td>List active running containers</td>
+                <td><code>docker ps</code></td>
+              </tr>
+              <tr>
+                <td><code>docker ps -a</code></td>
+                <td>List all containers (including stopped)</td>
+                <td><code>docker ps -a</code></td>
+              </tr>
+              <tr>
+                <td><code>docker logs -f</code></td>
+                <td>Stream container log output</td>
+                <td><code>docker logs -f web</code></td>
+              </tr>
+              <tr>
+                <td><code>docker exec -it</code></td>
+                <td>Run command / shell inside container</td>
+                <td><code>docker exec -it web sh</code></td>
+              </tr>
+              <tr>
+                <td><code>docker inspect</code></td>
+                <td>View detailed JSON container state</td>
+                <td><code>docker inspect web</code></td>
+              </tr>
+              <tr>
+                <td><code>docker stop</code></td>
+                <td>Gracefully stop running container</td>
+                <td><code>docker stop web</code></td>
+              </tr>
+              <tr>
+                <td><code>docker rm -f</code></td>
+                <td>Force remove container</td>
+                <td><code>docker rm -f web</code></td>
+              </tr>
+              <tr>
+                <td><code>docker build -t</code></td>
+                <td>Build image from Dockerfile</td>
+                <td><code>docker build -t app:v1 .</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Troubleshooting Matrix -->
+      <section id="troubleshooting" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">04</div>
+            <h2 class="section-title">Lab Troubleshooting Matrix</h2>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card" style="border-left: 4px solid var(--accent-red);">
+            <div class="card-title" style="color:var(--accent-red);">💥 Port Already In Use</div>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.5rem;">
+              <code>bind: address already in use</code>
+            </p>
+            <p style="font-size:0.88rem;"><strong>Quick Fix:</strong> Map to an alternative port (e.g. <code>-p 8085:80</code>) or stop the process running on that port.</p>
+          </div>
+
+          <div class="card" style="border-left: 4px solid var(--accent-amber);">
+            <div class="card-title" style="color:var(--accent-amber);">⚠️ Container Disappears Immediately</div>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.5rem;">
+              <code>docker ps</code> is empty; <code>docker ps -a</code> shows <code>Exited (0)</code>.
+            </p>
+            <p style="font-size:0.88rem;"><strong>Quick Fix:</strong> The container process completed. Ensure the service runs in foreground (e.g. <code>daemon off;</code>).</p>
+          </div>
+
+          <div class="card" style="border-left: 4px solid var(--accent-cyan);">
+            <div class="card-title" style="color:var(--accent-cyan-light);">🔌 Cannot Connect to Docker Daemon</div>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.5rem;">
+              <code>Cannot connect to the Docker daemon at unix:///var/run/docker.sock</code>
+            </p>
+            <p style="font-size:0.88rem;"><strong>Quick Fix:</strong> Start Docker Desktop or run <code>sudo systemctl start docker</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Self-Assessment Quiz -->
+      <section id="quiz" class="module-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Self-Assessment Quiz</h2>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="quiz-question">1. Which command allows you to view both running and stopped containers?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="selectQuiz(this, false)">A) docker status</div>
+            <div class="quiz-option" onclick="selectQuiz(this, true)">B) docker ps -a</div>
+            <div class="quiz-option" onclick="selectQuiz(this, false)">C) docker images -all</div>
+          </div>
+          <div class="quiz-explain">Correct! `docker ps -a` shows all containers, regardless of whether they are active, paused, or exited.</div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="quiz-question">2. What does the `-p 3000:80` flag do when running a container?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="selectQuiz(this, false)">A) It limits memory to 3000 MB and CPU to 80%.</div>
+            <div class="quiz-option" onclick="selectQuiz(this, true)">B) It forwards traffic from host port 3000 to container port 80.</div>
+            <div class="quiz-option" onclick="selectQuiz(this, false)">C) It starts 3000 replicas on port 80.</div>
+          </div>
+          <div class="quiz-explain">Correct! Syntax is `-p &lt;host_port&gt;:&lt;container_port&gt;`. Traffic to host:3000 goes to container:80.</div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="quiz-question">3. What is the role of the trailing dot `.` in `docker build -t app:v1 .`?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="selectQuiz(this, true)">A) It specifies the current directory as the build context for Docker to find files.</div>
+            <div class="quiz-option" onclick="selectQuiz(this, false)">B) It tells Docker to run in root mode.</div>
+            <div class="quiz-option" onclick="selectQuiz(this, false)">C) It suppresses warning logs.</div>
+          </div>
+          <div class="quiz-explain">Correct! The dot defines the build context directory uploaded to the Docker daemon.</div>
+        </div>
+      </section>
+
+    
+    </main>
+  </div>
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

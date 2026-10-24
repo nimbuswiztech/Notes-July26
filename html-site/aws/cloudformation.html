@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cloudformation &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html" class="active">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">cloudformation</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">cloudformation</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <p>Master the architecture, template anatomy, intrinsic functions, and practical deployment of AWS native Infrastructure as Code. Follow the step-by-step lab to provision a complete web application stack, test safe updates with Change Sets, and detect manual configuration drift.</p>
+<table>
+<thead>
+<tr>
+<th>Prerequisites</th>
+<th>Languages</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS Free Tier Account &amp; Basic Networking</td>
+<td>YAML / JSON</td>
+<td>100% Free-Tier Eligible</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p><strong>Student Reminder:</strong> Delete your CloudFormation stack at the conclusion of the lab to prevent unexpected AWS cloud charges.</p>
+</div>
+</div>
+<h2>What is AWS CloudFormation &amp; Template Anatomy</h2>
+<p><strong>AWS CloudFormation</strong> is a managed service that allows you to model, provision, and configure AWS and third-party resources declaratively using text templates (YAML or JSON). It provides a single source of truth for your cloud environment, automating provisioning and life-cycle management without manual console operations.</p>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>Key Distinction:</strong> Unlike Terraform, CloudFormation requires <strong>zero local state files</strong> (<code>.tfstate</code>). AWS manages the state engine, concurrency locks, and execution graphs natively within the AWS platform for free.</p>
+</div>
+</div>
+<h3>Core Terminology</h3>
+<p><strong>📜 Template</strong></p>
+<p>A declarative JSON or YAML file that describes the desired state of all AWS resources you want to create and configure.</p>
+<p><strong>📦 Stack</strong></p>
+<p>A collection of AWS resources managed as a single unit. When a stack is created, updated, or deleted, all underlying resources are handled together.</p>
+<p><strong>🛡️ Change Set</strong></p>
+<p>A point-in-time preview of changes that CloudFormation will make to your stack, allowing you to audit whether updates will replace running servers before applying them.</p>
+<p><strong>🌐 StackSet</strong></p>
+<p>Extends stack management across multiple AWS accounts and multiple AWS regions with a single operation, natively integrated with AWS Organizations.</p>
+<h3>The 8 Sections of a CloudFormation Template</h3>
+<p>Remember: <strong>Only the <code>Resources</code> section is required.</strong> The other 7 sections make your code flexible, reusable, and parameter-driven.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Required?</th>
+<th>Description &amp; Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AWSTemplateFormatVersion</strong></td>
+<td>No</td>
+<td>Defines template capability version (must be <code>"2010-09-09"</code>)</td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>No</td>
+<td>Text comment explaining the purpose of the template</td>
+</tr>
+<tr>
+<td><strong>Parameters</strong></td>
+<td>No</td>
+<td>Custom runtime values passed into the template during stack creation</td>
+</tr>
+<tr>
+<td><strong>Mappings</strong></td>
+<td>No</td>
+<td>Static multi-dimensional lookup tables (e.g. region-to-AMI mapping)</td>
+</tr>
+<tr>
+<td><strong>Conditions</strong></td>
+<td>No</td>
+<td>Boolean statements that control whether specific resources are provisioned</td>
+</tr>
+<tr>
+<td><strong>Resources</strong></td>
+<td><strong>YES</strong></td>
+<td>Declares physical AWS infrastructure components (e.g. VPC, EC2, S3)</td>
+</tr>
+<tr>
+<td><strong>Outputs</strong></td>
+<td>No</td>
+<td>Returns output values or exports them for downstream cross-stack import</td>
+</tr>
+<tr>
+<td><strong>Metadata</strong></td>
+<td>No</td>
+<td>Supplemental JSON/YAML details (e.g. Designer canvas coordinates)</td>
+</tr>
+</tbody>
+</table>
+<h2>Why CloudFormation is Used: The Business &amp; Engineering Value</h2>
+<h3>🔄 Automatic Rollback on Failure</h3>
+<p>If any resource encounters an error during creation or update (e.g. parameter error, quota limit), CloudFormation automatically rolls back all previously created resources to the last stable state.</p>
+<h3>🛡️ Native Console Drift Detection</h3>
+<p>Identify unapproved manual "ClickOps" changes directly in the AWS Console. CloudFormation provides a visual property-by-property diff showing exactly what was tampered with.</p>
+<h3>☁️ Zero Client-Side State Files</h3>
+<p>No risk of losing state files, no need to configure S3 remote backends with DynamoDB locking, and zero risk of concurrent state write collisions.</p>
+<h3>💸 Free Infrastructure Automation</h3>
+<p>CloudFormation has zero service fees. You are only billed for the actual AWS resources (EC2, VPC, Load Balancers) provisioned by your template.</p>
+<h2>CloudFormation Real-Time DevOps Production Use Cases</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Layered Stacks via Cross-Stack References</h3>
+<p>Decoupling networking from application deployment.</p>
+<p><strong>Pattern:</strong> The VPC and subnets are defined in a <code>NetworkStack</code> that exports outputs. Application stacks import those values using <code>!ImportValue</code>. Network infrastructure remains untouched and protected while applications are continuously redeployed.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Automated CI/CD with Change Sets</h3>
+<p>Safe, automated continuous delivery pipelines.</p>
+<p><strong>Pattern:</strong> AWS CodePipeline or GitHub Actions generates a CloudFormation Change Set on pull request. Engineers inspect the diff in the pipeline to verify no unexpected resource replacement before approving the deployment.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Multi-Account Landing Zones (StackSets)</h3>
+<p>Enforcing organizational security baselines across 100+ AWS accounts.</p>
+<p><strong>Pattern:</strong> Integrated with AWS Organizations. Centrally provisions IAM audit roles, AWS Config conformance packs, and VPC flow logs across every child account automatically upon account creation.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Custom Automation via Lambda Custom Resources</h3>
+<p>Extending CloudFormation to execute arbitrary code.</p>
+<p><strong>Pattern:</strong> Using <code>AWS::CloudFormation::CustomResource</code> to trigger a Python Lambda function that empties an S3 bucket before stack deletion, requests SSL certificates, or configures third-party SaaS services.</p>
+</div>
+</div>
+</div>
+<h2>Hands-On Practice Lab: Web Stack Runbook</h2>
+<p>Follow the 8 sequential steps below. Check off each step as you complete it to track your progress!</p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Save the CloudFormation Template (YAML)</h3>
+<p>Create a file named <code>cloudformation-web-stack.yaml</code> on your laptop and paste the complete template below:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">cloudformation-web-stack.yaml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">yaml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="yaml">AWSTemplateFormatVersion: &quot;2010-09-09&quot; Description: &quot;AWS CloudFormation Masterclass Demo — Production Web Stack with Dynamic UserData and Outputs&quot; # 1. PARAMETERS (Runtime user inputs) Parameters: EnvironmentName: Type: String Default: &quot;Demo&quot; AllowedValues: [&quot;Demo&quot;, &quot;Dev&quot;, &quot;Staging&quot;, &quot;Prod&quot;] Description: &quot;Deployment environment stage&quot; InstanceType: Type: String Default: &quot;t2.micro&quot; AllowedValues: [&quot;t2.micro&quot;, &quot;t3.micro&quot;, &quot;t3.small&quot;] Description: &quot;EC2 Instance type (Free-Tier eligible)&quot; VpcCIDR: Type: String Default: &quot;10.0.0.0/16&quot; Description: &quot;CIDR block for the custom VPC&quot; PublicSubnetCIDR: Type: String Default: &quot;10.0.1.0/24&quot; Description: &quot;CIDR block for the public subnet&quot; # 2. MAPPINGS (Region-to-AMI dynamic lookup) Mappings: RegionMap: us-east-1: AMI: &quot;ami-0c101f26f147fa7fd&quot; us-east-2: AMI: &quot;ami-0c55b159cbfafe1f0&quot; us-west-2: AMI: &quot;ami-0735c191cf9147f72&quot; # 3. RESOURCES (Physical AWS components) Resources: # VPC CustomVPC: Type: AWS::EC2::VPC Properties: CidrBlock: !Ref VpcCIDR EnableDnsHostnames: true EnableDnsSupport: true Tags: - Key: Name Value: !Sub &quot;${AWS::StackName}-VPC&quot; - Key: Environment Value: !Ref EnvironmentName # Internet Gateway InternetGateway: Type: AWS::EC2::InternetGateway Properties: Tags: - Key: Name Value: !Sub &quot;${AWS::StackName}-IGW&quot; # Attach Gateway to VPC AttachGateway: Type: AWS::EC2::VPCGatewayAttachment Properties: VpcId: !Ref CustomVPC InternetGatewayId: !Ref InternetGateway # Public Subnet PublicSubnet: Type: AWS::EC2::Subnet Properties: VpcId: !Ref CustomVPC CidrBlock: !Ref PublicSubnetCIDR AvailabilityZone: !Select [0, !GetAZs &quot;&quot;] MapPublicIpOnLaunch: true Tags: - Key: Name Value: !Sub &quot;${AWS::StackName}-PublicSubnet&quot; # Route Table PublicRouteTable: Type: AWS::EC2::RouteTable Properties: VpcId: !Ref CustomVPC Tags: - Key: Name Value: !Sub &quot;${AWS::StackName}-PublicRouteTable&quot; # Default Outbound Route via IGW PublicRoute: Type: AWS::EC2::Route DependsOn: AttachGateway Properties: RouteTableId: !Ref PublicRouteTable DestinationCidrBlock: &quot;0.0.0.0/0&quot; GatewayId: !Ref InternetGateway # Associate Subnet with Route Table SubnetRouteTableAssociation: Type: AWS::EC2::SubnetRouteTableAssociation Properties: SubnetId: !Ref PublicSubnet RouteTableId: !Ref PublicRouteTable # Security Group WebServerSecurityGroup: Type: AWS::EC2::SecurityGroup Properties: GroupDescription: &quot;Allow HTTP port 80 and outbound traffic&quot; VpcId: !Ref CustomVPC SecurityGroupIngress: - IpProtocol: tcp FromPort: 80 ToPort: 80 CidrIp: &quot;0.0.0.0/0&quot; SecurityGroupEgress: - IpProtocol: &quot;-1&quot; CidrIp: &quot;0.0.0.0/0&quot; Tags: - Key: Name Value: !Sub &quot;${AWS::StackName}-WebSG&quot; # EC2 Web Server Instance WebServerInstance: Type: AWS::EC2::Instance Properties: InstanceType: !Ref InstanceType ImageId: !FindInMap [RegionMap, !Ref &quot;AWS::Region&quot;, AMI] SubnetId: !Ref PublicSubnet SecurityGroupIds: - !Ref WebServerSecurityGroup UserData: Fn::Base64: !Sub | #!/bin/bash dnf update -y dnf install -y httpd systemctl start httpd systemctl enable httpd TOKEN=$(curl -s -X PUT &quot;http://169.254.169.254/latest/api/token&quot; -H &quot;X-aws-ec2-metadata-token-ttl-seconds: 21600&quot;) INSTANCE_ID=$(curl -s -H &quot;X-aws-ec2-metadata-token: $TOKEN&quot; http://169.254.169.254/latest/meta-data/instance-id) AZ=$(curl -s -H &quot;X-aws-ec2-metadata-token: $TOKEN&quot; http://169.254.169.254/latest/meta-data/placement/availability-zone) PUBLIC_IP=$(curl -s -H &quot;X-aws-ec2-metadata-token: $TOKEN&quot; http://169.254.169.254/latest/meta-data/public-ipv4) cat  /var/www/html/index.html    AWS CloudFormation Live Demo     PROVISIONED VIA AWS CLOUDFORMATION # 🔥 CloudFormation Stack Live! This entire infrastructure was provisioned 100% natively via CloudFormation Template.  **Stack Name:** ${AWS::StackName} **AWS Region:** ${AWS::Region} **Instance ID:** $INSTANCE_ID **Availability Zone:** $AZ **Public IP:** $PUBLIC_IP     HTML Tags: - Key: Name Value: !Sub &quot;${AWS::StackName}-WebServer&quot; # 4. OUTPUTS (Cross-stack exports &amp; URLs) Outputs: WebsiteURL: Description: &quot;Public URL of the provisioned web server&quot; Value: !Sub &quot;http://${WebServerInstance.PublicIp}&quot; PublicIP: Description: &quot;Public IP of the EC2 Instance&quot; Value: !GetAtt WebServerInstance.PublicIp VpcId: Description: &quot;VPC ID of the created infrastructure&quot; Value: !Ref CustomVPC Export: Name: !Sub &quot;${AWS::StackName}-VPCID&quot;
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Inspect Template in CloudFormation Designer</h3>
+<ol>
+<li>Log in to the AWS Management Console and open <strong>CloudFormation</strong>.</li>
+<li>Click <strong>Create stack</strong> ➔ <strong>Create template in Designer</strong> ➔ click <strong>View in Designer</strong>.</li>
+<li>Paste the template YAML into the editor and click the <strong>Refresh Canvas</strong> icon to inspect the resource topology map.</li>
+</ol>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h3>Deploy the Stack in AWS Console</h3>
+<ol>
+<li>In the CloudFormation Console, click <strong>Create stack</strong> ➔ <strong>With new resources (standard)</strong>.</li>
+<li>Select <strong>Upload a template file</strong> and select <code>cloudformation-web-stack.yaml</code>. Click <strong>Next</strong>.</li>
+<li>Enter Stack Name: <code>cfn-student-demo</code>.</li>
+<li>Parameters: Leave the defaults (<code>EnvironmentName: Demo</code>, <code>InstanceType: t2.micro</code>).</li>
+<li>Click <strong>Next</strong> ➔ <strong>Next</strong> ➔ <strong>Submit</strong>.</li>
+</ol>
+<h4>CLI Alternative</h4>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">aws cloudformation create-stack \ --stack-name cfn-student-demo \ --template-body file://cloudformation-web-stack.yaml \ --parameters ParameterKey=EnvironmentName,ParameterValue=Demo \ --region us-east-1
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h3>Monitor the Event Timeline</h3>
+<p>Navigate to the <strong>Events</strong> tab in the console. Watch CloudFormation resolve dependencies: provisioning the VPC and IGW first, attaching the gateway, building the subnet and route table, and finally launching the EC2 web server until status reaches <code>CREATE_COMPLETE</code>.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h3>Verify Live Web Application &amp; Outputs</h3>
+<p>Click the <strong>Outputs</strong> tab in the CloudFormation Console.</p>
+<p>Click the link next to <code>WebsiteURL</code>. Your browser loads the live server showing the dynamic stack name and metadata!</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h3>Execute a Safe Update via Change Sets</h3>
+<ol>
+<li>Edit <code>cloudformation-web-stack.yaml</code> and update the <code>WebServerInstance</code> Tag to <code>cfn-student-demo-Audited</code>.</li>
+<li>Select your stack ➔ click <strong>Stack actions</strong> ➔ <strong>Create change set for current stack</strong>.</li>
+<li>Upload your modified YAML file and name the Change Set <code>audit-update</code>. Click through to <strong>Submit</strong>.</li>
+<li>Inspect the Change Set table: verify that <strong>Action: Modify</strong> and <strong>Replacement: False</strong> (meaning zero server downtime!).</li>
+<li>Click <strong>Execute change set</strong> to apply the update safely.</li>
+</ol>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h3>Test Native Drift Detection</h3>
+<ol>
+<li>In a new tab, navigate to <em>EC2 ➔ Security Groups</em> and locate <code>cfn-student-demo-WebSG</code>.</li>
+<li>Add a rogue inbound rule: <code>Custom TCP Port 8080 from 0.0.0.0/0</code> and save.</li>
+<li>Return to CloudFormation ➔ select your stack ➔ click <strong>Stack actions</strong> ➔ <strong>Detect drift</strong>.</li>
+<li>Refresh after 10 seconds: the status transitions to <strong>DRIFTED</strong>!</li>
+<li>Click <strong>View drift results</strong> to view the exact property delta highlighted in red.</li>
+</ol>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h3>Mandatory Stack Deletion</h3>
+<div class="callout callout-danger">
+<div class="callout-icon">🚨</div>
+<div class="callout-body">
+<p><strong>CRITICAL STEP:</strong> Always delete your stack at the end of the lab to terminate all EC2 and VPC resources and prevent unwanted charges.</p>
+</div>
+</div>
+<p>Click <strong>Delete</strong> in the top right of the stack page in the CloudFormation Console, or run:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">aws cloudformation delete-stack --stack-name cfn-student-demo --region us-east-1
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h2>CloudFormation Intrinsic Functions Cheatsheet</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>YAML Short Form</th>
+<th>Description &amp; Return Value</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ref</strong></td>
+<td><code>!Ref LogicalID</code></td>
+<td>Returns parameter value or resource physical ID</td>
+<td><code>VpcId: !Ref CustomVPC</code></td>
+</tr>
+<tr>
+<td><strong>Fn::GetAtt</strong></td>
+<td><code>!GetAtt LogicalID.Attribute</code></td>
+<td>Retrieves specific attribute (DNS, ARN, IP)</td>
+<td><code>PublicIp: !GetAtt MyEC2.PublicIp</code></td>
+</tr>
+<tr>
+<td><strong>Fn::Sub</strong></td>
+<td><code>!Sub "String-${Var}"</code></td>
+<td>Substitutes variables dynamically in a string</td>
+<td><code>Name: !Sub "${AWS::StackName}-subnet"</code></td>
+</tr>
+<tr>
+<td><strong>Fn::Join</strong></td>
+<td><code>!Join [Delimiter, [List]]</code></td>
+<td>Concatenates a list of values with a delimiter</td>
+<td><code>!Join [":", ["arn", "aws", "s3"]]</code></td>
+</tr>
+<tr>
+<td><strong>Fn::FindInMap</strong></td>
+<td><code>!FindInMap [Map, Key, SubKey]</code></td>
+<td>Looks up static value from <code>Mappings</code> block</td>
+<td><code>!FindInMap [RegionMap, !Ref "AWS::Region", AMI]</code></td>
+</tr>
+<tr>
+<td><strong>Fn::Select</strong></td>
+<td><code>!Select [Index, List]</code></td>
+<td>Selects single item from list by 0-indexed position</td>
+<td><code>!Select [0, !GetAZs ""]</code></td>
+</tr>
+<tr>
+<td><strong>Fn::ImportValue</strong></td>
+<td><code>!ImportValue SharedOutput</code></td>
+<td>Imports value exported by another independent stack</td>
+<td><code>VpcId: !ImportValue CoreVpcId</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Interactive Self-Assessment Quiz</h2>
+<details>
+
+<summary>Which of the 8 sections of a CloudFormation template is strictly mandatory?</summary>
+
+A) Parameters
+
+B) Resources
+
+C) Outputs
+
+**Correct!** `Resources` is the only mandatory section. All other sections (Parameters, Outputs, Mappings, etc.) are optional additions to enhance template reusability.
+
+</details>
+
+<details>
+
+<summary>What is the purpose of creating a CloudFormation "Change Set" before updating a production stack?</summary>
+
+A) To preview whether proposed changes will update resources in-place or trigger destructive server replacement.
+
+B) To compile the template into a Go binary.
+
+C) To automatically purchase EC2 Reserved Instances.
+
+**Correct!** A Change Set acts as a safety preview showing exactly which resources will be added, modified, or destroyed before you commit the update to live production.
+
+</details>
+
+<details>
+
+<summary>How does CloudFormation handle state management differently from Terraform?</summary>
+
+A) CloudFormation requires you to create an encrypted local SQLite database.
+
+B) CloudFormation manages state internally inside AWS; users do not need to configure or manage state files.
+
+C) CloudFormation has no state tracking at all.
+
+**Correct!** CloudFormation handles state management completely under the hood as a native AWS service, eliminating the need to set up S3 state backends or DynamoDB state locking.
+
+</details>
+
+<h2>Troubleshooting FAQ &amp; Error Resolution</h2>
+<details>
+
+<summary>Error: ROLLBACK_IN_PROGRESS / ROLLBACK_COMPLETE</summary>
+
+A resource failed to provision (e.g. invalid CIDR or parameter).
+
+**Fix:** Check the **Events** tab. Filter for `CREATE_FAILED`. The status reason will explain the exact failure (e.g. _"Subnet CIDR overlaps with another subnet"_). Fix the error in your YAML and re-create.
+
+</details>
+
+<details>
+
+<summary>Error: Export [ExportName] cannot be deleted</summary>
+
+Another stack is actively importing an output via `Fn::ImportValue`.
+
+**Fix:** Delete the importing child stack first before attempting to delete or modify the parent exporting stack.
+
+</details>
+
+<details>
+
+<summary>Error: Template format error: Unresolved resource</summary>
+
+Typo in a `!Ref` or `!GetAtt` target.
+
+**Fix:** Verify spelling and letter capitalization of logical IDs. Logical IDs are case-sensitive in CloudFormation.
+
+</details>
+
+<h3>Resources for Practice</h3>
+<div class="callout callout-info">
+<div class="callout-icon">📁</div>
+<div class="callout-body">
+<p><strong>Attached Resource:</strong> <code>Cloudformation code.zip</code></p>
+</div>
+</div>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../aws/iac.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">IAC</span>
+  </a>
+  <a href="../aws/secrets-manager.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">Secrets Manager</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

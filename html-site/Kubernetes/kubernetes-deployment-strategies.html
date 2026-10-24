@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Nimbuswiztech Kubernetes deployment strategies training guide with Recreate, RollingUpdate, blue-green, canary, hands-on labs, troubleshooting and interview practice.">
+<title>Kubernetes Deployment Strategies Training Guide | Nimbuswiztech</title>
+<style>
+:root{--ink:#1b2938;--muted:#58697b;--line:#d8e1eb;--paper:#fff;--bg:#f3f6fa;--navy:#102b49;--blue:#1c64ac;--bluebg:#eaf3ff;--green:#eaf8ef;--amber:#fff4d8;--red:#fff0ef;--code:#101b2a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--blue);overflow-wrap:anywhere}
+header{background:var(--navy);color:#fff;padding:2.35rem max(1rem,calc((100% - 1180px)/2));border-bottom:5px solid #67aaff}header .brand{font-size:.82rem;font-weight:800;letter-spacing:.14em;color:#c9e2ff}header h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.12;margin:.55rem 0 1rem}header p{max-width:910px;color:#e0eaf6}
+.wrap{max-width:1180px;margin:auto;padding:1.1rem}section,nav#toc{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:1.25rem;margin:1rem 0;box-shadow:0 2px 8px #102b4909}
+h2{font-size:1.65rem;margin-top:0;border-bottom:1px solid var(--line);padding-bottom:.45rem}h3{font-size:1.2rem;margin-bottom:.35rem}p{margin:.55rem 0}ul,ol{padding-left:1.5rem}nav#toc ol{columns:2;column-gap:2rem}nav#toc li{break-inside:avoid;margin:.25rem 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem}.card{border:1px solid var(--line);border-radius:10px;padding:1rem}.callout{padding:.85rem 1rem;border-left:4px solid var(--blue);background:var(--bluebg);border-radius:5px;margin:.8rem 0}.warn{border-left-color:#b77900;background:var(--amber)}.danger{border-left-color:#bd3838;background:var(--red)}.good{border-left-color:#21804d;background:var(--green)}
+.muted{color:var(--muted)}.small{font-size:.9rem}.pill{display:inline-block;border:1px solid #c9d8e9;background:#f2f7fc;padding:.1rem .5rem;border-radius:999px;font-size:.82rem;margin:.1rem}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.94rem}th,td{border:1px solid var(--line);padding:.6rem;text-align:left;vertical-align:top}th{background:#edf2f8}
+pre{position:relative;overflow:auto;background:var(--code);color:#e9f1fb;padding:1rem;border-radius:9px;line-height:1.5;font-size:.9rem;white-space:pre;tab-size:2}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code,td code{background:#edf1f6;padding:.12rem .3rem;border-radius:4px;color:#20344b}.copy{position:absolute;right:.5rem;top:.5rem;background:#fff;color:#102b49;border:0;border-radius:5px;padding:.3rem .55rem;cursor:pointer;font-weight:700}
+.exercise{border:1px solid var(--line);border-radius:10px;padding:1rem;margin:1rem 0}.question{border-top:1px solid var(--line);padding:.65rem 0}.question summary{cursor:pointer;font-weight:700}.answer{background:#f7f9fc;padding:.7rem;border-radius:6px;margin-top:.45rem}.searchbox{width:100%;padding:.7rem;border:1px solid #aebdce;border-radius:7px;font:inherit;margin:.5rem 0 1rem}.diagram{width:100%;height:auto;display:block;background:#f8fbff;border:1px solid var(--line);border-radius:10px;margin:.7rem 0}.toplink{display:inline-block;margin:.8rem 0}footer{text-align:center;padding:2rem 1rem;color:var(--muted)}
+@media(max-width:650px){.wrap{padding:.65rem}nav#toc ol{columns:1}section,nav#toc{padding:1rem}table{font-size:.85rem}}
+@media print{body{background:#fff;font-size:10pt;color:#000}header{background:#fff;color:#000;border-bottom:2px solid #333;padding:1rem}header p,header .brand{color:#333}.wrap{max-width:none;padding:0}section,nav#toc{box-shadow:none;border:1px solid #aaa;break-inside:avoid;margin:.5rem 0;padding:.7rem}.copy,.searchbox,.toplink{display:none}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f4f4;color:#000;border:1px solid #aaa;padding:.5rem}details:not([open])>*:not(summary){display:block}h2,h3{break-after:avoid}footer{padding:.5rem}}
+</style>
+</head>
+<body id="top">
+<header>
+<div class="brand">NIMBUSWIZTECH · STUDENT LEARNING REFERENCE</div>
+<h1>Kubernetes Deployment Strategies</h1>
+<p>Learn how teams release application changes safely using Recreate, Rolling Update, Blue/Green, and Canary deployment patterns. Includes visual workflows, copyable manifests, rollback labs, troubleshooting, and interview preparation.</p>
+<p><span class="pill">Beginner-friendly</span> <span class="pill">Hands-on YAML</span> <span class="pill">Release safety</span> <span class="pill">Interview prep</span></p>
+</header>
+
+<main class="wrap">
+<nav id="toc" aria-label="Table of contents"><h2>Contents</h2><ol>
+<li><a href="#intro">Introduction</a></li><li><a href="#concepts">Core concepts and strategy comparison</a></li><li><a href="#architecture">Architecture and traffic workflows</a></li><li><a href="#environment">Environment preparation</a></li><li><a href="#labs">Step-by-step hands-on labs</a></li><li><a href="#complete">End-to-end release exercise</a></li><li><a href="#troubleshoot">Troubleshooting guide</a></li><li><a href="#best">Best practices</a></li><li><a href="#interview">Interview preparation</a></li><li><a href="#assignments">Practice assignments</a></li><li><a href="#revision">Quick revision and command sheet</a></li><li><a href="#cleanup">Final cleanup</a></li><li><a href="#references">References</a></li>
+</ol></nav>
+
+<section id="intro">
+<h2>1. Introduction</h2>
+<p>A <strong>deployment strategy</strong> describes how a new application release replaces or runs alongside the current version and how users are moved to the new release. Kubernetes Deployments natively support <strong>RollingUpdate</strong> and <strong>Recreate</strong>. <strong>Blue/Green</strong> and <strong>Canary</strong> are release patterns typically assembled from multiple Deployments, Services, and—when precise traffic control is required—an Ingress controller, Gateway implementation, or service mesh.</p>
+<div class="grid">
+<div class="card"><h3>Why strategies matter</h3><p>A release can introduce defects, incompatibility, poor performance, or startup delays. A deliberate strategy limits user impact and gives the team a defined validation and rollback path.</p></div>
+<div class="card"><h3>Analogy</h3><p>Replacing every cashier at once is Recreate. Replacing cashiers one at a time is Rolling Update. Opening a fully prepared second checkout hall and switching all customers is Blue/Green. Letting a small group try the new hall before expanding it is Canary.</p></div>
+<div class="card"><h3>DevOps example</h3><p>A team releases a new web application version. It updates a Deployment, checks readiness and error rates, then either proceeds, pauses, routes traffic back to the old version, or promotes the new version.</p></div>
+</div>
+<h3>Learning objectives</h3><ul>
+<li>Distinguish Kubernetes' native Deployment strategies from higher-level release patterns.</li>
+<li>Explain downtime, rollout speed, rollback options, cost, risk, and traffic control.</li>
+<li>Implement and inspect RollingUpdate and Recreate Deployments.</li>
+<li>Build Blue/Green and basic Canary demonstrations with labels and Services.</li>
+<li>Use readiness probes, rollout status, history, pause/resume, and rollback commands.</li>
+<li>Diagnose stuck rollouts, empty endpoints, bad releases, and incompatible application/database changes.</li>
+</ul>
+<div class="callout warn"><strong>Key technical distinction:</strong> A standard Kubernetes Deployment does not have a native <code>strategy: BlueGreen</code> or <code>strategy: Canary</code> setting. Native Deployment strategy values are <code>RollingUpdate</code> and <code>Recreate</code>. Blue/Green and Canary use resource and traffic-routing patterns around Deployments.</div>
+</section>
+
+<section id="concepts">
+<h2>2. Core concepts and strategy comparison</h2>
+<h3>Strategy comparison at a glance</h3>
+<div class="table-wrap"><table><thead><tr><th>Strategy</th><th>How it works</th><th>Downtime / user impact</th><th>Strength</th><th>Trade-off</th></tr></thead><tbody>
+<tr><td><strong>Recreate</strong></td><td>Terminate old Pods before creating the new revision's Pods for an update.</td><td>Expected during the handover; the length depends on shutdown and startup.</td><td>Simple; avoids running old and new application Pods simultaneously during an update.</td><td>Not appropriate when uninterrupted service is required.</td></tr>
+<tr><td><strong>Rolling Update</strong></td><td>Gradually scales the new ReplicaSet up and the old ReplicaSet down.</td><td>Can maintain availability when enough replicas remain ready, but zero downtime is not guaranteed by the strategy alone.</td><td>Native Deployment default; controlled incremental replacement.</td><td>Old and new versions can coexist; needs backward/forward compatibility and capacity.</td></tr>
+<tr><td><strong>Blue/Green</strong></td><td>Run old and new versions separately; switch a Service selector or routing rule after validating the new version.</td><td>Fast traffic switch is possible, but active connections, propagation, startup, and dependencies can still affect users.</td><td>Clear cutover and quick route-back path.</td><td>Requires extra capacity and a plan for state/data compatibility.</td></tr>
+<tr><td><strong>Canary</strong></td><td>Expose the new version to a limited subset of users/traffic, observe metrics, then increase exposure.</td><td>Limits blast radius if routing and monitoring are designed correctly.</td><td>Evidence from a small release before broad promotion.</td><td>Requires meaningful telemetry and traffic control; rollout is more operationally involved.</td></tr>
+</tbody></table></div>
+<h3>Native Deployment strategy fields</h3>
+<p><code>spec.strategy.type</code> accepts <code>RollingUpdate</code> or <code>Recreate</code>. Rolling Update is the default.</p>
+<ul>
+<li><code>maxSurge</code>: maximum number or percentage of extra Pods that may be created above the desired replica count during a Rolling Update.</li>
+<li><code>maxUnavailable</code>: maximum number or percentage of desired Pods that may be unavailable during the update.</li>
+<li><code>minReadySeconds</code>: how long a Pod must remain Ready without container crashes before it counts as available.</li>
+<li><code>progressDeadlineSeconds</code>: how long Kubernetes waits without observed rollout progress before reporting a stalled Deployment condition. The default is 600 seconds; the controller reports the condition but does not automatically roll back the release.</li>
+<li><code>revisionHistoryLimit</code>: number of old ReplicaSets retained for rollback history; deleting history can remove rollback options.</li>
+<li><code>readinessProbe</code>: provides a health signal used to decide whether a Pod should receive traffic and count as ready.</li>
+</ul>
+<div class="callout"><strong>Percent calculation:</strong> Kubernetes rounds percentage values down for <code>maxUnavailable</code> and up for <code>maxSurge</code>. For a small replica count, percentages may calculate to zero or one Pod; inspect the actual values when planning a release.</div>
+<h3>How to choose</h3><div class="table-wrap"><table><tr><th>Requirement</th><th>Starting point</th><th>Questions before deciding</th></tr>
+<tr><td>Development/test system can tolerate a pause</td><td>Recreate</td><td>Will dependent clients tolerate downtime? Does the workload have a single writer or lock requirement?</td></tr>
+<tr><td>General stateless web/API application</td><td>Rolling Update</td><td>Do readiness checks work? Can old and new versions coexist? Is there spare capacity?</td></tr>
+<tr><td>Need to test new release privately and switch all users afterward</td><td>Blue/Green</td><td>Can two environments fit in the budget? Are database changes compatible during a rollback?</td></tr>
+<tr><td>Need limited exposure with controlled ramp-up</td><td>Canary with a traffic controller</td><td>Can you route a defined percentage/user group? Are metrics and abort thresholds available?</td></tr></table></div>
+<h3>Common misunderstandings</h3><ul>
+<li><strong>“Rolling Update guarantees zero downtime.”</strong> No. Readiness, available capacity, app compatibility, startup time, and external dependencies still matter.</li>
+<li><strong>“Blue/Green resets the database.”</strong> No. Kubernetes switches routing; it does not clone, reset, or automatically reverse database state.</li>
+<li><strong>“One canary replica means 10% of traffic.”</strong> Not reliably. Replica ratios are not precise traffic weights for a normal Service.</li>
+<li><strong>“Rolling back a Deployment reverses every change.”</strong> Rollback restores the Pod template revision. It does not automatically undo external schema migrations or arbitrary changes to shared ConfigMap/Secret data.</li>
+<li><strong>“Recreate resets application state.”</strong> It replaces Pods during an update. Data in external databases or persistent volumes is not automatically reset.</li>
+</ul>
+</section>
+
+<section id="architecture">
+<h2>3. Architecture and traffic workflows</h2>
+<p>The diagrams below are original conceptual SVG illustrations, not screenshots from a live cluster.</p>
+<svg class="diagram" viewBox="0 0 960 440" role="img" aria-label="Four deployment strategy timelines showing Recreate, Rolling Update, Blue Green, and Canary">
+<defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3z" fill="#456789"/></marker></defs>
+<text x="26" y="34" font-size="20" font-weight="bold" fill="#183b62">Recreate</text>
+<rect x="210" y="12" width="210" height="35" rx="8" fill="#dceaff" stroke="#4d80bd"/><text x="315" y="34" text-anchor="middle" font-size="13" fill="#183b62">Old Pods running</text>
+<path d="M420 30 H475" stroke="#456789" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="480" y="12" width="165" height="35" rx="8" fill="#fff0ef" stroke="#c66"/><text x="562" y="34" text-anchor="middle" font-size="13" fill="#8c2525">Gap / downtime</text>
+<path d="M645 30 H700" stroke="#456789" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="705" y="12" width="220" height="35" rx="8" fill="#eaf8ef" stroke="#4c9a70"/><text x="815" y="34" text-anchor="middle" font-size="13" fill="#155d38">New Pods running</text>
+<text x="26" y="119" font-size="20" font-weight="bold" fill="#183b62">Rolling</text>
+<rect x="210" y="75" width="210" height="35" rx="8" fill="#dceaff" stroke="#4d80bd"/><text x="315" y="97" text-anchor="middle" font-size="13" fill="#183b62">Old version serves</text>
+<path d="M420 93 H460" stroke="#456789" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="465" y="75" width="235" height="35" rx="8" fill="#fff4d8" stroke="#c89b3c"/><text x="582" y="97" text-anchor="middle" font-size="13" fill="#704d00">Old + new overlap</text>
+<path d="M700 93 H740" stroke="#456789" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="745" y="75" width="180" height="35" rx="8" fill="#eaf8ef" stroke="#4c9a70"/><text x="835" y="97" text-anchor="middle" font-size="13" fill="#155d38">New version serves</text>
+<text x="26" y="204" font-size="20" font-weight="bold" fill="#183b62">Blue/Green</text>
+<rect x="210" y="145" width="285" height="50" rx="8" fill="#dceaff" stroke="#4d80bd"/><text x="352" y="166" text-anchor="middle" font-size="14" font-weight="bold" fill="#183b62">Blue: live</text><text x="352" y="183" text-anchor="middle" font-size="12" fill="#183b62">Green: deployed and tested</text>
+<path d="M495 170 H565" stroke="#456789" stroke-width="2" marker-end="url(#arr)"/><rect x="570" y="145" width="355" height="50" rx="8" fill="#eaf8ef" stroke="#4c9a70"/><text x="747" y="166" text-anchor="middle" font-size="14" font-weight="bold" fill="#155d38">Switch Service selector / route</text><text x="747" y="183" text-anchor="middle" font-size="12" fill="#155d38">Green becomes live; Blue remains for rollback</text>
+<text x="26" y="295" font-size="20" font-weight="bold" fill="#183b62">Canary</text>
+<rect x="210" y="235" width="285" height="50" rx="8" fill="#dceaff" stroke="#4d80bd"/><text x="352" y="256" text-anchor="middle" font-size="14" font-weight="bold" fill="#183b62">Stable: most traffic</text><text x="352" y="273" text-anchor="middle" font-size="12" fill="#183b62">Canary: small selected cohort</text>
+<path d="M495 260 H565" stroke="#456789" stroke-width="2" marker-end="url(#arr)"/><rect x="570" y="235" width="355" height="50" rx="8" fill="#fff4d8" stroke="#c89b3c"/><text x="747" y="256" text-anchor="middle" font-size="14" font-weight="bold" fill="#704d00">Observe → promote or abort</text><text x="747" y="273" text-anchor="middle" font-size="12" fill="#704d00">Gradually increase exposure when metrics pass</text>
+<line x1="26" y1="323" x2="934" y2="323" stroke="#d7e0ea"/>
+<text x="26" y="350" font-size="14" fill="#536273">Native Deployment choices: Recreate and RollingUpdate.</text>
+<text x="26" y="373" font-size="14" fill="#536273">Blue/Green and Canary: patterns assembled using Deployments and a traffic-switching/routing mechanism.</text>
+<text x="26" y="396" font-size="14" fill="#536273">Canary percentage-based routing normally needs a controller or proxy that supports weights or user matching.</text>
+</svg>
+<h3>Step-by-step: Rolling Update</h3><ol><li>A changed Pod template causes the Deployment to create a new ReplicaSet.</li><li>The new ReplicaSet scales up within <code>maxSurge</code>; old Pods scale down within <code>maxUnavailable</code>.</li><li>Readiness checks help Kubernetes determine when new Pods are available.</li><li>The rollout completes when the new desired replicas are updated and available; inspect using <code>kubectl rollout status</code>.</li></ol>
+<h3>Step-by-step: Blue/Green</h3><ol><li>Deploy Blue and Green as separate Deployments with non-overlapping selectors.</li><li>Test Green via a preview Service or isolated route.</li><li>Change the live Service selector or routing rule to point at Green.</li><li>Observe health and metrics; if needed, point the live Service back to Blue. Retain Blue until rollback is no longer required.</li></ol>
+<h3>Step-by-step: Canary</h3><ol><li>Keep a stable Deployment serving most of the application.</li><li>Run a small canary revision and expose it only to the intended cohort.</li><li>Compare error rate, latency, logs and business metrics against stable.</li><li>Increase exposure in stages or abort by removing canary traffic.</li></ol>
+<div class="callout warn"><strong>Traffic-splitting warning:</strong> In the lab later in this guide, the standard Service selects Pods from both stable and canary Deployments to demonstrate a mixed endpoint pool. This is <em>not</em> a deterministic 90/10 or 99/1 canary. For precise weights, use a supported Ingress/Gateway controller or service mesh that documents weighted routing.</div>
+</section>
+
+<section id="environment">
+<h2>4. Environment preparation</h2>
+<p>Use an authorized cluster with <code>kubectl</code>, such as Minikube, kind, or an existing training cluster. The examples use NGINX and ConfigMaps to make release differences visible as simple web page text. No cloud load balancer is required. Public image pulls and enough CPU/memory are needed.</p>
+<h3>Verify the cluster</h3><pre><code>kubectl version --client
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+kubectl config current-context</code></pre>
+<ul><li><code>kubectl version --client</code> checks the local client binary.</li><li><code>kubectl cluster-info</code> checks API connectivity.</li><li><code>kubectl get nodes</code> lists the nodes; make sure suitable nodes are Ready.</li><li><code>kubectl get namespaces</code> lists resource namespaces.</li><li><code>kubectl config current-context</code> confirms which cluster the commands will affect.</li></ul>
+<p>Optional local-cluster setup if Minikube is already installed:</p><pre><code>minikube start
+kubectl get nodes
+kubectl config current-context</code></pre>
+<h3>Create the lab working folder and namespace</h3><pre><code>mkdir -p kubernetes-deployment-strategies
+cd kubernetes-deployment-strategies
+kubectl create namespace nimbus-deploy-strategies</code></pre>
+<div class="callout danger"><strong>Safe lab boundary:</strong> All manifests use <code>nimbus-deploy-strategies</code>. If the namespace already exists, inspect it and verify it is your training namespace. Namespace deletion removes every namespaced object inside; do not use the cleanup procedure on a shared namespace containing other users' resources.</div>
+<h3>How examples make release versions visible</h3><p>Each Deployment mounts a version-specific ConfigMap key at NGINX's <code>/usr/share/nginx/html/index.html</code>. Page text such as “VERSION 1” or “GREEN RELEASE” makes it easy to verify which revision answered. The example switches the referenced ConfigMap name so the Pod template changes and the intended rollout strategy occurs.</p>
+</section>
+
+<section id="labs">
+<h2>5. Step-by-step hands-on labs</h2>
+<p>Run each lab in sequence. The exercises use independent workload names so you can compare strategies without accidentally overlapping Deployment selectors. Stop each <code>kubectl port-forward</code> with Ctrl+C before reusing a local port.</p>
+
+<div class="exercise">
+<h3>Exercise 1 — Build a versioned app and perform a Rolling Update</h3>
+<p><strong>Objective:</strong> See a safe incremental release using Kubernetes' native Deployment strategy.</p>
+<p><strong>Step 1 — Save as <code>rolling-v1.yaml</code>:</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rolling-page-v1
+  namespace: nimbus-deploy-strategies
+data:
+  index.html: |
+    &lt;!doctype html&gt;
+    &lt;html&gt;&lt;body&gt;&lt;h1&gt;Nimbuswiztech - ROLLING VERSION 1&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rolling-web
+  namespace: nimbus-deploy-strategies
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 3
+  progressDeadlineSeconds: 120
+  selector:
+    matchLabels:
+      app: rolling-web
+  template:
+    metadata:
+      labels:
+        app: rolling-web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 3
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      volumes:
+      - name: page
+        configMap:
+          name: rolling-page-v1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rolling-web
+  namespace: nimbus-deploy-strategies
+spec:
+  type: ClusterIP
+  selector:
+    app: rolling-web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre>
+<p><strong>Step 2 — Apply and verify:</strong></p><pre><code>kubectl apply -f rolling-v1.yaml
+kubectl rollout status deployment/rolling-web -n nimbus-deploy-strategies --timeout=180s
+kubectl get deployment,replicaset,pods,service -n nimbus-deploy-strategies
+kubectl port-forward service/rolling-web 18080:80 -n nimbus-deploy-strategies</code></pre>
+<p>Keep port-forward running. In a second terminal, run <code>curl -s http://127.0.0.1:18080</code>. The response should include <strong>ROLLING VERSION 1</strong>.</p>
+<p><strong>Step 3 — Save as <code>rolling-v2.yaml</code> to trigger the next revision:</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rolling-page-v2
+  namespace: nimbus-deploy-strategies
+data:
+  index.html: |
+    &lt;!doctype html&gt;
+    &lt;html&gt;&lt;body&gt;&lt;h1&gt;Nimbuswiztech - ROLLING VERSION 2&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rolling-web
+  namespace: nimbus-deploy-strategies
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 3
+  progressDeadlineSeconds: 120
+  selector:
+    matchLabels:
+      app: rolling-web
+  template:
+    metadata:
+      labels:
+        app: rolling-web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 3
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      volumes:
+      - name: page
+        configMap:
+          name: rolling-page-v2</code></pre>
+<p><strong>Step 4 — Apply the update and observe it:</strong></p><pre><code>kubectl apply -f rolling-v2.yaml
+kubectl rollout status deployment/rolling-web -n nimbus-deploy-strategies --timeout=180s
+kubectl get replicasets -n nimbus-deploy-strategies -w</code></pre>
+<p>In another terminal run <code>curl -s http://127.0.0.1:18080</code>. After rollout completion, the response should show <strong>ROLLING VERSION 2</strong>.</p>
+<p><strong>Explain the fields:</strong> <code>maxSurge: 1</code> allows one extra Pod above three desired; <code>maxUnavailable: 0</code> asks Kubernetes not to intentionally reduce the available count during the update; <code>minReadySeconds</code> requires a brief stability interval; the readiness probe checks HTTP on the named port.</p>
+<p><strong>Expected result:</strong> A new ReplicaSet appears, new Pods become ready, and old Pods are scaled down. Exact event timing varies with image availability and cluster resources.</p>
+<p><strong>Troubleshooting:</strong> If rollout stalls, inspect the Deployment and newest Pods. Insufficient capacity can block surge Pods; readiness failure blocks progress; image pull problems prevent new Pods starting.</p>
+<p><strong>Interview connection:</strong> A changed <code>spec.template</code> triggers a new rollout. Updating a ConfigMap object alone would not change the Pod template; this lab changes the ConfigMap reference so it triggers a new revision.</p>
+</div>
+
+<div class="exercise">
+<h3>Exercise 2 — Use Recreate and observe its downtime window</h3>
+<p><strong>Objective:</strong> See how Recreate differs from Rolling Update when a Pod template changes.</p>
+<p><strong>Step 1 — Save as <code>recreate-v1.yaml</code>:</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: recreate-page-v1
+  namespace: nimbus-deploy-strategies
+data:
+  index.html: |
+    &lt;!doctype html&gt;
+    &lt;html&gt;&lt;body&gt;&lt;h1&gt;RECREATE VERSION 1&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recreate-web
+  namespace: nimbus-deploy-strategies
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: recreate-web
+  template:
+    metadata:
+      labels:
+        app: recreate-web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 3
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      volumes:
+      - name: page
+        configMap:
+          name: recreate-page-v1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: recreate-web
+  namespace: nimbus-deploy-strategies
+spec:
+  selector:
+    app: recreate-web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre>
+<p><strong>Step 2 — Apply and confirm the old page:</strong></p><pre><code>kubectl apply -f recreate-v1.yaml
+kubectl rollout status deployment/recreate-web -n nimbus-deploy-strategies --timeout=180s
+kubectl port-forward service/recreate-web 18081:80 -n nimbus-deploy-strategies</code></pre>
+<p>In a second terminal: <code>curl -s http://127.0.0.1:18081</code>. It should show RECREATE VERSION 1.</p>
+<p><strong>Step 3 — Save as <code>recreate-v2.yaml</code>:</strong> use the same Deployment and Service configuration from <code>recreate-v1.yaml</code>, but create ConfigMap <code>recreate-page-v2</code> containing the text <code>RECREATE VERSION 2</code> and change the Deployment's volume reference from <code>recreate-page-v1</code> to <code>recreate-page-v2</code>. The complete Deployment body is shown below; include it with the new ConfigMap in the file.</p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: recreate-page-v2
+  namespace: nimbus-deploy-strategies
+data:
+  index.html: |
+    &lt;!doctype html&gt;
+    &lt;html&gt;&lt;body&gt;&lt;h1&gt;RECREATE VERSION 2&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recreate-web
+  namespace: nimbus-deploy-strategies
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: recreate-web
+  template:
+    metadata:
+      labels:
+        app: recreate-web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 3
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      volumes:
+      - name: page
+        configMap:
+          name: recreate-page-v2</code></pre>
+<p><strong>Step 4 — Watch the Pods, then apply the v2 file:</strong></p><pre><code>kubectl get pods -n nimbus-deploy-strategies -l app=recreate-web -w
+# In a second terminal after saving recreate-v2.yaml:
+kubectl apply -f recreate-v2.yaml
+kubectl rollout status deployment/recreate-web -n nimbus-deploy-strategies --timeout=180s</code></pre>
+<p>During the template update, the old revision's Pods are terminated before new revision Pods are created. The Service can briefly have no ready endpoints. This intentional lab demonstrates downtime; do not use it against a production workload.</p>
+<p><strong>Important:</strong> Manually deleting one Pod does not trigger Recreate strategy for the Deployment; its ReplicaSet replaces deleted Pods. The Recreate policy applies to rollout updates.</p>
+</div>
+
+<div class="exercise">
+<h3>Exercise 3 — Blue/Green deployment with a Service switch</h3>
+<p><strong>Objective:</strong> Run two isolated versions, test Green before cutover, and route the live Service back to Blue if necessary.</p>
+<p><strong>Step 1 — Save as <code>blue-green.yaml</code>:</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shop-blue-page
+  namespace: nimbus-deploy-strategies
+data:
+  index.html: |
+    &lt;!doctype html&gt;
+    &lt;html&gt;&lt;body&gt;&lt;h1&gt;SHOP BLUE - CURRENT RELEASE&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shop-green-page
+  namespace: nimbus-deploy-strategies
+data:
+  index.html: |
+    &lt;!doctype html&gt;
+    &lt;html&gt;&lt;body&gt;&lt;h1&gt;SHOP GREEN - CANDIDATE RELEASE&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-blue
+  namespace: nimbus-deploy-strategies
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shop
+      track: blue
+  template:
+    metadata:
+      labels:
+        app: shop
+        track: blue
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      volumes:
+      - name: page
+        configMap:
+          name: shop-blue-page
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-green
+  namespace: nimbus-deploy-strategies
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shop
+      track: green
+  template:
+    metadata:
+      labels:
+        app: shop
+        track: green
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      volumes:
+      - name: page
+        configMap:
+          name: shop-green-page
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shop-live
+  namespace: nimbus-deploy-strategies
+spec:
+  selector:
+    app: shop
+    track: blue
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shop-green-preview
+  namespace: nimbus-deploy-strategies
+spec:
+  selector:
+    app: shop
+    track: green
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre>
+<p><strong>Step 2 — Apply both versions and test Green in isolation:</strong></p><pre><code>kubectl apply -f blue-green.yaml
+kubectl rollout status deployment/shop-blue -n nimbus-deploy-strategies
+kubectl rollout status deployment/shop-green -n nimbus-deploy-strategies
+kubectl port-forward service/shop-green-preview 18082:80 -n nimbus-deploy-strategies</code></pre>
+<p>In another terminal, run <code>curl -s http://127.0.0.1:18082</code>. Confirm “SHOP GREEN - CANDIDATE RELEASE” before cutover. Stop the preview port-forward with Ctrl+C when done.</p>
+<p><strong>Step 3 — Inspect the live Blue page:</strong></p><pre><code>kubectl port-forward service/shop-live 18083:80 -n nimbus-deploy-strategies</code></pre>
+<p>In another terminal: <code>curl -s http://127.0.0.1:18083</code>. It should show “SHOP BLUE - CURRENT RELEASE”. Leave the port-forward running.</p>
+<p><strong>Step 4 — Cut over by changing the live Service selector:</strong></p><pre><code>kubectl patch service shop-live -n nimbus-deploy-strategies --type=merge -p '{"spec":{"selector":{"app":"shop","track":"green"}}}'
+kubectl get endpointslices -n nimbus-deploy-strategies -l kubernetes.io/service-name=shop-live
+curl -s http://127.0.0.1:18083</code></pre>
+<p>The response should switch to the Green page after endpoint updates. Active connections and propagation can mean a real service does not switch every in-flight request instantaneously.</p>
+<p><strong>Step 5 — Roll back traffic to Blue:</strong></p><pre><code>kubectl patch service shop-live -n nimbus-deploy-strategies --type=merge -p '{"spec":{"selector":{"app":"shop","track":"blue"}}}'
+curl -s http://127.0.0.1:18083</code></pre>
+<p><strong>Key learning:</strong> Blue and Green Deployments use different selectors, so their ReplicaSets do not compete over the same Pods. A single Service selector controls which release receives new traffic. The preview Service lets you validate Green before switching users.</p>
+<div class="callout warn">Both versions use the same example NGINX image but different page configuration to make the routing easy to see. Real releases typically differ in application image/artifacts and configuration. Blue/Green requires enough capacity to run both versions, and rollback does not automatically reverse data migrations.</div>
+</div>
+
+<div class="exercise">
+<h3>Exercise 4 — Canary pattern with two Deployments and one Service pool</h3>
+<p><strong>Objective:</strong> Introduce a limited canary instance while retaining a stable pool; understand the limitation of a normal Kubernetes Service.</p>
+<p><strong>Step 1 — Save as <code>canary.yaml</code>:</strong></p>
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: canary-stable-page
+  namespace: nimbus-deploy-strategies
+data:
+  index.html: |
+    &lt;!doctype html&gt;
+    &lt;html&gt;&lt;body&gt;&lt;h1&gt;CANARY DEMO - STABLE VERSION&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: canary-candidate-page
+  namespace: nimbus-deploy-strategies
+data:
+  index.html: |
+    &lt;!doctype html&gt;
+    &lt;html&gt;&lt;body&gt;&lt;h1&gt;CANARY DEMO - CANDIDATE VERSION&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary-stable
+  namespace: nimbus-deploy-strategies
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: canary-demo
+      track: stable
+  template:
+    metadata:
+      labels:
+        app: canary-demo
+        track: stable
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      volumes:
+      - name: page
+        configMap:
+          name: canary-stable-page
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary-candidate
+  namespace: nimbus-deploy-strategies
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: canary-demo
+      track: candidate
+  template:
+    metadata:
+      labels:
+        app: canary-demo
+        track: candidate
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27
+        ports:
+        - name: http
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        volumeMounts:
+        - name: page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      volumes:
+      - name: page
+        configMap:
+          name: canary-candidate-page
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary-demo
+  namespace: nimbus-deploy-strategies
+spec:
+  selector:
+    app: canary-demo
+  ports:
+  - name: http
+    port: 80
+    targetPort: http</code></pre>
+<p><strong>Step 2 — Apply and inspect endpoint pool:</strong></p><pre><code>kubectl apply -f canary.yaml
+kubectl rollout status deployment/canary-stable -n nimbus-deploy-strategies
+kubectl rollout status deployment/canary-candidate -n nimbus-deploy-strategies
+kubectl get pods -n nimbus-deploy-strategies --show-labels
+kubectl get endpointslices -n nimbus-deploy-strategies -l kubernetes.io/service-name=canary-demo</code></pre>
+<p>The Service selector matches <code>app=canary-demo</code>; stable and candidate Pods carry that label while their controller selectors remain distinct through <code>track</code>. The endpoint pool should contain both types when all are ready.</p>
+<p><strong>Step 3 — Send repeated requests from inside the cluster.</strong> This requires pulling the curl client image and cluster DNS/networking:</p><pre><code>kubectl run canary-check --image=curlimages/curl:8.10.1 --restart=Never -n nimbus-deploy-strategies --command -- sh -c 'sleep 3600'
+kubectl wait --for=condition=Ready pod/canary-check -n nimbus-deploy-strategies --timeout=120s
+kubectl exec canary-check -n nimbus-deploy-strategies -- sh -c 'i=1; while [ "$i" -le 12 ]; do curl -s --max-time 3 http://canary-demo; i=$((i+1)); done'</code></pre>
+<p>Responses may show stable, candidate, or both versions. This is an endpoint-pool demonstration, not a deterministic weighted traffic test. Repeated requests, connection tracking, network implementation and small sample size can affect the observed split.</p>
+<p><strong>Step 4 — Abort the canary:</strong></p><pre><code>kubectl scale deployment/canary-candidate --replicas=0 -n nimbus-deploy-strategies
+kubectl get endpointslices -n nimbus-deploy-strategies -l kubernetes.io/service-name=canary-demo</code></pre>
+<p>The stable endpoints remain and the candidate endpoints should disappear after reconciliation. To re-enable the lab candidate, scale it back to one replica.</p>
+<div class="callout warn"><strong>Production note:</strong> A common Service selector is not a weighted traffic router. For a controlled 1%, 5%, or 10% canary, use a platform that supports weighted backends or header/cookie/user cohort routing, then measure errors, latency, saturation and business signals before promotion.</div>
+</div>
+
+<div class="exercise">
+<h3>Exercise 5 — Rollback a failed Rolling Update</h3>
+<p><strong>Objective:</strong> Use revision history to recover from a bad Pod-template revision.</p>
+<p>Run against the Rolling Update Deployment created in Exercise 1. First inspect revision history:</p><pre><code>kubectl rollout history deployment/rolling-web -n nimbus-deploy-strategies
+kubectl describe deployment rolling-web -n nimbus-deploy-strategies</code></pre>
+<p>Optionally introduce a bad image in the isolated lab and observe failure:</p><pre><code>kubectl set image deployment/rolling-web nginx=nginx:nonexistent-training-tag -n nimbus-deploy-strategies
+kubectl rollout status deployment/rolling-web -n nimbus-deploy-strategies --timeout=90s
+kubectl get pods -n nimbus-deploy-strategies -l app=rolling-web
+kubectl describe deployment rolling-web -n nimbus-deploy-strategies</code></pre>
+<p>Restore the previous revision:</p><pre><code>kubectl rollout undo deployment/rolling-web -n nimbus-deploy-strategies
+kubectl rollout status deployment/rolling-web -n nimbus-deploy-strategies --timeout=180s
+kubectl rollout history deployment/rolling-web -n nimbus-deploy-strategies</code></pre>
+<p><strong>Explanation:</strong> A nonexistent image tag normally causes image-pull failures; it may not be a safe test on shared/prod infrastructure. Rollback restores the Pod template from a previous revision. Old ConfigMaps must still exist if a revision references them.</p>
+</div>
+</section>
+
+<section id="complete">
+<h2>6. End-to-end release workflow</h2>
+<h3>Business requirement</h3><p>Release a changed web page while minimizing risk. The team should create a candidate version, validate it before switching, have a clear abort path, and retain a previous known-good release until confidence is high.</p>
+<h3>Suggested decision workflow</h3><ol>
+<li><strong>Pre-release:</strong> confirm image/artifact version, backward-compatible configuration and schema plan, required capacity, health checks, and rollback owner.</li>
+<li><strong>Choose pattern:</strong> Rolling Update for routine stateless updates; Blue/Green for full cutover with a preview environment; Canary when traffic can be split and metrics can be evaluated; Recreate only where downtime is acceptable or the app requires it.</li>
+<li><strong>Deploy:</strong> use version-controlled manifests and a dedicated namespace or controlled production namespace.</li>
+<li><strong>Validate:</strong> confirm rollout completion, desired/available replicas, readiness, logs, and synthetic/business checks.</li>
+<li><strong>Observe:</strong> watch error rate, latency, saturation, logs and user-impact metrics over a defined window.</li>
+<li><strong>Promote or abort:</strong> increase exposure or switch routing after success; otherwise pause, rollback or switch back to the last known-good version.</li>
+<li><strong>Close release:</strong> record version, change, observed signals, decision and follow-up. Keep the rollback target until the rollback window expires.</li>
+</ol>
+<h3>Core deployment inspection commands</h3><pre><code>kubectl get deployment,replicaset,pods -n nimbus-deploy-strategies
+kubectl rollout status deployment/rolling-web -n nimbus-deploy-strategies
+kubectl rollout history deployment/rolling-web -n nimbus-deploy-strategies
+kubectl describe deployment rolling-web -n nimbus-deploy-strategies
+kubectl get events -n nimbus-deploy-strategies --sort-by=.metadata.creationTimestamp</code></pre>
+<div class="callout good"><strong>Definition of release success:</strong> “kubectl apply” completing is not enough. Confirm desired replicas are available, new Pods pass readiness, the intended version serves requests, and application-level signals remain within agreed limits.</div>
+</section>
+
+<section id="troubleshoot">
+<h2>7. Troubleshooting guide</h2>
+<div class="table-wrap"><table><thead><tr><th>Symptom or error</th><th>Possible cause</th><th>Diagnostic command</th><th>Resolution</th></tr></thead><tbody>
+<tr><td>Rollout never completes</td><td>Readiness probe failing, bad image, capacity/quota limit, startup/config error.</td><td><code>kubectl rollout status deployment/rolling-web -n nimbus-deploy-strategies</code><br><code>kubectl describe deployment rolling-web -n nimbus-deploy-strategies</code></td><td>Inspect new Pods and Events; fix the demonstrated cause or roll back if the release is unsafe.</td></tr>
+<tr><td>ImagePullBackOff</td><td>Invalid image/tag, registry access/rate limit, missing credentials.</td><td><code>kubectl describe pod POD_NAME -n nimbus-deploy-strategies</code></td><td>Correct the image reference and verify registry network/authentication.</td></tr>
+<tr><td>Rolling Update has fewer ready replicas</td><td>New Pods are unready, maxUnavailable permits reduced availability, or old Pods have scaled down as allowed.</td><td><code>kubectl get rs,pods -n nimbus-deploy-strategies</code><br><code>kubectl describe deployment rolling-web -n nimbus-deploy-strategies</code></td><td>Check readiness, capacity and maxUnavailable/maxSurge; do not assume a rollout setting alone guarantees availability.</td></tr>
+<tr><td>Recreate release causes outage</td><td>Expected behavior: old Pods are terminated before replacement Pods are created.</td><td><code>kubectl get pods -w -n nimbus-deploy-strategies</code></td><td>Use Rolling Update or Blue/Green if downtime is not acceptable; check client retry behavior.</td></tr>
+<tr><td>Blue/Green switch still serves old version</td><td>Service selector did not change, selector values do not match Green labels, stale connection or local cache.</td><td><code>kubectl get service shop-live -n nimbus-deploy-strategies -o yaml</code><br><code>kubectl get endpointslices -n nimbus-deploy-strategies -l kubernetes.io/service-name=shop-live</code></td><td>Verify selector/labels and EndpointSlices; start a new request/connection and inspect response.</td></tr>
+<tr><td>Blue/Green Green preview unhealthy</td><td>Candidate Pods not Ready, missing ConfigMap, bad mount path, or app startup failure.</td><td><code>kubectl describe deployment shop-green -n nimbus-deploy-strategies</code><br><code>kubectl logs deployment/shop-green -n nimbus-deploy-strategies</code></td><td>Fix Green in isolation and verify preview endpoint before switching live traffic.</td></tr>
+<tr><td>Canary traffic not exactly 10%</td><td>Replica count ratio is not a precise traffic weight; connection distribution and networking behavior vary.</td><td><code>kubectl get endpointslices -n nimbus-deploy-strategies -l kubernetes.io/service-name=canary-demo</code></td><td>Use a weighted-routing-capable Ingress/Gateway controller or service mesh; test actual observed traffic distribution.</td></tr>
+<tr><td>Rollback does not restore external state</td><td>Deployment rollback restores the Pod template, not database migrations, external services, or all changed objects.</td><td><code>kubectl rollout history deployment/rolling-web -n nimbus-deploy-strategies</code></td><td>Run the documented data rollback/forward-fix process separately; prefer backward-compatible migrations.</td></tr>
+<tr><td>ProgressDeadlineExceeded</td><td>No rollout progress was observed within the configured deadline.</td><td><code>kubectl describe deployment rolling-web -n nimbus-deploy-strategies</code></td><td>Check Events and failing Pods. Kubernetes reports stalled progress but does not automatically roll back for you.</td></tr>
+<tr><td>Service has no endpoints after scale/change</td><td>Selector mismatch, Pods absent, or Pods not Ready.</td><td><code>kubectl get pods --show-labels -n nimbus-deploy-strategies</code><br><code>kubectl get endpointslices -n nimbus-deploy-strategies</code></td><td>Align labels and selectors; ensure candidate/stable Pods are healthy and Ready.</td></tr>
+<tr><td>Forbidden on apply or patch</td><td>Current user/service account lacks permission.</td><td><code>kubectl auth can-i patch services -n nimbus-deploy-strategies</code></td><td>Ask the administrator for authorized least-privilege access.</td></tr>
+</tbody></table></div>
+<p>Generic diagnostics; replace names with the resource names from the lab:</p><pre><code>kubectl get all -n nimbus-deploy-strategies
+kubectl describe deployment rolling-web -n nimbus-deploy-strategies
+kubectl get events -n nimbus-deploy-strategies --sort-by=.metadata.creationTimestamp
+kubectl get pods -n nimbus-deploy-strategies -o wide
+kubectl logs POD_NAME -n nimbus-deploy-strategies
+kubectl get deployment rolling-web -n nimbus-deploy-strategies -o yaml</code></pre>
+</section>
+
+<section id="best">
+<h2>8. Best practices</h2>
+<ul>
+<li><strong>Set meaningful readiness probes.</strong> A Pod should not enter the serving pool before it can handle requests. Test the probe path and port against the real app.</li>
+<li><strong>Plan sufficient capacity.</strong> Rolling Update with <code>maxSurge</code> and Blue/Green both need room for overlapping Pods/environments. Verify quotas and node capacity before release.</li>
+<li><strong>Keep versions backward-compatible during overlap.</strong> Rolling and Canary can run old and new code simultaneously. Coordinate API contracts, cache formats and database migrations.</li>
+<li><strong>Use immutable release artifacts.</strong> Pin a specific application version or image digest, record it, and avoid changing an image behind a reused tag.</li>
+<li><strong>Keep selectors unique and deliberate.</strong> Blue/Green Deployments should have distinct selectors, such as <code>app: shop, track: blue</code> and <code>app: shop, track: green</code>, while the live Service changes its selector.</li>
+<li><strong>Choose rollback rules before launch.</strong> Define which metrics cause an abort, who can authorize traffic switch-back, and how to verify recovery.</li>
+<li><strong>Monitor more than Pod status.</strong> Track errors, request latency, saturation and business behavior. Ready Pods can still produce incorrect results or downstream failures.</li>
+<li><strong>Do not mistake rollout completion for full application health.</strong> A Deployment rollout checks Pod availability; synthetic requests and service-level indicators are still needed.</li>
+<li><strong>Keep history intentionally.</strong> Old ReplicaSets enable rollback, but unlimited history consumes resources. Set a suitable revisionHistoryLimit for the environment.</li>
+<li><strong>Protect external release controls.</strong> Restrict who can patch live Service selectors or alter release manifests using RBAC and change review.</li>
+<li><strong>Plan stateful change separately.</strong> Persistent data and database schema changes are not automatically rolled back by Deployment revision history. Use migration plans, backups and compatibility windows.</li>
+<li><strong>Do not promise exact canary weights from replica counts.</strong> Use a routing layer that explicitly supports weights or request matching, and validate the realized traffic distribution.</li>
+<li><strong>Prefer declarative source control.</strong> Keep manifests in Git, review differences, and ensure the intended manifest and running objects do not drift unnoticed.</li>
+<li><strong>Use Recreate only intentionally.</strong> It can be valid for jobs or workloads that cannot overlap, but document downtime and recovery expectations.</li>
+</ul>
+</section>
+
+<section id="interview">
+<h2>9. Interview preparation</h2>
+<p>Use search to filter questions, and expand an item to reveal its answer.</p>
+<input class="searchbox" id="qsearch" type="search" placeholder="Search interview questions: maxSurge, canary, rollback…" aria-label="Search interview questions">
+<div id="questions">
+<h3>Level 1 — Basic questions</h3>
+<div class="question"><details><summary>1. What is a deployment strategy?</summary><div class="answer">It describes how a new application version replaces or runs alongside an existing version, and how traffic and availability are managed during release.</div></details></div>
+<div class="question"><details><summary>2. Which strategy types are native to a Kubernetes Deployment?</summary><div class="answer">Recreate and RollingUpdate. RollingUpdate is the default. Blue/Green and Canary are patterns implemented using workloads and traffic-routing mechanisms.</div></details></div>
+<div class="question"><details><summary>3. What is Recreate?</summary><div class="answer">For a Deployment template update, existing Pods are terminated before Pods for the new revision are created. This commonly introduces downtime.</div></details></div>
+<div class="question"><details><summary>4. What is Rolling Update?</summary><div class="answer">The Deployment gradually scales up a new ReplicaSet and scales down the old ReplicaSet, with progress controlled by availability and surge settings.</div></details></div>
+<div class="question"><details><summary>5. What is maxSurge?</summary><div class="answer">It caps how many extra Pods above desired replicas may be created during a rolling update. It can be an integer or percentage.</div></details></div>
+<div class="question"><details><summary>6. What is maxUnavailable?</summary><div class="answer">It caps how many desired Pods may be unavailable during a rolling update. Kubernetes rounds percentage values down for this field.</div></details></div>
+<div class="question"><details><summary>7. What is Blue/Green deployment?</summary><div class="answer">Two versions run alongside one another. The new version is validated before the live routing target is changed, commonly by updating a Service selector or gateway route.</div></details></div>
+<div class="question"><details><summary>8. What is Canary deployment?</summary><div class="answer">A new release is exposed to a limited subset of traffic/users first. The team evaluates health and metrics before increasing exposure or aborting.</div></details></div>
+<div class="question"><details><summary>9. What is a ReplicaSet's role in a Deployment?</summary><div class="answer">The Deployment creates and manages ReplicaSets. Each ReplicaSet maintains the desired number of Pods for a specific Pod template revision.</div></details></div>
+<div class="question"><details><summary>10. How do you verify rollout completion?</summary><div class="answer">Use <code>kubectl rollout status deployment/NAME -n NAMESPACE</code>, then inspect Deployment, ReplicaSets, Pods and application behavior.</div></details></div>
+<div class="question"><details><summary>11. How do you undo a Deployment rollout?</summary><div class="answer">Use <code>kubectl rollout history</code> to inspect revisions and <code>kubectl rollout undo deployment/NAME</code> to restore a previous Pod template revision.</div></details></div>
+<div class="question"><details><summary>12. What does readiness have to do with a rollout?</summary><div class="answer">Readiness helps Kubernetes determine whether a Pod can serve traffic and whether a new replica is available. A bad probe can stall rollout or allow unhealthy traffic if readiness is missing/misconfigured.</div></details></div>
+
+<h3>Level 2 — Intermediate questions</h3>
+<div class="question"><details><summary>13. Why does Rolling Update usually need old/new compatibility?</summary><div class="answer">During the overlap period, both revisions may serve traffic or access the same data. APIs, database schema, messages and shared cache formats must tolerate the old and new versions until the transition completes.</div></details></div>
+<div class="question"><details><summary>14. Does maxUnavailable: 0 guarantee zero downtime?</summary><div class="answer">No. It prevents the controller from intentionally making the specified number of desired replicas unavailable due to the update, but capacity, probe correctness, app behavior, dependencies, node failures and routing can still cause user impact.</div></details></div>
+<div class="question"><details><summary>15. Does Kubernetes automatically roll back a failed Deployment?</summary><div class="answer">No. It reports stalled progress through Deployment status and continues retrying. An operator or higher-level deployment system must decide whether to roll back.</div></details></div>
+<div class="question"><details><summary>16. How do you implement Blue/Green using a Service?</summary><div class="answer">Deploy Blue and Green using separate non-overlapping selectors; make the live Service select Blue initially; test Green through a preview route; then update the Service selector to Green. Keep Blue available during the rollback window.</div></details></div>
+<div class="question"><details><summary>17. What is a limitation of implementing Canary with a regular Service?</summary><div class="answer">A selector can include both stable and canary Pods but does not provide configurable weighted percentages. Replica ratios only approximate a pool mix and do not guarantee request-level traffic weights.</div></details></div>
+<div class="question"><details><summary>18. Why use different labels in Blue/Green Deployments?</summary><div class="answer">Selectors must be unambiguous. Overlapping Deployment selectors can cause controllers to compete for Pods. Track labels separate each Deployment, while the Service selects the active track.</div></details></div>
+<div class="question"><details><summary>19. What does progressDeadlineSeconds do?</summary><div class="answer">It defines how long a Deployment may go without observed progress before the controller reports a stalled condition. Default is 600 seconds. It does not trigger automatic rollback.</div></details></div>
+<div class="question"><details><summary>20. Does rollout undo restore a database migration?</summary><div class="answer">No. It restores the Deployment's Pod template revision. Database migrations, external state, and separately managed ConfigMaps or Secrets require their own change/rollback process.</div></details></div>
+<div class="question"><details><summary>21. How do you pause and resume a rollout?</summary><div class="answer">Use <code>kubectl rollout pause deployment/NAME</code>, inspect or stage changes as appropriate, then <code>kubectl rollout resume deployment/NAME</code>. Paused rollouts require care: verify the final intended template before resuming.</div></details></div>
+<div class="question"><details><summary>22. Why are versioned ConfigMaps used in the lab?</summary><div class="answer">A ConfigMap name change in the Pod template triggers a Deployment rollout and preserves the old configuration object for a rollback. Editing data in-place does not inherently create a new Deployment revision.</div></details></div>
+<div class="question"><details><summary>23. What extra cost does Blue/Green introduce?</summary><div class="answer">It often requires capacity for both environments until confidence is sufficient to retire the old version. External databases, caches and shared dependencies also need compatibility planning.</div></details></div>
+<div class="question"><details><summary>24. What metrics matter for Canary?</summary><div class="answer">At minimum compare error rate, latency percentiles, saturation, logs and relevant business outcomes between stable and canary. Define thresholds and observation windows before release, and ensure traffic cohorting is actually controlled.</div></details></div>
+
+<h3>Level 3 — Real-world scenario questions</h3>
+<div class="question"><details><summary>25. A rolling release is stuck after one new replica starts. How do you troubleshoot?</summary><div class="answer"><strong>Approach:</strong> Run <code>kubectl rollout status</code>, <code>kubectl describe deployment</code>, <code>kubectl get rs,pods</code> and describe the failing new Pod. Check events for image pulls, scheduling, quota and probe failure. Inspect logs and readiness. Fix the evidenced cause; if the release is unsafe, run <code>kubectl rollout undo deployment/rolling-web -n nimbus-deploy-strategies</code> and verify availability.</div></details></div>
+<div class="question"><details><summary>26. The new version passes readiness but users report 500 errors.</summary><div class="answer">Readiness proves only the configured readiness check succeeds, not every business path. Inspect application logs, metrics, dependencies, request payloads and changed API behavior. Consider pausing further promotion or rolling back while investigating. Validate with a representative synthetic or integration test.</div></details></div>
+<div class="question"><details><summary>27. The Recreate strategy caused an outage longer than expected.</summary><div class="answer">Inspect deletion and startup events, image pull time, scheduling capacity and app initialization. Recreate deliberately removes old replicas before new revision Pods are created. If downtime is unacceptable, use Rolling Update or Blue/Green after confirming old/new compatibility and capacity.</div></details></div>
+<div class="question"><details><summary>28. Blue/Green switch was applied but users still see Blue.</summary><div class="answer">Check the live Service selector and EndpointSlices, then confirm Green Pods are Ready and carry exactly the selected labels. Start a new request to rule out connection reuse/cache. Verify with <code>kubectl get svc shop-live -o yaml</code> and the service-name-labeled EndpointSlices.</div></details></div>
+<div class="question"><details><summary>29. Blue/Green rollback points back to Blue, but the app still fails.</summary><div class="answer">The old code can still depend on incompatible database state or shared configuration changed during release. Confirm the Service endpoints now target Blue, then assess database/schema compatibility, migrations, shared caches and external dependencies. A routing rollback is not a full infrastructure/data rollback.</div></details></div>
+<div class="question"><details><summary>30. A team wants exactly 5% of traffic on a canary with only native Deployment/Service objects.</summary><div class="answer">A normal Service cannot express a reliable weighted 5% split. Use a supported routing controller or service mesh with weighted backend support, validate the configured rule and observed distribution, and monitor the canary. Replicas alone are not precise request weighting.</div></details></div>
+<div class="question"><details><summary>31. New Pods cannot be scheduled because maxSurge needs extra capacity.</summary><div class="answer">Inspect scheduling events and available node capacity. Options include adding capacity, adjusting rollout surge/unavailable parameters to match risk tolerance, or selecting Blue/Green/Recreate based on requirement. Do not reduce safety settings blindly; explain availability impact.</div></details></div>
+<div class="question"><details><summary>32. After rollback, the Pod still reads the new setting from a ConfigMap.</summary><div class="answer">Check whether the revision references a versioned ConfigMap or the same ConfigMap name whose data was edited in-place. Rollback restores the Pod template, not the ConfigMap's previous content. Restore data explicitly or use versioned configuration objects and verify the mounted file.</div></details></div>
+<div class="question"><details><summary>33. Canary metrics look normal but the canary was not receiving the intended users.</summary><div class="answer">Validate traffic-routing rules and inspect actual request labels/headers or access logs. A healthy Pod and endpoints do not prove the intended cohort reached it. Confirm weights/user routing in the Ingress, Gateway or mesh implementation and run controlled test requests.</div></details></div>
+<div class="question"><details><summary>34. A new release breaks older clients during a Rolling Update.</summary><div class="answer">Both versions can be active during rolling replacement, and clients may continue using an older contract. Restore compatibility using a staged expand-and-contract API/schema migration, or roll back the Pod template if safe. Verify versions, client behavior and downstream schemas.</div></details></div>
+<div class="question"><details><summary>35. Deployment says ProgressDeadlineExceeded. Has Kubernetes stopped trying?</summary><div class="answer">No. The controller reports that rollout progress did not meet the deadline; it continues reconciling the Deployment. Inspect its conditions and Pods. An operator or higher-level system should determine whether to fix, wait, or roll back.</div></details></div>
+<div class="question"><details><summary>36. Why might a rollout have enough Ready Pods but still cause downtime?</summary><div class="answer">App-level failures, broken dependencies, connection draining, incorrect Service selectors, traffic-layer issues, or incompatible schema can occur despite Pod readiness. Verify client requests and service-level indicators, not just replica counts.</div></details></div>
+</div>
+</section>
+
+<section id="assignments">
+<h2>10. Practice assignments</h2>
+<p>Attempt the tasks before expanding the solution hints. Use only your lab namespace.</p>
+<h3>Beginner exercises</h3><ol>
+<li><strong>Create a Rolling Update Deployment.</strong> Requirement: three replicas, readiness probe, <code>maxSurge: 1</code>, <code>maxUnavailable: 0</code>. Expected state: all three new replicas become Ready after a template change. Verify with <code>kubectl rollout status</code> and <code>kubectl get rs,pods</code>. Hint: edit a Pod-template field.</li>
+<li><strong>Demonstrate Recreate.</strong> Requirement: set <code>strategy.type: Recreate</code> and change the Pod template. Expected: old revision Pods terminate before new revision Pods are created. Verify with <code>kubectl get pods -w</code>. Hint: do this only on a lab workload.</li>
+<li><strong>Build Blue/Green.</strong> Requirement: two Deployments with distinct <code>track</code> labels and a live Service selecting Blue. Expected: preview Green then move the Service selector. Verify with Service YAML and EndpointSlices. Hint: use separate selectors.</li>
+<li><strong>Compare rollout history.</strong> Requirement: cause a normal template update and view revisions. Expected: history records rollout revisions. Verify with <code>kubectl rollout history</code>. Hint: scaling replicas alone does not create a revision.</li>
+<li><strong>Run a simple Canary pool.</strong> Requirement: stable and candidate Deployments share the Service's common label, but use distinct Deployment selectors. Expected: EndpointSlices include ready Pods from both. Hint: replica count does not control exact weights.</li>
+</ol>
+<h3>Modification and troubleshooting exercises</h3><ol start="6">
+<li>Set an invalid image on a lab Deployment. Diagnose ImagePullBackOff, then roll back to the prior revision. Verify all intended replicas become Ready.</li>
+<li>Change the readiness path to a path that returns 404. Observe rollout behavior, then restore the correct path. Explain why readiness failure affects availability.</li>
+<li>Change the live Blue/Green Service selector to an unmatched value. Identify the missing endpoints and restore Blue. Verify EndpointSlices.</li>
+<li>Reduce node/capacity assumptions only in a safe local lab and explain why surge Pods can remain Pending. Use Events to justify a fix.</li>
+<li>Update a ConfigMap's data without changing the Pod template. Explain why this alone is not a Deployment revision, then use a versioned ConfigMap reference to trigger a rollout.</li>
+</ol>
+<h3>Scenario-based challenges</h3><ol start="11">
+<li><strong>Unhealthy new release:</strong> A new revision passes Pod scheduling but does not become Ready. Provide evidence, decide whether to fix forward or roll back, and verify recovery.</li>
+<li><strong>Data migration:</strong> A Blue/Green release requires a schema change. Propose a safe order that lets old and new application versions operate during the rollback window.</li>
+<li><strong>Canary control:</strong> A product manager requests a 5% canary and automatic rollback if errors rise. Specify the routing capability, metrics, thresholds, abort action and verification needed.</li>
+</ol>
+<details><summary><strong>Expandable solution hints</strong></summary>
+<pre><code># Rollout / history / rollback
+kubectl rollout status deployment/rolling-web -n nimbus-deploy-strategies
+kubectl rollout history deployment/rolling-web -n nimbus-deploy-strategies
+kubectl rollout undo deployment/rolling-web -n nimbus-deploy-strategies
+
+# Pod status, readiness, events and logs
+kubectl get rs,pods -n nimbus-deploy-strategies
+kubectl describe deployment rolling-web -n nimbus-deploy-strategies
+kubectl get events -n nimbus-deploy-strategies --sort-by=.metadata.creationTimestamp
+kubectl describe pod POD_NAME -n nimbus-deploy-strategies
+kubectl logs POD_NAME -n nimbus-deploy-strategies
+
+# Blue/Green routing
+kubectl get service shop-live -n nimbus-deploy-strategies -o yaml
+kubectl get endpointslices -n nimbus-deploy-strategies -l kubernetes.io/service-name=shop-live
+kubectl patch service shop-live -n nimbus-deploy-strategies --type=merge -p '{"spec":{"selector":{"app":"shop","track":"blue"}}}'
+
+# Canary pool / abort
+kubectl get endpointslices -n nimbus-deploy-strategies -l kubernetes.io/service-name=canary-demo
+kubectl scale deployment/canary-candidate --replicas=0 -n nimbus-deploy-strategies</code></pre>
+<p>Replace POD_NAME with an actual Pod name from <code>kubectl get pods</code>. For the canary challenge, explain that weighted routing and automated rollback need a routing/metrics/controller design; a regular Service does not implement that policy by itself.</p></details>
+</section>
+
+<section id="revision">
+<h2>11. Quick revision and command sheet</h2>
+<h3>Key concepts</h3><ul>
+<li><strong>Recreate:</strong> terminate old revision Pods before creating new revision Pods; downtime is expected.</li>
+<li><strong>RollingUpdate:</strong> progressively replaces Pods. Tune <code>maxSurge</code> and <code>maxUnavailable</code>.</li>
+<li><strong>Blue/Green:</strong> deploy new version separately and switch a Service selector or route when validated.</li>
+<li><strong>Canary:</strong> expose a controlled subset of traffic, watch metrics, then promote or abort. Precise weighting needs a traffic controller.</li>
+<li><strong>Readiness:</strong> health signal for traffic eligibility; a readiness failure can block rollout progress.</li>
+<li><strong>Rollback:</strong> reverts the Deployment Pod template revision, not external data or every separately managed resource.</li>
+<li><strong>Progress deadline:</strong> reports stalled rollout; does not automatically roll back.</li>
+</ul>
+<h3>Frequently used commands</h3><pre><code># Inspect and watch
+kubectl get deployment,replicaset,pods -n nimbus-deploy-strategies
+kubectl get pods -n nimbus-deploy-strategies -o wide
+kubectl describe deployment rolling-web -n nimbus-deploy-strategies
+kubectl get events -n nimbus-deploy-strategies --sort-by=.metadata.creationTimestamp
+
+# Rollout operations
+kubectl rollout status deployment/rolling-web -n nimbus-deploy-strategies
+kubectl rollout history deployment/rolling-web -n nimbus-deploy-strategies
+kubectl rollout undo deployment/rolling-web -n nimbus-deploy-strategies
+kubectl rollout pause deployment/rolling-web -n nimbus-deploy-strategies
+kubectl rollout resume deployment/rolling-web -n nimbus-deploy-strategies
+
+# Debug
+kubectl describe pod POD_NAME -n nimbus-deploy-strategies
+kubectl logs POD_NAME -n nimbus-deploy-strategies
+kubectl get deployment rolling-web -n nimbus-deploy-strategies -o yaml
+
+# Check Service routing
+kubectl get service shop-live -n nimbus-deploy-strategies -o yaml
+kubectl get endpointslices -n nimbus-deploy-strategies
+
+# Permission check
+kubectl auth can-i patch services -n nimbus-deploy-strategies</code></pre>
+<p class="muted small">Replace POD_NAME with the actual Pod name. Check the current context before making changes.</p>
+<h3>Pre-interview checklist</h3><ul><li>Can I explain native Deployment strategy values versus Blue/Green/Canary patterns?</li><li>Can I describe a rollout using ReplicaSets and readiness?</li><li>Can I explain maxSurge and maxUnavailable?</li><li>Can I demonstrate Blue/Green switch-back without deleting the old release?</li><li>Can I explain why a normal Service cannot provide a guaranteed 5% canary?</li><li>Can I identify which state a Deployment rollback does and does not restore?</li></ul>
+</section>
+
+<section id="cleanup">
+<h2>12. Final lab cleanup</h2>
+<p>First list everything in the training namespace and confirm that it contains only this guide's practice resources.</p>
+<pre><code>kubectl get all,configmap,secret -n nimbus-deploy-strategies</code></pre>
+<p>Delete only the named lab workload resources:</p>
+<pre><code>kubectl delete deployment rolling-web recreate-web shop-blue shop-green canary-stable canary-candidate -n nimbus-deploy-strategies --ignore-not-found
+kubectl delete service rolling-web recreate-web shop-live shop-green-preview canary-demo -n nimbus-deploy-strategies --ignore-not-found
+kubectl delete pod canary-check -n nimbus-deploy-strategies --ignore-not-found
+kubectl delete configmap rolling-page-v1 rolling-page-v2 recreate-page-v1 recreate-page-v2 shop-blue-page shop-green-page canary-stable-page canary-candidate-page -n nimbus-deploy-strategies --ignore-not-found</code></pre>
+<p>After confirming the namespace is dedicated to this lab and contains no shared resources, delete it entirely:</p>
+<pre><code>kubectl delete namespace nimbus-deploy-strategies</code></pre>
+<div class="callout danger"><strong>Shared-cluster warning:</strong> Namespace deletion removes all namespaced objects, including anything another student may have created there. Never delete shared namespaces, cluster roles, cluster-scoped resources or the cluster itself for this lab. If any workload was created outside the lab namespace, inspect and clean it up separately and only with authorization.</div>
+</section>
+
+<section id="references">
+<h2>13. References</h2>
+<h3>Supplied Nimbuswiztech sources</h3><ul>
+<li><a href="https://github.com/nimbuswiztech/Kubernetes/tree/main/deployment-strategies" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes repository — deployment-strategies directory</a></li>
+<li><a href="https://github.com/nimbuswiztech/kubernetes/wiki/Types-of-Deployment-strategies" target="_blank" rel="noopener noreferrer">Nimbuswiztech Kubernetes Wiki — Types of Deployment strategies</a></li>
+</ul>
+<p>The supplied wiki page was accessible and explicitly identifies Recreate, Rolling Update, Blue/Green, and Canary, including a description of Recreate downtime, ReplicaSet-based Rolling Update, switching a Service selector for Blue/Green, and exposing a subset of users for Canary. The repository navigation confirms that the directory exists, but its contents could not be independently fetched in this session. Therefore, the manifests in this guide are supplementary teaching examples, not claimed verbatim copies of repository files.</p>
+<h3>Official Kubernetes documentation</h3><ul>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/" target="_blank" rel="noopener noreferrer">Deployments — strategy types, rollouts and revision history</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/run-application/update-deployment-rolling/" target="_blank" rel="noopener noreferrer">Update a Deployment Without Downtime</a></li>
+<li><a href="https://kubernetes.io/docs/tutorials/stateless-application/canary-deployment/" target="_blank" rel="noopener noreferrer">Deploy a Release Using a Canary Deployment</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/" target="_blank" rel="noopener noreferrer">ReplicaSets</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/" target="_blank" rel="noopener noreferrer">Services, Load Balancing, and Networking</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/" target="_blank" rel="noopener noreferrer">Ingress</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/gateway/" target="_blank" rel="noopener noreferrer">Gateway API</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/" target="_blank" rel="noopener noreferrer">Resource management for Pods and containers</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener noreferrer">Install kubectl and local Kubernetes tools</a></li>
+</ul>
+</section>
+<a href="#top" class="toplink">↑ Back to top</a>
+</main>
+<footer>Nimbuswiztech student learning reference · Kubernetes Deployment Strategies · Validate live-release decisions using cluster status, application metrics and current official documentation.</footer>
+<script>
+(function(){
+ document.querySelectorAll('pre').forEach(function(pre){
+   var code=pre.querySelector('code'); if(!code)return;
+   var button=document.createElement('button'); button.type='button'; button.className='copy'; button.textContent='Copy'; button.setAttribute('aria-label','Copy code block');
+   button.addEventListener('click',function(){
+     var text=code.innerText;
+     function fallback(){var area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{document.execCommand('copy');button.textContent='Copied'}catch(e){button.textContent='Select manually'}area.remove();setTimeout(function(){button.textContent='Copy'},1400)}
+     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){button.textContent='Copied';setTimeout(function(){button.textContent='Copy'},1400)}).catch(fallback)}else fallback();
+   });
+   pre.appendChild(button);
+ });
+ var search=document.getElementById('qsearch');
+ if(search)search.addEventListener('input',function(){var query=search.value.toLowerCase().trim();document.querySelectorAll('#questions .question').forEach(function(item){item.style.display=item.textContent.toLowerCase().includes(query)?'':'none'})});
+})();
+</script>
+</body>
+</html>

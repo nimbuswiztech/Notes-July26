@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Elastic Beanstalk Reference Handbook & Hands-on Lab — Student Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090d16;
+      --bg-secondary: #111726;
+      --bg-card: #171f33;
+      --bg-card-hover: #1e2942;
+      --border-color: #263352;
+      --border-highlight: #0284c7;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent-eb: #0284c7;
+      --accent-eb-light: #38bdf8;
+      --accent-eb-glow: rgba(56, 189, 248, 0.25);
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --accent-red: #ef4444;
+      
+      --student-badge: #0284c7;
+      --code-bg: #0b1120;
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.6);
+      
+      --sidebar-width: 290px;
+      --header-height: 70px;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-highlight: #0284c7;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --code-bg: #1e293b;
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --accent-eb-glow: rgba(2, 132, 199, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Header Nav */
+    header.top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(9, 13, 22, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 1000;
+    }
+
+    [data-theme="light"] header.top-nav {
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #0284c7, #10b981);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 15px var(--accent-eb-glow);
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #fff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .brand-title {
+      background: linear-gradient(90deg, #0f172a, #334155);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-badge {
+      background: var(--student-badge);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Lab Progress Bar in Header */
+    .lab-progress-widget {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .progress-track {
+      width: 100px;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #0284c7, #10b981);
+      transition: width 0.3s ease;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-eb-light);
+    }
+
+    /* Layout */
+    .layout-container {
+      display: flex;
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Sidebar Navigation */
+    aside.sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      position: fixed;
+      top: var(--header-height);
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-color) transparent;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 0 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item a:hover {
+      color: var(--text-main);
+      background: var(--bg-card);
+    }
+
+    .nav-item a.active {
+      color: #fff;
+      background: linear-gradient(90deg, #0284c7, rgba(2, 132, 199, 0.4));
+      font-weight: 600;
+    }
+
+    /* Content Area */
+    main.content-area {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 2.5rem 4rem;
+      max-width: 1200px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-muted);
+    }
+
+    .badge-pill.blue {
+      border-color: var(--accent-eb-light);
+      color: var(--accent-eb-light);
+      background: rgba(2, 132, 199, 0.1);
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      max-width: 850px;
+      margin-bottom: 1.8rem;
+    }
+
+    /* Progress Tracker Box */
+    .lab-summary-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Section Styling */
+    section.module-section {
+      margin-bottom: 4rem;
+      scroll-margin-top: calc(var(--header-height) + 1.5rem);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--accent-eb-light);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent-eb-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Diagram */
+    .diagram-container {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.8rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-md);
+      overflow-x: auto;
+    }
+
+    .diagram-caption {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+    }
+
+    table.spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    table.spec-table th {
+      background: var(--bg-card);
+      padding: 12px 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    table.spec-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+
+    table.spec-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Lab Checklist Item Card */
+    .lab-step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .lab-step-card.completed {
+      border-color: var(--accent-green);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, var(--bg-card) 100%);
+    }
+
+    .lab-step-header {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .lab-step-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .checkbox-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 2px solid var(--border-color);
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .checkbox-btn.checked {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+      color: #fff;
+    }
+
+    .lab-step-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .lab-step-body {
+      padding: 1.8rem;
+    }
+
+    /* Click Path List */
+    .click-path {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 1rem 0;
+    }
+
+    .click-path li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .click-idx {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--accent-eb-light);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      min-width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .console-ui {
+      background: rgba(2, 132, 199, 0.15);
+      border: 1px solid rgba(2, 132, 199, 0.4);
+      color: #7dd3fc;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+    }
+
+    /* Code Snippet Box */
+    .code-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      margin: 1rem 0;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      color: #fff;
+      border-color: var(--accent-eb-light);
+    }
+
+    pre code {
+      display: block;
+      padding: 1rem 1.2rem;
+      overflow-x: auto;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* Alert Box */
+    .alert-box {
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+    }
+
+    .alert-amber {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fde68a;
+    }
+
+    .alert-red {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .alert-green {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #a7f3d0;
+    }
+
+    .alert-blue {
+      background: rgba(2, 132, 199, 0.1);
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      color: #bae6fd;
+    }
+
+    /* Self-Assessment Quiz */
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-question {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-opt:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-eb-light);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.15) !important;
+      border-color: var(--accent-green) !important;
+      color: #34d399;
+    }
+
+    .quiz-opt.incorrect {
+      background: rgba(239, 68, 68, 0.15) !important;
+      border-color: var(--accent-red) !important;
+      color: #f87171;
+    }
+
+    .quiz-feedback {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      display: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    /* Floating Toolbar */
+    .floating-toolbar {
+      position: fixed;
+      bottom: 24px;
+      right: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+    }
+
+    @media print {
+      header.top-nav, aside.sidebar, .floating-toolbar, .checkbox-btn {
+        display: none !important;
+      }
+      main.content-area {
+        margin-left: 0;
+        padding: 0;
+        max-width: 100%;
+      }
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      aside.sidebar {
+        display: none;
+      }
+      main.content-area {
+        margin-left: 0;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- Navigation Bar -->
+  <header class="top-nav">
+    <div class="brand">
+      <div class="brand-logo">🌱</div>
+      <div>
+        <div class="brand-title">AWS Elastic Beanstalk Student Handbook</div>
+      </div>
+      <span class="brand-badge">DevOps Ref</span>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Live Progress Widget -->
+      <div class="lab-progress-widget">
+        <span>Lab Progress:</span>
+        <div class="progress-track">
+          <div class="progress-fill" id="headerProgressFill"></div>
+        </div>
+        <span id="headerProgressText">0/7</span>
+      </div>
+
+      <a href="elastic-beanstalk-instructor-guide.html" class="btn btn-secondary" target="_blank">
+        👨‍🏫 Instructor Guide
+      </a>
+
+      <button class="btn btn-secondary" id="themeToggle" title="Toggle Theme">
+        🌓 Theme
+      </button>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-section-title">Navigation Index</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#overview" class="active"><span>0. Handbook Overview</span></a></li>
+        <li class="nav-item"><a href="#what-is-eb"><span>1. What is Elastic Beanstalk?</span></a></li>
+        <li class="nav-item"><a href="#architecture"><span>2. Architecture & Components</span></a></li>
+        <li class="nav-item"><a href="#why-eb"><span>3. Why Elastic Beanstalk?</span></a></li>
+        <li class="nav-item"><a href="#devops-use-cases"><span>4. 5 Real-World Use Cases</span></a></li>
+        <li class="nav-item"><a href="#hands-on-lab"><span>5. Hands-on Console Lab (7 Steps)</span></a></li>
+        <li class="nav-item"><a href="#cheatsheet"><span>6. EB Cheatsheet & Policies</span></a></li>
+        <li class="nav-item"><a href="#troubleshooting"><span>7. Error Troubleshooting</span></a></li>
+        <li class="nav-item"><a href="#self-quiz"><span>8. Knowledge Check Quiz</span></a></li>
+      </ul>
+
+      <div class="sidebar-section-title" style="margin-top: 1.5rem;">Lab Checklist</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); padding: 0 0.5rem;">
+        Tick each box as you complete the steps in the AWS Console. Progress is saved automatically!
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- Hero Banner -->
+      <div class="hero-banner" id="overview">
+        <div class="hero-badge-row">
+          <span class="badge-pill blue">Student Edition</span>
+          <span class="badge-pill">Self-Paced Lab Guide</span>
+          <span class="badge-pill">AWS Console Only (Zero CLI)</span>
+          <span class="badge-pill">PaaS Orchestration</span>
+        </div>
+        <h1 class="hero-title">AWS Elastic Beanstalk Reference Guide & Hands-on Lab</h1>
+        <p class="hero-subtitle">
+          Master AWS Platform as a Service (PaaS). Understand application and environment hierarchies, zero-downtime rolling deployment strategies, and execute a 100% AWS Console lab deploying and updating a live production web service.
+        </p>
+
+        <div class="lab-summary-box">
+          <div>
+            <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--accent-eb-light);">Your Lab Completion Status</div>
+            <div style="font-size: 1.25rem; font-weight: 700;" id="bannerProgressTitle">0 of 7 Steps Completed (0%)</div>
+          </div>
+          <button class="btn btn-secondary" onclick="resetLabProgress()">
+            🔄 Reset Checklist
+          </button>
+        </div>
+      </div>
+
+      <!-- MODULE 1: WHAT IS ELASTIC BEANSTALK -->
+      <section class="module-section" id="what-is-eb">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">01</div>
+            <h2 class="section-title">What is AWS Elastic Beanstalk?</h2>
+          </div>
+        </div>
+
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.05rem;">
+          <strong>AWS Elastic Beanstalk</strong> is a managed Platform as a Service (PaaS) that allows developers to deploy, manage, and scale web applications without dealing with the low-level complexity of configuring EC2 instances, Auto Scaling groups, Application Load Balancers, or OS patches.
+        </p>
+
+        <div class="alert-box alert-blue">
+          <span>💡</span>
+          <div>
+            <strong>Zero Service Fee:</strong> Elastic Beanstalk itself is completely free ($0.00). You only pay for the underlying AWS resources (e.g. EC2 instances, ALBs, S3 version storage) that Beanstalk provisions in your account.
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.25rem; margin: 1.5rem 0 1rem;">1.1 The Cloud Computing Spectrum</h3>
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Paradigm</th>
+                <th>AWS Example</th>
+                <th>Your Responsibility</th>
+                <th>AWS Responsibility</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>IaaS</strong></td>
+                <td>Amazon EC2</td>
+                <td>OS patching, scaling scripts, web server configuration, networking</td>
+                <td>Physical hardware & hypervisor</td>
+              </tr>
+              <tr>
+                <td><strong style="color: var(--accent-eb-light);">PaaS</strong></td>
+                <td><strong>AWS Elastic Beanstalk</strong></td>
+                <td><strong>Application code & environment variables</strong></td>
+                <td><strong>Capacity provisioning, load balancing, auto scaling, health monitoring</strong></td>
+              </tr>
+              <tr>
+                <td><strong>CaaS</strong></td>
+                <td>Amazon ECS / EKS</td>
+                <td>Container definitions, Dockerfiles, pod networking</td>
+                <td>Container control plane</td>
+              </tr>
+              <tr>
+                <td><strong>Serverless</strong></td>
+                <td>AWS Lambda</td>
+                <td>Function handler code only</td>
+                <td>Event triggering, cold starts, automatic execution scaling</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MODULE 2: CORE ARCHITECTURE & COMPONENTS -->
+      <section class="module-section" id="architecture">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">02</div>
+            <h2 class="section-title">Core Architecture & Key Components</h2>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-eb-light);">
+              <span>📦</span> Application
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              The logical container. Think of it as a folder in your workspace containing your project’s environments, application versions, and saved configurations.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-green);">
+              <span>📄</span> Application Version
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              A specific, labeled iteration of your deployable code (e.g. a <code>.zip</code> file or Docker container image) stored permanently in Amazon S3. You can deploy or roll back to any version instantly.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-purple);">
+              <span>🌐</span> Environment
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              A live, running collection of AWS resources executing a specific Application Version (e.g. <code>devops-app-dev</code> vs <code>devops-app-prod</code>).
+            </p>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.25rem; margin: 2rem 0 1rem;">2.1 Environment Tiers: Web Server vs Worker</h3>
+        <div class="card-grid">
+          <div class="card" style="border-top: 4px solid var(--accent-green);">
+            <div class="card-title" style="color: var(--accent-green);">Web Server Tier</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+              • Handles standard HTTP/HTTPS user web traffic.<br>
+              • Provisions Route 53 CNAME, Application Load Balancer (ALB), and Auto Scaling EC2 instances running Nginx reverse proxy pointing to your code runtime.
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 4px solid var(--accent-purple);">
+            <div class="card-title" style="color: var(--accent-purple);">Worker Tier</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+              • Processes background tasks (PDF generation, database exports, heavy calculations).<br>
+              • Automatically provisions an Amazon SQS queue and an EC2 background daemon (<code>sqsd</code>) that pulls messages and forwards them as HTTP POSTs to your app on <code>http://localhost/</code>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 3: WHY ELASTIC BEANSTALK -->
+      <section class="module-section" id="why-eb">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Why Use Elastic Beanstalk in Enterprise DevOps?</h2>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-eb-light);">
+              <span>⚡</span> Fastest Time to Market
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Launch a production-grade, auto-scaling web application in 5 minutes. No need to write 500 lines of Terraform or configure load balancer listeners by hand.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-green);">
+              <span>🔓</span> Zero Vendor Lock-In
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Unlike restrictive proprietary PaaS providers, Elastic Beanstalk deploys standard AWS resources (EC2, VPC, ALB, CloudWatch). You maintain 100% control and can SSH into any instance anytime.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-amber);">
+              <span>🔄</span> Managed Platform Updates
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              AWS automatically patches the underlying Linux OS and runtime (e.g. Node.js minor updates) during scheduled weekly maintenance windows without application downtime.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-purple);">
+              <span>🛠️</span> Advanced Customization (.ebextensions)
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Drop YAML config files into your <code>.ebextensions/</code> folder to install yum packages, set environment cron jobs, or mount EFS storage automatically during deployment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 4: REAL-WORLD DEVOPS USE CASES -->
+      <section class="module-section" id="devops-use-cases">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">04</div>
+            <h2 class="section-title">5 Real-World DevOps Production Use Cases</h2>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card" style="border-top: 3px solid var(--accent-eb);">
+            <div class="card-title">1. Blue/Green Zero-Downtime Deployments</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Deploy Version 2 into a Green environment. Test with live integration suites. Click <strong>"Swap Environment URLs"</strong> in the AWS Console. CNAME DNS records swap in seconds. If an issue occurs, swap back immediately.
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid var(--accent-green);">
+            <div class="card-title">2. Asynchronous SQS Queue Offloading</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Decouple user-facing web requests from heavy computation. Web tier pushes job payloads to SQS; Worker tier scales automatically based on queue depth to process tasks.
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid var(--accent-purple);">
+            <div class="card-title">3. Ephemeral Pull Request (PR) Environments</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              CI/CD automation triggers Elastic Beanstalk to clone existing environments for feature branch testing. Developers test their isolated changes on a live URL, and the environment is terminated upon merge.
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid var(--accent-amber);">
+            <div class="card-title">4. Golden Server Configuration via .ebextensions</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Standardize server configuration across development and production environments using YAML files checked directly into Git source control.
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 3px solid #f43f5e;">
+            <div class="card-title">5. Multi-Container Docker Workloads</div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              Deploy containerized applications (using Docker Compose) without the operational overhead of setting up and maintaining a full Kubernetes (EKS) cluster.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 5: HANDS-ON CONSOLE LAB -->
+      <section class="module-section" id="hands-on-lab">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">05</div>
+            <h2 class="section-title">Hands-on Lab: 100% AWS Console Walkthrough</h2>
+          </div>
+        </div>
+
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+          Complete each of the 7 steps below in your AWS Management Console. Check off each box as you complete it to update your progress bar.
+        </p>
+
+        <!-- LAB STEP 1 -->
+        <div class="lab-step-card" id="stepCard-1">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-1" onclick="toggleStepCheckbox(1)">✓</div>
+              <span class="lab-step-title">Step 1: Verify EC2 Instance Profile in IAM Console</span>
+            </div>
+            <span class="badge-pill blue">Estimated: 5 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">
+              In modern AWS accounts, Elastic Beanstalk requires an IAM EC2 instance profile to communicate with the service. Let's make sure it exists!
+            </p>
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>Open AWS Console ➔ Search and open <span class="console-ui">IAM</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Click <span class="console-ui">Roles</span> in the left navigation sidebar.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>
+                  Search for <code>aws-elasticbeanstalk-ec2-role</code>.<br>
+                  • <strong>If it exists:</strong> Great! Move to Step 2.<br>
+                  • <strong>If not:</strong> Click <span class="console-ui">Create role</span> ➔ Choose <em>AWS service</em> ➔ <em>EC2</em> ➔ Attach policies: <code>AWSElasticBeanstalkWebTier</code>, <code>AWSElasticBeanstalkWorkerTier</code>, <code>AWSElasticBeanstalkMulticontainerDocker</code> ➔ Name it <code>aws-elasticbeanstalk-ec2-role</code> ➔ Click <em>Create role</em>.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 2 -->
+        <div class="lab-step-card" id="stepCard-2">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-2" onclick="toggleStepCheckbox(2)">✓</div>
+              <span class="lab-step-title">Step 2: Create Elastic Beanstalk Application & Environment</span>
+            </div>
+            <span class="badge-pill blue">Estimated: 6 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>Search and open <span class="console-ui">Elastic Beanstalk</span> in the AWS Console (Ensure region is e.g. <code>us-east-1</code>).</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Click the orange button: <span class="console-ui">Create application</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>
+                  <strong>Application name:</strong> <code>devops-express-app</code><br>
+                  <strong>Environment tier:</strong> <span class="console-ui">Web server environment</span><br>
+                  <strong>Environment name:</strong> <code>devops-express-prod</code><br>
+                  <strong>Domain:</strong> Click <span class="console-ui">Check availability</span> to ensure your subdomain is unique.
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">4</span>
+                <div>
+                  <strong>Platform:</strong> Choose <span class="console-ui">Node.js</span>.<br>
+                  <strong>Platform branch:</strong> Choose <span class="console-ui">Node.js 20 running on 64-bit Amazon Linux 2023</span>.<br>
+                  <strong>Application code:</strong> Select <span class="console-ui">Sample application</span>.
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">5</span>
+                <div>
+                  <strong>Presets:</strong> Choose <span class="console-ui">Single instance (free-tier eligible)</span>. Click <span class="console-ui">Next</span>.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 3 -->
+        <div class="lab-step-card" id="stepCard-3">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-3" onclick="toggleStepCheckbox(3)">✓</div>
+              <span class="lab-step-title">Step 3: Attach Service Role & EC2 Instance Profile</span>
+            </div>
+            <span class="badge-pill blue">Estimated: 4 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>
+                  <strong>Service role:</strong> Select <span class="console-ui">Use an existing service role</span> ➔ <code>aws-elasticbeanstalk-service-role</code> (or create new).
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>
+                  <strong>EC2 instance profile:</strong> Select <span class="console-ui">aws-elasticbeanstalk-ec2-role</span> (the role verified in Step 1).
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>Click <span class="console-ui">Next</span> ➔ Click <span class="console-ui">Next</span> on Networking to keep default VPC.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 4 -->
+        <div class="lab-step-card" id="stepCard-4">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-4" onclick="toggleStepCheckbox(4)">✓</div>
+              <span class="lab-step-title">Step 4: Configure Environment Properties & Submit Launch</span>
+            </div>
+            <span class="badge-pill blue">Estimated: 6 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>Click <span class="console-ui">Next</span> past Instance traffic & scaling.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>
+                  On Step 5 (Configure updates, monitoring, and logging):<br>
+                  Scroll down to <span class="console-ui">Environment properties</span> and click <span class="console-ui">Add property</span>:<br>
+                  • <code>NODE_ENV</code> = <code>production</code><br>
+                  • <code>APP_MESSAGE</code> = <code>"Hello from Elastic Beanstalk Masterclass!"</code>
+                </div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>Click <span class="console-ui">Next</span> ➔ Review summary ➔ Click <span class="console-ui">Submit</span>!</div>
+              </li>
+              <li>
+                <span class="click-idx">4</span>
+                <div>
+                  Wait ~3-4 minutes. Watch the console event log transition from <em>createEnvironment is starting</em> to <em>Environment health has transitioned to OK</em>.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 5 -->
+        <div class="lab-step-card" id="stepCard-5">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-5" onclick="toggleStepCheckbox(5)">✓</div>
+              <span class="lab-step-title">Step 5: Test Live URL & Deploy Version 2</span>
+            </div>
+            <span class="badge-pill blue">Estimated: 5 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>In your Elastic Beanstalk environment dashboard, click the public CNAME URL at the top. Notice the default sample app is running with a green <strong>Health: OK</strong> badge!</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Create a local file <code>app.js</code> with the code below, and compress it into a zip file named <code>v2.zip</code>:</div>
+              </li>
+            </ul>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>app.js (for Version 2)</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy app.js</button>
+              </div>
+              <pre><code>const http = require('http');
+const port = process.env.PORT || 8080;
+const message = process.env.APP_MESSAGE || 'Version 2.0 Running!';
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.end(`
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;body style="background:#090d16;color:#38bdf8;font-family:sans-serif;text-align:center;padding:50px;"&gt;
+      &lt;h1&gt;🚀 AWS Elastic Beanstalk v2.0 Live!&lt;/h1&gt;
+      &lt;p style="color:#94a3b8;font-size:1.2rem;"&gt;${message}&lt;/p&gt;
+      &lt;div style="background:#171f33;padding:15px;border-radius:10px;display:inline-block;margin-top:20px;border:1px solid #10b981;"&gt;
+        &lt;span style="color:#10b981;font-weight:bold;"&gt;● Health Status: OK (200)&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+  `);
+});
+
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});</code></pre>
+            </div>
+
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">3</span>
+                <div>In the Beanstalk console, click <span class="console-ui">Upload and deploy</span> ➔ Choose your <code>v2.zip</code> ➔ Version label: <code>v2.0-enhanced</code> ➔ Click <span class="console-ui">Deploy</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">4</span>
+                <div>Refresh the public URL to verify your updated application is live!</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 6 -->
+        <div class="lab-step-card" id="stepCard-6">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-6" onclick="toggleStepCheckbox(6)">✓</div>
+              <span class="lab-step-title">Step 6: Retrieve Application Logs from the Console</span>
+            </div>
+            <span class="badge-pill blue">Estimated: 4 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>In the left navigation menu of your environment, click <span class="console-ui">Logs</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Click the <span class="console-ui">Request logs</span> dropdown ➔ select <span class="console-ui">Last 100 lines</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>Click <span class="console-ui">Download</span> once ready. Open the text file and inspect <code>/var/log/web.stdout.log</code>. Notice how your console logs are captured without requiring SSH access!</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- LAB STEP 7 -->
+        <div class="lab-step-card" id="stepCard-7">
+          <div class="lab-step-header">
+            <div class="lab-step-left">
+              <div class="checkbox-btn" id="check-7" onclick="toggleStepCheckbox(7)">✓</div>
+              <span class="lab-step-title">Step 7: Clean-up & Safe Environment Termination</span>
+            </div>
+            <span class="badge-pill blue">Estimated: 3 mins</span>
+          </div>
+          <div class="lab-step-body">
+            <ul class="click-path">
+              <li>
+                <span class="click-idx">1</span>
+                <div>In your environment dashboard, click <span class="console-ui">Environment actions</span> ➔ <span class="console-ui">Terminate environment</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">2</span>
+                <div>Type the environment name to confirm and click <span class="console-ui">Terminate</span>.</div>
+              </li>
+              <li>
+                <span class="click-idx">3</span>
+                <div>Navigate to <span class="console-ui">Applications</span> ➔ Select <code>devops-express-app</code> ➔ <span class="console-ui">Actions</span> ➔ <span class="console-ui">Delete application</span> to avoid any recurring storage fees.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 6: CHEATSHEET -->
+      <section class="module-section" id="cheatsheet">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">06</div>
+            <h2 class="section-title">Elastic Beanstalk Quick Reference Cheatsheet</h2>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Deployment Policy</th>
+                <th>Downtime?</th>
+                <th>Speed</th>
+                <th>When to Use?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>All at Once</strong></td>
+                <td>⚠️ Yes</td>
+                <td>⚡ Fastest</td>
+                <td>Dev/test environments where downtime is acceptable.</td>
+              </tr>
+              <tr>
+                <td><strong>Rolling</strong></td>
+                <td>❌ No</td>
+                <td>⏱️ Moderate</td>
+                <td>Production when capacity drop during update is acceptable.</td>
+              </tr>
+              <tr>
+                <td><strong>Rolling with Additional Batch</strong></td>
+                <td>❌ No</td>
+                <td>⏱️ Moderate</td>
+                <td>Production where 100% capacity must be maintained throughout.</td>
+              </tr>
+              <tr>
+                <td><strong>Immutable</strong></td>
+                <td>❌ No</td>
+                <td>🐢 Slowest</td>
+                <td>Mission-critical production where failed updates must not touch running instances.</td>
+              </tr>
+              <tr>
+                <td><strong>Blue/Green (URL Swap)</strong></td>
+                <td>❌ No</td>
+                <td>⚡ Instant CNAME switch</td>
+                <td>Major version upgrades, database migrations, instant rollback needs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="font-size: 1.25rem; margin: 2rem 0 1rem;">6.1 Procfile & .ebextensions Configuration</h3>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">Procfile Example</div>
+            <p style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.5rem;">
+              Place in the root of your application zip to specify your start command:
+            </p>
+            <div class="code-block">
+              <pre><code>web: node app.js</code></pre>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">.ebextensions/01_packages.config</div>
+            <p style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 0.5rem;">
+              Install custom Linux packages during EC2 boot:
+            </p>
+            <div class="code-block">
+              <pre><code>packages:
+  yum:
+    htop: []
+    git: []</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 7: TROUBLESHOOTING -->
+      <section class="module-section" id="troubleshooting">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">07</div>
+            <h2 class="section-title">Troubleshooting Common Elastic Beanstalk Errors</h2>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-red);">
+              <span>❌</span> "The environment must have an instance profile"
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              <strong>Cause:</strong> You did not select an IAM EC2 Instance Profile during the launch wizard.<br>
+              <strong>Fix:</strong> Create role <code>aws-elasticbeanstalk-ec2-role</code> with policy <code>AWSElasticBeanstalkWebTier</code> and select it in the Service Access step.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-amber);">
+              <span>⚠️</span> 502 Bad Gateway (Nginx)
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              <strong>Cause:</strong> Nginx reverse proxy is running, but your Node.js app crashed on startup or is not listening on <code>process.env.PORT</code> (default: 8080).<br>
+              <strong>Fix:</strong> Check <code>/var/log/web.stdout.log</code> via Request Logs in the console. Ensure your code listens on <code>process.env.PORT || 8080</code>.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-eb-light);">
+              <span>🔍</span> Health: Degraded / Severe
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">
+              <strong>Cause:</strong> The load balancer health check received non-200 HTTP responses (e.g. 404 or 500) from your application path <code>/</code>.<br>
+              <strong>Fix:</strong> Ensure your root path <code>GET /</code> returns HTTP 200 OK.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 8: SELF-CHECK QUIZ -->
+      <section class="module-section" id="self-quiz">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-number">08</div>
+            <h2 class="section-title">Knowledge Check: Test Your Elastic Beanstalk Skills</h2>
+          </div>
+        </div>
+
+        <!-- Quiz 1 -->
+        <div class="quiz-card" id="quiz-1">
+          <div class="quiz-question">1. How much does AWS charge for the Elastic Beanstalk service itself?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(1, true, this)">A) $0.00 (Free service; you only pay for underlying EC2/ALB/S3 resources)</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">B) $15.00 per environment per month</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">C) $0.10 per deployed application version</div>
+            <div class="quiz-opt" onclick="checkQuiz(1, false, this)">D) 10% surcharge on EC2 instance costs</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-1"></div>
+        </div>
+
+        <!-- Quiz 2 -->
+        <div class="quiz-card" id="quiz-2">
+          <div class="quiz-question">2. Which deployment policy launches a temporary duplicate Auto Scaling group to test the new version before terminating old instances?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">A) All at once</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">B) Rolling</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, true, this)">C) Immutable</div>
+            <div class="quiz-opt" onclick="checkQuiz(2, false, this)">D) In-place patch</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-2"></div>
+        </div>
+
+        <!-- Quiz 3 -->
+        <div class="quiz-card" id="quiz-3">
+          <div class="quiz-question">3. In a Worker Tier environment, what component polls messages from Amazon SQS and sends them to your web app?</div>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">A) AWS Lambda trigger</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, true, this)">B) The local `sqsd` (SQS Daemon) running on the EC2 instance</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">C) Application Load Balancer path routing</div>
+            <div class="quiz-opt" onclick="checkQuiz(3, false, this)">D) CloudWatch Events Bridge</div>
+          </div>
+          <div class="quiz-feedback" id="feedback-3"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Floating Toolbar -->
+  <div class="floating-toolbar">
+    <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-eb-light);">Student Reference Mode</span>
+    <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" onclick="window.print()">
+      🖨️ Print / Save PDF
+    </button>
+  </div>
+
+  <script>
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeToggle');
+    const body = document.body;
+
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('eb_student_theme', newTheme);
+    });
+
+    const savedTheme = localStorage.getItem('eb_student_theme');
+    if (savedTheme) {
+      body.setAttribute('data-theme', savedTheme);
+    }
+
+    // Lab Checklist Tracker
+    const TOTAL_STEPS = 7;
+    let completedSteps = JSON.parse(localStorage.getItem('eb_lab_progress') || '[]');
+
+    function updateProgressUI() {
+      const count = completedSteps.length;
+      const pct = Math.round((count / TOTAL_STEPS) * 100);
+
+      document.getElementById('headerProgressFill').style.width = pct + '%';
+      document.getElementById('headerProgressText').innerText = `${count}/${TOTAL_STEPS}`;
+      document.getElementById('bannerProgressTitle').innerText = `${count} of ${TOTAL_STEPS} Steps Completed (${pct}%)`;
+
+      for (let i = 1; i <= TOTAL_STEPS; i++) {
+        const btn = document.getElementById(`check-${i}`);
+        const card = document.getElementById(`stepCard-${i}`);
+        if (completedSteps.includes(i)) {
+          btn.classList.add('checked');
+          card.classList.add('completed');
+        } else {
+          btn.classList.remove('checked');
+          card.classList.remove('completed');
+        }
+      }
+    }
+
+    function toggleStepCheckbox(stepNum) {
+      if (completedSteps.includes(stepNum)) {
+        completedSteps = completedSteps.filter(s => s !== stepNum);
+      } else {
+        completedSteps.push(stepNum);
+      }
+      localStorage.setItem('eb_lab_progress', JSON.stringify(completedSteps));
+      updateProgressUI();
+    }
+
+    function resetLabProgress() {
+      if (confirm('Reset your lab checklist progress back to 0?')) {
+        completedSteps = [];
+        localStorage.removeItem('eb_lab_progress');
+        updateProgressUI();
+      }
+    }
+
+    updateProgressUI();
+
+    // Copy Code Snippet
+    function copyCode(btn) {
+      const pre = btn.parentElement.nextElementSibling;
+      const code = pre.querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'Copied! ✓';
+        btn.style.borderColor = 'var(--accent-green)';
+        btn.style.color = 'var(--accent-green)';
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.style.borderColor = '';
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+
+    // Interactive Quiz Logic
+    function checkQuiz(qNum, isCorrect, element) {
+      const parent = element.parentElement;
+      const opts = parent.querySelectorAll('.quiz-opt');
+      const feedback = document.getElementById(`feedback-${qNum}`);
+
+      opts.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+      });
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(16, 185, 129, 0.15)';
+        feedback.style.color = '#34d399';
+        feedback.style.border = '1px solid var(--accent-green)';
+        feedback.innerHTML = '<strong>Correct! 🎉</strong> Great grasp of Elastic Beanstalk architectural mechanics.';
+      } else {
+        element.classList.add('incorrect');
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+        feedback.style.color = '#f87171';
+        feedback.style.border = '1px solid var(--accent-red)';
+        feedback.innerHTML = '<strong>Not quite!</strong> Review the core concepts above or check the cheatsheet table.';
+      }
+    }
+
+    // Active Sidebar ScrollSpy
+    const sections = document.querySelectorAll('section.module-section, .hero-banner');
+    const navLinks = document.querySelectorAll('.nav-list a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

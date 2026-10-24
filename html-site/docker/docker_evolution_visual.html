@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>docker\_evolution\_visual &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/style.css?v=2">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html" class="active">docker\_evolution\_visual</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>🐳 Docker</span>
+          <span class="separator">/</span>
+          <span class="current">docker\_evolution\_visual</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">🐳 Docker Module</div>
+          <h1 class="hero-title">docker\_evolution\_visual</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+<div class="diagram-figure" style="margin-top: 1.5rem; margin-bottom: 2.5rem; border: 2px solid var(--border-highlight); box-shadow: 0 0 35px var(--accent-cyan-glow);">
+  <div class="diagram-badge" style="background: linear-gradient(90deg, rgba(6,182,212,0.25), rgba(59,130,246,0.25)); font-size: 0.85rem;">
+    ⭐ FEATURED ARCHITECTURAL BLUEPRINT &bull; VM vs Container Architecture
+  </div>
+  <img src="../assets/images/docker-vm-vs-container.jpg" alt="VM vs Container Architecture" class="diagram-img" loading="eager">
+  <div class="diagram-caption" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+    Architectural Evolution: Bare Metal vs Virtual Machines vs Containerization
+  </div>
+</div>
+
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <p>How application deployment evolved, and why containers changed DevOps.</p>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>Interactive classroom visual</p>
+</div>
+</div>
+<h2>The deployment problem</h2>
+<p>Deploying only application code often fails because the application also depends on its environment.</p>
+<div class="columns-grid" style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+<div class="column-item" style="flex:1;min-width:280px;">
+<h3>Developer environment</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">$ npm start
+✓ App running
+✓ Node 22
+✓ Library versions match
+</code></pre>
+</div>
+<p>“It works on my machine!”</p>
+</div>
+<div class="column-item" style="flex:1;min-width:280px;">
+<h3>Production environment</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">$ npm start
+✕ Missing library
+✕ Node 20
+✕ Different config
+</code></pre>
+</div>
+<p>Application failure</p>
+</div>
+</div>
+<p>Different OS\
+Runtime versions\
+Libraries\
+Configuration\
+Environment variables\
+Database version</p>
+<p><strong>Application + dependencies + runtime + configuration + operating system = application environment</strong></p>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Physical server</h2>
+<h3>One machine runs applications directly</h3>
+<p>Application</p>
+<p>Libraries / Runtime</p>
+<p>Operating system</p>
+<p>CPU / RAM / Storage</p>
+<p>Physical hardware</p>
+<p>One physical machine runs applications directly on its operating system.</p>
+<p>Server 1: App A\
+Server 2: App B\
+Server 3: App C</p>
+<p><strong>3 applications → 3 physical servers</strong></p>
+<ul>
+<li>Expensive hardware</li>
+<li>Low utilization</li>
+<li>App conflicts</li>
+<li>Slow provisioning</li>
+<li>Manual setup</li>
+<li>Maintenance overhead</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Virtual machines</h2>
+<h3>Virtualization improves hardware utilization</h3>
+<p>A hypervisor lets one physical server host multiple independent virtual machines.</p>
+<h3>Physical server</h3>
+<p>Dedicated machine per workload</p>
+<p>App A</p>
+<p>Operating system</p>
+<p>Hardware</p>
+<p>Low density. Hardware can sit idle.</p>
+<h3>Virtual machines</h3>
+<p>App 1\
+Libraries\
+Guest OS</p>
+<p>App 2\
+Libraries\
+Guest OS</p>
+<p>App 3\
+Libraries\
+Guest OS</p>
+<p>Hypervisor</p>
+<h3>What VMs solved</h3>
+<ul>
+<li>Better hardware utilization</li>
+<li>Isolation</li>
+<li>Multiple OS choices</li>
+<li>Easier provisioning</li>
+</ul>
+<p>But every VM carries a guest OS.</p>
+<p>Better than physical servers, but still heavy: three VMs mean three guest operating systems consuming memory, storage and startup time.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>Containers</h2>
+<h3>Lightweight application isolation</h3>
+<p>A container packages an application and its dependencies while sharing the host operating-system kernel.</p>
+<p><strong>Container 1</strong></p>
+<p>Application\
+Dependencies</p>
+<p><strong>Container 2</strong></p>
+<p>Application\
+Dependencies</p>
+<p><strong>Container 3</strong></p>
+<p>Application\
+Dependencies</p>
+<p>Container runtime</p>
+<p>Host OS kernel</p>
+<p>Physical server</p>
+<p>Containers remove much of the overhead of running a complete guest operating system for every application.</p>
+</div>
+</div>
+</div>
+<h2>Can we isolate applications without carrying a complete OS for each one?</h2>
+<div class="columns-grid" style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+<div class="column-item" style="flex:1;min-width:280px;">
+<h3>Physical server</h3>
+<p>✕ Expensive</p>
+<p>✕ Poor utilization</p>
+<p>✕ Difficult scaling</p>
+</div>
+<div class="column-item" style="flex:1;min-width:280px;">
+<h3>Virtual machines</h3>
+<p>✓ Better utilization</p>
+<p>✓ Isolation</p>
+<p>✕ Guest OS overhead</p>
+<p>✕ More memory and slower startup</p>
+</div>
+</div>
+<h2>So where does Docker come in?</h2>
+<p>Docker is a platform and tooling ecosystem that makes it easier to build, package, distribute and run containers.</p>
+<div class="tabs-container">
+<div class="tabs-nav"><button class="tab-btn active">Physical server architecture</button><button class="tab-btn">VM architecture</button><button class="tab-btn">Container architecture</button></div>
+<div class="tab-panel active">
+<p>Application</p>
+<p>Operating system</p>
+<p>Hardware</p>
+</div>
+<div class="tab-panel">
+<p><strong>VM 1</strong></p>
+<p>App\
+Libraries\
+Guest OS</p>
+<p><strong>VM 2</strong></p>
+<p>App\
+Libraries\
+Guest OS</p>
+<p><strong>VM 3</strong></p>
+<p>App\
+Libraries\
+Guest OS</p>
+<p>Hypervisor → Hardware</p>
+</div>
+<div class="tab-panel">
+<p><strong>Container 1</strong></p>
+<p>App\
+Dependencies</p>
+<p><strong>Container 2</strong></p>
+<p>App\
+Dependencies</p>
+<p><strong>Container 3</strong></p>
+<p>App\
+Dependencies</p>
+<p>Docker Engine / container runtime → Host OS kernel → Hardware</p>
+</div>
+</div>
+<p>Developer → Dockerfile → <code>docker build</code> → Docker image → Registry → <code>docker run</code> → Container</p>
+<p>Docker did not invent containers. It made container-based workflows accessible and popular, with tooling for images, networking, storage and registries.</p>
+<h2>Problems become portable, repeatable workflows</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Docker solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Different environments</td>
+<td>Containerized application</td>
+</tr>
+<tr>
+<td>Dependency conflicts</td>
+<td>Reproducible environment</td>
+</tr>
+<tr>
+<td>Manual installation</td>
+<td>Portable image</td>
+</tr>
+<tr>
+<td>Environment drift</td>
+<td>Automated builds and testing</td>
+</tr>
+<tr>
+<td>Slow testing and difficult rollback</td>
+<td>Versioned artifacts for rollback</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Problem → Docker → consistency + portability + repeatability</strong></p>
+<h2>What Docker solves</h2>
+<p>Hover or discuss each pairing. The goal is not memorizing commands; it is understanding the workflow.</p>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Docker approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>“Works on my machine”</strong></td>
+<td>Docker packages dependencies into an image.</td>
+</tr>
+<tr>
+<td><strong>Dependency conflicts</strong></td>
+<td>Apps run in isolated containers.</td>
+</tr>
+<tr>
+<td><strong>Manual environment setup</strong></td>
+<td>A Dockerfile defines the environment as code.</td>
+</tr>
+<tr>
+<td><strong>Inconsistent testing</strong></td>
+<td>CI can run the same containerized environment.</td>
+</tr>
+<tr>
+<td><strong>Deployment differences</strong></td>
+<td>Build a versioned image and deploy that artifact.</td>
+</tr>
+<tr>
+<td><strong>Slow application setup</strong></td>
+<td>Pull image → run container.</td>
+</tr>
+<tr>
+<td><strong>Difficult rollback</strong></td>
+<td>Deploy a previous image version.</td>
+</tr>
+<tr>
+<td><strong>Microservice dependencies</strong></td>
+<td>Package services independently.</td>
+</tr>
+</tbody>
+</table>
+<h2>Environment setup becomes code</h2>
+<div class="tabs-container">
+<div class="tabs-nav"><button class="tab-btn active">Before Docker</button><button class="tab-btn">With Docker</button></div>
+<div class="tab-panel active">
+<ul>
+<li>Install Java</li>
+<li>Install Node</li>
+<li>Install Python</li>
+<li>Install Nginx</li>
+<li>Configure versions and database</li>
+<li>Fix conflicts</li>
+</ul>
+<p>“It works on my machine”</p>
+</div>
+<div class="tab-panel">
+<p>Git clone</p>
+<p>Docker build</p>
+<p>Docker image</p>
+<p>Docker run</p>
+<p>Application</p>
+</div>
+</div>
+<h2>One image flows through delivery</h2>
+<p>Docker fits between source code and the environments that run the approved artifact.</p>
+<p>Developer → Git push → CI pipeline → Docker build → Automated tests → Security scan → Registry → Staging → Production</p>
+<h3>Web applications</h3>
+<p>Frontend, backend and API can share a repeatable stack.</p>
+<h3>Microservices</h3>
+<p>Independent services package and release separately.</p>
+<h3>CI/CD</h3>
+<p>Build, test and package in one consistent environment.</p>
+<h3>Cloud deployment</h3>
+<p>The same image travels across compatible environments.</p>
+<h3>Developer environments</h3>
+<p>New teammates start predictable dependencies.</p>
+<h3>Automated testing</h3>
+<p>Disposable environments make tests safer to repeat.</p>
+<h3>Data processing</h3>
+<p>Isolated workers run focused jobs.</p>
+<h3>Scaling</h3>
+<p>Run multiple copies of the same service.</p>
+<h2>Physical server vs VM vs container</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Physical server</th>
+<th>VM</th>
+<th>Container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hardware</td>
+<td>Dedicated</td>
+<td>Shared</td>
+<td>Shared</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>One per server</td>
+<td>One per VM</td>
+<td>Shared host kernel</td>
+</tr>
+<tr>
+<td>Startup</td>
+<td>Minutes</td>
+<td>Minutes</td>
+<td>Seconds</td>
+</tr>
+<tr>
+<td>Resource usage</td>
+<td>High</td>
+<td>Higher</td>
+<td>Lower</td>
+</tr>
+<tr>
+<td>Portability</td>
+<td>Low</td>
+<td>Medium</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Density</td>
+<td>Low</td>
+<td>Medium</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Traditional workloads</td>
+<td>OS-level isolation</td>
+<td>Modern applications</td>
+</tr>
+</tbody>
+</table>
+<h2>House, apartment building, shipping container</h2>
+<h3>Physical server = individual house</h3>
+<p>One house for one family. Dedicated resources.</p>
+<h3>VM = apartment building</h3>
+<p>Many independent apartments in one building, each with its own facilities.</p>
+<h3>Container = shipping container</h3>
+<p>A standard package that moves predictably between ships, trains and trucks.</p>
+<h2>Do containers include an operating system?</h2>
+<p>Containers normally include user-space files and libraries, but not a complete guest operating-system kernel like a VM. They share the host kernel.</p>
+<div class="tabs-container">
+<div class="tabs-nav"><button class="tab-btn active">Virtual machine</button><button class="tab-btn">Container</button></div>
+<div class="tab-panel active">
+<p>App</p>
+<p>Libraries</p>
+<p>Guest OS</p>
+<p>Hypervisor</p>
+<p>Host hardware</p>
+</div>
+<div class="tab-panel">
+<p>App</p>
+<p>Libraries</p>
+<p>Docker runtime</p>
+<p>Host OS kernel</p>
+<p>Host hardware</p>
+</div>
+</div>
+<h2>Six benefits to remember</h2>
+<h3>1. Repeatability</h3>
+<p>Same image, same environment.</p>
+<h3>2. Automation</h3>
+<p>Environment defined as code.</p>
+<h3>3. Portability</h3>
+<p>Laptop → CI → cloud.</p>
+<h3>4. Speed</h3>
+<p>Fast container startup.</p>
+<h3>5. Scalability</h3>
+<p>Run multiple instances.</p>
+<h3>6. Collaboration</h3>
+<p>Developers and operations use the same artifact.</p>
+<h2>Ask the class</h2>
+<details>
+
+<summary>Why can’t we just install everything directly on the server?</summary>
+
+You can, but repeated manual setup causes configuration drift, version conflicts and hard-to-reproduce environments.
+
+</details>
+
+<details>
+
+<summary>What does a VM need that a container normally does not?</summary>
+
+A VM includes its own guest operating system and kernel.
+
+</details>
+
+<details>
+
+<summary>What does Docker package?</summary>
+
+An image packages the application plus its dependencies and configuration defaults.
+
+</details>
+
+<details>
+
+<summary>Why is docker build important?</summary>
+
+It turns the Dockerfile and build context into a reusable, versionable image.
+
+</details>
+
+<h2>The big picture</h2>
+<p><strong>Developer</strong>\
+↓\
+<strong>Dockerfile</strong>\
+↓\
+<strong>Docker build</strong>\
+↓\
+<strong>Docker image</strong>\
+↓\
+<strong>Container registry</strong>\
+↓</p>
+<p>Dev / test\
+Staging\
+Production</p>
+<p>↓\
+<strong>Docker containers</strong></p>
+<h2>Final takeaway</h2>
+<h2>Physical servers gave us hardware. VMs gave us virtualization. Containers gave us lightweight application isolation.</h2>
+<p>Docker made container workflows practical for modern development and DevOps.</p>
+<p><strong>Build once. Test once. Deploy the same artifact.</strong></p>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../docker/docker.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">docker</span>
+  </a>
+  <div></div>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vpc security config &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../README.html">Infra Setup</a></li>
+    <li><a href="../../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../linux/README.html">Linux</a></li>
+    <li><a href="../../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../../linux/day1.html">day1</a></li>
+    <li><a href="../../linux/day-2.html">day 2</a></li>
+    <li><a href="../../linux/day-3.html">Day 3</a></li>
+    <li><a href="../../linux/day-4.html">Day 4</a></li>
+    <li><a href="../../linux/day-5.html">Day 5</a></li>
+    <li><a href="../../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../git/README.html">Git</a></li>
+    <li><a href="../../git/git.html">git</a></li>
+    <li><a href="../../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../../git/git-version-control.html">git version control</a></li>
+    <li><a href="../../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../../git/git-and-github.html">git and github</a></li>
+    <li><a href="../../git/git-reset.html">git reset</a></li>
+    <li><a href="../../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../../git/git-revert.html">git revert</a></li>
+    <li><a href="../../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../../git/git-squash.html">git squash</a></li>
+    <li><a href="../../git/git-stash.html">git stash</a></li>
+    <li><a href="../../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">47</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../aws/README.html">AWS</a></li>
+    <li><a href="../../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../../aws/ec2-elastic-compute-cloud.html">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../../aws/vpc/vpc-security-config.html" class="active">vpc security config</a></li>
+    <li><a href="../../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../../aws/s3/README.html">S3</a></li>
+    <li><a href="../../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../../aws/iam/README.html">IAM</a></li>
+    <li><a href="../../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../../aws/asg.html">ASG</a></li>
+    <li><a href="../../aws/stress-test.html">stress test</a></li>
+    <li><a href="../../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../../aws/kms.html">KMS</a></li>
+    <li><a href="../../aws/iac.html">IAC</a></li>
+    <li><a href="../../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../../aws/lambda.html">lambda</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../docker/README.html">Docker</a></li>
+    <li><a href="../../docker/docker.html">docker</a></li>
+    <li><a href="../../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">10</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">vpc security config</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">vpc security config</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+<div class="diagram-figure" style="margin-top: 1.5rem; margin-bottom: 2.5rem; border: 2px solid var(--border-highlight); box-shadow: 0 0 35px var(--accent-cyan-glow);">
+  <div class="diagram-badge" style="background: linear-gradient(90deg, rgba(6,182,212,0.25), rgba(59,130,246,0.25)); font-size: 0.85rem;">
+    ⭐ FEATURED ARCHITECTURAL BLUEPRINT &bull; VPC Security Boundaries
+  </div>
+  <img src="../../assets/images/aws-cloud-vpc.jpg" alt="VPC Security Boundaries" class="diagram-img" loading="eager">
+  <div class="diagram-caption" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+    AWS Network Security Architecture: Security Groups (Stateful) vs NACLs (Stateless)
+  </div>
+</div>
+
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>Security Groups &amp; NACLs for Multi-Tier Architecture</h2>
+<h2>Security Group Strategy for 3-Tier Architecture</h2>
+<h3>Tier 1: Web Server Security Group</h3>
+<p><strong>Purpose:</strong> Expose only HTTP/HTTPS and SSH to admin access</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">yaml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="yaml">Inbound Rules:
+  Rule 1: SSH (22) from 0.0.0.0/0 or your office IP (more secure)
+    Protocol: TCP
+    Port Range: 22
+    Source: 0.0.0.0/0 (or specific IP: 203.0.113.0/32)
+
+  Rule 2: HTTP (80) from 0.0.0.0/0
+    Protocol: TCP
+    Port Range: 80
+    Source: 0.0.0.0/0
+
+  Rule 3: HTTPS (443) from 0.0.0.0/0
+    Protocol: TCP
+    Port Range: 443
+    Source: 0.0.0.0/0
+
+  Rule 4: Return traffic (ephemeral ports)
+    Protocol: TCP
+    Port Range: 1024-65535
+    Source: 0.0.0.0/0
+
+Outbound Rules:
+  Rule 1: All traffic (default)
+    Protocol: All
+    Port Range: All
+    Destination: 0.0.0.0/0
+</code></pre>
+</div>
+<p><strong>CLI Creation:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">create-web-sg.sh</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create Web SG
+WEB_SG=$(aws ec2 create-security-group --group-name web-sg \
+  --description &quot;Security group for web tier&quot; \
+  --vpc-id $VPC_ID \
+  --query 'GroupId' --output text)
+
+# Allow SSH
+aws ec2 authorize-security-group-ingress --group-id $WEB_SG \
+  --protocol tcp --port 22 --cidr 0.0.0.0/0
+
+# Allow HTTP
+aws ec2 authorize-security-group-ingress --group-id $WEB_SG \
+  --protocol tcp --port 80 --cidr 0.0.0.0/0
+
+# Allow HTTPS
+aws ec2 authorize-security-group-ingress --group-id $WEB_SG \
+  --protocol tcp --port 443 --cidr 0.0.0.0/0
+</code></pre>
+</div>
+</div>
+
+<h3>Tier 2: Application Server Security Group</h3>
+<p><strong>Purpose:</strong> Allow traffic only from web servers, deny direct internet access</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">yaml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="yaml">Inbound Rules:
+  Rule 1: SSH (22) from Bastion Host (optional, for troubleshooting)
+    Protocol: TCP
+    Port Range: 22
+    Source: sg-bastion-id (reference by security group)
+
+  Rule 2: Application traffic from Web SG
+    Protocol: TCP
+    Port Range: 8080 (or your app port)
+    Source: sg-web-id (source is the Web Security Group)
+
+  Rule 3: Return traffic
+    Protocol: TCP
+    Port Range: 1024-65535
+    Source: 0.0.0.0/0
+
+Outbound Rules:
+  Rule 1: All traffic to internet (for updates, external APIs)
+    Protocol: All
+    Port Range: All
+    Destination: 0.0.0.0/0
+
+  Rule 2: Database traffic
+    Protocol: TCP
+    Port Range: 3306 (MySQL) or 5432 (PostgreSQL)
+    Destination: sg-database-id
+</code></pre>
+</div>
+<p><strong>CLI Creation:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">create-app-sg.sh</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create App SG
+APP_SG=$(aws ec2 create-security-group --group-name app-sg \
+  --description &quot;Security group for app tier&quot; \
+  --vpc-id $VPC_ID \
+  --query 'GroupId' --output text)
+
+# Allow traffic from Web SG on port 8080
+aws ec2 authorize-security-group-ingress --group-id $APP_SG \
+  --protocol tcp --port 8080 \
+  --source-group $WEB_SG
+
+# Allow outbound database traffic
+aws ec2 authorize-security-group-egress --group-id $APP_SG \
+  --protocol tcp --port 3306 \
+  --destination-group $DATABASE_SG
+</code></pre>
+</div>
+</div>
+
+<h3>Tier 3: Database Security Group</h3>
+<p><strong>Purpose:</strong> Accept connections ONLY from app servers, no internet access</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">yaml</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="yaml">Inbound Rules:
+  Rule 1: MySQL (3306) from App SG only
+    Protocol: TCP
+    Port Range: 3306
+    Source: sg-app-id (reference by security group, not CIDR)
+
+Outbound Rules:
+  Default: Allow all outbound (or restrict to none for extra security)
+    Protocol: All
+    Port Range: All
+    Destination: 0.0.0.0/0
+</code></pre>
+</div>
+<p><strong>CLI Creation:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">create-db-sg.sh</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create Database SG
+DB_SG=$(aws ec2 create-security-group --group-name database-sg \
+  --description &quot;Security group for database tier&quot; \
+  --vpc-id $VPC_ID \
+  --query 'GroupId' --output text)
+
+# Allow MySQL only from App SG
+aws ec2 authorize-security-group-ingress --group-id $DB_SG \
+  --protocol tcp --port 3306 \
+  --source-group $APP_SG
+
+# Restrict outbound (optional, for defense-in-depth)
+aws ec2 revoke-security-group-egress --group-id $DB_SG \
+  --protocol all --port all --cidr 0.0.0.0/0
+</code></pre>
+</div>
+</div>
+
+<h2>Network ACL (NACL) Configuration</h2>
+<h3>Public Subnet NACL</h3>
+<p><strong>Purpose:</strong> Stateless firewall for public-facing subnet</p>
+<table>
+<thead>
+<tr>
+<th>Rule #</th>
+<th>Type</th>
+<th>Protocol</th>
+<th>Port</th>
+<th>Source/Dest</th>
+<th>Action</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>Inbound</td>
+<td>TCP</td>
+<td>22</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>SSH</td>
+</tr>
+<tr>
+<td>110</td>
+<td>Inbound</td>
+<td>TCP</td>
+<td>80</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td>120</td>
+<td>Inbound</td>
+<td>TCP</td>
+<td>443</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>HTTPS</td>
+</tr>
+<tr>
+<td>130</td>
+<td>Inbound</td>
+<td>TCP</td>
+<td>1024-65535</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>Return traffic</td>
+</tr>
+<tr>
+<td>140</td>
+<td>Inbound</td>
+<td>UDP</td>
+<td>1024-65535</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>Return traffic</td>
+</tr>
+<tr>
+<td>32767</td>
+<td>Inbound</td>
+<td>All</td>
+<td>All</td>
+<td>0.0.0.0/0</td>
+<td>Deny</td>
+<td>Default deny</td>
+</tr>
+<tr>
+<td>100</td>
+<td>Outbound</td>
+<td>TCP</td>
+<td>All</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>Outbound</td>
+</tr>
+<tr>
+<td>32767</td>
+<td>Outbound</td>
+<td>All</td>
+<td>All</td>
+<td>0.0.0.0/0</td>
+<td>Deny</td>
+<td>Default deny</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NACL Creation CLI:</strong></p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">create-public-nacl.sh</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create Public NACL
+PUBLIC_NACL=$(aws ec2 create-network-acl --vpc-id $VPC_ID \
+  --tag-specifications 'ResourceType=network-acl,Tags=[{Key=Name,Value=Public-NACL}]' \
+  --query 'NetworkAcl.NetworkAclId' --output text)
+
+# Allow SSH inbound
+aws ec2 create-network-acl-entry --network-acl-id $PUBLIC_NACL \
+  --rule-number 100 --protocol tcp --port-range From=22,To=22 \
+  --cidr-block 0.0.0.0/0 --ingress
+
+# Allow HTTP inbound
+aws ec2 create-network-acl-entry --network-acl-id $PUBLIC_NACL \
+  --rule-number 110 --protocol tcp --port-range From=80,To=80 \
+  --cidr-block 0.0.0.0/0 --ingress
+
+# Allow HTTPS inbound
+aws ec2 create-network-acl-entry --network-acl-id $PUBLIC_NACL \
+  --rule-number 120 --protocol tcp --port-range From=443,To=443 \
+  --cidr-block 0.0.0.0/0 --ingress
+
+# Allow ephemeral inbound (return traffic)
+aws ec2 create-network-acl-entry --network-acl-id $PUBLIC_NACL \
+  --rule-number 130 --protocol tcp --port-range From=1024,To=65535 \
+  --cidr-block 0.0.0.0/0 --ingress
+
+# Allow outbound
+aws ec2 create-network-acl-entry --network-acl-id $PUBLIC_NACL \
+  --rule-number 100 --protocol -1 --port-range From=-1,To=-1 \
+  --cidr-block 0.0.0.0/0 --egress
+</code></pre>
+</div>
+</div>
+
+<h3>Private Subnet NACL</h3>
+<p><strong>Purpose:</strong> Allow internal VPC traffic + outbound internet via NAT</p>
+<table>
+<thead>
+<tr>
+<th>Rule #</th>
+<th>Type</th>
+<th>Protocol</th>
+<th>Port</th>
+<th>Source/Dest</th>
+<th>Action</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>Inbound</td>
+<td>TCP/UDP</td>
+<td>All</td>
+<td>10.0.0.0/16</td>
+<td>Allow</td>
+<td>All VPC traffic</td>
+</tr>
+<tr>
+<td>110</td>
+<td>Inbound</td>
+<td>TCP</td>
+<td>1024-65535</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>Return traffic from NAT</td>
+</tr>
+<tr>
+<td>120</td>
+<td>Inbound</td>
+<td>UDP</td>
+<td>1024-65535</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>DNS responses</td>
+</tr>
+<tr>
+<td>32767</td>
+<td>Inbound</td>
+<td>All</td>
+<td>All</td>
+<td>0.0.0.0/0</td>
+<td>Deny</td>
+<td>Default deny</td>
+</tr>
+<tr>
+<td>100</td>
+<td>Outbound</td>
+<td>TCP/UDP</td>
+<td>All</td>
+<td>10.0.0.0/16</td>
+<td>Allow</td>
+<td>VPC traffic</td>
+</tr>
+<tr>
+<td>110</td>
+<td>Outbound</td>
+<td>TCP</td>
+<td>80,443</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>HTTP/HTTPS</td>
+</tr>
+<tr>
+<td>120</td>
+<td>Outbound</td>
+<td>UDP</td>
+<td>53</td>
+<td>0.0.0.0/0</td>
+<td>Allow</td>
+<td>DNS</td>
+</tr>
+<tr>
+<td>32767</td>
+<td>Outbound</td>
+<td>All</td>
+<td>All</td>
+<td>0.0.0.0/0</td>
+<td>Deny</td>
+<td>Default deny</td>
+</tr>
+</tbody>
+</table>
+<h2>Security Group vs NACL Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Security Group</th>
+<th>NACL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Level</td>
+<td>Instance</td>
+<td>Subnet</td>
+</tr>
+<tr>
+<td>Statefulness</td>
+<td>Stateful (bidirectional)</td>
+<td>Stateless (separate inbound/outbound rules)</td>
+</tr>
+<tr>
+<td>Rules</td>
+<td>Allow only (implicit deny all)</td>
+<td>Allow and Deny</td>
+</tr>
+<tr>
+<td>Ordering</td>
+<td>All rules evaluated</td>
+<td>Rules evaluated in order (lowest rule # first)</td>
+</tr>
+<tr>
+<td>Processing</td>
+<td>All rules checked</td>
+<td>Processing stops at first match</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>Deny all inbound</td>
+<td>Allow all (default NACL)</td>
+</tr>
+<tr>
+<td>Use Case</td>
+<td>Instance-level firewall</td>
+<td>Subnet-level firewall, advanced filtering</td>
+</tr>
+</tbody>
+</table>
+<h3>Decision Tree</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Traffic blocked?
+├─ Check Security Group first
+│  └─ If denied → Check app security assumptions
+├─ Then check NACL
+│  └─ If denied → Check ephemeral ports, rule order
+└─ Route Table routing issue?
+   └─ Check VPC Flow Logs
+</code></pre>
+</div>
+<h2>Common Security Scenarios</h2>
+<h3>Scenario 1: Restrict Admin SSH to Office IP Only</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">restrict-ssh.sh</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Instead of 0.0.0.0/0, use:
+--cidr 203.0.113.0/32  # Your office IP
+
+# or
+--cidr 203.0.113.0/24  # Your office subnet (/24)
+</code></pre>
+</div>
+</div>
+
+<h3>Scenario 2: Allow Database Backup to External Service</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">db-backup-egress.sh</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Database SG Outbound Rule:
+aws ec2 authorize-security-group-egress --group-id $DB_SG \
+  --protocol tcp --port 443 \
+  --cidr 54.200.0.0/16  # Backup service IP range
+</code></pre>
+</div>
+</div>
+
+<h3>Scenario 3: Allow Health Checks from Load Balancer</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">allow-alb-healthcheck.sh</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># App SG Inbound Rule:
+aws ec2 authorize-security-group-ingress --group-id $APP_SG \
+  --protocol tcp --port 8080 \
+  --source-group $ALB_SG  # Application Load Balancer SG
+</code></pre>
+</div>
+</div>
+
+<h3>Scenario 4: Block Specific IPs (Use NACL Deny Rule)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">block-ip-nacl.sh</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Add DENY rule with lower number than ALLOW rule
+aws ec2 create-network-acl-entry --network-acl-id $NACL_ID \
+  --rule-number 50 --protocol tcp --port-range From=22,To=22 \
+  --cidr-block 192.0.2.100/32 --ingress --no-egress-action
+</code></pre>
+</div>
+</div>
+
+<h2>Troubleshooting Security Issues</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h3>Issue: "Connection Timed Out"</h3>
+<ul>
+<li>Check Security Group for inbound rule</li>
+<li>Verify NACL allows inbound on that port</li>
+<li>Verify source IP/CIDR is correct</li>
+<li>Check return traffic ephemeral ports (1024-65535)</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h3>Issue: "Connection Refused"</h3>
+<ul>
+<li>Application not running on target port</li>
+<li>Security Group allows port, but app doesn't listen</li>
+<li>Check if port is correct (80 vs 8080, 443 vs 8443)</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h3>Issue: "Outbound connection fails"</h3>
+<ul>
+<li>Check Security Group outbound rule (should be Allow All by default)</li>
+<li>Check NACL outbound rule</li>
+<li>Check route table (do you have route to target?)</li>
+<li>NAT Gateway limitation: Max 55K concurrent connections per IP</li>
+</ul>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h3>Debug with VPC Flow Logs</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">enable-flow-logs.sh</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Enable Flow Logs for ENI
+aws ec2 create-flow-logs --resource-type NetworkInterface \
+  --resource-ids eni-xxxxx \
+  --traffic-type ALL \
+  --log-destination-type cloud-watch-logs \
+  --log-group-name vpc-flow-logs
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2>Best Practices Summary</h2>
+<div class="callout callout-success">
+<div class="callout-icon">✅</div>
+<div class="callout-body">
+<p>✅ DO:</p>
+<ul>
+<li>Use separate Security Groups per tier</li>
+<li>Reference Security Groups instead of CIDR for intra-VPC traffic</li>
+<li>Keep NACL rules simple (usually default is fine)</li>
+<li>Document all Security Group rules</li>
+<li>Use VPC Flow Logs for debugging</li>
+<li>Restrict SSH to specific IPs/bastion hosts</li>
+<li>Implement least privilege (allow only necessary traffic)</li>
+<li>Monitor Security Group changes via CloudTrail</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-danger">
+<div class="callout-icon">🚨</div>
+<div class="callout-body">
+<p>❌ DON'T:</p>
+<ul>
+<li>Use overly permissive rules (0.0.0.0/0 for internal traffic)</li>
+<li>Expose database ports to internet (0.0.0.0/0 on 3306, 5432)</li>
+<li>Confuse Security Groups with NACLs</li>
+<li>Leave unused Security Group rules (cleanup after testing)</li>
+<li>Ignore return traffic (ephemeral ports)</li>
+<li>Use inline rules (use reusable Security Groups)</li>
+</ul>
+</div>
+</div>
+<h2>Teaching Tip: Live Demonstration Scenario</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h3>Start</h3>
+<p>Launch 2 instances (web + app) with permissive SGs</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h3>Demonstrate</h3>
+<p>Show traffic flowing (curl app from web)</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h3>Restrict</h3>
+<p>Progressively tighten Security Groups</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h3>Troubleshoot</h3>
+<p>Intentionally break connectivity, fix it</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h3>Best Practices</h3>
+<p>Show proper 3-tier SG configuration</p>
+</div>
+</div>
+</div>
+<p><strong>Last Updated:</strong> January 2026</p>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../../aws/vpc/vpc-peering-and-tgw-diff.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">vpc peering and tgw diff</span>
+  </a>
+  <a href="../../aws/vpc/scenarioquestions-on-vpc.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">scenarioQuestions on vpc</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/main.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Git — Clean Topic-Wise Notes</title>
+<style>
+:root{--bg:#090d18;--panel:#11192b;--panel2:#17223a;--text:#edf3ff;--muted:#b2bfd8;--border:#293651;--accent:#ff5757;--accent2:#ffae57;--code:#070b13}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(135deg,#080b15,#10182a 55%,#0b1120);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}header{padding:55px 7vw 42px;border-bottom:1px solid var(--border);background:radial-gradient(circle at 82% 18%,rgba(255,87,87,.2),transparent 34%)}.badge{display:inline-block;padding:6px 12px;border:1px solid #70423b;border-radius:999px;color:#ffc58e;font-size:12px;text-transform:uppercase;letter-spacing:.1em}h1{font-size:clamp(38px,5vw,66px);line-height:1.02;margin:18px 0 12px}header p{max-width:900px;color:var(--muted);font-size:17px}.layout{display:grid;grid-template-columns:300px 1fr;max-width:1500px;margin:auto}aside{position:sticky;top:0;height:100vh;overflow:auto;padding:24px 15px;border-right:1px solid var(--border);background:rgba(7,11,22,.82);backdrop-filter:blur(12px)}aside h3{margin:0 8px 14px;font-size:14px}.toc a{display:flex;gap:10px;padding:8px 10px;color:var(--muted);text-decoration:none;border-radius:8px;font-size:12.5px}.toc a:hover{background:var(--panel2);color:#fff}.toc span{color:var(--accent2);font-weight:800;min-width:24px}main{padding:28px 5vw 80px}.intro{padding:22px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(135deg,rgba(255,87,87,.12),rgba(255,174,87,.07));margin-bottom:24px}.topic{display:grid;grid-template-columns:52px 1fr;gap:18px;margin:24px 0;padding:24px;border:1px solid var(--border);border-radius:18px;background:rgba(17,25,43,.84);box-shadow:0 14px 40px rgba(0,0,0,.16)}.num{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2))}h2{margin:0 0 10px;font-size:25px}p{color:#c8d2e7}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:16px}.card{background:var(--code);border:1px solid #202c46;border-radius:12px;overflow:hidden}.ct{padding:9px 13px;color:#ffc078;font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;border-bottom:1px solid #202c46}pre{margin:0;padding:15px;overflow:auto;color:#e1e9fb;font-size:13px;line-height:1.55}code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}footer{text-align:center;color:#7786a6;padding:32px;border-top:1px solid var(--border);font-size:12px}@media(max-width:900px){.layout{display:block}aside{position:relative;height:auto;max-height:42vh;border-right:0;border-bottom:1px solid var(--border)}main{padding:18px}.topic{grid-template-columns:1fr}}
+</style></head><body>
+<header><div style="margin-bottom: 15px;"><a href="../index.html" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: inherit; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 500;">&larr; Master Index</a></div><span class="badge">NimbusWizTech • DevOps Training Notes</span><h1>Git — Clean Topic-Wise Notes</h1><p>Cleaned and reorganized from the supplied <b>Git.txt</b> and <b>Git Notes.pdf</b>. The classroom notes emphasize the Git workflow, branching, merge/rebase, stash, remotes and practical commands, while the PDF provides a much broader reference.</p></header>
+<div class="layout"><aside><h3>Topics</h3><nav class="toc"><a href="#t01"><span>01</span>Git Fundamentals &amp; Git vs GitHub</a><a href="#t02"><span>02</span>Installation &amp; Configuration</a><a href="#t03"><span>03</span>Repository &amp; .git Directory</a><a href="#t04"><span>04</span>Git Architecture — Workspace to Remote</a><a href="#t05"><span>05</span>Basic Workflow — Status, Add &amp; Commit</a><a href="#t06"><span>06</span>Clone a Repository</a><a href="#t07"><span>07</span>Remote Repositories</a><a href="#t08"><span>08</span>SSH Setup for Git</a><a href="#t09"><span>09</span>Git History &amp; Log</a><a href="#t10"><span>10</span>Staging &amp; Diff</a><a href="#t11"><span>11</span>.gitignore</a><a href="#t12"><span>12</span>Branching</a><a href="#t13"><span>13</span>Merging &amp; Merge Conflicts</a><a href="#t14"><span>14</span>Revert vs Reset</a><a href="#t15"><span>15</span>Rebase</a><a href="#t16"><span>16</span>Squashing Commits</a><a href="#t17"><span>17</span>Stash — Save Work in Progress</a><a href="#t18"><span>18</span>Cherry-Pick</a><a href="#t19"><span>19</span>Tagging</a><a href="#t20"><span>20</span>Fetch, Pull &amp; Push</a><a href="#t21"><span>21</span>Upstream &amp; Fork Workflow</a><a href="#t22"><span>22</span>Git Workflows</a><a href="#t23"><span>23</span>Commit Messages &amp; Amend</a><a href="#t24"><span>24</span>Reflog &amp; Recovery</a><a href="#t25"><span>25</span>Git Clean</a><a href="#t26"><span>26</span>Git Hooks</a><a href="#t27"><span>27</span>Submodules</a><a href="#t28"><span>28</span>Worktrees</a><a href="#t29"><span>29</span>Bisect &amp; Blame</a><a href="#t30"><span>30</span>Git LFS, Patch &amp; Archive</a><a href="#t31"><span>31</span>Bare vs Non-Bare Repository</a><a href="#t32"><span>32</span>Git Fork</a><a href="#t33"><span>33</span>Advanced Git Topics in the Reference</a><a href="#t34"><span>34</span>DevOps Quick Revision Sheet</a></nav></aside><main>
+<div class="intro"><b>Source coverage:</b> The supplied text explicitly covers the four-stage Git architecture — workspace, staging area, local repository and central repository — plus branching, revert/reset, merge conflicts, cherry-pick, tagging, rebase, squash, stash, clone/pull/fetch/push, bare repositories, .gitignore and forks. <small>[Source: Git.txt]</small><br><br>The supplied PDF is a 195-page Git reference with chapters covering getting started, history, remotes, staging, ignoring files, diff, undoing, merging, rebasing, branching, squashing, cherry-picking, recovery, workflows, pulling, hooks, cloning, stashing, pushing, internals, conflict resolution, bisect, blame, worktrees, LFS, patches and additional advanced topics. <small>[Source: Git Notes.pdf]</small></div>
+<section class="topic" id="t01"><div class="num">01</div><div><h2>Git Fundamentals &amp; Git vs GitHub</h2><p>Git is the version-control tool used to track changes, create versions, branch, merge and collaborate. GitHub is a hosting/collaboration platform that can store Git repositories and provide pull requests, reviews and issues.</p><div class="cards"><div class="card"><div class="ct">Quick check</div><pre><code>git --version
+git status
+git log</code></pre></div></div></div></section><section class="topic" id="t02"><div class="num">02</div><div><h2>Installation &amp; Configuration</h2><p>The classroom notes demonstrate installing Git on an EC2/Linux machine and configuring the user name and email before committing. Identity configuration is separate from remote authentication.</p><div class="cards"><div class="card"><div class="ct">Linux install</div><pre><code>sudo yum install git
+# Debian/Ubuntu:
+sudo apt-get install git</code></pre></div><div class="card"><div class="ct">Identity</div><pre><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;you@example.com&quot;</code></pre></div><div class="card"><div class="ct">Verify</div><pre><code>git --version
+which git</code></pre></div></div></div></section><section class="topic" id="t03"><div class="num">03</div><div><h2>Repository &amp; .git Directory</h2><p>A directory becomes a Git repository after git init. The hidden .git directory contains the metadata needed by Git.</p><div class="cards"><div class="card"><div class="ct">Create</div><pre><code>mkdir git
+cd git
+git init
+ls -a</code></pre></div><div class="card"><div class="ct">Check</div><pre><code>ls -a
+# .git should be present</code></pre></div></div></div></section><section class="topic" id="t04"><div class="num">04</div><div><h2>Git Architecture — Workspace to Remote</h2><p>The supplied notes describe four stages: Workspace → Staging Area → Local Repository → Central Repository. Files are edited in the workspace, selected with git add, committed locally, and pushed to the central repository.</p><div class="cards"><div class="card"><div class="ct">Flow</div><pre><code>vi file1
+git status
+git add file1
+git commit -m &quot;add file1&quot;
+git push</code></pre></div></div></div></section><section class="topic" id="t05"><div class="num">05</div><div><h2>Basic Workflow — Status, Add &amp; Commit</h2><p>git status shows whether files have changes in the working tree or staging area. git add moves selected changes into the staging area. git commit creates a version in the local repository.</p><div class="cards"><div class="card"><div class="ct">Demo</div><pre><code>vi file1
+git status
+git add file1
+git status
+git commit -m &quot;add file1&quot;
+git status</code></pre></div></div></div></section><section class="topic" id="t06"><div class="num">06</div><div><h2>Clone a Repository</h2><p>git clone brings an existing remote repository to the local machine, including its working files and history.</p><div class="cards"><div class="card"><div class="ct">HTTPS</div><pre><code>git clone https://github.com/username/projectname.git</code></pre></div><div class="card"><div class="ct">SSH</div><pre><code>git clone git@github.com:username/projectname.git</code></pre></div><div class="card"><div class="ct">Custom directory</div><pre><code>git clone https://github.com/username/projectname.git MyFolder</code></pre></div></div></div></section><section class="topic" id="t07"><div class="num">07</div><div><h2>Remote Repositories</h2><p>Remotes give names to shared repositories. origin is commonly used for the main remote; upstream is often used for the original repository when working from a fork.</p><div class="cards"><div class="card"><div class="ct">Manage remotes</div><pre><code>git remote -v
+git remote add origin &lt;remote-url&gt;
+git remote show origin
+git remote get-url origin
+git remote set-url origin &lt;new-url&gt;
+git remote rename origin upstream
+git remote remove upstream</code></pre></div></div></div></section><section class="topic" id="t08"><div class="num">08</div><div><h2>SSH Setup for Git</h2><p>The supplied reference covers checking ~/.ssh, generating a key, adding it to ssh-agent and changing an existing remote to SSH.</p><div class="cards"><div class="card"><div class="ct">SSH key</div><pre><code>ls -al ~/.ssh
+ssh-keygen
+eval &quot;$(ssh-agent -s)&quot;
+ssh-add ~/.ssh/id_ed25519</code></pre></div><div class="card"><div class="ct">Remote</div><pre><code>git remote set-url origin git@github.com:username/repository.git</code></pre></div></div></div></section><section class="topic" id="t09"><div class="num">09</div><div><h2>Git History &amp; Log</h2><p>git log displays repository history. The reference also covers compact, graph, filtered and searchable log formats.</p><div class="cards"><div class="card"><div class="ct">Common</div><pre><code>git log
+git log -n
+git log --oneline
+git log --decorate --oneline --graph
+git show &lt;commit-id&gt;</code></pre></div><div class="card"><div class="ct">Search</div><pre><code>git log --grep &quot;search_string&quot;
+git log -S&quot;text&quot;
+git log -G&quot;pattern&quot;
+git shortlog -s -n</code></pre></div></div></div></section><section class="topic" id="t10"><div class="num">10</div><div><h2>Staging &amp; Diff</h2><p>The reference includes staging all changes, staging a single file, staging by hunk, viewing staged changes, and comparing commits or branches.</p><div class="cards"><div class="card"><div class="ct">Stage</div><pre><code>git add .
+git add &lt;file&gt;
+git add -p</code></pre></div><div class="card"><div class="ct">Diff</div><pre><code>git diff
+git diff --staged
+git diff &lt;commit1&gt; &lt;commit2&gt;
+git diff &lt;branch1&gt;..&lt;branch2&gt;</code></pre></div></div></div></section><section class="topic" id="t11"><div class="num">11</div><div><h2>.gitignore</h2><p>A .gitignore file tells Git which files or directories should be ignored. Typical examples include logs, local environment files and build output. If a file is already tracked, adding it to .gitignore does not by itself remove it from tracking.</p><div class="cards"><div class="card"><div class="ct">Example</div><pre><code>.gitignore
+*.log
+.env
+target/
+node_modules/
+.idea/</code></pre></div><div class="card"><div class="ct">Check ignored files</div><pre><code>git check-ignore -v &lt;file&gt;
+git status --ignored</code></pre></div></div></div></section><section class="topic" id="t12"><div class="num">12</div><div><h2>Branching</h2><p>Branching supports parallel development. Developers can create feature or fix branches, work independently and later integrate them.</p><div class="cards"><div class="card"><div class="ct">Commands</div><pre><code>git branch
+git branch feature/login
+git checkout feature/login
+git checkout -b feature/payment
+git branch -d feature/login
+git branch -m oldname newname</code></pre></div></div></div></section><section class="topic" id="t13"><div class="num">13</div><div><h2>Merging &amp; Merge Conflicts</h2><p>git merge integrates a source branch into the currently checked-out branch. Conflicts can occur when Git cannot automatically reconcile changes, such as competing edits to the same part of a file.</p><div class="cards"><div class="card"><div class="ct">Merge</div><pre><code>git checkout main
+git merge feature/login</code></pre></div><div class="card"><div class="ct">Conflict workflow</div><pre><code>git status
+# edit conflicted files
+git add &lt;resolved-file&gt;
+git commit</code></pre></div><div class="card"><div class="ct">Abort</div><pre><code>git merge --abort</code></pre></div></div></div></section><section class="topic" id="t14"><div class="num">14</div><div><h2>Revert vs Reset</h2><p>The supplied notes distinguish git revert and git reset. Revert reverses an existing change by creating a new commit, while reset moves the branch reference and can remove commits from the current branch history.</p><div class="cards"><div class="card"><div class="ct">Revert</div><pre><code>git revert &lt;commit-id&gt;</code></pre></div><div class="card"><div class="ct">Reset</div><pre><code>git reset --soft &lt;commit-id&gt;
+git reset --mixed &lt;commit-id&gt;
+git reset --hard &lt;commit-id&gt;</code></pre></div></div></div></section><section class="topic" id="t15"><div class="num">15</div><div><h2>Rebase</h2><p>Rebase integrates work by replaying commits on a new base and rewrites commit history. The source explicitly contrasts this with merge, which creates a merge commit when appropriate.</p><div class="cards"><div class="card"><div class="ct">Basic</div><pre><code>git checkout feature
+git rebase main</code></pre></div><div class="card"><div class="ct">Interactive</div><pre><code>git rebase -i HEAD~n</code></pre></div><div class="card"><div class="ct">Conflict recovery</div><pre><code>git add &lt;resolved-file&gt;
+git rebase --continue
+# or
+git rebase --abort</code></pre></div></div></div></section><section class="topic" id="t16"><div class="num">16</div><div><h2>Squashing Commits</h2><p>Squashing condenses multiple commits into fewer meaningful commits so the project history is clearer. The supplied notes use interactive rebase for this.</p><div class="cards"><div class="card"><div class="ct">Command</div><pre><code>git rebase -i HEAD~n</code></pre></div></div></div></section><section class="topic" id="t17"><div class="num">17</div><div><h2>Stash — Save Work in Progress</h2><p>The classroom scenario is: work is in progress on one branch, an urgent fix is required elsewhere, and you do not want to create a normal commit. Stash the work, switch branches, fix the issue, then restore the work.</p><div class="cards"><div class="card"><div class="ct">Commands</div><pre><code>git stash
+git stash list
+git stash pop
+git stash apply
+git stash drop</code></pre></div></div></div></section><section class="topic" id="t18"><div class="num">18</div><div><h2>Cherry-Pick</h2><p>Cherry-pick applies a specific commit onto the currently checked-out branch. It is useful when you need one particular change without merging an entire branch.</p><div class="cards"><div class="card"><div class="ct">Command</div><pre><code>git cherry-pick &lt;commit-id&gt;</code></pre></div></div></div></section><section class="topic" id="t19"><div class="num">19</div><div><h2>Tagging</h2><p>A tag is a name given to a point in repository history and is commonly used for milestones or releases. A branch is intended for an ongoing development line.</p><div class="cards"><div class="card"><div class="ct">Commands</div><pre><code>git tag v1.0.0
+git tag
+git checkout v1.0.0
+git tag -d v1.0.0
+git push origin v1.0.0
+git push origin --tags</code></pre></div></div></div></section><section class="topic" id="t20"><div class="num">20</div><div><h2>Fetch, Pull &amp; Push</h2><p>The supplied notes summarize clone as the first copy from the central repository, pull as bringing changes and integrating them locally, fetch as downloading remote changes for review, and push as moving local changes to the central repository. The notes summarize pull as fetch + merge.</p><div class="cards"><div class="card"><div class="ct">Commands</div><pre><code>git fetch origin
+git pull origin main
+git push origin main</code></pre></div></div></div></section><section class="topic" id="t21"><div class="num">21</div><div><h2>Upstream &amp; Fork Workflow</h2><p>When working from a fork, origin can point to your copy while upstream points to the original project. This allows changes to be fetched from the original repository while development is pushed to your fork.</p><div class="cards"><div class="card"><div class="ct">Example</div><pre><code>git remote -v
+git remote add upstream https://github.com/projectusername/repo.git
+git fetch upstream
+git checkout main
+git merge upstream/main</code></pre></div></div></div></section><section class="topic" id="t22"><div class="num">22</div><div><h2>Git Workflows</h2><p>The supplied Git reference covers Centralized Workflow, Gitflow Workflow, Feature Branch Workflow, GitHub Flow and Forking Workflow.</p><div class="cards"><div class="card"><div class="ct">Feature flow</div><pre><code>git checkout -b feature/login
+git add .
+git commit -m &quot;Add login&quot;
+git push -u origin feature/login</code></pre></div></div></div></section><section class="topic" id="t23"><div class="num">23</div><div><h2>Commit Messages &amp; Amend</h2><p>The reference includes good commit messages and amending a commit. Amend is commonly used when the latest commit needs its message or staged content corrected.</p><div class="cards"><div class="card"><div class="ct">Amend</div><pre><code>git commit --amend -m &quot;New commit message.&quot;</code></pre></div></div></div></section><section class="topic" id="t24"><div class="num">24</div><div><h2>Reflog &amp; Recovery</h2><p>Reflog records local reference movements and is useful when recovering from reset, rebase, deleted branches or other situations where a commit is no longer visible in normal git log output.</p><div class="cards"><div class="card"><div class="ct">Recovery checks</div><pre><code>git reflog
+git log --oneline --decorate --graph --all
+git branch -a
+git status</code></pre></div></div></div></section><section class="topic" id="t25"><div class="num">25</div><div><h2>Git Clean</h2><p>git clean removes untracked files and directories. The reference covers previewing, interactive cleanup, forceful cleanup and ignored-file cleanup.</p><div class="cards"><div class="card"><div class="ct">Commands</div><pre><code>git clean -n
+git clean -i
+git clean -f
+git clean -fd
+git clean -fdX</code></pre></div></div></div></section><section class="topic" id="t26"><div class="num">26</div><div><h2>Git Hooks</h2><p>Hooks are scripts associated with Git lifecycle events. The reference covers pre-commit, commit-msg, pre-push, post-commit, pre-rebase, pre-receive and post-receive among others.</p><div class="cards"><div class="card"><div class="ct">Location</div><pre><code>.git/hooks/</code></pre></div><div class="card"><div class="ct">Examples</div><pre><code>pre-commit
+commit-msg
+pre-push
+post-commit
+pre-rebase
+pre-receive
+post-receive</code></pre></div></div></div></section><section class="topic" id="t27"><div class="num">27</div><div><h2>Submodules</h2><p>A submodule allows one Git repository to include another repository at a selected revision. The reference covers cloning with submodules, adding, updating, following branches, moving and removing them.</p><div class="cards"><div class="card"><div class="ct">Commands</div><pre><code>git submodule add &lt;repo-url&gt; path/to/module
+git clone --recurse-submodules &lt;repo-url&gt;
+git submodule update --init --recursive
+git submodule update --remote</code></pre></div></div></div></section><section class="topic" id="t28"><div class="num">28</div><div><h2>Worktrees</h2><p>Git worktrees provide multiple working directories associated with one repository, useful when you need to work on another branch without changing the current working directory.</p><div class="cards"><div class="card"><div class="ct">Commands</div><pre><code>git worktree add ../hotfix hotfix
+git worktree list
+git worktree remove ../hotfix</code></pre></div></div></div></section><section class="topic" id="t29"><div class="num">29</div><div><h2>Bisect &amp; Blame</h2><p>git bisect performs a binary search through commit history to identify a faulty commit. git blame identifies the commit/author associated with lines in a file.</p><div class="cards"><div class="card"><div class="ct">Bisect</div><pre><code>git bisect start
+git bisect bad
+git bisect good &lt;known-good-commit&gt;
+# test each checkout
+git bisect good
+git bisect bad
+git bisect reset</code></pre></div><div class="card"><div class="ct">Blame</div><pre><code>git blame &lt;file&gt;
+git blame -L &lt;start&gt;,&lt;end&gt; &lt;file&gt;</code></pre></div></div></div></section><section class="topic" id="t30"><div class="num">30</div><div><h2>Git LFS, Patch &amp; Archive</h2><p>The supplied reference covers Git Large File Storage, creating/applying patches and creating repository archives.</p><div class="cards"><div class="card"><div class="ct">LFS</div><pre><code>git lfs install
+git lfs track &quot;*.zip&quot;
+git add .gitattributes
+git add &lt;large-file&gt;
+git commit -m &quot;Track large files with LFS&quot;</code></pre></div><div class="card"><div class="ct">Patch</div><pre><code>git diff &gt; change.patch
+git apply change.patch</code></pre></div><div class="card"><div class="ct">Archive</div><pre><code>git archive --format=zip --output=project.zip HEAD</code></pre></div></div></div></section><section class="topic" id="t31"><div class="num">31</div><div><h2>Bare vs Non-Bare Repository</h2><p>A bare repository contains Git data without a working tree and is commonly used as a remote repository. A non-bare repository has a working tree where files can be edited.</p><div class="cards"><div class="card"><div class="ct">Commands</div><pre><code>git init --bare /path/to/repo.git
+git init</code></pre></div></div></div></section><section class="topic" id="t32"><div class="num">32</div><div><h2>Git Fork</h2><p>Forking creates a copy of a repository under another account. It is commonly used when a developer does not have direct push access to the original project and needs to propose changes back to it.</p><div class="cards"><div class="card"><div class="ct">Model</div><pre><code>Original repository
+   ↓ fork
+Personal repository
+   ↓ clone
+Local repository
+   ↓ push
+Personal repository
+   ↓ pull request
+Original repository</code></pre></div></div></div></section><section class="topic" id="t33"><div class="num">33</div><div><h2>Advanced Git Topics in the Reference</h2><p>The supplied PDF goes substantially beyond the classroom text and includes aliases, configuration, rev-list, subtrees, renaming, internals, SVN/TFS integration, archive, history rewriting, conflict resolution, bundles, Gitk, revision syntax, remote management, statistics, GUI clients, rerere, tagging and repository tidying.</p><div class="cards"><div class="card"><div class="ct">Reference areas</div><pre><code>git aliases
+git rev-list
+git subtree
+git bundle
+git rerere
+git tag
+git remote
+git worktree
+git lfs</code></pre></div></div></div></section><section class="topic" id="t34"><div class="num">34</div><div><h2>DevOps Quick Revision Sheet</h2><p>Use this section as a fast revision path before a practical demo or interview. The commands below combine the recurring operations from the supplied notes.</p><div class="cards"><div class="card"><div class="ct">Daily</div><pre><code>git status
+git pull
+git checkout -b feature/name
+git add .
+git commit -m &quot;Meaningful change&quot;
+git push -u origin feature/name</code></pre></div><div class="card"><div class="ct">Troubleshooting</div><pre><code>git status
+git log --oneline --graph --decorate --all
+git diff
+git fetch --all
+git branch -a
+git remote -v
+git reflog</code></pre></div><div class="card"><div class="ct">Integration</div><pre><code>git merge &lt;branch&gt;
+git rebase &lt;branch&gt;
+git cherry-pick &lt;commit-id&gt;
+git revert &lt;commit-id&gt;</code></pre></div></div></div></section>
+</main></div><footer>Git Clean Topic-Wise Notes • Prepared from the supplied Git sources • For classroom demos, revision and interview preparation</footer></body></html>

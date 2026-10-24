@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EC2 Elastic Compute Cloud &bull; July 26 DevOps Notes</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Sidebar">&#9776;</button>
+      <a href="../index.html" class="brand-container">
+        <div class="brand-icon">🚀</div>
+        <div class="brand-title-group">
+          <h1>July 26 DevOps Notes</h1>
+          <span>Interactive Student & Engineer Handbook</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="../index.html" class="hub-btn">📚 Master Index</a>
+      <button id="theme-toggle-btn" class="theme-btn" title="Toggle Theme">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+    <!-- Sticky Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-search" style="margin-bottom:1.5rem;"><div class="search-wrapper"><span class="search-icon">🔍</span><input type="text" id="sidebar-search-input" class="search-input" placeholder="Search 126+ notes..."></div></div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🛠️ Infra Setup</span>
+    <span class="badge">2</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../README.html">Infra Setup</a></li>
+    <li><a href="../infra-setup/aws-account-setup.html">aws account setup</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐧 Linux</span>
+    <span class="badge">13</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../linux/README.html">Linux</a></li>
+    <li><a href="../linux/linux-basics.html">linux basics</a></li>
+    <li><a href="../linux/different-shells-in-linux.html">different shells in linux</a></li>
+    <li><a href="../linux/day1.html">day1</a></li>
+    <li><a href="../linux/day-2.html">day 2</a></li>
+    <li><a href="../linux/day-3.html">Day 3</a></li>
+    <li><a href="../linux/day-4.html">Day 4</a></li>
+    <li><a href="../linux/day-5.html">Day 5</a></li>
+    <li><a href="../linux/kill-signal.html">kill signal</a></li>
+    <li><a href="../linux/linux-commands-all.html">linux commands all</a></li>
+    <li><a href="../linux/linux-interview-questions-1.html">linux interview questions 1</a></li>
+    <li><a href="../linux/linux-interview-questions.html">linux interview questions</a></li>
+    <li><a href="../linux/linux-unix-tutorial.html">linux unix tutorial</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>💻 Shell Scripting</span>
+    <span class="badge">3</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../shell-scripting/README.html">Shell Scripting</a></li>
+    <li><a href="../shell-scripting/shell-script-day-1.html">Shell Script Day 1</a></li>
+    <li><a href="../shell-scripting/shell-script-day-2.html">Shell Script Day 2</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌿 Git</span>
+    <span class="badge">24</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../git/README.html">Git</a></li>
+    <li><a href="../git/git.html">git</a></li>
+    <li><a href="../git/version-control-systems.html">version control systems</a></li>
+    <li><a href="../git/git-version-control.html">git version control</a></li>
+    <li><a href="../git/introduction-to-git.html">introduction to git</a></li>
+    <li><a href="../git/git-work-flow.html">git work flow</a></li>
+    <li><a href="../git/git-day-1.html">Git Day 1</a></li>
+    <li><a href="../git/git-day-2.html">Git Day 2</a></li>
+    <li><a href="../git/git-day-3.html">Git Day 3</a></li>
+    <li><a href="../git/git-day-4.html">Git Day 4</a></li>
+    <li><a href="../git/git-and-github.html">git and github</a></li>
+    <li><a href="../git/git-reset.html">git reset</a></li>
+    <li><a href="../git/git-reset-with-practical-example.html">git reset with practical example</a></li>
+    <li><a href="../git/git-revert.html">git revert</a></li>
+    <li><a href="../git/git-reset-and-revert.html">git reset and revert</a></li>
+    <li><a href="../git/git-revert-checkout-and-reset-diff.html">git revert checkout and reset diff</a></li>
+    <li><a href="../git/git-rebase.html">git rebase</a></li>
+    <li><a href="../git/git-rebase-and-squash.html">git rebase and squash</a></li>
+    <li><a href="../git/delete-branch.html">delete branch</a></li>
+    <li><a href="../git/git-branching-strategy.html">git branching strategy</a></li>
+    <li><a href="../git/git-cherry-pick.html">git cherry pick</a></li>
+    <li><a href="../git/git-squash.html">git squash</a></li>
+    <li><a href="../git/git-stash.html">git stash</a></li>
+    <li><a href="../git/git-cheat-sheet.html">git cheat sheet</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🚀 CICD / Jenkins</span>
+    <span class="badge">31</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../cicd-jenkins/README.html">CICD / Jenkins</a></li>
+    <li><a href="../cicd-jenkins/cicd-class-1.html">CICD Class 1</a></li>
+    <li><a href="../cicd-jenkins/class-images.html">Class Images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow-images.html">cicd flow images</a></li>
+    <li><a href="../cicd-jenkins/cicd-flow.html">cicd flow</a></li>
+    <li><a href="../cicd-jenkins/complete-cicd-flow.html">Complete CI/CD Flow</a></li>
+    <li><a href="../cicd-jenkins/jfrog-artifactory-basics.html">Basics of JFrog Artifactory</a></li>
+    <li><a href="../cicd-jenkins/jfrog-zero-to-pro.html">JFrog Zero to Pro Guide [Part 1]</a></li>
+    <li><a href="../cicd-jenkins/install-jenkins-on-ubuntu.html">Install Jenkins on Ubuntu</a></li>
+    <li><a href="../cicd-jenkins/system-configuration.html">system configuration</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-1.html">Jenkins Day 1</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-2.html">Jenkins Day 2</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-3.html">Jenkins Day 3</a></li>
+    <li><a href="../cicd-jenkins/jenkins-day-4-shared-libs.html">Jenkins Day 4   Shared Libs</a></li>
+    <li><a href="../cicd-jenkins/tomcat-class-notes.html">Tomcat Class Notes</a></li>
+    <li><a href="../cicd-jenkins/tomcat-directory-structure.html">Tomcat Directory Structure</a></li>
+    <li><a href="../cicd-jenkins/tomcat-imp-files.html">Tomcat Imp FIles</a></li>
+    <li><a href="../cicd-jenkins/master-slave-configuration.html">master slave configuration</a></li>
+    <li><a href="../cicd-jenkins/pluggin-installation.html">pluggin installation</a></li>
+    <li><a href="../cicd-jenkins/jenkins-parameters.html">jenkins parameters</a></li>
+    <li><a href="../cicd-jenkins/built-in-variables.html">Built in variables</a></li>
+    <li><a href="../cicd-jenkins/jenkins-pipelines-samples.html">jenkins pipelines samples</a></li>
+    <li><a href="../cicd-jenkins/pipelines.html">pipelines</a></li>
+    <li><a href="../cicd-jenkins/pipline-options.html">pipline options</a></li>
+    <li><a href="../cicd-jenkins/build-triggers.html">build triggers</a></li>
+    <li><a href="../cicd-jenkins/upstream-and-downstream.html">upstream and downstream</a></li>
+    <li><a href="../cicd-jenkins/jenkins-tomcat-deployment-guide.html">Jenkins Tomcat Deployment Guide</a></li>
+    <li><a href="../cicd-jenkins/secure-jenkins.html">secure jenkins</a></li>
+    <li><a href="../cicd-jenkins/matrix-based-security.html">matrix based security</a></li>
+    <li><a href="../cicd-jenkins/maven-lifecycle.html">maven lifecycle</a></li>
+    <li><a href="../cicd-jenkins/maven-tutorial.html">maven tutorial</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a-with-implementation-steps.html">jenkins q and a with implementation steps</a></li>
+    <li><a href="../cicd-jenkins/jenkins-q-and-a.html">jenkins q and a</a></li>
+    <li><a href="../cicd-jenkins/rbac.html">RBAC</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>☁️ AWS</span>
+    <span class="badge">49</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../aws/README.html">AWS</a></li>
+    <li><a href="../aws/cloud_computing.html">Cloud\_Computing</a></li>
+    <li><a href="../aws/aws-overview.html">AWS Overview</a></li>
+    <li><a href="../aws/regions-and-availability-zones.html">Regions and Availability Zones</a></li>
+    <li><a href="../aws/ami-amazon-machine-images.html">AMI Amazon Machine Images</a></li>
+    <li><a href="../aws/ec2-elastic-compute-cloud.html" class="active">EC2 Elastic Compute Cloud</a></li>
+    <li><a href="../aws/ec2-instance-types.html">EC2 Instance Types</a></li>
+    <li><a href="../aws/vpc-virtual-private-cloud.html">VPC Virtual Private Cloud</a></li>
+    <li><a href="../aws/vpc/README.html">VPC</a></li>
+    <li><a href="../aws/vpc/cidr.html">CIDR</a></li>
+    <li><a href="../aws/vpc/cidr-calculation-guide.html">CIDR calculation guide</a></li>
+    <li><a href="../aws/vpc/vpc-demo.html">VPC demo</a></li>
+    <li><a href="../aws/vpc/vpc-components.html">vpc components</a></li>
+    <li><a href="../aws/vpc/real-time-use-case-and-examples-of-vpc.html">Real time use case and examples of vpc</a></li>
+    <li><a href="../aws/vpc/tgw-and-customer-gateway.html">tgw and customer gateway</a></li>
+    <li><a href="../aws/vpc/site-to-site-vpn-connection.html">site to site vpn connection</a></li>
+    <li><a href="../aws/vpc/vpc-additional-topics.html">vpc additional topics</a></li>
+    <li><a href="../aws/vpc/vpc-peering-and-tgw-diff.html">vpc peering and tgw diff</a></li>
+    <li><a href="../aws/vpc/vpc-security-config.html">vpc security config</a></li>
+    <li><a href="../aws/vpc/scenarioquestions-on-vpc.html">scenarioQuestions on vpc</a></li>
+    <li><a href="../aws/aws-storage-solutions.html">AWS Storage solutions</a></li>
+    <li><a href="../aws/s3/README.html">S3</a></li>
+    <li><a href="../aws/s3/aws-s3-static-website-hosting.html">AWS S3 Static website hosting</a></li>
+    <li><a href="../aws/s3/s3-basics.html">S3 Basics</a></li>
+    <li><a href="../aws/s3/s3-storage-classes.html">s3 storage classes</a></li>
+    <li><a href="../aws/s3/aws-s3-bucket-policies-detailed.html">AWS s3 bucket policies detailed</a></li>
+    <li><a href="../aws/s3/s3-cross-account-access-management-using-bucket-policies-and-iam.html">s3 cross account access management using bucket policies and iam</a></li>
+    <li><a href="../aws/load-balancer/README.html">Load Balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancer.html">AWS Load balancer</a></li>
+    <li><a href="../aws/load-balancer/aws-load-balancers-explained.html">AWS Load Balancers Explained</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-algorithms.html">Load Balancing Algorithms</a></li>
+    <li><a href="../aws/load-balancer/load-balancing-explained-from-scratch.html">Load Balancing Explained From Scratch</a></li>
+    <li><a href="../aws/load-balancer/alb-creation-guide.html">ALB Creation Guide</a></li>
+    <li><a href="../aws/load-balancer/aws-clb-vs-alb-routing.html">aws clb vs alb routing</a></li>
+    <li><a href="../aws/iam/README.html">IAM</a></li>
+    <li><a href="../aws/iam/ec2-to-s3-logging-guide.html">EC2 to s3 logging guide</a></li>
+    <li><a href="../aws/iam/iam.html">IAM</a></li>
+    <li><a href="../aws/asg.html">ASG</a></li>
+    <li><a href="../aws/stress-test.html">stress test</a></li>
+    <li><a href="../aws/ecs-ecr.html">ECS ECR</a></li>
+    <li><a href="../aws/elastic-beanstalk.html">elastic beanstalk</a></li>
+    <li><a href="../aws/kms.html">KMS</a></li>
+    <li><a href="../aws/iac.html">IAC</a></li>
+    <li><a href="../aws/cloudformation.html">cloudformation</a></li>
+    <li><a href="../aws/secrets-manager.html">Secrets Manager</a></li>
+    <li><a href="../aws/rds-pgsql.html">rds pgsql</a></li>
+    <li><a href="../aws/lambda.html">lambda</a></li>
+    <li><a href="../aws/ecs-fargate-step-by-step-guide.html">AWS ECS with Fargate</a></li>
+    <li><a href="../aws/ecs-ec2-step-by-step-guide.html">AWS ECS with EC2 Launch Type</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🐳 Docker</span>
+    <span class="badge">9</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../docker/README.html">Docker</a></li>
+    <li><a href="../docker/docker.html">docker</a></li>
+    <li><a href="../docker/docker_evolution_visual.html">docker\_evolution\_visual</a></li>
+    <li><a href="../docker/docker-2.html">Docker Part 2</a></li>
+    <li><a href="../docker/docker-build-run-scenarios.html">Build & Run Scenarios</a></li>
+    <li><a href="../docker/docker-networks.html">Docker Networks</a></li>
+    <li><a href="../docker/docker-volumes-handbook.html">Docker Volumes Handbook</a></li>
+    <li><a href="../docker/docker_guide.html">Docker Guide</a></li>
+    <li><a href="../docker/dockerfile-anatomy.html">Dockerfile Anatomy</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🔒 LDAP</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../ldap.html">LDAP</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🌐 Apache HTTPD guide</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../apache-httpd-guide.html">Apache HTTPD guide</a></li>
+  </ul>
+</div>
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>⚡ stress test</span>
+    <span class="badge">1</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../stress-test.html">stress test</a></li>
+  </ul>
+</div>
+
+
+
+<div class="sidebar-category-group">
+  <div class="sidebar-category-header">
+    <span>🎯 Demos</span>
+    <span class="badge">11</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="../Demo's/ALB_Creation_Guide.html">ALB Creation Guide</a></li>
+    <li><a href="../Demo's/AWS_ASG_Complete_Guide.html">AWS ASG Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudTrail_Guide.html">AWS CloudTrail Guide</a></li>
+    <li><a href="../Demo's/AWS_CloudWatch_Guide.html">AWS CloudWatch Guide</a></li>
+    <li><a href="../Demo's/AWS_IAM_Complete_Guide.html">AWS IAM Complete Guide</a></li>
+    <li><a href="../Demo's/AWS_Route53_Guide.html">AWS Route53 Guide</a></li>
+    <li><a href="../Demo's/AWS_SNS_Guide.html">AWS SNS Guide</a></li>
+    <li><a href="../Demo's/AWS_SQS_Guide.html">AWS SQS Guide</a></li>
+    <li><a href="../Demo's/apache_guide.html">Apache Guide</a></li>
+    <li><a href="../Demo's/aws_s3_hosting.html">AWS S3 Hosting</a></li>
+    <li><a href="../Demo's/docker_network_demo.html">Docker Network Demo</a></li>
+  </ul>
+</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-bar">
+          <a href="../index.html">Home</a>
+          <span class="separator">/</span>
+          <span>☁️ AWS</span>
+          <span class="separator">/</span>
+          <span class="current">EC2 Elastic Compute Cloud</span>
+        </nav>
+
+        <!-- Hero Banner -->
+        <div class="doc-hero">
+          <div class="hero-category-tag">☁️ AWS Module</div>
+          <h1 class="hero-title">EC2 Elastic Compute Cloud</h1>
+          <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ Reading time ~5 mins</div>
+            <div class="hero-meta-item">📝 Comprehensive Class Notes</div>
+            <div class="hero-meta-item">⚡ High-Res Architectural Diagrams</div>
+          </div>
+        </div>
+
+        
+
+        <!-- Document Body -->
+        <article class="markdown-body">
+          <h2>What is EC2?</h2>
+<p><strong>Amazon EC2 (Elastic Compute Cloud)</strong> is a web service that provides <strong>resizable compute capacity</strong> in the cloud. In simple terms, EC2 lets you create <strong>virtual servers (instances)</strong> on AWS infrastructure.</p>
+<h3>Why "Elastic"?</h3>
+<ul>
+<li>You can <strong>increase or decrease</strong> capacity within minutes.</li>
+<li>You can launch <strong>1 or 1,000 instances</strong> simultaneously.</li>
+<li>You <strong>pay only for what you use</strong> (per second/hour billing).</li>
+</ul>
+<h3>Simple Analogy for Students</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Traditional Server                    EC2 Instance
+─────────────────                    ─────────────
+Buy hardware         →               Launch in 2 minutes
+Wait weeks           →               Available immediately
+Fixed capacity       →               Scale up/down anytime
+Pay upfront          →               Pay per second
+Maintain hardware    →               AWS maintains hardware
+Replace on failure   →               Launch new instance instantly
+</code></pre>
+</div>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>EC2 = Virtual server in the cloud that you can launch, use, and terminate on demand.</strong></p>
+</div>
+</div>
+<h2>Key Components of EC2</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">EC2 Instance
+ │
+ ├── AMI             → Operating System template (what OS to install)
+ ├── Instance Type   → Hardware configuration (CPU, RAM, Network)
+ ├── Key Pair        → SSH login credentials
+ ├── Security Group  → Firewall rules (which ports to open)
+ ├── VPC / Subnet    → Network configuration (where to place the instance)
+ ├── EBS Volume      → Storage / Hard Disk
+ ├── Elastic IP      → Static public IP address
+ ├── User Data       → Startup script (runs on first boot)
+ ├── IAM Role        → Permissions for the instance
+ └── Tags            → Labels for organization (Name, Environment, etc.)
+</code></pre>
+</div>
+<h2>EC2 Instance Lifecycle</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">                    ┌──────────┐
+                    │ PENDING  │ ← Instance is being created
+                    └────┬─────┘
+                         │
+                         ▼
+                    ┌──────────┐
+             ┌──────│ RUNNING  │──────┐
+             │      └────┬─────┘      │
+             │           │            │
+             ▼           ▼            ▼
+        ┌─────────┐ ┌─────────┐ ┌────────────┐
+        │ STOPPING│ │REBOOTING│ │SHUTTING-DOWN│
+        └────┬────┘ └────┬────┘ └─────┬──────┘
+             │           │            │
+             ▼           ▼            ▼
+        ┌─────────┐ ┌─────────┐ ┌────────────┐
+        │ STOPPED │ │ RUNNING │ │ TERMINATED │
+        └─────────┘ └─────────┘ └────────────┘
+             │
+             ▼
+        ┌─────────┐
+        │ RUNNING │  (Start again)
+        └─────────┘
+</code></pre>
+</div>
+<h3>State Descriptions</h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+<th>Billing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pending</strong></td>
+<td>Instance is being launched</td>
+<td>❌ No charge</td>
+</tr>
+<tr>
+<td><strong>Running</strong></td>
+<td>Instance is active and usable</td>
+<td>✅ Charged</td>
+</tr>
+<tr>
+<td><strong>Stopping</strong></td>
+<td>Instance is being stopped</td>
+<td>✅ Charged (briefly)</td>
+</tr>
+<tr>
+<td><strong>Stopped</strong></td>
+<td>Instance is stopped (EBS data preserved)</td>
+<td>❌ No compute charge (EBS charged)</td>
+</tr>
+<tr>
+<td><strong>Rebooting</strong></td>
+<td>Instance is restarting</td>
+<td>✅ Charged</td>
+</tr>
+<tr>
+<td><strong>Shutting-down</strong></td>
+<td>Instance is being terminated</td>
+<td>❌ No charge</td>
+</tr>
+<tr>
+<td><strong>Terminated</strong></td>
+<td>Instance is deleted permanently</td>
+<td>❌ No charge</td>
+</tr>
+</tbody>
+</table>
+<h3>Important Differences</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Public IP</th>
+<th>Private IP</th>
+<th>EBS Data</th>
+<th>Instance Store</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Stop</strong></td>
+<td>Released</td>
+<td>Retained</td>
+<td>✅ Preserved</td>
+<td>❌ Lost</td>
+</tr>
+<tr>
+<td><strong>Start</strong></td>
+<td>New IP assigned</td>
+<td>Same IP</td>
+<td>✅ Available</td>
+<td>❌ Gone</td>
+</tr>
+<tr>
+<td><strong>Reboot</strong></td>
+<td>Same IP</td>
+<td>Same IP</td>
+<td>✅ Preserved</td>
+<td>✅ Preserved</td>
+</tr>
+<tr>
+<td><strong>Terminate</strong></td>
+<td>Released</td>
+<td>Released</td>
+<td>❌ Deleted (by default)</td>
+<td>❌ Lost</td>
+</tr>
+</tbody>
+</table>
+<h2>Launching an EC2 Instance</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>AWS Account (Free Tier eligible)</li>
+<li>Understanding of AMI, Security Groups, Key Pairs</li>
+</ul>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">1</div>
+<div class="step-content">
+<h2>Open EC2 Dashboard</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">AWS Console → Services → EC2 → Launch Instance
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">2</div>
+<div class="step-content">
+<h2>Name Your Instance</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Name: MyFirstWebServer
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">3</div>
+<div class="step-content">
+<h2>Choose an AMI (Operating System)</h2>
+<table>
+<thead>
+<tr>
+<th>AMI</th>
+<th>Description</th>
+<th>Free Tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Amazon Linux 2023</td>
+<td>AWS's own Linux distro</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Ubuntu 22.04 LTS</td>
+<td>Popular Linux distro</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Red Hat Enterprise Linux</td>
+<td>Enterprise Linux</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td>Windows Server 2022</td>
+<td>Microsoft Windows</td>
+<td>✅ Yes (limited)</td>
+</tr>
+<tr>
+<td>SUSE Linux</td>
+<td>Enterprise Linux</td>
+<td>❌ No</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p>For learning, use <strong>Amazon Linux 2023</strong> or <strong>Ubuntu 22.04 LTS</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">4</div>
+<div class="step-content">
+<h2>Choose Instance Type</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">t2.micro → 1 vCPU, 1 GB RAM → Free Tier eligible ✅
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">5</div>
+<div class="step-content">
+<h2>Create or Select a Key Pair</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Key Pair Name: my-aws-key
+Key Pair Type: RSA
+Format: .pem (Linux/Mac) or .ppk (Windows/PuTTY)
+</code></pre>
+</div>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p><strong>Download and save the key pair immediately!</strong> You cannot download it again.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">6</div>
+<div class="step-content">
+<h2>Configure Security Group (Firewall)</h2>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Protocol</th>
+<th>Port</th>
+<th>Source</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH</td>
+<td>TCP</td>
+<td>22</td>
+<td>My IP</td>
+<td>Remote access</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td>TCP</td>
+<td>80</td>
+<td>0.0.0.0/0</td>
+<td>Web traffic</td>
+</tr>
+<tr>
+<td>HTTPS</td>
+<td>TCP</td>
+<td>443</td>
+<td>0.0.0.0/0</td>
+<td>Secure web traffic</td>
+</tr>
+<tr>
+<td>Custom</td>
+<td>TCP</td>
+<td>8080</td>
+<td>0.0.0.0/0</td>
+<td>Tomcat/Jenkins</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">7</div>
+<div class="step-content">
+<h2>Configure Storage (EBS)</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Root Volume: 8 GB (gp3) → Free Tier eligible
+Delete on Termination: Yes (default)
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">8</div>
+<div class="step-content">
+<h2>Configure Advanced Details (Optional)</h2>
+<p><strong>User Data</strong> – Script that runs on first boot:</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo &quot;&lt;h1&gt;Hello from EC2!&lt;/h1&gt;&quot; &gt; /var/www/html/index.html
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">9</div>
+<div class="step-content">
+<h2>Launch Instance</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Click &quot;Launch Instance&quot; → Instance starts in PENDING → RUNNING
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h2>Connecting to EC2</h2>
+<h3>Method 1 – SSH from Terminal (Linux/Mac)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Set key permissions
+chmod 400 my-aws-key.pem
+
+# Connect via SSH
+ssh -i &quot;my-aws-key.pem&quot; ec2-user@&lt;PUBLIC-IP&gt;
+
+# For Ubuntu AMI
+ssh -i &quot;my-aws-key.pem&quot; ubuntu@&lt;PUBLIC-IP&gt;
+</code></pre>
+</div>
+<h3>Method 2 – EC2 Instance Connect (Browser-based)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">EC2 Dashboard → Select Instance → Connect → EC2 Instance Connect → Connect
+</code></pre>
+</div>
+<p>No key pair needed – works directly from the browser.</p>
+<h3>Method 3 – PuTTY (Windows)</h3>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">10</div>
+<div class="step-content">
+<h2>Convert the Key</h2>
+<p>Convert <code>.pem</code> to <code>.ppk</code> using PuTTYgen.</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">11</div>
+<div class="step-content">
+<h2>Open PuTTY</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Host Name: ec2-user@&lt;PUBLIC-IP&gt;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">12</div>
+<div class="step-content">
+<h2>Select the Authentication Key</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">SSH → Auth → Browse → Select .ppk file
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">13</div>
+<div class="step-content">
+<h2>Connect</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Open
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h3>Method 4 – Session Manager (SSM)</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">No SSH key needed
+No inbound ports needed
+Requires IAM Role with SSM permissions
+</code></pre>
+</div>
+<h2>Security Groups – Virtual Firewall</h2>
+<p>A <strong>Security Group</strong> acts as a <strong>virtual firewall</strong> for your EC2 instance.</p>
+<h3>Key Concepts</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Level</strong></td>
+<td>Instance level</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td><strong>Stateful</strong> – if you allow inbound, outbound response is automatic</td>
+</tr>
+<tr>
+<td><strong>Default</strong></td>
+<td>All inbound DENIED, all outbound ALLOWED</td>
+</tr>
+<tr>
+<td><strong>Rules</strong></td>
+<td>Only <strong>ALLOW</strong> rules (no deny rules)</td>
+</tr>
+<tr>
+<td><strong>Multiple</strong></td>
+<td>An instance can have multiple security groups</td>
+</tr>
+</tbody>
+</table>
+<h3>Common Security Group Rules</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">┌──────────────────────────────────────────────────┐
+│              SECURITY GROUP                       │
+│                                                   │
+│  INBOUND RULES:                                   │
+│  ┌─────────┬──────┬───────┬────────────────────┐ │
+│  │  Type   │ Port │ Proto │ Source              │ │
+│  ├─────────┼──────┼───────┼────────────────────┤ │
+│  │  SSH    │  22  │  TCP  │ My IP (x.x.x.x/32)│ │
+│  │  HTTP   │  80  │  TCP  │ 0.0.0.0/0          │ │
+│  │  HTTPS  │ 443  │  TCP  │ 0.0.0.0/0          │ │
+│  │  Custom │ 8080 │  TCP  │ 0.0.0.0/0          │ │
+│  │  MySQL  │ 3306 │  TCP  │ sg-app-server      │ │
+│  │  └──────┴──────┴───────┴────────────────────┘ │
+│                                                   │
+│  OUTBOUND RULES:                                  │
+│  ┌─────────┬──────┬───────┬────────────────────┐ │
+│  │  All    │ All  │  All  │ 0.0.0.0/0          │ │
+│  └─────────┴──────┴───────┴────────────────────┘ │
+└──────────────────────────────────────────────────┘
+</code></pre>
+</div>
+<h3>Security Group Best Practices</h3>
+<ul>
+<li>✅ Follow <strong>principle of least privilege</strong> – open only required ports.</li>
+<li>✅ Use <strong>My IP</strong> for SSH instead of <code>0.0.0.0/0</code>.</li>
+<li>✅ Reference other <strong>security groups</strong> instead of IPs where possible.</li>
+<li>✅ Create <strong>separate security groups</strong> for different tiers (web, app, db).</li>
+<li>❌ Never open port 22 to <code>0.0.0.0/0</code> in production.</li>
+</ul>
+<h2>Key Pairs – SSH Authentication</h2>
+<h3>How Key Pairs Work</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">┌─────────────────┐                    ┌─────────────────┐
+│   YOUR LAPTOP   │                    │   EC2 INSTANCE  │
+│                 │                    │                 │
+│  Private Key    │ ──── SSH ────────→ │  Public Key     │
+│  (my-key.pem)   │                    │  (~/.ssh/       │
+│                 │                    │   authorized_   │
+│  YOU keep this  │                    │   keys)         │
+│  SAFELY         │                    │                 │
+│                 │                    │  AWS stores     │
+│                 │                    │  this for you   │
+└─────────────────┘                    └─────────────────┘
+</code></pre>
+</div>
+<h3>Important Rules</h3>
+<ul>
+<li><strong>Private key</strong> → You download this (<code>.pem</code> or <code>.ppk</code>).</li>
+<li><strong>Public key</strong> → AWS stores this on the instance.</li>
+<li>If you <strong>lose the private key</strong>, you <strong>cannot connect</strong> via SSH.</li>
+<li>Each key pair is <strong>Region-specific</strong>.</li>
+<li>You can use the <strong>same key pair</strong> for multiple instances.</li>
+</ul>
+<h3>Key Pair Commands</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create key pair via CLI
+aws ec2 create-key-pair --key-name my-key --query 'KeyMaterial' --output text &gt; my-key.pem
+
+# Set permissions
+chmod 400 my-key.pem
+
+# Delete key pair
+aws ec2 delete-key-pair --key-name my-key
+</code></pre>
+</div>
+<h2>EBS – Elastic Block Store (Instance Storage)</h2>
+<h3>What is EBS?</h3>
+<p><strong>EBS</strong> is a <strong>block-level storage</strong> service for EC2. Think of it as a <strong>virtual hard disk</strong> attached to your EC2 instance.</p>
+<h3>Key Features</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Persistent</strong></td>
+<td>Data survives instance stop/start</td>
+</tr>
+<tr>
+<td><strong>Attachable</strong></td>
+<td>Can be attached/detached from instances</td>
+</tr>
+<tr>
+<td><strong>Snapshots</strong></td>
+<td>Point-in-time backups (stored in S3)</td>
+</tr>
+<tr>
+<td><strong>Encryption</strong></td>
+<td>Supports encryption at rest</td>
+</tr>
+<tr>
+<td><strong>Resizable</strong></td>
+<td>Can increase size without downtime</td>
+</tr>
+<tr>
+<td><strong>AZ-Specific</strong></td>
+<td>An EBS volume exists in ONE AZ only</td>
+</tr>
+</tbody>
+</table>
+<h3>EBS Volume Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Use Case</th>
+<th>IOPS</th>
+<th>Throughput</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>gp3</strong></td>
+<td>General Purpose SSD</td>
+<td>Boot volumes, dev/test</td>
+<td>Up to 16,000</td>
+<td>1,000 MB/s</td>
+</tr>
+<tr>
+<td><strong>gp2</strong></td>
+<td>General Purpose SSD</td>
+<td>General workloads</td>
+<td>Up to 16,000</td>
+<td>250 MB/s</td>
+</tr>
+<tr>
+<td><strong>io2</strong></td>
+<td>Provisioned IOPS SSD</td>
+<td>High-performance databases</td>
+<td>Up to 256,000</td>
+<td>4,000 MB/s</td>
+</tr>
+<tr>
+<td><strong>io1</strong></td>
+<td>Provisioned IOPS SSD</td>
+<td>Critical business apps</td>
+<td>Up to 64,000</td>
+<td>1,000 MB/s</td>
+</tr>
+<tr>
+<td><strong>st1</strong></td>
+<td>Throughput Optimized HDD</td>
+<td>Big data, data warehousing</td>
+<td>Up to 500</td>
+<td>500 MB/s</td>
+</tr>
+<tr>
+<td><strong>sc1</strong></td>
+<td>Cold HDD</td>
+<td>Infrequently accessed data</td>
+<td>Up to 250</td>
+<td>250 MB/s</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-info">
+<div class="callout-icon">💡</div>
+<div class="callout-body">
+<p><strong>gp3</strong> is the default and recommended for most workloads.</p>
+</div>
+</div>
+<h3>EBS Architecture</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">EC2 Instance (AZ: ap-south-1a)
+     │
+     ├── /dev/xvda  →  EBS Root Volume (8 GB, gp3) ← OS installed here
+     ├── /dev/xvdb  →  EBS Data Volume (50 GB, gp3) ← Application data
+     └── /dev/xvdc  →  EBS Volume (100 GB, st1) ← Logs
+</code></pre>
+</div>
+<h3>EBS Snapshots</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">EBS Volume
+     │
+     ▼
+  Snapshot (stored in S3)
+     │
+     ├── Create new EBS volume from snapshot
+     ├── Copy snapshot to another Region (DR)
+     └── Create AMI from snapshot
+</code></pre>
+</div>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Create a snapshot
+aws ec2 create-snapshot --volume-id vol-xxxx --description &quot;My backup&quot;
+
+# Create volume from snapshot
+aws ec2 create-volume --snapshot-id snap-xxxx --availability-zone ap-south-1a --volume-type gp3
+
+# Copy snapshot to another region
+aws ec2 copy-snapshot --source-region ap-south-1 --source-snapshot-id snap-xxxx --destination-region us-east-1
+</code></pre>
+</div>
+<h2>EBS vs Instance Store</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>EBS</th>
+<th>Instance Store</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Persistence</strong></td>
+<td>✅ Data survives stop/start</td>
+<td>❌ Data lost on stop/terminate</td>
+</tr>
+<tr>
+<td><strong>Detachable</strong></td>
+<td>✅ Can detach and attach to another instance</td>
+<td>❌ Cannot detach</td>
+</tr>
+<tr>
+<td><strong>Snapshots</strong></td>
+<td>✅ Supported</td>
+<td>❌ Not supported</td>
+</tr>
+<tr>
+<td><strong>Encryption</strong></td>
+<td>✅ Supported</td>
+<td>❌ Not natively</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Good (gp3/io2)</td>
+<td>Very high (physically attached)</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Boot volumes, databases, persistent data</td>
+<td>Temporary storage, cache, buffers</td>
+</tr>
+<tr>
+<td><strong>Resizable</strong></td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+</tr>
+</tbody>
+</table>
+<h2>Elastic IP – Static Public IP</h2>
+<h3>Problem</h3>
+<p>When you <strong>stop</strong> and <strong>start</strong> an EC2 instance, it gets a <strong>new public IP</strong>.</p>
+<h3>Solution</h3>
+<p>An <strong>Elastic IP</strong> is a <strong>static, public IPv4 address</strong> that you can associate with your instance.</p>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Before Elastic IP:
+  Start → Public IP: 3.1.2.3
+  Stop → IP released
+  Start → Public IP: 13.4.5.6  ← Different IP!
+
+After Elastic IP:
+  Allocate Elastic IP: 52.66.100.50
+  Associate with instance
+  Stop/Start → IP stays 52.66.100.50 ✅
+</code></pre>
+</div>
+<h3>Important Rules</h3>
+<ul>
+<li>You get <strong>5 Elastic IPs per Region</strong> (default limit).</li>
+<li>Elastic IP is <strong>FREE</strong> when associated with a running instance.</li>
+<li>Elastic IP is <strong>CHARGED</strong> when NOT associated or instance is stopped.</li>
+<li>You can remap an Elastic IP from one instance to another.</li>
+</ul>
+<h3>CLI Commands</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># Allocate Elastic IP
+aws ec2 allocate-address
+
+# Associate with instance
+aws ec2 associate-address --instance-id i-xxxxx --allocation-id eipalloc-xxxxx
+
+# Release Elastic IP
+aws ec2 release-address --allocation-id eipalloc-xxxxx
+</code></pre>
+</div>
+<h2>User Data – Bootstrap Scripts</h2>
+<p><strong>User Data</strong> is a script that runs <strong>automatically on the first boot</strong> of an EC2 instance.</p>
+<h3>Example – Install Apache Web Server</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo &quot;&lt;h1&gt;Welcome to My EC2 Instance!&lt;/h1&gt;&quot; &gt; /var/www/html/index.html
+</code></pre>
+</div>
+<h3>Example – Install Docker + Jenkins</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+yum update -y
+yum install -y docker
+systemctl start docker
+systemctl enable docker
+usermod -aG docker ec2-user
+
+# Install Jenkins
+docker run -d -p 8080:8080 -p 50000:50000 \
+  --name jenkins \
+  -v jenkins_home:/var/jenkins_home \
+  jenkins/jenkins:lts
+</code></pre>
+</div>
+<h3>Example – Install Tomcat</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash">#!/bin/bash
+yum update -y
+yum install -y java-17-amazon-corretto
+cd /opt
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.93/bin/apache-tomcat-9.0.93.tar.gz
+tar -xvf apache-tomcat-9.0.93.tar.gz
+chmod +x /opt/apache-tomcat-9.0.93/bin/*.sh
+/opt/apache-tomcat-9.0.93/bin/startup.sh
+</code></pre>
+</div>
+<h3>Key Points</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runs only on <strong>first boot</strong></td>
+<td>Not on every start</td>
+</tr>
+<tr>
+<td>Runs as <strong>root</strong></td>
+<td>No need for sudo</td>
+</tr>
+<tr>
+<td>Max size</td>
+<td>16 KB</td>
+</tr>
+<tr>
+<td>View logs</td>
+<td><code>/var/log/cloud-init-output.log</code></td>
+</tr>
+<tr>
+<td>Base64 encoded</td>
+<td>When passed via CLI/API</td>
+</tr>
+</tbody>
+</table>
+<h2>EC2 Pricing Models</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Description</th>
+<th>Discount</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>On-Demand</strong></td>
+<td>Pay per hour/second, no commitment</td>
+<td>0%</td>
+<td>Testing, short-term, unpredictable</td>
+</tr>
+<tr>
+<td><strong>Reserved</strong></td>
+<td>1 or 3 year commitment</td>
+<td>Up to 72%</td>
+<td>Steady-state workloads</td>
+</tr>
+<tr>
+<td><strong>Spot</strong></td>
+<td>Bid for unused capacity</td>
+<td>Up to 90%</td>
+<td>Batch processing, CI/CD, fault-tolerant</td>
+</tr>
+<tr>
+<td><strong>Savings Plans</strong></td>
+<td>Commit to usage ($/hour)</td>
+<td>Up to 72%</td>
+<td>Flexible workloads</td>
+</tr>
+<tr>
+<td><strong>Dedicated Hosts</strong></td>
+<td>Physical server for you</td>
+<td>Varies</td>
+<td>Compliance, licensing</td>
+</tr>
+<tr>
+<td><strong>Dedicated Instances</strong></td>
+<td>Instance on dedicated hardware</td>
+<td>Varies</td>
+<td>Compliance</td>
+</tr>
+</tbody>
+</table>
+<h3>Spot Instances – Important Concept</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">On-Demand Price: $0.10/hour
+Your Bid:        $0.04/hour
+Current Spot:    $0.03/hour → ✅ Instance runs
+
+If Spot price → $0.05/hour → ❌ Instance terminated (2-min warning)
+</code></pre>
+</div>
+<p><strong>Spot Use Cases:</strong></p>
+<ul>
+<li>CI/CD build agents</li>
+<li>Data analysis</li>
+<li>Batch processing</li>
+<li>Testing environments</li>
+<li>Machine learning training</li>
+</ul>
+<div class="callout callout-warning">
+<div class="callout-icon">⚠️</div>
+<div class="callout-body">
+<p><strong>Never run production databases on Spot Instances!</strong></p>
+</div>
+</div>
+<h2>EC2 Placement Groups</h2>
+<p>Placement groups control <strong>how instances are placed</strong> on underlying hardware.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cluster</strong></td>
+<td>All instances in same rack/AZ</td>
+<td>HPC, low-latency networking</td>
+</tr>
+<tr>
+<td><strong>Spread</strong></td>
+<td>Instances on different hardware</td>
+<td>Critical applications, max 7 per AZ</td>
+</tr>
+<tr>
+<td><strong>Partition</strong></td>
+<td>Groups of instances on different racks</td>
+<td>Hadoop, Kafka, Cassandra</td>
+</tr>
+</tbody>
+</table>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Cluster:              Spread:              Partition:
+┌──────────┐        ┌──────────┐         ┌──────────┐
+│ Rack 1   │        │ Rack 1   │         │ Rack 1   │
+│ i1 i2 i3 │        │ i1       │         │ i1 i2    │ Partition 1
+│ i4 i5 i6 │        │          │         │ i3       │
+└──────────┘        ├──────────┤         ├──────────┤
+                    │ Rack 2   │         │ Rack 2   │
+                    │ i2       │         │ i4 i5    │ Partition 2
+                    │          │         │ i6       │
+                    ├──────────┤         └──────────┘
+                    │ Rack 3   │
+                    │ i3       │
+                    └──────────┘
+</code></pre>
+</div>
+<h2>EC2 Auto Scaling</h2>
+<p><strong>Auto Scaling</strong> automatically adjusts the number of EC2 instances based on demand.</p>
+<h3>Components</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">Auto Scaling Group (ASG)
+     │
+     ├── Launch Template    → What to launch (AMI, Instance Type, SG, Key)
+     ├── Min Capacity       → Minimum instances (e.g., 2)
+     ├── Max Capacity       → Maximum instances (e.g., 10)
+     ├── Desired Capacity   → Current target (e.g., 4)
+     └── Scaling Policies   → When to scale
+</code></pre>
+</div>
+<h3>Scaling Policies</h3>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target Tracking</strong></td>
+<td>Maintain a target metric value</td>
+<td>Keep CPU at 50%</td>
+</tr>
+<tr>
+<td><strong>Step Scaling</strong></td>
+<td>Scale based on metric thresholds</td>
+<td>CPU &gt; 80% → add 2 instances</td>
+</tr>
+<tr>
+<td><strong>Scheduled</strong></td>
+<td>Scale at specific times</td>
+<td>Scale up at 9 AM, down at 6 PM</td>
+</tr>
+<tr>
+<td><strong>Predictive</strong></td>
+<td>ML-based prediction</td>
+<td>Anticipate traffic patterns</td>
+</tr>
+</tbody>
+</table>
+<h3>Architecture with Auto Scaling</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">              Users
+                │
+                ▼
+           Load Balancer (ALB)
+                │
+     ┌──────────┼──────────┐
+     │          │          │
+   EC2-1      EC2-2      EC2-3      ← Auto Scaling Group
+   (AZ-a)     (AZ-b)     (AZ-a)
+                │
+                ▼
+        Auto Scaling Policy
+        CPU &gt; 70% → Scale Out (add instances)
+        CPU &lt; 30% → Scale In (remove instances)
+</code></pre>
+</div>
+<h2>EC2 + Load Balancer</h2>
+<h3>Types of Load Balancers</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Layer</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ALB</strong> (Application LB)</td>
+<td>Layer 7 (HTTP/HTTPS)</td>
+<td>Web applications, microservices</td>
+</tr>
+<tr>
+<td><strong>NLB</strong> (Network LB)</td>
+<td>Layer 4 (TCP/UDP)</td>
+<td>Ultra-high performance, gaming</td>
+</tr>
+<tr>
+<td><strong>GLB</strong> (Gateway LB)</td>
+<td>Layer 3 (Network)</td>
+<td>Third-party appliances</td>
+</tr>
+<tr>
+<td><strong>CLB</strong> (Classic LB)</td>
+<td>Layer 4/7</td>
+<td>Legacy (not recommended)</td>
+</tr>
+</tbody>
+</table>
+<h3>ALB Architecture</h3>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash / terminal</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="">              Users
+                │
+                ▼
+        ALB (Application Load Balancer)
+                │
+        ┌───────┼───────┐
+        │               │
+   Target Group 1   Target Group 2
+   (path: /api/*)   (path: /web/*)
+        │               │
+     ┌──┼──┐         ┌──┼──┐
+    EC2 EC2 EC2     EC2 EC2 EC2
+</code></pre>
+</div>
+<h2>Common EC2 CLI Commands</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># ── Instance Management ──────────────────────────────
+# List all instances
+aws ec2 describe-instances
+
+# Launch an instance
+aws ec2 run-instances \
+  --image-id ami-0abcdef1234567890 \
+  --instance-type t2.micro \
+  --key-name my-key \
+  --security-group-ids sg-xxxxx \
+  --subnet-id subnet-xxxxx \
+  --count 1 \
+  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MyServer}]'
+
+# Start / Stop / Terminate
+aws ec2 start-instances --instance-ids i-xxxxx
+aws ec2 stop-instances --instance-ids i-xxxxx
+aws ec2 terminate-instances --instance-ids i-xxxxx
+
+# Reboot
+aws ec2 reboot-instances --instance-ids i-xxxxx
+
+# ── Security Groups ──────────────────────────────────
+# Create security group
+aws ec2 create-security-group \
+  --group-name my-sg \
+  --description &quot;My security group&quot; \
+  --vpc-id vpc-xxxxx
+
+# Add inbound rule
+aws ec2 authorize-security-group-ingress \
+  --group-id sg-xxxxx \
+  --protocol tcp \
+  --port 22 \
+  --cidr 0.0.0.0/0
+
+# ── Key Pairs ────────────────────────────────────────
+# Create key pair
+aws ec2 create-key-pair --key-name my-key --query 'KeyMaterial' --output text &gt; my-key.pem
+
+# List key pairs
+aws ec2 describe-key-pairs
+
+# ── EBS ──────────────────────────────────────────────
+# List volumes
+aws ec2 describe-volumes
+
+# Attach volume
+aws ec2 attach-volume --volume-id vol-xxxxx --instance-id i-xxxxx --device /dev/xvdb
+
+# Detach volume
+aws ec2 detach-volume --volume-id vol-xxxxx
+</code></pre>
+</div>
+<h2>EC2 Best Practices</h2>
+<h3>Security</h3>
+<ul>
+<li>✅ Never use root account for EC2 management.</li>
+<li>✅ Use IAM Roles instead of access keys on EC2.</li>
+<li>✅ Keep SSH (port 22) restricted to your IP only.</li>
+<li>✅ Enable encryption on EBS volumes.</li>
+<li>✅ Use Security Groups + NACLs together.</li>
+<li>✅ Regularly patch and update your instances.</li>
+</ul>
+<h3>Cost Optimization</h3>
+<ul>
+<li>✅ Use Reserved Instances for steady workloads.</li>
+<li>✅ Use Spot Instances for fault-tolerant workloads.</li>
+<li>✅ Right-size your instances (don't over-provision).</li>
+<li>✅ Stop unused instances.</li>
+<li>✅ Delete unattached EBS volumes.</li>
+<li>✅ Set up billing alarms.</li>
+</ul>
+<h3>High Availability</h3>
+<ul>
+<li>✅ Deploy across multiple AZs.</li>
+<li>✅ Use Auto Scaling Groups.</li>
+<li>✅ Use Elastic Load Balancers.</li>
+<li>✅ Take regular EBS snapshots.</li>
+<li>✅ Use Multi-AZ RDS for databases.</li>
+</ul>
+<h2>Classroom Demo Steps</h2>
+<div class="stepper-container">
+<div class="step-card">
+<div class="step-badge">14</div>
+<div class="step-content">
+<h2>Demo 1 – Launch EC2 and Install Apache</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># 1. Launch EC2 instance (t2.micro, Amazon Linux 2023)
+# 2. Connect via SSH
+ssh -i &quot;my-key.pem&quot; ec2-user@&lt;PUBLIC-IP&gt;
+
+# 3. Install Apache
+sudo yum update -y
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+# 4. Create a web page
+echo &quot;&lt;h1&gt;Hello from $(hostname)&lt;/h1&gt;&quot; | sudo tee /var/www/html/index.html
+
+# 5. Open browser → http://&lt;PUBLIC-IP&gt;
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">15</div>
+<div class="step-content">
+<h2>Demo 2 – Attach EBS Volume</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># 1. Create a new EBS volume in the same AZ
+# 2. Attach to instance
+# 3. From instance:
+lsblk                              # List block devices
+sudo mkfs -t xfs /dev/xvdb         # Format the volume
+sudo mkdir /data                   # Create mount point
+sudo mount /dev/xvdb /data         # Mount the volume
+df -h                              # Verify mount
+
+# 4. Auto-mount on reboot
+echo &quot;/dev/xvdb /data xfs defaults,nofail 0 2&quot; | sudo tee -a /etc/fstab
+</code></pre>
+</div>
+</div>
+</div>
+<div class="step-card">
+<div class="step-badge">16</div>
+<div class="step-content">
+<h2>Demo 3 – Create Custom AMI</h2>
+<div class="code-card">
+  <div class="code-header">
+    <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+    <span class="code-title">bash</span>
+    <button class="copy-btn">Copy</button>
+  </div>
+  <pre><code class="bash"># 1. Configure your instance (install software, configure settings)
+# 2. From EC2 Console:
+#    Select Instance → Actions → Image and templates → Create image
+# 3. Name: my-custom-ami
+# 4. Wait for AMI to become Available
+# 5. Launch a new instance from your custom AMI
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h2>EC2 Interview Questions ❓</h2>
+<details>
+
+<summary><strong>Q1: What is the difference between stopping and terminating an EC2 instance?</strong></summary>
+
+**Stop:** Instance is paused, EBS data preserved, no compute charge. Can restart later.
+
+**Terminate:** Instance is deleted permanently, EBS root volume deleted by default.
+
+</details>
+
+<details>
+
+<summary><strong>Q2: Can you change the instance type of a running instance?</strong></summary>
+
+**No.** You must stop the instance first, then change the instance type, then start it.
+
+</details>
+
+<details>
+
+<summary><strong>Q3: What happens to the public IP when you stop an instance?</strong></summary>
+
+**It is released.** When you start again, you get a new public IP. Use an **Elastic IP** for a static IP.
+
+</details>
+
+<details>
+
+<summary><strong>Q4: What is the difference between a Security Group and a NACL?</strong></summary>
+
+**Security Group:** Instance-level, stateful, only allow rules.
+
+**NACL:** Subnet-level, stateless, allow + deny rules.
+
+</details>
+
+<details>
+
+<summary><strong>Q5: How do you make an EC2 instance highly available?</strong></summary>
+
+Deploy across **multiple AZs** with an **Auto Scaling Group** and an **Elastic Load Balancer**.
+
+</details>
+
+<details>
+
+<summary><strong>Q6: What is User Data?</strong></summary>
+
+A **bootstrap script** that runs automatically on the first boot of an EC2 instance. Used to install software, configure settings, etc.
+
+</details>
+        </article>
+
+        <!-- Footer Previous / Next Navigation -->
+        <div class="footer-nav">
+  <a href="../aws/ami-amazon-machine-images.html" class="footer-nav-card prev">
+    <span class="footer-nav-label">&larr; Previous Topic</span>
+    <span class="footer-nav-title">AMI Amazon Machine Images</span>
+  </a>
+  <a href="../aws/ec2-instance-types.html" class="footer-nav-card next">
+    <span class="footer-nav-label">Next Topic &rarr;</span>
+    <span class="footer-nav-title">EC2 Instance Types</span>
+  </a>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>
