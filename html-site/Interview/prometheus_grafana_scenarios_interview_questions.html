@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prometheus &amp; Grafana Mock Interview | 30 Real-World Scenarios</title>
+<style>
+:root{--navy:#0f172a;--blue:#ea580c;--cyan:#f97316;--ink:#1e293b;--muted:#64748b;--bg:#f8fafc;--card:#ffffff;--line:#e2e8f0;--green:#10b981;--orange:#f59e0b;--red:#ef4444}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+.hero{background:linear-gradient(130deg,#18181b,#431407 60%,#7c2d12);color:white;padding:48px 22px 38px}
+.wrap{max-width:1100px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;color:#fdba74}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:12px 0}.hero p{max-width:780px;color:#fed7aa;font-size:16px;margin:12px 0 22px}
+.pills{display:flex;gap:9px;flex-wrap:wrap}.pill{border:1px solid #ffffff40;border-radius:30px;padding:6px 14px;font-size:12px;color:#fff7ed;background:rgba(255,255,255,0.08)}
+main{padding:26px 18px 60px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-48px;position:relative}
+.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:0 8px 22px rgba(15,23,42,0.06)}.stat strong{display:block;font-size:24px;color:var(--blue)}.stat span{font-size:12px;color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 14px}.toolbar input,.toolbar select{background:white;border:1px solid #cbd5e1;border-radius:9px;padding:11px 13px;font:inherit;color:var(--ink)}.toolbar input{flex:1;min-width:220px}
+button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;font-weight:700;background:var(--blue);color:white;font-size:14px}.secondary{background:#ffedd5;color:#c2410c}
+.section-title{display:flex;align-items:center;gap:10px;margin:32px 0 14px}.section-title h2{font-size:19px;margin:0;color:#0f172a}.section-title span{font-size:12px;color:var(--muted)}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:0 3px 12px rgba(15,23,42,0.04);transition:border-color 0.2s}
+.qcard:hover{border-color:#fb923c}
+.qhead{padding:17px 18px;display:flex;gap:13px;align-items:flex-start;cursor:pointer}.num{flex:0 0 34px;height:34px;border-radius:9px;background:#ffedd5;color:#c2410c;display:grid;place-items:center;font-weight:800}
+.qmeta{flex:1}.category{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);font-weight:800}.question{font-size:16px;font-weight:750;margin:3px 0 0;color:#0f172a}.chev{color:var(--muted);font-size:20px;transition:.2s}.qcard.open .chev{transform:rotate(180deg)}
+.answer{display:none;border-top:1px solid var(--line);padding:18px 20px 22px 65px;background:#ffffff}.qcard.open .answer{display:block}.answer h4{margin:10px 0 4px;color:#ea580c;font-size:13px;text-transform:uppercase;letter-spacing:.5px}.answer p{margin:6px 0}.answer ul{margin:8px 0;padding-left:20px}.answer li{margin:4px 0}
+.probe{background:#f0fdf4;border-left:3px solid var(--green);padding:10px 13px;border-radius:0 8px 8px 0;margin-top:14px;color:#166534;font-size:13px}
+code{background:#f1f5f9;color:#0f172a;padding:2px 6px;border-radius:4px;font-size:.92em;font-family:ui-monospace,monospace}
+pre{background:#18181b;color:#fed7aa;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px}
+.footer{color:var(--muted);font-size:12px;text-align:center;padding:26px}
+@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.answer{padding:15px 16px}.qhead{padding:14px}.hero{padding-top:34px}}
+@media print{body{background:white}.hero{padding:24px;background:#431407!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.site-nav,.stats,.toolbar,.footer button{display:none!important}main{padding:10px}.qcard{break-inside:avoid;box-shadow:none}.answer{display:block!important}.chev{display:none}}
+</style>
+</head>
+<body>
+<!-- Top Global Navigation Bar -->
+<nav class="site-nav" style="background:#0b1329;border-bottom:1px solid #1e293b;padding:12px 20px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.35);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <a href="../interview_prep.html" style="color:#38bdf8;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;">
+        &larr; Return to Interview Prep Dashboard
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="../index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        🏠 Master Hub
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        📂 Interview Subfolder
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <span style="color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Scenario Sets:</span>
+      <a href="AWS_Scenarios_Interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☁️ AWS (30)</a>
+      <a href="kubernetes_scenario_interview_Questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☸️ K8s (62)</a>
+      <a href="terraform_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🏗️ TF (30)</a>
+      <a href="git_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🌿 Git (30)</a>
+      <a href="github_actions_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">⚡ GHA (30)</a>
+      <a href="gcp_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🌐 GCP (30)</a>
+      <a href="jenkins_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">👨‍💻 Jenkins (30)</a>
+      <a href="prometheus_grafana_scenarios_interview_questions.html" style="background:#ea580c;color:#fff;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #fb923c;">📊 Prom &amp; Graf (30)</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Production Observability &amp; SRE Practice</div>
+<h1>Prometheus &amp; Grafana: 30 Real-World Scenario Questions</h1>
+<p>Practical scenarios for Senior SRE &amp; Observability Engineers (~5 years experience). Covers high cardinality metric explosion, PromQL query tuning, TSDB WAL corruption, Alertmanager routing trees &amp; inhibition rules, Thanos multi-cluster architecture, and Grafana dashboard optimization.</p>
+<div class="pills"><span class="pill">5-year experience level</span><span class="pill">30 hands-on scenarios</span><span class="pill">PromQL · Alertmanager · Thanos</span><span class="pill">Filter · Search · Print Ready</span></div>
+</div></header>
+
+<main class="wrap">
+<div class="stats">
+<div class="stat"><strong>30</strong><span>Scenarios</span></div><div class="stat"><strong>6</strong><span>Core Domains</span></div><div class="stat"><strong>~60–90m</strong><span>Mock Duration</span></div><div class="stat"><strong>5 Yrs</strong><span>Target Exp</span></div>
+</div>
+
+<div class="toolbar">
+<input id="search" type="search" placeholder="Search scenarios (e.g. high cardinality, rate vs irate, thanos, alertmanager)…">
+<select id="filter">
+  <option value="all">All domains</option>
+  <option>Scraping &amp; Service Discovery</option>
+  <option>PromQL &amp; Query Optimization</option>
+  <option>TSDB Storage &amp; Compaction</option>
+  <option>Alertmanager &amp; Incident Routing</option>
+  <option>Grafana Visualization &amp; GitOps</option>
+  <option>Multi-Cluster, Thanos &amp; High Availability</option>
+</select>
+<button class="secondary" onclick="expandAll(true)">Expand all</button><button class="secondary" onclick="expandAll(false)">Collapse all</button><button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div id="questions">
+
+<!-- Domain 1: Scraping & Service Discovery -->
+<section class="section-title"><h2>Scraping &amp; Service Discovery</h2><span>Kubernetes SD · Scrape timeouts · Blackbox exporter · Exporter health</span></section>
+
+<article class="qcard" data-category="Scraping &amp; Service Discovery" data-search="scrape timeout context deadline exceeded scrape interval target down">
+<div class="qhead"><div class="num">01</div><div class="qmeta"><div class="category">Scraping &amp; Service Discovery</div><div class="question">A mission-critical payment exporter shows `UP == 0` in Prometheus with error `context deadline exceeded`. The service is healthy. How do you troubleshoot?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p><code>context deadline exceeded</code> means the scrape request took longer than the configured <code>scrape_timeout</code> (default: 10s or equal to <code>scrape_interval</code>).</p><ul><li><strong>Root Cause 1 (Payload Size / Serialization Delay):</strong> The application metrics endpoint (<code>/metrics</code>) is dumping tens of thousands of lines (megabytes of text) due to runaway cardinality or uncompressed histograms.
+  <ul>
+    <li>Test via curl: <code>time curl -s http://payment-service:8080/metrics | wc -l</code>. If it takes 12 seconds and returns 400,000 lines, the endpoint is generating too much metric data to scrape in 10s.</li>
+  </ul>
+</li><li><strong>Root Cause 2 (Slow DB Queries inside Metric Endpoint):</strong> The application runs expensive SQL queries (e.g. <code>SELECT count(*)</code>) synchronously inside the Prometheus scrape handler rather than computing metrics asynchronously in background worker threads.</li><li><strong>Immediate Fix:</strong>
+  <ul>
+    <li>Temporarily increase <code>scrape_timeout: 30s</code> and <code>scrape_interval: 30s</code> in the <code>ServiceMonitor</code> or Prometheus config.</li>
+    <li>Refactor application code to update metric gauges in the background so <code>/metrics</code> serves static in-memory counters in &lt;10ms.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Scraping &amp; Service Discovery" data-search="blackbox exporter probe http ssl cert expiry icmp dns monitoring">
+<div class="qhead"><div class="num">02</div><div class="qmeta"><div class="category">Scraping &amp; Service Discovery</div><div class="question">How do you monitor external public endpoints, TCP ports, and SSL certificate expiration across 50 domains using the Prometheus Blackbox Exporter?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>The <strong>Blackbox Exporter</strong> performs external synthetic probing (HTTP/S, DNS, TCP, ICMP) and exposes probe latency, status codes, and certificate expiry timestamps.</p><ul><li><strong>Blackbox Module Config (<code>blackbox.yml</code>):</strong>
+<pre>modules:
+  http_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      valid_status_codes: [200, 301, 302]
+      fail_if_ssl: false
+      tls_config:
+        insecure_skip_verify: false</pre></li><li><strong>Prometheus Scrape Configuration:</strong> Relabel the target URL into the <code>__param_target</code> query parameter:
+<pre>- job_name: 'blackbox-external-http'
+  metrics_path: /probe
+  params:
+    module: [http_2xx]
+  static_configs:
+    - targets: ['https://api.company.com', 'https://auth.company.com']
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: blackbox-exporter:9115</pre></li><li><strong>SSL Expiration Alert:</strong>
+<pre>expr: (probe_ssl_earliest_cert_expiry - time()) / 86400 &lt; 14
+annotations:
+  summary: "SSL certificate for {{ $labels.instance }} expires in less than 14 days!"</pre></li></ul></div></article>
+
+<article class="qcard" data-category="Scraping &amp; Service Discovery" data-search="relabel_configs metric_relabel_configs difference drop keep replace">
+<div class="qhead"><div class="num">03</div><div class="qmeta"><div class="category">Scraping &amp; Service Discovery</div><div class="question">Explain the exact difference between `relabel_configs` and `metric_relabel_configs` in a Prometheus scrape job. Give a concrete production use case for each.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Both modify labels using regular expressions, but execute at completely different stages of the scrape lifecycle:</p><ul><li><strong><code>relabel_configs</code> (Pre-Scrape):</strong>
+  <ul>
+    <li>Runs <em>before</em> Prometheus makes the HTTP scrape request.</li>
+    <li>Operates on target metadata labels discovered via Service Discovery (e.g. <code>__meta_kubernetes_pod_name</code>, <code>__address__</code>).</li>
+    <li><em>Use Case:</em> Deciding which targets to scrape or drop (e.g. only scrape pods with annotation <code>prometheus.io/scrape: true</code>), or re-writing the target scrape URL / port.</li>
+  </ul>
+</li><li><strong><code>metric_relabel_configs</code> (Post-Scrape):</strong>
+  <ul>
+    <li>Runs <em>after</em> the HTTP scrape request completes, but <em>before</em> samples are committed into TSDB storage memory.</li>
+    <li>Operates on individual metric names and labels exposed by the exporter.</li>
+    <li><em>Use Case:</em> Dropping high-cardinality label keys (e.g. dropping <code>user_id</code> or <code>session_id</code> labels) or dropping noisy metric series entirely (e.g. <code>action: drop; regex: "jvm_gc_memory_allocated_bytes_total"</code>) to protect TSDB memory.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Scraping &amp; Service Discovery" data-search="node exporter vs kube state metrics difference cpu memory container">
+<div class="qhead"><div class="num">04</div><div class="qmeta"><div class="category">Scraping &amp; Service Discovery</div><div class="question">An engineer asks why Node Exporter and kube-state-metrics report different memory usage for the same Kubernetes node. What does each measure?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Each exporter measures completely different layers of the infrastructure stack:</p><ul><li><strong>Node Exporter:</strong>
+  <ul>
+    <li>Measures raw OS / host kernel hardware metrics directly from <code>/proc</code> and <code>/sys</code>.</li>
+    <li>Reports true physical RAM usage: <code>node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes</code> (accounts for Linux page cache, slab, and active memory).</li>
+    <li>Has zero awareness of Kubernetes pods, namespaces, or container limits.</li>
+  </ul>
+</li><li><strong>kube-state-metrics (KSM):</strong>
+  <ul>
+    <li>Listens to the Kubernetes API server and converts object specs into metrics.</li>
+    <li>Reports what is <em>requested or allocated</em> according to Kubernetes manifests (e.g. <code>kube_pod_container_resource_requests{resource="memory"}</code>).</li>
+    <li>Does NOT measure physical hardware utilization. A node might have 100% memory requested by pods according to KSM, while actual physical RAM usage measured by Node Exporter is only 15%.</li>
+  </ul>
+</li><li><strong>cAdvisor:</strong> Embedded in kubelet; measures actual physical cgroup usage consumed by individual containers (<code>container_memory_working_set_bytes</code>).</li></ul></div></article>
+
+<article class="qcard" data-category="Scraping &amp; Service Discovery" data-search="prometheus operator servicemonitor podmonitor crd troubleshooting">
+<div class="qhead"><div class="num">05</div><div class="qmeta"><div class="category">Scraping &amp; Service Discovery</div><div class="question">A developer creates a `ServiceMonitor` CRD in Kubernetes, but Prometheus does not scrape their service. How do you troubleshoot the Prometheus Operator?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>The Prometheus Operator matches <code>ServiceMonitors</code> via label selectors. Systematic troubleshooting sequence:</p><ul><li><strong>Check 1 (ServiceMonitorSelector match):</strong> Check the <code>Prometheus</code> custom resource:
+<pre>kubectl get prometheus -n monitoring -o yaml | grep -A 5 serviceMonitorSelector</pre>
+If Prometheus has <code>serviceMonitorSelector: matchLabels: release: prometheus-stack</code>, your <code>ServiceMonitor</code> MUST have the exact label <code>release: prometheus-stack</code> in its metadata, or the Operator will silently ignore it.</li><li><strong>Check 2 (Namespace Selector):</strong> Check <code>serviceMonitorNamespaceSelector</code>. If null or restricted, the Operator will not discover ServiceMonitors created in application namespaces (e.g. <code>payments</code>).</li><li><strong>Check 3 (Service Port Name Match):</strong> The <code>endpoints[].port</code> field in the ServiceMonitor must match the <strong>name</strong> of the port in the Kubernetes Service (e.g. <code>port: http-metrics</code>), NOT the numeric port number (e.g. 8080).</li><li><strong>Check 4 (Endpoints Active):</strong> Verify the underlying Kubernetes Service actually has healthy endpoints: <code>kubectl get endpoints my-service -n payments</code>. If 0 endpoints exist (pods unready), Prometheus will not scrape.</li></ul></div></article>
+
+<!-- Domain 2: PromQL & Query Optimization -->
+<section class="section-title"><h2>PromQL &amp; Query Optimization</h2><span>High cardinality explosion · rate() vs irate() · Recording rules · Subqueries</span></section>
+
+<article class="qcard" data-category="PromQL &amp; Query Optimization" data-search="high cardinality metric explosion oom crashloop user_id label">
+<div class="qhead"><div class="num">06</div><div class="qmeta"><div class="category">PromQL &amp; Query Optimization</div><div class="question">A developer deployed a metric `http_requests_total{user_id="12345"}` with 10 million distinct user IDs. Prometheus crashed with OOMKilled. How do you remediate and prevent this?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>This is a catastrophic <strong>High-Cardinality Explosion</strong>. In Prometheus, every unique combination of key-value label pairs creates an independent time series in RAM.</p><ul><li><strong>Step 1 (Immediate Triage):</strong> Drop the offending metric or label at scrape time using <code>metric_relabel_configs</code> in the scrape configuration:
+<pre>metric_relabel_configs:
+  - source_labels: [__name__]
+    regex: "http_requests_total"
+    action: labeldrop
+    regex: "user_id"</pre>
+This strips the <code>user_id</code> label before it enters the TSDB head block, dropping time-series count from 10,000,000 to ~20.</li><li><strong>Step 2 (Limit Scraping via sample_limit):</strong> Set <code>sample_limit: 10000</code> on the scrape job so any exporter emitting >10,000 series is rejected automatically.</li><li><strong>Step 3 (Post-incident Analysis):</strong> Query top cardinality contributors:
+<pre># In Prometheus UI -> Status -> TSDB Status -> Head Stats:
+"Top 10 label names with highest series count"</pre></li><li><strong>Best Practice:</strong> High-cardinality identifiers (UUIDs, IP addresses, emails, user IDs) belong in <strong>distributed tracing (Jaeger/Tempo)</strong> or <strong>logs (Loki/Elasticsearch)</strong>, NEVER in Prometheus metric labels.</li></ul></div></article>
+
+<article class="qcard" data-category="PromQL &amp; Query Optimization" data-search="rate vs irate difference counter reset spike smoothing">
+<div class="qhead"><div class="num">07</div><div class="qmeta"><div class="category">PromQL &amp; Query Optimization</div><div class="question">Explain the mathematical and practical differences between `rate()` and `irate()` in PromQL. When is using `irate()` in alerting rules dangerous?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Both calculate the per-second rate of increase on counter metrics, but over different sample windows:</p><ul><li><strong><code>rate(http_requests_total[5m]):</code></strong>
+  <ul>
+    <li>Calculates the average per-second rate across the <strong>entire 5-minute time window</strong> (compares the first and last samples, handles counter resets).</li>
+    <li><em>Result:</em> Smooth curve. Filters out short-lived noise and temporary dips.</li>
+    <li><em>Standard for:</em> <strong>Alerting rules and SLO monitoring.</strong></li>
+  </ul>
+</li><li><strong><code>irate(http_requests_total[5m]):</code></strong>
+  <ul>
+    <li>Calculates the "instant rate" using strictly the <strong>last two data points</strong> within the window.</li>
+    <li><em>Result:</em> Highly volatile, high-frequency spiky graph. Captures instantaneous bursts.</li>
+    <li><em>Standard for:</em> High-resolution exploratory troubleshooting on Grafana dashboards.</li>
+  </ul>
+</li><li><strong>Why <code>irate()</code> is dangerous in Alerting:</strong> A single 1-second traffic burst or momentary counter glitch will cause <code>irate()</code> to spike massively, triggering false-positive alerts. <code>rate()</code> averages out transient anomalies.</li></ul></div></article>
+
+<article class="qcard" data-category="PromQL &amp; Query Optimization" data-search="recording rules heavy dashboard slow query precompute">
+<div class="qhead"><div class="num">08</div><div class="qmeta"><div class="category">PromQL &amp; Query Optimization</div><div class="question">An executive Grafana dashboard with 20 panels querying 90 days of HTTP latency times out with `504 Gateway Timeout`. How do you precompute these with Recording Rules?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Computing quantiles (like <code>histogram_quantile(0.99, sum(rate(...)))</code>) over millions of raw samples in real time over 90 days exhausts CPU and memory. Use <strong>Recording Rules</strong> to precompute and store results as lightweight time series.</p><ul><li><strong>Create Recording Rule (<code>rules.yml</code>):</strong>
+<pre>groups:
+  - name: api_performance_rules
+    interval: 30s
+    rules:
+      - record: job:http_requests:rate5m
+        expr: sum(rate(http_requests_total[5m])) by (job, status)
+
+      - record: job:http_latency:p99_5m
+        expr: histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (le, job))</pre></li><li><strong>Update Grafana Panels:</strong> In Grafana, replace the complex 4-line histogram quantile query with the precomputed metric:
+<pre>job:http_latency:p99_5m{job="billing-api"}</pre></li><li><strong>Result:</strong> Grafana now queries pre-calculated single-point values. Dashboard load time drops from 60 seconds (or timeout) to &lt;200 milliseconds.</li></ul></div></article>
+
+<article class="qcard" data-category="PromQL &amp; Query Optimization" data-search="promql vector matching one to one many to one group_left group_right">
+<div class="qhead"><div class="num">09</div><div class="qmeta"><div class="category">PromQL &amp; Query Optimization</div><div class="question">You need to calculate the percentage of memory used per Pod, joining `container_memory_working_set_bytes` with `kube_pod_container_resource_limits`. Write the PromQL query using `group_left`.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Joining two metric vectors with different label sets requires explicit vector matching with <code>on()</code> and <code>group_left</code> (many-to-one) or <code>group_right</code> (one-to-many).</p><ul><li><pre>  sum(container_memory_working_set_bytes{container!=""}) by (namespace, pod, container)
+/
+  sum(kube_pod_container_resource_limits{resource="memory"}) by (namespace, pod, container)
+* 100</pre></li><li>If matching against node labels or extra metadata from <code>kube_pod_info</code>:
+<pre>  container_memory_working_set_bytes{container!=""}
+* on(namespace, pod) group_left(node)
+  kube_pod_info</pre></li><li><strong>Explanation:</strong> <code>group_left(node)</code> signifies that the left side has higher cardinality (multiple containers per pod), and copies the <code>node</code> label from the single <code>kube_pod_info</code> series onto each container series on the left.</li></ul></div></article>
+
+<article class="qcard" data-category="PromQL &amp; Query Optimization" data-search="histogram_quantile linear interpolation bucket le +Inf">
+<div class="qhead"><div class="num">10</div><div class="qmeta"><div class="category">PromQL &amp; Query Optimization</div><div class="question">How does `histogram_quantile(0.95, ...)` estimate percentiles under the hood, and why is setting the right `le` bucket boundaries critical?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Prometheus does NOT store raw individual request durations (which would require infinite storage); it increments counters inside cumulative buckets bounded by <code>le</code> (Less than or equal to).</p><ul><li><strong>Under the hood (Linear Interpolation):</strong> <code>histogram_quantile()</code> identifies which bucket contains the 95th percentile rank, and assumes samples inside that bucket are uniformly distributed, performing linear interpolation between the bucket's lower and upper bounds.</li><li><strong>The Danger of Bad Bucket Sizing:</strong>
+  <ul>
+    <li>If your buckets are <code>[0.1, 1.0, 10.0]</code> and all requests take between 1.1s and 9.8s, Prometheus assumes an even spread; the p95 calculation will be wildly inaccurate.</li>
+    <li>If the highest bucket before <code>+Inf</code> is 2 seconds, and a server outage causes requests to take 30 seconds, <code>histogram_quantile</code> caps the estimate at 2.0s, completely hiding the severity of the incident!</li>
+  </ul>
+</li><li><strong>Rule:</strong> Tailor bucket boundaries exponentially around your expected SLA/SLO (e.g. <code>[0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10]</code>).</li></ul></div></article>
+
+<!-- Domain 3: TSDB Storage & Compaction -->
+<section class="section-title"><h2>TSDB Storage &amp; Compaction</h2><span>WAL corruption · Chunk compaction · Retention time &amp; size · Disk IOPS</span></section>
+
+<article class="qcard" data-category="TSDB Storage &amp; Compaction" data-search="tsdb wal corruption recovery crashloop crash corrupted chunk">
+<div class="qhead"><div class="num">11</div><div class="qmeta"><div class="category">TSDB Storage &amp; Compaction</div><div class="question">Following a power outage on a storage node, Prometheus enters a CrashLoopBackOff with `panic: corrupt WAL segment`. How do you recover the database?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>The <strong>Write-Ahead Log (WAL)</strong> records incoming in-memory samples before they are committed to 2-hour TSDB blocks. An abrupt node power cut can corrupt the active WAL segment file.</p><ul><li><strong>Step 1 (Backup current data):</strong>
+<pre>cp -r /data/wal /data/wal_corrupt_backup</pre></li><li><strong>Step 2 (Remove the corrupted WAL segment):</strong> Identify the corrupted segment from the crash logs (e.g. <code>/data/wal/00000142</code>). Delete or move that specific segment file:
+<pre>rm /data/wal/00000142</pre></li><li><strong>Step 3 (Alternative - Clear entire active WAL):</strong> If all WAL segments are unreadable, wipe the WAL directory:
+<pre>rm -rf /data/wal/*</pre>
+<em>Trade-off:</em> You lose the last 1–2 hours of uncompacted in-flight data, but all historical 2-hour TSDB blocks remain 100% intact.</li><li><strong>Step 4 (Restart):</strong> Prometheus initializes a fresh WAL and starts cleanly.</li><li><strong>Step 5 (Preventative Flag):</strong> Pass flag <code>--storage.tsdb.wal-compression</code> to reduce WAL disk footprint and enable automatic snapshot backups.</li></ul></div></article>
+
+<article class="qcard" data-category="TSDB Storage &amp; Compaction" data-search="storage tsdb retention time vs retention size ebs disk full">
+<div class="qhead"><div class="num">12</div><div class="qmeta"><div class="category">TSDB Storage &amp; Compaction</div><div class="question">You configured `--storage.tsdb.retention.time=30d`. A sudden traffic surge causes the EBS persistent volume to hit 99% disk space in 10 days. How do you prevent disk exhaustion?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Relying exclusively on <code>retention.time</code> is an operational anti-pattern because metric ingestion rate is dynamic. Configure both <strong>retention time AND retention size</strong>.</p><ul><li><strong>Configure Dual Retention Flags:</strong>
+<pre>--storage.tsdb.retention.time=30d
+--storage.tsdb.retention.size=180GiB # On a 200GiB Persistent Volume</pre></li><li><strong>How it works:</strong> Prometheus triggers block deletion as soon as <em>either</em> limit is reached:
+  <ul>
+    <li>Under normal traffic: Keeps data for 30 days.</li>
+    <li>Under unexpected traffic surge: Deletes the oldest 2-hour historical blocks as soon as disk usage reaches 180GB, guaranteeing that the persistent volume never hits 100% full.</li>
+  </ul>
+</li><li>A 100% full disk causes TSDB compaction locks to fail, corrupting WAL segments and taking down the monitoring system.</li></ul></div></article>
+
+<article class="qcard" data-category="TSDB Storage &amp; Compaction" data-search="tsdb compaction failure overlapping blocks tombstone delete">
+<div class="qhead"><div class="num">13</div><div class="qmeta"><div class="category">TSDB Storage &amp; Compaction</div><div class="question">Explain how Prometheus TSDB compaction works (Head Block &rarr; 2h Blocks &rarr; Overlapping Blocks) and how tombstones handle metric deletion.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Prometheus TSDB organizes time-series data into hierarchical chunks:</p><ul><li><strong>Head Block (In-Memory + WAL):</strong> Ingests live data. Every 2 hours, the Head Block cuts and writes a non-overlapping, immutable <strong>2-hour block</strong> to disk containing chunks, index, and meta.json.</li><li><strong>Compaction:</strong> In the background, Prometheus merges multiple smaller 2-hour blocks into larger blocks (e.g. 6-hour, 12-hour, 24-hour) to reduce index overhead and improve query performance.</li><li><strong>Tombstones (Deletions):</strong> When you call the delete API (<code>/api/v1/admin/tsdb/delete_series</code>), Prometheus does NOT physically rewrite gigabytes of immutable chunk files on disk immediately. Instead, it writes a lightweight <strong>tombstone file</strong> marking time ranges as deleted.
+  <ul>
+    <li>Queries filter out tombstones at runtime.</li>
+    <li>The physical disk space is only freed when the compaction engine eventually merges the block and drops the marked samples.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="TSDB Storage &amp; Compaction" data-search="disk iops saturation prometheus compaction latency spike">
+<div class="qhead"><div class="num">14</div><div class="qmeta"><div class="category">TSDB Storage &amp; Compaction</div><div class="question">Every 2 hours on the dot, Prometheus query latency spikes from 50ms to 8 seconds and scrape drops occur. What is happening and how do you resolve it?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Every 2 hours, Prometheus TSDB flushes the in-memory Head Block to disk and initiates background block compaction, causing a massive sequential read/write disk I/O burst.</p><ul><li><strong>Root Cause:</strong> Disk IOPS saturation. On cloud disks (like AWS EBS <code>gp2</code> or <code>gp3</code> with default 3000 IOPS), the compaction flush exhausts IOPS and disk queue depth rises, causing incoming HTTP scrapes and user queries to queue and time out.</li><li><strong>Remediation:</strong>
+  <ul>
+    <li>Upgrade EBS storage to <code>gp3</code> with provisioned 8,000+ IOPS and 350+ MB/s throughput, or use local NVMe SSDs.</li>
+    <li>Enable WAL compression: <code>--storage.tsdb.wal-compression</code>.</li>
+    <li>Offload long-term storage and heavy compaction entirely to an external engine: deploy <strong>Thanos</strong> or <strong>Grafana Mimir</strong>, disabling multi-day local compaction in Prometheus with <code>--storage.tsdb.min-block-duration=2h --storage.tsdb.max-block-duration=2h</code>.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="TSDB Storage &amp; Compaction" data-search="prometheus admin api snapshot backup live data">
+<div class="qhead"><div class="num">15</div><div class="qmeta"><div class="category">TSDB Storage &amp; Compaction</div><div class="question">How do you take a consistent, live backup of a running Prometheus database without stopping the server or taking downtime?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use the Prometheus Admin API <strong>Snapshot endpoint</strong>.</p><ul><li><strong>Step 1 (Enable Admin API flag):</strong> Ensure Prometheus is started with the flag:
+<pre>--web.enable-admin-api</pre></li><li><strong>Step 2 (Trigger Snapshot via HTTP POST):</strong>
+<pre>curl -XPOST http://localhost:9090/api/v1/admin/tsdb/snapshot</pre></li><li><strong>Response:</strong>
+<pre>{"status":"success","data":{"name":"20261118T120000Z-7a3b4c1d"}}</pre></li><li><strong>How it works:</strong> Prometheus creates hardlinks to all committed 2-hour TSDB blocks and flushes active head memory into a dedicated snapshot directory located at <code>/data/snapshots/&lt;name&gt;</code>. Because it uses hardlinks, the operation completes in &lt;1 second without duplicating disk space or locking queries.</li><li><strong>Step 3 (Copy to S3):</strong> An automated cron job syncs <code>/data/snapshots/&lt;name&gt;</code> to Amazon S3 or GCP Cloud Storage.</li></ul></div></article>
+
+<!-- Domain 4: Alertmanager & Incident Routing -->
+<section class="section-title"><h2>Alertmanager &amp; Incident Routing</h2><span>Inhibition rules · Grouping &amp; alert storms · Silences · Flapping alerts</span></section>
+
+<article class="qcard" data-category="Alertmanager &amp; Incident Routing" data-search="alert storm network switch switch down inhibition rules alertmanager">
+<div class="qhead"><div class="num">16</div><div class="qmeta"><div class="category">Alertmanager &amp; Incident Routing</div><div class="question">A top-of-rack network switch fails. Alertmanager immediately sends 400 separate PagerDuty alerts for every single VM, container, and database behind that switch. How do you suppress this using Inhibition Rules?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use Alertmanager <strong>Inhibition Rules</strong> (<code>inhibit_rules</code>) to mute a set of downstream alerts when a root-cause alert is already firing.</p><ul><li><strong>Inhibition Configuration (<code>alertmanager.yml</code>):</strong>
+<pre>inhibit_rules:
+  - source_matchers:
+      - alertname = "NetworkSwitchDown"
+      - severity = "critical"
+    target_matchers:
+      - alertname =~ "InstanceDown|KubeNodeNotReady|DatabaseUnreachable"
+    equal: ['rack_id', 'datacenter']</pre></li><li><strong>How it works:</strong>
+  <ul>
+    <li><code>source_matchers:</code> Detects that the root cause alert <code>NetworkSwitchDown</code> is active for <code>rack_id: rack-04</code>.</li>
+    <li><code>target_matchers:</code> Automatically suppresses all downstream <code>InstanceDown</code> and <code>DatabaseUnreachable</code> alerts that share the identical <code>rack_id</code> label.</li>
+  </ul>
+</li><li><strong>Result:</strong> On-call engineers receive exactly 1 critical page for the network switch rather than 400 noisy notifications.</li></ul></div></article>
+
+<article class="qcard" data-category="Alertmanager &amp; Incident Routing" data-search="alert flapping for duration threshold resolved firing cycling">
+<div class="qhead"><div class="num">17</div><div class="qmeta"><div class="category">Alertmanager &amp; Incident Routing</div><div class="question">CPU utilization hovers right around 85%, triggering an alert every 2 minutes and resolving 1 minute later, causing alert fatigue. How do you eliminate flapping?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Alert flapping occurs when metric values oscillate around a rigid threshold. Resolve it using the <code>for:</code> duration directive and hysteresis / smoothing.</p><ul><li><strong>Fix 1 (Enforce `for:` duration):</strong>
+<pre>alert: HighCPUUsage
+expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
+for: 15m # Must stay continuously above 85% for 15 full minutes before firing
+labels:
+  severity: warning</pre>
+During the 15-minute pending state, momentary dips below 85% reset the evaluation timer, preventing transient spikes from waking up on-call engineers.</li><li><strong>Fix 2 (Smoothed average):</strong> Use a longer rate window: <code>rate(...[15m])</code> instead of <code>rate(...[1m])</code> to smooth high-frequency oscillations.</li><li><strong>Fix 3 (Alertmanager repeat_interval):</strong> Set <code>repeat_interval: 4h</code> so an unresolved alert doesn't re-notify repeatedly.</li></ul></div></article>
+
+<article class="qcard" data-category="Alertmanager &amp; Incident Routing" data-search="alertmanager routing tree continue matchers receiver hierarchy">
+<div class="qhead"><div class="num">18</div><div class="qmeta"><div class="category">Alertmanager &amp; Incident Routing</div><div class="question">Design an Alertmanager routing tree: Critical billing alerts page PagerDuty immediately, warning alerts post to Slack, and all alerts also copy to an audit webhook.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use a hierarchical route tree with <code>matchers</code> and the <code>continue: true</code> directive.</p><ul><li><pre>route:
+  receiver: 'default-slack'
+  group_by: ['alertname', 'cluster', 'service']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 4h
+  routes:
+    # Route 1: Audit webhook receives everything
+    - receiver: 'audit-webhook'
+      continue: true # Evaluates subsequent sibling routes!
+
+    # Route 2: Critical Billing Alerts -> PagerDuty
+    - receiver: 'pagerduty-billing'
+      matchers:
+        - team = "billing"
+        - severity = "critical"
+
+    # Route 3: Team Slack Channels
+    - receiver: 'slack-billing'
+      matchers:
+        - team = "billing"</pre></li><li><strong><code>continue: true:</code></strong> Critical for multi-casting. By default, Alertmanager stops evaluating routes on the first match. <code>continue: true</code> ensures the audit logging service receives a copy of the alert before Alertmanager routes it to PagerDuty or Slack.</li></ul></div></article>
+
+<article class="qcard" data-category="Alertmanager &amp; Incident Routing" data-search="amtool silence api scheduled maintenance alertmanager">
+<div class="qhead"><div class="num">19</div><div class="qmeta"><div class="category">Alertmanager &amp; Incident Routing</div><div class="question">Your database team is performing a 3-hour planned maintenance window on `prod-db-cluster`. How do you programmatically create a Silence using `amtool`?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use the official Alertmanager CLI tool (<code>amtool</code>) to create time-bounded silences via API.</p><ul><li><strong>Command:</strong>
+<pre>amtool silence add \
+  alertname=~"Database.*" \
+  cluster="prod-db-cluster" \
+  --duration="3h" \
+  --comment="Scheduled maintenance for PostgreSQL major version upgrade" \
+  --author="sre-team@company.com"</pre></li><li><strong>How it works:</strong> Alertmanager accepts the silence and generates a Silence ID. Incoming matching alerts are marked as <code>suppressed</code>; no notification payloads are sent to PagerDuty, Slack, or email receivers.</li><li><strong>Listing &amp; Expiring Silences:</strong>
+  <ul>
+    <li>View active silences: <code>amtool silence query</code>.</li>
+    <li>Expire silence early when maintenance finishes ahead of schedule: <code>amtool silence expire &lt;silence-id&gt;</code>.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Alertmanager &amp; Incident Routing" data-search="group_wait group_interval alert aggregation storm control">
+<div class="qhead"><div class="num">20</div><div class="qmeta"><div class="category">Alertmanager &amp; Incident Routing</div><div class="question">Explain the exact relationship between `group_by`, `group_wait`, and `group_interval` in Alertmanager. How do they prevent message flood?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>These three settings control Alertmanager's batching and aggregation engine:</p><ul><li><strong><code>group_by: ['alertname', 'cluster']:</code></strong> Bundles all alerts sharing the same alertname and cluster into a single consolidated notification.</li><li><strong><code>group_wait: 30s:</code></strong> When the first alert in a new group fires, Alertmanager pauses for 30 seconds before sending the initial notification. If 15 related microservice alerts fire within those 30 seconds, they are batched together into <strong>one single Slack message</strong> listing all 15 items.</li><li><strong><code>group_interval: 5m:</code></strong> If new additional alerts join an already-firing group while an incident is ongoing, Alertmanager waits 5 minutes before sending an updated batch notification.</li><li><strong><code>repeat_interval: 4h:</code></strong> If no new alerts arrive and the incident remains unresolved, Alertmanager re-sends the notification every 4 hours as a reminder.</li></ul></div></article>
+
+<!-- Domain 5: Grafana Visualization & GitOps -->
+<section class="section-title"><h2>Grafana Visualization &amp; GitOps</h2><span>Dashboard provisioning · GitOps JSON · Dashboard slow loading · Variables</span></section>
+
+<article class="qcard" data-category="Grafana Visualization &amp; GitOps" data-search="grafana dashboard slow loading unconstrained time range regex variable">
+<div class="qhead"><div class="num">21</div><div class="qmeta"><div class="category">Grafana Visualization &amp; GitOps</div><div class="question">A mission-critical Grafana dashboard takes 45 seconds to load and crashes browser tabs. What are the top 4 performance anti-patterns to audit and fix?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Slow Grafana dashboards almost always stem from unoptimized query design and frontend overload:</p><ul><li><strong>Anti-Pattern 1 (Overlapping Regex Variables):</strong> Top-level dropdown variables using unconstrained regex (<code>label_values(node)</code> across 5,000 nodes). Change query to filter by namespace/cluster first: <code>label_values(node_uname_info{cluster="$cluster"}, node)</code>.</li><li><strong>Anti-Pattern 2 (Unconstrained Range / $__rate_interval):</strong> Queries using hardcoded small windows like <code>rate(metric[1m])</code> over a 30-day time range force Prometheus to return millions of data points. Replace hardcoded intervals with <code>$__rate_interval</code>:
+<pre>rate(http_requests_total[$__rate_interval])</pre>
+Grafana automatically scales the window to match the panel pixel width.</li><li><strong>Anti-Pattern 3 (Too Many Panels on One Dashboard):</strong> 50 panels making 50 simultaneous PromQL queries. Consolidate into collapsed <strong>Dashboard Rows</strong> (Grafana only queries panels when the row is expanded).</li><li><strong>Anti-Pattern 4 (Missing Max Data Points):</strong> Enforce <code>Max Data Points = 1000</code> in panel options so Prometheus downsamples server-side.</li></ul></div></article>
+
+<article class="qcard" data-category="Grafana Visualization &amp; GitOps" data-search="dashboard provisioning gitops json kubernetes configmap terraform">
+<div class="qhead"><div class="num">22</div><div class="qmeta"><div class="category">Grafana Visualization &amp; GitOps</div><div class="question">How do you manage Grafana dashboards strictly as Code (GitOps) so that manual edits in the UI are prevented or automatically overwritten from Git?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use <strong>Grafana Dashboard Provisioning</strong> via ConfigMaps (or Terraform/Grizzly):</p><ul><li><strong>Step 1 (Provisioning Provider):</strong> Configure <code>/etc/grafana/provisioning/dashboards/dashboards.yaml</code>:
+<pre>apiVersion: 1
+providers:
+  - name: 'production-dashboards'
+    orgId: 1
+    folder: 'Production Services'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: false # DISALLOWS manual UI modifications!
+    options:
+      path: /var/lib/grafana/dashboards</pre></li><li><strong>Step 2 (Kubernetes Sidecar Pattern):</strong> In Kubernetes, use the <code>grafana-sc-dashboard</code> sidecar. Any ConfigMap labeled with <code>grafana_dashboard: "1"</code> containing dashboard JSON is automatically mounted into <code>/var/lib/grafana/dashboards</code>.</li><li><strong>Benefit:</strong> Dashboards are stored in Git repositories, peer-reviewed via Pull Requests, and UI modifications are locked out.</li></ul></div></article>
+
+<article class="qcard" data-category="Grafana Visualization &amp; GitOps" data-search="grafana alerting vs prometheus alertmanager differences unified alerting">
+<div class="qhead"><div class="num">23</div><div class="qmeta"><div class="category">Grafana Visualization &amp; GitOps</div><div class="question">When should an organization use Grafana Unified Alerting instead of Prometheus Alertmanager? What are the architectural trade-offs?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Both alert engines overlap, but have fundamental architectural differences:</p><ul><li><strong>Prometheus Alertmanager:</strong>
+  <ul>
+    <li><em>How:</em> Prometheus server evaluates PromQL rules natively against local TSDB and pushes firing alerts to Alertmanager.</li>
+    <li><em>Pros:</em> Extremely reliable; continues alerting even if Grafana is down; version-controlled via YAML.</li>
+    <li><em>Cons:</em> Limited strictly to Prometheus data sources.</li>
+  </ul>
+</li><li><strong>Grafana Unified Alerting:</strong>
+  <ul>
+    <li><em>How:</em> Grafana backend executes alert queries across any configured data source.</li>
+    <li><em>Pros:</em> Multi-datasource alerting (can join Prometheus metrics + Elasticsearch/Loki logs + CloudWatch metrics + SQL database queries in a single alert expression). Rich visual UI builder for non-SRE teams.</li>
+    <li><em>Cons:</em> If Grafana crashes or runs out of memory, all alerting ceases. Harder to manage at massive scale via pure GitOps without specialized APIs.</li>
+  </ul>
+</li><li><strong>Standard Practice:</strong> Use Prometheus Alertmanager for core infrastructure and Kubernetes availability; use Grafana Alerting for multi-source business KPIs and dashboard-bound alerts.</li></ul></div></article>
+
+<article class="qcard" data-category="Grafana Visualization &amp; Grafana" data-search="grafana rbac organization team folder permissions ldap oauth">
+<div class="qhead"><div class="num">24</div><div class="qmeta"><div class="category">Grafana Visualization &amp; GitOps</div><div class="question">How do you configure Grafana with Okta/GitHub OAuth SSO and map users to Team Folder permissions (read-only vs editor)?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Integrate OAuth with automatic team and role synchronization:</p><ul><li><strong>Grafana Configuration (<code>grafana.ini</code>):</strong>
+<pre>[auth.github]
+enabled = true
+client_id = GITHUB_CLIENT_ID
+client_secret = GITHUB_CLIENT_SECRET
+scopes = user:email,read:org
+allowed_organizations = my-company-org
+role_attribute_path: contains(groups[*], 'sre-leads') &amp;&amp; 'Admin' || contains(groups[*], 'developers') &amp;&amp; 'Editor' || 'Viewer'</pre></li><li><strong>Folder-level Permissions:</strong>
+  <ul>
+    <li>Create folder <em>"Payments Dashboard"</em>.</li>
+    <li>Under Folder Settings &rarr; Permissions, remove the default <code>Viewer</code> role.</li>
+    <li>Add Team <code>@payments-team</code> &rarr; <strong>Edit</strong>.</li>
+    <li>Add Team <code>@executive-staff</code> &rarr; <strong>View</strong>.</li>
+  </ul>
+</li><li>Users logging in via SSO are dynamically mapped to their corresponding GitHub/Okta teams, ensuring strict multi-tenant dashboard isolation.</li></ul></div></article>
+
+<article class="qcard" data-category="Grafana Visualization &amp; GitOps" data-search="grafana transform data merge join group by calculate difference">
+<div class="qhead"><div class="num">25</div><div class="qmeta"><div class="category">Grafana Visualization &amp; GitOps</div><div class="question">In a Grafana panel, Query A returns CloudWatch AWS billing, and Query B returns Prometheus Pod counts. How do you combine them using Grafana Transformations?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use Grafana's client-side <strong>Transformations</strong> engine:</p><ul><li><strong>Step 1 (Add Queries):</strong>
+  <ul>
+    <li>Query A (CloudWatch): <code>aws_billing_estimated_charges</code></li>
+    <li>Query B (Prometheus): <code>sum(kube_pod_info) by (cluster)</code></li>
+  </ul>
+</li><li><strong>Step 2 (Apply 'Merge' or 'Join by field'):</strong> In the panel's <em>Transform</em> tab, select <strong>Join by field</strong> &rarr; Field: <code>Time</code> (or join by cluster tag).</li><li><strong>Step 3 (Add Field from Calculation):</strong> Select <strong>Add field from calculation</strong>:
+  <ul>
+    <li>Mode: <em>Binary operation</em></li>
+    <li>Operation: <code>Query A / Query B</code></li>
+    <li>Alias: <code>Cost per Pod ($)</code></li>
+  </ul>
+</li><li>Grafana computes the composite field dynamically on the fly without requiring an intermediate database or external metric ingestion bridge.</li></ul></div></article>
+
+<!-- Domain 6: Multi-Cluster, Thanos & High Availability -->
+<section class="section-title"><h2>Multi-Cluster, Thanos &amp; High Availability</h2><span>Dual Prometheus · Thanos Sidecar · Store Gateway · Compactor</span></section>
+
+<article class="qcard" data-category="Multi-Cluster, Thanos &amp; High Availability" data-search="thanos architecture sidecar query store gateway compactor s3">
+<div class="qhead"><div class="num">26</div><div class="qmeta"><div class="category">Multi-Cluster, Thanos &amp; High Availability</div><div class="question">Explain the architecture of Thanos for scaling Prometheus across 20 Kubernetes clusters with multi-year S3 long-term storage and deduplication.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p><strong>Thanos</strong> transforms standalone Prometheus instances into a globally scalable, multi-cluster monitoring system with unlimited retention:</p><ul><li><strong>Component Breakdown:</strong>
+  <ul>
+    <li><strong>Thanos Sidecar:</strong> Runs alongside each Prometheus pod. Backs up completed 2-hour TSDB blocks to object storage (S3/GCS) and provides a gRPC query interface for Prometheus's local live data.</li>
+    <li><strong>Thanos Query (Querier):</strong> The central entrypoint for Grafana. Evaluates PromQL across all clusters simultaneously by querying Sidecars (live data) and Store Gateways (historical data). Automatically deduplicates HA replicas based on cluster/replica labels.</li>
+    <li><strong>Thanos Store Gateway:</strong> Acts as an efficient proxy over object storage, caching indexes to allow querying petabytes of multi-year historical metrics without downloading raw chunks.</li>
+    <li><strong>Thanos Compactor:</strong> A single-instance background worker that merges multi-cluster blocks in S3 and performs long-term downsampling (to 5m and 1h resolutions) to speed up multi-year queries.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Multi-Cluster, Thanos &amp; High Availability" data-search="dual prometheus ha deduplication query replica label">
+<div class="qhead"><div class="num">27</div><div class="qmeta"><div class="category">Multi-Cluster, Thanos &amp; High Availability</div><div class="question">How do you achieve High Availability for Prometheus? If two identical Prometheus replicas scrape the same target, how does Thanos or Grafana deduplicate them?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Run dual independent Prometheus replicas (Replica A &amp; Replica B) scraping the exact same targets simultaneously.</p><ul><li><strong>Configuration (External Labels):</strong> Give each replica a unique replica label and a shared cluster label:
+<pre># Prometheus Replica A:
+external_labels:
+  cluster: "us-east-prod"
+  replica: "A"
+
+# Prometheus Replica B:
+external_labels:
+  cluster: "us-east-prod"
+  replica: "B"</pre></li><li><strong>Deduplication via Thanos Query:</strong> Run Thanos Query with flag:
+<pre>--query.replica-label="replica"</pre>
+When Grafana executes a PromQL query, Thanos Query strips the <code>replica</code> label, compares time-series timestamps from both replicas, and drops duplicate samples.</li><li>If Replica A crashes or restarts, Replica B transparently serves metrics with zero graph gaps and zero user impact.</li></ul></div></article>
+
+<article class="qcard" data-category="Multi-Cluster, Thanos &amp; High Availability" data-search="thanos compactor single replica concurrent lock warning">
+<div class="qhead"><div class="num">28</div><div class="qmeta"><div class="category">Multi-Cluster, Thanos &amp; High Availability</div><div class="question">Why must Thanos Compactor strictly run as a singleton (replica: 1), and what catastrophic issue occurs if two compactors run on the same S3 bucket?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Thanos Compactor is fundamentally <strong>not concurrency-safe</strong> across multiple instances.</p><ul><li><strong>The Danger:</strong> The Compactor performs heavy block index merging, overlapping block deduplication, and downsampling directly in object storage. If two Compactor replicas run simultaneously against the same bucket, both will read the same blocks, create duplicate compacted output blocks, and produce overlapping TSDB blocks.</li><li><strong>Catastrophic Consequence:</strong> The Thanos Store Gateway and Query engines will crash with: <code>halt: found overlapping blocks during compaction</code>, permanently breaking queries for that time range until manual bucket reconciliation is performed using <code>thanos tools bucket inspect</code>.</li><li><strong>Rule:</strong> Always deploy Thanos Compactor as a Kubernetes <code>Deployment</code> with <code>replicas: 1</code> and a <code>Recreate</code> strategy (never RollingUpdate) to guarantee dual pods never run concurrently.</li></ul></div></article>
+
+<article class="qcard" data-category="Multi-Cluster, Thanos &amp; High Availability" data-search="cortex mimir push model vs thanos pull model differences">
+<div class="qhead"><div class="num">29</div><div class="qmeta"><div class="category">Multi-Cluster, Thanos &amp; High Availability</div><div class="question">Compare Thanos vs Grafana Mimir (Cortex). When would an enterprise choose Mimir's Remote-Write Push architecture over Thanos's Sidecar Pull model?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Both provide long-term scalable Prometheus storage, but use opposing ingest architectures:</p><ul><li><strong>Thanos (Pull + Sidecar):</strong>
+  <ul>
+    <li>Prometheus scrapes and stores data locally; Thanos Sidecar uploads blocks every 2h and Thanos Query pulls via gRPC.</li>
+    <li><em>Pros:</em> Works naturally with existing Prometheus setups; zero ingress load balancer required for metric ingestion; local Prometheus retains full functionality if central Thanos fails.</li>
+  </ul>
+</li><li><strong>Grafana Mimir / Cortex (Push via Remote-Write):</strong>
+  <ul>
+    <li>Edge Prometheus instances scrape metrics and immediately forward them via HTTP <code>remote_write</code> to a centralized Mimir cluster.</li>
+    <li><em>When to Choose Mimir:</em>
+      <ul>
+        <li>Network restrictions: Edge environments (IoT, retail stores, private client VPCs) where central query engines cannot establish inbound network connections to pull data.</li>
+        <li>Multi-tenancy: Native hard multi-tenancy with strict tenant limits (X-Scope-OrgID header) built into the core engine.</li>
+      </ul>
+    </li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Multi-Cluster, Thanos &amp; High Availability" data-search="prometheus down alert who watches the watcher dead mans switch">
+<div class="qhead"><div class="num">30</div><div class="qmeta"><div class="category">Multi-Cluster, Thanos &amp; High Availability</div><div class="question">If Prometheus or Alertmanager crashes completely, no alerts can fire. How do you architect a 'Dead Man's Switch' (Watchdog) to monitor the monitoring system?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Solve the "Who monitors the monitor?" problem using an inverted heartbeat signal called a <strong>Dead Man's Switch</strong> (Watchdog alert).</p><ul><li><strong>Step 1 (Prometheus Always-Firing Alert):</strong> Create an alert rule in Prometheus that evaluates to <code>true</code> 100% of the time:
+<pre>alert: Watchdog
+expr: vector(1)
+for: 0m
+labels:
+  severity: none
+annotations:
+  summary: "Continuous heartbeat signal to external monitoring"</pre></li><li><strong>Step 2 (Alertmanager Heartbeat Webhook):</strong> Alertmanager continuously forwards this firing alert every 60 seconds to an external independent SaaS health-checker (such as <strong>Healthchecks.io, Dead Man's Snitch, or Opsgenie Heartbeats</strong>).</li><li><strong>Step 3 (Fail-Safe Alerting):</strong>
+  <ul>
+    <li>As long as the external service receives the ping every 60 seconds, all is quiet.</li>
+    <li>If Prometheus crashes, Alertmanager dies, the network severed, or Kubernetes nodes fail, the pings stop.</li>
+    <li>The external service detects the missing heartbeat after 3 minutes and directly pages the SRE team via SMS/PagerDuty: <em>"ALERT: Prometheus Monitoring System is DOWN!"</em></li>
+  </ul>
+</li></ul></div></article>
+
+</div>
+
+<div class="probe" style="margin-top:28px"><b>Interviewer Scoring Guide:</b> A strong 5-year Observability/SRE candidate should demonstrate deep PromQL fluency (avoiding common rate/irate pitfalls, optimizing high-cardinality queries), understand TSDB internals (WAL, compaction, tombstones), master Alertmanager routing and inhibition to combat alert fatigue, and design multi-cluster architectures with Thanos or Mimir.</div>
+
+<div class="footer">Prometheus &amp; Grafana Senior SRE Scenario Pack &bull; 30 Scenario Questions &bull; NimbusWiz Tech &bull; Prepared for Class &amp; Technical Interview Practice</div>
+
+</main>
+
+<script>
+document.querySelectorAll('.qhead').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+function expandAll(open){document.querySelectorAll('.qcard').forEach(c=>c.classList.toggle('open',open))}
+const search=document.getElementById('search'),filter=document.getElementById('filter');
+function apply(){
+  const q=search.value.toLowerCase(),f=filter.value;
+  document.querySelectorAll('.qcard').forEach(c=>{
+    const ok=(f==='all'||c.dataset.category===f)&&(c.dataset.search.toLowerCase().includes(q)||c.innerText.toLowerCase().includes(q));
+    c.style.display=ok?'':'none';
+  });
+  document.querySelectorAll('.section-title').forEach(s=>{
+    let n=s.nextElementSibling,visible=false;
+    while(n && !n.classList.contains('section-title')){
+      if(n.classList.contains('qcard') && n.style.display!=='none') visible=true;
+      n=n.nextElementSibling;
+    }
+    s.style.display=visible?'':'none';
+  });
+}
+search.addEventListener('input',apply);filter.addEventListener('change',apply);
+</script>
+</body>
+</html>

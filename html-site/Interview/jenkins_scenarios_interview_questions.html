@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenkins Mock Interview | 30 Real-World Scenarios</title>
+<style>
+:root{--navy:#111827;--blue:#d97706;--cyan:#0284c7;--ink:#1f2937;--muted:#6b7280;--bg:#fefce8;--card:#ffffff;--line:#e5e7eb;--green:#10b981;--orange:#b45309;--red:#dc2626}
+*{box-sizing:border-box}body{margin:0;background:#f9fafb;color:var(--ink);font:15px/1.65 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+.hero{background:linear-gradient(130deg,#1c1917,#292524 60%,#451a03);color:white;padding:48px 22px 38px}
+.wrap{max-width:1100px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;color:#fcd34d}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:12px 0}.hero p{max-width:780px;color:#e7e5e4;font-size:16px;margin:12px 0 22px}
+.pills{display:flex;gap:9px;flex-wrap:wrap}.pill{border:1px solid #ffffff40;border-radius:30px;padding:6px 14px;font-size:12px;color:#fefce8;background:rgba(255,255,255,0.06)}
+main{padding:26px 18px 60px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-48px;position:relative}
+.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:0 8px 22px rgba(0,0,0,0.05)}.stat strong{display:block;font-size:24px;color:var(--blue)}.stat span{font-size:12px;color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 14px}.toolbar input,.toolbar select{background:white;border:1px solid #d1d5db;border-radius:9px;padding:11px 13px;font:inherit;color:var(--ink)}.toolbar input{flex:1;min-width:220px}
+button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;font-weight:700;background:#d97706;color:white;font-size:14px}.secondary{background:#fef3c7;color:#92400e}
+.section-title{display:flex;align-items:center;gap:10px;margin:32px 0 14px}.section-title h2{font-size:19px;margin:0;color:#1f2937}.section-title span{font-size:12px;color:var(--muted)}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.03);transition:border-color 0.2s}
+.qcard:hover{border-color:#f59e0b}
+.qhead{padding:17px 18px;display:flex;gap:13px;align-items:flex-start;cursor:pointer}.num{flex:0 0 34px;height:34px;border-radius:9px;background:#fef3c7;color:#b45309;display:grid;place-items:center;font-weight:800}
+.qmeta{flex:1}.category{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#d97706;font-weight:800}.question{font-size:16px;font-weight:750;margin:3px 0 0;color:#111827}.chev{color:var(--muted);font-size:20px;transition:.2s}.qcard.open .chev{transform:rotate(180deg)}
+.answer{display:none;border-top:1px solid var(--line);padding:18px 20px 22px 65px;background:#ffffff}.qcard.open .answer{display:block}.answer h4{margin:10px 0 4px;color:#d97706;font-size:13px;text-transform:uppercase;letter-spacing:.5px}.answer p{margin:6px 0}.answer ul{margin:8px 0;padding-left:20px}.answer li{margin:4px 0}
+.probe{background:#f0fdf4;border-left:3px solid var(--green);padding:10px 13px;border-radius:0 8px 8px 0;margin-top:14px;color:#166534;font-size:13px}
+code{background:#f3f4f6;color:#111827;padding:2px 6px;border-radius:4px;font-size:.92em;font-family:ui-monospace,monospace}
+pre{background:#1c1917;color:#fefce8;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px}
+.footer{color:var(--muted);font-size:12px;text-align:center;padding:26px}
+@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.answer{padding:15px 16px}.qhead{padding:14px}.hero{padding-top:34px}}
+@media print{body{background:white}.hero{padding:24px;background:#451a03!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.site-nav,.stats,.toolbar,.footer button{display:none!important}main{padding:10px}.qcard{break-inside:avoid;box-shadow:none}.answer{display:block!important}.chev{display:none}}
+</style>
+</head>
+<body>
+<!-- Top Global Navigation Bar -->
+<nav class="site-nav" style="background:#0b1329;border-bottom:1px solid #1e293b;padding:12px 20px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.35);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <a href="../interview_prep.html" style="color:#38bdf8;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;">
+        &larr; Return to Interview Prep Dashboard
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="../index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        🏠 Master Hub
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        📂 Interview Subfolder
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <span style="color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Scenario Sets:</span>
+      <a href="AWS_Scenarios_Interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☁️ AWS (30)</a>
+      <a href="kubernetes_scenario_interview_Questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☸️ K8s (62)</a>
+      <a href="terraform_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🏗️ TF (30)</a>
+      <a href="git_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🌿 Git (30)</a>
+      <a href="github_actions_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">⚡ GHA (30)</a>
+      <a href="gcp_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🌐 GCP (30)</a>
+      <a href="jenkins_scenarios_interview_questions.html" style="background:#d97706;color:#fff;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #fbbf24;">👨‍💻 Jenkins (30)</a>
+      <a href="prometheus_grafana_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">📊 Prom &amp; Graf (30)</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Enterprise CI/CD Automation Practice</div>
+<h1>Jenkins: 30 Real-World Scenario Questions</h1>
+<p>Practical scenarios for Senior DevOps &amp; Build Engineers (~5 years experience). Covers Kubernetes agent scaling, Shared Libraries, CPS serialization errors, JVM garbage collection tuning, Jenkins Configuration as Code (JCasC), and high availability disaster recovery.</p>
+<div class="pills"><span class="pill">5-year experience level</span><span class="pill">30 hands-on scenarios</span><span class="pill">K8s agents · JCasC · Performance</span><span class="pill">Filter · Search · Print Ready</span></div>
+</div></header>
+
+<main class="wrap">
+<div class="stats">
+<div class="stat"><strong>30</strong><span>Scenarios</span></div><div class="stat"><strong>6</strong><span>Core Domains</span></div><div class="stat"><strong>~60–90m</strong><span>Mock Duration</span></div><div class="stat"><strong>5 Yrs</strong><span>Target Exp</span></div>
+</div>
+
+<div class="toolbar">
+<input id="search" type="search" placeholder="Search Jenkins scenarios (e.g. k8s agent, shared library, oom, jcasc)…">
+<select id="filter">
+  <option value="all">All domains</option>
+  <option>Pipeline Architecture &amp; Groovy</option>
+  <option>Controller &amp; Agent Scaling</option>
+  <option>Security, RBAC &amp; Secret Management</option>
+  <option>Build Performance &amp; Caching</option>
+  <option>Disaster Recovery, HA &amp; JCasC</option>
+  <option>Troubleshooting &amp; Deadlocks</option>
+</select>
+<button class="secondary" onclick="expandAll(true)">Expand all</button><button class="secondary" onclick="expandAll(false)">Collapse all</button><button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div id="questions">
+
+<!-- Domain 1: Pipeline Architecture & Groovy -->
+<section class="section-title"><h2>Pipeline Architecture &amp; Groovy</h2><span>Declarative vs Scripted · Shared Libraries · CPS serialization · Dynamic parameters</span></section>
+
+<article class="qcard" data-category="Pipeline Architecture &amp; Groovy" data-search="jenkins shared library versioning testing global @library">
+<div class="qhead"><div class="num">01</div><div class="qmeta"><div class="category">Pipeline Architecture &amp; Groovy</div><div class="question">Your organization has 100+ microservices repeating identical 300-line Jenkinsfiles. How do you design, version, and test an Enterprise Jenkins Shared Library?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Implement a centralized <strong>Jenkins Shared Library</strong> with version pinning and automated unit tests using JenkinsPipelineUnit.</p><ul><li><strong>Directory Structure:</strong>
+<pre>vars/
+  standardPipeline.groovy  # Global custom step / pipeline skeleton
+src/org/company/ci/
+  DockerHelper.groovy      # Reusable Groovy helper classes</pre></li><li><strong>Standard Pipeline Template:</strong> In <code>vars/standardPipeline.groovy</code>, encapsulate the entire declarative skeleton:
+<pre>def call(Map config = [:]) {
+    pipeline {
+        agent { label config.agent ?: 'k8s-build' }
+        stages {
+            stage('Build') { steps { sh "${config.buildCommand ?: 'mvn clean package'}" } }
+            stage('Security Scan') { steps { sonarScan() } }
+            stage('Deploy') { steps { deployHelm(config.appName) } }
+        }
+    }
+}</pre></li><li><strong>Microservice Usage (3 lines):</strong>
+<pre>@Library('my-shared-library@v2.1.0') _
+standardPipeline(appName: 'payment-service', buildCommand: 'gradle build')</pre></li><li><strong>Version Safety:</strong> Always pin the library branch/tag (<code>@v2.1.0</code>) instead of using the default branch to prevent breaking downstream pipelines during library development.</li></ul></div></article>
+
+<article class="qcard" data-category="Pipeline Architecture &amp; Groovy" data-search="cps non serializable exception groovy pipeline pause resume">
+<div class="qhead"><div class="num">02</div><div class="qmeta"><div class="category">Pipeline Architecture &amp; Groovy</div><div class="question">A complex Jenkins pipeline fails with `java.io.NotSerializableException`. What is CPS (Continuation Passing Style) transformation, and how do you fix this error?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Jenkins Pipeline engine uses <strong>CPS (Continuation Passing Style)</strong> transformation to serialize execution state to disk so pipelines can survive controller restarts and resume exactly where they left off.</p><ul><li><strong>Root Cause:</strong> Any non-serializable Java/Groovy object (such as Matcher regex objects, active Database connections, JSON slurpers, or open streams) stored in a pipeline variable across a CPS step (like <code>sh</code>, <code>echo</code>, <code>sleep</code>) triggers <code>NotSerializableException</code> during state serialization.</li><li><strong>Fix 1 (Use `@NonCPS` annotation):</strong> Move pure non-CPS logic into a helper method marked with <code>@NonCPS</code>.
+<pre>@NonCPS
+def parseJsonPayload(String text) {
+    def slurper = new groovy.json.JsonSlurper() // JsonSlurper is not serializable
+    return slurper.parseText(text)
+}</pre>
+<em>Rule:</em> A method annotated with <code>@NonCPS</code> must NOT call any pipeline steps (like <code>sh</code> or <code>stage</code>).</li><li><strong>Fix 2 (Scoping):</strong> Keep non-serializable objects local to an expression rather than assigning them to global pipeline variables.</li></ul></div></article>
+
+<article class="qcard" data-category="Pipeline Architecture &amp; Groovy" data-search="declarative vs scripted pipeline when to use differences">
+<div class="qhead"><div class="num">03</div><div class="qmeta"><div class="category">Pipeline Architecture &amp; Groovy</div><div class="question">Compare Declarative Pipeline vs Scripted Pipeline. Under what specific conditions would a Senior DevOps engineer still choose Scripted over Declarative?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Both are built on the pipeline DSL, but serve different architectural complexities:</p><ul><li><strong>Declarative Pipeline:</strong>
+  <ul>
+    <li>Strict, opinionated syntax (requires <code>pipeline { agent ... stages ... }</code>).</li>
+    <li>Built-in validation, structured post-actions (<code>always</code>, <code>cleanup</code>), and integrated Blue Ocean stage visualization.</li>
+    <li>Standard for 95% of enterprise applications.</li>
+  </ul>
+</li><li><strong>Scripted Pipeline:</strong>
+  <ul>
+    <li>Full, Turing-complete Groovy script with no syntactic restrictions.</li>
+    <li><em>When to choose Scripted:</em>
+      <ul>
+        <li>Extremely dynamic workflows where the list of stages must be computed programmatically at runtime (e.g. dynamically generating a matrix of 50 parallel device test stages from an API response).</li>
+        <li>Legacy shared library implementations requiring deep custom Groovy control flow (loops, exception bubbling) that Declarative blocks restrict.</li>
+      </ul>
+    </li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Pipeline Architecture &amp; Groovy" data-search="parallel stages failfast post actions cleanup always">
+<div class="qhead"><div class="num">04</div><div class="qmeta"><div class="category">Pipeline Architecture &amp; Groovy</div><div class="question">In a pipeline with 4 parallel test suites, Test Suite 1 fails after 20 seconds. The remaining 3 suites keep running for 45 minutes. How do you fail-fast and guarantee cleanup?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use <code>failFast true</code> inside the parallel block and handle teardown inside <code>post { cleanup {} }</code>.</p><ul><li><pre>stage('Parallel Integration Testing') {
+    failFast true
+    parallel {
+        stage('Unit Tests') { steps { sh 'npm run test:unit' } }
+        stage('E2E Tests') { steps { sh 'npm run test:e2e' } }
+        stage('Security SAST') { steps { sh 'npm run test:sast' } }
+    }
+}
+post {
+    always {
+        junit '**/target/surefire-reports/*.xml'
+    }
+    failure {
+        slackSend channel: '#ci-alerts', color: 'danger', message: "Job ${env.JOB_NAME} failed!"
+    }
+    cleanup {
+        cleanWs() // Always wipes workspace even if aborted by failFast
+    }
+}</pre></li><li><code>failFast true</code> instructs Jenkins to immediately terminate all adjacent running branches as soon as any one branch throws an exit code non-zero, saving massive compute hours.</li></ul></div></article>
+
+<article class="qcard" data-category="Pipeline Architecture &amp; Groovy" data-search="active choices plugin dynamic parameters cascade dropdown">
+<div class="qhead"><div class="num">05</div><div class="qmeta"><div class="category">Pipeline Architecture &amp; Groovy</div><div class="question">How do you create a parameterized Jenkins deployment job where selecting 'Environment = Production' dynamically filters the 'Target Cluster' dropdown to only show production Kubernetes clusters?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use the <strong>Active Choices Plugin</strong> (specifically Active Choices Reactive Reference Parameter).</p><ul><li><strong>Step 1 (Parent Parameter):</strong> Create an Active Choices Parameter named <code>ENVIRONMENT</code> with options: <code>dev</code>, <code>staging</code>, <code>prod</code>.</li><li><strong>Step 2 (Reactive Child Parameter):</strong> Create an <strong>Active Choices Reactive Parameter</strong> named <code>CLUSTER</code>.
+  <ul>
+    <li>Set <em>"Referenced parameters"</em> to: <code>ENVIRONMENT</code>.</li>
+    <li>Add Groovy Script:
+<pre>if (ENVIRONMENT.equals("prod")) {
+    return ["eks-us-east-prod", "eks-eu-west-prod"]
+} else if (ENVIRONMENT.equals("staging")) {
+    return ["eks-us-east-stage"]
+} else {
+    return ["k8s-dev-local"]
+}</pre></li>
+  </ul>
+</li><li>When the user changes the dropdown in the Jenkins UI, client-side AJAX updates the child dropdown in real time without refreshing the page.</li></ul></div></article>
+
+<!-- Domain 2: Controller & Agent Scaling -->
+<section class="section-title"><h2>Controller &amp; Agent Scaling</h2><span>Kubernetes ephemeral pods · JNLP agents · JVM heap &amp; G1GC · Disk full</span></section>
+
+<article class="qcard" data-category="Controller &amp; Agent Scaling" data-search="jenkins kubernetes plugin ephemeral pod template jnlp agent">
+<div class="qhead"><div class="num">06</div><div class="qmeta"><div class="category">Controller &amp; Agent Scaling</div><div class="question">Static Jenkins VM agents sit idle 60% of the day and run out of disk space during peak hours. How do you migrate to dynamic, ephemeral Kubernetes Pod agents?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Deploy the <strong>Kubernetes Plugin</strong> to provision on-demand, multi-container build pods directly in a Kubernetes cluster.</p><ul><li><strong>Pod Template Definition in Jenkinsfile:</strong>
+<pre>pipeline {
+    agent {
+        kubernetes {
+            yaml """
+apiVersion: v1
+kind: Pod
+metadata: { labels: { jenkins: agent } }
+spec:
+  containers:
+  - name: maven
+    image: maven:3.9-eclipse-temurin-17
+    command: ['cat']
+    tty: true
+    resources: { requests: { memory: "2Gi", cpu: "1" } }
+  - name: docker
+    image: docker:24-cli
+    command: ['cat']
+    tty: true
+"""
+        }
+    }
+    stages {
+        stage('Compile') {
+            steps { container('maven') { sh 'mvn clean test' } }
+        }
+    }
+}</pre></li><li><strong>Benefits:</strong> Jenkins controller automatically provisions the Pod via Kubernetes API when a job starts, runs the build steps inside specific container toolchains, and destroys the Pod immediately upon completion. Eliminates disk clutter, eliminates VM idle costs, and scales from 0 to 500 pods automatically.</li></ul></div></article>
+
+<article class="qcard" data-category="Controller &amp; Agent Scaling" data-search="jnlp inbound agent connection drop remoting timeout channel closed">
+<div class="qhead"><div class="num">07</div><div class="qmeta"><div class="category">Controller &amp; Agent Scaling</div><div class="question">Remote Jenkins agents frequently disconnect mid-build with `Remoting protocol error: Connection reset` or `Channel is already closed`. How do you diagnose and resolve this?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>JNLP/Inbound agent connection drops usually stem from load balancer timeouts, controller GC pauses, or MTU mismatches.</p><ul><li><strong>Root Cause 1 (Load Balancer TCP Idle Timeout):</strong> If agents connect to the controller through an AWS ALB or reverse proxy, the proxy's default 60-second idle timeout kills idle keepalive packets.
+  <ul>
+    <li><em>Fix:</em> Increase LB idle timeout to 3600s, or configure <code>-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=true</code> and tune Remoting ping intervals: <code>-Dhudson.remoting.Launcher.pingIntervalSec=15</code>.</li>
+  </ul>
+</li><li><strong>Root Cause 2 (Controller JVM Full GC Freeze):</strong> A 30-second JVM "Stop the World" garbage collection pause causes the controller to stop responding to agent heartbeats; the agent assumes controller is dead and disconnects.
+  <ul>
+    <li><em>Fix:</em> Switch controller JVM to G1GC and allocate sufficient heap.</li>
+  </ul>
+</li><li><strong>Root Cause 3 (Agent OOMKilled):</strong> Check <code>dmesg</code> or <code>kubectl describe pod</code> on the agent to confirm Linux kernel didn't invoke the OOM Killer due to container RAM limits.</li></ul></div></article>
+
+<article class="qcard" data-category="Controller &amp; Agent Scaling" data-search="jenkins controller oom memory leak jvm heap g1gc tuning">
+<div class="qhead"><div class="num">08</div><div class="qmeta"><div class="category">Controller &amp; Agent Scaling</div><div class="question">The Jenkins controller UI becomes sluggish and periodically crashes with `java.lang.OutOfMemoryError: Java heap space`. How do you size and tune the JVM?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Jenkins controllers coordinate builds and store job models in RAM. Proper JVM flags and tuning are critical for stability:</p><ul><li><strong>Recommended Production JVM Flags (CloudBees / Jenkins standard):</strong>
+<pre>-Xms8g -Xmx8g
+-XX:+UseG1GC
+-XX:+ExplicitGCInvokesConcurrent
+-XX:+ParallelRefProcEnabled
+-XX:+UseStringDeduplication
+-XX:+UnlockDiagnosticVMOptions
+-XX:G1SummarizeRSetStatsPeriod=1</pre></li><li><strong>Key Rules:</strong>
+  <ul>
+    <li>Never run builds directly on the built-in controller node; set executors on the controller to <code>0</code>.</li>
+    <li>Set <code>-Xms</code> equal to <code>-Xmx</code> to avoid heap resizing latency.</li>
+    <li>Do NOT over-allocate heap (e.g. &gt;32GB) because Java pointer compression (CompressedOops) is disabled above 32GB, which actually decreases cache efficiency and worsens GC pause times.</li>
+  </ul>
+</li><li><strong>Build History Retention:</strong> Enforce discard old builds globally (retain max 30 builds per job) to avoid bloating heap with millions of historical XML records.</li></ul></div></article>
+
+<article class="qcard" data-category="Controller &amp; Agent Scaling" data-search="workspace disk full cleanws disk usage cleanup retention">
+<div class="qhead"><div class="num">09</div><div class="qmeta"><div class="category">Controller &amp; Agent Scaling</div><div class="question">Static agents continually run out of disk space (`no space left on device`) due to abandoned workspaces from deleted or aborted jobs. How do you automate disk management?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Combine pipeline cleanup hooks with automated controller maintenance jobs:</p><ul><li><strong>Step 1 (Pipeline-level cleanWs):</strong> Ensure all declarative pipelines use the <code>Workspace Cleanup Plugin</code> in the <code>always</code> or <code>cleanup</code> block:
+<pre>post {
+    cleanup {
+        cleanWs notFailBuild: true, deleteDirs: true
+    }
+}</pre></li><li><strong>Step 2 (Periodic Maintenance Cron Job):</strong> Create an automated administrative job running daily that executes Groovy to prune orphaned workspaces:
+<pre>for (node in Jenkins.instance.nodes) {
+    def workspaceRoot = node.workspaceRoot
+    // Execute workspace sweep for jobs that no longer exist
+}</pre></li><li><strong>Step 3 (Disk Allocation / Thin Volumes):</strong> Mount agent workspaces on dedicated separate EBS/LVM volumes (e.g. mounted to <code>/var/jenkins/workspace</code>) separate from the root filesystem so a full workspace never crashes the host operating system.</li></ul></div></article>
+
+<article class="qcard" data-category="Controller &amp; Agent Scaling" data-search="jenkins multibranch pipeline indexing github webhook rate limit">
+<div class="qhead"><div class="num">10</div><div class="qmeta"><div class="category">Controller &amp; Agent Scaling</div><div class="question">A Multibranch Pipeline with 300 branches hits GitHub API rate limits during repository scans. How do you configure webhooks and scan filters?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Multibranch pipelines default to periodic polling ("Scan Multibranch Pipeline Triggers every 1 hour"), making thousands of GitHub REST API calls that exhaust the 5,000 requests/hr rate limit.</p><ul><li><strong>Step 1 (Disable Polling &amp; Enable Webhooks):</strong> Set "Scan Multibranch Pipeline Triggers" to <strong>None</strong>. Configure an organization-level GitHub Webhook pointing to <code>https://jenkins.company.com/github-webhook/</code> with event <code>Push</code> and <code>Pull requests</code>. Jenkins will only index the specific branch that received the push.</li><li><strong>Step 2 (Branch Filtering / Discover Branches Strategy):</strong>
+  <ul>
+    <li>Filter out stale or bot branches: Under "Behaviours", select <em>"Filter by name (with regular expressions)"</em> &rarr; <code>main|release/.*|PR-.*</code>.</li>
+    <li>Enable <em>"Exclude branches without Jenkinsfile"</em> so branches without CI definitions are skipped during indexing.</li>
+  </ul>
+</li><li><strong>Step 3 (GitHub App Authentication):</strong> Replace personal access token with a <strong>GitHub App</strong>, raising rate limits to 15,000 requests/hr.</li></ul></div></article>
+
+<!-- Domain 3: Security, RBAC & Secret Management -->
+<section class="section-title"><h2>Security, RBAC &amp; Secret Management</h2><span>Role Strategy Plugin · Credentials store encryption · Masked passwords · Script console</span></section>
+
+<article class="qcard" data-category="Security, RBAC &amp; Secret Management" data-search="role based access control role strategy plugin ldap sso">
+<div class="qhead"><div class="num">11</div><div class="qmeta"><div class="category">Security, RBAC &amp; Secret Management</div><div class="question">How do you implement granular RBAC in an organization with 500 developers where Developers can only build/view their team's folder, while Leads can configure jobs?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use the <strong>Role-based Authorization Strategy (Role Strategy Plugin)</strong> combined with Folder Organization.</p><ul><li><strong>Step 1 (Folder Architecture):</strong> Structure jobs inside top-level Team Folders (e.g. <code>Payments/</code>, <code>CoreBanking/</code>).</li><li><strong>Step 2 (Define Global Roles):</strong>
+  <ul>
+    <li><code>Authenticated User</code>: Overall Read permission only.</li>
+    <li><code>Admin</code>: Full administrative privileges.</li>
+  </ul>
+</li><li><strong>Step 3 (Define Item Roles using Regex):</strong>
+  <ul>
+    <li>Role <code>payments-dev</code>: Pattern <code>Payments/.*</code> &rarr; Permissions: Job Read, Build, Workspace, Cancel.</li>
+    <li>Role <code>payments-lead</code>: Pattern <code>Payments/.*</code> &rarr; Permissions: Job Configure, Create, Delete, Build.</li>
+  </ul>
+</li><li><strong>Step 4 (Map SSO / LDAP Groups):</strong> Map corporate Okta/LDAP groups (e.g. <code>ad-grp-payments-devs</code>) to the <code>payments-dev</code> item role. When developers change teams in Active Directory, their Jenkins permissions update automatically without manual admin overhead.</li></ul></div></article>
+
+<article class="qcard" data-category="Security, RBAC &amp; Secret Management" data-search="credentials store master key secret key migration encryption">
+<div class="qhead"><div class="num">12</div><div class="qmeta"><div class="category">Security, RBAC &amp; Secret Management</div><div class="question">How does Jenkins encrypt credentials stored in `credentials.xml`? What happens if you copy `credentials.xml` to a fresh Jenkins instance without `master.key`?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Jenkins uses two cryptographic keys located inside <code>$JENKINS_HOME/secrets/</code>:</p><ul><li><strong>Encryption Architecture:</strong>
+  <ul>
+    <li><code>master.key:</code> Generated upon initial Jenkins setup. Protects the secret key.</li>
+    <li><code>hudson.util.Secret:</code> The actual 256-bit AES symmetric key used to encrypt passwords, tokens, and SSH keys in <code>credentials.xml</code>.</li>
+  </ul>
+</li><li><strong>Migration Scenario:</strong> If you copy only <code>credentials.xml</code> to a new server without copying the <code>secrets/</code> directory, the new server will fail to decrypt the passwords. Jenkins will throw a <code>BadPaddingException: Given final block not properly padded</code>, and all pipeline credential lookups will fail with null passwords.</li><li><strong>Rule:</strong> In any backup or migration strategy, <code>$JENKINS_HOME/secrets/</code> must be backed up securely alongside <code>credentials.xml</code>.</li></ul></div></article>
+
+<article class="qcard" data-category="Security, RBAC &amp; Secret Management" data-search="withCredentials secret masking leak variable wrapper">
+<div class="qhead"><div class="num">13</div><div class="qmeta"><div class="category">Security, RBAC &amp; Secret Management</div><div class="question">Write a secure declarative pipeline step using `withCredentials` to invoke a REST API with an API token, explaining why double quotes vs single quotes matter.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use <code>withCredentials</code> with single quotes to avoid Groovy string interpolation leakage.</p><ul><li><pre>stage('Deploy API') {
+    steps {
+        withCredentials([string(credentialsId: 'datadog-api-key', variable: 'DD_KEY')]) {
+            // CRITICAL: Use single quotes for shell command!
+            sh 'curl -X POST https://api.datadoghq.com/api/v1/series -H "DD-API-KEY: ${DD_KEY}" -d @metrics.json'
+        }
+    }
+}</pre></li><li><strong>Why Double Quotes vs Single Quotes is Critical:</strong>
+  <ul>
+    <li><em>Double quotes (<code>sh "curl ... ${DD_KEY}"</code>):</em> Groovy interpolates the variable on the controller <em>before</em> sending the command to the agent shell. If unmasked, the raw secret value could appear in Groovy stack traces or Jenkins console output.</li>
+    <li><em>Single quotes (<code>sh 'curl ... ${DD_KEY}'</code>):</em> Groovy does NOT interpolate the string. The literal characters <code>${DD_KEY}</code> are sent to the bash shell on the agent, which expands the environment variable in memory. Jenkins' remoting filter masks the value seamlessly.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Security, RBAC &amp; Secret Management" data-search="script approval security sandbox inProcessScriptApproval">
+<div class="qhead"><div class="num">14</div><div class="qmeta"><div class="category">Security, RBAC &amp; Secret Management</div><div class="question">A pipeline fails with `org.jenkinsci.plugins.scriptsecurity.sandbox.RejectedAccessException: Scripts not permitted to use method java.lang.System getenv`. What is the Groovy sandbox?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Jenkins executes pipelines inside an isolated Groovy sandbox to prevent unauthorized code execution (like reading arbitrary files on the controller or invoking <code>System.exit()</code>).</p><ul><li><strong>Root Cause:</strong> Any reflection, direct Java classloader call, or dangerous system call not on the whitelist requires administrator approval.</li><li><strong>How to Handle:</strong>
+  <ul>
+    <li><em>Best Practice (Fix the pipeline):</em> Avoid direct Java calls. Use pipeline DSL native syntax instead: use <code>env.MY_VAR</code> instead of <code>System.getenv("MY_VAR")</code>.</li>
+    <li><em>Admin Approval:</em> If an enterprise script legitimately requires the call, a Jenkins Admin must navigate to <em>Manage Jenkins &rarr; In-process Script Approval</em> and approve the specific signature.</li>
+    <li><em>Shared Library Exception:</em> Shared Libraries configured as "Implicitly Loaded" or trusted by administrators run outside the Groovy sandbox automatically.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Security, RBAC &amp; Secret Management" data-search="jenkins audit trail plugin compliance tracking who changed job">
+<div class="qhead"><div class="num">15</div><div class="qmeta"><div class="category">Security, RBAC &amp; Secret Management</div><div class="question">A production deployment pipeline was maliciously modified over the weekend. How do you configure Jenkins to log and alert on all configuration modifications?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Enable the <strong>Audit Trail Plugin</strong> and centralize audit logs to a SIEM.</p><ul><li><strong>Audit Trail Configuration:</strong> Install Audit Trail Plugin &rarr; Configure log destination (Syslog or rotating disk file) capturing URI patterns: <code>/configSubmit|/doDelete|/save</code>.</li><li><strong>Audit Log Records:</strong> Records the exact authenticated user, timestamp, target job name, and IP address whenever a job or system configuration is altered.</li><li><strong>GitOps Enforcement (JCasC + Pipeline as Code):</strong> For true enterprise immutability, disable job configuration from the UI entirely. Define all jobs via Multibranch Pipeline (Jenkinsfile in Git) and controller configs via JCasC. Every change must pass through a peer-reviewed Git Pull Request.</li></ul></div></article>
+
+<!-- Domain 4: Build Performance & Caching -->
+<section class="section-title"><h2>Build Performance &amp; Caching</h2><span>Maven/Gradle PVC caching · Docker-in-Docker vs Kaniko · Artifact archiving</span></section>
+
+<article class="qcard" data-category="Build Performance &amp; Caching" data-search="ephemeral agent maven cache m2 persistent volume claim nfs">
+<div class="qhead"><div class="num">16</div><div class="qmeta"><div class="category">Build Performance &amp; Caching</div><div class="question">Every time an ephemeral Kubernetes build pod spins up, Maven downloads the entire internet into `~/.m2/repository` (10 minutes wasted per build). How do you cache dependencies?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Mount a shared <strong>PersistentVolumeClaim (PVC)</strong> or dedicated cache volume to <code>/root/.m2</code> across build pods.</p><ul><li><strong>Step 1 (Create ReadWriteMany PVC or Fast Cloud SSD):</strong> Create a Kubernetes PVC (using AWS EFS, GCP Filestore, or local SSD storage class).</li><li><strong>Step 2 (Attach Volume in Pod Template):</strong>
+<pre>apiVersion: v1
+kind: Pod
+spec:
+  volumes:
+  - name: maven-repo-cache
+    persistentVolumeClaim:
+      claimName: shared-m2-cache-pvc
+  containers:
+  - name: maven
+    image: maven:3.9-eclipse-temurin-17
+    volumeMounts:
+    - mountPath: /root/.m2/repository
+      name: maven-repo-cache</pre></li><li><strong>Step 3 (Internal Repository Manager):</strong> Configure Maven's <code>settings.xml</code> to proxy all public artifact requests through an internal <strong>Nexus OSS or JFrog Artifactory</strong> instance running in the same cloud region, reducing artifact download time to milliseconds.</li></ul></div></article>
+
+<article class="qcard" data-category="Build Performance &amp; Caching" data-search="docker in docker dind kaniko rootless building in kubernetes security">
+<div class="qhead"><div class="num">17</div><div class="qmeta"><div class="category">Build Performance &amp; Caching</div><div class="question">Compare mounting `/var/run/docker.sock` vs Docker-in-Docker (DinD) vs Kaniko for building container images inside Jenkins Kubernetes agents.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Building Docker images inside Kubernetes requires balancing security against build speed:</p><ul><li><strong>Mounting <code>docker.sock</code>:</strong>
+  <ul>
+    <li><em>How:</em> Mounts the host node's Docker daemon socket into the pod.</li>
+    <li><em>Verdict:</em> <strong>Severe Security Risk.</strong> Container escape is trivial; any build script can run <code>docker run -v /:/host ...</code> and take over the entire Kubernetes worker node. Deprecated with containerd.</li>
+  </ul>
+</li><li><strong>Docker-in-Docker (DinD):</strong>
+  <ul>
+    <li><em>How:</em> Runs an independent Docker daemon inside the pod container.</li>
+    <li><em>Verdict:</em> Requires <code>securityContext.privileged: true</code>, which violates enterprise Pod Security Standards.</li>
+  </ul>
+</li><li><strong>Kaniko (Recommended Enterprise Standard):</strong>
+  <ul>
+    <li><em>How:</em> Google's open-source tool that builds Docker images inside user space completely rootless without requiring a Docker daemon or privileged permissions.</li>
+    <li><em>Verdict:</em> Safest, fully compliant with hardened Kubernetes clusters, and supports direct layer caching to registry.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Build Performance &amp; Caching" data-search="archiveArtifacts fingerprint nexus artifactory build promotion">
+<div class="qhead"><div class="num">18</div><div class="qmeta"><div class="category">Build Performance &amp; Caching</div><div class="question">Developers use `archiveArtifacts` to store 500MB `.war` and `.iso` files on the Jenkins controller. The controller disk fills up weekly. What is the proper artifact management strategy?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Jenkins is a build orchestrator, NOT a binary artifact repository. Storing heavy binaries on the controller disk degrades controller performance and breaks disaster recovery.</p><ul><li><strong>Remediation:</strong>
+  <ul>
+    <li>Ban heavy binary archiving in <code>archiveArtifacts</code>; restrict it strictly to test reports, coverage summaries, and text logs.</li>
+    <li>Deploy a dedicated Binary Repository Manager: <strong>JFrog Artifactory, Sonatype Nexus, or AWS S3 / GCP Cloud Storage</strong>.</li>
+    <li>In pipeline steps, publish versioned binaries directly to Artifactory/S3:
+<pre>stage('Publish Artifact') {
+    steps {
+        rtUpload (
+            serverId: 'artifactory-corp',
+            spec: '{"files": [{"pattern": "target/*.war", "target": "libs-release-local/payment-service/${env.BUILD_NUMBER}/"}]}'
+        )
+    }
+}</pre></li>
+    <li>Use <strong>Fingerprinting</strong> in Jenkins (<code>fingerprint: true</code>) to track artifact provenance without storing the physical bytes on the controller.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Build Performance &amp; Caching" data-search="pipeline stash unstash vs archiveartifacts transient data">
+<div class="qhead"><div class="num">19</div><div class="qmeta"><div class="category">Build Performance &amp; Caching</div><div class="question">What is the technical difference between `stash` / `unstash` and `archiveArtifacts`? When should an engineer use stash?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Both pass files from the build workspace, but with different lifecycles and performance characteristics:</p><ul><li><strong><code>stash / unstash:</code></strong>
+  <ul>
+    <li>Designed for <strong>transient</strong> intermediate files shared between different nodes/stages within the *same* pipeline execution (e.g. Node A compiles frontend assets; Node B unstashes them to package Docker).</li>
+    <li>Automatically purged when the build finishes; never retained permanently.</li>
+    <li>Files are gzipped and streamed through controller memory. (<em>Rule:</em> Keep stashes small, &lt;100MB).</li>
+  </ul>
+</li><li><strong><code>archiveArtifacts:</code></strong>
+  <ul>
+    <li>Designed for <strong>permanent</strong> long-term retention of completed deliverables accessible through the Jenkins Web UI / REST API after the build finishes.</li>
+    <li>Persists on controller disk according to the job's build discarder policy.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Build Performance &amp; Caching" data-search="milestone lock resource concurrent build race condition">
+<div class="qhead"><div class="num">20</div><div class="qmeta"><div class="category">Build Performance &amp; Caching</div><div class="question">Build #45 finishes deploying to Staging. However, older Build #44 ran slowly, finished 2 minutes later, and overwrote Staging with outdated code. How do you prevent out-of-order deployments?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use the <code>milestone</code> step or <code>disableConcurrentBuilds()</code>.</p><ul><li><strong>Option 1 (Milestone step):</strong> Guarantees newer builds cancel older builds that attempt to cross a deployment boundary:
+<pre>stage('Deploy to Staging') {
+    steps {
+        milestone(1) // Older builds attempting to pass milestone 1 will abort
+        sh './deploy-staging.sh'
+    }
+}</pre>
+If Build #45 passes <code>milestone(1)</code>, and older Build #44 subsequently attempts to pass <code>milestone(1)</code>, Jenkins automatically aborts Build #44.</li><li><strong>Option 2 (Disable Concurrent Builds):</strong>
+<pre>options {
+    disableConcurrentBuilds(abortPrevious: true)
+}</pre>
+Ensures only one build can execute at any time, canceling previous queued or in-flight runs.</li><li><strong>Option 3 (Lockable Resources Plugin):</strong> For shared physical staging servers, use <code>lock('staging-server') { ... }</code>.</li></ul></div></article>
+
+<!-- Domain 5: Disaster Recovery, HA & JCasC -->
+<section class="section-title"><h2>Disaster Recovery, HA &amp; JCasC</h2><span>Jenkins Configuration as Code · Active/Passive HA · JENKINS_HOME backup</span></section>
+
+<article class="qcard" data-category="Disaster Recovery, HA &amp; JCasC" data-search="jenkins configuration as code jcasc reproducible controller yaml">
+<div class="qhead"><div class="num">21</div><div class="qmeta"><div class="category">Disaster Recovery, HA &amp; JCasC</div><div class="question">Explain how Jenkins Configuration as Code (JCasC) works. How do you bootstrap a fully configured production Jenkins controller from scratch in 3 minutes?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p><strong>JCasC</strong> defines the entire Jenkins system configuration (system settings, security realms, credentials, cloud agents, plugins) in human-readable YAML files.</p><ul><li><strong>JCasC YAML Definition (<code>jenkins.yaml</code>):</strong>
+<pre>jenkins:
+  systemMessage: "Production Jenkins - Managed by Terraform &amp; JCasC"
+  numExecutors: 0
+  securityRealm:
+    github:
+      clientID: "${GITHUB_CLIENT_ID}"
+      clientSecret: "${GITHUB_CLIENT_SECRET}"
+  clouds:
+    - kubernetes:
+        name: "k8s-agents"
+        serverUrl: "https://kubernetes.default"</pre></li><li><strong>Bootstrap Automation:</strong>
+  <ul>
+    <li>Bake a custom container image with plugins pre-installed via <code>jenkins-plugin-cli --plugins-file plugins.txt</code>.</li>
+    <li>Mount <code>jenkins.yaml</code> via Kubernetes ConfigMap and set environment variable <code>CASC_JENKINS_CONFIG=/var/jenkins_config/jenkins.yaml</code>.</li>
+    <li>Upon container boot, JCasC configures Jenkins without a single manual click in the UI.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Disaster Recovery, HA &amp; JCasC" data-search="jenkins home state backup efs ebs disaster recovery active passive">
+<div class="qhead"><div class="num">22</div><div class="qmeta"><div class="category">Disaster Recovery, HA &amp; JCasC</div><div class="question">Jenkins does not natively support Active-Active multi-controller clustering. Design a resilient Active-Passive High Availability disaster recovery architecture for Jenkins on AWS.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Because Jenkins maintains in-memory locks on <code>JENKINS_HOME</code> XML files, dual concurrent write controllers will corrupt data. An Active-Passive failover architecture is required:</p><ul><li><strong>Compute &amp; Storage Architecture:</strong>
+  <ul>
+    <li>Run Jenkins controller in an Amazon EKS cluster or Auto Scaling Group (min: 1, max: 1).</li>
+    <li>Mount <code>JENKINS_HOME</code> on an <strong>Amazon EFS (Elastic File System)</strong> multi-AZ shared volume or fast replicated EBS volume with automated CSI volume snapshots every 2 hours.</li>
+  </ul>
+</li><li><strong>Failover Mechanics:</strong>
+  <ul>
+    <li>If Worker Node A or AZ 1 fails, Kubernetes liveness probes detect failure and terminate the pod.</li>
+    <li>Kubernetes schedules a replacement Jenkins controller pod in AZ 2, re-attaches the multi-AZ EFS volume, and restarts the controller.</li>
+    <li>RTO (Recovery Time Objective): &lt; 3 minutes. RPO (Recovery Point Objective): ~0 seconds for committed job configurations.</li>
+  </ul>
+</li><li>Agents run dynamically on spot worker nodes across all AZs.</li></ul></div></article>
+
+<article class="qcard" data-category="Disaster Recovery, HA &amp; JCasC" data-search="freestyle to declarative pipeline migration automated converter">
+<div class="qhead"><div class="num">23</div><div class="qmeta"><div class="category">Disaster Recovery, HA &amp; JCasC</div><div class="question">Your company has 200 legacy 'Freestyle' jobs configured with UI checkboxes and bash text boxes. How do you lead an enterprise migration to Declarative Pipelines?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Migrating legacy Freestyle jobs to Pipeline-as-Code requires a structured, phased automation plan:</p><ul><li><strong>Phase 1 (Audit &amp; Categorize):</strong> Use a Groovy script in the Script Console to audit all 200 jobs, categorizing build tools (Maven vs Gradle vs Shell) and post-build publishers.</li><li><strong>Phase 2 (Design Archetype Shared Libraries):</strong> Build 3 standard Shared Library templates representing 90% of job types.</li><li><strong>Phase 3 (Automated Translation):</strong> Use the Declarative Pipeline Directive Generator (Snippet Generator) to convert complex post-build UI actions (e.g. Email-ext, SonarQube, JUnit) into clean syntax blocks.</li><li><strong>Phase 4 (GitOps Onboarding):</strong> Commit the <code>Jenkinsfile</code> directly to each application repository and create a Multibranch Pipeline job. Archive the legacy Freestyle job with build permissions disabled to prevent accidental double-execution.</li></ul></div></article>
+
+<article class="qcard" data-category="Disaster Recovery, HA &amp; JCasC" data-search="plugin upgrade failed broken dependency safe restart backup">
+<div class="qhead"><div class="num">24</div><div class="qmeta"><div class="category">Disaster Recovery, HA &amp; JCasC</div><div class="question">An engineer updated 15 plugins at once and clicked 'Restart'. Jenkins fails to boot, throwing `java.lang.ClassNotFoundException` in a continuous crash-loop. How do you recover?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Plugin dependency mismatches are the leading cause of controller boot failures.</p><ul><li><strong>Step 1 (Inspect Logs):</strong> Review <code>jenkins.log</code> to identify the specific broken plugin name (e.g. <code>credentials-binding.jpi</code>).</li><li><strong>Step 2 (Safe Mode / Manual Reversion):</strong>
+  <ul>
+    <li>SSH into the host or access the persistent volume: <code>cd $JENKINS_HOME/plugins</code>.</li>
+    <li>Jenkins stores previous plugin versions with <code>.bak</code> extension. Revert the broken <code>.jpi</code> file:
+<pre>mv broken-plugin.jpi.bak broken-plugin.jpi</pre></li>
+    <li>Alternatively, download the previous stable <code>.hpi</code> file directly from <code>updates.jenkins.io/download/plugins/</code> and overwrite.</li>
+  </ul>
+</li><li><strong>Step 3 (Disable via File):</strong> If the plugin is not critical for boot, create a <code>.disabled</code> file to prevent Jenkins from loading it: <code>touch $JENKINS_HOME/plugins/broken-plugin.jpi.disabled</code>.</li><li><strong>Step 4 (Restart Controller):</strong> Restart Jenkins. Ensure all future plugin upgrades are tested in a staging controller first.</li></ul></div></article>
+
+<article class="qcard" data-category="Disaster Recovery, HA &amp; JCasC" data-search="thinbackup plugin s3 backup retention restore jenkins home">
+<div class="qhead"><div class="num">25</div><div class="qmeta"><div class="category">Disaster Recovery, HA &amp; JCasC</div><div class="question">What essential files inside `JENKINS_HOME` must be backed up, and what files should be explicitly excluded to keep backups lightweight?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>A complete <code>JENKINS_HOME</code> can be hundreds of gigabytes due to transient workspaces and build caches. A smart backup strategy only saves configuration state:</p><ul><li><strong>Must Include (Critical for Restore):</strong>
+  <ul>
+    <li><code>*.xml</code> (root configurations: <code>config.xml</code>, <code>credentials.xml</code>).</li>
+    <li><code>secrets/</code> directory (contains <code>master.key</code> and encryption keys).</li>
+    <li><code>jobs/*/config.xml</code> (job definitions and structure).</li>
+    <li><code>plugins/</code> (or ideally just <code>plugins.txt</code> list of installed versions).</li>
+    <li><code>users/</code> (local user profiles and SSH keys).</li>
+  </ul>
+</li><li><strong>Must Exclude (Heavy, transient data):</strong>
+  <ul>
+    <li><code>workspace/</code> (temporary working directories).</li>
+    <li><code>jobs/*/builds/*/archive/</code> (heavy compiled artifacts).</li>
+    <li><code>war/</code> (exploded UI webapp).</li>
+    <li><code>caches/</code> (tool and git caches).</li>
+  </ul>
+</li><li>Use <code>ThinBackup</code> plugin or an automated script backing up the filtered archive to Amazon S3 or Google Cloud Storage.</li></ul></div></article>
+
+<!-- Domain 6: Troubleshooting & Deadlocks -->
+<section class="section-title"><h2>Troubleshooting &amp; Deadlocks</h2><span>Thread dump jstack · Blocked queues · Zombie builds · Master CPU 100%</span></section>
+
+<article class="qcard" data-category="Troubleshooting &amp; Deadlocks" data-search="thread dump jstack deadlock controller hang unresponsive">
+<div class="qhead"><div class="num">26</div><div class="qmeta"><div class="category">Troubleshooting &amp; Deadlocks</div><div class="question">The Jenkins controller CPU is at 100%, and the web UI is completely unresponsive. How do you generate and analyze a JVM Thread Dump to identify the deadlock?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Generate a thread dump from the host OS or CLI when the UI is hung:</p><ul><li><strong>Step 1 (Generate Thread Dump):</strong>
+<pre># Find Jenkins Java PID
+PID=$(pgrep -f "jenkins.war")
+
+# Generate 3 thread dumps 10 seconds apart
+jstack -l $PID > thread_dump_1.txt
+sleep 10
+jstack -l $PID > thread_dump_2.txt</pre></li><li><strong>Step 2 (Analysis):</strong>
+  <ul>
+    <li>Inspect the bottom of the dump for explicit messages: <code>Found 1 deadlock</code>.</li>
+    <li>Search for threads in <code>BLOCKED</code> state waiting on monitor locks held by other threads.</li>
+    <li>Search for runaway threads in <code>RUNNABLE</code> state executing infinite Groovy loops or heavy XML deserialization.</li>
+  </ul>
+</li><li><strong>Step 3 (Mitigation):</strong> Identify the rogue plugin or job thread. If deadlock is unrecoverable, kill and restart the controller process (<code>kill -15 $PID</code>), then disable the offending plugin.</li></ul></div></article>
+
+<article class="qcard" data-category="Troubleshooting &amp; Deadlocks" data-search="zombie build cannot abort red x terminate kill hung pipeline">
+<div class="qhead"><div class="num">27</div><div class="qmeta"><div class="category">Troubleshooting &amp; Deadlocks</div><div class="question">A pipeline job has been running for 48 hours. Clicking the red 'Cancel' (X) button in the UI does nothing. How do you forcibly kill a zombie build?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Jenkins builds hang when waiting on an unkillable native I/O thread, dead socket, or unresponsive agent.</p><ul><li><strong>Method 1 (UI Kill Endpoint):</strong> Append <code>/kill</code> or <code>/term</code> directly to the build URL in the browser:
+<pre>https://jenkins.company.com/job/my-job/42/kill</pre>
+(where <code>/stop</code> is gentle interrupt, <code>/term</code> is forceful thread interruption, and <code>/kill</code> is hard termination).</li><li><strong>Method 2 (Script Console):</strong> Run this Groovy script in <em>Manage Jenkins &rarr; Script Console</em>:
+<pre>def job = Jenkins.instance.getItemByFullName("my-job")
+def build = job.getBuildByNumber(42)
+build.doKill()</pre></li><li><strong>Method 3 (Agent Termination):</strong> If the build is hung on an external agent, kill the agent container/process directly. Jenkins will detect agent loss and mark the build as failed.</li></ul></div></article>
+
+<article class="qcard" data-category="Troubleshooting &amp; Deadlocks" data-search="blocked build queue pending quiet period label mismatch">
+<div class="qhead"><div class="num">28</div><div class="qmeta"><div class="category">Troubleshooting &amp; Deadlocks</div><div class="question">50 jobs are stuck in the Build Queue displaying 'Waiting for next available executor'. Ample nodes exist. How do you troubleshoot blocked queues?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Investigate the root cause of executor matching failure:</p><ul><li><strong>Check 1 (Label Mismatch):</strong> Check the job's <code>agent { label 'docker-build' }</code>. Confirm that active agents actually have the exact label <code>docker-build</code> assigned, taking into account case sensitivity and typo mismatches.</li><li><strong>Check 2 (Node Usage Mode):</strong> Verify node setting <em>"Usage"</em>:
+  <ul>
+    <li>If set to <em>"Only build jobs with label expressions matching this node"</em>, jobs without an explicit matching label will be refused.</li>
+  </ul>
+</li><li><strong>Check 3 (Node Online Status &amp; Disk Limits):</strong> Check node status under <em>Nodes</em>. If the node's disk free space drops below the threshold (default: 1GB), Jenkins automatically marks the node <strong>Offline / Suspended</strong> due to disk space shortage.</li><li><strong>Check 4 (Cloud Provisioning Failure):</strong> In Kubernetes/EC2 cloud agent setups, check system logs for API quota limits or failure to schedule pods.</li></ul></div></article>
+
+<article class="qcard" data-category="Troubleshooting &amp; Deadlocks" data-search="scm polling vs webhook delay commit build trigger">
+<div class="qhead"><div class="num">29</div><div class="qmeta"><div class="category">Troubleshooting &amp; Deadlocks</div><div class="question">A developer pushes code to GitHub, but Jenkins does not trigger the build until 45 minutes later. How do you troubleshoot webhook delivery and processing latency?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Investigate the webhook path between GitHub and Jenkins:</p><ul><li><strong>Step 1 (GitHub Webhook Delivery Log):</strong> Check GitHub repository <em>Settings &rarr; Webhooks &rarr; Recent Deliveries</em>. Look for HTTP response codes (200 OK vs 504 Gateway Timeout vs 403 Forbidden).</li><li><strong>Step 2 (Reverse Proxy / Cloudflare Buffering):</strong> If the webhook payload took 45 minutes, check corporate WAF/Cloudflare rules or ingress controllers that may be queueing or rate-limiting incoming POST requests.</li><li><strong>Step 3 (Jenkins GitHub Plugin Queue):</strong> Inspect <code>https://jenkins.company.com/github-webhook/</code> logs. If the Jenkins controller thread pool is exhausted by heavy builds, incoming webhook listener threads are queued behind internal lock monitors.</li><li><strong>Step 4 (Branch Event Mismatch):</strong> Verify the webhook payload was sent for the exact branch configured in the pipeline's SCM branch specifier.</li></ul></div></article>
+
+<article class="qcard" data-category="Troubleshooting &amp; Deadlocks" data-search="restart jenkins safely safeRestart quiet down pending jobs">
+<div class="qhead"><div class="num">30</div><div class="qmeta"><div class="category">Troubleshooting &amp; Deadlocks</div><div class="question">You need to reboot the Jenkins controller for a critical security patch, but 20 production release pipelines are currently executing. How do you perform a Safe Restart?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use Jenkins <strong>Quiet Down</strong> and <strong>Safe Restart</strong> to prevent new jobs from starting while allowing active builds to complete gracefully.</p><ul><li><strong>Step 1 (Quiet Down):</strong> Access <code>https://jenkins.company.com/quietDown</code>.
+  <ul>
+    <li>Puts Jenkins into "Quiet Mode".</li>
+    <li>No new builds are accepted from webhooks or developers; incoming builds wait in the queue.</li>
+    <li>Existing active pipelines continue executing normally.</li>
+  </ul>
+</li><li><strong>Step 2 (Safe Restart):</strong> Access <code>https://jenkins.company.com/safeRestart</code>.
+  <ul>
+    <li>Jenkins monitors active jobs. As each in-flight pipeline finishes, Jenkins waits until the executor count reaches 0.</li>
+    <li>Once all in-progress builds finish cleanly, Jenkins shuts down and restarts the service.</li>
+  </ul>
+</li><li>Upon reboot, Quiet Mode is automatically disengaged and queued builds begin processing immediately without aborted builds.</li></ul></div></article>
+
+</div>
+
+<div class="probe" style="margin-top:28px"><b>Interviewer Scoring Guide:</b> A strong 5-year Jenkins/DevOps engineer should demonstrate deep mastery of modern Kubernetes ephemeral pod agents, understand Groovy CPS serialization errors, be proficient in JCasC (Configuration as Code), know how to size JVM heap and tune G1GC, and handle deadlocks with thread dumps.</div>
+
+<div class="footer">Jenkins Senior DevOps Scenario Pack &bull; 30 Scenario Questions &bull; NimbusWiz Tech &bull; Prepared for Class &amp; Technical Interview Practice</div>
+
+</main>
+
+<script>
+document.querySelectorAll('.qhead').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+function expandAll(open){document.querySelectorAll('.qcard').forEach(c=>c.classList.toggle('open',open))}
+const search=document.getElementById('search'),filter=document.getElementById('filter');
+function apply(){
+  const q=search.value.toLowerCase(),f=filter.value;
+  document.querySelectorAll('.qcard').forEach(c=>{
+    const ok=(f==='all'||c.dataset.category===f)&&(c.dataset.search.toLowerCase().includes(q)||c.innerText.toLowerCase().includes(q));
+    c.style.display=ok?'':'none';
+  });
+  document.querySelectorAll('.section-title').forEach(s=>{
+    let n=s.nextElementSibling,visible=false;
+    while(n && !n.classList.contains('section-title')){
+      if(n.classList.contains('qcard') && n.style.display!=='none') visible=true;
+      n=n.nextElementSibling;
+    }
+    s.style.display=visible?'':'none';
+  });
+}
+search.addEventListener('input',apply);filter.addEventListener('change',apply);
+</script>
+</body>
+</html>

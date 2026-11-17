@@ -44,8 +44,8 @@
         <p class="text-gray-300 text-lg">Comprehensive Q&A for Shell Scripting, Git, Jenkins, AWS, and Live Production Scenarios</p>
         <div class="flex flex-wrap justify-center gap-2 mt-3">
             <span class="px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800 text-xs font-semibold text-cyan-300">310+ Core Topic Flashcards</span>
-            <span class="px-3 py-1 rounded-full bg-blue-950/80 border border-blue-800 text-xs font-semibold text-blue-300">122 Real-World Scenarios (4-5 Yrs)</span>
-            <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs text-gray-300">AWS · K8s · Terraform · Shell · Git · Jenkins</span>
+            <span class="px-3 py-1 rounded-full bg-blue-950/80 border border-blue-800 text-xs font-semibold text-blue-300">272 Real-World Scenarios (4-5 Yrs)</span>
+            <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs text-gray-300">AWS · K8s · Terraform · Git · Actions · GCP · Jenkins · Prom &amp; Graf</span>
         </div>
     </header>
 
@@ -55,53 +55,118 @@
             <div>
                 <div class="flex items-center gap-2">
                     <span class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">New in /Interview/ Subfolder</span>
-                    <span class="text-xs text-gray-400">Production Troubleshooting for 4–5+ Years Experience</span>
+                    <span class="text-xs text-gray-400">Production Troubleshooting for 4–5+ Years Experience (272 Questions)</span>
                 </div>
                 <h2 class="text-xl md:text-2xl font-bold text-white mt-1">Real-World Scenario Interview Banks</h2>
-                <p class="text-sm text-gray-300">Hands-on failure investigations, architectural trade-offs, and live triage questions.</p>
+                <p class="text-sm text-gray-300">Hands-on failure investigations, architectural trade-offs, and live triage questions across 8 core disciplines.</p>
             </div>
             <a href="Interview/index.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-cyan-300 hover:text-white bg-slate-800 hover:bg-cyan-600 rounded-xl border border-cyan-500/40 transition whitespace-nowrap self-start md:self-auto">
-                <span>Browse Interview Hub</span> &rarr;
+                <span>Browse All 8 Scenario Banks</span> &rarr;
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
             <!-- AWS Scenarios Card -->
-            <a href="Interview/AWS_Scenarios_Interview_questions.html" class="group block p-4 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-2xl">☁️</span>
-                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">30 Scenarios</span>
+            <a href="Interview/AWS_Scenarios_Interview_questions.html" class="group block p-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xl">☁️</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">30 Scenarios</span>
                 </div>
-                <h3 class="text-base font-semibold text-white group-hover:text-cyan-300 transition">AWS Scenario Questions</h3>
-                <p class="text-xs text-gray-400 mt-1 line-clamp-2">High CPU, ALB health checks, VPC peering, S3 recovery, RDS failover, IAM key compromise & DR.</p>
-                <div class="mt-3 text-xs font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    Practice AWS Scenarios &rarr;
+                <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition">AWS Cloud</h3>
+                <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">High CPU, ALB 503, VPC peering, S3 recovery, RDS failover, IAM & DR.</p>
+                <div class="mt-2 text-[11px] font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Practice AWS &rarr;
                 </div>
             </a>
 
             <!-- Kubernetes Scenarios Card -->
-            <a href="Interview/kubernetes_scenario_interview_Questions.html" class="group block p-4 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-2xl">☸️</span>
-                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">62 Scenarios</span>
+            <a href="Interview/kubernetes_scenario_interview_Questions.html" class="group block p-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xl">☸️</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">62 Scenarios</span>
                 </div>
-                <h3 class="text-base font-semibold text-white group-hover:text-cyan-300 transition">Kubernetes Scenario Questions</h3>
-                <p class="text-xs text-gray-400 mt-1 line-clamp-2">CrashLoopBackOff, Pending pods, ImagePullBackOff, Ingress 503, EKS VPC CNI & Zero-downtime upgrades.</p>
-                <div class="mt-3 text-xs font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    Practice K8s Scenarios &rarr;
+                <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition">Kubernetes</h3>
+                <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">CrashLoopBackOff, Pending pods, Ingress 503, EKS VPC CNI & Upgrades.</p>
+                <div class="mt-2 text-[11px] font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Practice K8s &rarr;
                 </div>
             </a>
 
             <!-- Terraform Scenarios Card -->
-            <a href="Interview/terraform_scenarios_interview_questions.html" class="group block p-4 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-2xl">🏗️</span>
-                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">30 Scenarios</span>
+            <a href="Interview/terraform_scenarios_interview_questions.html" class="group block p-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xl">🏗️</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">30 Scenarios</span>
                 </div>
-                <h3 class="text-base font-semibold text-white group-hover:text-cyan-300 transition">Terraform Scenario Questions</h3>
-                <p class="text-xs text-gray-400 mt-1 line-clamp-2">State deletion recovery, safe imports, OIDC pipelines, drift detection & destroy safeguards.</p>
-                <div class="mt-3 text-xs font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    Practice Terraform Scenarios &rarr;
+                <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition">Terraform IaC</h3>
+                <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">State deletion recovery, OIDC pipelines, drift detection & Destroy protection.</p>
+                <div class="mt-2 text-[11px] font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Practice Terraform &rarr;
+                </div>
+            </a>
+
+            <!-- Git Scenarios Card -->
+            <a href="Interview/git_scenarios_interview_questions.html" class="group block p-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xl">🌿</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-teal-500/20 text-teal-300 border border-teal-500/30">30 Scenarios</span>
+                </div>
+                <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition">Git Version Control</h3>
+                <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">Reflog recovery, hard reset undo, leaked secret purge, submodules & worktree.</p>
+                <div class="mt-2 text-[11px] font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Practice Git &rarr;
+                </div>
+            </a>
+
+            <!-- GitHub Actions Card -->
+            <a href="Interview/github_actions_scenarios_interview_questions.html" class="group block p-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xl">⚡</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">30 Scenarios</span>
+                </div>
+                <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition">GitHub Actions</h3>
+                <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">ARC runners on K8s, OIDC cloud auth, Docker layer caching & Pwn requests.</p>
+                <div class="mt-2 text-[11px] font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Practice Actions &rarr;
+                </div>
+            </a>
+
+            <!-- GCP Scenarios Card -->
+            <a href="Interview/gcp_scenarios_interview_questions.html" class="group block p-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xl">🌐</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-blue-600/20 text-blue-300 border border-blue-600/30">30 Scenarios</span>
+                </div>
+                <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition">Google Cloud (GCP)</h3>
+                <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">GKE Workload Identity, Shared VPC, Cloud NAT exhaustion, Cloud SQL HA.</p>
+                <div class="mt-2 text-[11px] font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Practice GCP &rarr;
+                </div>
+            </a>
+
+            <!-- Jenkins Scenarios Card -->
+            <a href="Interview/jenkins_scenarios_interview_questions.html" class="group block p-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xl">👨‍💻</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">30 Scenarios</span>
+                </div>
+                <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition">Jenkins Automation</h3>
+                <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">K8s pod agents, Shared Libraries, CPS serialization, JCasC, and deadlocks.</p>
+                <div class="mt-2 text-[11px] font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Practice Jenkins &rarr;
+                </div>
+            </a>
+
+            <!-- Prometheus & Grafana Card -->
+            <a href="Interview/prometheus_grafana_scenarios_interview_questions.html" class="group block p-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 hover:border-cyan-400/50 transition">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xl">📊</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-orange-500/20 text-orange-300 border border-orange-500/30">30 Scenarios</span>
+                </div>
+                <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition">Prom &amp; Grafana</h3>
+                <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">High cardinality OOM, PromQL rate vs irate, Alertmanager trees & Thanos.</p>
+                <div class="mt-2 text-[11px] font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Practice Observability &rarr;
                 </div>
             </a>
         </div>
@@ -176,26 +241,31 @@
             // Add Scenario Sets section at top of sidebar
             const scenarioSectionHeader = document.createElement('div');
             scenarioSectionHeader.className = 'text-xs font-bold uppercase tracking-widest text-cyan-400 px-3 pt-1 pb-1 flex items-center justify-between';
-            scenarioSectionHeader.innerHTML = '<span>🔥 Production Scenarios</span><span class="text-[10px] bg-cyan-900/60 px-1.5 py-0.5 rounded text-cyan-300 border border-cyan-700/60 font-mono">122 Qs</span>';
+            scenarioSectionHeader.innerHTML = '<span>🔥 Scenario Banks</span><span class="text-[10px] bg-cyan-900/60 px-1.5 py-0.5 rounded text-cyan-300 border border-cyan-700/60 font-mono">272 Qs</span>';
             tabsContainer.appendChild(scenarioSectionHeader);
 
             const scenarioLinks = [
                 { label: '☁️ AWS Scenarios', count: '30 Qs', href: 'Interview/AWS_Scenarios_Interview_questions.html' },
                 { label: '☸️ K8s Scenarios', count: '62 Qs', href: 'Interview/kubernetes_scenario_interview_Questions.html' },
                 { label: '🏗️ Terraform Scenarios', count: '30 Qs', href: 'Interview/terraform_scenarios_interview_questions.html' },
-                { label: '📂 All Interview Sets', count: 'Hub', href: 'Interview/index.html' }
+                { label: '🌿 Git Scenarios', count: '30 Qs', href: 'Interview/git_scenarios_interview_questions.html' },
+                { label: '⚡ GitHub Actions', count: '30 Qs', href: 'Interview/github_actions_scenarios_interview_questions.html' },
+                { label: '🌐 GCP Cloud', count: '30 Qs', href: 'Interview/gcp_scenarios_interview_questions.html' },
+                { label: '👨‍💻 Jenkins Automation', count: '30 Qs', href: 'Interview/jenkins_scenarios_interview_questions.html' },
+                { label: '📊 Prom & Grafana', count: '30 Qs', href: 'Interview/prometheus_grafana_scenarios_interview_questions.html' },
+                { label: '📂 All 8 Scenario Sets', count: 'Hub', href: 'Interview/index.html' }
             ];
 
             scenarioLinks.forEach(item => {
                 const link = document.createElement('a');
                 link.href = item.href;
-                link.className = 'block text-left px-4 py-2.5 bg-slate-800/90 hover:bg-slate-700 text-gray-200 hover:text-cyan-300 rounded-xl transition border border-slate-700 hover:border-cyan-500/40 text-sm font-semibold flex items-center justify-between shadow-sm';
-                link.innerHTML = `<span>${item.label}</span><span class="text-xs text-cyan-400 font-mono font-normal">${item.count} &rarr;</span>`;
+                link.className = 'block text-left px-3.5 py-2 bg-slate-800/90 hover:bg-slate-700 text-gray-200 hover:text-cyan-300 rounded-xl transition border border-slate-700 hover:border-cyan-500/40 text-xs font-semibold flex items-center justify-between shadow-sm';
+                link.innerHTML = `<span>${item.label}</span><span class="text-[11px] text-cyan-400 font-mono font-normal">${item.count} &rarr;</span>`;
                 tabsContainer.appendChild(link);
             });
 
             const topicDivider = document.createElement('div');
-            topicDivider.className = 'text-xs font-bold uppercase tracking-widest text-gray-400 px-3 pt-4 pb-1 border-t border-slate-800 mt-2';
+            topicDivider.className = 'text-xs font-bold uppercase tracking-widest text-gray-400 px-3 pt-3 pb-1 border-t border-slate-800 mt-2';
             topicDivider.textContent = 'Topic Flashcards (310+ Q&A)';
             tabsContainer.appendChild(topicDivider);
 

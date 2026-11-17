@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCP Mock Interview | 30 Real-World Scenarios</title>
+<style>
+:root{--navy:#0f172a;--blue:#1a73e8;--cyan:#00b0ff;--ink:#202124;--muted:#5f6368;--bg:#f8f9fa;--card:#ffffff;--line:#dadce0;--green:#1e8e3e;--orange:#f29900;--red:#d93025}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+.hero{background:linear-gradient(130deg,#1a202c,#174ea6 60%,#185abc);color:white;padding:48px 22px 38px}
+.wrap{max-width:1100px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;color:#8ab4f8}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:12px 0}.hero p{max-width:780px;color:#e8eaed;font-size:16px;margin:12px 0 22px}
+.pills{display:flex;gap:9px;flex-wrap:wrap}.pill{border:1px solid #ffffff40;border-radius:30px;padding:6px 14px;font-size:12px;color:#f8f9fa;background:rgba(255,255,255,0.08)}
+main{padding:26px 18px 60px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-48px;position:relative}
+.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:0 8px 22px rgba(60,64,67,0.08)}.stat strong{display:block;font-size:24px;color:var(--blue)}.stat span{font-size:12px;color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 14px}.toolbar input,.toolbar select{background:white;border:1px solid #dadce0;border-radius:9px;padding:11px 13px;font:inherit;color:var(--ink)}.toolbar input{flex:1;min-width:220px}
+button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;font-weight:700;background:var(--blue);color:white;font-size:14px}.secondary{background:#e8f0fe;color:#174ea6}
+.section-title{display:flex;align-items:center;gap:10px;margin:32px 0 14px}.section-title h2{font-size:19px;margin:0;color:#202124}.section-title span{font-size:12px;color:var(--muted)}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:0 3px 12px rgba(60,64,67,0.04);transition:border-color 0.2s}
+.qcard:hover{border-color:#4285f4}
+.qhead{padding:17px 18px;display:flex;gap:13px;align-items:flex-start;cursor:pointer}.num{flex:0 0 34px;height:34px;border-radius:9px;background:#e8f0fe;color:#1a73e8;display:grid;place-items:center;font-weight:800}
+.qmeta{flex:1}.category{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);font-weight:800}.question{font-size:16px;font-weight:750;margin:3px 0 0;color:#202124}.chev{color:var(--muted);font-size:20px;transition:.2s}.qcard.open .chev{transform:rotate(180deg)}
+.answer{display:none;border-top:1px solid var(--line);padding:18px 20px 22px 65px;background:#ffffff}.qcard.open .answer{display:block}.answer h4{margin:10px 0 4px;color:#1a73e8;font-size:13px;text-transform:uppercase;letter-spacing:.5px}.answer p{margin:6px 0}.answer ul{margin:8px 0;padding-left:20px}.answer li{margin:4px 0}
+.probe{background:#e6f4ea;border-left:3px solid var(--green);padding:10px 13px;border-radius:0 8px 8px 0;margin-top:14px;color:#137333;font-size:13px}
+code{background:#f1f3f4;color:#202124;padding:2px 6px;border-radius:4px;font-size:.92em;font-family:ui-monospace,monospace}
+pre{background:#202124;color:#f8f9fa;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px}
+.footer{color:var(--muted);font-size:12px;text-align:center;padding:26px}
+@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.answer{padding:15px 16px}.qhead{padding:14px}.hero{padding-top:34px}}
+@media print{body{background:white}.hero{padding:24px;background:#185abc!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.site-nav,.stats,.toolbar,.footer button{display:none!important}main{padding:10px}.qcard{break-inside:avoid;box-shadow:none}.answer{display:block!important}.chev{display:none}}
+</style>
+</head>
+<body>
+<!-- Top Global Navigation Bar -->
+<nav class="site-nav" style="background:#0b1329;border-bottom:1px solid #1e293b;padding:12px 20px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.35);">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <a href="../interview_prep.html" style="color:#38bdf8;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:6px;">
+        &larr; Return to Interview Prep Dashboard
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="../index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        🏠 Master Hub
+      </a>
+      <span style="color:#334155;">|</span>
+      <a href="index.html" style="color:#94a3b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+        📂 Interview Subfolder
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <span style="color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Scenario Sets:</span>
+      <a href="AWS_Scenarios_Interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☁️ AWS (30)</a>
+      <a href="kubernetes_scenario_interview_Questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">☸️ K8s (62)</a>
+      <a href="terraform_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🏗️ TF (30)</a>
+      <a href="git_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">🌿 Git (30)</a>
+      <a href="github_actions_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">⚡ GHA (30)</a>
+      <a href="gcp_scenarios_interview_questions.html" style="background:#1a73e8;color:#fff;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #8ab4f8;">🌐 GCP (30)</a>
+      <a href="jenkins_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">👨‍💻 Jenkins (30)</a>
+      <a href="prometheus_grafana_scenarios_interview_questions.html" style="background:#1e293b;color:#cbd5e1;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;border:1px solid #334155;">📊 Prom &amp; Graf (30)</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Google Cloud Architecture &amp; DevOps Practice</div>
+<h1>GCP: 30 Real-World Scenario Questions</h1>
+<p>Practical scenarios for Senior Cloud &amp; DevOps Engineers (~5 years experience). Covers GKE Workload Identity, Shared VPC networking, Cloud NAT port exhaustion, Cloud SQL HA failover, VPC Service Controls, Cloud Run serverless, and FinOps cost optimization.</p>
+<div class="pills"><span class="pill">5-year experience level</span><span class="pill">30 practical scenarios</span><span class="pill">GKE · VPC · Security · FinOps</span><span class="pill">Filter · Search · Print Ready</span></div>
+</div></header>
+
+<main class="wrap">
+<div class="stats">
+<div class="stat"><strong>30</strong><span>Scenarios</span></div><div class="stat"><strong>6</strong><span>Core Domains</span></div><div class="stat"><strong>~60–90m</strong><span>Mock Duration</span></div><div class="stat"><strong>5 Yrs</strong><span>Target Exp</span></div>
+</div>
+
+<div class="toolbar">
+<input id="search" type="search" placeholder="Search GCP scenarios (e.g. GKE, Shared VPC, Cloud NAT, Cloud SQL)…">
+<select id="filter">
+  <option value="all">All domains</option>
+  <option>Google Kubernetes Engine (GKE)</option>
+  <option>Networking &amp; Hybrid Connectivity</option>
+  <option>Compute Engine &amp; Serverless</option>
+  <option>Cloud Storage &amp; Databases</option>
+  <option>IAM, Governance &amp; Security</option>
+  <option>Observability &amp; Cost Optimization</option>
+</select>
+<button class="secondary" onclick="expandAll(true)">Expand all</button><button class="secondary" onclick="expandAll(false)">Collapse all</button><button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div id="questions">
+
+<!-- Domain 1: Google Kubernetes Engine (GKE) -->
+<section class="section-title"><h2>Google Kubernetes Engine (GKE)</h2><span>Workload Identity · Private clusters · Autoscaling · Cloud Armor Ingress</span></section>
+
+<article class="qcard" data-category="Google Kubernetes Engine (GKE)" data-search="gke workload identity service account pod security credentials">
+<div class="qhead"><div class="num">01</div><div class="qmeta"><div class="category">Google Kubernetes Engine (GKE)</div><div class="question">Your security team forbids storing GCP Service Account JSON keys in Kubernetes Secrets. How do you implement GKE Workload Identity for a payment pod accessing Cloud Storage?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>GKE <strong>Workload Identity</strong> binds a Kubernetes Service Account (KSA) directly to a Google Cloud IAM Service Account (GSA), eliminating permanent keys entirely.</p><ul><li><strong>Step 1 (Enable on Cluster):</strong> Ensure GKE cluster has Workload Identity enabled (<code>--workload-pool=PROJECT_ID.svc.id.goog</code>).</li><li><strong>Step 2 (Create GSA &amp; Grant Permissions):</strong>
+<pre>gcloud iam service-accounts create payment-gsa
+gcloud projects add-iam-policy-binding PROJECT_ID \
+  --member="serviceAccount:payment-gsa@PROJECT_ID.iam.gserviceaccount.com" \
+  --role="roles/storage.objectViewer"</pre></li><li><strong>Step 3 (Bind KSA to GSA via IAM):</strong>
+<pre>gcloud iam service-accounts add-iam-policy-binding payment-gsa@PROJECT_ID.iam.gserviceaccount.com \
+  --role="roles/iam.workloadIdentityUser" \
+  --member="serviceAccount:PROJECT_ID.svc.id.goog[payments/payment-ksa]"</pre></li><li><strong>Step 4 (Annotate KSA in Kubernetes):</strong>
+<pre>apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: payment-ksa
+  namespace: payments
+  annotations:
+    iam.gke.io/gcp-service-account: payment-gsa@PROJECT_ID.iam.gserviceaccount.com</pre></li><li>Pods running with <code>serviceAccountName: payment-ksa</code> automatically receive short-lived OAuth2 tokens from GKE metadata server.</li></ul><div class="probe"><b>Interviewer Probe:</b> What happens if GKE Node metadata concealment is disabled? Workload Identity relies on the GKE metadata server interception; without it, pods could potentially query the underlying VM's node service account.</div></div></article>
+
+<article class="qcard" data-category="Google Kubernetes Engine (GKE)" data-search="gke private cluster worker nodes internet access cloud nat master authorized networks">
+<div class="qhead"><div class="num">02</div><div class="qmeta"><div class="category">Google Kubernetes Engine (GKE)</div><div class="question">After migrating to a Private GKE Cluster, pods cannot pull external public Docker images or connect to third-party APIs. How do you fix this while keeping nodes private?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>In a Private GKE Cluster, worker node VMs do not have external public IP addresses. Outbound internet connectivity must be provided via <strong>Cloud NAT</strong>.</p><ul><li><strong>Root Cause:</strong> Nodes have only private RFC 1918 IPs. Egress traffic to external registries (Docker Hub, Quay) drops because there is no route to an internet gateway without NAT.</li><li><strong>Remediation:</strong>
+  <ul>
+    <li>Create a Cloud Router in the cluster's VPC region:
+<pre>gcloud compute routers create gke-nat-router --network=my-vpc --region=us-central1</pre></li>
+    <li>Attach a Cloud NAT gateway:
+<pre>gcloud compute routers nats create gke-nat-gw \
+  --router=gke-nat-router \
+  --region=us-central1 \
+  --auto-allocate-nat-external-ips \
+  --nat-all-subnet-ip-ranges</pre></li>
+  </ul>
+</li><li><strong>Internal Google APIs:</strong> For Google services (GCR, Artifact Registry, Cloud Storage), enable <strong>Private Google Access</strong> on the subnet so traffic reaches Google APIs via internal Google backbone routing without consuming NAT gateway bandwidth.</li></ul></div></article>
+
+<article class="qcard" data-category="Google Kubernetes Engine (GKE)" data-search="gke autopilot vs standard cluster trade-offs operational overhead">
+<div class="qhead"><div class="num">03</div><div class="qmeta"><div class="category">Google Kubernetes Engine (GKE)</div><div class="question">Compare GKE Autopilot vs GKE Standard for a financial enterprise with strict compliance and custom daemonsets. When would you reject Autopilot?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>GKE Autopilot manages node provisioning, security hardening, and OS upgrades automatically, billing strictly per pod CPU/RAM request rather than per VM. However, it imposes strict guardrails:</p><ul><li><strong>Reject Autopilot when:</strong>
+  <ul>
+    <li>Privileged Containers &amp; Host Access: Security or monitoring agents (Falco, Sysdig, custom eBPF daemons) requiring <code>privileged: true</code> or <code>hostPath</code> volumes are blocked by Autopilot's admission controller.</li>
+    <li>Custom OS or Kernel tuning: You cannot modify <code>sysctl</code> kernel parameters or install custom host OS packages.</li>
+    <li>Specialized Hardware &amp; Spot GPU clusters: Standard offers finer-grained control over GPU drivers, local NVMe SSD RAID arrays, and TPU configurations.</li>
+  </ul>
+</li><li><strong>Choose Autopilot when:</strong> General microservices and standard web workloads where offloading node security patching, OS hardening, and pod bin-packing saves substantial DevOps engineering overhead.</li></ul></div></article>
+
+<article class="qcard" data-category="Google Kubernetes Engine (GKE)" data-search="gke ingress cloud armor managed certificate ddos waf">
+<div class="qhead"><div class="num">04</div><div class="qmeta"><div class="category">Google Kubernetes Engine (GKE)</div><div class="question">How do you deploy a publicly accessible service on GKE protected by Google Cloud Armor (WAF/DDoS) and Google-managed auto-renewing SSL certificates?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use GKE's native Google Cloud Load Balancing (GCLB) Ingress controller configured via <code>ManagedCertificate</code> and <code>BackendConfig</code> CRDs.</p><ul><li><strong>Step 1 (Managed Certificate CRD):</strong>
+<pre>apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata: { name: app-ssl-cert }
+spec:
+  domains: ["api.company.com"]</pre></li><li><strong>Step 2 (BackendConfig for Cloud Armor):</strong>
+<pre>apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata: { name: app-backend-config }
+spec:
+  securityPolicy:
+    name: "cloud-armor-ddos-policy"</pre></li><li><strong>Step 3 (Associate BackendConfig to Service):</strong> Add annotation to the Kubernetes Service:
+<pre>annotations:
+  cloud.google.com/backend-config: '{"default": "app-backend-config"}'</pre></li><li><strong>Step 4 (GKE Ingress):</strong>
+<pre>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    networking.gke.io/managed-certificates: "app-ssl-cert"
+    kubernetes.io/ingress.global-static-ip-name: "app-static-ip"</pre></li></ul></div></article>
+
+<article class="qcard" data-category="Google Kubernetes Engine (GKE)" data-search="gke node pool upgrade zero downtime surge upgrade pdb">
+<div class="qhead"><div class="num">05</div><div class="qmeta"><div class="category">Google Kubernetes Engine (GKE)</div><div class="question">A GKE node pool upgrade is scheduled. How do you guarantee zero downtime for production workloads and prevent PodDisruptionBudget (PDB) deadlocks?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>GKE node upgrades drain and recreate nodes. Zero downtime requires tuning surge upgrade settings and Pod Disruption Budgets.</p><ul><li><strong>Configure Surge Upgrades:</strong> Set <code>max-surge-nodes=20%</code> and <code>max-unavailable-nodes=0</code> in the node pool settings:
+<pre>gcloud container node-pools update production-pool \
+  --cluster=prod-gke \
+  --max-surge-upgrade=2 \
+  --max-unavailable-upgrade=0</pre>
+This ensures GKE provisions new healthy replacement nodes first before draining old nodes.</li><li><strong>Prevent PDB Deadlocks:</strong> If a deployment has <code>replicas: 1</code> and a PDB with <code>minAvailable: 1</code>, GKE drain commands will hang indefinitely waiting for available pods. Ensure deployments have at least 2 replicas across distinct AZs with anti-affinity, or configure PDB with <code>maxUnavailable: 1</code>.</li><li><strong>Graceful Termination:</strong> Configure <code>preStop</code> hooks and adequate <code>terminationGracePeriodSeconds</code> (e.g. 60s) so inflight HTTP connections finish processing before SIGKILL.</li></ul></div></article>
+
+<!-- Domain 2: Networking & Hybrid Connectivity -->
+<section class="section-title"><h2>Networking &amp; Hybrid Connectivity</h2><span>Shared VPC · Cloud NAT exhaustion · Cloud Router · Cloud Interconnect</span></section>
+
+<article class="qcard" data-category="Networking &amp; Hybrid Connectivity" data-search="shared vpc host project service project multi project isolation">
+<div class="qhead"><div class="num">06</div><div class="qmeta"><div class="category">Networking &amp; Hybrid Connectivity</div><div class="question">Explain the architecture of a GCP Shared VPC. How do you delegate subnet access to a Service Project (dev team) without giving them network admin rights?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>A <strong>Shared VPC</strong> centralizes network management in a dedicated Host Project while allowing workloads in multiple Service Projects to attach to shared subnets.</p><ul><li><strong>Architecture:</strong>
+  <ul>
+    <li><em>Host Project:</em> Owned by Network/Infra team. Contains the VPC, subnets, Cloud Routers, Cloud NAT, and firewall rules.</li>
+    <li><em>Service Projects:</em> Owned by application teams (e.g. <code>payments-proj</code>, <code>analytics-proj</code>). Contains GKE clusters and Compute Engine VMs attached to Host Project subnets.</li>
+  </ul>
+</li><li><strong>Subnet Delegation via IAM:</strong>
+  <ul>
+    <li>At the Host Project level, do NOT grant <code>Compute Network Admin</code>.</li>
+    <li>Grant <code>Compute Network User</code> (<code>roles/compute.networkUser</code>) strictly on the specific subnet (e.g. <code>payments-subnet-us-east1</code>) to the Service Project's Compute Engine default service account and Cloud Services SA:
+<pre>gcloud compute networks subnets add-iam-policy-binding payments-subnet \
+  --project=host-net-prod --region=us-east1 \
+  --member="serviceAccount:123456@cloudservices.gserviceaccount.com" \
+  --role="roles/compute.networkUser"</pre></li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Networking &amp; Hybrid Connectivity" data-search="cloud nat port exhaustion packet drop translation failure">
+<div class="qhead"><div class="num">07</div><div class="qmeta"><div class="category">Networking &amp; Hybrid Connectivity</div><div class="question">During a high-traffic flash sale, microservices report connection timeouts to external third-party payment gateways. Cloud NAT logs show dropped packets. How do you troubleshoot and fix NAT port exhaustion?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>This is classic <strong>Cloud NAT source port exhaustion</strong>. Each Cloud NAT IP has ~64,000 ephemeral TCP ports available.</p><ul><li><strong>Diagnosis:</strong> Query Cloud Monitoring for <code>compute.googleapis.com/nat/dropped_sent_packets_count</code> with metric label <code>reason: OUT_OF_RESOURCES</code>.</li><li><strong>Immediate Fix:</strong>
+  <ul>
+    <li>Allocate additional static external IP addresses to the Cloud NAT gateway:
+<pre>gcloud compute routers nats update gke-nat-gw \
+  --router=my-router --region=us-central1 \
+  --nat-external-ip-pool=nat-ip-1,nat-ip-2,nat-ip-3,nat-ip-4</pre>
+Each IP adds 64,000 translation tuples.</li>
+    <li>Enable Dynamic Port Allocation (<code>--enable-dynamic-port-allocation</code>), allowing Cloud NAT to scale port allocations dynamically per VM based on actual traffic demand rather than reserving fixed static blocks.</li>
+  </ul>
+</li><li><strong>Application Layer Fix:</strong> Ensure application HTTP clients reuse connections via HTTP Keep-Alive and connection pooling rather than establishing a fresh TCP handshake per API call.</li></ul></div></article>
+
+<article class="qcard" data-category="Networking &amp; Hybrid Connectivity" data-search="cloud interconnect dedicated partner ha vpn bgp failover">
+<div class="qhead"><div class="num">08</div><div class="qmeta"><div class="category">Networking &amp; Hybrid Connectivity</div><div class="question">Design an Enterprise Hybrid Connectivity architecture between an on-premise datacenter and GCP with a 99.99% availability SLA. What are the requirements?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Achieving Google's 99.99% SLA requires dual Cloud Interconnect connections across two separate colocation facilities (metres) and two Cloud Routers in a single region:</p><ul><li><strong>Topology for 99.99%:</strong>
+  <ul>
+    <li>Two Dedicated Interconnect connections in Colocation Facility A terminating on Edge Availability Domain 1 &amp; 2.</li>
+    <li>Two Dedicated Interconnect connections in Colocation Facility B terminating on Edge Availability Domain 1 &amp; 2.</li>
+    <li>Four redundant VLAN attachments connected to two Cloud Routers in the target VPC region.</li>
+  </ul>
+</li><li><strong>Routing &amp; BGP:</strong> Run dynamic BGP routing. Configure BGP Multi-Exit Discriminator (MED) and AS-Path prepending so traffic uses the primary link under normal operations and automatically fails over sub-second upon BGP session loss.</li><li><strong>Cost-effective Alternative (99.9% SLA):</strong> Dual Cloud Interconnect + HA VPN over the internet as backup failover path.</li></ul></div></article>
+
+<article class="qcard" data-category="Networking &amp; Hybrid Connectivity" data-search="vpc peering overlapping cidr non transitive routing solution">
+<div class="qhead"><div class="num">09</div><div class="qmeta"><div class="category">Networking &amp; Hybrid Connectivity</div><div class="question">VPC A is peered with VPC B. VPC B is peered with VPC C. Why can VMs in VPC A not communicate with VPC C, and what architectures resolve this?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>GCP VPC Network Peering is strictly <strong>non-transitive</strong>. Peering directly connects only the two participating VPCs; it never routes traffic across intermediary networks.</p><ul><li><strong>Root Cause:</strong> GCP does not forward traffic through a peered network to a third network.</li><li><strong>Architecture Solutions:</strong>
+  <ul>
+    <li><em>Solution 1 (Full Mesh Peering):</em> If scale is small, establish a direct VPC peering connection between VPC A and VPC C.</li>
+    <li><em>Solution 2 (Network Connectivity Center - NCC):</em> Use GCP's Network Connectivity Center with Cloud Routers to establish a hub-and-spoke transit topology.</li>
+    <li><em>Solution 3 (Private Service Connect - PSC):</em> If VPC A only needs access to a specific service or database hosted in VPC C, publish an internal load balancer in VPC C as a PSC Service Attachment and consume it via a private endpoint IP in VPC A.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Networking &amp; Hybrid Connectivity" data-search="private google access restricted virtual ip storage bigquery">
+<div class="qhead"><div class="num">10</div><div class="qmeta"><div class="category">Networking &amp; Hybrid Connectivity</div><div class="question">A VM in a private subnet with no internet access or Cloud NAT needs to write backups to Cloud Storage. How do you configure Private Google Access?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Enable <strong>Private Google Access</strong> on the subnet level to route Google API traffic over Google's internal network.</p><ul><li><strong>Step 1 (Enable on Subnet):</strong>
+<pre>gcloud compute networks subnets update my-private-subnet \
+  --region=us-central1 \
+  --enable-private-ip-google-access</pre></li><li><strong>Step 2 (DNS Resolution):</strong> Ensure the VM resolves <code>storage.googleapis.com</code> to Google's internal VIP range:
+  <ul>
+    <li>Default VIP (<code>199.36.153.8/30</code> - <code>private.googleapis.com</code>) OR</li>
+    <li>Restricted VIP (<code>199.36.153.4/30</code> - <code>restricted.googleapis.com</code>), which only permits access to VPC Service Controls-compliant APIs.</li>
+  </ul>
+</li><li><strong>Step 3 (Cloud DNS Zone):</strong> Create a private DNS zone for <code>googleapis.com</code> with CNAME pointing to <code>restricted.googleapis.com</code>. Traffic travels directly across Google's high-speed internal backbone with zero egress bandwidth charges.</li></ul></div></article>
+
+<!-- Domain 3: Compute Engine & Serverless -->
+<section class="section-title"><h2>Compute Engine &amp; Serverless</h2><span>MIGs · Rolling updates · Cloud Run · Serverless VPC access</span></section>
+
+<article class="qcard" data-category="Compute Engine &amp; Serverless" data-search="mig rolling replacement zero downtime instance template">
+<div class="qhead"><div class="num">11</div><div class="qmeta"><div class="category">Compute Engine &amp; Serverless</div><div class="question">How do you execute an automated rolling update of a 50-node regional Managed Instance Group (MIG) with new application code with zero downtime?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use Compute Engine Managed Instance Group <strong>Rolling Replacement</strong> paired with an updated Instance Template and health checks.</p><ul><li><strong>Step 1 (Create New Instance Template):</strong> Bake a new Golden Image via Packer or specify new startup script/container metadata:
+<pre>gcloud compute instance-templates create app-template-v2 --source-instance-template=app-template-v1 ...</pre></li><li><strong>Step 2 (Trigger Rolling Action with Safety Gates):</strong>
+<pre>gcloud compute instance-groups managed rolling-action start-update prod-mig \
+  --region=us-central1 \
+  --version=template=app-template-v2 \
+  --max-surge=5 \
+  --max-unavailable=0 \
+  --min-ready=60s \
+  --replacement-method=substitute</pre>
+</li><li><strong>Parameters Explained:</strong>
+  <ul>
+    <li><code>--max-unavailable=0:</code> Never terminates an existing VM until a replacement is verified healthy.</li>
+    <li><code>--max-surge=5:</code> Creates 5 new VMs in advance to maintain capacity.</li>
+    <li><code>--min-ready=60s:</code> Requires newly provisioned instances to pass application health checks for at least 60 seconds before draining and deleting old instances.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Compute Engine &amp; Serverless" data-search="cloud run serverless vpc access connector private database cloud sql">
+<div class="qhead"><div class="num">12</div><div class="qmeta"><div class="category">Compute Engine &amp; Serverless</div><div class="question">A containerized microservice on Cloud Run needs to query an internal Cloud SQL PostgreSQL database with a private IP. How do you establish connectivity?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Cloud Run operates in a fully managed Google-owned VPC. Connecting to internal private VPC IPs requires a <strong>Serverless VPC Access Connector</strong> or <strong>Direct VPC Egress</strong>.</p><ul><li><strong>Modern Method (Direct VPC Egress):</strong> Supported natively in modern Cloud Run without paying for dedicated connector VMs:
+<pre>gcloud run deploy billing-api \
+  --image=gcr.io/my-proj/billing:latest \
+  --network=my-internal-vpc \
+  --subnet=cloud-run-subnet \
+  --vpc-egress=private-ranges-only</pre></li><li><strong>Alternative (Serverless VPC Access Connector):</strong>
+  <ul>
+    <li>Create connector: <code>gcloud compute networks vpc-access connectors create my-conn --region=us-central1 --network=my-vpc --range=10.8.0.0/28</code>.</li>
+    <li>Attach connector to Cloud Run service: <code>--vpc-connector=my-conn --vpc-egress=private-ranges-only</code>.</li>
+  </ul>
+</li><li><strong>Security:</strong> Set <code>--vpc-egress=private-ranges-only</code> so only RFC 1918 traffic routes through the VPC, while general external API calls exit directly to the internet without incurring VPC NAT egress costs.</li></ul></div></article>
+
+<article class="qcard" data-category="Compute Engine &amp; Serverless" data-search="cloud run cold start concurrency min instances scaling latency">
+<div class="qhead"><div class="num">13</div><div class="qmeta"><div class="category">Compute Engine &amp; Serverless</div><div class="question">A Java Spring Boot service deployed on Cloud Run suffers from 8-second cold starts, causing p99 latency spikes. How do you optimize this without moving to GKE?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Cold starts in Cloud Run can be mitigated through configuration tuning, concurrency management, and runtime optimization:</p><ul><li><strong>Step 1 (Set Minimum Instances):</strong> Keep a warm pool running 24/7 to absorb baseline traffic:
+<pre>gcloud run services update my-service --min-instances=3</pre>
+Billed at a heavily discounted idle rate when instances are idle.</li><li><strong>Step 2 (Tune Concurrency):</strong> Unlike AWS Lambda (1 request per container), Cloud Run containers handle up to 1,000 concurrent requests (default: 80). Set <code>--concurrency=80</code> so a single warm container handles bursts without triggering new instance cold starts.</li><li><strong>Step 3 (Startup CPU Boost):</strong> Enable CPU allocation during container initialization:
+<pre>gcloud run services update my-service --cpu-boost</pre>
+Temporarily allocates extra vCPU cores during JVM boot, cutting cold start time in half.</li><li><strong>Step 4 (GraalVM Native Image):</strong> Compile Java Spring Boot into a standalone native Linux binary via GraalVM, reducing startup time from 8 seconds to &lt;80 milliseconds.</li></ul></div></article>
+
+<article class="qcard" data-category="Compute Engine &amp; Serverless" data-search="spot vms preemptible compute engine batch processing graceful shutdown">
+<div class="qhead"><div class="num">14</div><div class="qmeta"><div class="category">Compute Engine &amp; Serverless</div><div class="question">How do you architect a massive batch video encoding pipeline on Compute Engine using Spot VMs with automated preemption handling?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Spot VMs offer 60–91% discounts over On-Demand VMs, but can be preempted by Google at any time with a 30-second warning.</p><ul><li><strong>Step 1 (Graceful Preemption Hook):</strong> Compute Engine exposes a 30-second ACPI shutdown signal. Run a daemon polling local metadata:
+<pre>curl http://metadata.google.internal/computeMetadata/v1/instance/preempted -H "Metadata-Flavor: Google"</pre>
+Upon receiving <code>TRUE</code>, immediately save active video chunk state to a Cloud Storage checkpoint and notify the job queue (Cloud Pub/Sub).</li><li><strong>Step 2 (MIG Auto-healing &amp; Multi-Zone):</strong> Configure the Managed Instance Group to span all zones in a region. Enable instance redistribution so if one zone faces Spot capacity shortages, the MIG automatically provisions Spot VMs in adjacent zones.</li><li><strong>Step 3 (Idempotent Workflows):</strong> Ensure tasks are chunked into small, idempotent jobs (&lt;5 minutes per segment) so lost instances only replay minimal progress.</li></ul></div></article>
+
+<article class="qcard" data-category="Compute Engine &amp; Serverless" data-search="pubsub dead letter queue dlq eventarc exponential backoff">
+<div class="qhead"><div class="num">15</div><div class="qmeta"><div class="category">Compute Engine &amp; Serverless</div><div class="question">A poison-pill message in a Cloud Pub/Sub subscription causes downstream Cloud Run subscribers to crash in an infinite crash-loop. How do you isolate it?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Without redrive protection, unacknowledged messages are retried infinitely by Pub/Sub, overwhelming consumers.</p><ul><li><strong>Configure Dead-Letter Queue (DLQ):</strong>
+  <ul>
+    <li>Create a dead-letter topic: <code>gcloud pubsub topics create orders-dlq</code>.</li>
+    <li>Attach a redrive policy to the main subscription with <code>--max-delivery-attempts=5</code>:
+<pre>gcloud pubsub subscriptions update orders-sub \
+  --dead-letter-topic=orders-dlq \
+  --max-delivery-attempts=5</pre></li>
+  </ul>
+</li><li><strong>How it works:</strong> If a subscriber fails or times out 5 times, Pub/Sub automatically forwards the malformed message to <code>orders-dlq</code> and acknowledges it in the primary queue, restoring normal pipeline processing.</li><li><strong>Alerting:</strong> Set up a Cloud Monitoring alert on <code>pubsub.googleapis.com/subscription/dead_letter_message_count &gt; 0</code> to notify engineers for manual payload inspection.</li></ul></div></article>
+
+<!-- Domain 4: Cloud Storage & Databases -->
+<section class="section-title"><h2>Cloud Storage &amp; Databases</h2><span>Cloud SQL HA failover · Read replicas · Storage lifecycle · BigQuery slots</span></section>
+
+<article class="qcard" data-category="Cloud Storage &amp; Databases" data-search="cloud sql high availability failover standby instance regional">
+<div class="qhead"><div class="num">16</div><div class="qmeta"><div class="category">Cloud Storage &amp; Databases</div><div class="question">Explain how Cloud SQL High Availability (HA) failover works. What happens to the IP address and active connections during an unexpected primary zone failure?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Cloud SQL HA uses a <strong>Regional Multi-Zone</strong> configuration consisting of a Primary instance in Zone A and a Standby instance in Zone B with synchronous disk replication.</p><ul><li><strong>Failover Mechanics:</strong>
+  <ul>
+    <li>Google's control plane monitors primary heartbeat. If Zone A fails or hardware crashes, failover triggers in ~60–90 seconds.</li>
+    <li>The persistent regional disk attaches to the standby instance in Zone B.</li>
+    <li><strong>IP Address Persistence:</strong> The static private/public IP address of the instance remains identical. It is automatically reassigned to the standby instance; applications DO NOT need DNS changes or configuration updates.</li>
+  </ul>
+</li><li><strong>Application Impact:</strong> All active TCP connections are severed. Applications must implement connection retry logic with exponential backoff to reconnect seamlessly once the standby completes database recovery.</li></ul></div></article>
+
+<article class="qcard" data-category="Cloud Storage &amp; Databases" data-search="cloud storage bucket versioning accidental delete recovery soft delete">
+<div class="qhead"><div class="num">17</div><div class="qmeta"><div class="category">Cloud Storage &amp; Databases</div><div class="question">An engineer accidentally deleted all objects in a production Cloud Storage bucket. How do Object Versioning and the new GCS Soft Delete protect you?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Google Cloud Storage provides two complementary recovery mechanisms:</p><ul><li><strong>Object Versioning:</strong> When enabled, deleting an object does not erase data; it places a <strong>delete marker</strong> as the live version while retaining the old version as a noncurrent generation.
+  <ul>
+    <li>To restore: list noncurrent objects and copy them back:
+<pre>gcloud storage cp gs://my-bucket/file#1712345678 gs://my-bucket/file</pre></li>
+  </ul>
+</li><li><strong>Soft Delete (Default in GCS):</strong> Even if versioning is disabled or an object is permanently deleted, GCS retains deleted objects in a soft-deleted state for a retention duration (default: 7 days) before permanent erasure.
+  <ul>
+    <li>To restore soft-deleted files:
+<pre>gcloud storage restore gs://my-bucket/** --restore-all-soft-deleted</pre></li>
+  </ul>
+</li><li><strong>Bucket Lock (Retention Policy):</strong> In compliance environments, configure Object Retention Lock with WORM (Write Once, Read Many) compliance to mathematically forbid deletions until retention expires.</li></ul></div></article>
+
+<article class="qcard" data-category="Cloud Storage &amp; Databases" data-search="cloud sql read replica replication lag query offloading">
+<div class="qhead"><div class="num">18</div><div class="qmeta"><div class="category">Cloud Storage &amp; Databases</div><div class="question">During peak reporting hours, read queries slow down the primary transactional Cloud SQL database. How do you deploy and monitor cross-zone Read Replicas?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Offload heavy analytics and reporting traffic by creating asynchronous Read Replicas.</p><ul><li><strong>Step 1 (Deploy Read Replica):</strong>
+<pre>gcloud sql instances create db-replica-1 \
+  --master-instance-name=db-primary \
+  --zone=us-central1-c \
+  --tier=db-custom-8-32768</pre></li><li><strong>Step 2 (Split Application Data Sources):</strong> In application code (e.g. Hibernate, Prisma, TypeORM), configure dual connection pools:
+  <ul>
+    <li>Write Pool (INSERT, UPDATE, DELETE): Points to primary IP.</li>
+    <li>Read Pool (SELECT): Points to replica IP or internal Load Balancer balancing across multiple replicas.</li>
+  </ul>
+</li><li><strong>Step 3 (Replication Lag Monitoring):</strong> Monitor <code>database/replication/replica_lag</code> in Cloud Monitoring. If replication lag exceeds SLA (e.g. &gt;5 seconds), alert on disk IOPS bottlenecks or long-running queries on the replica.</li></ul></div></article>
+
+<article class="qcard" data-category="Cloud Storage &amp; Databases" data-search="bigquery cost spike slot allocation flat rate on demand reservation">
+<div class="qhead"><div class="num">19</div><div class="qmeta"><div class="category">Cloud Storage &amp; Databases</div><div class="question">The monthly BigQuery bill unexpectedly jumps from $2,000 to $18,000 due to unoptimized queries scanning terabytes of data. How do you enforce cost guardrails?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>BigQuery on-demand pricing charges \$6.25 per TB scanned. Unpartitioned tables and `SELECT *` quickly burn budgets.</p><ul><li><strong>Step 1 (Table Partitioning &amp; Clustering):</strong> Mandate partitioning by date/timestamp and clustering by frequently filtered keys (e.g. `customer_id`). Queries with `WHERE created_at &gt;= '2026-01-01'` scan only relevant partitions, reducing scanned bytes by 95%+.</li><li><strong>Step 2 (Query Byte Limits):</strong> Enforce maximum billing tier or maximum bytes billed per query:
+<pre># In bq CLI or client libraries:
+--maximum_bytes_billed=107374182400 # Fails queries scanning >100GB</pre></li><li><strong>Step 3 (BigQuery Reservations / Capacity Pricing):</strong> Switch from On-Demand to Editions (Standard / Enterprise) with a fixed baseline of Slots (e.g. 100 slots) with Autoscaling slot limits, capping maximum financial liability regardless of query volume.</li></ul></div></article>
+
+<article class="qcard" data-category="Cloud Storage &amp; Databases" data-search="firestore datastore spanner multi region global consistency">
+<div class="qhead"><div class="num">20</div><div class="qmeta"><div class="category">Cloud Storage &amp; Databases</div><div class="question">When should an enterprise migrate from Cloud SQL or Firestore to Cloud Spanner? What trade-offs must be evaluated?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p><strong>Cloud Spanner</strong> is Google's globally distributed, horizontally scalable relational database that provides ANSI SQL and ACID transactions with 99.999% availability via TrueTime atomic clocks.</p><ul><li><strong>Migrate to Spanner when:</strong>
+  <ul>
+    <li>Data scale exceeds single-instance limits of Cloud SQL (&gt;64TB or &gt;100,000 writes/sec).</li>
+    <li>True Multi-Region Active-Active read/write consistency without asynchronous replication lag is required.</li>
+    <li>Zero maintenance downtime requirements (Spanner scales nodes and schema updates online with zero locks).</li>
+  </ul>
+</li><li><strong>Trade-offs:</strong>
+  <ul>
+    <li>Cost: Base entry cost is significantly higher (~$0.90/node-hr or modern Spanner processing units).</li>
+    <li>Schema Design: Anti-patterns like monotonically increasing auto-incrementing primary keys create severe write hotspots; keys must be UUIDv4 or bit-reversed hashes.</li>
+  </ul>
+</li></ul></div></article>
+
+<!-- Domain 5: IAM, Governance & Security -->
+<section class="section-title"><h2>IAM, Governance &amp; Security</h2><span>VPC Service Controls · Org policies · Service account keys · Cloud KMS</span></section>
+
+<article class="qcard" data-category="IAM, Governance &amp; Security" data-search="vpc service controls service perimeter data exfiltration ingress egress">
+<div class="qhead"><div class="num">21</div><div class="qmeta"><div class="category">IAM, Governance &amp; Security</div><div class="question">What is VPC Service Controls (VPC SC), and how does it prevent a rogue developer with valid IAM credentials from exfiltrating data to their personal Cloud Storage bucket?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Standard IAM controls <em>who</em> has access, but cannot control <em>from where</em> or <em>to where</em> data moves. <strong>VPC Service Controls</strong> defines a security perimeter around Google Cloud resources.</p><ul><li><strong>How it works:</strong>
+  <ul>
+    <li>Sensitive projects (containing Cloud Storage, BigQuery) are placed inside a <strong>Service Perimeter</strong>.</li>
+    <li>API requests to Google services are only permitted from within authorized VPC networks inside the perimeter or through explicit Ingress/Egress perimeter bridge rules.</li>
+  </ul>
+</li><li><strong>Preventing Exfiltration:</strong> Even if a rogue employee generates a valid IAM token with <code>Storage Admin</code>, if they attempt to copy data from the corporate bucket inside the perimeter to a personal bucket outside the perimeter (<code>gsutil cp gs://corp-bucket/* gs://personal-bucket/</code>), Google's API gateway blocks the transfer with a <code>VPC Service Controls perimeter violation</code>.</li></ul></div></article>
+
+<article class="qcard" data-category="IAM, Governance &amp; Security" data-search="organization policy constraints disable service account key creation">
+<div class="qhead"><div class="num">22</div><div class="qmeta"><div class="category">IAM, Governance &amp; Security</div><div class="question">How do you mathematically prevent developers across all 50 GCP projects in your organization from creating downloaded Service Account JSON keys?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Enforce an <strong>Organization Policy Constraint</strong> at the root Organization or Folder node in the GCP resource hierarchy.</p><ul><li>Apply constraint <code>iam.disableServiceAccountKeyCreation</code>:
+<pre>gcloud resource-manager org-policies enable-enforce \
+  iam.disableServiceAccountKeyCreation \
+  --organization=ORGANIZATION_ID</pre></li><li><strong>Impact:</strong>
+  <ul>
+    <li>The <code>gcloud iam service-accounts keys create</code> command and the GCP Console "Create Key" button will immediately return an HTTP 412 Precondition Failed error for all users, including Project Owners.</li>
+    <li>Existing workloads are unaffected, but no new static JSON key files can ever be generated.</li>
+    <li>Developers must adopt modern alternatives: Workload Identity on GKE, Cloud Run runtime service accounts, or Workload Identity Federation for external CI/CD (GitHub/GitLab).</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="IAM, Governance &amp; Security" data-search="compromised service account key incident response revoke audit">
+<div class="qhead"><div class="num">23</div><div class="qmeta"><div class="category">IAM, Governance &amp; Security</div><div class="question">A GCP Service Account private key was committed to a public GitHub repo. Walk through your emergency containment and incident response steps.</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Treat this as an active intrusion event:</p><ul><li><strong>Step 1 (Immediate Revocation):</strong> Delete or disable the specific key ID immediately:
+<pre>gcloud iam service-accounts keys delete KEY_ID \
+  --iam-account=sa-name@project.iam.gserviceaccount.com</pre>
+Deleting the key immediately invalidates all new OAuth token generation requests worldwide within seconds.</li><li><strong>Step 2 (Audit CloudTrail/Cloud Audit Logs):</strong> Query Cloud Logging for unauthorized API actions made with that service account principal:
+<pre>protoPayload.authenticationInfo.principalEmail="sa-name@project.iam.gserviceaccount.com"
+severity>=ERROR OR protoPayload.methodName=~"compute.*create|iam.*setIamPolicy"</pre>
+Check for rogue VM deployments, altered firewall rules, or newly created backdoors.</li><li><strong>Step 3 (Rotate &amp; Migrate):</strong> Delete the compromised Service Account and replace it with Workload Identity Federation.</li></ul></div></article>
+
+<article class="qcard" data-category="IAM, Governance &amp; Security" data-search="cloud kms cmek customer managed encryption keys envelope encryption">
+<div class="qhead"><div class="num">24</div><div class="qmeta"><div class="category">IAM, Governance &amp; Security</div><div class="question">How does Cloud KMS Customer-Managed Encryption Keys (CMEK) work with Envelope Encryption in Cloud Storage and Compute Engine?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>By default, Google encrypts all data at rest using Google-managed keys. <strong>CMEK</strong> gives the customer full custody over key rotation, revocation, and cryptographic destruction.</p><ul><li><strong>Envelope Encryption Architecture:</strong>
+  <ul>
+    <li><em>DEK (Data Encryption Key):</em> A fast symmetric key generated locally by the storage service to encrypt the raw data blocks.</li>
+    <li><em>KEK (Key Encryption Key):</em> A master key managed inside Cloud KMS (or Cloud HSM) used exclusively to encrypt and protect the DEK.</li>
+  </ul>
+</li><li><strong>Operation:</strong> When writing data, Cloud Storage requests Cloud KMS to encrypt the DEK. The encrypted DEK is stored alongside the ciphertext. When reading, Cloud Storage sends the wrapped DEK to Cloud KMS for decryption.</li><li><strong>Kill-Switch Capability:</strong> If a regulatory or security breach occurs, disabling or destroying the master KEK in Cloud KMS instantly renders all encrypted disks and buckets permanently unreadable without needing to zero-fill petabytes of disk storage.</li></ul></div></article>
+
+<article class="qcard" data-category="IAM, Governance &amp; Security" data-search="iam conditions context aware access temporary elevated role">
+<div class="qhead"><div class="num">25</div><div class="qmeta"><div class="category">IAM, Governance &amp; Security</div><div class="question">How do you grant an SRE temporary Production Compute Admin permissions that automatically expire in 4 hours and are only valid from corporate office IP addresses?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use <strong>IAM Conditions</strong> based on time expiration and Context-Aware Access levels.</p><ul><li>Apply an IAM Policy Binding with a Common Expression Language (CEL) condition:
+<pre>gcloud projects add-iam-policy-binding prod-project \
+  --member="user:sre-lead@company.com" \
+  --role="roles/compute.admin" \
+  --condition='expression=request.time &lt; timestamp("2026-11-18T18:00:00Z") &amp;&amp; accessPolicies/123/accessLevels/corporate_vpn_only,title=sre_emergency_access'</pre>
+</li><li><strong>How it works:</strong>
+  <ul>
+    <li><code>request.time:</code> At 18:00 UTC, Google's IAM authorization system immediately revokes all permissions automatically without requiring an engineer to remember to run a removal command.</li>
+    <li><code>corporate_vpn_only:</code> Enforces that requests originated from approved corporate IP ranges validated by Access Context Manager.</li>
+  </ul>
+</li></ul></div></article>
+
+<!-- Domain 6: Observability & Cost Optimization -->
+<section class="section-title"><h2>Observability &amp; Cost Optimization</h2><span>Cloud Logging exclusions · Metrics · FinOps · CUDs · Billing alerts</span></section>
+
+<article class="qcard" data-category="Observability &amp; Cost Optimization" data-search="cloud logging cost explosion log exclusion filter sink">
+<div class="qhead"><div class="num">26</div><div class="qmeta"><div class="category">Observability &amp; Cost Optimization</div><div class="question">A high-throughput GKE cluster ingests 50TB of debug logs per month into Cloud Logging, resulting in a $25,000 monthly bill. How do you slash this cost immediately?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Cloud Logging charges \$0.50 per GiB ingested after the initial free tier. Immediate remediation requires configuring <strong>Log Exclusion Filters</strong> on the default `_Default` log bucket.</p><ul><li><strong>Step 1 (Add Exclusion Filter):</strong> In Logging &rarr; Log Router, edit the <code>_Default</code> sink to exclude verbose health checks and debug noise:
+<pre>resource.type="k8s_container" AND
+(jsonPayload.level="DEBUG" OR httpRequest.userAgent=~"GoogleHC|kube-probe")</pre></li><li><strong>Step 2 (Selective Long-term Routing):</strong> If compliance requires retaining raw logs, create a custom Log Sink that routes logs directly to a cold <strong>Cloud Storage Bucket</strong> (Archive class: \$0.0012/GB vs \$0.50/GB in Logging) without ingesting them into Cloud Logging's active indexing engine.</li><li><strong>Step 3 (Application Log Level):</strong> Update Helm/Kustomize environment variables to set <code>LOG_LEVEL=INFO</code> across all production deployments. Ingestion drops by 80–90% instantly.</li></ul></div></article>
+
+<article class="qcard" data-category="Observability &amp; Cost Optimization" data-search="committed use discounts cud compute engine spend based resource based">
+<div class="qhead"><div class="num">27</div><div class="qmeta"><div class="category">Observability &amp; Cost Optimization</div><div class="question">Explain the difference between Resource-Based Committed Use Discounts (CUDs) and Flexible/Spend-Based CUDs in GCP. How do you calculate optimal commitment?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>CUDs provide up to 57–70% discounts in exchange for a 1-year or 3-year commitment:</p><ul><li><strong>Resource-Based CUDs:</strong>
+  <ul>
+    <li>You commit to a specific quantity of vCPUs and RAM within a single machine family (e.g. N2 or C2) in a specific region.</li>
+    <li><em>Discount:</em> Highest (up to 55–70%).</li>
+    <li><em>Risk:</em> Inflexible. If you switch architecture from N2 to ARM (Tau T2A) or change regions, the commitment does not apply.</li>
+  </ul>
+</li><li><strong>Flexible / Spend-Based CUDs:</strong>
+  <ul>
+    <li>You commit to spending a minimum dollar amount per hour on compute across any region, machine family, Cloud Run, or GKE Autopilot.</li>
+    <li><em>Discount:</em> Slightly lower (~28–46%), but highly resilient to architectural changes.</li>
+  </ul>
+</li><li><strong>Best Practice:</strong> Commit to 60–70% of historical minimum baseline compute using Resource-Based CUDs, and cover floating/elastic workloads with Flexible CUDs or Spot VMs.</li></ul></div></article>
+
+<article class="qcard" data-category="Observability &amp; Cost Optimization" data-search="cloud monitoring mql alerting slo sli error budget">
+<div class="qhead"><div class="num">28</div><div class="qmeta"><div class="category">Observability &amp; Cost Optimization</div><div class="question">How do you implement an SRE Error Budget Burn Rate alert in Cloud Monitoring for an API with a 99.9% availability SLO over a 30-day rolling window?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Modern SRE practices alert on <strong>burn rates</strong> rather than instantaneous error thresholds to detect outages without alert fatigue.</p><ul><li><strong>SLI (Service Level Indicator):</strong> Ratio of good requests (HTTP status &lt; 500) over total valid requests.</li><li><strong>Error Budget:</strong> 100% - 99.9% = 0.1% tolerated failure over 30 days.</li><li><strong>Multi-Window Multi-Burn-Rate Alert:</strong>
+  <ul>
+    <li><em>High Burn Rate (14.4x burn):</em> Consumes 2% of budget in 1 hour &rarr; Immediate PagerDuty page to on-call engineer.</li>
+    <li><em>Slow Burn Rate (6x burn):</em> Consumes 5% of budget in 6 hours &rarr; Ticket/email notification during business hours.</li>
+  </ul>
+</li><li>Configure the policy using Cloud Monitoring Service Monitoring or MQL (Monitoring Query Language) measuring the <code>loadbalancing.googleapis.com/https/request_count</code> metric.</li></ul></div></article>
+
+<article class="qcard" data-category="Observability &amp; Cost Optimization" data-search="cloud trace latency bottleneck distributed tracing open telemetry">
+<div class="qhead"><div class="num">29</div><div class="qmeta"><div class="category">Observability &amp; Cost Optimization</div><div class="question">An end-to-end checkout request takes 4.5 seconds across 6 microservices. How do you implement distributed tracing using OpenTelemetry and Google Cloud Trace to identify the bottleneck?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>Use distributed context propagation with OpenTelemetry exported to Cloud Trace.</p><ul><li><strong>Context Propagation:</strong> Ensure HTTP clients and servers propagate the W3C <code>traceparent</code> header (e.g. <code>traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01</code>) across service hops.</li><li><strong>OpenTelemetry Collector:</strong> Instrument applications with OpenTelemetry SDK and export spans to Google Cloud Trace via the Google Cloud Trace OpenTelemetry Exporter.</li><li><strong>Trace Waterfall Inspection:</strong> Open Google Cloud Trace in the GCP console:
+  <ul>
+    <li>The timeline waterfall visualizes parent and child spans.</li>
+    <li>Instantly highlights whether latency is caused by database serialization in Service 4, an external payment gateway call in Service 5, or network serialization.</li>
+  </ul>
+</li></ul></div></article>
+
+<article class="qcard" data-category="Observability &amp; Cost Optimization" data-search="gcp billing budget pubsub programmatic notification cap shutdown">
+<div class="qhead"><div class="num">30</div><div class="qmeta"><div class="category">Observability &amp; Cost Optimization</div><div class="question">Can a GCP Billing Budget automatically shut down your resources if spending exceeds $10,000, and how do you implement automated cost-capping safely?</div></div><div class="chev">⌄</div></div>
+<div class="answer"><h4>Strong answer</h4><p>By default, GCP Billing Budgets DO NOT automatically stop resources; they only send notification emails. Automatic shutdown requires programmatic action.</p><ul><li><strong>Implementation:</strong>
+  <ul>
+    <li>Configure Billing Budget to publish threshold alerts (50%, 90%, 100%) to a <strong>Cloud Pub/Sub topic</strong>.</li>
+    <li>Subscribe a <strong>Cloud Function / Cloud Run service</strong> to the topic.</li>
+    <li>When cost &gt; \$10,000, the Cloud Function disables billing on the project via Cloud Billing API:
+<pre>gcloud billing projects unlink PROJECT_ID</pre></li>
+  </ul>
+</li><li><strong>Production Warning &amp; Safer Alternative:</strong> Disabling billing immediately shuts down all VMs, databases, and GKE clusters, potentially destroying state and causing data loss!
+  <ul>
+    <li><em>Safer Automation:</em> Instead of unlinking billing, have the Cloud Function scale non-production GKE node pools or MIGs to 0 replicas, or disable external IP addresses.</li>
+  </ul>
+</li></ul></div></article>
+
+</div>
+
+<div class="probe" style="margin-top:28px"><b>Interviewer Scoring Guide:</b> A strong 5-year GCP Cloud/DevOps candidate should demonstrate deep expertise in GKE security (Workload Identity, private clusters), enterprise networking (Shared VPC, Cloud NAT, Interconnect), and production reliability (Cloud SQL HA failover, Cloud Run concurrency, and FinOps budgeting).</div>
+
+<div class="footer">GCP Senior Cloud &amp; DevOps Scenario Pack &bull; 30 Scenario Questions &bull; NimbusWiz Tech &bull; Prepared for Class &amp; Technical Interview Practice</div>
+
+</main>
+
+<script>
+document.querySelectorAll('.qhead').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+function expandAll(open){document.querySelectorAll('.qcard').forEach(c=>c.classList.toggle('open',open))}
+const search=document.getElementById('search'),filter=document.getElementById('filter');
+function apply(){
+  const q=search.value.toLowerCase(),f=filter.value;
+  document.querySelectorAll('.qcard').forEach(c=>{
+    const ok=(f==='all'||c.dataset.category===f)&&(c.dataset.search.toLowerCase().includes(q)||c.innerText.toLowerCase().includes(q));
+    c.style.display=ok?'':'none';
+  });
+  document.querySelectorAll('.section-title').forEach(s=>{
+    let n=s.nextElementSibling,visible=false;
+    while(n && !n.classList.contains('section-title')){
+      if(n.classList.contains('qcard') && n.style.display!=='none') visible=true;
+      n=n.nextElementSibling;
+    }
+    s.style.display=visible?'':'none';
+  });
+}
+search.addEventListener('input',apply);filter.addEventListener('change',apply);
+</script>
+</body>
+</html>
